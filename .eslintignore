@@ -1,0 +1,9 @@
+# compiled output
+/dist
+/tmp
+
+# dependencies
+/node_modules
+
+# SPS XSD -> TS types
+/lib/types/sps/xmlns

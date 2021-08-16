@@ -1,0 +1,3038 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Feed Management",
+    "description": "Feeds are constructed to handle bulk functions. A feed consists of an HTTP request with an attached file. Once you upload the Feeds, you can use the Feed ID to track the status of the feeds and the status of the item within those Feeds."
+  },
+  "servers": [
+    {
+      "url": "https://marketplace.walmartapis.com",
+      "description": "Production URL"
+    },
+    {
+      "url": "https://sandbox.walmartapis.com",
+      "description": "Sandbox URL"
+    }
+  ],
+  "security": [
+    {
+      "basicScheme": []
+    }
+  ],
+  "paths": {
+    "/v3/feeds": {
+      "get": {
+        "tags": [
+          "Feeds"
+        ],
+        "summary": " All feed statuses",
+        "description": "Returns the feed statuses for all the specified Feed IDs.",
+        "operationId": "getAllFeedStatuses",
+        "parameters": [
+          {
+            "name": "feedId",
+            "in": "query",
+            "description": "A unique ID returned from the Bulk Upload API, used for tracking the Feed File. Special characters must be escaped. (e.g., feedId: '...3456@789...' must be entered in the URL as '...3456%40789).",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The object response to start with, where 0 is the first entity that can be requested. It can only be used when includeDetails is set to true.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "0"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The number of entities to be returned. It cannot be more than 50 entities. Use it only when the includeDetails is set to true.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "50"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Basic YzcyOTFjNmItNzI5MC00...."
+          },
+          {
+            "in": "header",
+            "name": "WM_SEC.ACCESS_TOKEN",
+            "description": "The access token retrieved in the Token API call",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
+          },
+          {
+            "in": "header",
+            "name": "WM_CONSUMER.CHANNEL.TYPE",
+            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "WM_QOS.CORRELATION_ID",
+            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
+          },
+          {
+            "in": "header",
+            "name": "WM_SVC.NAME",
+            "description": "Walmart Service Name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Walmart Service Name"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "errors": {
+                      "type": "array",
+                      "xml": {
+                        "name": "error"
+                      },
+                      "items": {
+                        "required": [
+                          "code"
+                        ],
+                        "type": "object",
+                        "properties": {
+                          "code": {
+                            "type": "string"
+                          },
+                          "field": {
+                            "type": "string"
+                          },
+                          "description": {
+                            "type": "string"
+                          },
+                          "info": {
+                            "type": "string"
+                          },
+                          "severity": {
+                            "type": "string",
+                            "enum": [
+                              "INFO",
+                              "WARN",
+                              "ERROR"
+                            ]
+                          },
+                          "category": {
+                            "type": "string",
+                            "enum": [
+                              "APPLICATION",
+                              "SYSTEM",
+                              "REQUEST",
+                              "DATA"
+                            ]
+                          },
+                          "causes": {
+                            "type": "array",
+                            "xml": {
+                              "wrapped": true
+                            },
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "code": {
+                                  "type": "string"
+                                },
+                                "field": {
+                                  "type": "string"
+                                },
+                                "type": {
+                                  "type": "string"
+                                },
+                                "description": {
+                                  "type": "string"
+                                }
+                              },
+                              "xml": {
+                                "name": "Cause"
+                              }
+                            }
+                          },
+                          "errorIdentifiers": {
+                            "type": "object",
+                            "additionalProperties": {
+                              "type": "object"
+                            }
+                          },
+                          "component": {
+                            "type": "string"
+                          },
+                          "type": {
+                            "type": "string"
+                          },
+                          "serviceName": {
+                            "type": "string"
+                          },
+                          "gatewayErrorCategory": {
+                            "type": "string",
+                            "enum": [
+                              "INTERNAL_DATA_ERROR",
+                              "EXTERNAL_DATA_ERROR",
+                              "SYSTEM_ERROR"
+                            ]
+                          }
+                        },
+                        "xml": {
+                          "name": "GatewayError"
+                        }
+                      }
+                    },
+                    "totalResults": {
+                      "type": "integer",
+                      "description": "Total number of feeds returned",
+                      "format": "int64"
+                    },
+                    "offset": {
+                      "type": "integer",
+                      "description": "The object response to the starting number, where 0 is the first available",
+                      "format": "int64"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "The number of items to be returned",
+                      "format": "int32"
+                    },
+                    "results": {
+                      "type": "array",
+                      "description": "The feed status results",
+                      "xml": {
+                        "wrapped": true
+                      },
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "feedId": {
+                            "type": "string",
+                            "description": "A unique ID used for tracking the Feed File"
+                          },
+                          "feedSource": {
+                            "type": "string",
+                            "description": "The source of the feed"
+                          },
+                          "feedType": {
+                            "type": "string",
+                            "description": "The feed type"
+                          },
+                          "partnerId": {
+                            "type": "string",
+                            "description": "The seller ID"
+                          },
+                          "itemsReceived": {
+                            "type": "integer",
+                            "description": "The number of items received",
+                            "format": "int64"
+                          },
+                          "itemsSucceeded": {
+                            "type": "integer",
+                            "description": "The number of items in the feed that have successfully processed",
+                            "format": "int64"
+                          },
+                          "itemsFailed": {
+                            "type": "integer",
+                            "description": "The number of items in the feed that failed due to a data or system error",
+                            "format": "int64"
+                          },
+                          "itemsProcessing": {
+                            "type": "integer",
+                            "description": "The number of items in the feed that are still in progress",
+                            "format": "int64"
+                          },
+                          "feedStatus": {
+                            "type": "string",
+                            "description": "Can be one of the following: RECEIVED, INPROGRESS, PROCESSED, or ERROR. For details, see the definitions listed under 'Feed Statuses' at the beginning of this section."
+                          },
+                          "feedDate": {
+                            "type": "string",
+                            "description": "The date and time the feed was submitted. Format: yyyymmddThh:mm:ss.xxxz",
+                            "format": "date-time"
+                          },
+                          "batchId": {
+                            "type": "string",
+                            "description": "The batch ID for the feed, if provided"
+                          },
+                          "modifiedDtm": {
+                            "type": "string",
+                            "description": "The most recent time the feed was modified. Format: yyyymmddThh:mm:ss.xxxz",
+                            "format": "date-time"
+                          }
+                        },
+                        "description": "Information about the individual feed",
+                        "xml": {
+                          "name": "feed"
+                        }
+                      }
+                    }
+                  },
+                  "xml": {
+                    "name": "list"
+                  }
+                },
+                "example": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<ns2:list xmlns:ns2=\"http://walmart.com/\">\n    <ns2:totalResults>210</ns2:totalResults>\n    <ns2:offset>0</ns2:offset>\n    <ns2:limit>50</ns2:limit>\n    <ns2:results>\n        <ns2:feed>\n            <ns2:feedId>1401AE7FA2B045A79294C90C43671720@AVUBAQA</ns2:feedId>\n            <ns2:feedType>PROMO_PRICE</ns2:feedType>\n            <ns2:partnerId>100009</ns2:partnerId>\n            <ns2:itemsReceived>1</ns2:itemsReceived>\n            <ns2:itemsSucceeded>0</ns2:itemsSucceeded>\n            <ns2:itemsFailed>1</ns2:itemsFailed>\n            <ns2:itemsProcessing>0</ns2:itemsProcessing>\n            <ns2:feedStatus>PROCESSED</ns2:feedStatus>\n            <ns2:feedDate>2019-09-13T22:43:38.467Z</ns2:feedDate>\n            <ns2:modifiedDtm>2019-09-13T23:43:38.526Z</ns2:modifiedDtm>\n            <ns2:fileName>1401AE7FA2B045A79294C90C43671720@AVUBAQA.json</ns2:fileName>\n            <ns2:itemDataErrorCount>1</ns2:itemDataErrorCount>\n            <ns2:itemSystemErrorCount>0</ns2:itemSystemErrorCount>\n            <ns2:itemTimeoutErrorCount>0</ns2:itemTimeoutErrorCount>\n            <ns2:orgId>f5e3d40a-1267-46b9-a2f3-7811e4c0b2de</ns2:orgId>\n        </ns2:feed>\n        <ns2:feed>\n            <ns2:feedId>61CDBC483DB64EC097E7D0961DA54621@AU8BAgA</ns2:feedId>\n            <ns2:feedType>item</ns2:feedType>\n            <ns2:partnerId>100009</ns2:partnerId>\n            <ns2:itemsReceived>1</ns2:itemsReceived>\n            <ns2:itemsSucceeded>0</ns2:itemsSucceeded>\n            <ns2:itemsFailed>1</ns2:itemsFailed>\n            <ns2:itemsProcessing>0</ns2:itemsProcessing>\n            <ns2:feedStatus>INPROGRESS</ns2:feedStatus>\n            <ns2:feedDate>2019-09-13T20:46:33.195Z</ns2:feedDate>\n            <ns2:modifiedDtm>2019-09-13T20:46:33.383Z</ns2:modifiedDtm>\n            <ns2:fileName>61CDBC483DB64EC097E7D0961DA54621@AU8BAgA.json</ns2:fileName>\n            <ns2:itemDataErrorCount>1</ns2:itemDataErrorCount>\n            <ns2:itemSystemErrorCount>0</ns2:itemSystemErrorCount>\n            <ns2:itemTimeoutErrorCount>0</ns2:itemTimeoutErrorCount>\n            <ns2:channelType>0f3e4dd4-0514-4346-b39d-af0e00ea066d</ns2:channelType>\n            <ns2:orgId>f5e3d40a-1267-46b9-a2f3-7811e4c0b2de</ns2:orgId>\n        </ns2:feed>\n        <ns2:feed>\n            <ns2:feedId>4873EBF14F2048FC963B3E25535D0D13@AU8BAgA</ns2:feedId>\n            <ns2:feedType>item</ns2:feedType>\n            <ns2:partnerId>100009</ns2:partnerId>\n            <ns2:itemsReceived>1</ns2:itemsReceived>\n            <ns2:itemsSucceeded>0</ns2:itemsSucceeded>\n            <ns2:itemsFailed>1</ns2:itemsFailed>\n            <ns2:itemsProcessing>0</ns2:itemsProcessing>\n            <ns2:feedStatus>INPROGRESS</ns2:feedStatus>\n            <ns2:feedDate>2019-09-13T20:45:37.504Z</ns2:feedDate>\n            <ns2:modifiedDtm>2019-09-13T20:45:38.754Z</ns2:modifiedDtm>\n            <ns2:fileName>4873EBF14F2048FC963B3E25535D0D13@AU8BAgA.json</ns2:fileName>\n            <ns2:itemDataErrorCount>1</ns2:itemDataErrorCount>\n            <ns2:itemSystemErrorCount>0</ns2:itemSystemErrorCount>\n            <ns2:itemTimeoutErrorCount>0</ns2:itemTimeoutErrorCount>\n            <ns2:channelType>0f3e4dd4-0514-4346-b39d-af0e00ea066d</ns2:channelType>\n            <ns2:orgId>f5e3d40a-1267-46b9-a2f3-7811e4c0b2de</ns2:orgId>\n        </ns2:feed>\n        <ns2:feed>\n            <ns2:feedId>B50CF594659842E5A0D2F8FBC38E0E0D@AU8BAQA</ns2:feedId>\n            <ns2:feedType>item</ns2:feedType>\n            <ns2:partnerId>100009</ns2:partnerId>\n            <ns2:itemsReceived>1</ns2:itemsReceived>\n            <ns2:itemsSucceeded>0</ns2:itemsSucceeded>\n            <ns2:itemsFailed>1</ns2:itemsFailed>\n            <ns2:itemsProcessing>0</ns2:itemsProcessing>\n            <ns2:feedStatus>INPROGRESS</ns2:feedStatus>\n            <ns2:feedDate>2019-09-13T20:44:59.352Z</ns2:feedDate>\n            <ns2:modifiedDtm>2019-09-13T20:44:59.460Z</ns2:modifiedDtm>\n            <ns2:fileName>B50CF594659842E5A0D2F8FBC38E0E0D@AU8BAQA.json</ns2:fileName>\n            <ns2:itemDataErrorCount>1</ns2:itemDataErrorCount>\n            <ns2:itemSystemErrorCount>0</ns2:itemSystemErrorCount>\n            <ns2:itemTimeoutErrorCount>0</ns2:itemTimeoutErrorCount>\n            <ns2:channelType>0f3e4dd4-0514-4346-b39d-af0e00ea066d</ns2:channelType>\n            <ns2:orgId>f5e3d40a-1267-46b9-a2f3-7811e4c0b2de</ns2:orgId>\n        </ns2:feed>\n        <ns2:feed>\n            <ns2:feedId>4028C1C2C3264C25A42E4A01DEDF432D@AU8BAQA</ns2:feedId>\n            <ns2:feedType>item</ns2:feedType>\n            <ns2:partnerId>100009</ns2:partnerId>\n            <ns2:itemsReceived>1</ns2:itemsReceived>\n            <ns2:itemsSucceeded>0</ns2:itemsSucceeded>\n            <ns2:itemsFailed>1</ns2:itemsFailed>\n            <ns2:itemsProcessing>0</ns2:itemsProcessing>\n            <ns2:feedStatus>INPROGRESS</ns2:feedStatus>\n            <ns2:feedDate>2019-09-13T20:44:08.545Z</ns2:feedDate>\n            <ns2:modifiedDtm>2019-09-13T20:44:08.663Z</ns2:modifiedDtm>\n            <ns2:fileName>4028C1C2C3264C25A42E4A01DEDF432D@AU8BAQA.json</ns2:fileName>\n            <ns2:itemDataErrorCount>1</ns2:itemDataErrorCount>\n            <ns2:itemSystemErrorCount>0</ns2:itemSystemErrorCount>\n            <ns2:itemTimeoutErrorCount>0</ns2:itemTimeoutErrorCount>\n            <ns2:channelType>0f3e4dd4-0514-4346-b39d-af0e00ea066d</ns2:channelType>\n            <ns2:orgId>f5e3d40a-1267-46b9-a2f3-7811e4c0b2de</ns2:orgId>\n        </ns2:feed>\n        <ns2:feed>\n            <ns2:feedId>5467D0563CD14AC68972B7ECF122C5E3@AU8BAgA</ns2:feedId>\n            <ns2:feedType>item</ns2:feedType>\n            <ns2:partnerId>100009</ns2:partnerId>\n            <ns2:itemsReceived>1</ns2:itemsReceived>\n            <ns2:itemsSucceeded>0</ns2:itemsSucceeded>\n            <ns2:itemsFailed>1</ns2:itemsFailed>\n            <ns2:itemsProcessing>0</ns2:itemsProcessing>\n            <ns2:feedStatus>INPROGRESS</ns2:feedStatus>\n            <ns2:feedDate>2019-09-13T20:35:40.013Z</ns2:feedDate>\n            <ns2:modifiedDtm>2019-09-13T20:35:40.151Z</ns2:modifiedDtm>\n            <ns2:fileName>5467D0563CD14AC68972B7ECF122C5E3@AU8BAgA.json</ns2:fileName>\n            <ns2:itemDataErrorCount>1</ns2:itemDataErrorCount>\n            <ns2:itemSystemErrorCount>0</ns2:itemSystemErrorCount>\n            <ns2:itemTimeoutErrorCount>0</ns2:itemTimeoutErrorCount>\n            <ns2:channelType>0f3e4dd4-0514-4346-b39d-af0e00ea066d</ns2:channelType>\n            <ns2:orgId>f5e3d40a-1267-46b9-a2f3-7811e4c0b2de</ns2:orgId>\n        </ns2:feed>\n        <ns2:feed>\n            <ns2:feedId>E7235D494D6F474AA47BC2AA817AD938@AU8BAgA</ns2:feedId>\n            <ns2:feedType>item</ns2:feedType>\n            <ns2:partnerId>100009</ns2:partnerId>\n            <ns2:itemsReceived>1</ns2:itemsReceived>\n            <ns2:itemsSucceeded>0</ns2:itemsSucceeded>\n            <ns2:itemsFailed>1</ns2:itemsFailed>\n            <ns2:itemsProcessing>0</ns2:itemsProcessing>\n            <ns2:feedStatus>INPROGRESS</ns2:feedStatus>\n            <ns2:feedDate>2019-09-13T20:34:12.765Z</ns2:feedDate>\n            <ns2:modifiedDtm>2019-09-13T20:34:12.936Z</ns2:modifiedDtm>\n            <ns2:fileName>E7235D494D6F474AA47BC2AA817AD938@AU8BAgA.json</ns2:fileName>\n            <ns2:itemDataErrorCount>1</ns2:itemDataErrorCount>\n            <ns2:itemSystemErrorCount>0</ns2:itemSystemErrorCount>\n            <ns2:itemTimeoutErrorCount>0</ns2:itemTimeoutErrorCount>\n            <ns2:channelType>0f3e4dd4-0514-4346-b39d-af0e00ea066d</ns2:channelType>\n            <ns2:orgId>f5e3d40a-1267-46b9-a2f3-7811e4c0b2de</ns2:orgId>\n        </ns2:feed>\n        <ns2:feed>\n            <ns2:feedId>492C7888FAEE4779A8A48E31EAAC65CE@AU8BAgA</ns2:feedId>\n            <ns2:feedType>item</ns2:feedType>\n            <ns2:partnerId>100009</ns2:partnerId>\n            <ns2:itemsReceived>1</ns2:itemsReceived>\n            <ns2:itemsSucceeded>0</ns2:itemsSucceeded>\n            <ns2:itemsFailed>1</ns2:itemsFailed>\n            <ns2:itemsProcessing>0</ns2:itemsProcessing>\n            <ns2:feedStatus>PROCESSED</ns2:feedStatus>\n            <ns2:feedDate>2019-09-13T20:32:54.404Z</ns2:feedDate>\n            <ns2:modifiedDtm>2019-09-13T22:32:54.869Z</ns2:modifiedDtm>\n            <ns2:fileName>492C7888FAEE4779A8A48E31EAAC65CE@AU8BAgA.json</ns2:fileName>\n            <ns2:itemDataErrorCount>0</ns2:itemDataErrorCount>\n            <ns2:itemSystemErrorCount>0</ns2:itemSystemErrorCount>\n            <ns2:itemTimeoutErrorCount>1</ns2:itemTimeoutErrorCount>\n            <ns2:channelType>0f3e4dd4-0514-4346-b39d-af0e00ea066d</ns2:channelType>\n            <ns2:orgId>f5e3d40a-1267-46b9-a2f3-7811e4c0b2de</ns2:orgId>\n        </ns2:feed>\n        <ns2:feed>\n            <ns2:feedId>EDD3F56A2E824959AF60550DE88F8086@AU8BAgA</ns2:feedId>\n            <ns2:feedType>item</ns2:feedType>\n            <ns2:partnerId>100009</ns2:partnerId>\n            <ns2:itemsReceived>0</ns2:itemsReceived>\n            <ns2:itemsSucceeded>0</ns2:itemsSucceeded>\n            <ns2:itemsFailed>0</ns2:itemsFailed>\n            <ns2:itemsProcessing>0</ns2:itemsProcessing>\n            <ns2:feedStatus>ERROR</ns2:feedStatus>\n            <ns2:feedDate>2019-09-13T20:31:25.086Z</ns2:feedDate>\n            <ns2:modifiedDtm>2019-09-13T20:31:25.273Z</ns2:modifiedDtm>\n            <ns2:fileName>EDD3F56A2E824959AF60550DE88F8086@AU8BAgA.json</ns2:fileName>\n            <ns2:itemDataErrorCount>0</ns2:itemDataErrorCount>\n            <ns2:itemSystemErrorCount>0</ns2:itemSystemErrorCount>\n            <ns2:itemTimeoutErrorCount>0</ns2:itemTimeoutErrorCount>\n            <ns2:channelType>0f3e4dd4-0514-4346-b39d-af0e00ea066d</ns2:channelType>\n            <ns2:orgId>f5e3d40a-1267-46b9-a2f3-7811e4c0b2de</ns2:orgId>\n        </ns2:feed>\n        <ns2:feed>\n            <ns2:feedId>8AE380EB33B74728A91FC6470E9F3251@AU8BAgA</ns2:feedId>\n            <ns2:feedType>item</ns2:feedType>\n            <ns2:partnerId>100009</ns2:partnerId>\n            <ns2:itemsReceived>1</ns2:itemsReceived>\n            <ns2:itemsSucceeded>0</ns2:itemsSucceeded>\n            <ns2:itemsFailed>1</ns2:itemsFailed>\n            <ns2:itemsProcessing>0</ns2:itemsProcessing>\n            <ns2:feedStatus>INPROGRESS</ns2:feedStatus>\n            <ns2:feedDate>2019-09-13T20:28:55.200Z</ns2:feedDate>\n            <ns2:modifiedDtm>2019-09-13T20:28:55.302Z</ns2:modifiedDtm>\n            <ns2:fileName>8AE380EB33B74728A91FC6470E9F3251@AU8BAgA.json</ns2:fileName>\n            <ns2:itemDataErrorCount>1</ns2:itemDataErrorCount>\n            <ns2:itemSystemErrorCount>0</ns2:itemSystemErrorCount>\n            <ns2:itemTimeoutErrorCount>0</ns2:itemTimeoutErrorCount>\n            <ns2:channelType>0f3e4dd4-0514-4346-b39d-af0e00ea066d</ns2:channelType>\n            <ns2:orgId>f5e3d40a-1267-46b9-a2f3-7811e4c0b2de</ns2:orgId>\n        </ns2:feed>\n        <ns2:feed>\n            <ns2:feedId>248E08F0AE2D4878BDC5A929805CDE35@AU8BAQA</ns2:feedId>\n            <ns2:feedType>item</ns2:feedType>\n            <ns2:partnerId>100009</ns2:partnerId>\n            <ns2:itemsReceived>0</ns2:itemsReceived>\n            <ns2:itemsSucceeded>0</ns2:itemsSucceeded>\n            <ns2:itemsFailed>0</ns2:itemsFailed>\n            <ns2:itemsProcessing>0</ns2:itemsProcessing>\n            <ns2:feedStatus>ERROR</ns2:feedStatus>\n            <ns2:feedDate>2019-09-13T20:09:11.024Z</ns2:feedDate>\n            <ns2:modifiedDtm>2019-09-13T20:09:11.198Z</ns2:modifiedDtm>\n            <ns2:fileName>248E08F0AE2D4878BDC5A929805CDE35@AU8BAQA.json</ns2:fileName>\n            <ns2:itemDataErrorCount>0</ns2:itemDataErrorCount>\n            <ns2:itemSystemErrorCount>0</ns2:itemSystemErrorCount>\n            <ns2:itemTimeoutErrorCount>0</ns2:itemTimeoutErrorCount>\n            <ns2:channelType>0f3e4dd4-0514-4346-b39d-af0e00ea066d</ns2:channelType>\n            <ns2:orgId>f5e3d40a-1267-46b9-a2f3-7811e4c0b2de</ns2:orgId>\n        </ns2:feed>\n        <ns2:feed>\n            <ns2:feedId>595884EDE2AF436AA417727EDCAD5E29@AU8BAQA</ns2:feedId>\n            <ns2:feedType>item</ns2:feedType>\n            <ns2:partnerId>100009</ns2:partnerId>\n            <ns2:itemsReceived>1</ns2:itemsReceived>\n            <ns2:itemsSucceeded>0</ns2:itemsSucceeded>\n            <ns2:itemsFailed>1</ns2:itemsFailed>\n            <ns2:itemsProcessing>0</ns2:itemsProcessing>\n            <ns2:feedStatus>PROCESSED</ns2:feedStatus>\n            <ns2:feedDate>2019-09-13T20:07:35.045Z</ns2:feedDate>\n            <ns2:modifiedDtm>2019-09-13T22:07:35.882Z</ns2:modifiedDtm>\n            <ns2:fileName>595884EDE2AF436AA417727EDCAD5E29@AU8BAQA.json</ns2:fileName>\n            <ns2:itemDataErrorCount>0</ns2:itemDataErrorCount>\n            <ns2:itemSystemErrorCount>0</ns2:itemSystemErrorCount>\n            <ns2:itemTimeoutErrorCount>1</ns2:itemTimeoutErrorCount>\n            <ns2:channelType>0f3e4dd4-0514-4346-b39d-af0e00ea066d</ns2:channelType>\n            <ns2:orgId>f5e3d40a-1267-46b9-a2f3-7811e4c0b2de</ns2:orgId>\n        </ns2:feed>\n        <ns2:feed>\n            <ns2:feedId>E18D54C2E3F3443DB565AF4CC343162A@AU8BAgA</ns2:feedId>\n            <ns2:feedType>item</ns2:feedType>\n            <ns2:partnerId>100009</ns2:partnerId>\n            <ns2:itemsReceived>1</ns2:itemsReceived>\n            <ns2:itemsSucceeded>0</ns2:itemsSucceeded>\n            <ns2:itemsFailed>1</ns2:itemsFailed>\n            <ns2:itemsProcessing>0</ns2:itemsProcessing>\n            <ns2:feedStatus>PROCESSED</ns2:feedStatus>\n            <ns2:feedDate>2019-09-13T19:41:08.430Z</ns2:feedDate>\n            <ns2:modifiedDtm>2019-09-13T21:41:09.015Z</ns2:modifiedDtm>\n            <ns2:fileName>E18D54C2E3F3443DB565AF4CC343162A@AU8BAgA.json</ns2:fileName>\n            <ns2:itemDataErrorCount>0</ns2:itemDataErrorCount>\n            <ns2:itemSystemErrorCount>0</ns2:itemSystemErrorCount>\n            <ns2:itemTimeoutErrorCount>1</ns2:itemTimeoutErrorCount>\n            <ns2:channelType>0f3e4dd4-0514-4346-b39d-af0e00ea066d</ns2:channelType>\n            <ns2:orgId>f5e3d40a-1267-46b9-a2f3-7811e4c0b2de</ns2:orgId>\n        </ns2:feed>\n        <ns2:feed>\n            <ns2:feedId>FFE538D9B25A4000AD2A067ACEDCF4C4@AUoBAQA</ns2:feedId>\n            <ns2:feedSource>SELLER</ns2:feedSource>\n            <ns2:feedType>inventory</ns2:feedType>\n            <ns2:partnerId>100009</ns2:partnerId>\n            <ns2:itemsReceived>2</ns2:itemsReceived>\n            <ns2:itemsSucceeded>2</ns2:itemsSucceeded>\n            <ns2:itemsFailed>0</ns2:itemsFailed>\n            <ns2:itemsProcessing>0</ns2:itemsProcessing>\n            <ns2:feedStatus>PROCESSED</ns2:feedStatus>\n            <ns2:feedDate>2019-09-13T19:37:27.788Z</ns2:feedDate>\n            <ns2:modifiedDtm>2019-09-13T19:37:48.622Z</ns2:modifiedDtm>\n            <ns2:itemDataErrorCount>0</ns2:itemDataErrorCount>\n            <ns2:itemSystemErrorCount>0</ns2:itemSystemErrorCount>\n            <ns2:itemTimeoutErrorCount>0</ns2:itemTimeoutErrorCount>\n            <ns2:channelType>0f3e4dd4-0514-4346-b39d-af0e00ea066d</ns2:channelType>\n            <ns2:orgId>f5e3d40a-1267-46b9-a2f3-7811e4c0b2de</ns2:orgId>\n        </ns2:feed>\n        <ns2:feed>\n            <ns2:feedId>F3B56955D77B45FCB00EFE1F256F8050@AUoBAQA</ns2:feedId>\n            <ns2:feedSource>SELLER</ns2:feedSource>\n            <ns2:feedType>inventory</ns2:feedType>\n            <ns2:partnerId>100009</ns2:partnerId>\n            <ns2:itemsReceived>2</ns2:itemsReceived>\n            <ns2:itemsSucceeded>2</ns2:itemsSucceeded>\n            <ns2:itemsFailed>0</ns2:itemsFailed>\n            <ns2:itemsProcessing>0</ns2:itemsProcessing>\n            <ns2:feedStatus>PROCESSED</ns2:feedStatus>\n            <ns2:feedDate>2019-09-13T19:35:01.262Z</ns2:feedDate>\n            <ns2:modifiedDtm>2019-09-13T19:35:31.392Z</ns2:modifiedDtm>\n            <ns2:itemDataErrorCount>0</ns2:itemDataErrorCount>\n            <ns2:itemSystemErrorCount>0</ns2:itemSystemErrorCount>\n            <ns2:itemTimeoutErrorCount>0</ns2:itemTimeoutErrorCount>\n            <ns2:channelType>0f3e4dd4-0514-4346-b39d-af0e00ea066d</ns2:channelType>\n            <ns2:orgId>f5e3d40a-1267-46b9-a2f3-7811e4c0b2de</ns2:orgId>\n        </ns2:feed>\n        <ns2:feed>\n            <ns2:feedId>EA1334C394ED43BA8743D67747332539@AUoBAQA</ns2:feedId>\n            <ns2:feedSource>SELLER</ns2:feedSource>\n            <ns2:feedType>inventory</ns2:feedType>\n            <ns2:partnerId>100009</ns2:partnerId>\n            <ns2:itemsReceived>2</ns2:itemsReceived>\n            <ns2:itemsSucceeded>2</ns2:itemsSucceeded>\n            <ns2:itemsFailed>0</ns2:itemsFailed>\n            <ns2:itemsProcessing>0</ns2:itemsProcessing>\n            <ns2:feedStatus>PROCESSED</ns2:feedStatus>\n            <ns2:feedDate>2019-09-13T19:33:24.128Z</ns2:feedDate>\n            <ns2:modifiedDtm>2019-09-13T19:33:44.904Z</ns2:modifiedDtm>\n            <ns2:itemDataErrorCount>0</ns2:itemDataErrorCount>\n            <ns2:itemSystemErrorCount>0</ns2:itemSystemErrorCount>\n            <ns2:itemTimeoutErrorCount>0</ns2:itemTimeoutErrorCount>\n            <ns2:channelType>0f3e4dd4-0514-4346-b39d-af0e00ea066d</ns2:channelType>\n            <ns2:orgId>f5e3d40a-1267-46b9-a2f3-7811e4c0b2de</ns2:orgId>\n        </ns2:feed>\n        <ns2:feed>\n            <ns2:feedId>D5584F239FFD4D7C90738986DDC2326E@AVUBAQA</ns2:feedId>\n            <ns2:feedType>PROMO_PRICE</ns2:feedType>\n            <ns2:partnerId>100009</ns2:partnerId>\n            <ns2:itemsReceived>1</ns2:itemsReceived>\n            <ns2:itemsSucceeded>0</ns2:itemsSucceeded>\n            <ns2:itemsFailed>1</ns2:itemsFailed>\n            <ns2:itemsProcessing>0</ns2:itemsProcessing>\n            <ns2:feedStatus>PROCESSED</ns2:feedStatus>\n            <ns2:feedDate>2019-09-13T19:25:27.795Z</ns2:feedDate>\n            <ns2:modifiedDtm>2019-09-13T20:25:27.808Z</ns2:modifiedDtm>\n            <ns2:fileName>D5584F239FFD4D7C90738986DDC2326E@AVUBAQA.json</ns2:fileName>\n            <ns2:itemDataErrorCount>1</ns2:itemDataErrorCount>\n            <ns2:itemSystemErrorCount>0</ns2:itemSystemErrorCount>\n            <ns2:itemTimeoutErrorCount>0</ns2:itemTimeoutErrorCount>\n            <ns2:orgId>f5e3d40a-1267-46b9-a2f3-7811e4c0b2de</ns2:orgId>\n        </ns2:feed>\n        <ns2:feed>\n            <ns2:feedId>6966CA408F7E4FCAA24E03BDC097E9D2@AVMBAQA</ns2:feedId>\n            <ns2:feedType>MP_ITEM_PRICE_UPDATE</ns2:feedType>\n            <ns2:partnerId>100009</ns2:partnerId>\n            <ns2:itemsReceived>2</ns2:itemsReceived>\n            <ns2:itemsSucceeded>2</ns2:itemsSucceeded>\n            <ns2:itemsFailed>0</ns2:itemsFailed>\n            <ns2:itemsProcessing>0</ns2:itemsProcessing>\n            <ns2:feedStatus>PROCESSED</ns2:feedStatus>\n            <ns2:feedDate>2019-09-13T19:13:04.816Z</ns2:feedDate>\n            <ns2:modifiedDtm>2019-09-13T20:13:04.865Z</ns2:modifiedDtm>\n            <ns2:fileName>6966CA408F7E4FCAA24E03BDC097E9D2@AVMBAQA.json</ns2:fileName>\n            <ns2:itemDataErrorCount>0</ns2:itemDataErrorCount>\n            <ns2:itemSystemErrorCount>0</ns2:itemSystemErrorCount>\n            <ns2:itemTimeoutErrorCount>0</ns2:itemTimeoutErrorCount>\n            <ns2:channelType>0f3e4dd4-0514-4346-b39d-af0e00ea066d</ns2:channelType>\n            <ns2:orgId>f5e3d40a-1267-46b9-a2f3-7811e4c0b2de</ns2:orgId>\n        </ns2:feed>\n        <ns2:feed>\n            <ns2:feedId>67F29CF7F11A4D79A8617F4B22A17DA0@AU8BAgA</ns2:feedId>\n            <ns2:feedType>item</ns2:feedType>\n            <ns2:partnerId>100009</ns2:partnerId>\n            <ns2:itemsReceived>1</ns2:itemsReceived>\n            <ns2:itemsSucceeded>0</ns2:itemsSucceeded>\n            <ns2:itemsFailed>1</ns2:itemsFailed>\n            <ns2:itemsProcessing>0</ns2:itemsProcessing>\n            <ns2:feedStatus>INPROGRESS</ns2:feedStatus>\n            <ns2:feedDate>2019-09-13T18:08:46.860Z</ns2:feedDate>\n            <ns2:modifiedDtm>2019-09-13T18:08:46.973Z</ns2:modifiedDtm>\n            <ns2:fileName>67F29CF7F11A4D79A8617F4B22A17DA0@AU8BAgA.json</ns2:fileName>\n            <ns2:itemDataErrorCount>1</ns2:itemDataErrorCount>\n            <ns2:itemSystemErrorCount>0</ns2:itemSystemErrorCount>\n            <ns2:itemTimeoutErrorCount>0</ns2:itemTimeoutErrorCount>\n            <ns2:channelType>0f3e4dd4-0514-4346-b39d-af0e00ea066d</ns2:channelType>\n            <ns2:orgId>f5e3d40a-1267-46b9-a2f3-7811e4c0b2de</ns2:orgId>\n        </ns2:feed>\n        <ns2:feed>\n            <ns2:feedId>152E7873BD4A4517A430BA5711CE71FD@AU8BAgA</ns2:feedId>\n            <ns2:feedType>item</ns2:feedType>\n            <ns2:partnerId>100009</ns2:partnerId>\n            <ns2:itemsReceived>1</ns2:itemsReceived>\n            <ns2:itemsSucceeded>0</ns2:itemsSucceeded>\n            <ns2:itemsFailed>1</ns2:itemsFailed>\n            <ns2:itemsProcessing>0</ns2:itemsProcessing>\n            <ns2:feedStatus>INPROGRESS</ns2:feedStatus>\n            <ns2:feedDate>2019-09-13T18:07:43.567Z</ns2:feedDate>\n            <ns2:modifiedDtm>2019-09-13T18:07:43.764Z</ns2:modifiedDtm>\n            <ns2:fileName>152E7873BD4A4517A430BA5711CE71FD@AU8BAgA.json</ns2:fileName>\n            <ns2:itemDataErrorCount>1</ns2:itemDataErrorCount>\n            <ns2:itemSystemErrorCount>0</ns2:itemSystemErrorCount>\n            <ns2:itemTimeoutErrorCount>0</ns2:itemTimeoutErrorCount>\n            <ns2:channelType>0f3e4dd4-0514-4346-b39d-af0e00ea066d</ns2:channelType>\n            <ns2:orgId>f5e3d40a-1267-46b9-a2f3-7811e4c0b2de</ns2:orgId>\n        </ns2:feed>\n        <ns2:feed>\n            <ns2:feedId>0217880566B7457BA08083B2D1731626@AU8BAQA</ns2:feedId>\n            <ns2:feedType>item</ns2:feedType>\n            <ns2:partnerId>100009</ns2:partnerId>\n            <ns2:itemsReceived>1</ns2:itemsReceived>\n            <ns2:itemsSucceeded>0</ns2:itemsSucceeded>\n            <ns2:itemsFailed>1</ns2:itemsFailed>\n            <ns2:itemsProcessing>0</ns2:itemsProcessing>\n            <ns2:feedStatus>PROCESSED</ns2:feedStatus>\n            <ns2:feedDate>2019-09-13T18:06:23.932Z</ns2:feedDate>\n            <ns2:modifiedDtm>2019-09-13T18:06:25.067Z</ns2:modifiedDtm>\n            <ns2:fileName>0217880566B7457BA08083B2D1731626@AU8BAQA.json</ns2:fileName>\n            <ns2:itemDataErrorCount>1</ns2:itemDataErrorCount>\n            <ns2:itemSystemErrorCount>0</ns2:itemSystemErrorCount>\n            <ns2:itemTimeoutErrorCount>0</ns2:itemTimeoutErrorCount>\n            <ns2:channelType>0f3e4dd4-0514-4346-b39d-af0e00ea066d</ns2:channelType>\n            <ns2:orgId>f5e3d40a-1267-46b9-a2f3-7811e4c0b2de</ns2:orgId>\n        </ns2:feed>\n        <ns2:feed>\n            <ns2:feedId>1BE8F13936D34BB3A5E48EEB3F76F53B@AU8BAgA</ns2:feedId>\n            <ns2:feedSource>MARKETPLACE_PARTNER</ns2:feedSource>\n            <ns2:feedType>item</ns2:feedType>\n            <ns2:partnerId>100009</ns2:partnerId>\n            <ns2:itemsReceived>1</ns2:itemsReceived>\n            <ns2:itemsSucceeded>1</ns2:itemsSucceeded>\n            <ns2:itemsFailed>0</ns2:itemsFailed>\n            <ns2:itemsProcessing>0</ns2:itemsProcessing>\n            <ns2:feedStatus>PROCESSED</ns2:feedStatus>\n            <ns2:feedDate>2019-09-13T18:05:17.747Z</ns2:feedDate>\n            <ns2:modifiedDtm>2019-09-13T18:05:26.662Z</ns2:modifiedDtm>\n            <ns2:fileName>1BE8F13936D34BB3A5E48EEB3F76F53B@AU8BAgA.json</ns2:fileName>\n            <ns2:itemDataErrorCount>0</ns2:itemDataErrorCount>\n            <ns2:itemSystemErrorCount>0</ns2:itemSystemErrorCount>\n            <ns2:itemTimeoutErrorCount>0</ns2:itemTimeoutErrorCount>\n            <ns2:channelType>0f3e4dd4-0514-4346-b39d-af0e00ea066d</ns2:channelType>\n            <ns2:orgId>f5e3d40a-1267-46b9-a2f3-7811e4c0b2de</ns2:orgId>\n        </ns2:feed>\n        <ns2:feed>\n            <ns2:feedId>7CE6FA7AE1734C2EB96848BA59906B85@AU8BAgA</ns2:feedId>\n            <ns2:feedType>item</ns2:feedType>\n            <ns2:partnerId>100009</ns2:partnerId>\n            <ns2:itemsReceived>1</ns2:itemsReceived>\n            <ns2:itemsSucceeded>0</ns2:itemsSucceeded>\n            <ns2:itemsFailed>1</ns2:itemsFailed>\n            <ns2:itemsProcessing>0</ns2:itemsProcessing>\n            <ns2:feedStatus>INPROGRESS</ns2:feedStatus>\n            <ns2:feedDate>2019-09-13T18:04:03.558Z</ns2:feedDate>\n            <ns2:modifiedDtm>2019-09-13T18:04:03.663Z</ns2:modifiedDtm>\n            <ns2:fileName>7CE6FA7AE1734C2EB96848BA59906B85@AU8BAgA.json</ns2:fileName>\n            <ns2:itemDataErrorCount>1</ns2:itemDataErrorCount>\n            <ns2:itemSystemErrorCount>0</ns2:itemSystemErrorCount>\n            <ns2:itemTimeoutErrorCount>0</ns2:itemTimeoutErrorCount>\n            <ns2:channelType>0f3e4dd4-0514-4346-b39d-af0e00ea066d</ns2:channelType>\n            <ns2:orgId>f5e3d40a-1267-46b9-a2f3-7811e4c0b2de</ns2:orgId>\n        </ns2:feed>\n        <ns2:feed>\n            <ns2:feedId>BB518A98B013423D902144C653982154@AU8BAgA</ns2:feedId>\n            <ns2:feedType>item</ns2:feedType>\n            <ns2:partnerId>100009</ns2:partnerId>\n            <ns2:itemsReceived>1</ns2:itemsReceived>\n            <ns2:itemsSucceeded>0</ns2:itemsSucceeded>\n            <ns2:itemsFailed>1</ns2:itemsFailed>\n            <ns2:itemsProcessing>0</ns2:itemsProcessing>\n            <ns2:feedStatus>INPROGRESS</ns2:feedStatus>\n            <ns2:feedDate>2019-09-13T18:02:28.628Z</ns2:feedDate>\n            <ns2:modifiedDtm>2019-09-13T18:02:28.866Z</ns2:modifiedDtm>\n            <ns2:fileName>BB518A98B013423D902144C653982154@AU8BAgA.json</ns2:fileName>\n            <ns2:itemDataErrorCount>1</ns2:itemDataErrorCount>\n            <ns2:itemSystemErrorCount>0</ns2:itemSystemErrorCount>\n            <ns2:itemTimeoutErrorCount>0</ns2:itemTimeoutErrorCount>\n            <ns2:channelType>0f3e4dd4-0514-4346-b39d-af0e00ea066d</ns2:channelType>\n            <ns2:orgId>f5e3d40a-1267-46b9-a2f3-7811e4c0b2de</ns2:orgId>\n        </ns2:feed>\n        <ns2:feed>\n            <ns2:feedId>271557ABB4934F8998646579998E4A7B@AVUBAQA</ns2:feedId>\n            <ns2:feedType>PROMO_PRICE</ns2:feedType>\n            <ns2:partnerId>100009</ns2:partnerId>\n            <ns2:itemsReceived>1</ns2:itemsReceived>\n            <ns2:itemsSucceeded>0</ns2:itemsSucceeded>\n            <ns2:itemsFailed>1</ns2:itemsFailed>\n            <ns2:itemsProcessing>0</ns2:itemsProcessing>\n            <ns2:feedStatus>PROCESSED</ns2:feedStatus>\n            <ns2:feedDate>2019-09-13T18:00:59.568Z</ns2:feedDate>\n            <ns2:modifiedDtm>2019-09-13T19:00:59.661Z</ns2:modifiedDtm>\n            <ns2:fileName>271557ABB4934F8998646579998E4A7B@AVUBAQA.json</ns2:fileName>\n            <ns2:itemDataErrorCount>1</ns2:itemDataErrorCount>\n            <ns2:itemSystemErrorCount>0</ns2:itemSystemErrorCount>\n            <ns2:itemTimeoutErrorCount>0</ns2:itemTimeoutErrorCount>\n            <ns2:orgId>f5e3d40a-1267-46b9-a2f3-7811e4c0b2de</ns2:orgId>\n        </ns2:feed>\n        <ns2:feed>\n            <ns2:feedId>0027E5A8ED86488583C3542F5D1AAC7F@AU8BAgA</ns2:feedId>\n            <ns2:feedType>item</ns2:feedType>\n            <ns2:partnerId>100009</ns2:partnerId>\n            <ns2:itemsReceived>1</ns2:itemsReceived>\n            <ns2:itemsSucceeded>0</ns2:itemsSucceeded>\n            <ns2:itemsFailed>1</ns2:itemsFailed>\n            <ns2:itemsProcessing>0</ns2:itemsProcessing>\n            <ns2:feedStatus>INPROGRESS</ns2:feedStatus>\n            <ns2:feedDate>2019-09-13T18:00:39.619Z</ns2:feedDate>\n            <ns2:modifiedDtm>2019-09-13T18:00:40.237Z</ns2:modifiedDtm>\n            <ns2:fileName>0027E5A8ED86488583C3542F5D1AAC7F@AU8BAgA.json</ns2:fileName>\n            <ns2:itemDataErrorCount>1</ns2:itemDataErrorCount>\n            <ns2:itemSystemErrorCount>0</ns2:itemSystemErrorCount>\n            <ns2:itemTimeoutErrorCount>0</ns2:itemTimeoutErrorCount>\n            <ns2:channelType>0f3e4dd4-0514-4346-b39d-af0e00ea066d</ns2:channelType>\n            <ns2:orgId>f5e3d40a-1267-46b9-a2f3-7811e4c0b2de</ns2:orgId>\n        </ns2:feed>\n        <ns2:feed>\n            <ns2:feedId>FD5CF5592F544FFF89A3542C353CD13E@AU8BAQA</ns2:feedId>\n            <ns2:feedSource>MARKETPLACE_PARTNER</ns2:feedSource>\n            <ns2:feedType>item</ns2:feedType>\n            <ns2:partnerId>100009</ns2:partnerId>\n            <ns2:itemsReceived>1</ns2:itemsReceived>\n            <ns2:itemsSucceeded>1</ns2:itemsSucceeded>\n            <ns2:itemsFailed>0</ns2:itemsFailed>\n            <ns2:itemsProcessing>0</ns2:itemsProcessing>\n            <ns2:feedStatus>PROCESSED</ns2:feedStatus>\n            <ns2:feedDate>2019-09-13T17:58:35.603Z</ns2:feedDate>\n            <ns2:modifiedDtm>2019-09-13T17:59:36.782Z</ns2:modifiedDtm>\n            <ns2:fileName>FD5CF5592F544FFF89A3542C353CD13E@AU8BAQA.json</ns2:fileName>\n            <ns2:itemDataErrorCount>0</ns2:itemDataErrorCount>\n            <ns2:itemSystemErrorCount>0</ns2:itemSystemErrorCount>\n            <ns2:itemTimeoutErrorCount>0</ns2:itemTimeoutErrorCount>\n            <ns2:channelType>0f3e4dd4-0514-4346-b39d-af0e00ea066d</ns2:channelType>\n            <ns2:orgId>f5e3d40a-1267-46b9-a2f3-7811e4c0b2de</ns2:orgId>\n        </ns2:feed>\n        <ns2:feed>\n            <ns2:feedId>0435024C72DC4912A13AC2485E5830F6@AU8BAQA</ns2:feedId>\n            <ns2:feedSource>MARKETPLACE_PARTNER</ns2:feedSource>\n            <ns2:feedType>item</ns2:feedType>\n            <ns2:partnerId>100009</ns2:partnerId>\n            <ns2:itemsReceived>1</ns2:itemsReceived>\n            <ns2:itemsSucceeded>1</ns2:itemsSucceeded>\n            <ns2:itemsFailed>0</ns2:itemsFailed>\n            <ns2:itemsProcessing>0</ns2:itemsProcessing>\n            <ns2:feedStatus>PROCESSED</ns2:feedStatus>\n            <ns2:feedDate>2019-09-13T17:55:38.958Z</ns2:feedDate>\n            <ns2:modifiedDtm>2019-09-13T18:07:52.349Z</ns2:modifiedDtm>\n            <ns2:fileName>0435024C72DC4912A13AC2485E5830F6@AU8BAQA.json</ns2:fileName>\n            <ns2:itemDataErrorCount>0</ns2:itemDataErrorCount>\n            <ns2:itemSystemErrorCount>0</ns2:itemSystemErrorCount>\n            <ns2:itemTimeoutErrorCount>0</ns2:itemTimeoutErrorCount>\n            <ns2:channelType>0f3e4dd4-0514-4346-b39d-af0e00ea066d</ns2:channelType>\n            <ns2:orgId>f5e3d40a-1267-46b9-a2f3-7811e4c0b2de</ns2:orgId>\n        </ns2:feed>\n        <ns2:feed>\n            <ns2:feedId>1F0AD5E8DA004A05BDBCD650E4919510@AU8BAQA</ns2:feedId>\n            <ns2:feedSource>MARKETPLACE_PARTNER</ns2:feedSource>\n            <ns2:feedType>item</ns2:feedType>\n            <ns2:partnerId>100009</ns2:partnerId>\n            <ns2:itemsReceived>1</ns2:itemsReceived>\n            <ns2:itemsSucceeded>1</ns2:itemsSucceeded>\n            <ns2:itemsFailed>0</ns2:itemsFailed>\n            <ns2:itemsProcessing>0</ns2:itemsProcessing>\n            <ns2:feedStatus>PROCESSED</ns2:feedStatus>\n            <ns2:feedDate>2019-09-13T17:49:43.465Z</ns2:feedDate>\n            <ns2:modifiedDtm>2019-09-13T17:50:12.404Z</ns2:modifiedDtm>\n            <ns2:fileName>1F0AD5E8DA004A05BDBCD650E4919510@AU8BAQA.json</ns2:fileName>\n            <ns2:itemDataErrorCount>0</ns2:itemDataErrorCount>\n            <ns2:itemSystemErrorCount>0</ns2:itemSystemErrorCount>\n            <ns2:itemTimeoutErrorCount>0</ns2:itemTimeoutErrorCount>\n            <ns2:channelType>0f3e4dd4-0514-4346-b39d-af0e00ea066d</ns2:channelType>\n            <ns2:orgId>f5e3d40a-1267-46b9-a2f3-7811e4c0b2de</ns2:orgId>\n        </ns2:feed>\n        <ns2:feed>\n            <ns2:feedId>0F0DF90C72A44EB0A712D500BC50C1AE@AU8BAQA</ns2:feedId>\n            <ns2:feedSource>MARKETPLACE_PARTNER</ns2:feedSource>\n            <ns2:feedType>item</ns2:feedType>\n            <ns2:partnerId>100009</ns2:partnerId>\n            <ns2:itemsReceived>1</ns2:itemsReceived>\n            <ns2:itemsSucceeded>1</ns2:itemsSucceeded>\n            <ns2:itemsFailed>0</ns2:itemsFailed>\n            <ns2:itemsProcessing>0</ns2:itemsProcessing>\n            <ns2:feedStatus>PROCESSED</ns2:feedStatus>\n            <ns2:feedDate>2019-09-13T17:49:31.546Z</ns2:feedDate>\n            <ns2:modifiedDtm>2019-09-13T17:50:01.381Z</ns2:modifiedDtm>\n            <ns2:fileName>0F0DF90C72A44EB0A712D500BC50C1AE@AU8BAQA.json</ns2:fileName>\n            <ns2:itemDataErrorCount>0</ns2:itemDataErrorCount>\n            <ns2:itemSystemErrorCount>0</ns2:itemSystemErrorCount>\n            <ns2:itemTimeoutErrorCount>0</ns2:itemTimeoutErrorCount>\n            <ns2:channelType>0f3e4dd4-0514-4346-b39d-af0e00ea066d</ns2:channelType>\n            <ns2:orgId>f5e3d40a-1267-46b9-a2f3-7811e4c0b2de</ns2:orgId>\n        </ns2:feed>\n        <ns2:feed>\n            <ns2:feedId>0828C7D2099841408C5D93584921E05A@AU8BAQA</ns2:feedId>\n            <ns2:feedSource>MARKETPLACE_PARTNER</ns2:feedSource>\n            <ns2:feedType>item</ns2:feedType>\n            <ns2:partnerId>100009</ns2:partnerId>\n            <ns2:itemsReceived>1</ns2:itemsReceived>\n            <ns2:itemsSucceeded>1</ns2:itemsSucceeded>\n            <ns2:itemsFailed>0</ns2:itemsFailed>\n            <ns2:itemsProcessing>0</ns2:itemsProcessing>\n            <ns2:feedStatus>PROCESSED</ns2:feedStatus>\n            <ns2:feedDate>2019-09-13T17:48:26.837Z</ns2:feedDate>\n            <ns2:modifiedDtm>2019-09-13T17:48:29.117Z</ns2:modifiedDtm>\n            <ns2:fileName>0828C7D2099841408C5D93584921E05A@AU8BAQA.json</ns2:fileName>\n            <ns2:itemDataErrorCount>0</ns2:itemDataErrorCount>\n            <ns2:itemSystemErrorCount>0</ns2:itemSystemErrorCount>\n            <ns2:itemTimeoutErrorCount>0</ns2:itemTimeoutErrorCount>\n            <ns2:channelType>0f3e4dd4-0514-4346-b39d-af0e00ea066d</ns2:channelType>\n            <ns2:orgId>f5e3d40a-1267-46b9-a2f3-7811e4c0b2de</ns2:orgId>\n        </ns2:feed>\n        <ns2:feed>\n            <ns2:feedId>66AA78FB0EFA448CB60A9ACB7E4E5062@AU8BAQA</ns2:feedId>\n            <ns2:feedSource>MARKETPLACE_PARTNER</ns2:feedSource>\n            <ns2:feedType>item</ns2:feedType>\n            <ns2:partnerId>100009</ns2:partnerId>\n            <ns2:itemsReceived>1</ns2:itemsReceived>\n            <ns2:itemsSucceeded>1</ns2:itemsSucceeded>\n            <ns2:itemsFailed>0</ns2:itemsFailed>\n            <ns2:itemsProcessing>0</ns2:itemsProcessing>\n            <ns2:feedStatus>PROCESSED</ns2:feedStatus>\n            <ns2:feedDate>2019-09-13T17:48:04.988Z</ns2:feedDate>\n            <ns2:modifiedDtm>2019-09-13T17:48:11.512Z</ns2:modifiedDtm>\n            <ns2:fileName>66AA78FB0EFA448CB60A9ACB7E4E5062@AU8BAQA.json</ns2:fileName>\n            <ns2:itemDataErrorCount>0</ns2:itemDataErrorCount>\n            <ns2:itemSystemErrorCount>0</ns2:itemSystemErrorCount>\n            <ns2:itemTimeoutErrorCount>0</ns2:itemTimeoutErrorCount>\n            <ns2:channelType>0f3e4dd4-0514-4346-b39d-af0e00ea066d</ns2:channelType>\n            <ns2:orgId>f5e3d40a-1267-46b9-a2f3-7811e4c0b2de</ns2:orgId>\n        </ns2:feed>\n        <ns2:feed>\n            <ns2:feedId>DA648820C9EB4794B0FCEAE260A247B5@AVMBAQA</ns2:feedId>\n            <ns2:feedType>MP_ITEM_PRICE_UPDATE</ns2:feedType>\n            <ns2:partnerId>100009</ns2:partnerId>\n            <ns2:itemsReceived>2</ns2:itemsReceived>\n            <ns2:itemsSucceeded>1</ns2:itemsSucceeded>\n            <ns2:itemsFailed>1</ns2:itemsFailed>\n            <ns2:itemsProcessing>0</ns2:itemsProcessing>\n            <ns2:feedStatus>PROCESSED</ns2:feedStatus>\n            <ns2:feedDate>2019-09-13T17:43:16.271Z</ns2:feedDate>\n            <ns2:modifiedDtm>2019-09-13T18:43:16.324Z</ns2:modifiedDtm>\n            <ns2:fileName>DA648820C9EB4794B0FCEAE260A247B5@AVMBAQA.json</ns2:fileName>\n            <ns2:itemDataErrorCount>1</ns2:itemDataErrorCount>\n            <ns2:itemSystemErrorCount>0</ns2:itemSystemErrorCount>\n            <ns2:itemTimeoutErrorCount>0</ns2:itemTimeoutErrorCount>\n            <ns2:channelType>0f3e4dd4-0514-4346-b39d-af0e00ea066d</ns2:channelType>\n            <ns2:orgId>f5e3d40a-1267-46b9-a2f3-7811e4c0b2de</ns2:orgId>\n        </ns2:feed>\n        <ns2:feed>\n            <ns2:feedId>487BEFCB4BD640BE997C0B6168D353B8@AVMBAgA</ns2:feedId>\n            <ns2:feedType>MP_ITEM_PRICE_UPDATE</ns2:feedType>\n            <ns2:partnerId>100009</ns2:partnerId>\n            <ns2:itemsReceived>2</ns2:itemsReceived>\n            <ns2:itemsSucceeded>0</ns2:itemsSucceeded>\n            <ns2:itemsFailed>2</ns2:itemsFailed>\n            <ns2:itemsProcessing>0</ns2:itemsProcessing>\n            <ns2:feedStatus>PROCESSED</ns2:feedStatus>\n            <ns2:feedDate>2019-09-12T22:47:22.670Z</ns2:feedDate>\n            <ns2:modifiedDtm>2019-09-12T23:47:22.772Z</ns2:modifiedDtm>\n            <ns2:fileName>487BEFCB4BD640BE997C0B6168D353B8@AVMBAgA.json</ns2:fileName>\n            <ns2:itemDataErrorCount>2</ns2:itemDataErrorCount>\n            <ns2:itemSystemErrorCount>0</ns2:itemSystemErrorCount>\n            <ns2:itemTimeoutErrorCount>0</ns2:itemTimeoutErrorCount>\n            <ns2:channelType>0f3e4dd4-0514-4346-b39d-af0e00ea066d</ns2:channelType>\n            <ns2:orgId>f5e3d40a-1267-46b9-a2f3-7811e4c0b2de</ns2:orgId>\n        </ns2:feed>\n        <ns2:feed>\n            <ns2:feedId>3D86663718DE4876B8A9848CF5EA6470@AVMBAgA</ns2:feedId>\n            <ns2:feedType>MP_ITEM_PRICE_UPDATE</ns2:feedType>\n            <ns2:partnerId>100009</ns2:partnerId>\n            <ns2:itemsReceived>2</ns2:itemsReceived>\n            <ns2:itemsSucceeded>1</ns2:itemsSucceeded>\n            <ns2:itemsFailed>1</ns2:itemsFailed>\n            <ns2:itemsProcessing>0</ns2:itemsProcessing>\n            <ns2:feedStatus>PROCESSED</ns2:feedStatus>\n            <ns2:feedDate>2019-09-12T22:46:57.755Z</ns2:feedDate>\n            <ns2:modifiedDtm>2019-09-12T23:46:57.811Z</ns2:modifiedDtm>\n            <ns2:fileName>3D86663718DE4876B8A9848CF5EA6470@AVMBAgA.json</ns2:fileName>\n            <ns2:itemDataErrorCount>1</ns2:itemDataErrorCount>\n            <ns2:itemSystemErrorCount>0</ns2:itemSystemErrorCount>\n            <ns2:itemTimeoutErrorCount>0</ns2:itemTimeoutErrorCount>\n            <ns2:channelType>0f3e4dd4-0514-4346-b39d-af0e00ea066d</ns2:channelType>\n            <ns2:orgId>f5e3d40a-1267-46b9-a2f3-7811e4c0b2de</ns2:orgId>\n        </ns2:feed>\n        <ns2:feed>\n            <ns2:feedId>F8ECD28A5E6D484F92CC5B263F61014C@AVMBAQA</ns2:feedId>\n            <ns2:feedType>MP_ITEM_PRICE_UPDATE</ns2:feedType>\n            <ns2:partnerId>100009</ns2:partnerId>\n            <ns2:itemsReceived>2</ns2:itemsReceived>\n            <ns2:itemsSucceeded>1</ns2:itemsSucceeded>\n            <ns2:itemsFailed>1</ns2:itemsFailed>\n            <ns2:itemsProcessing>0</ns2:itemsProcessing>\n            <ns2:feedStatus>PROCESSED</ns2:feedStatus>\n            <ns2:feedDate>2019-09-12T22:44:55.967Z</ns2:feedDate>\n            <ns2:modifiedDtm>2019-09-12T23:44:55.981Z</ns2:modifiedDtm>\n            <ns2:fileName>F8ECD28A5E6D484F92CC5B263F61014C@AVMBAQA.json</ns2:fileName>\n            <ns2:itemDataErrorCount>1</ns2:itemDataErrorCount>\n            <ns2:itemSystemErrorCount>0</ns2:itemSystemErrorCount>\n            <ns2:itemTimeoutErrorCount>0</ns2:itemTimeoutErrorCount>\n            <ns2:channelType>0f3e4dd4-0514-4346-b39d-af0e00ea066d</ns2:channelType>\n            <ns2:orgId>f5e3d40a-1267-46b9-a2f3-7811e4c0b2de</ns2:orgId>\n        </ns2:feed>\n        <ns2:feed>\n            <ns2:feedId>E25727D5DE444786A9AD3B843C89D71E@AVUBAQA</ns2:feedId>\n            <ns2:feedType>PROMO_PRICE</ns2:feedType>\n            <ns2:partnerId>100009</ns2:partnerId>\n            <ns2:itemsReceived>1</ns2:itemsReceived>\n            <ns2:itemsSucceeded>0</ns2:itemsSucceeded>\n            <ns2:itemsFailed>1</ns2:itemsFailed>\n            <ns2:itemsProcessing>0</ns2:itemsProcessing>\n            <ns2:feedStatus>PROCESSED</ns2:feedStatus>\n            <ns2:feedDate>2019-09-12T21:16:10.432Z</ns2:feedDate>\n            <ns2:modifiedDtm>2019-09-12T22:16:10.491Z</ns2:modifiedDtm>\n            <ns2:fileName>E25727D5DE444786A9AD3B843C89D71E@AVUBAQA.json</ns2:fileName>\n            <ns2:itemDataErrorCount>1</ns2:itemDataErrorCount>\n            <ns2:itemSystemErrorCount>0</ns2:itemSystemErrorCount>\n            <ns2:itemTimeoutErrorCount>0</ns2:itemTimeoutErrorCount>\n            <ns2:orgId>f5e3d40a-1267-46b9-a2f3-7811e4c0b2de</ns2:orgId>\n        </ns2:feed>\n        <ns2:feed>\n            <ns2:feedId>8944073F3C624077BBB41A2B480F1F55@AVMBAQA</ns2:feedId>\n            <ns2:feedType>MP_ITEM_PRICE_UPDATE</ns2:feedType>\n            <ns2:partnerId>100009</ns2:partnerId>\n            <ns2:itemsReceived>2</ns2:itemsReceived>\n            <ns2:itemsSucceeded>1</ns2:itemsSucceeded>\n            <ns2:itemsFailed>1</ns2:itemsFailed>\n            <ns2:itemsProcessing>0</ns2:itemsProcessing>\n            <ns2:feedStatus>PROCESSED</ns2:feedStatus>\n            <ns2:feedDate>2019-09-12T21:15:15.967Z</ns2:feedDate>\n            <ns2:modifiedDtm>2019-09-12T22:15:15.987Z</ns2:modifiedDtm>\n            <ns2:fileName>8944073F3C624077BBB41A2B480F1F55@AVMBAQA.json</ns2:fileName>\n            <ns2:itemDataErrorCount>1</ns2:itemDataErrorCount>\n            <ns2:itemSystemErrorCount>0</ns2:itemSystemErrorCount>\n            <ns2:itemTimeoutErrorCount>0</ns2:itemTimeoutErrorCount>\n            <ns2:channelType>0f3e4dd4-0514-4346-b39d-af0e00ea066d</ns2:channelType>\n            <ns2:orgId>f5e3d40a-1267-46b9-a2f3-7811e4c0b2de</ns2:orgId>\n        </ns2:feed>\n        <ns2:feed>\n            <ns2:feedId>E7BB7DBAF3FF461AB63A2169F3BEAADE@AVQBAgA</ns2:feedId>\n            <ns2:feedSource>SELLER</ns2:feedSource>\n            <ns2:feedType>LAGTIME</ns2:feedType>\n            <ns2:partnerId>100009</ns2:partnerId>\n            <ns2:itemsReceived>1</ns2:itemsReceived>\n            <ns2:itemsSucceeded>1</ns2:itemsSucceeded>\n            <ns2:itemsFailed>0</ns2:itemsFailed>\n            <ns2:itemsProcessing>0</ns2:itemsProcessing>\n            <ns2:feedStatus>PROCESSED</ns2:feedStatus>\n            <ns2:feedDate>2019-09-12T20:49:18.481Z</ns2:feedDate>\n            <ns2:modifiedDtm>2019-09-12T20:49:25.485Z</ns2:modifiedDtm>\n            <ns2:itemDataErrorCount>0</ns2:itemDataErrorCount>\n            <ns2:itemSystemErrorCount>0</ns2:itemSystemErrorCount>\n            <ns2:itemTimeoutErrorCount>0</ns2:itemTimeoutErrorCount>\n            <ns2:channelType>0f3e4dd4-0514-4346-b39d-af0e00ea066d</ns2:channelType>\n            <ns2:orgId>f5e3d40a-1267-46b9-a2f3-7811e4c0b2de</ns2:orgId>\n        </ns2:feed>\n        <ns2:feed>\n            <ns2:feedId>C45D0A2AB40F45C78A17B00AADA4CBF9@AVQBAgA</ns2:feedId>\n            <ns2:feedSource>SELLER</ns2:feedSource>\n            <ns2:feedType>LAGTIME</ns2:feedType>\n            <ns2:partnerId>100009</ns2:partnerId>\n            <ns2:itemsReceived>1</ns2:itemsReceived>\n            <ns2:itemsSucceeded>1</ns2:itemsSucceeded>\n            <ns2:itemsFailed>0</ns2:itemsFailed>\n            <ns2:itemsProcessing>0</ns2:itemsProcessing>\n            <ns2:feedStatus>PROCESSED</ns2:feedStatus>\n            <ns2:feedDate>2019-09-12T20:48:48.747Z</ns2:feedDate>\n            <ns2:modifiedDtm>2019-09-12T20:48:49.769Z</ns2:modifiedDtm>\n            <ns2:itemDataErrorCount>0</ns2:itemDataErrorCount>\n            <ns2:itemSystemErrorCount>0</ns2:itemSystemErrorCount>\n            <ns2:itemTimeoutErrorCount>0</ns2:itemTimeoutErrorCount>\n            <ns2:channelType>0f3e4dd4-0514-4346-b39d-af0e00ea066d</ns2:channelType>\n            <ns2:orgId>f5e3d40a-1267-46b9-a2f3-7811e4c0b2de</ns2:orgId>\n        </ns2:feed>\n        <ns2:feed>\n            <ns2:feedId>609B1E4C0B3E48989690263DEAC85C63@AVUBAQA</ns2:feedId>\n            <ns2:feedType>PROMO_PRICE</ns2:feedType>\n            <ns2:partnerId>100009</ns2:partnerId>\n            <ns2:itemsReceived>1</ns2:itemsReceived>\n            <ns2:itemsSucceeded>0</ns2:itemsSucceeded>\n            <ns2:itemsFailed>1</ns2:itemsFailed>\n            <ns2:itemsProcessing>0</ns2:itemsProcessing>\n            <ns2:feedStatus>PROCESSED</ns2:feedStatus>\n            <ns2:feedDate>2019-09-12T20:44:42.488Z</ns2:feedDate>\n            <ns2:modifiedDtm>2019-09-12T21:44:42.553Z</ns2:modifiedDtm>\n            <ns2:fileName>609B1E4C0B3E48989690263DEAC85C63@AVUBAQA.json</ns2:fileName>\n            <ns2:itemDataErrorCount>1</ns2:itemDataErrorCount>\n            <ns2:itemSystemErrorCount>0</ns2:itemSystemErrorCount>\n            <ns2:itemTimeoutErrorCount>0</ns2:itemTimeoutErrorCount>\n            <ns2:orgId>f5e3d40a-1267-46b9-a2f3-7811e4c0b2de</ns2:orgId>\n        </ns2:feed>\n        <ns2:feed>\n            <ns2:feedId>14066B6642344B76A8B77AC094F8C63B@AVMBAgA</ns2:feedId>\n            <ns2:feedType>MP_ITEM_PRICE_UPDATE</ns2:feedType>\n            <ns2:partnerId>100009</ns2:partnerId>\n            <ns2:itemsReceived>2</ns2:itemsReceived>\n            <ns2:itemsSucceeded>1</ns2:itemsSucceeded>\n            <ns2:itemsFailed>1</ns2:itemsFailed>\n            <ns2:itemsProcessing>0</ns2:itemsProcessing>\n            <ns2:feedStatus>PROCESSED</ns2:feedStatus>\n            <ns2:feedDate>2019-09-12T20:34:46.039Z</ns2:feedDate>\n            <ns2:modifiedDtm>2019-09-12T21:34:46.128Z</ns2:modifiedDtm>\n            <ns2:fileName>14066B6642344B76A8B77AC094F8C63B@AVMBAgA.json</ns2:fileName>\n            <ns2:itemDataErrorCount>1</ns2:itemDataErrorCount>\n            <ns2:itemSystemErrorCount>0</ns2:itemSystemErrorCount>\n            <ns2:itemTimeoutErrorCount>0</ns2:itemTimeoutErrorCount>\n            <ns2:channelType>0f3e4dd4-0514-4346-b39d-af0e00ea066d</ns2:channelType>\n            <ns2:orgId>f5e3d40a-1267-46b9-a2f3-7811e4c0b2de</ns2:orgId>\n        </ns2:feed>\n        <ns2:feed>\n            <ns2:feedId>DF87BFD042884E8E9FFACE03EC83CDEB@AU8BAgA</ns2:feedId>\n            <ns2:feedSource>MARKETPLACE_PARTNER</ns2:feedSource>\n            <ns2:feedType>item</ns2:feedType>\n            <ns2:partnerId>100009</ns2:partnerId>\n            <ns2:itemsReceived>1</ns2:itemsReceived>\n            <ns2:itemsSucceeded>0</ns2:itemsSucceeded>\n            <ns2:itemsFailed>1</ns2:itemsFailed>\n            <ns2:itemsProcessing>0</ns2:itemsProcessing>\n            <ns2:feedStatus>PROCESSED</ns2:feedStatus>\n            <ns2:feedDate>2019-09-12T20:04:28.376Z</ns2:feedDate>\n            <ns2:modifiedDtm>2019-09-12T20:59:00.118Z</ns2:modifiedDtm>\n            <ns2:fileName>DF87BFD042884E8E9FFACE03EC83CDEB@AU8BAgA.json</ns2:fileName>\n            <ns2:itemDataErrorCount>1</ns2:itemDataErrorCount>\n            <ns2:itemSystemErrorCount>0</ns2:itemSystemErrorCount>\n            <ns2:itemTimeoutErrorCount>0</ns2:itemTimeoutErrorCount>\n            <ns2:channelType>0f3e4dd4-0514-4346-b39d-af0e00ea066d</ns2:channelType>\n            <ns2:orgId>f5e3d40a-1267-46b9-a2f3-7811e4c0b2de</ns2:orgId>\n        </ns2:feed>\n        <ns2:feed>\n            <ns2:feedId>9D0727D3D46A4D7FB6DF98FA54759B6C@AU8BAQA</ns2:feedId>\n            <ns2:feedType>item</ns2:feedType>\n            <ns2:partnerId>100009</ns2:partnerId>\n            <ns2:itemsReceived>0</ns2:itemsReceived>\n            <ns2:itemsSucceeded>0</ns2:itemsSucceeded>\n            <ns2:itemsFailed>0</ns2:itemsFailed>\n            <ns2:itemsProcessing>0</ns2:itemsProcessing>\n            <ns2:feedStatus>ERROR</ns2:feedStatus>\n            <ns2:feedDate>2019-09-12T20:04:25.336Z</ns2:feedDate>\n            <ns2:modifiedDtm>2019-09-13T01:04:25.401Z</ns2:modifiedDtm>\n            <ns2:fileName>9D0727D3D46A4D7FB6DF98FA54759B6C@AU8BAQA.json</ns2:fileName>\n            <ns2:itemDataErrorCount>0</ns2:itemDataErrorCount>\n            <ns2:itemSystemErrorCount>0</ns2:itemSystemErrorCount>\n            <ns2:itemTimeoutErrorCount>0</ns2:itemTimeoutErrorCount>\n            <ns2:channelType>0f3e4dd4-0514-4346-b39d-af0e00ea066d</ns2:channelType>\n            <ns2:orgId>f5e3d40a-1267-46b9-a2f3-7811e4c0b2de</ns2:orgId>\n        </ns2:feed>\n        <ns2:feed>\n            <ns2:feedId>E19D348B57094877A8381BD0757F9918@AU8BAQA</ns2:feedId>\n            <ns2:feedType>item</ns2:feedType>\n            <ns2:partnerId>100009</ns2:partnerId>\n            <ns2:itemsReceived>0</ns2:itemsReceived>\n            <ns2:itemsSucceeded>0</ns2:itemsSucceeded>\n            <ns2:itemsFailed>0</ns2:itemsFailed>\n            <ns2:itemsProcessing>0</ns2:itemsProcessing>\n            <ns2:feedStatus>ERROR</ns2:feedStatus>\n            <ns2:feedDate>2019-09-12T20:01:18.116Z</ns2:feedDate>\n            <ns2:modifiedDtm>2019-09-13T01:01:18.178Z</ns2:modifiedDtm>\n            <ns2:fileName>E19D348B57094877A8381BD0757F9918@AU8BAQA.json</ns2:fileName>\n            <ns2:itemDataErrorCount>0</ns2:itemDataErrorCount>\n            <ns2:itemSystemErrorCount>0</ns2:itemSystemErrorCount>\n            <ns2:itemTimeoutErrorCount>0</ns2:itemTimeoutErrorCount>\n            <ns2:channelType>0f3e4dd4-0514-4346-b39d-af0e00ea066d</ns2:channelType>\n            <ns2:orgId>f5e3d40a-1267-46b9-a2f3-7811e4c0b2de</ns2:orgId>\n        </ns2:feed>\n        <ns2:feed>\n            <ns2:feedId>FE99DEBBDF294BC3BBD99BDAC67637A4@AU8BAgA</ns2:feedId>\n            <ns2:feedType>item</ns2:feedType>\n            <ns2:partnerId>100009</ns2:partnerId>\n            <ns2:itemsReceived>1</ns2:itemsReceived>\n            <ns2:itemsSucceeded>0</ns2:itemsSucceeded>\n            <ns2:itemsFailed>1</ns2:itemsFailed>\n            <ns2:itemsProcessing>0</ns2:itemsProcessing>\n            <ns2:feedStatus>INPROGRESS</ns2:feedStatus>\n            <ns2:feedDate>2019-09-12T20:01:13.475Z</ns2:feedDate>\n            <ns2:modifiedDtm>2019-09-12T20:01:13.617Z</ns2:modifiedDtm>\n            <ns2:fileName>FE99DEBBDF294BC3BBD99BDAC67637A4@AU8BAgA.json</ns2:fileName>\n            <ns2:itemDataErrorCount>1</ns2:itemDataErrorCount>\n            <ns2:itemSystemErrorCount>0</ns2:itemSystemErrorCount>\n            <ns2:itemTimeoutErrorCount>0</ns2:itemTimeoutErrorCount>\n            <ns2:channelType>0f3e4dd4-0514-4346-b39d-af0e00ea066d</ns2:channelType>\n            <ns2:orgId>f5e3d40a-1267-46b9-a2f3-7811e4c0b2de</ns2:orgId>\n        </ns2:feed>\n        <ns2:feed>\n            <ns2:feedId>CEAB9DE0784B40348A19ED645F2FAC5A@AU8BAgA</ns2:feedId>\n            <ns2:feedType>item</ns2:feedType>\n            <ns2:partnerId>100009</ns2:partnerId>\n            <ns2:itemsReceived>1</ns2:itemsReceived>\n            <ns2:itemsSucceeded>0</ns2:itemsSucceeded>\n            <ns2:itemsFailed>1</ns2:itemsFailed>\n            <ns2:itemsProcessing>0</ns2:itemsProcessing>\n            <ns2:feedStatus>INPROGRESS</ns2:feedStatus>\n            <ns2:feedDate>2019-09-12T20:00:24.985Z</ns2:feedDate>\n            <ns2:modifiedDtm>2019-09-12T20:00:25.546Z</ns2:modifiedDtm>\n            <ns2:fileName>CEAB9DE0784B40348A19ED645F2FAC5A@AU8BAgA.json</ns2:fileName>\n            <ns2:itemDataErrorCount>1</ns2:itemDataErrorCount>\n            <ns2:itemSystemErrorCount>0</ns2:itemSystemErrorCount>\n            <ns2:itemTimeoutErrorCount>0</ns2:itemTimeoutErrorCount>\n            <ns2:channelType>0f3e4dd4-0514-4346-b39d-af0e00ea066d</ns2:channelType>\n            <ns2:orgId>f5e3d40a-1267-46b9-a2f3-7811e4c0b2de</ns2:orgId>\n        </ns2:feed>\n        <ns2:feed>\n            <ns2:feedId>DE6985E23D78411190EC91EED01BB838@AU8BAQA</ns2:feedId>\n            <ns2:feedType>item</ns2:feedType>\n            <ns2:partnerId>100009</ns2:partnerId>\n            <ns2:itemsReceived>1</ns2:itemsReceived>\n            <ns2:itemsSucceeded>0</ns2:itemsSucceeded>\n            <ns2:itemsFailed>1</ns2:itemsFailed>\n            <ns2:itemsProcessing>0</ns2:itemsProcessing>\n            <ns2:feedStatus>INPROGRESS</ns2:feedStatus>\n            <ns2:feedDate>2019-09-12T18:15:16.202Z</ns2:feedDate>\n            <ns2:modifiedDtm>2019-09-12T18:15:16.531Z</ns2:modifiedDtm>\n            <ns2:fileName>DE6985E23D78411190EC91EED01BB838@AU8BAQA.json</ns2:fileName>\n            <ns2:itemDataErrorCount>1</ns2:itemDataErrorCount>\n            <ns2:itemSystemErrorCount>0</ns2:itemSystemErrorCount>\n            <ns2:itemTimeoutErrorCount>0</ns2:itemTimeoutErrorCount>\n            <ns2:channelType>0f3e4dd4-0514-4346-b39d-af0e00ea066d</ns2:channelType>\n            <ns2:orgId>f5e3d40a-1267-46b9-a2f3-7811e4c0b2de</ns2:orgId>\n        </ns2:feed>\n        <ns2:feed>\n            <ns2:feedId>3B111C7AF7F642D2B25599C8EBB7793F@AU8BAgA</ns2:feedId>\n            <ns2:feedType>item</ns2:feedType>\n            <ns2:partnerId>100009</ns2:partnerId>\n            <ns2:itemsReceived>1</ns2:itemsReceived>\n            <ns2:itemsSucceeded>0</ns2:itemsSucceeded>\n            <ns2:itemsFailed>1</ns2:itemsFailed>\n            <ns2:itemsProcessing>0</ns2:itemsProcessing>\n            <ns2:feedStatus>INPROGRESS</ns2:feedStatus>\n            <ns2:feedDate>2019-09-12T18:13:31.850Z</ns2:feedDate>\n            <ns2:modifiedDtm>2019-09-12T18:13:31.978Z</ns2:modifiedDtm>\n            <ns2:fileName>3B111C7AF7F642D2B25599C8EBB7793F@AU8BAgA.json</ns2:fileName>\n            <ns2:itemDataErrorCount>1</ns2:itemDataErrorCount>\n            <ns2:itemSystemErrorCount>0</ns2:itemSystemErrorCount>\n            <ns2:itemTimeoutErrorCount>0</ns2:itemTimeoutErrorCount>\n            <ns2:channelType>0f3e4dd4-0514-4346-b39d-af0e00ea066d</ns2:channelType>\n            <ns2:orgId>f5e3d40a-1267-46b9-a2f3-7811e4c0b2de</ns2:orgId>\n        </ns2:feed>\n        <ns2:feed>\n            <ns2:feedId>1F6CF24319FF42FCACFB3D672E7A6F60@AU8BAgA</ns2:feedId>\n            <ns2:feedType>item</ns2:feedType>\n            <ns2:partnerId>100009</ns2:partnerId>\n            <ns2:itemsReceived>1</ns2:itemsReceived>\n            <ns2:itemsSucceeded>0</ns2:itemsSucceeded>\n            <ns2:itemsFailed>1</ns2:itemsFailed>\n            <ns2:itemsProcessing>0</ns2:itemsProcessing>\n            <ns2:feedStatus>INPROGRESS</ns2:feedStatus>\n            <ns2:feedDate>2019-09-12T18:11:34.607Z</ns2:feedDate>\n            <ns2:modifiedDtm>2019-09-12T18:11:34.731Z</ns2:modifiedDtm>\n            <ns2:fileName>1F6CF24319FF42FCACFB3D672E7A6F60@AU8BAgA.json</ns2:fileName>\n            <ns2:itemDataErrorCount>1</ns2:itemDataErrorCount>\n            <ns2:itemSystemErrorCount>0</ns2:itemSystemErrorCount>\n            <ns2:itemTimeoutErrorCount>0</ns2:itemTimeoutErrorCount>\n            <ns2:channelType>0f3e4dd4-0514-4346-b39d-af0e00ea066d</ns2:channelType>\n            <ns2:orgId>f5e3d40a-1267-46b9-a2f3-7811e4c0b2de</ns2:orgId>\n        </ns2:feed>\n    </ns2:results>\n</ns2:list>"
+              },
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "errors": {
+                      "type": "array",
+                      "xml": {
+                        "name": "error"
+                      },
+                      "items": {
+                        "required": [
+                          "code"
+                        ],
+                        "type": "object",
+                        "properties": {
+                          "code": {
+                            "type": "string"
+                          },
+                          "field": {
+                            "type": "string"
+                          },
+                          "description": {
+                            "type": "string"
+                          },
+                          "info": {
+                            "type": "string"
+                          },
+                          "severity": {
+                            "type": "string",
+                            "enum": [
+                              "INFO",
+                              "WARN",
+                              "ERROR"
+                            ]
+                          },
+                          "category": {
+                            "type": "string",
+                            "enum": [
+                              "APPLICATION",
+                              "SYSTEM",
+                              "REQUEST",
+                              "DATA"
+                            ]
+                          },
+                          "causes": {
+                            "type": "array",
+                            "xml": {
+                              "wrapped": true
+                            },
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "code": {
+                                  "type": "string"
+                                },
+                                "field": {
+                                  "type": "string"
+                                },
+                                "type": {
+                                  "type": "string"
+                                },
+                                "description": {
+                                  "type": "string"
+                                }
+                              },
+                              "xml": {
+                                "name": "Cause"
+                              }
+                            }
+                          },
+                          "errorIdentifiers": {
+                            "type": "object",
+                            "additionalProperties": {
+                              "type": "object"
+                            }
+                          },
+                          "component": {
+                            "type": "string"
+                          },
+                          "type": {
+                            "type": "string"
+                          },
+                          "serviceName": {
+                            "type": "string"
+                          },
+                          "gatewayErrorCategory": {
+                            "type": "string",
+                            "enum": [
+                              "INTERNAL_DATA_ERROR",
+                              "EXTERNAL_DATA_ERROR",
+                              "SYSTEM_ERROR"
+                            ]
+                          }
+                        },
+                        "xml": {
+                          "name": "GatewayError"
+                        }
+                      }
+                    },
+                    "totalResults": {
+                      "type": "integer",
+                      "description": "Total number of feeds returned",
+                      "format": "int64"
+                    },
+                    "offset": {
+                      "type": "integer",
+                      "description": "The object response to the starting number, where 0 is the first available",
+                      "format": "int64"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "The number of items to be returned",
+                      "format": "int32"
+                    },
+                    "results": {
+                      "type": "array",
+                      "description": "The feed status results",
+                      "xml": {
+                        "wrapped": true
+                      },
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "feedId": {
+                            "type": "string",
+                            "description": "A unique ID used for tracking the Feed File"
+                          },
+                          "feedSource": {
+                            "type": "string",
+                            "description": "The source of the feed"
+                          },
+                          "feedType": {
+                            "type": "string",
+                            "description": "The feed type"
+                          },
+                          "partnerId": {
+                            "type": "string",
+                            "description": "The seller ID"
+                          },
+                          "itemsReceived": {
+                            "type": "integer",
+                            "description": "The number of items received",
+                            "format": "int64"
+                          },
+                          "itemsSucceeded": {
+                            "type": "integer",
+                            "description": "The number of items in the feed that have successfully processed",
+                            "format": "int64"
+                          },
+                          "itemsFailed": {
+                            "type": "integer",
+                            "description": "The number of items in the feed that failed due to a data or system error",
+                            "format": "int64"
+                          },
+                          "itemsProcessing": {
+                            "type": "integer",
+                            "description": "The number of items in the feed that are still in progress",
+                            "format": "int64"
+                          },
+                          "feedStatus": {
+                            "type": "string",
+                            "description": "Can be one of the following: RECEIVED, INPROGRESS, PROCESSED, or ERROR. For details, see the definitions listed under 'Feed Statuses' at the beginning of this section."
+                          },
+                          "feedDate": {
+                            "type": "string",
+                            "description": "The date and time the feed was submitted. Format: yyyymmddThh:mm:ss.xxxz",
+                            "format": "date-time"
+                          },
+                          "batchId": {
+                            "type": "string",
+                            "description": "The batch ID for the feed, if provided"
+                          },
+                          "modifiedDtm": {
+                            "type": "string",
+                            "description": "The most recent time the feed was modified. Format: yyyymmddThh:mm:ss.xxxz",
+                            "format": "date-time"
+                          }
+                        },
+                        "description": "Information about the individual feed",
+                        "xml": {
+                          "name": "feed"
+                        }
+                      }
+                    }
+                  },
+                  "xml": {
+                    "name": "list"
+                  }
+                },
+                "example": {
+                  "totalResults": 115,
+                  "offset": 0,
+                  "limit": 50,
+                  "results": {
+                    "feed": [
+                      {
+                        "feedId": "882DAFBDCAA0480786D1E0435FBC86D7@AU8BAgA",
+                        "feedSource": "MARKETPLACE_PARTNER",
+                        "feedType": "item",
+                        "partnerId": "100009",
+                        "itemsReceived": 1,
+                        "itemsSucceeded": 1,
+                        "itemsFailed": 0,
+                        "itemsProcessing": 0,
+                        "feedStatus": "PROCESSED",
+                        "feedDate": 1568148230011,
+                        "modifiedDtm": 1568148252067,
+                        "fileName": "item.json",
+                        "itemDataErrorCount": 0,
+                        "itemSystemErrorCount": 0,
+                        "itemTimeoutErrorCount": 0,
+                        "channelType": "0f3e4dd4-0514-4346-b39d-af0e00ea066d",
+                        "orgId": "f5e3d40a-1267-46b9-a2f3-7811e4c0b2de"
+                      },
+                      {
+                        "feedId": "9398AC344EC44070A5B336D1E6D4EF27@AQYBAgA",
+                        "feedType": "MP_ITEM_PRICE_UPDATE",
+                        "partnerId": "100009",
+                        "itemsReceived": 0,
+                        "itemsSucceeded": 0,
+                        "itemsFailed": 0,
+                        "itemsProcessing": 0,
+                        "feedStatus": "ERROR",
+                        "feedDate": 1568138099492,
+                        "modifiedDtm": 1568138099615,
+                        "fileName": "Affiliate Template v2.xlsx",
+                        "itemDataErrorCount": 0,
+                        "itemSystemErrorCount": 0,
+                        "itemTimeoutErrorCount": 0,
+                        "channelType": "57c99571-b460-43e2-bcd6-7d12f3ddd5a9",
+                        "orgId": "f5e3d40a-1267-46b9-a2f3-7811e4c0b2de"
+                      },
+                      {
+                        "feedId": "BBC958324F0B448B91C427896DB3F51C@AVQBAQA",
+                        "feedSource": "SELLER",
+                        "feedType": "LAGTIME",
+                        "partnerId": "100009",
+                        "itemsReceived": 1,
+                        "itemsSucceeded": 1,
+                        "itemsFailed": 0,
+                        "itemsProcessing": 0,
+                        "feedStatus": "PROCESSED",
+                        "feedDate": 1568049322924,
+                        "modifiedDtm": 1568049331055,
+                        "itemDataErrorCount": 0,
+                        "itemSystemErrorCount": 0,
+                        "itemTimeoutErrorCount": 0,
+                        "channelType": "0f3e4dd4-0514-4346-b39d-af0e00ea066d",
+                        "orgId": "f5e3d40a-1267-46b9-a2f3-7811e4c0b2de"
+                      },
+                      {
+                        "feedId": "A1BB0371E89A4C6E805C5E03CD47455E@AVUBAQA",
+                        "feedType": "PROMO_PRICE",
+                        "partnerId": "100009",
+                        "itemsReceived": 1,
+                        "itemsSucceeded": 0,
+                        "itemsFailed": 1,
+                        "itemsProcessing": 0,
+                        "feedStatus": "PROCESSED",
+                        "feedDate": 1568049265518,
+                        "modifiedDtm": 1568052865739,
+                        "fileName": "A1BB0371E89A4C6E805C5E03CD47455E@AVUBAQA.json",
+                        "itemDataErrorCount": 0,
+                        "itemSystemErrorCount": 1,
+                        "itemTimeoutErrorCount": 0,
+                        "orgId": "f5e3d40a-1267-46b9-a2f3-7811e4c0b2de"
+                      },
+                      {
+                        "feedId": "211AE1C722C04422ADB87796FDCC4F57@AVMBAQA",
+                        "feedType": "MP_ITEM_PRICE_UPDATE",
+                        "partnerId": "100009",
+                        "itemsReceived": 2,
+                        "itemsSucceeded": 0,
+                        "itemsFailed": 2,
+                        "itemsProcessing": 0,
+                        "feedStatus": "PROCESSED",
+                        "feedDate": 1568049233627,
+                        "modifiedDtm": 1568148907027,
+                        "fileName": "211AE1C722C04422ADB87796FDCC4F57@AVMBAQA.json",
+                        "itemDataErrorCount": 0,
+                        "itemSystemErrorCount": 2,
+                        "itemTimeoutErrorCount": 0,
+                        "channelType": "0f3e4dd4-0514-4346-b39d-af0e00ea066d",
+                        "orgId": "f5e3d40a-1267-46b9-a2f3-7811e4c0b2de"
+                      },
+                      {
+                        "feedId": "9A4EF01BA2114E70BFD0D6D12AAFEC15@AUoBAgA",
+                        "feedSource": "SELLER",
+                        "feedType": "inventory",
+                        "partnerId": "100009",
+                        "itemsReceived": 2,
+                        "itemsSucceeded": 2,
+                        "itemsFailed": 0,
+                        "itemsProcessing": 0,
+                        "feedStatus": "PROCESSED",
+                        "feedDate": 1568048973739,
+                        "modifiedDtm": 1568049048863,
+                        "itemDataErrorCount": 0,
+                        "itemSystemErrorCount": 0,
+                        "itemTimeoutErrorCount": 0,
+                        "channelType": "0f3e4dd4-0514-4346-b39d-af0e00ea066d",
+                        "orgId": "f5e3d40a-1267-46b9-a2f3-7811e4c0b2de"
+                      },
+                      {
+                        "feedId": "8A50A5EE57F14E45B667C47992A3E0BD@AUoBAgA",
+                        "feedSource": "SELLER",
+                        "feedType": "inventory",
+                        "partnerId": "100009",
+                        "itemsReceived": 2,
+                        "itemsSucceeded": 2,
+                        "itemsFailed": 0,
+                        "itemsProcessing": 0,
+                        "feedStatus": "PROCESSED",
+                        "feedDate": 1568048965096,
+                        "modifiedDtm": 1568049038080,
+                        "itemDataErrorCount": 0,
+                        "itemSystemErrorCount": 0,
+                        "itemTimeoutErrorCount": 0,
+                        "channelType": "0f3e4dd4-0514-4346-b39d-af0e00ea066d",
+                        "orgId": "f5e3d40a-1267-46b9-a2f3-7811e4c0b2de"
+                      },
+                      {
+                        "feedId": "ECA4070459B3493BB71BAE2749A6FB25@AU8BAQA",
+                        "feedSource": "MARKETPLACE_PARTNER",
+                        "feedType": "item",
+                        "partnerId": "100009",
+                        "itemsReceived": 1,
+                        "itemsSucceeded": 1,
+                        "itemsFailed": 0,
+                        "itemsProcessing": 0,
+                        "feedStatus": "PROCESSED",
+                        "feedDate": 1568048856557,
+                        "modifiedDtm": 1568048858586,
+                        "fileName": "item.json",
+                        "itemDataErrorCount": 0,
+                        "itemSystemErrorCount": 0,
+                        "itemTimeoutErrorCount": 0,
+                        "channelType": "0f3e4dd4-0514-4346-b39d-af0e00ea066d",
+                        "orgId": "f5e3d40a-1267-46b9-a2f3-7811e4c0b2de"
+                      },
+                      {
+                        "feedId": "8FE721DDBA9A4C3BA50E30E8DFDDF72B@AU8BAQA",
+                        "feedSource": "MARKETPLACE_PARTNER",
+                        "feedType": "item",
+                        "partnerId": "100009",
+                        "itemsReceived": 1,
+                        "itemsSucceeded": 1,
+                        "itemsFailed": 0,
+                        "itemsProcessing": 0,
+                        "feedStatus": "PROCESSED",
+                        "feedDate": 1568048838447,
+                        "modifiedDtm": 1568048840545,
+                        "fileName": "item.json",
+                        "itemDataErrorCount": 0,
+                        "itemSystemErrorCount": 0,
+                        "itemTimeoutErrorCount": 0,
+                        "channelType": "0f3e4dd4-0514-4346-b39d-af0e00ea066d",
+                        "orgId": "f5e3d40a-1267-46b9-a2f3-7811e4c0b2de"
+                      },
+                      {
+                        "feedId": "927689CBBEC74727BE96CDB6D0ACA77F@AUoBAgA",
+                        "feedSource": "SELLER",
+                        "feedType": "inventory",
+                        "partnerId": "100009",
+                        "itemsReceived": 1,
+                        "itemsSucceeded": 0,
+                        "itemsFailed": 1,
+                        "itemsProcessing": 0,
+                        "feedStatus": "PROCESSED",
+                        "feedDate": 1568048798609,
+                        "modifiedDtm": 1568048818860,
+                        "itemDataErrorCount": 1,
+                        "itemSystemErrorCount": 0,
+                        "itemTimeoutErrorCount": 0,
+                        "channelType": "0f3e4dd4-0514-4346-b39d-af0e00ea066d",
+                        "orgId": "f5e3d40a-1267-46b9-a2f3-7811e4c0b2de"
+                      },
+                      {
+                        "feedId": "F1A8232ECD414FE690E1F63982DAA19B@AVUBAQA",
+                        "feedType": "PROMO_PRICE",
+                        "partnerId": "100009",
+                        "itemsReceived": 1,
+                        "itemsSucceeded": 0,
+                        "itemsFailed": 1,
+                        "itemsProcessing": 0,
+                        "feedStatus": "PROCESSED",
+                        "feedDate": 1568048737206,
+                        "modifiedDtm": 1568052337222,
+                        "fileName": "F1A8232ECD414FE690E1F63982DAA19B@AVUBAQA.json",
+                        "itemDataErrorCount": 0,
+                        "itemSystemErrorCount": 1,
+                        "itemTimeoutErrorCount": 0,
+                        "orgId": "f5e3d40a-1267-46b9-a2f3-7811e4c0b2de"
+                      },
+                      {
+                        "feedId": "D18E9A6E8611453E8B1C52EC2A303A75@AVMBAQA",
+                        "feedType": "MP_ITEM_PRICE_UPDATE",
+                        "partnerId": "100009",
+                        "itemsReceived": 2,
+                        "itemsSucceeded": 0,
+                        "itemsFailed": 2,
+                        "itemsProcessing": 0,
+                        "feedStatus": "PROCESSED",
+                        "feedDate": 1568048728005,
+                        "modifiedDtm": 1568148913049,
+                        "fileName": "D18E9A6E8611453E8B1C52EC2A303A75@AVMBAQA.json",
+                        "itemDataErrorCount": 0,
+                        "itemSystemErrorCount": 2,
+                        "itemTimeoutErrorCount": 0,
+                        "channelType": "0f3e4dd4-0514-4346-b39d-af0e00ea066d",
+                        "orgId": "f5e3d40a-1267-46b9-a2f3-7811e4c0b2de"
+                      },
+                      {
+                        "feedId": "7B587DAA557D4B5EBC502C8C02536D04@AVQBAQA",
+                        "feedSource": "SELLER",
+                        "feedType": "LAGTIME",
+                        "partnerId": "100009",
+                        "itemsReceived": 1,
+                        "itemsSucceeded": 1,
+                        "itemsFailed": 0,
+                        "itemsProcessing": 0,
+                        "feedStatus": "PROCESSED",
+                        "feedDate": 1568048628690,
+                        "modifiedDtm": 1568048630058,
+                        "itemDataErrorCount": 0,
+                        "itemSystemErrorCount": 0,
+                        "itemTimeoutErrorCount": 0,
+                        "channelType": "0f3e4dd4-0514-4346-b39d-af0e00ea066d",
+                        "orgId": "f5e3d40a-1267-46b9-a2f3-7811e4c0b2de"
+                      },
+                      {
+                        "feedId": "58AF37E3E8A64F51A76CF9B360FC1A57@AVUBAgA",
+                        "feedType": "PROMO_PRICE",
+                        "partnerId": "100009",
+                        "itemsReceived": 1,
+                        "itemsSucceeded": 0,
+                        "itemsFailed": 1,
+                        "itemsProcessing": 0,
+                        "feedStatus": "PROCESSED",
+                        "feedDate": 1568048626676,
+                        "modifiedDtm": 1568148916057,
+                        "fileName": "58AF37E3E8A64F51A76CF9B360FC1A57@AVUBAgA.json",
+                        "itemDataErrorCount": 0,
+                        "itemSystemErrorCount": 1,
+                        "itemTimeoutErrorCount": 0,
+                        "orgId": "f5e3d40a-1267-46b9-a2f3-7811e4c0b2de"
+                      },
+                      {
+                        "feedId": "4C08F5647ED84005A00030533D80930A@AVMBAgA",
+                        "feedType": "MP_ITEM_PRICE_UPDATE",
+                        "partnerId": "100009",
+                        "itemsReceived": 2,
+                        "itemsSucceeded": 0,
+                        "itemsFailed": 2,
+                        "itemsProcessing": 0,
+                        "feedStatus": "PROCESSED",
+                        "feedDate": 1568048625465,
+                        "modifiedDtm": 1568148913051,
+                        "fileName": "4C08F5647ED84005A00030533D80930A@AVMBAgA.json",
+                        "itemDataErrorCount": 0,
+                        "itemSystemErrorCount": 2,
+                        "itemTimeoutErrorCount": 0,
+                        "channelType": "0f3e4dd4-0514-4346-b39d-af0e00ea066d",
+                        "orgId": "f5e3d40a-1267-46b9-a2f3-7811e4c0b2de"
+                      },
+                      {
+                        "feedId": "10BB24BF387349A8A2BE0CF1502860B6@AU8BAQA",
+                        "feedSource": "MARKETPLACE_PARTNER",
+                        "feedType": "item",
+                        "partnerId": "100009",
+                        "itemsReceived": 1,
+                        "itemsSucceeded": 1,
+                        "itemsFailed": 0,
+                        "itemsProcessing": 0,
+                        "feedStatus": "PROCESSED",
+                        "feedDate": 1568048622893,
+                        "modifiedDtm": 1568048625392,
+                        "fileName": "item.json",
+                        "itemDataErrorCount": 0,
+                        "itemSystemErrorCount": 0,
+                        "itemTimeoutErrorCount": 0,
+                        "channelType": "0f3e4dd4-0514-4346-b39d-af0e00ea066d",
+                        "orgId": "f5e3d40a-1267-46b9-a2f3-7811e4c0b2de"
+                      },
+                      {
+                        "feedId": "9DAADC7B08684AF0A47928050FA7E2C6@AU8BAQA",
+                        "feedSource": "MARKETPLACE_PARTNER",
+                        "feedType": "item",
+                        "partnerId": "100009",
+                        "itemsReceived": 1,
+                        "itemsSucceeded": 1,
+                        "itemsFailed": 0,
+                        "itemsProcessing": 0,
+                        "feedStatus": "PROCESSED",
+                        "feedDate": 1568048622426,
+                        "modifiedDtm": 1568048625444,
+                        "fileName": "item.json",
+                        "itemDataErrorCount": 0,
+                        "itemSystemErrorCount": 0,
+                        "itemTimeoutErrorCount": 0,
+                        "channelType": "0f3e4dd4-0514-4346-b39d-af0e00ea066d",
+                        "orgId": "f5e3d40a-1267-46b9-a2f3-7811e4c0b2de"
+                      },
+                      {
+                        "feedId": "3A91E87A225244698047A47B3ED6FBBA@AUoBAgA",
+                        "feedSource": "SELLER",
+                        "feedType": "inventory",
+                        "partnerId": "100009",
+                        "itemsReceived": 1,
+                        "itemsSucceeded": 0,
+                        "itemsFailed": 1,
+                        "itemsProcessing": 0,
+                        "feedStatus": "PROCESSED",
+                        "feedDate": 1568048620169,
+                        "modifiedDtm": 1568048622815,
+                        "itemDataErrorCount": 1,
+                        "itemSystemErrorCount": 0,
+                        "itemTimeoutErrorCount": 0,
+                        "channelType": "0f3e4dd4-0514-4346-b39d-af0e00ea066d",
+                        "orgId": "f5e3d40a-1267-46b9-a2f3-7811e4c0b2de"
+                      },
+                      {
+                        "feedId": "BC2F04E6B4AE4BD7AF6EF40D39BFB079@AQsBAgA",
+                        "feedSource": "SELLER",
+                        "feedType": "inventory",
+                        "partnerId": "100009",
+                        "itemsReceived": 2,
+                        "itemsSucceeded": 1,
+                        "itemsFailed": 1,
+                        "itemsProcessing": 0,
+                        "feedStatus": "PROCESSED",
+                        "feedDate": 1568010439051,
+                        "modifiedDtm": 1568010462577,
+                        "fileName": "Inventory (1) (1).xlsx",
+                        "itemDataErrorCount": 1,
+                        "itemSystemErrorCount": 0,
+                        "itemTimeoutErrorCount": 0,
+                        "channelType": "57c99571-b460-43e2-bcd6-7d12f3ddd5a9",
+                        "orgId": "f5e3d40a-1267-46b9-a2f3-7811e4c0b2de"
+                      },
+                      {
+                        "feedId": "BF48EBC404E54A79B7ACE3035545701C@AQsBAQA",
+                        "feedSource": "SELLER",
+                        "feedType": "inventory",
+                        "partnerId": "100009",
+                        "itemsReceived": 2,
+                        "itemsSucceeded": 1,
+                        "itemsFailed": 1,
+                        "itemsProcessing": 0,
+                        "feedStatus": "PROCESSED",
+                        "feedDate": 1568008442377,
+                        "modifiedDtm": 1568008450851,
+                        "fileName": "Inventory (1) (1).xlsx",
+                        "itemDataErrorCount": 1,
+                        "itemSystemErrorCount": 0,
+                        "itemTimeoutErrorCount": 0,
+                        "channelType": "57c99571-b460-43e2-bcd6-7d12f3ddd5a9",
+                        "orgId": "f5e3d40a-1267-46b9-a2f3-7811e4c0b2de"
+                      },
+                      {
+                        "feedId": "B5B2FBFC67D34E7CB3E0F16FB378D50C@AQQBAQA",
+                        "feedSource": "MARKETPLACE_PARTNER",
+                        "feedType": "item",
+                        "partnerId": "100009",
+                        "itemsReceived": 1,
+                        "itemsSucceeded": 1,
+                        "itemsFailed": 0,
+                        "itemsProcessing": 0,
+                        "feedStatus": "PROCESSED",
+                        "feedDate": 1567812473064,
+                        "modifiedDtm": 1567812477183,
+                        "fileName": "Test Feed Filled.xlsm",
+                        "itemDataErrorCount": 0,
+                        "itemSystemErrorCount": 0,
+                        "itemTimeoutErrorCount": 0,
+                        "channelType": "57c99571-b460-43e2-bcd6-7d12f3ddd5a9",
+                        "orgId": "f5e3d40a-1267-46b9-a2f3-7811e4c0b2de"
+                      },
+                      {
+                        "feedId": "E55622058FFD4955A6B8EBC1E39CB132@AQQBAgA",
+                        "feedSource": "MARKETPLACE_PARTNER",
+                        "feedType": "item",
+                        "partnerId": "100009",
+                        "itemsReceived": 1,
+                        "itemsSucceeded": 0,
+                        "itemsFailed": 1,
+                        "itemsProcessing": 0,
+                        "feedStatus": "PROCESSED",
+                        "feedDate": 1567811755762,
+                        "modifiedDtm": 1567811851669,
+                        "fileName": "Test Feed Filled.xlsm",
+                        "itemDataErrorCount": 1,
+                        "itemSystemErrorCount": 0,
+                        "itemTimeoutErrorCount": 0,
+                        "channelType": "57c99571-b460-43e2-bcd6-7d12f3ddd5a9",
+                        "orgId": "f5e3d40a-1267-46b9-a2f3-7811e4c0b2de"
+                      },
+                      {
+                        "feedId": "29EB78E584084E3880FCA09CFF1BB636@AVQBAQA",
+                        "feedSource": "SELLER",
+                        "feedType": "LAGTIME",
+                        "partnerId": "100009",
+                        "itemsReceived": 1,
+                        "itemsSucceeded": 1,
+                        "itemsFailed": 0,
+                        "itemsProcessing": 0,
+                        "feedStatus": "PROCESSED",
+                        "feedDate": 1567809120555,
+                        "modifiedDtm": 1567809126695,
+                        "itemDataErrorCount": 0,
+                        "itemSystemErrorCount": 0,
+                        "itemTimeoutErrorCount": 0,
+                        "channelType": "0f3e4dd4-0514-4346-b39d-af0e00ea066d",
+                        "orgId": "f5e3d40a-1267-46b9-a2f3-7811e4c0b2de"
+                      },
+                      {
+                        "feedId": "48935E83B3D94948B3E23AECA09E144E@AU8BAQA",
+                        "feedSource": "MARKETPLACE_PARTNER",
+                        "feedType": "item",
+                        "partnerId": "100009",
+                        "itemsReceived": 1,
+                        "itemsSucceeded": 0,
+                        "itemsFailed": 1,
+                        "itemsProcessing": 0,
+                        "feedStatus": "PROCESSED",
+                        "feedDate": 1567808833366,
+                        "modifiedDtm": 1567808835533,
+                        "fileName": "48935E83B3D94948B3E23AECA09E144E@AU8BAQA.json",
+                        "itemDataErrorCount": 1,
+                        "itemSystemErrorCount": 0,
+                        "itemTimeoutErrorCount": 0,
+                        "channelType": "0f3e4dd4-0514-4346-b39d-af0e00ea066d",
+                        "orgId": "f5e3d40a-1267-46b9-a2f3-7811e4c0b2de"
+                      },
+                      {
+                        "feedId": "384E9A0939C244B18CCD273BD21DDD3A@ARUBAgA",
+                        "feedType": "CPT_SELLER_ELIGIBILITY",
+                        "partnerId": "100009",
+                        "itemsReceived": 0,
+                        "itemsSucceeded": 0,
+                        "itemsFailed": 0,
+                        "itemsProcessing": 0,
+                        "feedStatus": "ERROR",
+                        "feedDate": 1567808525522,
+                        "modifiedDtm": 1567808525661,
+                        "vendorId": "null",
+                        "itemDataErrorCount": 0,
+                        "itemSystemErrorCount": 0,
+                        "itemTimeoutErrorCount": 0,
+                        "channelType": "0f3e4dd4-0514-4346-b39d-af0e00ea066d",
+                        "orgId": "f5e3d40a-1267-46b9-a2f3-7811e4c0b2de"
+                      },
+                      {
+                        "feedId": "E218B5E366084583A31262FF77794C93@AVMBAQA",
+                        "feedType": "MP_ITEM_PRICE_UPDATE",
+                        "partnerId": "100009",
+                        "itemsReceived": 2,
+                        "itemsSucceeded": 0,
+                        "itemsFailed": 2,
+                        "itemsProcessing": 0,
+                        "feedStatus": "PROCESSED",
+                        "feedDate": 1567808418962,
+                        "modifiedDtm": 1567812019011,
+                        "fileName": "E218B5E366084583A31262FF77794C93@AVMBAQA.json",
+                        "itemDataErrorCount": 0,
+                        "itemSystemErrorCount": 2,
+                        "itemTimeoutErrorCount": 0,
+                        "channelType": "0f3e4dd4-0514-4346-b39d-af0e00ea066d",
+                        "orgId": "f5e3d40a-1267-46b9-a2f3-7811e4c0b2de"
+                      },
+                      {
+                        "feedId": "9B49E9A5740A49B58A9488CD9A87E60C@AVMBAQA",
+                        "feedType": "MP_ITEM_PRICE_UPDATE",
+                        "partnerId": "100009",
+                        "itemsReceived": 2,
+                        "itemsSucceeded": 0,
+                        "itemsFailed": 2,
+                        "itemsProcessing": 0,
+                        "feedStatus": "PROCESSED",
+                        "feedDate": 1567808409685,
+                        "modifiedDtm": 1567812009807,
+                        "fileName": "9B49E9A5740A49B58A9488CD9A87E60C@AVMBAQA.json",
+                        "itemDataErrorCount": 0,
+                        "itemSystemErrorCount": 2,
+                        "itemTimeoutErrorCount": 0,
+                        "channelType": "0f3e4dd4-0514-4346-b39d-af0e00ea066d",
+                        "orgId": "f5e3d40a-1267-46b9-a2f3-7811e4c0b2de"
+                      },
+                      {
+                        "feedId": "F97B16172439448AB4219CF068802E31@AU8BAQA",
+                        "feedSource": "MARKETPLACE_PARTNER",
+                        "feedType": "item",
+                        "partnerId": "100009",
+                        "itemsReceived": 1,
+                        "itemsSucceeded": 1,
+                        "itemsFailed": 0,
+                        "itemsProcessing": 0,
+                        "feedStatus": "PROCESSED",
+                        "feedDate": 1567808288834,
+                        "modifiedDtm": 1567808291795,
+                        "fileName": "item.json",
+                        "itemDataErrorCount": 0,
+                        "itemSystemErrorCount": 0,
+                        "itemTimeoutErrorCount": 0,
+                        "channelType": "0f3e4dd4-0514-4346-b39d-af0e00ea066d",
+                        "orgId": "f5e3d40a-1267-46b9-a2f3-7811e4c0b2de"
+                      },
+                      {
+                        "feedId": "E6990BEF62324C248CB0BA025E5FF7AB@AU8BAgA",
+                        "feedSource": "MARKETPLACE_PARTNER",
+                        "feedType": "item",
+                        "partnerId": "100009",
+                        "itemsReceived": 1,
+                        "itemsSucceeded": 1,
+                        "itemsFailed": 0,
+                        "itemsProcessing": 0,
+                        "feedStatus": "PROCESSED",
+                        "feedDate": 1567808280306,
+                        "modifiedDtm": 1567808286814,
+                        "fileName": "item.json",
+                        "itemDataErrorCount": 0,
+                        "itemSystemErrorCount": 0,
+                        "itemTimeoutErrorCount": 0,
+                        "channelType": "0f3e4dd4-0514-4346-b39d-af0e00ea066d",
+                        "orgId": "f5e3d40a-1267-46b9-a2f3-7811e4c0b2de"
+                      },
+                      {
+                        "feedId": "04C137945DF844AFB439D7988C51495E@AUoBAQA",
+                        "feedSource": "SELLER",
+                        "feedType": "inventory",
+                        "partnerId": "100009",
+                        "itemsReceived": 2,
+                        "itemsSucceeded": 2,
+                        "itemsFailed": 0,
+                        "itemsProcessing": 0,
+                        "feedStatus": "PROCESSED",
+                        "feedDate": 1567807052264,
+                        "modifiedDtm": 1567807071997,
+                        "itemDataErrorCount": 0,
+                        "itemSystemErrorCount": 0,
+                        "itemTimeoutErrorCount": 0,
+                        "channelType": "0f3e4dd4-0514-4346-b39d-af0e00ea066d",
+                        "orgId": "f5e3d40a-1267-46b9-a2f3-7811e4c0b2de"
+                      },
+                      {
+                        "feedId": "36EF1EF88DF248B89C8AC7B6227D82DE@AUoBAQA",
+                        "feedSource": "SELLER",
+                        "feedType": "inventory",
+                        "partnerId": "100009",
+                        "itemsReceived": 1,
+                        "itemsSucceeded": 0,
+                        "itemsFailed": 1,
+                        "itemsProcessing": 0,
+                        "feedStatus": "PROCESSED",
+                        "feedDate": 1567806830615,
+                        "modifiedDtm": 1567806839395,
+                        "itemDataErrorCount": 1,
+                        "itemSystemErrorCount": 0,
+                        "itemTimeoutErrorCount": 0,
+                        "channelType": "0f3e4dd4-0514-4346-b39d-af0e00ea066d",
+                        "orgId": "f5e3d40a-1267-46b9-a2f3-7811e4c0b2de"
+                      },
+                      {
+                        "feedId": "468B2B0B8E3A40DA8C8DAFCDD2441F00@AVUBAgA",
+                        "feedType": "PROMO_PRICE",
+                        "partnerId": "100009",
+                        "itemsReceived": 1,
+                        "itemsSucceeded": 0,
+                        "itemsFailed": 1,
+                        "itemsProcessing": 0,
+                        "feedStatus": "PROCESSED",
+                        "feedDate": 1567715708242,
+                        "modifiedDtm": 1567719308294,
+                        "fileName": "468B2B0B8E3A40DA8C8DAFCDD2441F00@AVUBAgA.json",
+                        "itemDataErrorCount": 0,
+                        "itemSystemErrorCount": 1,
+                        "itemTimeoutErrorCount": 0,
+                        "orgId": "f5e3d40a-1267-46b9-a2f3-7811e4c0b2de"
+                      },
+                      {
+                        "feedId": "59C269E2619D41C98457C97147859B14@AVUBAgA",
+                        "feedType": "PROMO_PRICE",
+                        "partnerId": "100009",
+                        "itemsReceived": 1,
+                        "itemsSucceeded": 0,
+                        "itemsFailed": 1,
+                        "itemsProcessing": 0,
+                        "feedStatus": "PROCESSED",
+                        "feedDate": 1567712831420,
+                        "modifiedDtm": 1567716431920,
+                        "fileName": "59C269E2619D41C98457C97147859B14@AVUBAgA.json",
+                        "itemDataErrorCount": 0,
+                        "itemSystemErrorCount": 1,
+                        "itemTimeoutErrorCount": 0,
+                        "orgId": "f5e3d40a-1267-46b9-a2f3-7811e4c0b2de"
+                      },
+                      {
+                        "feedId": "D18F108D10154C5FAB2D369FBE0770D1@AQQBAgA",
+                        "feedSource": "MARKETPLACE_PARTNER",
+                        "feedType": "item",
+                        "partnerId": "100009",
+                        "itemsReceived": 76,
+                        "itemsSucceeded": 68,
+                        "itemsFailed": 8,
+                        "itemsProcessing": 0,
+                        "feedStatus": "PROCESSED",
+                        "feedDate": 1567702357366,
+                        "modifiedDtm": 1567708261313,
+                        "fileName": "Footwear.xlsm",
+                        "itemDataErrorCount": 6,
+                        "itemSystemErrorCount": 2,
+                        "itemTimeoutErrorCount": 0,
+                        "channelType": "57c99571-b460-43e2-bcd6-7d12f3ddd5a9",
+                        "orgId": "f5e3d40a-1267-46b9-a2f3-7811e4c0b2de"
+                      },
+                      {
+                        "feedId": "691C6232562A47FCA0EB6E8F4DDDD506@AQQBAQA",
+                        "feedSource": "MARKETPLACE_PARTNER",
+                        "feedType": "item",
+                        "partnerId": "100009",
+                        "itemsReceived": 1,
+                        "itemsSucceeded": 0,
+                        "itemsFailed": 1,
+                        "itemsProcessing": 0,
+                        "feedStatus": "PROCESSED",
+                        "feedDate": 1567635469690,
+                        "modifiedDtm": 1567635473279,
+                        "fileName": "Test Feed Filled Big Mouth.xlsm",
+                        "itemDataErrorCount": 1,
+                        "itemSystemErrorCount": 0,
+                        "itemTimeoutErrorCount": 0,
+                        "channelType": "57c99571-b460-43e2-bcd6-7d12f3ddd5a9",
+                        "orgId": "f5e3d40a-1267-46b9-a2f3-7811e4c0b2de"
+                      },
+                      {
+                        "feedId": "5E881260A71E437E880D74F768DAB8C0@AQQBAgA",
+                        "feedSource": "MARKETPLACE_PARTNER",
+                        "feedType": "item",
+                        "partnerId": "100009",
+                        "itemsReceived": 1,
+                        "itemsSucceeded": 0,
+                        "itemsFailed": 1,
+                        "itemsProcessing": 0,
+                        "feedStatus": "PROCESSED",
+                        "feedDate": 1567635389082,
+                        "modifiedDtm": 1567635391095,
+                        "fileName": "Test Feed Filled Big Mouth.xlsm",
+                        "itemDataErrorCount": 1,
+                        "itemSystemErrorCount": 0,
+                        "itemTimeoutErrorCount": 0,
+                        "channelType": "57c99571-b460-43e2-bcd6-7d12f3ddd5a9",
+                        "orgId": "f5e3d40a-1267-46b9-a2f3-7811e4c0b2de"
+                      },
+                      {
+                        "feedId": "F9538116CBA74E91AF61DC89D50A1843@AQsBAgA",
+                        "feedSource": "SELLER",
+                        "feedType": "inventory",
+                        "partnerId": "100009",
+                        "itemsReceived": 2,
+                        "itemsSucceeded": 0,
+                        "itemsFailed": 2,
+                        "itemsProcessing": 0,
+                        "feedStatus": "PROCESSED",
+                        "feedDate": 1567633333887,
+                        "modifiedDtm": 1567633340744,
+                        "fileName": "Inventory-v2 (1).xlsx",
+                        "shipNode": "85568170767413249",
+                        "itemDataErrorCount": 2,
+                        "itemSystemErrorCount": 0,
+                        "itemTimeoutErrorCount": 0,
+                        "channelType": "57c99571-b460-43e2-bcd6-7d12f3ddd5a9",
+                        "orgId": "f5e3d40a-1267-46b9-a2f3-7811e4c0b2de"
+                      },
+                      {
+                        "feedId": "C98454542A1B40D1BBAE77DA7CED415F@AQsBAgA",
+                        "feedSource": "SELLER",
+                        "feedType": "inventory",
+                        "partnerId": "100009",
+                        "itemsReceived": 2,
+                        "itemsSucceeded": 0,
+                        "itemsFailed": 2,
+                        "itemsProcessing": 0,
+                        "feedStatus": "PROCESSED",
+                        "feedDate": 1567633318924,
+                        "modifiedDtm": 1567633319024,
+                        "fileName": "Inventory-v2 (1).xlsx",
+                        "itemDataErrorCount": 2,
+                        "itemSystemErrorCount": 0,
+                        "itemTimeoutErrorCount": 0,
+                        "channelType": "57c99571-b460-43e2-bcd6-7d12f3ddd5a9",
+                        "orgId": "f5e3d40a-1267-46b9-a2f3-7811e4c0b2de"
+                      },
+                      {
+                        "feedId": "769C0955611244458A3A75D9AAE611F8@AQQBAgA",
+                        "feedSource": "MARKETPLACE_PARTNER",
+                        "feedType": "item",
+                        "partnerId": "100009",
+                        "itemsReceived": 1,
+                        "itemsSucceeded": 1,
+                        "itemsFailed": 0,
+                        "itemsProcessing": 0,
+                        "feedStatus": "PROCESSED",
+                        "feedDate": 1567633212681,
+                        "modifiedDtm": 1567633218555,
+                        "fileName": "Test Feed Filled.xlsm",
+                        "itemDataErrorCount": 0,
+                        "itemSystemErrorCount": 0,
+                        "itemTimeoutErrorCount": 0,
+                        "channelType": "57c99571-b460-43e2-bcd6-7d12f3ddd5a9",
+                        "orgId": "f5e3d40a-1267-46b9-a2f3-7811e4c0b2de"
+                      },
+                      {
+                        "feedId": "49A887488EC742F0994CDAA574617989@AVMBAgA",
+                        "feedType": "MP_ITEM_PRICE_UPDATE",
+                        "partnerId": "100009",
+                        "itemsReceived": 2,
+                        "itemsSucceeded": 0,
+                        "itemsFailed": 2,
+                        "itemsProcessing": 0,
+                        "feedStatus": "PROCESSED",
+                        "feedDate": 1567533989692,
+                        "modifiedDtm": 1567596489609,
+                        "fileName": "49A887488EC742F0994CDAA574617989@AVMBAgA.json",
+                        "itemDataErrorCount": 0,
+                        "itemSystemErrorCount": 2,
+                        "itemTimeoutErrorCount": 0,
+                        "channelType": "0f3e4dd4-0514-4346-b39d-af0e00ea066d",
+                        "orgId": "f5e3d40a-1267-46b9-a2f3-7811e4c0b2de"
+                      },
+                      {
+                        "feedId": "DD5D20C056A84A2B98B53FD5BA9E79BB@AUoBAQA",
+                        "feedSource": "SELLER",
+                        "feedType": "inventory",
+                        "partnerId": "100009",
+                        "itemsReceived": 1,
+                        "itemsSucceeded": 1,
+                        "itemsFailed": 0,
+                        "itemsProcessing": 0,
+                        "feedStatus": "PROCESSED",
+                        "feedDate": 1567532943766,
+                        "modifiedDtm": 1567532985442,
+                        "itemDataErrorCount": 0,
+                        "itemSystemErrorCount": 0,
+                        "itemTimeoutErrorCount": 0,
+                        "channelType": "0f3e4dd4-0514-4346-b39d-af0e00ea066d",
+                        "orgId": "f5e3d40a-1267-46b9-a2f3-7811e4c0b2de"
+                      },
+                      {
+                        "feedId": "319D99309FD44729BA40423125AA9C4D@AUoBAQA",
+                        "feedSource": "SELLER",
+                        "feedType": "inventory",
+                        "partnerId": "100009",
+                        "itemsReceived": 1,
+                        "itemsSucceeded": 0,
+                        "itemsFailed": 1,
+                        "itemsProcessing": 0,
+                        "feedStatus": "PROCESSED",
+                        "feedDate": 1567532861649,
+                        "modifiedDtm": 1567532868091,
+                        "itemDataErrorCount": 1,
+                        "itemSystemErrorCount": 0,
+                        "itemTimeoutErrorCount": 0,
+                        "channelType": "0f3e4dd4-0514-4346-b39d-af0e00ea066d",
+                        "orgId": "f5e3d40a-1267-46b9-a2f3-7811e4c0b2de"
+                      },
+                      {
+                        "feedId": "1726CB4CDF5E4ED189FE72695CC5F8E5@AVQBAgA",
+                        "feedSource": "SELLER",
+                        "feedType": "LAGTIME",
+                        "partnerId": "100009",
+                        "itemsReceived": 0,
+                        "itemsSucceeded": 0,
+                        "itemsFailed": 0,
+                        "itemsProcessing": 0,
+                        "feedStatus": "RECEIVED",
+                        "feedDate": 1567532826470,
+                        "modifiedDtm": 1567532826470,
+                        "itemDataErrorCount": 0,
+                        "itemSystemErrorCount": 0,
+                        "itemTimeoutErrorCount": 0,
+                        "channelType": "0f3e4dd4-0514-4346-b39d-af0e00ea066d",
+                        "orgId": "f5e3d40a-1267-46b9-a2f3-7811e4c0b2de"
+                      },
+                      {
+                        "feedId": "4BA234E85334413C935D1CB401A68991@AVMBAgA",
+                        "feedType": "MP_ITEM_PRICE_UPDATE",
+                        "partnerId": "100009",
+                        "itemsReceived": 2,
+                        "itemsSucceeded": 0,
+                        "itemsFailed": 2,
+                        "itemsProcessing": 0,
+                        "feedStatus": "PROCESSED",
+                        "feedDate": 1567532654796,
+                        "modifiedDtm": 1568148913049,
+                        "fileName": "4BA234E85334413C935D1CB401A68991@AVMBAgA.json",
+                        "itemDataErrorCount": 0,
+                        "itemSystemErrorCount": 2,
+                        "itemTimeoutErrorCount": 0,
+                        "channelType": "0f3e4dd4-0514-4346-b39d-af0e00ea066d",
+                        "orgId": "f5e3d40a-1267-46b9-a2f3-7811e4c0b2de"
+                      },
+                      {
+                        "feedId": "D84C4C7B977148999EED67F7896FDD3A@AVMBAgA",
+                        "feedType": "MP_ITEM_PRICE_UPDATE",
+                        "partnerId": "100009",
+                        "itemsReceived": 2,
+                        "itemsSucceeded": 0,
+                        "itemsFailed": 2,
+                        "itemsProcessing": 0,
+                        "feedStatus": "PROCESSED",
+                        "feedDate": 1567530282583,
+                        "modifiedDtm": 1567592415533,
+                        "fileName": "D84C4C7B977148999EED67F7896FDD3A@AVMBAgA.json",
+                        "itemDataErrorCount": 0,
+                        "itemSystemErrorCount": 2,
+                        "itemTimeoutErrorCount": 0,
+                        "channelType": "0f3e4dd4-0514-4346-b39d-af0e00ea066d",
+                        "orgId": "f5e3d40a-1267-46b9-a2f3-7811e4c0b2de"
+                      },
+                      {
+                        "feedId": "A5F9DFF593F14C3CB87477B061C82909@AU8BAgA",
+                        "feedType": "item",
+                        "partnerId": "100009",
+                        "itemsReceived": 1,
+                        "itemsSucceeded": 0,
+                        "itemsFailed": 1,
+                        "itemsProcessing": 0,
+                        "feedStatus": "PROCESSED",
+                        "feedDate": 1567530132228,
+                        "modifiedDtm": 1567548132545,
+                        "fileName": "item.json",
+                        "itemDataErrorCount": 0,
+                        "itemSystemErrorCount": 0,
+                        "itemTimeoutErrorCount": 1,
+                        "channelType": "0f3e4dd4-0514-4346-b39d-af0e00ea066d",
+                        "orgId": "f5e3d40a-1267-46b9-a2f3-7811e4c0b2de"
+                      },
+                      {
+                        "feedId": "74B39338089E4F849A1CA3B413B47D9A@AU8BAQA",
+                        "feedSource": "MARKETPLACE_PARTNER",
+                        "feedType": "item",
+                        "partnerId": "100009",
+                        "itemsReceived": 1,
+                        "itemsSucceeded": 1,
+                        "itemsFailed": 0,
+                        "itemsProcessing": 0,
+                        "feedStatus": "PROCESSED",
+                        "feedDate": 1567529868700,
+                        "modifiedDtm": 1567529874038,
+                        "fileName": "item.json",
+                        "itemDataErrorCount": 0,
+                        "itemSystemErrorCount": 0,
+                        "itemTimeoutErrorCount": 0,
+                        "channelType": "0f3e4dd4-0514-4346-b39d-af0e00ea066d",
+                        "orgId": "f5e3d40a-1267-46b9-a2f3-7811e4c0b2de"
+                      },
+                      {
+                        "feedId": "0960B3B82687490FA5E51CB0801478A4@AU8BAgA",
+                        "feedSource": "MARKETPLACE_PARTNER",
+                        "feedType": "item",
+                        "partnerId": "100009",
+                        "itemsReceived": 1,
+                        "itemsSucceeded": 0,
+                        "itemsFailed": 1,
+                        "itemsProcessing": 0,
+                        "feedStatus": "PROCESSED",
+                        "feedDate": 1567529748547,
+                        "modifiedDtm": 1567529752228,
+                        "fileName": "item.json",
+                        "itemDataErrorCount": 0,
+                        "itemSystemErrorCount": 1,
+                        "itemTimeoutErrorCount": 0,
+                        "channelType": "0f3e4dd4-0514-4346-b39d-af0e00ea066d",
+                        "orgId": "f5e3d40a-1267-46b9-a2f3-7811e4c0b2de"
+                      },
+                      {
+                        "feedId": "052792C367124285AA0D9937B589C41B@AR4BAgA",
+                        "feedSource": "SELLER",
+                        "feedType": "LAGTIME",
+                        "partnerId": "100009",
+                        "itemsReceived": 2,
+                        "itemsSucceeded": 2,
+                        "itemsFailed": 0,
+                        "itemsProcessing": 0,
+                        "feedStatus": "PROCESSED",
+                        "feedDate": 1567001976221,
+                        "modifiedDtm": 1567001980596,
+                        "fileName": "new-lagtime-update.xlsx",
+                        "itemDataErrorCount": 0,
+                        "itemSystemErrorCount": 0,
+                        "itemTimeoutErrorCount": 0,
+                        "channelType": "57c99571-b460-43e2-bcd6-7d12f3ddd5a9",
+                        "orgId": "f5e3d40a-1267-46b9-a2f3-7811e4c0b2de"
+                      },
+                      {
+                        "feedId": "107BEBD418A045CDAAD7126C6C652468@AR4BAgA",
+                        "feedSource": "SELLER",
+                        "feedType": "LAGTIME",
+                        "partnerId": "100009",
+                        "itemsReceived": 2,
+                        "itemsSucceeded": 0,
+                        "itemsFailed": 2,
+                        "itemsProcessing": 0,
+                        "feedStatus": "PROCESSED",
+                        "feedDate": 1567001846041,
+                        "modifiedDtm": 1567001852002,
+                        "fileName": "new-lagtime-update.xlsx",
+                        "itemDataErrorCount": 2,
+                        "itemSystemErrorCount": 0,
+                        "itemTimeoutErrorCount": 0,
+                        "channelType": "57c99571-b460-43e2-bcd6-7d12f3ddd5a9",
+                        "orgId": "f5e3d40a-1267-46b9-a2f3-7811e4c0b2de"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/feeds/{feedId}": {
+      "get": {
+        "tags": [
+          "Feeds"
+        ],
+        "summary": "Feed item status",
+        "description": "Returns the feed and item status for a specified Feed ID.",
+        "operationId": "getFeedItemStatus",
+        "parameters": [
+          {
+            "name": "feedId",
+            "in": "path",
+            "description": "A unique ID returned from the Bulk Upload API, used for tracking the Feed File. Special characters must be escaped. (e.g., feedId: '...3456@789...' must be entered in the URL as '...3456%40789)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "includeDetails",
+            "in": "query",
+            "description": "Includes details of each entity in the feed.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "false"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The object response to start with, where 0 is the first entity that can be requested. It can only be used when includeDetails is set to true.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "0"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The number of entities to be returned. It cannot be more than 50 entities. Use it only when the includeDetails is set to true.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "50"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Basic YzcyOTFjNmItNzI5MC00...."
+          },
+          {
+            "in": "header",
+            "name": "WM_SEC.ACCESS_TOKEN",
+            "description": "The access token retrieved in the Token API call",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
+          },
+          {
+            "in": "header",
+            "name": "WM_CONSUMER.CHANNEL.TYPE",
+            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "WM_QOS.CORRELATION_ID",
+            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
+          },
+          {
+            "in": "header",
+            "name": "WM_SVC.NAME",
+            "description": "Walmart Service Name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Walmart Service Name"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "errors": {
+                      "type": "array",
+                      "xml": {
+                        "name": "error"
+                      },
+                      "items": {
+                        "required": [
+                          "code"
+                        ],
+                        "type": "object",
+                        "properties": {
+                          "code": {
+                            "type": "string"
+                          },
+                          "field": {
+                            "type": "string"
+                          },
+                          "description": {
+                            "type": "string"
+                          },
+                          "info": {
+                            "type": "string"
+                          },
+                          "severity": {
+                            "type": "string",
+                            "enum": [
+                              "INFO",
+                              "WARN",
+                              "ERROR"
+                            ]
+                          },
+                          "category": {
+                            "type": "string",
+                            "enum": [
+                              "APPLICATION",
+                              "SYSTEM",
+                              "REQUEST",
+                              "DATA"
+                            ]
+                          },
+                          "causes": {
+                            "type": "array",
+                            "xml": {
+                              "wrapped": true
+                            },
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "code": {
+                                  "type": "string"
+                                },
+                                "field": {
+                                  "type": "string"
+                                },
+                                "type": {
+                                  "type": "string"
+                                },
+                                "description": {
+                                  "type": "string"
+                                }
+                              },
+                              "xml": {
+                                "name": "Cause"
+                              }
+                            }
+                          },
+                          "errorIdentifiers": {
+                            "type": "object",
+                            "additionalProperties": {
+                              "type": "object"
+                            }
+                          },
+                          "component": {
+                            "type": "string"
+                          },
+                          "type": {
+                            "type": "string"
+                          },
+                          "serviceName": {
+                            "type": "string"
+                          },
+                          "gatewayErrorCategory": {
+                            "type": "string",
+                            "enum": [
+                              "INTERNAL_DATA_ERROR",
+                              "EXTERNAL_DATA_ERROR",
+                              "SYSTEM_ERROR"
+                            ]
+                          }
+                        },
+                        "xml": {
+                          "name": "GatewayError"
+                        }
+                      }
+                    },
+                    "feedId": {
+                      "type": "string",
+                      "description": "A unique ID used for tracking the Feed File"
+                    },
+                    "feedStatus": {
+                      "type": "string",
+                      "description": "Can be one of the following: RECEIVED, INPROGRESS, PROCESSED, or ERROR",
+                      "enum": [
+                        "RECEIVED",
+                        "INPROGRESS",
+                        "PROCESSED",
+                        "ERROR"
+                      ]
+                    },
+                    "ingestionErrors": {
+                      "type": "object",
+                      "properties": {
+                        "ingestionError": {
+                          "type": "array",
+                          "items": {
+                            "required": [
+                              "code",
+                              "type"
+                            ],
+                            "type": "object",
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "description": "Error Type",
+                                "enum": [
+                                  "DATA_ERROR",
+                                  "SYSTEM_ERROR",
+                                  "TIMEOUT_ERROR"
+                                ]
+                              },
+                              "code": {
+                                "type": "string",
+                                "description": "Error code"
+                              },
+                              "description": {
+                                "type": "string",
+                                "description": "Error description"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "description": "List of errors for an item"
+                    },
+                    "itemsReceived": {
+                      "type": "integer",
+                      "description": "The number of items received in the feed",
+                      "format": "int32"
+                    },
+                    "itemsSucceeded": {
+                      "type": "integer",
+                      "description": "The number of items in the feed that processed successfully",
+                      "format": "int32"
+                    },
+                    "itemsFailed": {
+                      "type": "integer",
+                      "description": "The number of items in the feed that failed due to a data or system error",
+                      "format": "int32"
+                    },
+                    "itemsProcessing": {
+                      "type": "integer",
+                      "description": "The number of items in the feed that are still processing",
+                      "format": "int32"
+                    },
+                    "offset": {
+                      "type": "integer",
+                      "description": "The object response to the starting number, where 0 is the first entity available for request",
+                      "format": "int32"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "The number of items returned. Cannot be greater than 1000.",
+                      "format": "int32"
+                    },
+                    "itemDetails": {
+                      "type": "object",
+                      "properties": {
+                        "itemIngestionStatus": {
+                          "type": "array",
+                          "description": "The ingestion status of an individual item",
+                          "items": {
+                            "required": [
+                              "ingestionStatus"
+                            ],
+                            "type": "object",
+                            "properties": {
+                              "martId": {
+                                "type": "integer",
+                                "description": "Mart ID that a user or seller uses for a marketplace",
+                                "format": "int32"
+                              },
+                              "sku": {
+                                "type": "string",
+                                "description": "An arbitrary alphanumeric unique ID, seller-specified, identifying each item."
+                              },
+                              "wpid": {
+                                "type": "string",
+                                "description": "An alphanumeric product ID, generated by Walmart"
+                              },
+                              "index": {
+                                "type": "integer",
+                                "description": "index of items in the feed",
+                                "format": "int32"
+                              },
+                              "ingestionStatus": {
+                                "type": "string",
+                                "description": "Can be one of the following: DATA_ERROR, SYSTEM_ERROR, TIMEOUT_ERROR, or INPROGRESS",
+                                "enum": [
+                                  "INPROGRESS",
+                                  "SUCCESS",
+                                  "DATA_ERROR",
+                                  "SYSTEM_ERROR",
+                                  "TIMEOUT_ERROR"
+                                ]
+                              },
+                              "ingestionErrors": {
+                                "type": "object",
+                                "properties": {
+                                  "ingestionError": {
+                                    "type": "array",
+                                    "items": {
+                                      "required": [
+                                        "code",
+                                        "type"
+                                      ],
+                                      "type": "object",
+                                      "properties": {
+                                        "type": {
+                                          "type": "string",
+                                          "description": "Error Type",
+                                          "enum": [
+                                            "DATA_ERROR",
+                                            "SYSTEM_ERROR",
+                                            "TIMEOUT_ERROR"
+                                          ]
+                                        },
+                                        "code": {
+                                          "type": "string",
+                                          "description": "Error code"
+                                        },
+                                        "description": {
+                                          "type": "string",
+                                          "description": "Error description"
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "description": "List of errors for an item"
+                              }
+                            },
+                            "description": "The ingestion status of an individual item"
+                          }
+                        }
+                      },
+                      "description": "List of ingestion status details for items in the feed"
+                    }
+                  },
+                  "xml": {
+                    "name": "PartnerFeedResponse"
+                  }
+                },
+                "example": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<ns2:PartnerFeedResponse xmlns:ns2=\"http://walmart.com/\">\n    <ns2:feedId>F129C19240844B97A3C6AD8F1A2C4997@AU8BAQA</ns2:feedId>\n    <ns2:feedStatus>PROCESSED</ns2:feedStatus>\n    <ns2:feedSubmissionDate>2019-09-12T17:53:23.059Z</ns2:feedSubmissionDate>\n    <ns2:itemsReceived>1</ns2:itemsReceived>\n    <ns2:itemsSucceeded>1</ns2:itemsSucceeded>\n    <ns2:itemsFailed>0</ns2:itemsFailed>\n    <ns2:itemsProcessing>0</ns2:itemsProcessing>\n    <ns2:offset>0</ns2:offset>\n    <ns2:limit>20</ns2:limit>\n    <ns2:itemDetails>\n        <ns2:itemIngestionStatus>\n            <ns2:martId>0</ns2:martId>\n            <ns2:sku>0960B3B82687490FA5E51CB0801478A4@AU8BAgA</ns2:sku>\n            <ns2:wpid>71ZLHHMKNS6G</ns2:wpid>\n            <ns2:index>0</ns2:index>\n            <ns2:itemid>51681142</ns2:itemid>\n            <ns2:productIdentifiers>\n                <ns2:productIdentifier>\n                    <ns2:productIdType>GTIN</ns2:productIdType>\n                    <ns2:productId>00363824587165</ns2:productId>\n                </ns2:productIdentifier>\n                <ns2:productIdentifier>\n                    <ns2:productIdType>UPC</ns2:productIdType>\n                    <ns2:productId>363824587165</ns2:productId>\n                </ns2:productIdentifier>\n            </ns2:productIdentifiers>\n            <ns2:ingestionStatus>SUCCESS</ns2:ingestionStatus>\n        </ns2:itemIngestionStatus>\n    </ns2:itemDetails>\n</ns2:PartnerFeedResponse>"
+              },
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "errors": {
+                      "type": "array",
+                      "xml": {
+                        "name": "error"
+                      },
+                      "items": {
+                        "required": [
+                          "code"
+                        ],
+                        "type": "object",
+                        "properties": {
+                          "code": {
+                            "type": "string"
+                          },
+                          "field": {
+                            "type": "string"
+                          },
+                          "description": {
+                            "type": "string"
+                          },
+                          "info": {
+                            "type": "string"
+                          },
+                          "severity": {
+                            "type": "string",
+                            "enum": [
+                              "INFO",
+                              "WARN",
+                              "ERROR"
+                            ]
+                          },
+                          "category": {
+                            "type": "string",
+                            "enum": [
+                              "APPLICATION",
+                              "SYSTEM",
+                              "REQUEST",
+                              "DATA"
+                            ]
+                          },
+                          "causes": {
+                            "type": "array",
+                            "xml": {
+                              "wrapped": true
+                            },
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "code": {
+                                  "type": "string"
+                                },
+                                "field": {
+                                  "type": "string"
+                                },
+                                "type": {
+                                  "type": "string"
+                                },
+                                "description": {
+                                  "type": "string"
+                                }
+                              },
+                              "xml": {
+                                "name": "Cause"
+                              }
+                            }
+                          },
+                          "errorIdentifiers": {
+                            "type": "object",
+                            "additionalProperties": {
+                              "type": "object"
+                            }
+                          },
+                          "component": {
+                            "type": "string"
+                          },
+                          "type": {
+                            "type": "string"
+                          },
+                          "serviceName": {
+                            "type": "string"
+                          },
+                          "gatewayErrorCategory": {
+                            "type": "string",
+                            "enum": [
+                              "INTERNAL_DATA_ERROR",
+                              "EXTERNAL_DATA_ERROR",
+                              "SYSTEM_ERROR"
+                            ]
+                          }
+                        },
+                        "xml": {
+                          "name": "GatewayError"
+                        }
+                      }
+                    },
+                    "feedId": {
+                      "type": "string",
+                      "description": "A unique ID used for tracking the Feed File"
+                    },
+                    "feedStatus": {
+                      "type": "string",
+                      "description": "Can be one of the following: RECEIVED, INPROGRESS, PROCESSED, or ERROR",
+                      "enum": [
+                        "RECEIVED",
+                        "INPROGRESS",
+                        "PROCESSED",
+                        "ERROR"
+                      ]
+                    },
+                    "ingestionErrors": {
+                      "type": "object",
+                      "properties": {
+                        "ingestionError": {
+                          "type": "array",
+                          "items": {
+                            "required": [
+                              "code",
+                              "type"
+                            ],
+                            "type": "object",
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "description": "Error Type",
+                                "enum": [
+                                  "DATA_ERROR",
+                                  "SYSTEM_ERROR",
+                                  "TIMEOUT_ERROR"
+                                ]
+                              },
+                              "code": {
+                                "type": "string",
+                                "description": "Error code"
+                              },
+                              "description": {
+                                "type": "string",
+                                "description": "Error description"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "description": "List of errors for an item"
+                    },
+                    "itemsReceived": {
+                      "type": "integer",
+                      "description": "The number of items received in the feed",
+                      "format": "int32"
+                    },
+                    "itemsSucceeded": {
+                      "type": "integer",
+                      "description": "The number of items in the feed that processed successfully",
+                      "format": "int32"
+                    },
+                    "itemsFailed": {
+                      "type": "integer",
+                      "description": "The number of items in the feed that failed due to a data or system error",
+                      "format": "int32"
+                    },
+                    "itemsProcessing": {
+                      "type": "integer",
+                      "description": "The number of items in the feed that are still processing",
+                      "format": "int32"
+                    },
+                    "offset": {
+                      "type": "integer",
+                      "description": "The object response to the starting number, where 0 is the first entity available for request",
+                      "format": "int32"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "The number of items returned. Cannot be greater than 1000.",
+                      "format": "int32"
+                    },
+                    "itemDetails": {
+                      "type": "object",
+                      "properties": {
+                        "itemIngestionStatus": {
+                          "type": "array",
+                          "description": "The ingestion status of an individual item",
+                          "items": {
+                            "required": [
+                              "ingestionStatus"
+                            ],
+                            "type": "object",
+                            "properties": {
+                              "martId": {
+                                "type": "integer",
+                                "description": "Mart ID that a user or seller uses for a marketplace",
+                                "format": "int32"
+                              },
+                              "sku": {
+                                "type": "string",
+                                "description": "An arbitrary alphanumeric unique ID, seller-specified, identifying each item."
+                              },
+                              "wpid": {
+                                "type": "string",
+                                "description": "An alphanumeric product ID, generated by Walmart"
+                              },
+                              "index": {
+                                "type": "integer",
+                                "description": "index of items in the feed",
+                                "format": "int32"
+                              },
+                              "ingestionStatus": {
+                                "type": "string",
+                                "description": "Can be one of the following: DATA_ERROR, SYSTEM_ERROR, TIMEOUT_ERROR, or INPROGRESS",
+                                "enum": [
+                                  "INPROGRESS",
+                                  "SUCCESS",
+                                  "DATA_ERROR",
+                                  "SYSTEM_ERROR",
+                                  "TIMEOUT_ERROR"
+                                ]
+                              },
+                              "ingestionErrors": {
+                                "type": "object",
+                                "properties": {
+                                  "ingestionError": {
+                                    "type": "array",
+                                    "items": {
+                                      "required": [
+                                        "code",
+                                        "type"
+                                      ],
+                                      "type": "object",
+                                      "properties": {
+                                        "type": {
+                                          "type": "string",
+                                          "description": "Error Type",
+                                          "enum": [
+                                            "DATA_ERROR",
+                                            "SYSTEM_ERROR",
+                                            "TIMEOUT_ERROR"
+                                          ]
+                                        },
+                                        "code": {
+                                          "type": "string",
+                                          "description": "Error code"
+                                        },
+                                        "description": {
+                                          "type": "string",
+                                          "description": "Error description"
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "description": "List of errors for an item"
+                              }
+                            },
+                            "description": "The ingestion status of an individual item"
+                          }
+                        }
+                      },
+                      "description": "List of ingestion status details for items in the feed"
+                    }
+                  },
+                  "xml": {
+                    "name": "PartnerFeedResponse"
+                  }
+                },
+                "example": {
+                  "feedId": "F129C19240844B97A3C6AD8F1A2C4997@AU8BAQA",
+                  "feedStatus": "PROCESSED",
+                  "shipNode": null,
+                  "submittedBy": null,
+                  "feedSubmissionDate": 1568310803059,
+                  "ingestionErrors": null,
+                  "itemsReceived": 1,
+                  "itemsSucceeded": 1,
+                  "itemsFailed": 0,
+                  "itemsProcessing": 0,
+                  "offset": 0,
+                  "limit": 20,
+                  "itemDetails": {
+                    "itemIngestionStatus": [
+                      {
+                        "martId": 0,
+                        "sku": "0960B3B82687490FA5E51CB0801478A4@AU8BAgA",
+                        "wpid": "71ZLHHMKNS6G",
+                        "index": 0,
+                        "itemid": "51681142",
+                        "productIdentifiers": {
+                          "productIdentifier": [
+                            {
+                              "productIdType": "GTIN",
+                              "productId": "00363824587165"
+                            },
+                            {
+                              "productIdType": "UPC",
+                              "productId": "363824587165"
+                            }
+                          ]
+                        },
+                        "ingestionStatus": "SUCCESS",
+                        "ingestionErrors": null,
+                        "additionalAttributes": null
+                      }
+                    ]
+                  },
+                  "additionalAttributes": null
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Cause": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "field": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        },
+        "xml": {
+          "name": "Cause"
+        }
+      },
+      "FeedRecord": {
+        "type": "object",
+        "properties": {
+          "feedId": {
+            "type": "string",
+            "description": "A unique ID used for tracking the Feed File"
+          },
+          "feedSource": {
+            "type": "string",
+            "description": "The source of the feed"
+          },
+          "feedType": {
+            "type": "string",
+            "description": "The feed type"
+          },
+          "partnerId": {
+            "type": "string",
+            "description": "The seller ID"
+          },
+          "itemsReceived": {
+            "type": "integer",
+            "description": "The number of items received",
+            "format": "int64"
+          },
+          "itemsSucceeded": {
+            "type": "integer",
+            "description": "The number of items in the feed that have successfully processed",
+            "format": "int64"
+          },
+          "itemsFailed": {
+            "type": "integer",
+            "description": "The number of items in the feed that failed due to a data or system error",
+            "format": "int64"
+          },
+          "itemsProcessing": {
+            "type": "integer",
+            "description": "The number of items in the feed that are still in progress",
+            "format": "int64"
+          },
+          "feedStatus": {
+            "type": "string",
+            "description": "Can be one of the following: RECEIVED, INPROGRESS, PROCESSED, or ERROR. For details, see the definitions listed under 'Feed Statuses' at the beginning of this section."
+          },
+          "feedDate": {
+            "type": "string",
+            "description": "The date and time the feed was submitted. Format: yyyymmddThh:mm:ss.xxxz",
+            "format": "date-time"
+          },
+          "batchId": {
+            "type": "string",
+            "description": "The batch ID for the feed, if provided"
+          },
+          "modifiedDtm": {
+            "type": "string",
+            "description": "The most recent time the feed was modified. Format: yyyymmddThh:mm:ss.xxxz",
+            "format": "date-time"
+          }
+        },
+        "description": "Information about the individual feed",
+        "xml": {
+          "name": "feed"
+        }
+      },
+      "FeedRecordResponse": {
+        "type": "object",
+        "properties": {
+          "errors": {
+            "type": "array",
+            "xml": {
+              "name": "error"
+            },
+            "items": {
+              "required": [
+                "code"
+              ],
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string"
+                },
+                "field": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "info": {
+                  "type": "string"
+                },
+                "severity": {
+                  "type": "string",
+                  "enum": [
+                    "INFO",
+                    "WARN",
+                    "ERROR"
+                  ]
+                },
+                "category": {
+                  "type": "string",
+                  "enum": [
+                    "APPLICATION",
+                    "SYSTEM",
+                    "REQUEST",
+                    "DATA"
+                  ]
+                },
+                "causes": {
+                  "type": "array",
+                  "xml": {
+                    "wrapped": true
+                  },
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "code": {
+                        "type": "string"
+                      },
+                      "field": {
+                        "type": "string"
+                      },
+                      "type": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      }
+                    },
+                    "xml": {
+                      "name": "Cause"
+                    }
+                  }
+                },
+                "errorIdentifiers": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "object"
+                  }
+                },
+                "component": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string"
+                },
+                "serviceName": {
+                  "type": "string"
+                },
+                "gatewayErrorCategory": {
+                  "type": "string",
+                  "enum": [
+                    "INTERNAL_DATA_ERROR",
+                    "EXTERNAL_DATA_ERROR",
+                    "SYSTEM_ERROR"
+                  ]
+                }
+              },
+              "xml": {
+                "name": "GatewayError"
+              }
+            }
+          },
+          "totalResults": {
+            "type": "integer",
+            "description": "Total number of feeds returned",
+            "format": "int64"
+          },
+          "offset": {
+            "type": "integer",
+            "description": "The object response to the starting number, where 0 is the first available",
+            "format": "int64"
+          },
+          "limit": {
+            "type": "integer",
+            "description": "The number of items to be returned",
+            "format": "int32"
+          },
+          "results": {
+            "type": "array",
+            "description": "The feed status results",
+            "xml": {
+              "wrapped": true
+            },
+            "items": {
+              "type": "object",
+              "properties": {
+                "feedId": {
+                  "type": "string",
+                  "description": "A unique ID used for tracking the Feed File"
+                },
+                "feedSource": {
+                  "type": "string",
+                  "description": "The source of the feed"
+                },
+                "feedType": {
+                  "type": "string",
+                  "description": "The feed type"
+                },
+                "partnerId": {
+                  "type": "string",
+                  "description": "The seller ID"
+                },
+                "itemsReceived": {
+                  "type": "integer",
+                  "description": "The number of items received",
+                  "format": "int64"
+                },
+                "itemsSucceeded": {
+                  "type": "integer",
+                  "description": "The number of items in the feed that have successfully processed",
+                  "format": "int64"
+                },
+                "itemsFailed": {
+                  "type": "integer",
+                  "description": "The number of items in the feed that failed due to a data or system error",
+                  "format": "int64"
+                },
+                "itemsProcessing": {
+                  "type": "integer",
+                  "description": "The number of items in the feed that are still in progress",
+                  "format": "int64"
+                },
+                "feedStatus": {
+                  "type": "string",
+                  "description": "Can be one of the following: RECEIVED, INPROGRESS, PROCESSED, or ERROR. For details, see the definitions listed under 'Feed Statuses' at the beginning of this section."
+                },
+                "feedDate": {
+                  "type": "string",
+                  "description": "The date and time the feed was submitted. Format: yyyymmddThh:mm:ss.xxxz",
+                  "format": "date-time"
+                },
+                "batchId": {
+                  "type": "string",
+                  "description": "The batch ID for the feed, if provided"
+                },
+                "modifiedDtm": {
+                  "type": "string",
+                  "description": "The most recent time the feed was modified. Format: yyyymmddThh:mm:ss.xxxz",
+                  "format": "date-time"
+                }
+              },
+              "description": "Information about the individual feed",
+              "xml": {
+                "name": "feed"
+              }
+            }
+          }
+        },
+        "xml": {
+          "name": "list"
+        }
+      },
+      "GatewayError": {
+        "required": [
+          "code"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "field": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "info": {
+            "type": "string"
+          },
+          "severity": {
+            "type": "string",
+            "enum": [
+              "INFO",
+              "WARN",
+              "ERROR"
+            ]
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "APPLICATION",
+              "SYSTEM",
+              "REQUEST",
+              "DATA"
+            ]
+          },
+          "causes": {
+            "type": "array",
+            "xml": {
+              "wrapped": true
+            },
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string"
+                },
+                "field": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                }
+              },
+              "xml": {
+                "name": "Cause"
+              }
+            }
+          },
+          "errorIdentifiers": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object"
+            }
+          },
+          "component": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "serviceName": {
+            "type": "string"
+          },
+          "gatewayErrorCategory": {
+            "type": "string",
+            "enum": [
+              "INTERNAL_DATA_ERROR",
+              "EXTERNAL_DATA_ERROR",
+              "SYSTEM_ERROR"
+            ]
+          }
+        },
+        "xml": {
+          "name": "GatewayError"
+        }
+      },
+      "IngestionError": {
+        "required": [
+          "code",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Error Type",
+            "enum": [
+              "DATA_ERROR",
+              "SYSTEM_ERROR",
+              "TIMEOUT_ERROR"
+            ]
+          },
+          "code": {
+            "type": "string",
+            "description": "Error code"
+          },
+          "description": {
+            "type": "string",
+            "description": "Error description"
+          }
+        }
+      },
+      "IngestionErrors": {
+        "type": "object",
+        "properties": {
+          "ingestionError": {
+            "type": "array",
+            "items": {
+              "required": [
+                "code",
+                "type"
+              ],
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "description": "Error Type",
+                  "enum": [
+                    "DATA_ERROR",
+                    "SYSTEM_ERROR",
+                    "TIMEOUT_ERROR"
+                  ]
+                },
+                "code": {
+                  "type": "string",
+                  "description": "Error code"
+                },
+                "description": {
+                  "type": "string",
+                  "description": "Error description"
+                }
+              }
+            }
+          }
+        },
+        "description": "List of errors for an item"
+      },
+      "ItemDetails": {
+        "type": "object",
+        "properties": {
+          "itemIngestionStatus": {
+            "type": "array",
+            "description": "The ingestion status of an individual item",
+            "items": {
+              "required": [
+                "ingestionStatus"
+              ],
+              "type": "object",
+              "properties": {
+                "martId": {
+                  "type": "integer",
+                  "description": "Mart ID that a user or seller uses for a marketplace",
+                  "format": "int32"
+                },
+                "sku": {
+                  "type": "string",
+                  "description": "An arbitrary alphanumeric unique ID, seller-specified, identifying each item."
+                },
+                "wpid": {
+                  "type": "string",
+                  "description": "An alphanumeric product ID, generated by Walmart"
+                },
+                "index": {
+                  "type": "integer",
+                  "description": "index of items in the feed",
+                  "format": "int32"
+                },
+                "ingestionStatus": {
+                  "type": "string",
+                  "description": "Can be one of the following: DATA_ERROR, SYSTEM_ERROR, TIMEOUT_ERROR, or INPROGRESS",
+                  "enum": [
+                    "INPROGRESS",
+                    "SUCCESS",
+                    "DATA_ERROR",
+                    "SYSTEM_ERROR",
+                    "TIMEOUT_ERROR"
+                  ]
+                },
+                "ingestionErrors": {
+                  "type": "object",
+                  "properties": {
+                    "ingestionError": {
+                      "type": "array",
+                      "items": {
+                        "required": [
+                          "code",
+                          "type"
+                        ],
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "description": "Error Type",
+                            "enum": [
+                              "DATA_ERROR",
+                              "SYSTEM_ERROR",
+                              "TIMEOUT_ERROR"
+                            ]
+                          },
+                          "code": {
+                            "type": "string",
+                            "description": "Error code"
+                          },
+                          "description": {
+                            "type": "string",
+                            "description": "Error description"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "description": "List of errors for an item"
+                }
+              },
+              "description": "The ingestion status of an individual item"
+            }
+          }
+        },
+        "description": "List of ingestion status details for items in the feed"
+      },
+      "PartnerFeedResponse": {
+        "type": "object",
+        "properties": {
+          "errors": {
+            "type": "array",
+            "xml": {
+              "name": "error"
+            },
+            "items": {
+              "required": [
+                "code"
+              ],
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string"
+                },
+                "field": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "info": {
+                  "type": "string"
+                },
+                "severity": {
+                  "type": "string",
+                  "enum": [
+                    "INFO",
+                    "WARN",
+                    "ERROR"
+                  ]
+                },
+                "category": {
+                  "type": "string",
+                  "enum": [
+                    "APPLICATION",
+                    "SYSTEM",
+                    "REQUEST",
+                    "DATA"
+                  ]
+                },
+                "causes": {
+                  "type": "array",
+                  "xml": {
+                    "wrapped": true
+                  },
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "code": {
+                        "type": "string"
+                      },
+                      "field": {
+                        "type": "string"
+                      },
+                      "type": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      }
+                    },
+                    "xml": {
+                      "name": "Cause"
+                    }
+                  }
+                },
+                "errorIdentifiers": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "object"
+                  }
+                },
+                "component": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string"
+                },
+                "serviceName": {
+                  "type": "string"
+                },
+                "gatewayErrorCategory": {
+                  "type": "string",
+                  "enum": [
+                    "INTERNAL_DATA_ERROR",
+                    "EXTERNAL_DATA_ERROR",
+                    "SYSTEM_ERROR"
+                  ]
+                }
+              },
+              "xml": {
+                "name": "GatewayError"
+              }
+            }
+          },
+          "feedId": {
+            "type": "string",
+            "description": "A unique ID used for tracking the Feed File"
+          },
+          "feedStatus": {
+            "type": "string",
+            "description": "Can be one of the following: RECEIVED, INPROGRESS, PROCESSED, or ERROR",
+            "enum": [
+              "RECEIVED",
+              "INPROGRESS",
+              "PROCESSED",
+              "ERROR"
+            ]
+          },
+          "ingestionErrors": {
+            "type": "object",
+            "properties": {
+              "ingestionError": {
+                "type": "array",
+                "items": {
+                  "required": [
+                    "code",
+                    "type"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "description": "Error Type",
+                      "enum": [
+                        "DATA_ERROR",
+                        "SYSTEM_ERROR",
+                        "TIMEOUT_ERROR"
+                      ]
+                    },
+                    "code": {
+                      "type": "string",
+                      "description": "Error code"
+                    },
+                    "description": {
+                      "type": "string",
+                      "description": "Error description"
+                    }
+                  }
+                }
+              }
+            },
+            "description": "List of errors for an item"
+          },
+          "itemsReceived": {
+            "type": "integer",
+            "description": "The number of items received in the feed",
+            "format": "int32"
+          },
+          "itemsSucceeded": {
+            "type": "integer",
+            "description": "The number of items in the feed that processed successfully",
+            "format": "int32"
+          },
+          "itemsFailed": {
+            "type": "integer",
+            "description": "The number of items in the feed that failed due to a data or system error",
+            "format": "int32"
+          },
+          "itemsProcessing": {
+            "type": "integer",
+            "description": "The number of items in the feed that are still processing",
+            "format": "int32"
+          },
+          "offset": {
+            "type": "integer",
+            "description": "The object response to the starting number, where 0 is the first entity available for request",
+            "format": "int32"
+          },
+          "limit": {
+            "type": "integer",
+            "description": "The number of items returned. Cannot be greater than 1000.",
+            "format": "int32"
+          },
+          "itemDetails": {
+            "type": "object",
+            "properties": {
+              "itemIngestionStatus": {
+                "type": "array",
+                "description": "The ingestion status of an individual item",
+                "items": {
+                  "required": [
+                    "ingestionStatus"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "martId": {
+                      "type": "integer",
+                      "description": "Mart ID that a user or seller uses for a marketplace",
+                      "format": "int32"
+                    },
+                    "sku": {
+                      "type": "string",
+                      "description": "An arbitrary alphanumeric unique ID, seller-specified, identifying each item."
+                    },
+                    "wpid": {
+                      "type": "string",
+                      "description": "An alphanumeric product ID, generated by Walmart"
+                    },
+                    "index": {
+                      "type": "integer",
+                      "description": "index of items in the feed",
+                      "format": "int32"
+                    },
+                    "ingestionStatus": {
+                      "type": "string",
+                      "description": "Can be one of the following: DATA_ERROR, SYSTEM_ERROR, TIMEOUT_ERROR, or INPROGRESS",
+                      "enum": [
+                        "INPROGRESS",
+                        "SUCCESS",
+                        "DATA_ERROR",
+                        "SYSTEM_ERROR",
+                        "TIMEOUT_ERROR"
+                      ]
+                    },
+                    "ingestionErrors": {
+                      "type": "object",
+                      "properties": {
+                        "ingestionError": {
+                          "type": "array",
+                          "items": {
+                            "required": [
+                              "code",
+                              "type"
+                            ],
+                            "type": "object",
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "description": "Error Type",
+                                "enum": [
+                                  "DATA_ERROR",
+                                  "SYSTEM_ERROR",
+                                  "TIMEOUT_ERROR"
+                                ]
+                              },
+                              "code": {
+                                "type": "string",
+                                "description": "Error code"
+                              },
+                              "description": {
+                                "type": "string",
+                                "description": "Error description"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "description": "List of errors for an item"
+                    }
+                  },
+                  "description": "The ingestion status of an individual item"
+                }
+              }
+            },
+            "description": "List of ingestion status details for items in the feed"
+          }
+        },
+        "xml": {
+          "name": "PartnerFeedResponse"
+        }
+      },
+      "PartnerItemIngestionStatus": {
+        "required": [
+          "ingestionStatus"
+        ],
+        "type": "object",
+        "properties": {
+          "martId": {
+            "type": "integer",
+            "description": "Mart ID that a user or seller uses for a marketplace",
+            "format": "int32"
+          },
+          "sku": {
+            "type": "string",
+            "description": "An arbitrary alphanumeric unique ID, seller-specified, identifying each item."
+          },
+          "wpid": {
+            "type": "string",
+            "description": "An alphanumeric product ID, generated by Walmart"
+          },
+          "index": {
+            "type": "integer",
+            "description": "index of items in the feed",
+            "format": "int32"
+          },
+          "ingestionStatus": {
+            "type": "string",
+            "description": "Can be one of the following: DATA_ERROR, SYSTEM_ERROR, TIMEOUT_ERROR, or INPROGRESS",
+            "enum": [
+              "INPROGRESS",
+              "SUCCESS",
+              "DATA_ERROR",
+              "SYSTEM_ERROR",
+              "TIMEOUT_ERROR"
+            ]
+          },
+          "ingestionErrors": {
+            "type": "object",
+            "properties": {
+              "ingestionError": {
+                "type": "array",
+                "items": {
+                  "required": [
+                    "code",
+                    "type"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "description": "Error Type",
+                      "enum": [
+                        "DATA_ERROR",
+                        "SYSTEM_ERROR",
+                        "TIMEOUT_ERROR"
+                      ]
+                    },
+                    "code": {
+                      "type": "string",
+                      "description": "Error code"
+                    },
+                    "description": {
+                      "type": "string",
+                      "description": "Error description"
+                    }
+                  }
+                }
+              }
+            },
+            "description": "List of errors for an item"
+          }
+        },
+        "description": "The ingestion status of an individual item"
+      }
+    },
+    "parameters": {
+      "authorization": {
+        "name": "Authorization",
+        "in": "header",
+        "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "example": "Basic YzcyOTFjNmItNzI5MC00...."
+      },
+      "accessToken": {
+        "name": "WM_SEC.ACCESS_TOKEN",
+        "in": "header",
+        "description": "The access token retrieved in the Token API call",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
+      },
+      "channelType": {
+        "name": "WM_CONSUMER.CHANNEL.TYPE",
+        "in": "header",
+        "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "correlationId": {
+        "name": "WM_QOS.CORRELATION_ID",
+        "in": "header",
+        "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
+      },
+      "svcName": {
+        "name": "WM_SVC.NAME",
+        "in": "header",
+        "description": "Walmart Service Name",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "example": "Walmart Service Name"
+      },
+      "accept": {
+        "name": "Accept",
+        "in": "header",
+        "description": "Only supported Media Type : application/json",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "example": "application/json"
+      },
+      "content-type": {
+        "name": "Content-Type",
+        "in": "header",
+        "description": "Only supported Media Type : application/json",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "example": "application/json"
+      }
+    },
+    "securitySchemes": {
+      "basicScheme": {
+        "type": "http",
+        "description": "",
+        "name": "Authorization",
+        "in": "header",
+        "scheme": "basic"
+      }
+    }
+  }
+}

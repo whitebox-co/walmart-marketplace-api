@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Walmart Marketplace API's</title>
+
+		<!-- needed for adaptive design -->
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link href="https://unpkg.com/swagger-ui-dist@3/swagger-ui.css" rel="stylesheet" />
+		<link
+			href="https://fonts.googleschemaMappings.com/css?family=Montserrat:300,400,700|Roboto:300,400,700"
+			rel="stylesheet"
+		/>
+
+		<style>
+			html,
+			body {
+				margin: 0;
+				padding: 0;
+				height: 100%;
+			}
+
+			header {
+				top: 0;
+				width: 100%;
+				z-index: 100;
+				display: flex;
+				align-items: center;
+				padding: 10px;
+				font-size: 18px;
+				font-weight: bold;
+				color: white;
+				background: #002654;
+			}
+
+			#content {
+				width: 100%;
+				height: 100%;
+				display: flex;
+			}
+
+			#content nav {
+				border-right: 1px solid #002654;
+				padding: 10px;
+				min-width: 200px;
+			}
+
+			#content #links_container {
+				margin: 0;
+				padding: 0;
+			}
+
+			#content #links_container li {
+				padding: 10px;
+				color: #002654;
+				cursor: pointer;
+			}
+
+			#content #swagger-ui {
+				width: 100%;
+				height: 100%;
+				flex-grow: 1;
+				overflow-y: scroll;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- Top navigation placeholder -->
+		<header>Walmart Marketplace Api's</header>
+
+		<div id="content">
+			<nav>
+				<ul id="links_container"></ul>
+			</nav>
+
+			<div id="swagger-ui"></div>
+		</div>
+
+		<script src="https://unpkg.com/swagger-ui-dist@3/swagger-ui-bundle.js" charset="UTF-8"></script>
+		<script src="./schemas.js"></script>
+		<script>
+			// initially render first API
+			SwaggerUIBundle({
+				url: schemaMappings[0].url,
+				dom_id: '#swagger-ui',
+				presets: [SwaggerUIBundle.presets.apis, SwaggerUIBundle.SwaggerUIStandalonePreset],
+			});
+
+			function onClick() {
+				var url = this.getAttribute('data-link');
+
+				SwaggerUIBundle({
+					url,
+					dom_id: '#swagger-ui',
+					presets: [SwaggerUIBundle.presets.apis, SwaggerUIBundle.SwaggerUIStandalonePreset],
+				});
+			}
+
+			// dynamically building navigation items
+			var $list = document.getElementById('links_container');
+			schemaMappings.forEach(function (api) {
+				var $listitem = document.createElement('li');
+				$listitem.setAttribute('data-link', api.url);
+				$listitem.innerText = api.name;
+				$listitem.addEventListener('click', onClick);
+				$list.appendChild($listitem);
+			});
+		</script>
+	</body>
+</html>
