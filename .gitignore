@@ -128,3 +128,4 @@ dist
 lib/
 .DS_Store
 docs/typedoc
+.env

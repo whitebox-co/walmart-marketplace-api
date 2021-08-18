@@ -32,6 +32,7 @@
 		"respawn",
 		"sonarjs",
 		"swaggerui",
-		"typedoc"
+		"typedoc",
+		"uuidv"
 	]
 }
