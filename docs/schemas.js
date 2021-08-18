@@ -1,4 +1,4 @@
-const schemaMappings = [
+const schemas = [
 	{ name: 'Authentication', url: './schemas/auth.json' },
 	{ name: 'Feeds', url: './schemas/feeds.json' },
 	{ name: 'Items', url: './schemas/items.json' },

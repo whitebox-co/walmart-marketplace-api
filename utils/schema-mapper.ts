@@ -18,11 +18,11 @@ const mapSchemas = (): void => {
 	});
 
 	try {
-		const stringifiedApiData = `const schemaMappings = ${JSON.stringify(schemasMap)}`;
+		const stringifiedApiData = `const schemas = ${JSON.stringify(schemasMap)}`;
 		writeFileSync(schemasMappingPath, stringifiedApiData);
 	} catch (error) {
 		log.error('Failed to write schema mapping file', error);
 	}
 };
 
-export { mapSchemas };
+export default { mapSchemas };

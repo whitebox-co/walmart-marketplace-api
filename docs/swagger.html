@@ -7,10 +7,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link href="https://unpkg.com/swagger-ui-dist@3/swagger-ui.css" rel="stylesheet" />
-		<link
-			href="https://fonts.googleschemaMappings.com/css?family=Montserrat:300,400,700|Roboto:300,400,700"
-			rel="stylesheet"
-		/>
+		<link href="https://fonts.google.com/css?family=Montserrat:300,400,700|Roboto:300,400,700" rel="stylesheet" />
 
 		<style>
 			html,
@@ -81,7 +78,7 @@
 		<script>
 			// initially render first API
 			SwaggerUIBundle({
-				url: schemaMappings[0].url,
+				url: schemas[0].url,
 				dom_id: '#swagger-ui',
 				presets: [SwaggerUIBundle.presets.apis, SwaggerUIBundle.SwaggerUIStandalonePreset],
 			});
@@ -98,7 +95,7 @@
 
 			// dynamically building navigation items
 			var $list = document.getElementById('links_container');
-			schemaMappings.forEach(function (api) {
+			schemas.forEach(function (api) {
 				var $listitem = document.createElement('li');
 				$listitem.setAttribute('data-link', api.url);
 				$listitem.innerText = api.name;

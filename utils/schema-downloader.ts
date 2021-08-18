@@ -32,7 +32,7 @@ const preprocessData = (schemaName: string, responseData: any): void => {
  * @param {AxiosResponse<any>} responseValue The response from the api.
  */
 const generateFile = (responseValue: AxiosResponse<any>): void => {
-	const schemaName = JSON.parse(responseValue.config?.data).params?.apiName;
+	const schemaName = JSON.parse(responseValue.config.data).params.apiName;
 	const preprocessedData = preprocessData(schemaName, responseValue.data);
 	const schemaData = JSON.stringify(preprocessedData, null, 2);
 	const path = `${schemasPath}/${schemaName}.json`;
@@ -79,4 +79,4 @@ if (process.env.RUN_SCHEMA_DOWNLOADER) {
 	downloadSchemas();
 }
 
-export { downloadSchemas };
+export default { downloadSchemas };

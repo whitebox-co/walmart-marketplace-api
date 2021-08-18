@@ -1,6 +1,10 @@
 # compiled output
 /dist
 /tmp
+/lib
+/docs
+/coverage
+/.vscode
 
 # dependencies
 /node_modules

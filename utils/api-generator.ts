@@ -28,16 +28,12 @@ const executeOpenAPIGenerator = (schemaFileName: string, schemaName: string): vo
 
 	process.env.TS_POST_PROCESS_FILE = `${prettierBinPath} --write`;
 
-	try {
-		if (process.env.VERBOSE_GENERATION) {
-			execSync(command, {
-				stdio: 'inherit',
-			});
-		} else {
-			execSync(command);
-		}
-	} catch (error) {
-		log.error(error);
+	if (process.env.VERBOSE_GENERATION) {
+		execSync(command, {
+			stdio: 'inherit',
+		});
+	} else {
+		execSync(command);
 	}
 
 	log.info(`Generated apis for ${schemaFileName}`);
@@ -61,6 +57,10 @@ const generateExportStatement = (schemaName: string): string => {
 		tsConfigFilePath,
 		libFolderPath: tsLibFolderPath,
 	}).getSourceFileOrThrow(`${apisOutputPath}/${schemaName}.ts`);
+
+	if (!sourceFile) {
+		throw new Error('Can not generate api export statement. Source file not found!');
+	}
 
 	const classes = sourceFile.getClasses();
 	const mappedClasses = [...classes].map((declaration) => `${declaration.getName()}`).join(', ');
@@ -104,17 +104,13 @@ const generateIndexFile = (schemaNames: string[]): void => {
 	// so we disable eslint for camelcase on this file otherwise we get errors.
 	exportStatements.unshift('/* eslint-disable camelcase */');
 
-	try {
-		fs.writeFileSync(outputFilePath, exportStatements.join('\n'));
+	fs.writeFileSync(outputFilePath, exportStatements.join('\n'));
 
-		// prettify the newly generated index.ts so it's not so hard to read.
-		execSync(`${prettierBinPath} --write ${outputFilePath}`);
+	// prettify the newly generated index.ts so it's not so hard to read.
+	execSync(`${prettierBinPath} --write ${outputFilePath}`);
 
-		// run eslint to fix any issues.
-		execSync(`${esLintBinPath} --fix ${outputFilePath}`);
-	} catch (error) {
-		log.error(error);
-	}
+	// run eslint to fix any issues.
+	execSync(`${esLintBinPath} --fix ${outputFilePath}`);
 };
 
 /**
@@ -125,13 +121,9 @@ const generateIndexFile = (schemaNames: string[]): void => {
  */
 const copyCommonFiles = (schemaName: string) => {
 	commonApiFiles.forEach((duplicateFile) => {
-		try {
-			const oldPath = path.join(apisOutputPath, schemaName, duplicateFile);
-			const newPath = path.join(apisOutputPath, duplicateFile);
-			fs.renameSync(oldPath, newPath);
-		} catch (error) {
-			log.error(error);
-		}
+		const oldPath = path.join(apisOutputPath, schemaName, duplicateFile);
+		const newPath = path.join(apisOutputPath, duplicateFile);
+		fs.renameSync(oldPath, newPath);
 	});
 };
 
@@ -142,13 +134,9 @@ const copyCommonFiles = (schemaName: string) => {
  * @param {string} schemaName
  */
 const moveApiFiles = (schemaName: string) => {
-	try {
-		const oldPath = path.join(apisOutputPath, schemaName, 'api.ts');
-		const newPath = path.join(apisOutputPath, `${schemaName}.ts`);
-		fs.renameSync(oldPath, newPath);
-	} catch (error) {
-		log.error(error);
-	}
+	const oldPath = path.join(apisOutputPath, schemaName, 'api.ts');
+	const newPath = path.join(apisOutputPath, `${schemaName}.ts`);
+	fs.renameSync(oldPath, newPath);
 };
 
 /**
@@ -157,17 +145,13 @@ const moveApiFiles = (schemaName: string) => {
  * @param {string} schemaName
  */
 const deleteGeneratedDirectories = (schemaName: string) => {
-	try {
-		const fullPath = path.join(apisOutputPath, schemaName);
+	const fullPath = path.join(apisOutputPath, schemaName);
 
-		fs.rmSync(fullPath, {
-			maxRetries: 3,
-			force: true,
-			recursive: true,
-		});
-	} catch (error) {
-		log.error(error);
-	}
+	fs.rmSync(fullPath, {
+		maxRetries: 3,
+		force: true,
+		recursive: true,
+	});
 };
 
 /**
@@ -207,11 +191,15 @@ const generateApisFromSchemas = (): void => {
 	// Get all schemas in base directory.
 	const schemaFileNames: string[] = fs.readdirSync(schemaBasePath);
 
-	// iterate over all schemas and do all processing.
-	const schemaNames = schemaFileNames.map(processSchema);
+	if (schemaFileNames?.length) {
+		// iterate over all schemas and do all processing.
+		const schemaNames = schemaFileNames.map(processSchema);
 
-	// Write all generated apis to index file.
-	generateIndexFile(schemaNames);
+		// Write all generated apis to index file.
+		generateIndexFile(schemaNames);
+	} else {
+		log.error(`Generation can not proceed as there are no Schemas found in ${schemaBasePath}`);
+	}
 };
 
 // Immediately generate if told to do so (used in package scripts mostly)
@@ -219,4 +207,4 @@ if (process.env.RUN_API_GENERATOR) {
 	generateApisFromSchemas();
 }
 
-export { generateApisFromSchemas };
+export default { generateApisFromSchemas };

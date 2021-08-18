@@ -48,7 +48,10 @@
 		"lint": "npm -s run lint:ts",
 		"lint:ts": "eslint . --ext ts",
 		"lint-fix:ts": "eslint . --ext ts --fix",
-		"start": "ts-node --transpile-only --pretty src"
+		"start": "ts-node --transpile-only --pretty src",
+		"test:integration": "jest tests/integration",
+		"test:unit": "jest tests/unit",
+		"test:watch": "jest tests --watchAll"
 	},
 	"devDependencies": {
 		"@openapitools/openapi-generator-cli": "^2.3.10",
