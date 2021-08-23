@@ -98,3 +98,14 @@ npm run generate-apis
 
 Which will start the generation and processing of all of the schemas and eventually finish with all api's created in
 the `src/apis` directory.
+
+## Known Issues
+
+-   Generation is only including the first schema response example. In some cases that is the xml response only.
+-   There are some differences in received responses vs expected response. These are documented as TODO in the code.
+
+## TODO
+
+-   Add Script to Auto Generate Clients
+    -   Client should init individual API with Configuration and defaultParams().
+-   Add Script to Auto Generate Integration Tests.

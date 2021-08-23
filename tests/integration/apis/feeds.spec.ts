@@ -1,8 +1,7 @@
 import * as env from '../../environment';
-import { Configuration } from '../../../src/apis/configuration';
-import { FeedsApi, FeedsApiFactory } from '../../../src/apis/feeds';
-import { AuthenticationApi } from '../../../src/apis/auth';
+import { FeedsApiFactory } from '../../../src/apis/feeds';
 import { v4 as uuidv4 } from 'uuid';
+import marketplaceApi, { FeedsApi, Configuration } from '../../../src/index';
 
 const authorization = 'Basic ' + Buffer.from(env.CLIENT_ID + ':' + env.CLIENT_SECRET).toString('base64');
 const wMSVCNAME = '@whitebox-co/walmart-marketplace-api';
@@ -13,6 +12,7 @@ describe('feeds', () => {
 	let accessToken: string;
 
 	beforeAll(async () => {
+		/*
 		const configuration = new Configuration();
 		const authApi = new AuthenticationApi(configuration);
 
@@ -28,6 +28,14 @@ describe('feeds', () => {
 
 		accessToken = tokenData.data.access_token;
 		feedsConfiguration = new Configuration({ accessToken });
+		*/
+
+		feedsConfiguration = await marketplaceApi.getAuthorizedConfiguration({
+			clientId: env.CLIENT_ID,
+			clientSecret: env.CLIENT_SECRET,
+			consumerChannelType: env.CONSUMER_CHANNEL_TYPE,
+		});
+		console.log(feedsConfiguration);
 	});
 
 	describe(`${FeedsApi.name}`, () => {
