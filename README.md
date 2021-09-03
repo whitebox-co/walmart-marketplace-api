@@ -1,9 +1,6 @@
 # Walmart Marketplace API SDK
 
-A fully typed and auto generated TypeScript and Node.js API library for the Walmart Marketplace API
-
-_**This library is not yet ready for production and is still in development stages. Feel free to open PR's to address
-any outstanding issues.**_
+A fully typed and auto generated TypeScript and Node.js API library for the Walmart Marketplace API.
 
 ## Why?
 
@@ -15,6 +12,7 @@ a Typescript Library to access their endpoints.
 -   An OpenAPI schema is downloaded from Walmart for each section of a the Walmart Marketplace API.
 -   Models are generated based off of each api using openapi generator.
 -   Clients are generated based off of each api and the models using custom typescript generators.
+-   Integration Test Stubs are auto generated for every api function.
 -   Documentation is generated or updated based on the latest openapi schemas.
 
 ## Installation
@@ -29,10 +27,36 @@ npm install
 ## Usage
 
 ```typescript
-// See Library and API Docs for parameter specifics.
-const configuration = new Configuration(configurationParameters);
-const ordersApi = new OrdersApi(configuration);
-const exampleOrder = await ordersApi.getAnOrder(orderParameters);
+import walmartMarketplaceApi, { OrdersApi, defaultParams } from '@whitebox-co/walmart-marketplace-api';
+
+/**
+ * Init the marketplace api with client credentials and get back a fully
+ * configured instance of the api with token caching built in.
+ *
+ * Any subsequent call using the same credentials but a different api
+ * will use cached credentials until they expire.
+ */
+const ordersApi = await walmartMarketplaceApi.getConfiguredApi(OrdersApi, {
+	clientId,
+	clientSecret,
+	consumerChannelType,
+});
+
+/**
+ * defaultParams are necessary because walmart requires these on each
+ * request to it's api.
+ *
+ * Passing in the const defaultParams is sufficient as these are then
+ * updated with proper credentials during token authorization process.
+ *
+ * customParams in this example are anything part of the getAnOrder
+ * request that is required but not part of the defaultParams walmart
+ * requires for authorization.
+ */
+const exampleOrder = await ordersApi.getAnOrder({
+	...defaultParams,
+	...customParams,
+});
 ```
 
 ## Docs
@@ -99,13 +123,28 @@ npm run generate-apis
 Which will start the generation and processing of all of the schemas and eventually finish with all api's created in
 the `src/apis` directory.
 
-## Known Issues
+## Token Authorization and Caching
+
+Tokens are retrieved from walmart during the authorization process and then get cached until they expire. When they
+expire another call to the getToken endpoint is sent to walmart.
+
+Any time you request a new api from the walmartMarketplaceApi using the same clientID, the cached credential token
+will be used to authorize the request.
+
+## Issues
+
+Please report any issues you find in the github issues section. We will do our best to address any issue in a timely
+manner.
+
+### Known Issues
+
+These need to be moved over to github issues.
 
 -   Generation is only including the first schema response example. In some cases that is the xml response only.
 -   There are some differences in received responses vs expected response. These are documented as TODO in the code.
+-   There is currently no internal throttle controller and Walmart does have different throttling limits per api.
 
-## TODO
+## Contributing
 
--   Add Script to Auto Generate Clients
-    -   Client should init individual API with Configuration and defaultParams().
--   Add Script to Auto Generate Integration Tests.
+Feel free to open PR's. Whitebox is currently using this in our production code and we will evaluate changes
+on a case by case basis.
