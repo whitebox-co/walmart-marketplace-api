@@ -1,3 +1,43 @@
+import { v4 as uuidv4 } from 'uuid';
+
+import {
+	FeedsApi,
+	FulfillmentApi,
+	InsightApi,
+	InventoryApi,
+	ItemsApi,
+	LagTimeApi,
+	NotificationsApi,
+	OnRequestReportApi,
+	OrdersApi,
+	PricesApi,
+	PromotionsApi,
+	ReportsApi,
+	ReturnsRefundsApi,
+	RulesApi,
+	SettingsApi,
+	UtilitiesApi,
+} from './apis';
+
+export declare type WalmartMarketplaceApi =
+	| FeedsApi
+	| FulfillmentApi
+	| InsightApi
+	| InventoryApi
+	| ItemsApi
+	| LagTimeApi
+	| NotificationsApi
+	| OnRequestReportApi
+	| OrdersApi
+	| PricesApi
+	| PromotionsApi
+	| ReportsApi
+	| ReportsApi
+	| ReturnsRefundsApi
+	| RulesApi
+	| SettingsApi
+	| UtilitiesApi;
+
 export interface Schema {
 	name: string;
 	apiName: string;
@@ -7,7 +47,6 @@ export interface Schema {
  * The version value is automatically replaced during builds.
  */
 export const USER_AGENT = '@whitebox-co/walmart-marketplace-api/0.0.0';
-
 export const PRODUCTION_API_BASE_PATH = 'https://marketplace.walmartapis.com';
 export const SANDBOX_API_BASE_PATH = 'https://sandbox.walmartapis.com';
 
@@ -30,3 +69,11 @@ export const SCHEMAS: Schema[] = [
 	{ name: 'Utilities', apiName: 'utilities' },
 	{ name: 'Insights', apiName: 'insights' },
 ];
+
+export const defaultParams = {
+	authorization: '',
+	wMSECACCESSTOKEN: '',
+	wMQOSCORRELATIONID: uuidv4(),
+	wMSVCNAME: '@whitebox-co/walmart-marketplace-api',
+	wMCONSUMERCHANNELTYPE: '',
+};

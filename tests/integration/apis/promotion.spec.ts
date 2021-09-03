@@ -1,33 +1,15 @@
 import * as env from '../../environment';
-import { Configuration } from '../../../src/apis/configuration';
-import { PromotionsApi, PromotionsApiFactory } from '../../../src/apis/promotion';
-import { AuthenticationApi } from '../../../src/apis/auth';
-import { v4 as uuidv4 } from 'uuid';
-
-const authorization = 'Basic ' + Buffer.from(env.CLIENT_ID + ':' + env.CLIENT_SECRET).toString('base64');
-const wMSVCNAME = '@whitebox-co/walmart-marketplace-api';
-const wMCONSUMERCHANNELTYPE = env.CONSUMER_CHANNEL_TYPE;
+import walmartApi, { PromotionsApi, defaultParams } from '../../../src/index';
 
 describe('promotion', () => {
-	let promotionsConfiguration: Configuration;
-	let accessToken: string;
+	let promotionsApi: PromotionsApi;
 
 	beforeAll(async () => {
-		const configuration = new Configuration();
-		const authApi = new AuthenticationApi(configuration);
-
-		const tokenResponse = await authApi.tokenAPI({
-			authorization,
-			wMSVCNAME,
-			wMQOSCORRELATIONID: uuidv4(),
-			grantType: 'client_credentials',
-			wMCONSUMERCHANNELTYPE,
+		promotionsApi = await walmartApi.getConfiguredApi(PromotionsApi, {
+			clientId: env.CLIENT_ID,
+			clientSecret: env.CLIENT_SECRET,
+			consumerChannelType: env.CONSUMER_CHANNEL_TYPE,
 		});
-
-		const tokenData = tokenResponse as any;
-
-		accessToken = tokenData.data.access_token;
-		promotionsConfiguration = new Configuration({ accessToken });
 	});
 
 	describe('#getPromotionalPrices', () => {});

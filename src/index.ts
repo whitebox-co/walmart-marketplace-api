@@ -2,29 +2,13 @@ import { Configuration } from './apis/configuration';
 import { AuthenticationApi, InlineResponse200 } from './apis/auth';
 import { v4 as uuidv4 } from 'uuid';
 import { AxiosResponse } from 'axios';
+import { intercept } from './util/interceptor';
+import { defaultParams, WalmartMarketplaceApi } from './constants';
 
-import {
-	FeedsApi,
-	FulfillmentApi,
-	InsightApi,
-	InventoryApi,
-	ItemsApi,
-	LagTimeApi,
-	NotificationsApi,
-	OnRequestReportApi,
-	OrdersApi,
-	PricesApi,
-	PromotionsApi,
-	ReportsApi,
-	ReturnsRefundsApi,
-	RulesApi,
-	SettingsApi,
-	UtilitiesApi,
-} from './apis';
 export interface WalmartApiCredentials {
 	clientId: string;
 	clientSecret: string;
-	consumerChannelType: string;
+	consumerChannelType?: string;
 	serviceName?: string;
 	accessToken?: {
 		token: string;
@@ -33,24 +17,13 @@ export interface WalmartApiCredentials {
 	};
 }
 
-declare type WalmartMarketplaceApi =
-	| FeedsApi
-	| FulfillmentApi
-	| InsightApi
-	| InventoryApi
-	| ItemsApi
-	| LagTimeApi
-	| NotificationsApi
-	| OnRequestReportApi
-	| OrdersApi
-	| PricesApi
-	| PromotionsApi
-	| ReportsApi
-	| ReportsApi
-	| ReturnsRefundsApi
-	| RulesApi
-	| SettingsApi
-	| UtilitiesApi;
+interface DefaultParams {
+	authorization: string;
+	wMSECACCESSTOKEN: string;
+	wMQOSCORRELATIONID: string;
+	wMSVCNAME: string;
+	wMCONSUMERCHANNELTYPE: string;
+}
 
 interface CredentialsCache {
 	[key: string]: WalmartApiCredentials;
@@ -58,12 +31,19 @@ interface CredentialsCache {
 
 const credentialsCache: CredentialsCache = {};
 
-const getDefaultParams = (credentials: WalmartApiCredentials) => {
+/**
+ * Converts a credential into a defaultParam object used in all api calls.
+ *
+ * @param {WalmartApiCredentials} credentials The credentials to transform into a DefaultParam.
+ * @returns {DefaultParams} The default parameters with information from credentials object.
+ */
+const getDefaultParams = (credentials: WalmartApiCredentials): DefaultParams => {
 	const { accessToken, clientId, clientSecret, serviceName, consumerChannelType } = credentials;
 
 	return {
+		...defaultParams,
 		authorization: 'Basic ' + Buffer.from(clientId + ':' + clientSecret).toString('base64'),
-		wMSECACCESSTOKEN: accessToken.token,
+		wMSECACCESSTOKEN: accessToken?.token,
 		wMQOSCORRELATIONID: uuidv4(),
 		wMSVCNAME: serviceName ? serviceName : '@whitebox-co/walmart-marketplace-api',
 		wMCONSUMERCHANNELTYPE: consumerChannelType,
@@ -97,10 +77,9 @@ const authorize = async (credentials: WalmartApiCredentials): Promise<WalmartApi
 
 	// get new token if cached credentials were invalid or walmart tell us it's not valid.
 	if (!isValid || !tokenDetailResponse?.data?.is_valid) {
-		const defaultParams = getDefaultParams(cachedCredentials);
+		const defaultParams = getDefaultParams(credentials);
 		const tokenResponse = await authApi.tokenAPI({
 			...defaultParams,
-			wMQOSCORRELATIONID: uuidv4(),
 			grantType: 'client_credentials',
 		});
 
@@ -112,7 +91,7 @@ const authorize = async (credentials: WalmartApiCredentials): Promise<WalmartApi
 		const tokenData = tokenResponse as any;
 
 		cachedCredentials = {
-			...cachedCredentials,
+			...credentials,
 			accessToken: tokenData && {
 				token: tokenData.data?.access_token,
 				expiration: tokenData.data?.expires_in,
@@ -147,6 +126,7 @@ const authorize = async (credentials: WalmartApiCredentials): Promise<WalmartApi
  */
 const getAuthorizedConfiguration = async (credentials: WalmartApiCredentials): Promise<Configuration> => {
 	const authorizedCredentials = await authorize(credentials);
+
 	return new Configuration({
 		accessToken: authorizedCredentials.accessToken.token,
 	});
@@ -176,14 +156,24 @@ const getConfiguredApi = async <T extends WalmartMarketplaceApi>(
 	credentials: WalmartApiCredentials
 ): Promise<T> => {
 	const authorizedConfiguration = await getAuthorizedConfiguration(credentials);
-	return new Api(authorizedConfiguration);
+	const api = new Api(authorizedConfiguration);
+
+	// run an interceptor in order to fill in defaultParams necessary for each call.
+	return intercept(api, (fnName: string, fnArgs: any) => {
+		const defaultParams = getDefaultParams(credentialsCache[credentials.clientId]);
+
+		// apply default params to first arg which is always a request object.
+		fnArgs[0] = { ...fnArgs[0], ...defaultParams };
+
+		// run function with args.
+		api[fnName](...fnArgs);
+	});
 };
 
 export * from './apis';
 export * from './apis/configuration';
+export * from './constants';
 
 export default {
-	getDefaultParams,
-	getAuthorizedConfiguration,
 	getConfiguredApi,
 };

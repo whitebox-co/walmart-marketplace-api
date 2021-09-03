@@ -11,7 +11,5 @@ import env from 'env-var';
  */
 
 export const CLIENT_ID = env.get('CLIENT_ID').required().asString();
-
 export const CLIENT_SECRET = env.get('CLIENT_SECRET').required().asString();
-
 export const CONSUMER_CHANNEL_TYPE = env.get('CONSUMER_CHANNEL_TYPE').required().asString();

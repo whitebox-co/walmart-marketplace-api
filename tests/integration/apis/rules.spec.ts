@@ -1,33 +1,15 @@
 import * as env from '../../environment';
-import { Configuration } from '../../../src/apis/configuration';
-import { RulesApi, RulesApiFactory } from '../../../src/apis/rules';
-import { AuthenticationApi } from '../../../src/apis/auth';
-import { v4 as uuidv4 } from 'uuid';
-
-const authorization = 'Basic ' + Buffer.from(env.CLIENT_ID + ':' + env.CLIENT_SECRET).toString('base64');
-const wMSVCNAME = '@whitebox-co/walmart-marketplace-api';
-const wMCONSUMERCHANNELTYPE = env.CONSUMER_CHANNEL_TYPE;
+import walmartApi, { RulesApi, defaultParams } from '../../../src/index';
 
 describe('rules', () => {
-	let rulesConfiguration: Configuration;
-	let accessToken: string;
+	let RulesApi: RulesApi;
 
 	beforeAll(async () => {
-		const configuration = new Configuration();
-		const authApi = new AuthenticationApi(configuration);
-
-		const tokenResponse = await authApi.tokenAPI({
-			authorization,
-			wMSVCNAME,
-			wMQOSCORRELATIONID: uuidv4(),
-			grantType: 'client_credentials',
-			wMCONSUMERCHANNELTYPE,
+		rulesApi = await walmartApi.getConfiguredApi(RulesApi, {
+			clientId: env.CLIENT_ID,
+			clientSecret: env.CLIENT_SECRET,
+			consumerChannelType: env.CONSUMER_CHANNEL_TYPE,
 		});
-
-		const tokenData = tokenResponse as any;
-
-		accessToken = tokenData.data.access_token;
-		rulesConfiguration = new Configuration({ accessToken });
 	});
 
 	describe('#activateRule', () => {});
