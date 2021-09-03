@@ -1,8 +1,8 @@
 export const integrationTestTemplate = `
 import * as env from '../../environment';
-import walmartApi, { FeedsApi, defaultParams } from '../../../src/index';
+import walmartApi, { <%= apiClassName %> , defaultParams } from '../../../src/index';
 
-describe(' <%= apiClassName %> ', () => {
+describe('<%= apiClassName %>', () => {
 	let <%= apiInstanceName %>: <%= apiClassName %>;
 
 	beforeAll(async () => {
