@@ -1,9 +1,11 @@
 import { execSync } from 'child_process';
+import { template } from 'lodash';
 import { Project } from 'ts-morph';
 import fs from 'fs';
 import path from 'path';
 import _ from 'lodash';
 import log from '../src/util/log';
+import { integrationTestTemplate } from './integration-test-template';
 
 const commonApiFiles: string[] = ['base.ts', 'common.ts', 'configuration.ts'];
 const schemaBasePath = './docs/schemas/';
@@ -12,6 +14,7 @@ const tsConfigFilePath = 'tsconfig.json';
 const tsLibFolderPath = 'node_modules/typescript/lib';
 const prettierBinPath = './node_modules/.bin/prettier';
 const esLintBinPath = './node_modules/.bin/eslint';
+const integrationTestPath = './tests/integration/apis';
 
 /**
  * Executes the openapi generator for an individual api.
@@ -155,6 +158,62 @@ const deleteGeneratedDirectories = (schemaName: string) => {
 };
 
 /**
+ * Generates Integration test stubs based on API function names.
+ *
+ * @param {string} schemaName
+ */
+const generateIntegrationTests = (schemaName: string) => {
+	const sourceFile = new Project({
+		tsConfigFilePath,
+		libFolderPath: tsLibFolderPath,
+	}).getSourceFileOrThrow(`${apisOutputPath}/${schemaName}.ts`);
+
+	if (!sourceFile) {
+		throw new Error('Can not generate integration test. Source file not found!');
+	}
+
+	const integrationTestFilePath = `${integrationTestPath}/${schemaName}.spec.ts`;
+
+	// skip stubbing if there is already an existing integration test file // TODO: figure out a way to update the existing test file with any new methods.
+	if (fs.existsSync(integrationTestFilePath)) {
+		log.warn(`Skipping integration test stubbing for ${schemaName}. Test file already exists.`);
+	} else {
+		const classes = sourceFile.getClasses();
+
+		// get method names mapped to class names.
+		[...classes].forEach((declaration) => {
+			const className = declaration.getName();
+			const instanceMethods = declaration.getInstanceMethods();
+
+			const formattedMethodNames = [...instanceMethods].map((declaration) => {
+				return `#${declaration.getName()}`;
+			});
+
+			// create a ts project to output our compiled template.
+			const integrationTestProject = new Project({
+				tsConfigFilePath,
+				libFolderPath: tsLibFolderPath,
+			});
+
+			// use lodash template to get a template executor so we can compile the test file
+			const templateExecuter = template(integrationTestTemplate);
+
+			// run the templateExecuter to compile the file with the parameters injected.
+			const compiledFile = templateExecuter({
+				apiInstanceName: _.lowerFirst(className),
+				apiClassName: className,
+				formattedMethodNames,
+			});
+
+			// write the file to disk.
+			integrationTestProject.createSourceFile(integrationTestFilePath, compiledFile, {
+				overwrite: false,
+			});
+		});
+	}
+};
+
+/**
  * Uses OpenApi Generator to generate the api files and then process all
  * files and directories into usable structure and removes unnecessary files.
  *
@@ -179,6 +238,9 @@ const processSchema = (schemaFileName: string, index: number) => {
 
 	// remove all the generated files and folders.
 	deleteGeneratedDirectories(schemaName);
+
+	// generate integration test stubs
+	generateIntegrationTests(schemaName);
 
 	return schemaName;
 };
