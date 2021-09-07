@@ -1,5 +1,11 @@
 # Walmart Marketplace API SDK
 
+![GitHub](https://img.shields.io/github/license/whitebox-co/walmart-marketplace-api)
+![GitHub branch checks state](https://img.shields.io/github/checks-status/whitebox-co/walmart-marketplace-api/main?label=checks)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/whitebox-co/walmart-marketplace-api/generate-apis?label=api-generation)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/whitebox-co/walmart-marketplace-api/release)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/whitebox-co/walmart-marketplace-api/test?label=tests)
+
 A fully typed and auto generated TypeScript and Node.js API library for the Walmart Marketplace API.
 
 ## Why?
@@ -26,18 +32,16 @@ npm install
 
 ## Usage
 
-Due to how the Walmart structured their OpenApi schema, the auto api generation requires the passing in of
-authorization details on each api method call. This can become quite tedious and can create a lot of
+Due to how Walmart has structured its OpenApi schema, the auto API generation requires the passing of
+authorization details on each API method call. This can become quite tedious and can create a lot of
 repetitive and duplicated code.
 
-To try and resolve this issue, our approach was to create convenience methods that will configure every api
-and return a fully configured instance of the api with token caching built in. These convenience methods
-intercept all api methods to prevent the user from having to input the same auth credentials for each call.
+To try and resolve this issue, our approach was to create convenience methods that will configure every API
+and return a fully configured instance of the API with token caching built-in. These convenience methods
+intercept all API methods to prevent the user from having to input the same auth credentials for each call.
 
-Until Walmart changes their OpenApi schema so that auto generation does not require these as parameters this
-approach will greatly simplify making api calls.
-
-Alternatively, you can use the Api's directly. We show both examples below.
+Until Walmart changes their OpenApi schema so that auto-generation does not require these parameters, this
+the approach will greatly simplify making API calls.
 
 ```typescript
 import walmartMarketplaceApi, { OrdersApi, defaultParams } from '@whitebox-co/walmart-marketplace-api';
@@ -194,3 +198,7 @@ These need to be moved over to github issues.
 
 Feel free to open PR's. Whitebox is currently using this in our production code and we will evaluate changes
 on a case by case basis.
+
+## License
+
+This project is licensed under the MIT License.
