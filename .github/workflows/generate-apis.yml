@@ -1,4 +1,4 @@
-name: Generate API models
+name: Generate API
 
 on:
     schedule:
