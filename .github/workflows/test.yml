@@ -1,0 +1,66 @@
+name: Test
+
+env:
+    CI: 'true'
+
+on:
+    pull_request:
+        types:
+            - opened
+            - synchronize
+            - reopened
+
+jobs:
+    test:
+        name: Node ${{ matrix.node }} on ${{ matrix.os }}
+
+        runs-on: ${{ matrix.os }}
+
+        strategy:
+            matrix:
+                node:
+                    - 12
+                    - 14
+                os:
+                    - ubuntu-latest
+                    - macOS-latest
+                    - windows-latest
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2
+
+            - name: Setup Node
+              uses: actions/setup-node@v2
+              with:
+                  node-version: ${{ matrix.node }}
+
+            - name: Install
+              uses: bahmutov/npm-install@v1
+
+            - name: Lint
+              run: npm run lint
+
+            - name: Test
+              run: npm t
+
+            - name: Build
+              run: npm run build
+
+    ## runs integration tests separately on just one type of OS, to avoid getting throttled by the API
+    integration_tests:
+        name: Integration
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2
+
+            - name: Install
+              uses: bahmutov/npm-install@v1
+
+            - name: Test integration
+              run: npm run test:integration
+              env:
+                  CLIENT_ID: ${{ secrets.WALMART_CLIENT_ID }}
+                  CLIENT_SECRET: ${{ secrets.WALMART_CLIENT_SECRET }}
+                  CONSUMER_CHANNEL_TYPE: ${{ secrets.WALMART_CONSUMER_CHANNEL_TYPE }}

@@ -1,6 +1,6 @@
 {
 	"name": "@whitebox-co/walmart-marketplace-api",
-	"version": "0.0.1",
+	"version": "0.0.0-development",
 	"description": "A fully typed TypeScript and Node.js API library for the Walmart Marketplace API",
 	"author": {
 		"name": "Whitebox",
@@ -16,11 +16,12 @@
 	"license": "MIT",
 	"keywords": [
 		"walmart",
+		"walmart api",
 		"walmart marketplace",
 		"walmart marketplace api",
-		"walmart api",
 		"typescript walmart api",
-		"typescript"
+		"node walmart api",
+		"javascript walmart api"
 	],
 	"homepage": "https://github.com/whitebox-co/walmart-marketplace-api",
 	"repository": {
@@ -55,12 +56,17 @@
 		"test:watch": "jest tests --watchAll",
 		"test:integration:watch": "jest tests/integration --setupFiles dotenv/config --watchAll",
 		"test:unit:watch": "jest tests/unit --watchAll",
+		"semantic-release": "semantic-release",
 		"preversion": "npm run build",
 		"postversion": "ts-node --transpile-only --pretty utils/bump-version.ts",
 		"release:beta": "npm version prerelease --preid=beta && npm publish --tag beta"
 	},
 	"devDependencies": {
+		"@commitlint/cli": "^13.1.0",
+		"@commitlint/config-conventional": "^13.1.0",
 		"@openapitools/openapi-generator-cli": "^2.3.10",
+		"@semantic-release/changelog": "^5.0.1",
+		"@semantic-release/git": "^9.0.1",
 		"@types/bunyan": "^1.8.7",
 		"@types/jest": "^27.0.1",
 		"@types/lodash": "^4.14.172",
@@ -81,12 +87,14 @@
 		"eslint-plugin-node": "^11.1.0",
 		"eslint-plugin-prettier": "^3.2.0",
 		"eslint-plugin-sonarjs": "^0.6.0",
+		"husky": "^7.0.2",
 		"install": "0.13.0",
 		"jest": "^27.0.6",
 		"live-server": "^1.2.1",
 		"npm": "7.20.6",
 		"openapi-types": "^9.1.0",
 		"prettier": "^2.3.2",
+		"semantic-release": "^17.4.7",
 		"ts-jest": "^27.0.4",
 		"ts-morph": "^11.0.3",
 		"ts-node": "^10.2.0",
@@ -100,5 +108,9 @@
 		"bunyan": "^1.8.15",
 		"lodash": "^4.17.21",
 		"uuid": "^8.3.2"
+	},
+	"publishConfig": {
+		"@whitebox-co:registry": "https://npm.pkg.github.com",
+		"access": "public"
 	}
 }
