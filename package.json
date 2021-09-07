@@ -36,6 +36,7 @@
 		"/lib"
 	],
 	"scripts": {
+		"prebuild": "npm run clean",
 		"build": "npm run clean && tsc --build tsconfig.json",
 		"clean": "rm -rf lib",
 		"dev": "ts-node-dev --respawn --transpile-only src",
@@ -53,7 +54,10 @@
 		"test:unit": "jest tests/unit",
 		"test:watch": "jest tests --watchAll",
 		"test:integration:watch": "jest tests/integration --setupFiles dotenv/config --watchAll",
-		"test:unit:watch": "jest tests/unit --watchAll"
+		"test:unit:watch": "jest tests/unit --watchAll",
+		"preversion": "npm run build",
+		"postversion": "ts-node --transpile-only --pretty utils/bump-version.ts",
+		"release:beta": "npm version prerelease --preid=beta && npm publish --tag beta"
 	},
 	"devDependencies": {
 		"@openapitools/openapi-generator-cli": "^2.3.10",
