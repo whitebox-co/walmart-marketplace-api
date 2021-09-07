@@ -16,7 +16,7 @@ const configuration = {
 	hooks: {
 		'post-merge': tasks([...lockfileLint, npmInstall]),
 		'post-rewrite': tasks([...lockfileLint, npmInstall]),
-		'pre-commit': tasks(['lint-staged']),
+		'pre-commit': tasks(['lint']),
 		'commit-msg': 'commitlint -E HUSKY_GIT_PARAMS',
 	},
 };
