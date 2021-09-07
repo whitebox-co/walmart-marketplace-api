@@ -37,6 +37,7 @@
 		"/lib"
 	],
 	"scripts": {
+		"prepare": "husky install",
 		"prebuild": "npm run clean",
 		"build": "npm run clean && tsc --build tsconfig.json",
 		"clean": "rm -rf lib",
@@ -91,7 +92,7 @@
 		"install": "0.13.0",
 		"jest": "^27.0.6",
 		"live-server": "^1.2.1",
-		"npm": "7.20.6",
+		"npm": "^7.22.0",
 		"openapi-types": "^9.1.0",
 		"prettier": "^2.3.2",
 		"semantic-release": "^17.4.7",
