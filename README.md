@@ -26,6 +26,19 @@ npm install
 
 ## Usage
 
+Due to how the Walmart structured their OpenApi schema, the auto api generation requires the passing in of
+authorization details on each api method call. This can become quite tedious and can create a lot of
+repetitive and duplicated code.
+
+To try and resolve this issue, our approach was to create convenience methods that will configure every api
+and return a fully configured instance of the api with token caching built in. These convenience methods
+intercept all api methods to prevent the user from having to input the same auth credentials for each call.
+
+Until Walmart changes their OpenApi schema so that auto generation does not require these as parameters this
+approach will greatly simplify making api calls.
+
+Alternatively, you can use the Api's directly. We show both examples below.
+
 ```typescript
 import walmartMarketplaceApi, { OrdersApi, defaultParams } from '@whitebox-co/walmart-marketplace-api';
 
@@ -43,19 +56,52 @@ const ordersApi = await walmartMarketplaceApi.getConfiguredApi(OrdersApi, {
 });
 
 /**
- * defaultParams are necessary because walmart requires these on each
- * request to it's api.
- *
- * Passing in the const defaultParams is sufficient as these are then
- * updated with proper credentials during token authorization process.
+ * defaultParams are necessary due to ts typing. When using the convenience methods,
+ * the method calls are intercepted and the default params are automatically filled
+ * out. These can effectively be ignored if using js or by using es-lint ignore
+ * statements if you so choose.
  *
  * customParams in this example are anything part of the getAnOrder
  * request that is required but not part of the defaultParams walmart
- * requires for authorization.
+ * requires for authorization. See each api's individual documentation
+ * for all acceptable params.
  */
 const exampleOrder = await ordersApi.getAnOrder({
 	...defaultParams,
 	...customParams,
+});
+```
+
+### Alternative Usage (using Api's Directly)
+
+```typescript
+import { Configuration, AuthenticationApi, OrdersApi } from '@whitebox-co/walmart-marketplace-api';
+
+// configure authorization api
+const configuration = new Configuration();
+const authApi = new AuthenticationApi(configuration);
+const authorization = 'Basic ' + Buffer.from(env.CLIENT_ID + ':' + env.CLIENT_SECRET).toString('base64');
+
+// get response token
+const tokenResponse = await authApi.tokenAPI({
+	authorization,
+	wMQOSCORRELATIONID: uuidv4(),
+	wMSVCNAME: '@whitebox-co/walmart-marketplace-api',
+	grantType: 'client_credentials',
+	wMCONSUMERCHANNELTYPE: env.CONSUMER_CHANNEL_TYPE,
+});
+
+// configure orders api
+const ordersApi = new OrdersApi(configuration);
+
+// make subsequent order calls
+const orderResponse = await ordersApi.getAnOrder({
+	authorization,
+	wMSECACCESSTOKEN: tokenResponse.data?.access_token,
+	wMQOSCORRELATIONID: uuidv4(),
+	wMSVCNAME: '@whitebox-co/walmart-marketplace-api',
+	wMCONSUMERCHANNELTYPE: env.CONSUMER_CHANNEL_TYPE,
+	id: 1,
 });
 ```
 
