@@ -26,6 +26,7 @@ jobs:
 
     build:
         name: Build
+        needs: lint
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
@@ -58,6 +59,7 @@ jobs:
 
     integration_tests:
         name: Integration
+        needs: [lint, build]
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
@@ -65,14 +67,6 @@ jobs:
 
             - name: Install
               uses: bahmutov/npm-install@v1
-
-            - name: Shell
-              env:
-                  CLIENT_ID: ${{ secrets.WALMART_CLIENT_ID }}
-                  CLIENT_SECRET: ${{ secrets.WALMART_CLIENT_SECRET }}
-                  CONSUMER_CHANNEL_TYPE: ${{ secrets.WALMART_CONSUMER_CHANNEL_TYPE }}
-              run: |
-                  echo "$CLIENT_ID" "$CLIENT_SECRET" "$CONSUMER_CHANNEL_TYPE"
 
             - name: Test integration
               run: npm run test:integration
