@@ -91,6 +91,7 @@
 		"husky": "^7.0.2",
 		"install": "0.13.0",
 		"jest": "^27.0.6",
+		"lint-staged": "^11.1.2",
 		"live-server": "^1.2.1",
 		"npm": "^7.22.0",
 		"openapi-types": "^9.1.0",
@@ -113,5 +114,8 @@
 	"publishConfig": {
 		"@whitebox-co:registry": "https://npm.pkg.github.com",
 		"access": "public"
+	},
+	"lint-staged": {
+		"*.js": "eslint --cache --fix"
 	}
 }

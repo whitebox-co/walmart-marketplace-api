@@ -1,4 +1,4 @@
-name: Test
+name: Tests
 
 env:
     CI: 'true'
@@ -12,7 +12,7 @@ on:
 
 jobs:
     unit_tests:
-        name: Unit Tests
+        name: Unit
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
@@ -35,7 +35,6 @@ jobs:
             - name: Build
               run: npm run build
 
-    ## runs integration tests separately on just one type of OS, to avoid getting throttled by the API
     integration_tests:
         name: Integration
         runs-on: ubuntu-latest
