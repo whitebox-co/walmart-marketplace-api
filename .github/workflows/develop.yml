@@ -41,7 +41,7 @@ jobs:
               run: npm run build
 
     unit_tests:
-        name: Unit
+        name: Unit Tests
         needs: [lint, build]
         runs-on: ubuntu-latest
         steps:
@@ -60,7 +60,7 @@ jobs:
               run: npm run test:unit
 
     integration_tests:
-        name: Integration
+        name: Integration Tests
         needs: [lint, build]
         runs-on: ubuntu-latest
         steps:
