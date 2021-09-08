@@ -12,9 +12,20 @@ describe('reports', () => {
 		});
 	});
 
-	describe('#getAvailableReconReportDates', () => {});
+	it('should instantiate the api', () => {
+		expect(defaultParams).toBeDefined();
+		expect(reportsApi).toBeDefined();
+	});
 
-	describe('#getItemReport', () => {});
+	describe('#getAvailableReconReportDates', () => {
+		// TODO: Implement ME!!
+	});
 
-	describe('#getReconReport', () => {});
+	describe('#getItemReport', () => {
+		// TODO: Implement ME!!
+	});
+
+	describe('#getReconReport', () => {
+		// TODO: Implement ME!!
+	});
 });

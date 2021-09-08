@@ -12,21 +12,44 @@ describe('items', () => {
 		});
 	});
 
-	describe('#getAllItems', () => {});
+	it('should instantiate the api', () => {
+		expect(defaultParams).toBeDefined();
+		expect(itemsApi).toBeDefined();
+	});
 
-	describe('#getAnItem', () => {});
+	describe('#getAllItems', () => {
+		// TODO: Implement ME!!
+	});
 
-	describe('#getCatalogSearch', () => {});
+	describe('#getAnItem', () => {
+		// TODO: Implement ME!!
+	});
 
-	describe('#getCountByStatus', () => {});
+	describe('#getCatalogSearch', () => {
+		// TODO: Implement ME!!
+	});
 
-	describe('#getItemAssociations', () => {});
+	describe('#getCountByStatus', () => {
+		// TODO: Implement ME!!
+	});
 
-	describe('#getSearchResult', () => {});
+	describe('#getItemAssociations', () => {
+		// TODO: Implement ME!!
+	});
 
-	describe('#getTaxonomyResponse', () => {});
+	describe('#getSearchResult', () => {
+		// TODO: Implement ME!!
+	});
 
-	describe('#itemBulkUploads', () => {});
+	describe('#getTaxonomyResponse', () => {
+		// TODO: Implement ME!!
+	});
 
-	describe('#retireAnItem', () => {});
+	describe('#itemBulkUploads', () => {
+		// TODO: Implement ME!!
+	});
+
+	describe('#retireAnItem', () => {
+		// TODO: Implement ME!!
+	});
 });

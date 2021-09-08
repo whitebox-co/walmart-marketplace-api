@@ -12,9 +12,20 @@ describe('promotion', () => {
 		});
 	});
 
-	describe('#getPromotionalPrices', () => {});
+	it('should instantiate the api', () => {
+		expect(defaultParams).toBeDefined();
+		expect(promotionsApi).toBeDefined();
+	});
 
-	describe('#updateBulkPromotionalPrice', () => {});
+	describe('#getPromotionalPrices', () => {
+		// TODO: Implement ME!!
+	});
 
-	describe('#updatePromotionalPrices', () => {});
+	describe('#updateBulkPromotionalPrice', () => {
+		// TODO: Implement ME!!
+	});
+
+	describe('#updatePromotionalPrices', () => {
+		// TODO: Implement ME!!
+	});
 });

@@ -12,7 +12,16 @@ describe('lagtime', () => {
 		});
 	});
 
-	describe('#getLagTime', () => {});
+	it('should instantiate the api', () => {
+		expect(defaultParams).toBeDefined();
+		expect(lagTimeApi).toBeDefined();
+	});
 
-	describe('#updateLagTimeBulk', () => {});
+	describe('#getLagTime', () => {
+		// TODO: Implement ME!!
+	});
+
+	describe('#updateLagTimeBulk', () => {
+		// TODO: Implement ME!!
+	});
 });

@@ -12,17 +12,36 @@ describe('inventory', () => {
 		});
 	});
 
-	describe('#getInventory', () => {});
+	it('should instantiate the api', () => {
+		expect(defaultParams).toBeDefined();
+		expect(inventoryApi).toBeDefined();
+	});
 
-	describe('#getMultiNodeInventoryForAllSkuAndAllShipNodes', () => {});
+	describe('#getInventory', () => {
+		// TODO: Implement ME!!
+	});
 
-	describe('#getMultiNodeInventoryForSkuAndAllShipnodes', () => {});
+	describe('#getMultiNodeInventoryForAllSkuAndAllShipNodes', () => {
+		// TODO: Implement ME!!
+	});
 
-	describe('#getWFSInventory', () => {});
+	describe('#getMultiNodeInventoryForSkuAndAllShipnodes', () => {
+		// TODO: Implement ME!!
+	});
 
-	describe('#updateBulkInventory', () => {});
+	describe('#getWFSInventory', () => {
+		// TODO: Implement ME!!
+	});
 
-	describe('#updateInventoryForAnItem', () => {});
+	describe('#updateBulkInventory', () => {
+		// TODO: Implement ME!!
+	});
 
-	describe('#updateMultiNodeInventory', () => {});
+	describe('#updateInventoryForAnItem', () => {
+		// TODO: Implement ME!!
+	});
+
+	describe('#updateMultiNodeInventory', () => {
+		// TODO: Implement ME!!
+	});
 });

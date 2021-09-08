@@ -12,9 +12,20 @@ describe('utilities', () => {
 		});
 	});
 
-	describe('#getCategories', () => {});
+	it('should instantiate the api', () => {
+		expect(defaultParams).toBeDefined();
+		expect(utilitiesApi).toBeDefined();
+	});
 
-	describe('#getDepartmentList', () => {});
+	describe('#getCategories', () => {
+		// TODO: Implement ME!!
+	});
 
-	describe('#getTaxonomyResponse', () => {});
+	describe('#getDepartmentList', () => {
+		// TODO: Implement ME!!
+	});
+
+	describe('#getTaxonomyResponse', () => {
+		// TODO: Implement ME!!
+	});
 });

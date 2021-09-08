@@ -2,7 +2,7 @@ import * as env from '../../environment';
 import walmartApi, { RulesApi, defaultParams } from '../../../src/index';
 
 describe('rules', () => {
-	let RulesApi: RulesApi;
+	let rulesApi: RulesApi;
 
 	beforeAll(async () => {
 		rulesApi = await walmartApi.getConfiguredApi(RulesApi, {
@@ -12,37 +12,76 @@ describe('rules', () => {
 		});
 	});
 
-	describe('#activateRule', () => {});
+	it('should instantiate the api', () => {
+		expect(defaultParams).toBeDefined();
+		expect(rulesApi).toBeDefined();
+	});
 
-	describe('#changeAssortmentType', () => {});
+	describe('#activateRule', () => {
+		// TODO: Implement ME!!
+	});
 
-	describe('#createItemRule', () => {});
+	describe('#changeAssortmentType', () => {
+		// TODO: Implement ME!!
+	});
 
-	describe('#createOverrideExceptions', () => {});
+	describe('#createItemRule', () => {
+		// TODO: Implement ME!!
+	});
 
-	describe('#deleteExceptions', () => {});
+	describe('#createOverrideExceptions', () => {
+		// TODO: Implement ME!!
+	});
 
-	describe('#deleteRule', () => {});
+	describe('#deleteExceptions', () => {
+		// TODO: Implement ME!!
+	});
 
-	describe('#downloadExceptions', () => {});
+	describe('#deleteRule', () => {
+		// TODO: Implement ME!!
+	});
 
-	describe('#downloadSimulationResult', () => {});
+	describe('#downloadExceptions', () => {
+		// TODO: Implement ME!!
+	});
 
-	describe('#getARule', () => {});
+	describe('#downloadSimulationResult', () => {
+		// TODO: Implement ME!!
+	});
 
-	describe('#getAllAreas', () => {});
+	describe('#getARule', () => {
+		// TODO: Implement ME!!
+	});
 
-	describe('#getAllExceptions', () => {});
+	describe('#getAllAreas', () => {
+		// TODO: Implement ME!!
+	});
 
-	describe('#getAllRules', () => {});
+	describe('#getAllExceptions', () => {
+		// TODO: Implement ME!!
+	});
 
-	describe('#getAllSubCategories', () => {});
+	describe('#getAllRules', () => {
+		// TODO: Implement ME!!
+	});
 
-	describe('#getSimulationResult', () => {});
+	describe('#getAllSubCategories', () => {
+		// TODO: Implement ME!!
+	});
 
-	describe('#inactivateRule', () => {});
+	describe('#getSimulationResult', () => {
+		// TODO: Implement ME!!
+	});
 
-	describe('#updateRule', () => {});
+	describe('#inactivateRule', () => {
+		// TODO: Implement ME!!
+	});
 
-	describe('#updateShippingAreaToRule', () => {});
+	describe('#updateRule', () => {
+		// TODO: Implement ME!!
+	});
+
+	describe('#updateShippingAreaToRule', () => {
+		// TODO: Implement ME!!
+	});
 });

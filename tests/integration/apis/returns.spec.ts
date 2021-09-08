@@ -12,9 +12,20 @@ describe('returns', () => {
 		});
 	});
 
-	describe('#bulkItemOverrideFeed', () => {});
+	it('should instantiate the api', () => {
+		expect(defaultParams).toBeDefined();
+		expect(returnsRefundsApi).toBeDefined();
+	});
 
-	describe('#getReturns', () => {});
+	describe('#bulkItemOverrideFeed', () => {
+		// TODO: Implement ME!!
+	});
 
-	describe('#issueRefund', () => {});
+	describe('#getReturns', () => {
+		// TODO: Implement ME!!
+	});
+
+	describe('#issueRefund', () => {
+		// TODO: Implement ME!!
+	});
 });

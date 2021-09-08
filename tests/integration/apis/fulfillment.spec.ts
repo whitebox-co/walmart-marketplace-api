@@ -12,21 +12,44 @@ describe('fulfillment', () => {
 		});
 	});
 
-	describe('#cancelShipment', () => {});
+	it('should instantiate the api', () => {
+		expect(defaultParams).toBeDefined();
+		expect(fulfillmentApi).toBeDefined();
+	});
 
-	describe('#convertItemForWfs', () => {});
+	describe('#cancelShipment', () => {
+		// TODO: Implement ME!!
+	});
 
-	describe('#createInboundShipmentLabel', () => {});
+	describe('#convertItemForWfs', () => {
+		// TODO: Implement ME!!
+	});
 
-	describe('#createShipment', () => {});
+	describe('#createInboundShipmentLabel', () => {
+		// TODO: Implement ME!!
+	});
 
-	describe('#getInboundOrderErrors', () => {});
+	describe('#createShipment', () => {
+		// TODO: Implement ME!!
+	});
 
-	describe('#getInboundShipmentItems', () => {});
+	describe('#getInboundOrderErrors', () => {
+		// TODO: Implement ME!!
+	});
 
-	describe('#getInboundShipments', () => {});
+	describe('#getInboundShipmentItems', () => {
+		// TODO: Implement ME!!
+	});
 
-	describe('#updateShipmentQuantity', () => {});
+	describe('#getInboundShipments', () => {
+		// TODO: Implement ME!!
+	});
 
-	describe('#updateShipmentTrackingDetails', () => {});
+	describe('#updateShipmentQuantity', () => {
+		// TODO: Implement ME!!
+	});
+
+	describe('#updateShipmentTrackingDetails', () => {
+		// TODO: Implement ME!!
+	});
 });

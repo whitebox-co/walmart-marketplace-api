@@ -12,11 +12,24 @@ describe('onrequestreports', () => {
 		});
 	});
 
-	describe('#downloadReport', () => {});
+	it('should instantiate the api', () => {
+		expect(defaultParams).toBeDefined();
+		expect(onRequestReportApi).toBeDefined();
+	});
 
-	describe('#generateReport', () => {});
+	describe('#downloadReport', () => {
+		// TODO: Implement ME!!
+	});
 
-	describe('#getRequestsStatus', () => {});
+	describe('#generateReport', () => {
+		// TODO: Implement ME!!
+	});
 
-	describe('#getSingleRequestStatus', () => {});
+	describe('#getRequestsStatus', () => {
+		// TODO: Implement ME!!
+	});
+
+	describe('#getSingleRequestStatus', () => {
+		// TODO: Implement ME!!
+	});
 });

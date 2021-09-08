@@ -12,15 +12,32 @@ describe('insights', () => {
 		});
 	});
 
-	describe('#getCategoriesList', () => {});
+	it('should instantiate the api', () => {
+		expect(defaultParams).toBeDefined();
+		expect(insightApi).toBeDefined();
+	});
 
-	describe('#getListingQualityScore', () => {});
+	describe('#getCategoriesList', () => {
+		// TODO: Implement ME!!
+	});
 
-	describe('#getTrendingResult', () => {});
+	describe('#getListingQualityScore', () => {
+		// TODO: Implement ME!!
+	});
 
-	describe('#getUnpublishedItemCount', () => {});
+	describe('#getTrendingResult', () => {
+		// TODO: Implement ME!!
+	});
 
-	describe('#getUnpublishedItems', () => {});
+	describe('#getUnpublishedItemCount', () => {
+		// TODO: Implement ME!!
+	});
 
-	describe('#itemsDetailsForListing', () => {});
+	describe('#getUnpublishedItems', () => {
+		// TODO: Implement ME!!
+	});
+
+	describe('#itemsDetailsForListing', () => {
+		// TODO: Implement ME!!
+	});
 });

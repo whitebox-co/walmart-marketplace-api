@@ -12,9 +12,20 @@ describe('price', () => {
 		});
 	});
 
-	describe('#optCapProgramInPrice', () => {});
+	it('should instantiate the api', () => {
+		expect(defaultParams).toBeDefined();
+		expect(pricesApi).toBeDefined();
+	});
 
-	describe('#priceBulkUploads', () => {});
+	describe('#optCapProgramInPrice', () => {
+		// TODO: Implement ME!!
+	});
 
-	describe('#updatePrice', () => {});
+	describe('#priceBulkUploads', () => {
+		// TODO: Implement ME!!
+	});
+
+	describe('#updatePrice', () => {
+		// TODO: Implement ME!!
+	});
 });

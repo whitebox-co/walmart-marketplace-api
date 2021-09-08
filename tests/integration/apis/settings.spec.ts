@@ -12,33 +12,68 @@ describe('settings', () => {
 		});
 	});
 
-	describe('#create3PFulfillmentCenter', () => {});
+	it('should instantiate the api', () => {
+		expect(defaultParams).toBeDefined();
+		expect(settingsApi).toBeDefined();
+	});
 
-	describe('#createFulfillmentCenter', () => {});
+	describe('#create3PFulfillmentCenter', () => {
+		// TODO: Implement ME!!
+	});
 
-	describe('#createShippingTemplates', () => {});
+	describe('#createFulfillmentCenter', () => {
+		// TODO: Implement ME!!
+	});
 
-	describe('#deleteShippingTemplateDetails', () => {});
+	describe('#createShippingTemplates', () => {
+		// TODO: Implement ME!!
+	});
 
-	describe('#get3PFulfillmentProviders', () => {});
+	describe('#deleteShippingTemplateDetails', () => {
+		// TODO: Implement ME!!
+	});
 
-	describe('#getAllFulfillmentCenters', () => {});
+	describe('#get3PFulfillmentProviders', () => {
+		// TODO: Implement ME!!
+	});
 
-	describe('#getAllShippingTemplates', () => {});
+	describe('#getAllFulfillmentCenters', () => {
+		// TODO: Implement ME!!
+	});
 
-	describe('#getCarrierMethods', () => {});
+	describe('#getAllShippingTemplates', () => {
+		// TODO: Implement ME!!
+	});
 
-	describe('#getCoverageForFulfillmentCenters', () => {});
+	describe('#getCarrierMethods', () => {
+		// TODO: Implement ME!!
+	});
 
-	describe('#getPartnerConfigurations', () => {});
+	describe('#getCoverageForFulfillmentCenters', () => {
+		// TODO: Implement ME!!
+	});
 
-	describe('#getShippingConfigurations', () => {});
+	describe('#getPartnerConfigurations', () => {
+		// TODO: Implement ME!!
+	});
 
-	describe('#getShippingTemplateActivationStatus', () => {});
+	describe('#getShippingConfigurations', () => {
+		// TODO: Implement ME!!
+	});
 
-	describe('#getShippingTemplateDetails', () => {});
+	describe('#getShippingTemplateActivationStatus', () => {
+		// TODO: Implement ME!!
+	});
 
-	describe('#updateFulfillmentCenter', () => {});
+	describe('#getShippingTemplateDetails', () => {
+		// TODO: Implement ME!!
+	});
 
-	describe('#updateShippingTemplates', () => {});
+	describe('#updateFulfillmentCenter', () => {
+		// TODO: Implement ME!!
+	});
+
+	describe('#updateShippingTemplates', () => {
+		// TODO: Implement ME!!
+	});
 });

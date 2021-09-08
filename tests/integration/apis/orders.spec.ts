@@ -12,17 +12,36 @@ describe('orders', () => {
 		});
 	});
 
-	describe('#acknowledgeOrders', () => {});
+	it('should instantiate the api', () => {
+		expect(defaultParams).toBeDefined();
+		expect(ordersApi).toBeDefined();
+	});
 
-	describe('#cancelOrderLines', () => {});
+	describe('#acknowledgeOrders', () => {
+		// TODO: Implement ME!!
+	});
 
-	describe('#getAllOrders', () => {});
+	describe('#cancelOrderLines', () => {
+		// TODO: Implement ME!!
+	});
 
-	describe('#getAllReleasedOrders', () => {});
+	describe('#getAllOrders', () => {
+		// TODO: Implement ME!!
+	});
 
-	describe('#getAnOrder', () => {});
+	describe('#getAllReleasedOrders', () => {
+		// TODO: Implement ME!!
+	});
 
-	describe('#refundOrderLines', () => {});
+	describe('#getAnOrder', () => {
+		// TODO: Implement ME!!
+	});
 
-	describe('#shippingUpdates', () => {});
+	describe('#refundOrderLines', () => {
+		// TODO: Implement ME!!
+	});
+
+	describe('#shippingUpdates', () => {
+		// TODO: Implement ME!!
+	});
 });

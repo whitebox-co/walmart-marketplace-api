@@ -12,15 +12,32 @@ describe('notifications', () => {
 		});
 	});
 
-	describe('#createSubscription', () => {});
+	it('should instantiate the api', () => {
+		expect(defaultParams).toBeDefined();
+		expect(notificationsApi).toBeDefined();
+	});
 
-	describe('#deleteSubscription', () => {});
+	describe('#createSubscription', () => {
+		// TODO: Implement ME!!
+	});
 
-	describe('#getAllSubscriptions', () => {});
+	describe('#deleteSubscription', () => {
+		// TODO: Implement ME!!
+	});
 
-	describe('#getEventTypes', () => {});
+	describe('#getAllSubscriptions', () => {
+		// TODO: Implement ME!!
+	});
 
-	describe('#testNotification', () => {});
+	describe('#getEventTypes', () => {
+		// TODO: Implement ME!!
+	});
 
-	describe('#updateSubscription', () => {});
+	describe('#testNotification', () => {
+		// TODO: Implement ME!!
+	});
+
+	describe('#updateSubscription', () => {
+		// TODO: Implement ME!!
+	});
 });

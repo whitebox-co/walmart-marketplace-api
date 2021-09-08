@@ -12,11 +12,15 @@ describe('<%= apiClassName %>', () => {
 			consumerChannelType: env.CONSUMER_CHANNEL_TYPE,
 		});
 	});
+	
+	it('should instantiate the api', () => {
+		expect(defaultParams).toBeDefined();
+		expect(<%= apiInstanceName %>).toBeDefined();
+	});
 
     <% _(formattedMethodNames).each(function(formattedMethodName) { %>
         describe('<%= formattedMethodName %>', () => {
-            // TODO: Implement Me! (Stubbed from generate-apis script).
-            expect(true).toEqual(false);
+            // TODO: Implement Me!!
         })
     <% }) %>
 });
