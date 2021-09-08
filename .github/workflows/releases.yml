@@ -6,13 +6,11 @@ env:
 on:
     push:
         branches:
-            # https://semantic-release.gitbook.io/semantic-release/usage/configuration#branches
-            - master
+            - main
             - next
             - next-major
             - beta
             - alpha
-            # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#patterns-to-match-branches-and-tags
             - '[0-9]+.x' # N.x
             - '[0-9]+.x.x' # N.x.x
             - '[0-9]+.[0-9]+.x' # N.N.x
@@ -32,9 +30,6 @@ jobs:
 
             - name: Build
               run: npm run build
-
-            ## Uncomment below for releases to work
-            ## Also need to define NPM_TOKEN env variable
 
             - name: Semantic Release
               if: success()
