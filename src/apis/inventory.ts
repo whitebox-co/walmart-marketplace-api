@@ -38,34 +38,6 @@ import {
 } from "./base";
 
 /**
- * Quantity of an item that is available to be allocated to orders
- * @export
- * @interface AvailToSellQty
- */
-export interface AvailToSellQty {
-  /**
-   * The unit of measurement. Example: \'EACH\'
-   * @type {string}
-   * @memberof AvailToSellQty
-   */
-  unit: AvailToSellQtyUnitEnum;
-  /**
-   * The number available in the inventory
-   * @type {number}
-   * @memberof AvailToSellQty
-   */
-  amount: number;
-}
-
-/**
- * @export
- * @enum {string}
- */
-export enum AvailToSellQtyUnitEnum {
-  Each = "EACH",
-}
-
-/**
  *
  * @export
  * @interface Cause
@@ -104,10 +76,10 @@ export interface Cause {
 export interface Elements {
   /**
    *
-   * @type {Array<InlineResponse2003ElementsInventories>}
+   * @type {Array<InlineResponse200ElementsInventories>}
    * @memberof Elements
    */
-  inventories?: Array<InlineResponse2003ElementsInventories>;
+  inventories?: Array<InlineResponse200ElementsInventories>;
 }
 /**
  *
@@ -126,13 +98,13 @@ export interface FeedId {
    * @type {object}
    * @memberof FeedId
    */
-  additionalAttributes?: object;
+  additionalAttributes?: object | null;
   /**
    *
    * @type {object}
    * @memberof FeedId
    */
-  errors?: object;
+  errors?: object | null;
 }
 /**
  *
@@ -148,10 +120,10 @@ export interface GetAllInventoriesDTO {
   sku?: string;
   /**
    *
-   * @type {Array<InlineResponse2003ElementsNodes>}
+   * @type {Array<InlineResponse200ElementsNodes>}
    * @memberof GetAllInventoriesDTO
    */
-  nodes?: Array<InlineResponse2003ElementsNodes>;
+  nodes?: Array<InlineResponse200ElementsNodes>;
 }
 /**
  *
@@ -167,16 +139,16 @@ export interface GetAllInventoriesNodeDTO {
   shipNode?: string;
   /**
    *
-   * @type {InlineResponse200InputQty}
+   * @type {InlineResponse200ElementsInputQty}
    * @memberof GetAllInventoriesNodeDTO
    */
-  inputQty?: InlineResponse200InputQty;
+  inputQty?: InlineResponse200ElementsInputQty;
   /**
    *
-   * @type {InlineResponse200AvailToSellQty}
+   * @type {InlineResponse200ElementsInputQty}
    * @memberof GetAllInventoriesNodeDTO
    */
-  availToSellQty?: InlineResponse200AvailToSellQty;
+  availToSellQty?: InlineResponse200ElementsInputQty;
 }
 /**
  *
@@ -230,10 +202,10 @@ export interface InlineObject1 {
   sku: string;
   /**
    *
-   * @type {InlineResponse200InputQty}
+   * @type {InlineResponse200ElementsInputQty}
    * @memberof InlineObject1
    */
-  quantity: InlineResponse200InputQty;
+  quantity: InlineResponse200ElementsInputQty;
 }
 /**
  *
@@ -242,17 +214,17 @@ export interface InlineObject1 {
  */
 export interface InlineResponse200 {
   /**
-   * An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item.
-   * @type {string}
+   *
+   * @type {InlineResponse200Meta}
    * @memberof InlineResponse200
    */
-  sku?: string;
+  meta?: InlineResponse200Meta;
   /**
    *
-   * @type {Array<InlineResponse200Nodes>}
+   * @type {InlineResponse200Elements}
    * @memberof InlineResponse200
    */
-  nodes?: Array<InlineResponse200Nodes>;
+  elements?: InlineResponse200Elements;
 }
 /**
  *
@@ -276,6 +248,113 @@ export interface InlineResponse2001 {
 /**
  *
  * @export
+ * @interface InlineResponse2001Causes
+ */
+export interface InlineResponse2001Causes {
+  /**
+   *
+   * @type {string}
+   * @memberof InlineResponse2001Causes
+   */
+  code?: string;
+  /**
+   *
+   * @type {string}
+   * @memberof InlineResponse2001Causes
+   */
+  field?: string;
+  /**
+   *
+   * @type {string}
+   * @memberof InlineResponse2001Causes
+   */
+  type?: string;
+  /**
+   *
+   * @type {string}
+   * @memberof InlineResponse2001Causes
+   */
+  description?: string;
+}
+/**
+ *
+ * @export
+ * @interface InlineResponse2001Errors
+ */
+export interface InlineResponse2001Errors {
+  /**
+   *
+   * @type {string}
+   * @memberof InlineResponse2001Errors
+   */
+  code: string;
+  /**
+   *
+   * @type {string}
+   * @memberof InlineResponse2001Errors
+   */
+  field?: string;
+  /**
+   *
+   * @type {string}
+   * @memberof InlineResponse2001Errors
+   */
+  description?: string;
+  /**
+   *
+   * @type {string}
+   * @memberof InlineResponse2001Errors
+   */
+  info?: string;
+  /**
+   *
+   * @type {string}
+   * @memberof InlineResponse2001Errors
+   */
+  severity?: InlineResponse2001ErrorsSeverityEnum;
+  /**
+   *
+   * @type {string}
+   * @memberof InlineResponse2001Errors
+   */
+  category?: InlineResponse2001ErrorsCategoryEnum;
+  /**
+   *
+   * @type {Array<InlineResponse2001Causes>}
+   * @memberof InlineResponse2001Errors
+   */
+  causes?: Array<InlineResponse2001Causes>;
+  /**
+   *
+   * @type {{ [key: string]: object; }}
+   * @memberof InlineResponse2001Errors
+   */
+  errorIdentifiers?: { [key: string]: object };
+}
+
+/**
+ * @export
+ * @enum {string}
+ */
+export enum InlineResponse2001ErrorsSeverityEnum {
+  Info = "INFO",
+  Warn = "WARN",
+  Error = "ERROR",
+}
+/**
+ * @export
+ * @enum {string}
+ */
+export enum InlineResponse2001ErrorsCategoryEnum {
+  Application = "APPLICATION",
+  System = "SYSTEM",
+  Request = "REQUEST",
+  Data = "DATA",
+}
+
+/**
+ *
+ * @export
  * @interface InlineResponse2001Nodes
  */
 export interface InlineResponse2001Nodes {
@@ -286,17 +365,23 @@ export interface InlineResponse2001Nodes {
    */
   shipNode?: string;
   /**
-   * Node Update status. Example: \'Success\'
-   * @type {string}
+   *
+   * @type {InlineResponse200ElementsInputQty}
    * @memberof InlineResponse2001Nodes
    */
-  status?: string;
+  inputQty?: InlineResponse200ElementsInputQty;
   /**
-   * Node Update Error description.
-   * @type {Array<InlineResponse200Errors>}
+   *
+   * @type {InlineResponse200ElementsInputQty}
    * @memberof InlineResponse2001Nodes
    */
-  errors?: Array<InlineResponse200Errors>;
+  availToSellQty?: InlineResponse200ElementsInputQty;
+  /**
+   *
+   * @type {Array<InlineResponse2001Errors>}
+   * @memberof InlineResponse2001Nodes
+   */
+  errors?: Array<InlineResponse2001Errors>;
 }
 /**
  *
@@ -305,17 +390,42 @@ export interface InlineResponse2001Nodes {
  */
 export interface InlineResponse2002 {
   /**
-   * A seller-provided Product ID. Response will have decoded value.
+   * An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item.
    * @type {string}
    * @memberof InlineResponse2002
    */
-  sku: string;
+  sku?: string;
   /**
    *
-   * @type {InlineResponse200InputQty}
+   * @type {Array<InlineResponse2002Nodes>}
    * @memberof InlineResponse2002
    */
-  quantity: InlineResponse200InputQty;
+  nodes?: Array<InlineResponse2002Nodes>;
+}
+/**
+ *
+ * @export
+ * @interface InlineResponse2002Nodes
+ */
+export interface InlineResponse2002Nodes {
+  /**
+   * ShipNode Id of the ship node for which the inventory is requested
+   * @type {string}
+   * @memberof InlineResponse2002Nodes
+   */
+  shipNode?: string;
+  /**
+   * Node Update status. Example: \'Success\'
+   * @type {string}
+   * @memberof InlineResponse2002Nodes
+   */
+  status?: string;
+  /**
+   * Node Update Error description.
+   * @type {Array<InlineResponse2001Errors>}
+   * @memberof InlineResponse2002Nodes
+   */
+  errors?: Array<InlineResponse2001Errors>;
 }
 /**
  *
@@ -324,93 +434,17 @@ export interface InlineResponse2002 {
  */
 export interface InlineResponse2003 {
   /**
-   *
-   * @type {InlineResponse2003Meta}
+   * A seller-provided Product ID. Response will have decoded value.
+   * @type {string}
    * @memberof InlineResponse2003
    */
-  meta?: InlineResponse2003Meta;
+  sku: string;
   /**
    *
-   * @type {InlineResponse2003Elements}
+   * @type {InlineResponse200ElementsInputQty}
    * @memberof InlineResponse2003
    */
-  elements?: InlineResponse2003Elements;
-}
-/**
- *
- * @export
- * @interface InlineResponse2003Elements
- */
-export interface InlineResponse2003Elements {
-  /**
-   *
-   * @type {Array<InlineResponse2003ElementsInventories>}
-   * @memberof InlineResponse2003Elements
-   */
-  inventories?: Array<InlineResponse2003ElementsInventories>;
-}
-/**
- *
- * @export
- * @interface InlineResponse2003ElementsInventories
- */
-export interface InlineResponse2003ElementsInventories {
-  /**
-   * An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item.
-   * @type {string}
-   * @memberof InlineResponse2003ElementsInventories
-   */
-  sku?: string;
-  /**
-   *
-   * @type {Array<InlineResponse2003ElementsNodes>}
-   * @memberof InlineResponse2003ElementsInventories
-   */
-  nodes?: Array<InlineResponse2003ElementsNodes>;
-}
-/**
- *
- * @export
- * @interface InlineResponse2003ElementsNodes
- */
-export interface InlineResponse2003ElementsNodes {
-  /**
-   * ShipNode Id of the ship node for which the inventory is requested
-   * @type {string}
-   * @memberof InlineResponse2003ElementsNodes
-   */
-  shipNode?: string;
-  /**
-   *
-   * @type {InlineResponse200InputQty}
-   * @memberof InlineResponse2003ElementsNodes
-   */
-  inputQty?: InlineResponse200InputQty;
-  /**
-   *
-   * @type {InlineResponse200AvailToSellQty}
-   * @memberof InlineResponse2003ElementsNodes
-   */
-  availToSellQty?: InlineResponse200AvailToSellQty;
-}
-/**
- *
- * @export
- * @interface InlineResponse2003Meta
- */
-export interface InlineResponse2003Meta {
-  /**
-   * Total number of Skus of the Seller. Example: \'235\'
-   * @type {number}
-   * @memberof InlineResponse2003Meta
-   */
-  totalCount?: number;
-  /**
-   * Used for pagination to fetch the next set of items.
-   * @type {string}
-   * @memberof InlineResponse2003Meta
-   */
-  nextCursor?: string;
+  quantity: InlineResponse200ElementsInputQty;
 }
 /**
  *
@@ -536,30 +570,43 @@ export interface InlineResponse2005 {
    * @type {object}
    * @memberof InlineResponse2005
    */
-  additionalAttributes?: object;
+  additionalAttributes?: object | null;
   /**
    *
    * @type {object}
    * @memberof InlineResponse2005
    */
-  errors?: object;
+  errors?: object | null;
 }
 /**
- * Quantity of an item that is available to be allocated to orders
+ *
  * @export
- * @interface InlineResponse200AvailToSellQty
+ * @interface InlineResponse200Elements
  */
-export interface InlineResponse200AvailToSellQty {
+export interface InlineResponse200Elements {
+  /**
+   *
+   * @type {Array<InlineResponse200ElementsInventories>}
+   * @memberof InlineResponse200Elements
+   */
+  inventories?: Array<InlineResponse200ElementsInventories>;
+}
+/**
+ * Information about the quantity in inventory
+ * @export
+ * @interface InlineResponse200ElementsInputQty
+ */
+export interface InlineResponse200ElementsInputQty {
   /**
    * The unit of measurement. Example: \'EACH\'
    * @type {string}
-   * @memberof InlineResponse200AvailToSellQty
+   * @memberof InlineResponse200ElementsInputQty
    */
-  unit: InlineResponse200AvailToSellQtyUnitEnum;
+  unit: InlineResponse200ElementsInputQtyUnitEnum;
   /**
    * The number available in the inventory
    * @type {number}
-   * @memberof InlineResponse200AvailToSellQty
+   * @memberof InlineResponse200ElementsInputQty
    */
   amount: number;
 }
@@ -568,204 +615,73 @@ export interface InlineResponse200AvailToSellQty {
  * @export
  * @enum {string}
  */
-export enum InlineResponse200AvailToSellQtyUnitEnum {
+export enum InlineResponse200ElementsInputQtyUnitEnum {
   Each = "EACH",
 }
 
 /**
  *
  * @export
- * @interface InlineResponse200Causes
+ * @interface InlineResponse200ElementsInventories
  */
-export interface InlineResponse200Causes {
+export interface InlineResponse200ElementsInventories {
+  /**
+   * An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item.
+   * @type {string}
+   * @memberof InlineResponse200ElementsInventories
+   */
+  sku?: string;
   /**
    *
-   * @type {string}
-   * @memberof InlineResponse200Causes
+   * @type {Array<InlineResponse200ElementsNodes>}
+   * @memberof InlineResponse200ElementsInventories
    */
-  code?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse200Causes
-   */
-  field?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse200Causes
-   */
-  type?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse200Causes
-   */
-  description?: string;
+  nodes?: Array<InlineResponse200ElementsNodes>;
 }
-/**
- * Node Update Error description.
- * @export
- * @interface InlineResponse200Errors
- */
-export interface InlineResponse200Errors {
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse200Errors
-   */
-  code: string;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse200Errors
-   */
-  field?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse200Errors
-   */
-  description?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse200Errors
-   */
-  info?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse200Errors
-   */
-  severity?: InlineResponse200ErrorsSeverityEnum;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse200Errors
-   */
-  category?: InlineResponse200ErrorsCategoryEnum;
-  /**
-   *
-   * @type {Array<InlineResponse200Causes>}
-   * @memberof InlineResponse200Errors
-   */
-  causes?: Array<InlineResponse200Causes>;
-  /**
-   *
-   * @type {{ [key: string]: object; }}
-   * @memberof InlineResponse200Errors
-   */
-  errorIdentifiers?: { [key: string]: object };
-}
-
-/**
- * @export
- * @enum {string}
- */
-export enum InlineResponse200ErrorsSeverityEnum {
-  Info = "INFO",
-  Warn = "WARN",
-  Error = "ERROR",
-}
-/**
- * @export
- * @enum {string}
- */
-export enum InlineResponse200ErrorsCategoryEnum {
-  Application = "APPLICATION",
-  System = "SYSTEM",
-  Request = "REQUEST",
-  Data = "DATA",
-}
-
-/**
- * Quantity of an item that is input by the seller
- * @export
- * @interface InlineResponse200InputQty
- */
-export interface InlineResponse200InputQty {
-  /**
-   * The unit of measurement. Example: \'EACH\'
-   * @type {string}
-   * @memberof InlineResponse200InputQty
-   */
-  unit: InlineResponse200InputQtyUnitEnum;
-  /**
-   * The number available in the inventory
-   * @type {number}
-   * @memberof InlineResponse200InputQty
-   */
-  amount: number;
-}
-
-/**
- * @export
- * @enum {string}
- */
-export enum InlineResponse200InputQtyUnitEnum {
-  Each = "EACH",
-}
-
 /**
  *
  * @export
- * @interface InlineResponse200Nodes
+ * @interface InlineResponse200ElementsNodes
  */
-export interface InlineResponse200Nodes {
+export interface InlineResponse200ElementsNodes {
   /**
    * ShipNode Id of the ship node for which the inventory is requested
    * @type {string}
-   * @memberof InlineResponse200Nodes
+   * @memberof InlineResponse200ElementsNodes
    */
   shipNode?: string;
   /**
    *
-   * @type {InlineResponse200InputQty}
-   * @memberof InlineResponse200Nodes
+   * @type {InlineResponse200ElementsInputQty}
+   * @memberof InlineResponse200ElementsNodes
    */
-  inputQty?: InlineResponse200InputQty;
+  inputQty?: InlineResponse200ElementsInputQty;
   /**
    *
-   * @type {InlineResponse200AvailToSellQty}
-   * @memberof InlineResponse200Nodes
+   * @type {InlineResponse200ElementsInputQty}
+   * @memberof InlineResponse200ElementsNodes
    */
-  availToSellQty?: InlineResponse200AvailToSellQty;
-  /**
-   *
-   * @type {Array<InlineResponse200Errors>}
-   * @memberof InlineResponse200Nodes
-   */
-  errors?: Array<InlineResponse200Errors>;
+  availToSellQty?: InlineResponse200ElementsInputQty;
 }
 /**
- * Quantity of an item that is input by the seller
+ *
  * @export
- * @interface InputQty
+ * @interface InlineResponse200Meta
  */
-export interface InputQty {
+export interface InlineResponse200Meta {
   /**
-   * The unit of measurement. Example: \'EACH\'
-   * @type {string}
-   * @memberof InputQty
-   */
-  unit: InputQtyUnitEnum;
-  /**
-   * The number available in the inventory
+   * Total number of Skus of the Seller. Example: \'235\'
    * @type {number}
-   * @memberof InputQty
+   * @memberof InlineResponse200Meta
    */
-  amount: number;
+  totalCount?: number;
+  /**
+   * Used for pagination to fetch the next set of items.
+   * @type {string}
+   * @memberof InlineResponse200Meta
+   */
+  nextCursor?: string;
 }
-
-/**
- * @export
- * @enum {string}
- */
-export enum InputQtyUnitEnum {
-  Each = "EACH",
-}
-
 /**
  *
  * @export
@@ -780,10 +696,10 @@ export interface InventoriesDTO {
   sku?: string;
   /**
    *
-   * @type {Array<InlineResponse200Nodes>}
+   * @type {Array<InlineResponse2001Nodes>}
    * @memberof InventoriesDTO
    */
-  nodes?: Array<InlineResponse200Nodes>;
+  nodes?: Array<InlineResponse2001Nodes>;
 }
 /**
  *
@@ -799,10 +715,10 @@ export interface Inventory {
   sku: string;
   /**
    *
-   * @type {InlineResponse200InputQty}
+   * @type {InlineResponse200ElementsInputQty}
    * @memberof Inventory
    */
-  quantity: InlineResponse200InputQty;
+  quantity: InlineResponse200ElementsInputQty;
 }
 /**
  *
@@ -843,7 +759,7 @@ export interface Meta {
   nextCursor?: string;
 }
 /**
- * Node Update Error description.
+ *
  * @export
  * @interface ModelError
  */
@@ -886,10 +802,10 @@ export interface ModelError {
   category?: ModelErrorCategoryEnum;
   /**
    *
-   * @type {Array<InlineResponse200Causes>}
+   * @type {Array<InlineResponse2001Causes>}
    * @memberof ModelError
    */
-  causes?: Array<InlineResponse200Causes>;
+  causes?: Array<InlineResponse2001Causes>;
   /**
    *
    * @type {{ [key: string]: object; }}
@@ -926,16 +842,16 @@ export enum ModelErrorCategoryEnum {
 export interface MultiNodeInventoryFetchResponseDTO {
   /**
    *
-   * @type {InlineResponse2003Meta}
+   * @type {InlineResponse200Meta}
    * @memberof MultiNodeInventoryFetchResponseDTO
    */
-  meta?: InlineResponse2003Meta;
+  meta?: InlineResponse200Meta;
   /**
    *
-   * @type {InlineResponse2003Elements}
+   * @type {InlineResponse200Elements}
    * @memberof MultiNodeInventoryFetchResponseDTO
    */
-  elements?: InlineResponse2003Elements;
+  elements?: InlineResponse200Elements;
 }
 /**
  *
@@ -964,10 +880,10 @@ export interface MultiNodeInventoryUpdateResponseDTO {
   sku?: string;
   /**
    *
-   * @type {Array<InlineResponse2001Nodes>}
+   * @type {Array<InlineResponse2002Nodes>}
    * @memberof MultiNodeInventoryUpdateResponseDTO
    */
-  nodes?: Array<InlineResponse2001Nodes>;
+  nodes?: Array<InlineResponse2002Nodes>;
 }
 /**
  *
@@ -983,22 +899,22 @@ export interface NodeDTO {
   shipNode?: string;
   /**
    *
-   * @type {InlineResponse200InputQty}
+   * @type {InlineResponse200ElementsInputQty}
    * @memberof NodeDTO
    */
-  inputQty?: InlineResponse200InputQty;
+  inputQty?: InlineResponse200ElementsInputQty;
   /**
    *
-   * @type {InlineResponse200AvailToSellQty}
+   * @type {InlineResponse200ElementsInputQty}
    * @memberof NodeDTO
    */
-  availToSellQty?: InlineResponse200AvailToSellQty;
+  availToSellQty?: InlineResponse200ElementsInputQty;
   /**
    *
-   * @type {Array<InlineResponse200Errors>}
+   * @type {Array<InlineResponse2001Errors>}
    * @memberof NodeDTO
    */
-  errors?: Array<InlineResponse200Errors>;
+  errors?: Array<InlineResponse2001Errors>;
 }
 /**
  *
@@ -1045,7 +961,7 @@ export interface ShipNodes {
   shipNodeType?: string;
 }
 /**
- * Quantity of an item that is input by the seller
+ * Information about the quantity in inventory
  * @export
  * @interface SupplyQuantity
  */
@@ -1099,10 +1015,10 @@ export interface UpdateInventoriesRequestNodeDTO {
   shipNode: string;
   /**
    *
-   * @type {InlineResponse200InputQty}
+   * @type {InlineResponse200ElementsInputQty}
    * @memberof UpdateInventoriesRequestNodeDTO
    */
-  inputQty: InlineResponse200InputQty;
+  inputQty: InlineResponse200ElementsInputQty;
 }
 /**
  *
@@ -1124,10 +1040,10 @@ export interface UpdateInventoriesResponseNodeDTO {
   status?: string;
   /**
    * Node Update Error description.
-   * @type {Array<InlineResponse200Errors>}
+   * @type {Array<InlineResponse2001Errors>}
    * @memberof UpdateInventoriesResponseNodeDTO
    */
-  errors?: Array<InlineResponse200Errors>;
+  errors?: Array<InlineResponse2001Errors>;
 }
 /**
  *
@@ -1156,10 +1072,10 @@ export interface V3InventoriesSkuInventoriesNodes {
   shipNode: string;
   /**
    *
-   * @type {InlineResponse200InputQty}
+   * @type {InlineResponse200ElementsInputQty}
    * @memberof V3InventoriesSkuInventoriesNodes
    */
-  inputQty: InlineResponse200InputQty;
+  inputQty: InlineResponse200ElementsInputQty;
 }
 /**
  *
@@ -2110,7 +2026,7 @@ export const InventoryApiFp = function (configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<InlineResponse2002>
+      ) => AxiosPromise<InlineResponse2003>
     > {
       const localVarAxiosArgs = await localVarAxiosParamCreator.getInventory(
         sku,
@@ -2155,7 +2071,7 @@ export const InventoryApiFp = function (configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<InlineResponse2003>
+      ) => AxiosPromise<InlineResponse200>
     > {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.getMultiNodeInventoryForAllSkuAndAllShipNodes(
@@ -2201,7 +2117,7 @@ export const InventoryApiFp = function (configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<InlineResponse200>
+      ) => AxiosPromise<InlineResponse2001>
     > {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.getMultiNodeInventoryForSkuAndAllShipnodes(
@@ -2396,7 +2312,7 @@ export const InventoryApiFp = function (configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<InlineResponse2001>
+      ) => AxiosPromise<InlineResponse2002>
     > {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.updateMultiNodeInventory(
@@ -2452,7 +2368,7 @@ export const InventoryApiFactory = function (
       wMSVCNAME: string,
       shipNode?: string,
       options?: any
-    ): AxiosPromise<InlineResponse2002> {
+    ): AxiosPromise<InlineResponse2003> {
       return localVarFp
         .getInventory(
           sku,
@@ -2488,7 +2404,7 @@ export const InventoryApiFactory = function (
       limit?: string,
       nextCursor?: string,
       options?: any
-    ): AxiosPromise<InlineResponse2003> {
+    ): AxiosPromise<InlineResponse200> {
       return localVarFp
         .getMultiNodeInventoryForAllSkuAndAllShipNodes(
           authorization,
@@ -2524,7 +2440,7 @@ export const InventoryApiFactory = function (
       wMSVCNAME: string,
       shipNode?: string,
       options?: any
-    ): AxiosPromise<InlineResponse200> {
+    ): AxiosPromise<InlineResponse2001> {
       return localVarFp
         .getMultiNodeInventoryForSkuAndAllShipnodes(
           sku,
@@ -2683,7 +2599,7 @@ export const InventoryApiFactory = function (
       wMSVCNAME: string,
       inlineObject: InlineObject,
       options?: any
-    ): AxiosPromise<InlineResponse2001> {
+    ): AxiosPromise<InlineResponse2002> {
       return localVarFp
         .updateMultiNodeInventory(
           sku,

@@ -70,10 +70,10 @@ export interface CategoryPayload {
   category?: string;
   /**
    * Specific kind of category
-   * @type {Array<InlineResponse2002Subcategory>}
+   * @type {Array<InlineResponse2001Subcategory>}
    * @memberof CategoryPayload
    */
-  subcategory?: Array<InlineResponse2002Subcategory>;
+  subcategory?: Array<InlineResponse2001Subcategory>;
 }
 /**
  *
@@ -108,10 +108,10 @@ export interface GetCategories {
   status?: string;
   /**
    *
-   * @type {InlineResponse2001Response}
+   * @type {InlineResponse200Response}
    * @memberof GetCategories
    */
-  response?: InlineResponse2001Response;
+  response?: InlineResponse200Response;
 }
 /**
  *
@@ -127,10 +127,10 @@ export interface GetDepartmentList {
   status?: string;
   /**
    *
-   * @type {Array<InlineResponse200Payload>}
+   * @type {Array<InlineResponse2002Payload>}
    * @memberof GetDepartmentList
    */
-  payload?: Array<InlineResponse200Payload>;
+  payload?: Array<InlineResponse2002Payload>;
 }
 /**
  *
@@ -146,10 +146,10 @@ export interface InlineResponse200 {
   status?: string;
   /**
    *
-   * @type {Array<InlineResponse200Payload>}
+   * @type {InlineResponse200Response}
    * @memberof InlineResponse200
    */
-  payload?: Array<InlineResponse200Payload>;
+  response?: InlineResponse200Response;
 }
 /**
  *
@@ -165,54 +165,48 @@ export interface InlineResponse2001 {
   status?: string;
   /**
    *
-   * @type {InlineResponse2001Response}
+   * @type {Array<InlineResponse2001Payload>}
    * @memberof InlineResponse2001
    */
-  response?: InlineResponse2001Response;
+  payload?: Array<InlineResponse2001Payload>;
 }
 /**
  *
  * @export
- * @interface InlineResponse2001Response
+ * @interface InlineResponse2001Payload
  */
-export interface InlineResponse2001Response {
+export interface InlineResponse2001Payload {
   /**
-   * The department name for which the categories have to be fetched
+   * Type of item
    * @type {string}
-   * @memberof InlineResponse2001Response
+   * @memberof InlineResponse2001Payload
    */
-  departmentName?: string;
+  category?: string;
   /**
-   * The department id for which the categories have to be fetched
-   * @type {string}
-   * @memberof InlineResponse2001Response
+   * Specific kind of category
+   * @type {Array<InlineResponse2001Subcategory>}
+   * @memberof InlineResponse2001Payload
    */
-  departmentId?: string;
-  /**
-   *
-   * @type {Array<InlineResponse2001ResponseCategory>}
-   * @memberof InlineResponse2001Response
-   */
-  category?: Array<InlineResponse2001ResponseCategory>;
+  subcategory?: Array<InlineResponse2001Subcategory>;
 }
 /**
- *
+ * Specific kind of category
  * @export
- * @interface InlineResponse2001ResponseCategory
+ * @interface InlineResponse2001Subcategory
  */
-export interface InlineResponse2001ResponseCategory {
+export interface InlineResponse2001Subcategory {
   /**
-   * The category name for which the top trending items have to be fetched
+   * Name of specific kind of category
    * @type {string}
-   * @memberof InlineResponse2001ResponseCategory
+   * @memberof InlineResponse2001Subcategory
    */
-  categoryName?: string;
+  subCategoryName?: string;
   /**
-   * The category id for which the top trending items have to be fetched
+   * ID of specific kind of category
    * @type {string}
-   * @memberof InlineResponse2001ResponseCategory
+   * @memberof InlineResponse2001Subcategory
    */
-  categoryId?: string;
+  subCategoryId?: string;
 }
 /**
  *
@@ -236,84 +230,90 @@ export interface InlineResponse2002 {
 /**
  *
  * @export
- * @interface InlineResponse2002Payload
+ * @interface InlineResponse2002Departments
  */
-export interface InlineResponse2002Payload {
-  /**
-   * Type of item
-   * @type {string}
-   * @memberof InlineResponse2002Payload
-   */
-  category?: string;
-  /**
-   * Specific kind of category
-   * @type {Array<InlineResponse2002Subcategory>}
-   * @memberof InlineResponse2002Payload
-   */
-  subcategory?: Array<InlineResponse2002Subcategory>;
-}
-/**
- * Specific kind of category
- * @export
- * @interface InlineResponse2002Subcategory
- */
-export interface InlineResponse2002Subcategory {
-  /**
-   * Name of specific kind of category
-   * @type {string}
-   * @memberof InlineResponse2002Subcategory
-   */
-  subCategoryName?: string;
-  /**
-   * ID of specific kind of category
-   * @type {string}
-   * @memberof InlineResponse2002Subcategory
-   */
-  subCategoryId?: string;
-}
-/**
- *
- * @export
- * @interface InlineResponse200Departments
- */
-export interface InlineResponse200Departments {
+export interface InlineResponse2002Departments {
   /**
    * The department name for which the categories have to be fetched
    * @type {string}
-   * @memberof InlineResponse200Departments
+   * @memberof InlineResponse2002Departments
    */
   departmentName?: string;
   /**
    * The department id for which the categories have to be fetched
    * @type {string}
-   * @memberof InlineResponse200Departments
+   * @memberof InlineResponse2002Departments
    */
   departmentId?: string;
 }
 /**
  *
  * @export
- * @interface InlineResponse200Payload
+ * @interface InlineResponse2002Payload
  */
-export interface InlineResponse200Payload {
+export interface InlineResponse2002Payload {
   /**
    * The super-department name for which the department have to be fetched
    * @type {string}
-   * @memberof InlineResponse200Payload
+   * @memberof InlineResponse2002Payload
    */
   superDepartment?: string;
   /**
    * The super-department id for which the department have to be fetched
    * @type {string}
-   * @memberof InlineResponse200Payload
+   * @memberof InlineResponse2002Payload
    */
   superDepartmentId?: string;
   /**
    *
-   * @type {Array<InlineResponse200Departments>}
-   * @memberof InlineResponse200Payload
+   * @type {Array<InlineResponse2002Departments>}
+   * @memberof InlineResponse2002Payload
    */
-  departments?: Array<InlineResponse200Departments>;
+  departments?: Array<InlineResponse2002Departments>;
+}
+/**
+ *
+ * @export
+ * @interface InlineResponse200Response
+ */
+export interface InlineResponse200Response {
+  /**
+   * The department name for which the categories have to be fetched
+   * @type {string}
+   * @memberof InlineResponse200Response
+   */
+  departmentName?: string;
+  /**
+   * The department id for which the categories have to be fetched
+   * @type {string}
+   * @memberof InlineResponse200Response
+   */
+  departmentId?: string;
+  /**
+   *
+   * @type {Array<InlineResponse200ResponseCategory>}
+   * @memberof InlineResponse200Response
+   */
+  category?: Array<InlineResponse200ResponseCategory>;
+}
+/**
+ *
+ * @export
+ * @interface InlineResponse200ResponseCategory
+ */
+export interface InlineResponse200ResponseCategory {
+  /**
+   * The category name for which the top trending items have to be fetched
+   * @type {string}
+   * @memberof InlineResponse200ResponseCategory
+   */
+  categoryName?: string;
+  /**
+   * The category id for which the top trending items have to be fetched
+   * @type {string}
+   * @memberof InlineResponse200ResponseCategory
+   */
+  categoryId?: string;
 }
 /**
  *
@@ -335,10 +335,10 @@ export interface Payload {
   superDepartmentId?: string;
   /**
    *
-   * @type {Array<InlineResponse200Departments>}
+   * @type {Array<InlineResponse2002Departments>}
    * @memberof Payload
    */
-  departments?: Array<InlineResponse200Departments>;
+  departments?: Array<InlineResponse2002Departments>;
 }
 /**
  *
@@ -360,10 +360,10 @@ export interface Response {
   departmentId?: string;
   /**
    *
-   * @type {Array<InlineResponse2001ResponseCategory>}
+   * @type {Array<InlineResponse200ResponseCategory>}
    * @memberof Response
    */
-  category?: Array<InlineResponse2001ResponseCategory>;
+  category?: Array<InlineResponse200ResponseCategory>;
 }
 /**
  * Specific kind of category
@@ -398,10 +398,10 @@ export interface TaxonomyResponseDTO {
   status?: string;
   /**
    *
-   * @type {Array<InlineResponse2002Payload>}
+   * @type {Array<InlineResponse2001Payload>}
    * @memberof TaxonomyResponseDTO
    */
-  payload?: Array<InlineResponse2002Payload>;
+  payload?: Array<InlineResponse2001Payload>;
 }
 
 /**
@@ -609,7 +609,7 @@ export const UtilitiesApiAxiosParamCreator = function (
       };
     },
     /**
-     * The Taxonomy by Item spec API exposes the category taxonomy that Walmart.com uses to categorize items for each Item spec version. It returns a list of all Categories and Sub-categories that are available on Walmart.com for the Item spec version you specify. You can specify the feedType and version for these available Item specs. Make sure to specify the corresponding version that is available for that feed type: *   Item spec 3.2 feed type: item *   Item spec 4.0 feed types: MP_ITEM, MP_WFS_ITEM, or MP_MAINTENANCE *   Item spec 4.1 feed types: MP_WFS_ITEM, or MP_MAINTENANCE *   Item spec 4.2 feed type: MP_ITEM
+     * The Taxonomy by Item spec API exposes the category taxonomy that Walmart.com uses to categorize items for each Item spec version. It returns a list of all Categories and Sub-categories that are available on Walmart.com for the Item spec version you specify. You can specify the feedType and version for these available Item specs. Make sure to specify the corresponding version that is available for that feed type: *   Item spec 3.2 feed type: item *   Item spec 4.0 feed types: MP_ITEM, MP_WFS_ITEM, or MP_MAINTENANCE *   Item spec 4.1 feed types: MP_WFS_ITEM, or MP_MAINTENANCE *   Item spec 4.2 feed type: MP_ITEM or MP_WFS_ITEM *   Item spec 4.3 feed type: MP_ITEM or MP_MAINTENANCE
      * @summary Taxonomy by spec
      * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
      * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
@@ -751,7 +751,7 @@ export const UtilitiesApiFp = function (configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<InlineResponse2001>
+      ) => AxiosPromise<InlineResponse200>
     > {
       const localVarAxiosArgs = await localVarAxiosParamCreator.getCategories(
         departmentId,
@@ -791,7 +791,7 @@ export const UtilitiesApiFp = function (configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<InlineResponse200>
+      ) => AxiosPromise<InlineResponse2002>
     > {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.getDepartmentList(
@@ -810,7 +810,7 @@ export const UtilitiesApiFp = function (configuration?: Configuration) {
       );
     },
     /**
-     * The Taxonomy by Item spec API exposes the category taxonomy that Walmart.com uses to categorize items for each Item spec version. It returns a list of all Categories and Sub-categories that are available on Walmart.com for the Item spec version you specify. You can specify the feedType and version for these available Item specs. Make sure to specify the corresponding version that is available for that feed type: *   Item spec 3.2 feed type: item *   Item spec 4.0 feed types: MP_ITEM, MP_WFS_ITEM, or MP_MAINTENANCE *   Item spec 4.1 feed types: MP_WFS_ITEM, or MP_MAINTENANCE *   Item spec 4.2 feed type: MP_ITEM
+     * The Taxonomy by Item spec API exposes the category taxonomy that Walmart.com uses to categorize items for each Item spec version. It returns a list of all Categories and Sub-categories that are available on Walmart.com for the Item spec version you specify. You can specify the feedType and version for these available Item specs. Make sure to specify the corresponding version that is available for that feed type: *   Item spec 3.2 feed type: item *   Item spec 4.0 feed types: MP_ITEM, MP_WFS_ITEM, or MP_MAINTENANCE *   Item spec 4.1 feed types: MP_WFS_ITEM, or MP_MAINTENANCE *   Item spec 4.2 feed type: MP_ITEM or MP_WFS_ITEM *   Item spec 4.3 feed type: MP_ITEM or MP_MAINTENANCE
      * @summary Taxonomy by spec
      * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
      * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
@@ -835,7 +835,7 @@ export const UtilitiesApiFp = function (configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<InlineResponse2002>
+      ) => AxiosPromise<InlineResponse2001>
     > {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.getTaxonomyResponse(
@@ -889,7 +889,7 @@ export const UtilitiesApiFactory = function (
       wMSVCNAME: string,
       wMCONSUMERCHANNELTYPE?: string,
       options?: any
-    ): AxiosPromise<InlineResponse2001> {
+    ): AxiosPromise<InlineResponse200> {
       return localVarFp
         .getCategories(
           departmentId,
@@ -920,7 +920,7 @@ export const UtilitiesApiFactory = function (
       wMSVCNAME: string,
       wMCONSUMERCHANNELTYPE?: string,
       options?: any
-    ): AxiosPromise<InlineResponse200> {
+    ): AxiosPromise<InlineResponse2002> {
       return localVarFp
         .getDepartmentList(
           authorization,
@@ -933,7 +933,7 @@ export const UtilitiesApiFactory = function (
         .then((request) => request(axios, basePath));
     },
     /**
-     * The Taxonomy by Item spec API exposes the category taxonomy that Walmart.com uses to categorize items for each Item spec version. It returns a list of all Categories and Sub-categories that are available on Walmart.com for the Item spec version you specify. You can specify the feedType and version for these available Item specs. Make sure to specify the corresponding version that is available for that feed type: *   Item spec 3.2 feed type: item *   Item spec 4.0 feed types: MP_ITEM, MP_WFS_ITEM, or MP_MAINTENANCE *   Item spec 4.1 feed types: MP_WFS_ITEM, or MP_MAINTENANCE *   Item spec 4.2 feed type: MP_ITEM
+     * The Taxonomy by Item spec API exposes the category taxonomy that Walmart.com uses to categorize items for each Item spec version. It returns a list of all Categories and Sub-categories that are available on Walmart.com for the Item spec version you specify. You can specify the feedType and version for these available Item specs. Make sure to specify the corresponding version that is available for that feed type: *   Item spec 3.2 feed type: item *   Item spec 4.0 feed types: MP_ITEM, MP_WFS_ITEM, or MP_MAINTENANCE *   Item spec 4.1 feed types: MP_WFS_ITEM, or MP_MAINTENANCE *   Item spec 4.2 feed type: MP_ITEM or MP_WFS_ITEM *   Item spec 4.3 feed type: MP_ITEM or MP_MAINTENANCE
      * @summary Taxonomy by spec
      * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
      * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
@@ -954,7 +954,7 @@ export const UtilitiesApiFactory = function (
       version?: "3.2" | "4.0" | "4.1" | "4.2",
       wMCONSUMERCHANNELTYPE?: string,
       options?: any
-    ): AxiosPromise<InlineResponse2002> {
+    ): AxiosPromise<InlineResponse2001> {
       return localVarFp
         .getTaxonomyResponse(
           authorization,
@@ -1175,7 +1175,7 @@ export class UtilitiesApi extends BaseAPI {
   }
 
   /**
-   * The Taxonomy by Item spec API exposes the category taxonomy that Walmart.com uses to categorize items for each Item spec version. It returns a list of all Categories and Sub-categories that are available on Walmart.com for the Item spec version you specify. You can specify the feedType and version for these available Item specs. Make sure to specify the corresponding version that is available for that feed type: *   Item spec 3.2 feed type: item *   Item spec 4.0 feed types: MP_ITEM, MP_WFS_ITEM, or MP_MAINTENANCE *   Item spec 4.1 feed types: MP_WFS_ITEM, or MP_MAINTENANCE *   Item spec 4.2 feed type: MP_ITEM
+   * The Taxonomy by Item spec API exposes the category taxonomy that Walmart.com uses to categorize items for each Item spec version. It returns a list of all Categories and Sub-categories that are available on Walmart.com for the Item spec version you specify. You can specify the feedType and version for these available Item specs. Make sure to specify the corresponding version that is available for that feed type: *   Item spec 3.2 feed type: item *   Item spec 4.0 feed types: MP_ITEM, MP_WFS_ITEM, or MP_MAINTENANCE *   Item spec 4.1 feed types: MP_WFS_ITEM, or MP_MAINTENANCE *   Item spec 4.2 feed type: MP_ITEM or MP_WFS_ITEM *   Item spec 4.3 feed type: MP_ITEM or MP_MAINTENANCE
    * @summary Taxonomy by spec
    * @param {UtilitiesApiGetTaxonomyResponseRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.

@@ -45,10 +45,10 @@ import {
 export interface InlineResponse200 {
   /**
    * All available report dates are returned
-   * @type {string}
+   * @type {Array<string>}
    * @memberof InlineResponse200
    */
-  availableApReportDates?: string;
+  availableApReportDates?: Array<string>;
 }
 /**
  *
@@ -58,10 +58,10 @@ export interface InlineResponse200 {
 export interface ReconReportDateResponse {
   /**
    * All available report dates are returned
-   * @type {string}
+   * @type {Array<string>}
    * @memberof ReconReportDateResponse
    */
-  availableApReportDates?: string;
+  availableApReportDates?: Array<string>;
 }
 
 /**
@@ -412,7 +412,7 @@ export const ReportsApiFp = function (configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<Array<InlineResponse200>>
+      ) => AxiosPromise<InlineResponse200>
     > {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.getAvailableReconReportDates(
@@ -548,7 +548,7 @@ export const ReportsApiFactory = function (
       wMSVCNAME: string,
       wMCONSUMERCHANNELTYPE?: string,
       options?: any
-    ): AxiosPromise<Array<InlineResponse200>> {
+    ): AxiosPromise<InlineResponse200> {
       return localVarFp
         .getAvailableReconReportDates(
           authorization,

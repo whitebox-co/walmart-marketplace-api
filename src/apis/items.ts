@@ -129,13 +129,13 @@ export interface FeedId {
    * @type {object}
    * @memberof FeedId
    */
-  additionalAttributes?: object;
+  additionalAttributes?: object | null;
   /**
    *
    * @type {object}
    * @memberof FeedId
    */
-  errors?: object;
+  errors?: object | null;
 }
 /**
  *
@@ -232,10 +232,10 @@ export interface GatewayError {
   category?: GatewayErrorCategoryEnum;
   /**
    *
-   * @type {Array<InlineResponse200Causes>}
+   * @type {Array<InlineResponse2001Causes>}
    * @memberof GatewayError
    */
-  causes?: Array<InlineResponse200Causes>;
+  causes?: Array<InlineResponse2001Causes>;
   /**
    *
    * @type {{ [key: string]: object; }}
@@ -392,35 +392,17 @@ export interface InlineObject1 {
  */
 export interface InlineResponse200 {
   /**
-   *
-   * @type {Array<InlineResponse200Errors>}
-   * @memberof InlineResponse200
-   */
-  errors?: Array<InlineResponse200Errors>;
-  /**
-   * Items included in the response list
-   * @type {Array<InlineResponse200ItemResponse>}
-   * @memberof InlineResponse200
-   */
-  itemResponse: Array<InlineResponse200ItemResponse>;
-  /**
-   *
-   * @type {InlineResponse200AdditionalAttributes}
-   * @memberof InlineResponse200
-   */
-  additionalAttributes?: InlineResponse200AdditionalAttributes;
-  /**
-   * Total items for the query
-   * @type {number}
-   * @memberof InlineResponse200
-   */
-  totalItems?: number;
-  /**
-   * Used for pagination to fetch the next set of items
+   * An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item.
    * @type {string}
    * @memberof InlineResponse200
    */
-  nextCursor?: string;
+  sku: string;
+  /**
+   * Message confirming the deletion or retirement of an item from the Walmart Catalog
+   * @type {string}
+   * @memberof InlineResponse200
+   */
+  message?: string;
 }
 /**
  *
@@ -459,6 +441,37 @@ export interface InlineResponse2001Associations {
    * @memberof InlineResponse2001Associations
    */
   shipNode?: string;
+}
+/**
+ *
+ * @export
+ * @interface InlineResponse2001Causes
+ */
+export interface InlineResponse2001Causes {
+  /**
+   *
+   * @type {string}
+   * @memberof InlineResponse2001Causes
+   */
+  code?: string;
+  /**
+   *
+   * @type {string}
+   * @memberof InlineResponse2001Causes
+   */
+  field?: string;
+  /**
+   *
+   * @type {string}
+   * @memberof InlineResponse2001Causes
+   */
+  type?: string;
+  /**
+   *
+   * @type {string}
+   * @memberof InlineResponse2001Causes
+   */
+  description?: string;
 }
 /**
  *
@@ -504,10 +517,10 @@ export interface InlineResponse2001Errors {
   category?: InlineResponse2001ErrorsCategoryEnum;
   /**
    *
-   * @type {Array<InlineResponse200Causes>}
+   * @type {Array<InlineResponse2001Causes>}
    * @memberof InlineResponse2001Errors
    */
-  causes?: Array<InlineResponse200Causes>;
+  causes?: Array<InlineResponse2001Causes>;
   /**
    *
    * @type {{ [key: string]: object; }}
@@ -623,10 +636,10 @@ export interface InlineResponse2002 {
   totalItems?: number;
   /**
    * Number of items shown in this page
-   * @type {string}
+   * @type {number}
    * @memberof InlineResponse2002
    */
-  limit?: string;
+  limit?: number;
   /**
    * Used for pagination to fetch the next set of items
    * @type {string}
@@ -804,18 +817,195 @@ export enum InlineResponse2002PayloadMartEnum {
  */
 export interface InlineResponse2002Price {
   /**
-   *
+   * The currency type. Example: USD for US Dollars
    * @type {string}
    * @memberof InlineResponse2002Price
    */
-  amount?: string;
+  unit?: InlineResponse2002PriceUnitEnum;
   /**
-   *
-   * @type {string}
+   * The numerical amount of the price. Example: 9.99
+   * @type {number}
    * @memberof InlineResponse2002Price
    */
-  currency?: string;
+  amount?: number;
 }
+
+/**
+ * @export
+ * @enum {string}
+ */
+export enum InlineResponse2002PriceUnitEnum {
+  Aed = "AED",
+  Afn = "AFN",
+  All = "ALL",
+  Amd = "AMD",
+  Ang = "ANG",
+  Aoa = "AOA",
+  Ars = "ARS",
+  Aud = "AUD",
+  Awg = "AWG",
+  Azn = "AZN",
+  Bam = "BAM",
+  Bbd = "BBD",
+  Bdt = "BDT",
+  Bgn = "BGN",
+  Bhd = "BHD",
+  Bif = "BIF",
+  Bmd = "BMD",
+  Bnd = "BND",
+  Bob = "BOB",
+  Brl = "BRL",
+  Bsd = "BSD",
+  Btn = "BTN",
+  Bwp = "BWP",
+  Byr = "BYR",
+  Bzd = "BZD",
+  Cad = "CAD",
+  Cdf = "CDF",
+  Chf = "CHF",
+  Clp = "CLP",
+  Cny = "CNY",
+  Cop = "COP",
+  Crc = "CRC",
+  Cup = "CUP",
+  Cve = "CVE",
+  Czk = "CZK",
+  Djf = "DJF",
+  Dkk = "DKK",
+  Dop = "DOP",
+  Dzd = "DZD",
+  Egp = "EGP",
+  Ern = "ERN",
+  Etb = "ETB",
+  Eur = "EUR",
+  Fjd = "FJD",
+  Fkp = "FKP",
+  Gbp = "GBP",
+  Gel = "GEL",
+  Ghs = "GHS",
+  Gip = "GIP",
+  Gmd = "GMD",
+  Gnf = "GNF",
+  Gtq = "GTQ",
+  Gyd = "GYD",
+  Hkd = "HKD",
+  Hnl = "HNL",
+  Hrk = "HRK",
+  Htg = "HTG",
+  Huf = "HUF",
+  Idr = "IDR",
+  Ils = "ILS",
+  Inr = "INR",
+  Iqd = "IQD",
+  Irr = "IRR",
+  Isk = "ISK",
+  Jmd = "JMD",
+  Jod = "JOD",
+  Jpy = "JPY",
+  Kes = "KES",
+  Kgs = "KGS",
+  Khr = "KHR",
+  Kmf = "KMF",
+  Kpw = "KPW",
+  Krw = "KRW",
+  Kwd = "KWD",
+  Kyd = "KYD",
+  Kzt = "KZT",
+  Lak = "LAK",
+  Lbp = "LBP",
+  Lkr = "LKR",
+  Lrd = "LRD",
+  Lsl = "LSL",
+  Ltl = "LTL",
+  Lvl = "LVL",
+  Lyd = "LYD",
+  Mad = "MAD",
+  Mdl = "MDL",
+  Mga = "MGA",
+  Mkd = "MKD",
+  Mmk = "MMK",
+  Mnt = "MNT",
+  Mop = "MOP",
+  Mro = "MRO",
+  Mur = "MUR",
+  Mvr = "MVR",
+  Mwk = "MWK",
+  Mxn = "MXN",
+  Myr = "MYR",
+  Mzn = "MZN",
+  Nad = "NAD",
+  Ngn = "NGN",
+  Nio = "NIO",
+  Nok = "NOK",
+  Npr = "NPR",
+  Nzd = "NZD",
+  Omr = "OMR",
+  Pab = "PAB",
+  Pen = "PEN",
+  Pgk = "PGK",
+  Php = "PHP",
+  Pkr = "PKR",
+  Pln = "PLN",
+  Pyg = "PYG",
+  Qar = "QAR",
+  Ron = "RON",
+  Rsd = "RSD",
+  Rub = "RUB",
+  Rur = "RUR",
+  Rwf = "RWF",
+  Sar = "SAR",
+  Sbd = "SBD",
+  Scr = "SCR",
+  Sdg = "SDG",
+  Sek = "SEK",
+  Sgd = "SGD",
+  Shp = "SHP",
+  Sll = "SLL",
+  Sos = "SOS",
+  Srd = "SRD",
+  Std = "STD",
+  Syp = "SYP",
+  Szl = "SZL",
+  Thb = "THB",
+  Tjs = "TJS",
+  Tmt = "TMT",
+  Tnd = "TND",
+  Top = "TOP",
+  Try = "TRY",
+  Ttd = "TTD",
+  Twd = "TWD",
+  Tzs = "TZS",
+  Uah = "UAH",
+  Ugx = "UGX",
+  Usd = "USD",
+  Uyu = "UYU",
+  Uzs = "UZS",
+  Vef = "VEF",
+  Vnd = "VND",
+  Vuv = "VUV",
+  Wst = "WST",
+  Xaf = "XAF",
+  Xag = "XAG",
+  Xau = "XAU",
+  Xba = "XBA",
+  Xbb = "XBB",
+  Xbc = "XBC",
+  Xbd = "XBD",
+  Xcd = "XCD",
+  Xdr = "XDR",
+  Xfu = "XFU",
+  Xof = "XOF",
+  Xpd = "XPD",
+  Xpf = "XPF",
+  Xpt = "XPT",
+  Xts = "XTS",
+  Xxx = "XXX",
+  Yer = "YER",
+  Zar = "ZAR",
+  Zmk = "ZMK",
+  Zwl = "ZWL",
+}
+
 /**
  * The status of an item when the item is in the submission process. The status can be one of the following: PUBLISHED, READY_TO_PUBLISH, IN_PROGRESS, UNPUBLISHED, STAGE, or SYSTEM_PROBLEM.
  * @export
@@ -836,11 +1026,17 @@ export interface InlineResponse2002PublishedStatus {
   reasons?: Array<string>;
 }
 /**
- *
+ * Items included in the response list
  * @export
  * @interface InlineResponse2003
  */
 export interface InlineResponse2003 {
+  /**
+   * The marketplace name. Example: Walmart_US
+   * @type {string}
+   * @memberof InlineResponse2003
+   */
+  mart?: InlineResponse2003MartEnum;
   /**
    * An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item.
    * @type {string}
@@ -848,11 +1044,394 @@ export interface InlineResponse2003 {
    */
   sku: string;
   /**
-   * Message confirming the deletion or retirement of an item from the Walmart Catalog
+   * The Walmart Product ID assigned by Walmart to the item when listed on Walmart.com
    * @type {string}
    * @memberof InlineResponse2003
    */
-  message?: string;
+  wpid?: string;
+  /**
+   * The 12-digit bar code used extensively for retail packaging in the United States
+   * @type {string}
+   * @memberof InlineResponse2003
+   */
+  upc?: string;
+  /**
+   * The GTIN-compatible Product ID (i.e. UPC or EAN). UPCs must be 12 or 14 digitis in length. EANs must be 13 digits in length.
+   * @type {string}
+   * @memberof InlineResponse2003
+   */
+  gtin?: string;
+  /**
+   * A seller-specified, alphanumeric string uniquely identifying the product name. Example: \'Sterling Silver Blue Diamond Heart Pendant with 18in Chain\'
+   * @type {string}
+   * @memberof InlineResponse2003
+   */
+  productName?: string;
+  /**
+   * Walmart assigned an item shelf name
+   * @type {string}
+   * @memberof InlineResponse2003
+   */
+  shelf?: string;
+  /**
+   * A seller-specified, alphanumeric string uniquely identifying the Product Type. Example: \'Diamond\'
+   * @type {string}
+   * @memberof InlineResponse2003
+   */
+  productType?: string;
+  /**
+   *
+   * @type {InlineResponse2003Price}
+   * @memberof InlineResponse2003
+   */
+  price?: InlineResponse2003Price;
+  /**
+   * The status of an item when the item is in the submission process. The status can be one of the following: PUBLISHED, READY_TO_PUBLISH, IN_PROGRESS, UNPUBLISHED, STAGE, or SYSTEM_PROBLEM.
+   * @type {string}
+   * @memberof InlineResponse2003
+   */
+  publishedStatus?: string;
+  /**
+   *
+   * @type {InlineResponse2003AdditionalAttributes}
+   * @memberof InlineResponse2003
+   */
+  additionalAttributes?: InlineResponse2003AdditionalAttributes;
+  /**
+   *
+   * @type {InlineResponse2003UnpublishedReasons}
+   * @memberof InlineResponse2003
+   */
+  unpublishedReasons?: InlineResponse2003UnpublishedReasons;
+  /**
+   * The lifecycle status of an item describes where the item listing is in the overall lifecycle. Examples of allowed values are ACTIVE , ARCHIVED, RETIRED.
+   * @type {string}
+   * @memberof InlineResponse2003
+   */
+  lifecycleStatus?: string;
+}
+
+/**
+ * @export
+ * @enum {string}
+ */
+export enum InlineResponse2003MartEnum {
+  WalmartUs = "WALMART_US",
+  WalmartCa = "WALMART_CA",
+  AsdaGm = "ASDA_GM",
+  WalmartMexico = "WALMART_MEXICO",
+}
+
+/**
+ * Bag of Additional attributes
+ * @export
+ * @interface InlineResponse2003AdditionalAttributes
+ */
+export interface InlineResponse2003AdditionalAttributes {
+  /**
+   *
+   * @type {Array<InlineResponse2003AdditionalAttributesNameValueAttribute>}
+   * @memberof InlineResponse2003AdditionalAttributes
+   */
+  nameValueAttribute?: Array<InlineResponse2003AdditionalAttributesNameValueAttribute>;
+}
+/**
+ *
+ * @export
+ * @interface InlineResponse2003AdditionalAttributesNameValueAttribute
+ */
+export interface InlineResponse2003AdditionalAttributesNameValueAttribute {
+  /**
+   *
+   * @type {string}
+   * @memberof InlineResponse2003AdditionalAttributesNameValueAttribute
+   */
+  name: string;
+  /**
+   *
+   * @type {string}
+   * @memberof InlineResponse2003AdditionalAttributesNameValueAttribute
+   */
+  type: InlineResponse2003AdditionalAttributesNameValueAttributeTypeEnum;
+  /**
+   *
+   * @type {boolean}
+   * @memberof InlineResponse2003AdditionalAttributesNameValueAttribute
+   */
+  isVariant?: boolean;
+  /**
+   *
+   * @type {string}
+   * @memberof InlineResponse2003AdditionalAttributesNameValueAttribute
+   */
+  variantResourceType?: string;
+  /**
+   *
+   * @type {Array<InlineResponse2003AdditionalAttributesValue>}
+   * @memberof InlineResponse2003AdditionalAttributesNameValueAttribute
+   */
+  value: Array<InlineResponse2003AdditionalAttributesValue>;
+}
+
+/**
+ * @export
+ * @enum {string}
+ */
+export enum InlineResponse2003AdditionalAttributesNameValueAttributeTypeEnum {
+  LocalizableText = "LOCALIZABLE_TEXT",
+  String = "STRING",
+  Boolean = "BOOLEAN",
+  Integer = "INTEGER",
+  Decimal = "DECIMAL",
+  Date = "DATE",
+  Timestamp = "TIMESTAMP",
+}
+
+/**
+ *
+ * @export
+ * @interface InlineResponse2003AdditionalAttributesValue
+ */
+export interface InlineResponse2003AdditionalAttributesValue {
+  /**
+   *
+   * @type {string}
+   * @memberof InlineResponse2003AdditionalAttributesValue
+   */
+  value: string;
+  /**
+   *
+   * @type {string}
+   * @memberof InlineResponse2003AdditionalAttributesValue
+   */
+  group?: string;
+  /**
+   *
+   * @type {string}
+   * @memberof InlineResponse2003AdditionalAttributesValue
+   */
+  source?: string;
+  /**
+   *
+   * @type {number}
+   * @memberof InlineResponse2003AdditionalAttributesValue
+   */
+  rank?: number;
+  /**
+   *
+   * @type {boolean}
+   * @memberof InlineResponse2003AdditionalAttributesValue
+   */
+  isVariant?: boolean;
+}
+/**
+ * Specifies item purchase price information, including currency and amount.
+ * @export
+ * @interface InlineResponse2003Price
+ */
+export interface InlineResponse2003Price {
+  /**
+   * The currency type. Example: USD for US Dollars
+   * @type {string}
+   * @memberof InlineResponse2003Price
+   */
+  currency?: InlineResponse2003PriceCurrencyEnum;
+  /**
+   * The numerical amount of the price. Example: 9.99
+   * @type {number}
+   * @memberof InlineResponse2003Price
+   */
+  amount?: number;
+}
+
+/**
+ * @export
+ * @enum {string}
+ */
+export enum InlineResponse2003PriceCurrencyEnum {
+  Aed = "AED",
+  Afn = "AFN",
+  All = "ALL",
+  Amd = "AMD",
+  Ang = "ANG",
+  Aoa = "AOA",
+  Ars = "ARS",
+  Aud = "AUD",
+  Awg = "AWG",
+  Azn = "AZN",
+  Bam = "BAM",
+  Bbd = "BBD",
+  Bdt = "BDT",
+  Bgn = "BGN",
+  Bhd = "BHD",
+  Bif = "BIF",
+  Bmd = "BMD",
+  Bnd = "BND",
+  Bob = "BOB",
+  Brl = "BRL",
+  Bsd = "BSD",
+  Btn = "BTN",
+  Bwp = "BWP",
+  Byr = "BYR",
+  Bzd = "BZD",
+  Cad = "CAD",
+  Cdf = "CDF",
+  Chf = "CHF",
+  Clp = "CLP",
+  Cny = "CNY",
+  Cop = "COP",
+  Crc = "CRC",
+  Cup = "CUP",
+  Cve = "CVE",
+  Czk = "CZK",
+  Djf = "DJF",
+  Dkk = "DKK",
+  Dop = "DOP",
+  Dzd = "DZD",
+  Egp = "EGP",
+  Ern = "ERN",
+  Etb = "ETB",
+  Eur = "EUR",
+  Fjd = "FJD",
+  Fkp = "FKP",
+  Gbp = "GBP",
+  Gel = "GEL",
+  Ghs = "GHS",
+  Gip = "GIP",
+  Gmd = "GMD",
+  Gnf = "GNF",
+  Gtq = "GTQ",
+  Gyd = "GYD",
+  Hkd = "HKD",
+  Hnl = "HNL",
+  Hrk = "HRK",
+  Htg = "HTG",
+  Huf = "HUF",
+  Idr = "IDR",
+  Ils = "ILS",
+  Inr = "INR",
+  Iqd = "IQD",
+  Irr = "IRR",
+  Isk = "ISK",
+  Jmd = "JMD",
+  Jod = "JOD",
+  Jpy = "JPY",
+  Kes = "KES",
+  Kgs = "KGS",
+  Khr = "KHR",
+  Kmf = "KMF",
+  Kpw = "KPW",
+  Krw = "KRW",
+  Kwd = "KWD",
+  Kyd = "KYD",
+  Kzt = "KZT",
+  Lak = "LAK",
+  Lbp = "LBP",
+  Lkr = "LKR",
+  Lrd = "LRD",
+  Lsl = "LSL",
+  Ltl = "LTL",
+  Lvl = "LVL",
+  Lyd = "LYD",
+  Mad = "MAD",
+  Mdl = "MDL",
+  Mga = "MGA",
+  Mkd = "MKD",
+  Mmk = "MMK",
+  Mnt = "MNT",
+  Mop = "MOP",
+  Mro = "MRO",
+  Mur = "MUR",
+  Mvr = "MVR",
+  Mwk = "MWK",
+  Mxn = "MXN",
+  Myr = "MYR",
+  Mzn = "MZN",
+  Nad = "NAD",
+  Ngn = "NGN",
+  Nio = "NIO",
+  Nok = "NOK",
+  Npr = "NPR",
+  Nzd = "NZD",
+  Omr = "OMR",
+  Pab = "PAB",
+  Pen = "PEN",
+  Pgk = "PGK",
+  Php = "PHP",
+  Pkr = "PKR",
+  Pln = "PLN",
+  Pyg = "PYG",
+  Qar = "QAR",
+  Ron = "RON",
+  Rsd = "RSD",
+  Rub = "RUB",
+  Rur = "RUR",
+  Rwf = "RWF",
+  Sar = "SAR",
+  Sbd = "SBD",
+  Scr = "SCR",
+  Sdg = "SDG",
+  Sek = "SEK",
+  Sgd = "SGD",
+  Shp = "SHP",
+  Sll = "SLL",
+  Sos = "SOS",
+  Srd = "SRD",
+  Std = "STD",
+  Syp = "SYP",
+  Szl = "SZL",
+  Thb = "THB",
+  Tjs = "TJS",
+  Tmt = "TMT",
+  Tnd = "TND",
+  Top = "TOP",
+  Try = "TRY",
+  Ttd = "TTD",
+  Twd = "TWD",
+  Tzs = "TZS",
+  Uah = "UAH",
+  Ugx = "UGX",
+  Usd = "USD",
+  Uyu = "UYU",
+  Uzs = "UZS",
+  Vef = "VEF",
+  Vnd = "VND",
+  Vuv = "VUV",
+  Wst = "WST",
+  Xaf = "XAF",
+  Xag = "XAG",
+  Xau = "XAU",
+  Xba = "XBA",
+  Xbb = "XBB",
+  Xbc = "XBC",
+  Xbd = "XBD",
+  Xcd = "XCD",
+  Xdr = "XDR",
+  Xfu = "XFU",
+  Xof = "XOF",
+  Xpd = "XPD",
+  Xpf = "XPF",
+  Xpt = "XPT",
+  Xts = "XTS",
+  Xxx = "XXX",
+  Yer = "YER",
+  Zar = "ZAR",
+  Zmk = "ZMK",
+  Zwl = "ZWL",
+}
+
+/**
+ * It outlines the reason for an item when unpublished ,that is, when \'publishedStatus\' is set to \'UNPUBLISHED\'.
+ * @export
+ * @interface InlineResponse2003UnpublishedReasons
+ */
+export interface InlineResponse2003UnpublishedReasons {
+  /**
+   *
+   * @type {Array<string>}
+   * @memberof InlineResponse2003UnpublishedReasons
+   */
+  reason?: Array<string>;
 }
 /**
  *
@@ -930,10 +1509,10 @@ export interface InlineResponse2004Items {
   offerCount?: number;
   /**
    *
-   * @type {InlineResponse2002Price}
+   * @type {InlineResponse2004Price}
    * @memberof InlineResponse2004Items
    */
-  price?: InlineResponse2002Price;
+  price?: InlineResponse2004Price;
   /**
    * Specifies the catalog item description.
    * @type {string}
@@ -964,6 +1543,25 @@ export interface InlineResponse2004Items {
    * @memberof InlineResponse2004Items
    */
   properties?: InlineResponse2004Properties;
+}
+/**
+ * Specifies item purchase price information, including currency and amount.
+ * @export
+ * @interface InlineResponse2004Price
+ */
+export interface InlineResponse2004Price {
+  /**
+   *
+   * @type {string}
+   * @memberof InlineResponse2004Price
+   */
+  amount?: string;
+  /**
+   *
+   * @type {string}
+   * @memberof InlineResponse2004Price
+   */
+  currency?: string;
 }
 /**
  *
@@ -1173,242 +1771,121 @@ export interface InlineResponse2005Subcategory {
  */
 export interface InlineResponse2006 {
   /**
-   * A unique ID, returned from the Bulk Upload API, used for tracking the feed file
-   * @type {string}
+   *
+   * @type {Array<InlineResponse2006Errors>}
    * @memberof InlineResponse2006
    */
-  feedId?: string;
+  errors?: Array<InlineResponse2006Errors>;
   /**
-   *
-   * @type {object}
+   * Items included in the response list
+   * @type {Array<InlineResponse2003>}
    * @memberof InlineResponse2006
    */
-  additionalAttributes?: object;
+  ItemResponse: Array<InlineResponse2003>;
   /**
    *
-   * @type {object}
+   * @type {InlineResponse2003AdditionalAttributes}
    * @memberof InlineResponse2006
    */
-  errors?: object;
-}
-/**
- * Bag of additional attributes
- * @export
- * @interface InlineResponse200AdditionalAttributes
- */
-export interface InlineResponse200AdditionalAttributes {
+  additionalAttributes?: InlineResponse2003AdditionalAttributes;
   /**
-   *
-   * @type {Array<InlineResponse200AdditionalAttributesNameValueAttribute>}
-   * @memberof InlineResponse200AdditionalAttributes
-   */
-  nameValueAttribute?: Array<InlineResponse200AdditionalAttributesNameValueAttribute>;
-}
-/**
- *
- * @export
- * @interface InlineResponse200AdditionalAttributesNameValueAttribute
- */
-export interface InlineResponse200AdditionalAttributesNameValueAttribute {
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse200AdditionalAttributesNameValueAttribute
-   */
-  name: string;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse200AdditionalAttributesNameValueAttribute
-   */
-  type: InlineResponse200AdditionalAttributesNameValueAttributeTypeEnum;
-  /**
-   *
-   * @type {boolean}
-   * @memberof InlineResponse200AdditionalAttributesNameValueAttribute
-   */
-  isVariant?: boolean;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse200AdditionalAttributesNameValueAttribute
-   */
-  variantResourceType?: string;
-  /**
-   *
-   * @type {Array<InlineResponse200AdditionalAttributesValue>}
-   * @memberof InlineResponse200AdditionalAttributesNameValueAttribute
-   */
-  value: Array<InlineResponse200AdditionalAttributesValue>;
-}
-
-/**
- * @export
- * @enum {string}
- */
-export enum InlineResponse200AdditionalAttributesNameValueAttributeTypeEnum {
-  LocalizableText = "LOCALIZABLE_TEXT",
-  String = "STRING",
-  Boolean = "BOOLEAN",
-  Integer = "INTEGER",
-  Decimal = "DECIMAL",
-  Date = "DATE",
-  Timestamp = "TIMESTAMP",
-}
-
-/**
- *
- * @export
- * @interface InlineResponse200AdditionalAttributesValue
- */
-export interface InlineResponse200AdditionalAttributesValue {
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse200AdditionalAttributesValue
-   */
-  value: string;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse200AdditionalAttributesValue
-   */
-  group?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse200AdditionalAttributesValue
-   */
-  source?: string;
-  /**
-   *
+   * Total items for the query
    * @type {number}
-   * @memberof InlineResponse200AdditionalAttributesValue
+   * @memberof InlineResponse2006
    */
-  rank?: number;
+  totalItems?: number;
   /**
-   *
-   * @type {boolean}
-   * @memberof InlineResponse200AdditionalAttributesValue
+   * Used for pagination to fetch the next set of items
+   * @type {string}
+   * @memberof InlineResponse2006
    */
-  isVariant?: boolean;
+  nextCursor?: string;
 }
 /**
  *
  * @export
- * @interface InlineResponse200Causes
+ * @interface InlineResponse2006Errors
  */
-export interface InlineResponse200Causes {
+export interface InlineResponse2006Errors {
   /**
    *
    * @type {string}
-   * @memberof InlineResponse200Causes
-   */
-  code?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse200Causes
-   */
-  field?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse200Causes
-   */
-  type?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse200Causes
-   */
-  description?: string;
-}
-/**
- *
- * @export
- * @interface InlineResponse200Errors
- */
-export interface InlineResponse200Errors {
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse200Errors
+   * @memberof InlineResponse2006Errors
    */
   code: string;
   /**
    *
    * @type {string}
-   * @memberof InlineResponse200Errors
+   * @memberof InlineResponse2006Errors
    */
   field?: string;
   /**
    *
    * @type {string}
-   * @memberof InlineResponse200Errors
+   * @memberof InlineResponse2006Errors
    */
   description?: string;
   /**
    *
    * @type {string}
-   * @memberof InlineResponse200Errors
+   * @memberof InlineResponse2006Errors
    */
   info?: string;
   /**
    *
    * @type {string}
-   * @memberof InlineResponse200Errors
+   * @memberof InlineResponse2006Errors
    */
-  severity?: InlineResponse200ErrorsSeverityEnum;
+  severity?: InlineResponse2006ErrorsSeverityEnum;
   /**
    *
    * @type {string}
-   * @memberof InlineResponse200Errors
+   * @memberof InlineResponse2006Errors
    */
-  category?: InlineResponse200ErrorsCategoryEnum;
+  category?: InlineResponse2006ErrorsCategoryEnum;
   /**
    *
-   * @type {Array<InlineResponse200Causes>}
-   * @memberof InlineResponse200Errors
+   * @type {Array<InlineResponse2001Causes>}
+   * @memberof InlineResponse2006Errors
    */
-  causes?: Array<InlineResponse200Causes>;
+  causes?: Array<InlineResponse2001Causes>;
   /**
    *
    * @type {{ [key: string]: object; }}
-   * @memberof InlineResponse200Errors
+   * @memberof InlineResponse2006Errors
    */
   errorIdentifiers?: { [key: string]: object };
   /**
    *
    * @type {string}
-   * @memberof InlineResponse200Errors
+   * @memberof InlineResponse2006Errors
    */
   component?: string;
   /**
    *
    * @type {string}
-   * @memberof InlineResponse200Errors
+   * @memberof InlineResponse2006Errors
    */
   type?: string;
   /**
    *
    * @type {string}
-   * @memberof InlineResponse200Errors
+   * @memberof InlineResponse2006Errors
    */
   serviceName?: string;
   /**
    *
    * @type {string}
-   * @memberof InlineResponse200Errors
+   * @memberof InlineResponse2006Errors
    */
-  gatewayErrorCategory?: InlineResponse200ErrorsGatewayErrorCategoryEnum;
+  gatewayErrorCategory?: InlineResponse2006ErrorsGatewayErrorCategoryEnum;
 }
 
 /**
  * @export
  * @enum {string}
  */
-export enum InlineResponse200ErrorsSeverityEnum {
+export enum InlineResponse2006ErrorsSeverityEnum {
   Info = "INFO",
   Warn = "WARN",
   Error = "ERROR",
@@ -1417,7 +1894,7 @@ export enum InlineResponse200ErrorsSeverityEnum {
  * @export
  * @enum {string}
  */
-export enum InlineResponse200ErrorsCategoryEnum {
+export enum InlineResponse2006ErrorsCategoryEnum {
   Application = "APPLICATION",
   System = "SYSTEM",
   Request = "REQUEST",
@@ -1427,7 +1904,7 @@ export enum InlineResponse200ErrorsCategoryEnum {
  * @export
  * @enum {string}
  */
-export enum InlineResponse200ErrorsGatewayErrorCategoryEnum {
+export enum InlineResponse2006ErrorsGatewayErrorCategoryEnum {
   InternalDataError = "INTERNAL_DATA_ERROR",
   ExternalDataError = "EXTERNAL_DATA_ERROR",
   SystemError = "SYSTEM_ERROR",
@@ -1436,308 +1913,27 @@ export enum InlineResponse200ErrorsGatewayErrorCategoryEnum {
 /**
  *
  * @export
- * @interface InlineResponse200ItemResponse
+ * @interface InlineResponse2007
  */
-export interface InlineResponse200ItemResponse {
+export interface InlineResponse2007 {
   /**
-   * The marketplace name. Example: Walmart_US
+   * A unique ID, returned from the Bulk Upload API, used for tracking the feed file
    * @type {string}
-   * @memberof InlineResponse200ItemResponse
+   * @memberof InlineResponse2007
    */
-  mart?: InlineResponse200ItemResponseMartEnum;
-  /**
-   * An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item.
-   * @type {string}
-   * @memberof InlineResponse200ItemResponse
-   */
-  sku: string;
-  /**
-   * The Walmart Product ID assigned by Walmart to the item when listed on Walmart.com
-   * @type {string}
-   * @memberof InlineResponse200ItemResponse
-   */
-  wpid?: string;
-  /**
-   * The 12-digit bar code used extensively for retail packaging in the United States
-   * @type {string}
-   * @memberof InlineResponse200ItemResponse
-   */
-  upc?: string;
-  /**
-   * The GTIN-compatible Product ID (i.e. UPC or EAN). UPCs must be 12 or 14 digitis in length. EANs must be 13 digits in length.
-   * @type {string}
-   * @memberof InlineResponse200ItemResponse
-   */
-  gtin?: string;
-  /**
-   * A seller-specified, alphanumeric string uniquely identifying the product name. Example: \'Sterling Silver Blue Diamond Heart Pendant with 18in Chain\'
-   * @type {string}
-   * @memberof InlineResponse200ItemResponse
-   */
-  productName?: string;
-  /**
-   * Walmart assigned an item shelf name
-   * @type {string}
-   * @memberof InlineResponse200ItemResponse
-   */
-  shelf?: string;
-  /**
-   * A seller-specified, alphanumeric string uniquely identifying the Product Type. Example: \'Diamond\'
-   * @type {string}
-   * @memberof InlineResponse200ItemResponse
-   */
-  productType?: string;
+  feedId?: string;
   /**
    *
-   * @type {InlineResponse200Price}
-   * @memberof InlineResponse200ItemResponse
+   * @type {object}
+   * @memberof InlineResponse2007
    */
-  price?: InlineResponse200Price;
-  /**
-   * The status of an item when the item is in the submission process. The status can be one of the following: PUBLISHED, READY_TO_PUBLISH, IN_PROGRESS, UNPUBLISHED, STAGE, or SYSTEM_PROBLEM.
-   * @type {string}
-   * @memberof InlineResponse200ItemResponse
-   */
-  publishedStatus?: string;
+  additionalAttributes?: object | null;
   /**
    *
-   * @type {InlineResponse200AdditionalAttributes}
-   * @memberof InlineResponse200ItemResponse
+   * @type {object}
+   * @memberof InlineResponse2007
    */
-  additionalAttributes?: InlineResponse200AdditionalAttributes;
-  /**
-   *
-   * @type {InlineResponse200UnpublishedReasons}
-   * @memberof InlineResponse200ItemResponse
-   */
-  unpublishedReasons?: InlineResponse200UnpublishedReasons;
-  /**
-   * The lifecycle status of an item describes where the item listing is in the overall lifecycle. Examples of allowed values are ACTIVE , ARCHIVED, RETIRED.
-   * @type {string}
-   * @memberof InlineResponse200ItemResponse
-   */
-  lifecycleStatus?: string;
-}
-
-/**
- * @export
- * @enum {string}
- */
-export enum InlineResponse200ItemResponseMartEnum {
-  WalmartUs = "WALMART_US",
-  WalmartCa = "WALMART_CA",
-  AsdaGm = "ASDA_GM",
-  WalmartMexico = "WALMART_MEXICO",
-}
-
-/**
- * Specifies item purchase price information, including currency and amount.
- * @export
- * @interface InlineResponse200Price
- */
-export interface InlineResponse200Price {
-  /**
-   * The currency type. Example: USD for US Dollars
-   * @type {string}
-   * @memberof InlineResponse200Price
-   */
-  currency?: InlineResponse200PriceCurrencyEnum;
-  /**
-   * The numerical amount of the price. Example: 9.99
-   * @type {number}
-   * @memberof InlineResponse200Price
-   */
-  amount?: number;
-}
-
-/**
- * @export
- * @enum {string}
- */
-export enum InlineResponse200PriceCurrencyEnum {
-  Aed = "AED",
-  Afn = "AFN",
-  All = "ALL",
-  Amd = "AMD",
-  Ang = "ANG",
-  Aoa = "AOA",
-  Ars = "ARS",
-  Aud = "AUD",
-  Awg = "AWG",
-  Azn = "AZN",
-  Bam = "BAM",
-  Bbd = "BBD",
-  Bdt = "BDT",
-  Bgn = "BGN",
-  Bhd = "BHD",
-  Bif = "BIF",
-  Bmd = "BMD",
-  Bnd = "BND",
-  Bob = "BOB",
-  Brl = "BRL",
-  Bsd = "BSD",
-  Btn = "BTN",
-  Bwp = "BWP",
-  Byr = "BYR",
-  Bzd = "BZD",
-  Cad = "CAD",
-  Cdf = "CDF",
-  Chf = "CHF",
-  Clp = "CLP",
-  Cny = "CNY",
-  Cop = "COP",
-  Crc = "CRC",
-  Cup = "CUP",
-  Cve = "CVE",
-  Czk = "CZK",
-  Djf = "DJF",
-  Dkk = "DKK",
-  Dop = "DOP",
-  Dzd = "DZD",
-  Egp = "EGP",
-  Ern = "ERN",
-  Etb = "ETB",
-  Eur = "EUR",
-  Fjd = "FJD",
-  Fkp = "FKP",
-  Gbp = "GBP",
-  Gel = "GEL",
-  Ghs = "GHS",
-  Gip = "GIP",
-  Gmd = "GMD",
-  Gnf = "GNF",
-  Gtq = "GTQ",
-  Gyd = "GYD",
-  Hkd = "HKD",
-  Hnl = "HNL",
-  Hrk = "HRK",
-  Htg = "HTG",
-  Huf = "HUF",
-  Idr = "IDR",
-  Ils = "ILS",
-  Inr = "INR",
-  Iqd = "IQD",
-  Irr = "IRR",
-  Isk = "ISK",
-  Jmd = "JMD",
-  Jod = "JOD",
-  Jpy = "JPY",
-  Kes = "KES",
-  Kgs = "KGS",
-  Khr = "KHR",
-  Kmf = "KMF",
-  Kpw = "KPW",
-  Krw = "KRW",
-  Kwd = "KWD",
-  Kyd = "KYD",
-  Kzt = "KZT",
-  Lak = "LAK",
-  Lbp = "LBP",
-  Lkr = "LKR",
-  Lrd = "LRD",
-  Lsl = "LSL",
-  Ltl = "LTL",
-  Lvl = "LVL",
-  Lyd = "LYD",
-  Mad = "MAD",
-  Mdl = "MDL",
-  Mga = "MGA",
-  Mkd = "MKD",
-  Mmk = "MMK",
-  Mnt = "MNT",
-  Mop = "MOP",
-  Mro = "MRO",
-  Mur = "MUR",
-  Mvr = "MVR",
-  Mwk = "MWK",
-  Mxn = "MXN",
-  Myr = "MYR",
-  Mzn = "MZN",
-  Nad = "NAD",
-  Ngn = "NGN",
-  Nio = "NIO",
-  Nok = "NOK",
-  Npr = "NPR",
-  Nzd = "NZD",
-  Omr = "OMR",
-  Pab = "PAB",
-  Pen = "PEN",
-  Pgk = "PGK",
-  Php = "PHP",
-  Pkr = "PKR",
-  Pln = "PLN",
-  Pyg = "PYG",
-  Qar = "QAR",
-  Ron = "RON",
-  Rsd = "RSD",
-  Rub = "RUB",
-  Rur = "RUR",
-  Rwf = "RWF",
-  Sar = "SAR",
-  Sbd = "SBD",
-  Scr = "SCR",
-  Sdg = "SDG",
-  Sek = "SEK",
-  Sgd = "SGD",
-  Shp = "SHP",
-  Sll = "SLL",
-  Sos = "SOS",
-  Srd = "SRD",
-  Std = "STD",
-  Syp = "SYP",
-  Szl = "SZL",
-  Thb = "THB",
-  Tjs = "TJS",
-  Tmt = "TMT",
-  Tnd = "TND",
-  Top = "TOP",
-  Try = "TRY",
-  Ttd = "TTD",
-  Twd = "TWD",
-  Tzs = "TZS",
-  Uah = "UAH",
-  Ugx = "UGX",
-  Usd = "USD",
-  Uyu = "UYU",
-  Uzs = "UZS",
-  Vef = "VEF",
-  Vnd = "VND",
-  Vuv = "VUV",
-  Wst = "WST",
-  Xaf = "XAF",
-  Xag = "XAG",
-  Xau = "XAU",
-  Xba = "XBA",
-  Xbb = "XBB",
-  Xbc = "XBC",
-  Xbd = "XBD",
-  Xcd = "XCD",
-  Xdr = "XDR",
-  Xfu = "XFU",
-  Xof = "XOF",
-  Xpd = "XPD",
-  Xpf = "XPF",
-  Xpt = "XPT",
-  Xts = "XTS",
-  Xxx = "XXX",
-  Yer = "YER",
-  Zar = "ZAR",
-  Zmk = "ZMK",
-  Zwl = "ZWL",
-}
-
-/**
- * It outlines the reason for an item when unpublished ,that is, when \'publishedStatus\' is set to \'UNPUBLISHED\'.
- * @export
- * @interface InlineResponse200UnpublishedReasons
- */
-export interface InlineResponse200UnpublishedReasons {
-  /**
-   *
-   * @type {Array<string>}
-   * @memberof InlineResponse200UnpublishedReasons
-   */
-  reason?: Array<string>;
+  errors?: object | null;
 }
 /**
  *
@@ -1783,10 +1979,10 @@ export interface Item {
   offerCount?: number;
   /**
    *
-   * @type {InlineResponse2002Price}
+   * @type {InlineResponse2004Price}
    * @memberof Item
    */
-  price?: InlineResponse2002Price;
+  price?: InlineResponse2004Price;
   /**
    * Specifies the catalog item description.
    * @type {string}
@@ -2001,10 +2197,10 @@ export interface ItemCatalogResponses {
   totalItems?: number;
   /**
    * Number of items shown in this page
-   * @type {string}
+   * @type {number}
    * @memberof ItemCatalogResponses
    */
-  limit?: string;
+  limit?: number;
   /**
    * Used for pagination to fetch the next set of items
    * @type {string}
@@ -2044,7 +2240,7 @@ export interface ItemCatalogSearchPayload {
   sort?: V3ItemsCatalogSearchSort;
 }
 /**
- *
+ * Items included in the response list
  * @export
  * @interface ItemResponse
  */
@@ -2099,10 +2295,10 @@ export interface ItemResponse {
   productType?: string;
   /**
    *
-   * @type {InlineResponse200Price}
+   * @type {InlineResponse2003Price}
    * @memberof ItemResponse
    */
-  price?: InlineResponse200Price;
+  price?: InlineResponse2003Price;
   /**
    * The status of an item when the item is in the submission process. The status can be one of the following: PUBLISHED, READY_TO_PUBLISH, IN_PROGRESS, UNPUBLISHED, STAGE, or SYSTEM_PROBLEM.
    * @type {string}
@@ -2111,16 +2307,16 @@ export interface ItemResponse {
   publishedStatus?: string;
   /**
    *
-   * @type {InlineResponse200AdditionalAttributes}
+   * @type {InlineResponse2003AdditionalAttributes}
    * @memberof ItemResponse
    */
-  additionalAttributes?: InlineResponse200AdditionalAttributes;
+  additionalAttributes?: InlineResponse2003AdditionalAttributes;
   /**
    *
-   * @type {InlineResponse200UnpublishedReasons}
+   * @type {InlineResponse2003UnpublishedReasons}
    * @memberof ItemResponse
    */
-  unpublishedReasons?: InlineResponse200UnpublishedReasons;
+  unpublishedReasons?: InlineResponse2003UnpublishedReasons;
   /**
    * The lifecycle status of an item describes where the item listing is in the overall lifecycle. Examples of allowed values are ACTIVE , ARCHIVED, RETIRED.
    * @type {string}
@@ -2143,27 +2339,234 @@ export enum ItemResponseMartEnum {
 /**
  *
  * @export
+ * @interface ItemResponseJson
+ */
+export interface ItemResponseJson {
+  /**
+   *
+   * @type {ItemResponseJsonResponseRecord}
+   * @memberof ItemResponseJson
+   */
+  responseRecord?: ItemResponseJsonResponseRecord;
+}
+/**
+ *
+ * @export
+ * @interface ItemResponseJsonResponseRecord
+ */
+export interface ItemResponseJsonResponseRecord {
+  /**
+   * The marketplace name. Example: Walmart_US
+   * @type {string}
+   * @memberof ItemResponseJsonResponseRecord
+   */
+  mart?: ItemResponseJsonResponseRecordMartEnum;
+  /**
+   * An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item.
+   * @type {string}
+   * @memberof ItemResponseJsonResponseRecord
+   */
+  sku: string;
+  /**
+   * The Walmart Product ID assigned by Walmart to the item when listed on Walmart.com
+   * @type {string}
+   * @memberof ItemResponseJsonResponseRecord
+   */
+  wpid?: string;
+  /**
+   * The 12-digit bar code used extensively for retail packaging in the United States
+   * @type {string}
+   * @memberof ItemResponseJsonResponseRecord
+   */
+  upc?: string;
+  /**
+   * The GTIN-compatible Product ID (i.e. UPC or EAN). UPCs must be 12 or 14 digitis in length. EANs must be 13 digits in length.
+   * @type {string}
+   * @memberof ItemResponseJsonResponseRecord
+   */
+  gtin?: string;
+  /**
+   * A seller-specified, alphanumeric string uniquely identifying the product name. Example: \'Sterling Silver Blue Diamond Heart Pendant with 18in Chain\'
+   * @type {string}
+   * @memberof ItemResponseJsonResponseRecord
+   */
+  productName?: string;
+  /**
+   * Walmart assigned an item shelf name
+   * @type {string}
+   * @memberof ItemResponseJsonResponseRecord
+   */
+  shelf?: string;
+  /**
+   * A seller-specified, alphanumeric string uniquely identifying the Product Type. Example: \'Diamond\'
+   * @type {string}
+   * @memberof ItemResponseJsonResponseRecord
+   */
+  productType?: string;
+  /**
+   *
+   * @type {InlineResponse2003Price}
+   * @memberof ItemResponseJsonResponseRecord
+   */
+  price?: InlineResponse2003Price;
+  /**
+   * The status of an item when the item is in the submission process. The status can be one of the following: PUBLISHED, READY_TO_PUBLISH, IN_PROGRESS, UNPUBLISHED, STAGE, or SYSTEM_PROBLEM.
+   * @type {string}
+   * @memberof ItemResponseJsonResponseRecord
+   */
+  publishedStatus?: string;
+  /**
+   *
+   * @type {InlineResponse2003AdditionalAttributes}
+   * @memberof ItemResponseJsonResponseRecord
+   */
+  additionalAttributes?: InlineResponse2003AdditionalAttributes;
+  /**
+   *
+   * @type {InlineResponse2003UnpublishedReasons}
+   * @memberof ItemResponseJsonResponseRecord
+   */
+  unpublishedReasons?: InlineResponse2003UnpublishedReasons;
+  /**
+   * The lifecycle status of an item describes where the item listing is in the overall lifecycle. Examples of allowed values are ACTIVE , ARCHIVED, RETIRED.
+   * @type {string}
+   * @memberof ItemResponseJsonResponseRecord
+   */
+  lifecycleStatus?: string;
+}
+
+/**
+ * @export
+ * @enum {string}
+ */
+export enum ItemResponseJsonResponseRecordMartEnum {
+  WalmartUs = "WALMART_US",
+  WalmartCa = "WALMART_CA",
+  AsdaGm = "ASDA_GM",
+  WalmartMexico = "WALMART_MEXICO",
+}
+
+/**
+ *
+ * @export
+ * @interface ItemResponseRecord
+ */
+export interface ItemResponseRecord {
+  /**
+   * The marketplace name. Example: Walmart_US
+   * @type {string}
+   * @memberof ItemResponseRecord
+   */
+  mart?: ItemResponseRecordMartEnum;
+  /**
+   * An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item.
+   * @type {string}
+   * @memberof ItemResponseRecord
+   */
+  sku: string;
+  /**
+   * The Walmart Product ID assigned by Walmart to the item when listed on Walmart.com
+   * @type {string}
+   * @memberof ItemResponseRecord
+   */
+  wpid?: string;
+  /**
+   * The 12-digit bar code used extensively for retail packaging in the United States
+   * @type {string}
+   * @memberof ItemResponseRecord
+   */
+  upc?: string;
+  /**
+   * The GTIN-compatible Product ID (i.e. UPC or EAN). UPCs must be 12 or 14 digitis in length. EANs must be 13 digits in length.
+   * @type {string}
+   * @memberof ItemResponseRecord
+   */
+  gtin?: string;
+  /**
+   * A seller-specified, alphanumeric string uniquely identifying the product name. Example: \'Sterling Silver Blue Diamond Heart Pendant with 18in Chain\'
+   * @type {string}
+   * @memberof ItemResponseRecord
+   */
+  productName?: string;
+  /**
+   * Walmart assigned an item shelf name
+   * @type {string}
+   * @memberof ItemResponseRecord
+   */
+  shelf?: string;
+  /**
+   * A seller-specified, alphanumeric string uniquely identifying the Product Type. Example: \'Diamond\'
+   * @type {string}
+   * @memberof ItemResponseRecord
+   */
+  productType?: string;
+  /**
+   *
+   * @type {InlineResponse2003Price}
+   * @memberof ItemResponseRecord
+   */
+  price?: InlineResponse2003Price;
+  /**
+   * The status of an item when the item is in the submission process. The status can be one of the following: PUBLISHED, READY_TO_PUBLISH, IN_PROGRESS, UNPUBLISHED, STAGE, or SYSTEM_PROBLEM.
+   * @type {string}
+   * @memberof ItemResponseRecord
+   */
+  publishedStatus?: string;
+  /**
+   *
+   * @type {InlineResponse2003AdditionalAttributes}
+   * @memberof ItemResponseRecord
+   */
+  additionalAttributes?: InlineResponse2003AdditionalAttributes;
+  /**
+   *
+   * @type {InlineResponse2003UnpublishedReasons}
+   * @memberof ItemResponseRecord
+   */
+  unpublishedReasons?: InlineResponse2003UnpublishedReasons;
+  /**
+   * The lifecycle status of an item describes where the item listing is in the overall lifecycle. Examples of allowed values are ACTIVE , ARCHIVED, RETIRED.
+   * @type {string}
+   * @memberof ItemResponseRecord
+   */
+  lifecycleStatus?: string;
+}
+
+/**
+ * @export
+ * @enum {string}
+ */
+export enum ItemResponseRecordMartEnum {
+  WalmartUs = "WALMART_US",
+  WalmartCa = "WALMART_CA",
+  AsdaGm = "ASDA_GM",
+  WalmartMexico = "WALMART_MEXICO",
+}
+
+/**
+ *
+ * @export
  * @interface ItemResponses
  */
 export interface ItemResponses {
   /**
    *
-   * @type {Array<InlineResponse200Errors>}
+   * @type {Array<InlineResponse2006Errors>}
    * @memberof ItemResponses
    */
-  errors?: Array<InlineResponse200Errors>;
+  errors?: Array<InlineResponse2006Errors>;
   /**
    * Items included in the response list
-   * @type {Array<InlineResponse200ItemResponse>}
+   * @type {Array<InlineResponse2003>}
    * @memberof ItemResponses
    */
-  itemResponse: Array<InlineResponse200ItemResponse>;
+  ItemResponse: Array<InlineResponse2003>;
   /**
    *
-   * @type {InlineResponse200AdditionalAttributes}
+   * @type {InlineResponse2003AdditionalAttributes}
    * @memberof ItemResponses
    */
-  additionalAttributes?: InlineResponse200AdditionalAttributes;
+  additionalAttributes?: InlineResponse2003AdditionalAttributes;
   /**
    * Total items for the query
    * @type {number}
@@ -2214,6 +2617,25 @@ export interface ItemSearch {
    * @memberof ItemSearch
    */
   items?: Array<InlineResponse2004Items>;
+}
+/**
+ * Specifies item purchase price information, including currency and amount.
+ * @export
+ * @interface ItemSearchPrice
+ */
+export interface ItemSearchPrice {
+  /**
+   *
+   * @type {string}
+   * @memberof ItemSearchPrice
+   */
+  amount?: string;
+  /**
+   *
+   * @type {string}
+   * @memberof ItemSearchPrice
+   */
+  currency?: string;
 }
 /**
  *
@@ -2285,10 +2707,10 @@ export interface ModelError {
   category?: ModelErrorCategoryEnum;
   /**
    *
-   * @type {Array<InlineResponse200Causes>}
+   * @type {Array<InlineResponse2001Causes>}
    * @memberof ModelError
    */
-  causes?: Array<InlineResponse200Causes>;
+  causes?: Array<InlineResponse2001Causes>;
   /**
    *
    * @type {{ [key: string]: object; }}
@@ -2545,10 +2967,10 @@ export interface NameValueAttribute {
   variantResourceType?: string;
   /**
    *
-   * @type {Array<InlineResponse200AdditionalAttributesValue>}
+   * @type {Array<InlineResponse2003AdditionalAttributesValue>}
    * @memberof NameValueAttribute
    */
-  value: Array<InlineResponse200AdditionalAttributesValue>;
+  value: Array<InlineResponse2003AdditionalAttributesValue>;
 }
 
 /**
@@ -2566,17 +2988,17 @@ export enum NameValueAttributeTypeEnum {
 }
 
 /**
- * Bag of additional attributes
+ * Bag of Additional attributes
  * @export
  * @interface NameValueAttributes
  */
 export interface NameValueAttributes {
   /**
    *
-   * @type {Array<InlineResponse200AdditionalAttributesNameValueAttribute>}
+   * @type {Array<InlineResponse2003AdditionalAttributesNameValueAttribute>}
    * @memberof NameValueAttributes
    */
-  nameValueAttribute?: Array<InlineResponse200AdditionalAttributesNameValueAttribute>;
+  nameValueAttribute?: Array<InlineResponse2003AdditionalAttributesNameValueAttribute>;
 }
 /**
  * Specifies item purchase price information, including currency and amount.
@@ -2585,18 +3007,195 @@ export interface NameValueAttributes {
  */
 export interface Price {
   /**
-   *
+   * The currency type. Example: USD for US Dollars
    * @type {string}
    * @memberof Price
    */
-  amount?: string;
+  unit?: PriceUnitEnum;
   /**
-   *
-   * @type {string}
+   * The numerical amount of the price. Example: 9.99
+   * @type {number}
    * @memberof Price
    */
-  currency?: string;
+  amount?: number;
 }
+
+/**
+ * @export
+ * @enum {string}
+ */
+export enum PriceUnitEnum {
+  Aed = "AED",
+  Afn = "AFN",
+  All = "ALL",
+  Amd = "AMD",
+  Ang = "ANG",
+  Aoa = "AOA",
+  Ars = "ARS",
+  Aud = "AUD",
+  Awg = "AWG",
+  Azn = "AZN",
+  Bam = "BAM",
+  Bbd = "BBD",
+  Bdt = "BDT",
+  Bgn = "BGN",
+  Bhd = "BHD",
+  Bif = "BIF",
+  Bmd = "BMD",
+  Bnd = "BND",
+  Bob = "BOB",
+  Brl = "BRL",
+  Bsd = "BSD",
+  Btn = "BTN",
+  Bwp = "BWP",
+  Byr = "BYR",
+  Bzd = "BZD",
+  Cad = "CAD",
+  Cdf = "CDF",
+  Chf = "CHF",
+  Clp = "CLP",
+  Cny = "CNY",
+  Cop = "COP",
+  Crc = "CRC",
+  Cup = "CUP",
+  Cve = "CVE",
+  Czk = "CZK",
+  Djf = "DJF",
+  Dkk = "DKK",
+  Dop = "DOP",
+  Dzd = "DZD",
+  Egp = "EGP",
+  Ern = "ERN",
+  Etb = "ETB",
+  Eur = "EUR",
+  Fjd = "FJD",
+  Fkp = "FKP",
+  Gbp = "GBP",
+  Gel = "GEL",
+  Ghs = "GHS",
+  Gip = "GIP",
+  Gmd = "GMD",
+  Gnf = "GNF",
+  Gtq = "GTQ",
+  Gyd = "GYD",
+  Hkd = "HKD",
+  Hnl = "HNL",
+  Hrk = "HRK",
+  Htg = "HTG",
+  Huf = "HUF",
+  Idr = "IDR",
+  Ils = "ILS",
+  Inr = "INR",
+  Iqd = "IQD",
+  Irr = "IRR",
+  Isk = "ISK",
+  Jmd = "JMD",
+  Jod = "JOD",
+  Jpy = "JPY",
+  Kes = "KES",
+  Kgs = "KGS",
+  Khr = "KHR",
+  Kmf = "KMF",
+  Kpw = "KPW",
+  Krw = "KRW",
+  Kwd = "KWD",
+  Kyd = "KYD",
+  Kzt = "KZT",
+  Lak = "LAK",
+  Lbp = "LBP",
+  Lkr = "LKR",
+  Lrd = "LRD",
+  Lsl = "LSL",
+  Ltl = "LTL",
+  Lvl = "LVL",
+  Lyd = "LYD",
+  Mad = "MAD",
+  Mdl = "MDL",
+  Mga = "MGA",
+  Mkd = "MKD",
+  Mmk = "MMK",
+  Mnt = "MNT",
+  Mop = "MOP",
+  Mro = "MRO",
+  Mur = "MUR",
+  Mvr = "MVR",
+  Mwk = "MWK",
+  Mxn = "MXN",
+  Myr = "MYR",
+  Mzn = "MZN",
+  Nad = "NAD",
+  Ngn = "NGN",
+  Nio = "NIO",
+  Nok = "NOK",
+  Npr = "NPR",
+  Nzd = "NZD",
+  Omr = "OMR",
+  Pab = "PAB",
+  Pen = "PEN",
+  Pgk = "PGK",
+  Php = "PHP",
+  Pkr = "PKR",
+  Pln = "PLN",
+  Pyg = "PYG",
+  Qar = "QAR",
+  Ron = "RON",
+  Rsd = "RSD",
+  Rub = "RUB",
+  Rur = "RUR",
+  Rwf = "RWF",
+  Sar = "SAR",
+  Sbd = "SBD",
+  Scr = "SCR",
+  Sdg = "SDG",
+  Sek = "SEK",
+  Sgd = "SGD",
+  Shp = "SHP",
+  Sll = "SLL",
+  Sos = "SOS",
+  Srd = "SRD",
+  Std = "STD",
+  Syp = "SYP",
+  Szl = "SZL",
+  Thb = "THB",
+  Tjs = "TJS",
+  Tmt = "TMT",
+  Tnd = "TND",
+  Top = "TOP",
+  Try = "TRY",
+  Ttd = "TTD",
+  Twd = "TWD",
+  Tzs = "TZS",
+  Uah = "UAH",
+  Ugx = "UGX",
+  Usd = "USD",
+  Uyu = "UYU",
+  Uzs = "UZS",
+  Vef = "VEF",
+  Vnd = "VND",
+  Vuv = "VUV",
+  Wst = "WST",
+  Xaf = "XAF",
+  Xag = "XAG",
+  Xau = "XAU",
+  Xba = "XBA",
+  Xbb = "XBB",
+  Xbc = "XBC",
+  Xbd = "XBD",
+  Xcd = "XCD",
+  Xdr = "XDR",
+  Xfu = "XFU",
+  Xof = "XOF",
+  Xpd = "XPD",
+  Xpf = "XPF",
+  Xpt = "XPT",
+  Xts = "XTS",
+  Xxx = "XXX",
+  Yer = "YER",
+  Zar = "ZAR",
+  Zmk = "ZMK",
+  Zwl = "ZWL",
+}
+
 /**
  *
  * @export
@@ -3349,8 +3948,8 @@ export const ItemsApiAxiosParamCreator = function (
      * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
      * @param {string} wMSVCNAME Walmart Service Name
      * @param {InlineObject1} inlineObject1
-     * @param {string} [page] number of page
-     * @param {string} [limit] number of items
+     * @param {number} [page] number of page
+     * @param {number} [limit] number of items
      * @param {string} [nextCursor] nextCursor
      * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
      * @param {*} [options] Override http request option.
@@ -3362,8 +3961,8 @@ export const ItemsApiAxiosParamCreator = function (
       wMQOSCORRELATIONID: string,
       wMSVCNAME: string,
       inlineObject1: InlineObject1,
-      page?: string,
-      limit?: string,
+      page?: number,
+      limit?: number,
       nextCursor?: string,
       wMCONSUMERCHANNELTYPE?: string,
       options: any = {}
@@ -3891,9 +4490,9 @@ export const ItemsApiAxiosParamCreator = function (
       };
     },
     /**
-     *  Use this API for initial item setup and maintenance.  This API updates items in bulk. You can update 10,000 items at once; updates with more than 10,000 items are not supported. Keep feed sizes below 10 MB to ensure optimal feed processing time.  You can use the Bulk Item Setup API for any of the following item spec versions, just specify the corresponding feed type as a query parameter.  *   Item spec version 3.2 feed type: item *   Item spec version 4.3 feed type: MP_ITEM *   WFS Item spec version 4.2 feed type: MP_WFS_ITEM  *   WFS Maintenance spec version 4.3 feed type: MP_MAINTENANCE *   Set up item by match 4.0 feed type: MP_ITEM_MATCH
+     *  Use this API for initial item setup and maintenance.  This API updates items in bulk. You can update 10,000 items at once; updates with more than 10,000 items are not supported. Keep feed sizes below 10 MB to ensure optimal feed processing time.  You can use the Bulk Item Setup API for any of the following item spec versions, just specify the corresponding feed type as a query parameter.  *   Item spec version 3.2 feed type: item *   Item spec version 4.3 feed type: MP_ITEM *   WFS Item spec version 4.2 feed type: MP_WFS_ITEM  *   WFS Maintenance spec version 4.3 feed type: MP_MAINTENANCE *   Set up item by match 4.0 feed type: MP_ITEM_MATCH  *   Convert an existing item to WFS 4.4 feed type : OMNI_WFS
      * @summary Bulk Item Setup (Multiple)
-     * @param {'item' | 'RETIRE_ITEM' | 'MP_ITEM' | 'MP_WFS_ITEM' | 'MP_ITEM_MATCH' | 'MP_MAINTENANCE' | 'SKU_TEMPLATE_MAP' | 'SHIPPING_OVERRIDES'} feedType The feed Type
+     * @param {'item' | 'RETIRE_ITEM' | 'MP_ITEM' | 'MP_WFS_ITEM' | 'MP_ITEM_MATCH' | 'MP_MAINTENANCE' | 'SKU_TEMPLATE_MAP' | 'SHIPPING_OVERRIDES' | 'OMNI_WFS'} feedType The feed Type
      * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
      * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
      * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
@@ -3912,7 +4511,8 @@ export const ItemsApiAxiosParamCreator = function (
         | "MP_ITEM_MATCH"
         | "MP_MAINTENANCE"
         | "SKU_TEMPLATE_MAP"
-        | "SHIPPING_OVERRIDES",
+        | "SHIPPING_OVERRIDES"
+        | "OMNI_WFS",
       authorization: string,
       wMSECACCESSTOKEN: string,
       wMQOSCORRELATIONID: string,
@@ -4157,7 +4757,7 @@ export const ItemsApiFp = function (configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<InlineResponse200>
+      ) => AxiosPromise<InlineResponse2006>
     > {
       const localVarAxiosArgs = await localVarAxiosParamCreator.getAllItems(
         authorization,
@@ -4206,7 +4806,7 @@ export const ItemsApiFp = function (configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<InlineResponse200ItemResponse>
+      ) => AxiosPromise<InlineResponse2003>
     > {
       const localVarAxiosArgs = await localVarAxiosParamCreator.getAnItem(
         id,
@@ -4233,8 +4833,8 @@ export const ItemsApiFp = function (configuration?: Configuration) {
      * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
      * @param {string} wMSVCNAME Walmart Service Name
      * @param {InlineObject1} inlineObject1
-     * @param {string} [page] number of page
-     * @param {string} [limit] number of items
+     * @param {number} [page] number of page
+     * @param {number} [limit] number of items
      * @param {string} [nextCursor] nextCursor
      * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
      * @param {*} [options] Override http request option.
@@ -4246,8 +4846,8 @@ export const ItemsApiFp = function (configuration?: Configuration) {
       wMQOSCORRELATIONID: string,
       wMSVCNAME: string,
       inlineObject1: InlineObject1,
-      page?: string,
-      limit?: string,
+      page?: number,
+      limit?: number,
       nextCursor?: string,
       wMCONSUMERCHANNELTYPE?: string,
       options?: any
@@ -4454,9 +5054,9 @@ export const ItemsApiFp = function (configuration?: Configuration) {
       );
     },
     /**
-     *  Use this API for initial item setup and maintenance.  This API updates items in bulk. You can update 10,000 items at once; updates with more than 10,000 items are not supported. Keep feed sizes below 10 MB to ensure optimal feed processing time.  You can use the Bulk Item Setup API for any of the following item spec versions, just specify the corresponding feed type as a query parameter.  *   Item spec version 3.2 feed type: item *   Item spec version 4.3 feed type: MP_ITEM *   WFS Item spec version 4.2 feed type: MP_WFS_ITEM  *   WFS Maintenance spec version 4.3 feed type: MP_MAINTENANCE *   Set up item by match 4.0 feed type: MP_ITEM_MATCH
+     *  Use this API for initial item setup and maintenance.  This API updates items in bulk. You can update 10,000 items at once; updates with more than 10,000 items are not supported. Keep feed sizes below 10 MB to ensure optimal feed processing time.  You can use the Bulk Item Setup API for any of the following item spec versions, just specify the corresponding feed type as a query parameter.  *   Item spec version 3.2 feed type: item *   Item spec version 4.3 feed type: MP_ITEM *   WFS Item spec version 4.2 feed type: MP_WFS_ITEM  *   WFS Maintenance spec version 4.3 feed type: MP_MAINTENANCE *   Set up item by match 4.0 feed type: MP_ITEM_MATCH  *   Convert an existing item to WFS 4.4 feed type : OMNI_WFS
      * @summary Bulk Item Setup (Multiple)
-     * @param {'item' | 'RETIRE_ITEM' | 'MP_ITEM' | 'MP_WFS_ITEM' | 'MP_ITEM_MATCH' | 'MP_MAINTENANCE' | 'SKU_TEMPLATE_MAP' | 'SHIPPING_OVERRIDES'} feedType The feed Type
+     * @param {'item' | 'RETIRE_ITEM' | 'MP_ITEM' | 'MP_WFS_ITEM' | 'MP_ITEM_MATCH' | 'MP_MAINTENANCE' | 'SKU_TEMPLATE_MAP' | 'SHIPPING_OVERRIDES' | 'OMNI_WFS'} feedType The feed Type
      * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
      * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
      * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
@@ -4475,7 +5075,8 @@ export const ItemsApiFp = function (configuration?: Configuration) {
         | "MP_ITEM_MATCH"
         | "MP_MAINTENANCE"
         | "SKU_TEMPLATE_MAP"
-        | "SHIPPING_OVERRIDES",
+        | "SHIPPING_OVERRIDES"
+        | "OMNI_WFS",
       authorization: string,
       wMSECACCESSTOKEN: string,
       wMQOSCORRELATIONID: string,
@@ -4487,7 +5088,7 @@ export const ItemsApiFp = function (configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<InlineResponse2006>
+      ) => AxiosPromise<InlineResponse2007>
     > {
       const localVarAxiosArgs = await localVarAxiosParamCreator.itemBulkUploads(
         feedType,
@@ -4530,7 +5131,7 @@ export const ItemsApiFp = function (configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<InlineResponse2003>
+      ) => AxiosPromise<InlineResponse200>
     > {
       const localVarAxiosArgs = await localVarAxiosParamCreator.retireAnItem(
         sKU,
@@ -4592,7 +5193,7 @@ export const ItemsApiFactory = function (
       publishedStatus?: string,
       wMCONSUMERCHANNELTYPE?: string,
       options?: any
-    ): AxiosPromise<InlineResponse200> {
+    ): AxiosPromise<InlineResponse2006> {
       return localVarFp
         .getAllItems(
           authorization,
@@ -4632,7 +5233,7 @@ export const ItemsApiFactory = function (
       wMSVCNAME: string,
       wMCONSUMERCHANNELTYPE?: string,
       options?: any
-    ): AxiosPromise<InlineResponse200ItemResponse> {
+    ): AxiosPromise<InlineResponse2003> {
       return localVarFp
         .getAnItem(
           id,
@@ -4654,8 +5255,8 @@ export const ItemsApiFactory = function (
      * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
      * @param {string} wMSVCNAME Walmart Service Name
      * @param {InlineObject1} inlineObject1
-     * @param {string} [page] number of page
-     * @param {string} [limit] number of items
+     * @param {number} [page] number of page
+     * @param {number} [limit] number of items
      * @param {string} [nextCursor] nextCursor
      * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
      * @param {*} [options] Override http request option.
@@ -4667,8 +5268,8 @@ export const ItemsApiFactory = function (
       wMQOSCORRELATIONID: string,
       wMSVCNAME: string,
       inlineObject1: InlineObject1,
-      page?: string,
-      limit?: string,
+      page?: number,
+      limit?: number,
       nextCursor?: string,
       wMCONSUMERCHANNELTYPE?: string,
       options?: any
@@ -4829,9 +5430,9 @@ export const ItemsApiFactory = function (
         .then((request) => request(axios, basePath));
     },
     /**
-     *  Use this API for initial item setup and maintenance.  This API updates items in bulk. You can update 10,000 items at once; updates with more than 10,000 items are not supported. Keep feed sizes below 10 MB to ensure optimal feed processing time.  You can use the Bulk Item Setup API for any of the following item spec versions, just specify the corresponding feed type as a query parameter.  *   Item spec version 3.2 feed type: item *   Item spec version 4.3 feed type: MP_ITEM *   WFS Item spec version 4.2 feed type: MP_WFS_ITEM  *   WFS Maintenance spec version 4.3 feed type: MP_MAINTENANCE *   Set up item by match 4.0 feed type: MP_ITEM_MATCH
+     *  Use this API for initial item setup and maintenance.  This API updates items in bulk. You can update 10,000 items at once; updates with more than 10,000 items are not supported. Keep feed sizes below 10 MB to ensure optimal feed processing time.  You can use the Bulk Item Setup API for any of the following item spec versions, just specify the corresponding feed type as a query parameter.  *   Item spec version 3.2 feed type: item *   Item spec version 4.3 feed type: MP_ITEM *   WFS Item spec version 4.2 feed type: MP_WFS_ITEM  *   WFS Maintenance spec version 4.3 feed type: MP_MAINTENANCE *   Set up item by match 4.0 feed type: MP_ITEM_MATCH  *   Convert an existing item to WFS 4.4 feed type : OMNI_WFS
      * @summary Bulk Item Setup (Multiple)
-     * @param {'item' | 'RETIRE_ITEM' | 'MP_ITEM' | 'MP_WFS_ITEM' | 'MP_ITEM_MATCH' | 'MP_MAINTENANCE' | 'SKU_TEMPLATE_MAP' | 'SHIPPING_OVERRIDES'} feedType The feed Type
+     * @param {'item' | 'RETIRE_ITEM' | 'MP_ITEM' | 'MP_WFS_ITEM' | 'MP_ITEM_MATCH' | 'MP_MAINTENANCE' | 'SKU_TEMPLATE_MAP' | 'SHIPPING_OVERRIDES' | 'OMNI_WFS'} feedType The feed Type
      * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
      * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
      * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
@@ -4850,7 +5451,8 @@ export const ItemsApiFactory = function (
         | "MP_ITEM_MATCH"
         | "MP_MAINTENANCE"
         | "SKU_TEMPLATE_MAP"
-        | "SHIPPING_OVERRIDES",
+        | "SHIPPING_OVERRIDES"
+        | "OMNI_WFS",
       authorization: string,
       wMSECACCESSTOKEN: string,
       wMQOSCORRELATIONID: string,
@@ -4858,7 +5460,7 @@ export const ItemsApiFactory = function (
       wMCONSUMERCHANNELTYPE?: string,
       file?: any,
       options?: any
-    ): AxiosPromise<InlineResponse2006> {
+    ): AxiosPromise<InlineResponse2007> {
       return localVarFp
         .itemBulkUploads(
           feedType,
@@ -4892,7 +5494,7 @@ export const ItemsApiFactory = function (
       wMSVCNAME: string,
       wMCONSUMERCHANNELTYPE?: string,
       options?: any
-    ): AxiosPromise<InlineResponse2003> {
+    ): AxiosPromise<InlineResponse200> {
       return localVarFp
         .retireAnItem(
           sKU,
@@ -5091,17 +5693,17 @@ export interface ItemsApiGetCatalogSearchRequest {
 
   /**
    * number of page
-   * @type {string}
+   * @type {number}
    * @memberof ItemsApiGetCatalogSearch
    */
-  readonly page?: string;
+  readonly page?: number;
 
   /**
    * number of items
-   * @type {string}
+   * @type {number}
    * @memberof ItemsApiGetCatalogSearch
    */
-  readonly limit?: string;
+  readonly limit?: number;
 
   /**
    * nextCursor
@@ -5334,7 +5936,7 @@ export interface ItemsApiGetTaxonomyResponseRequest {
 export interface ItemsApiItemBulkUploadsRequest {
   /**
    * The feed Type
-   * @type {'item' | 'RETIRE_ITEM' | 'MP_ITEM' | 'MP_WFS_ITEM' | 'MP_ITEM_MATCH' | 'MP_MAINTENANCE' | 'SKU_TEMPLATE_MAP' | 'SHIPPING_OVERRIDES'}
+   * @type {'item' | 'RETIRE_ITEM' | 'MP_ITEM' | 'MP_WFS_ITEM' | 'MP_ITEM_MATCH' | 'MP_MAINTENANCE' | 'SKU_TEMPLATE_MAP' | 'SHIPPING_OVERRIDES' | 'OMNI_WFS'}
    * @memberof ItemsApiItemBulkUploads
    */
   readonly feedType:
@@ -5345,7 +5947,8 @@ export interface ItemsApiItemBulkUploadsRequest {
     | "MP_ITEM_MATCH"
     | "MP_MAINTENANCE"
     | "SKU_TEMPLATE_MAP"
-    | "SHIPPING_OVERRIDES";
+    | "SHIPPING_OVERRIDES"
+    | "OMNI_WFS";
 
   /**
    * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
@@ -5629,7 +6232,7 @@ export class ItemsApi extends BaseAPI {
   }
 
   /**
-   *  Use this API for initial item setup and maintenance.  This API updates items in bulk. You can update 10,000 items at once; updates with more than 10,000 items are not supported. Keep feed sizes below 10 MB to ensure optimal feed processing time.  You can use the Bulk Item Setup API for any of the following item spec versions, just specify the corresponding feed type as a query parameter.  *   Item spec version 3.2 feed type: item *   Item spec version 4.3 feed type: MP_ITEM *   WFS Item spec version 4.2 feed type: MP_WFS_ITEM  *   WFS Maintenance spec version 4.3 feed type: MP_MAINTENANCE *   Set up item by match 4.0 feed type: MP_ITEM_MATCH
+   *  Use this API for initial item setup and maintenance.  This API updates items in bulk. You can update 10,000 items at once; updates with more than 10,000 items are not supported. Keep feed sizes below 10 MB to ensure optimal feed processing time.  You can use the Bulk Item Setup API for any of the following item spec versions, just specify the corresponding feed type as a query parameter.  *   Item spec version 3.2 feed type: item *   Item spec version 4.3 feed type: MP_ITEM *   WFS Item spec version 4.2 feed type: MP_WFS_ITEM  *   WFS Maintenance spec version 4.3 feed type: MP_MAINTENANCE *   Set up item by match 4.0 feed type: MP_ITEM_MATCH  *   Convert an existing item to WFS 4.4 feed type : OMNI_WFS
    * @summary Bulk Item Setup (Multiple)
    * @param {ItemsApiItemBulkUploadsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.

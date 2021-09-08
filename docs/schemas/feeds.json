@@ -227,74 +227,77 @@
                       "format": "int32"
                     },
                     "results": {
-                      "type": "array",
-                      "description": "The feed status results",
-                      "xml": {
-                        "wrapped": true
-                      },
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "feedId": {
-                            "type": "string",
-                            "description": "A unique ID used for tracking the Feed File"
-                          },
-                          "feedSource": {
-                            "type": "string",
-                            "description": "The source of the feed"
-                          },
-                          "feedType": {
-                            "type": "string",
-                            "description": "The feed type"
-                          },
-                          "partnerId": {
-                            "type": "string",
-                            "description": "The seller ID"
-                          },
-                          "itemsReceived": {
-                            "type": "integer",
-                            "description": "The number of items received",
-                            "format": "int64"
-                          },
-                          "itemsSucceeded": {
-                            "type": "integer",
-                            "description": "The number of items in the feed that have successfully processed",
-                            "format": "int64"
-                          },
-                          "itemsFailed": {
-                            "type": "integer",
-                            "description": "The number of items in the feed that failed due to a data or system error",
-                            "format": "int64"
-                          },
-                          "itemsProcessing": {
-                            "type": "integer",
-                            "description": "The number of items in the feed that are still in progress",
-                            "format": "int64"
-                          },
-                          "feedStatus": {
-                            "type": "string",
-                            "description": "Can be one of the following: RECEIVED, INPROGRESS, PROCESSED, or ERROR. For details, see the definitions listed under 'Feed Statuses' at the beginning of this section."
-                          },
-                          "feedDate": {
-                            "type": "string",
-                            "description": "The date and time the feed was submitted. Format: yyyymmddThh:mm:ss.xxxz",
-                            "format": "date-time"
-                          },
-                          "batchId": {
-                            "type": "string",
-                            "description": "The batch ID for the feed, if provided"
-                          },
-                          "modifiedDtm": {
-                            "type": "string",
-                            "description": "The most recent time the feed was modified. Format: yyyymmddThh:mm:ss.xxxz",
-                            "format": "date-time"
+                      "type": "object",
+                      "properties": {
+                        "feed": {
+                          "type": "array",
+                          "description": "The feed status results",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "feedId": {
+                                "type": "string",
+                                "description": "A unique ID used for tracking the Feed File"
+                              },
+                              "feedSource": {
+                                "type": "string",
+                                "description": "The source of the feed"
+                              },
+                              "feedType": {
+                                "type": "string",
+                                "description": "The feed type"
+                              },
+                              "partnerId": {
+                                "type": "string",
+                                "description": "The seller ID"
+                              },
+                              "itemsReceived": {
+                                "type": "integer",
+                                "description": "The number of items received",
+                                "format": "int64"
+                              },
+                              "itemsSucceeded": {
+                                "type": "integer",
+                                "description": "The number of items in the feed that have successfully processed",
+                                "format": "int64"
+                              },
+                              "itemsFailed": {
+                                "type": "integer",
+                                "description": "The number of items in the feed that failed due to a data or system error",
+                                "format": "int64"
+                              },
+                              "itemsProcessing": {
+                                "type": "integer",
+                                "description": "The number of items in the feed that are still in progress",
+                                "format": "int64"
+                              },
+                              "feedStatus": {
+                                "type": "string",
+                                "description": "Can be one of the following: RECEIVED, INPROGRESS, PROCESSED, or ERROR. For details, see the definitions listed under 'Feed Statuses' at the beginning of this section."
+                              },
+                              "feedDate": {
+                                "type": "integer",
+                                "description": "The date and time the feed was submitted. Format: yyyymmddThh:mm:ss.xxxz",
+                                "format": "int64"
+                              },
+                              "batchId": {
+                                "type": "string",
+                                "description": "The batch ID for the feed, if provided"
+                              },
+                              "modifiedDtm": {
+                                "type": "integer",
+                                "description": "The most recent time the feed was modified. Format: yyyymmddThh:mm:ss.xxxz",
+                                "format": "int64"
+                              }
+                            },
+                            "description": "Information about the individual feed",
+                            "xml": {
+                              "name": "feed"
+                            }
                           }
-                        },
-                        "description": "Information about the individual feed",
-                        "xml": {
-                          "name": "feed"
                         }
-                      }
+                      },
+                      "description": "The feed status results"
                     }
                   },
                   "xml": {
@@ -418,74 +421,77 @@
                       "format": "int32"
                     },
                     "results": {
-                      "type": "array",
-                      "description": "The feed status results",
-                      "xml": {
-                        "wrapped": true
-                      },
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "feedId": {
-                            "type": "string",
-                            "description": "A unique ID used for tracking the Feed File"
-                          },
-                          "feedSource": {
-                            "type": "string",
-                            "description": "The source of the feed"
-                          },
-                          "feedType": {
-                            "type": "string",
-                            "description": "The feed type"
-                          },
-                          "partnerId": {
-                            "type": "string",
-                            "description": "The seller ID"
-                          },
-                          "itemsReceived": {
-                            "type": "integer",
-                            "description": "The number of items received",
-                            "format": "int64"
-                          },
-                          "itemsSucceeded": {
-                            "type": "integer",
-                            "description": "The number of items in the feed that have successfully processed",
-                            "format": "int64"
-                          },
-                          "itemsFailed": {
-                            "type": "integer",
-                            "description": "The number of items in the feed that failed due to a data or system error",
-                            "format": "int64"
-                          },
-                          "itemsProcessing": {
-                            "type": "integer",
-                            "description": "The number of items in the feed that are still in progress",
-                            "format": "int64"
-                          },
-                          "feedStatus": {
-                            "type": "string",
-                            "description": "Can be one of the following: RECEIVED, INPROGRESS, PROCESSED, or ERROR. For details, see the definitions listed under 'Feed Statuses' at the beginning of this section."
-                          },
-                          "feedDate": {
-                            "type": "string",
-                            "description": "The date and time the feed was submitted. Format: yyyymmddThh:mm:ss.xxxz",
-                            "format": "date-time"
-                          },
-                          "batchId": {
-                            "type": "string",
-                            "description": "The batch ID for the feed, if provided"
-                          },
-                          "modifiedDtm": {
-                            "type": "string",
-                            "description": "The most recent time the feed was modified. Format: yyyymmddThh:mm:ss.xxxz",
-                            "format": "date-time"
+                      "type": "object",
+                      "properties": {
+                        "feed": {
+                          "type": "array",
+                          "description": "The feed status results",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "feedId": {
+                                "type": "string",
+                                "description": "A unique ID used for tracking the Feed File"
+                              },
+                              "feedSource": {
+                                "type": "string",
+                                "description": "The source of the feed"
+                              },
+                              "feedType": {
+                                "type": "string",
+                                "description": "The feed type"
+                              },
+                              "partnerId": {
+                                "type": "string",
+                                "description": "The seller ID"
+                              },
+                              "itemsReceived": {
+                                "type": "integer",
+                                "description": "The number of items received",
+                                "format": "int64"
+                              },
+                              "itemsSucceeded": {
+                                "type": "integer",
+                                "description": "The number of items in the feed that have successfully processed",
+                                "format": "int64"
+                              },
+                              "itemsFailed": {
+                                "type": "integer",
+                                "description": "The number of items in the feed that failed due to a data or system error",
+                                "format": "int64"
+                              },
+                              "itemsProcessing": {
+                                "type": "integer",
+                                "description": "The number of items in the feed that are still in progress",
+                                "format": "int64"
+                              },
+                              "feedStatus": {
+                                "type": "string",
+                                "description": "Can be one of the following: RECEIVED, INPROGRESS, PROCESSED, or ERROR. For details, see the definitions listed under 'Feed Statuses' at the beginning of this section."
+                              },
+                              "feedDate": {
+                                "type": "integer",
+                                "description": "The date and time the feed was submitted. Format: yyyymmddThh:mm:ss.xxxz",
+                                "format": "int64"
+                              },
+                              "batchId": {
+                                "type": "string",
+                                "description": "The batch ID for the feed, if provided"
+                              },
+                              "modifiedDtm": {
+                                "type": "integer",
+                                "description": "The most recent time the feed was modified. Format: yyyymmddThh:mm:ss.xxxz",
+                                "format": "int64"
+                              }
+                            },
+                            "description": "Information about the individual feed",
+                            "xml": {
+                              "name": "feed"
+                            }
                           }
-                        },
-                        "description": "Information about the individual feed",
-                        "xml": {
-                          "name": "feed"
                         }
-                      }
+                      },
+                      "description": "The feed status results"
                     }
                   },
                   "xml": {
@@ -2175,18 +2181,18 @@
             "description": "Can be one of the following: RECEIVED, INPROGRESS, PROCESSED, or ERROR. For details, see the definitions listed under 'Feed Statuses' at the beginning of this section."
           },
           "feedDate": {
-            "type": "string",
+            "type": "integer",
             "description": "The date and time the feed was submitted. Format: yyyymmddThh:mm:ss.xxxz",
-            "format": "date-time"
+            "format": "int64"
           },
           "batchId": {
             "type": "string",
             "description": "The batch ID for the feed, if provided"
           },
           "modifiedDtm": {
-            "type": "string",
+            "type": "integer",
             "description": "The most recent time the feed was modified. Format: yyyymmddThh:mm:ss.xxxz",
-            "format": "date-time"
+            "format": "int64"
           }
         },
         "description": "Information about the individual feed",
@@ -2308,74 +2314,77 @@
             "format": "int32"
           },
           "results": {
-            "type": "array",
-            "description": "The feed status results",
-            "xml": {
-              "wrapped": true
-            },
-            "items": {
-              "type": "object",
-              "properties": {
-                "feedId": {
-                  "type": "string",
-                  "description": "A unique ID used for tracking the Feed File"
-                },
-                "feedSource": {
-                  "type": "string",
-                  "description": "The source of the feed"
-                },
-                "feedType": {
-                  "type": "string",
-                  "description": "The feed type"
-                },
-                "partnerId": {
-                  "type": "string",
-                  "description": "The seller ID"
-                },
-                "itemsReceived": {
-                  "type": "integer",
-                  "description": "The number of items received",
-                  "format": "int64"
-                },
-                "itemsSucceeded": {
-                  "type": "integer",
-                  "description": "The number of items in the feed that have successfully processed",
-                  "format": "int64"
-                },
-                "itemsFailed": {
-                  "type": "integer",
-                  "description": "The number of items in the feed that failed due to a data or system error",
-                  "format": "int64"
-                },
-                "itemsProcessing": {
-                  "type": "integer",
-                  "description": "The number of items in the feed that are still in progress",
-                  "format": "int64"
-                },
-                "feedStatus": {
-                  "type": "string",
-                  "description": "Can be one of the following: RECEIVED, INPROGRESS, PROCESSED, or ERROR. For details, see the definitions listed under 'Feed Statuses' at the beginning of this section."
-                },
-                "feedDate": {
-                  "type": "string",
-                  "description": "The date and time the feed was submitted. Format: yyyymmddThh:mm:ss.xxxz",
-                  "format": "date-time"
-                },
-                "batchId": {
-                  "type": "string",
-                  "description": "The batch ID for the feed, if provided"
-                },
-                "modifiedDtm": {
-                  "type": "string",
-                  "description": "The most recent time the feed was modified. Format: yyyymmddThh:mm:ss.xxxz",
-                  "format": "date-time"
+            "type": "object",
+            "properties": {
+              "feed": {
+                "type": "array",
+                "description": "The feed status results",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "feedId": {
+                      "type": "string",
+                      "description": "A unique ID used for tracking the Feed File"
+                    },
+                    "feedSource": {
+                      "type": "string",
+                      "description": "The source of the feed"
+                    },
+                    "feedType": {
+                      "type": "string",
+                      "description": "The feed type"
+                    },
+                    "partnerId": {
+                      "type": "string",
+                      "description": "The seller ID"
+                    },
+                    "itemsReceived": {
+                      "type": "integer",
+                      "description": "The number of items received",
+                      "format": "int64"
+                    },
+                    "itemsSucceeded": {
+                      "type": "integer",
+                      "description": "The number of items in the feed that have successfully processed",
+                      "format": "int64"
+                    },
+                    "itemsFailed": {
+                      "type": "integer",
+                      "description": "The number of items in the feed that failed due to a data or system error",
+                      "format": "int64"
+                    },
+                    "itemsProcessing": {
+                      "type": "integer",
+                      "description": "The number of items in the feed that are still in progress",
+                      "format": "int64"
+                    },
+                    "feedStatus": {
+                      "type": "string",
+                      "description": "Can be one of the following: RECEIVED, INPROGRESS, PROCESSED, or ERROR. For details, see the definitions listed under 'Feed Statuses' at the beginning of this section."
+                    },
+                    "feedDate": {
+                      "type": "integer",
+                      "description": "The date and time the feed was submitted. Format: yyyymmddThh:mm:ss.xxxz",
+                      "format": "int64"
+                    },
+                    "batchId": {
+                      "type": "string",
+                      "description": "The batch ID for the feed, if provided"
+                    },
+                    "modifiedDtm": {
+                      "type": "integer",
+                      "description": "The most recent time the feed was modified. Format: yyyymmddThh:mm:ss.xxxz",
+                      "format": "int64"
+                    }
+                  },
+                  "description": "Information about the individual feed",
+                  "xml": {
+                    "name": "feed"
+                  }
                 }
-              },
-              "description": "Information about the individual feed",
-              "xml": {
-                "name": "feed"
               }
-            }
+            },
+            "description": "The feed status results"
           }
         },
         "xml": {
@@ -2470,6 +2479,79 @@
         "xml": {
           "name": "GatewayError"
         }
+      },
+      "ResultRecord": {
+        "type": "object",
+        "properties": {
+          "feed": {
+            "type": "array",
+            "description": "The feed status results",
+            "items": {
+              "type": "object",
+              "properties": {
+                "feedId": {
+                  "type": "string",
+                  "description": "A unique ID used for tracking the Feed File"
+                },
+                "feedSource": {
+                  "type": "string",
+                  "description": "The source of the feed"
+                },
+                "feedType": {
+                  "type": "string",
+                  "description": "The feed type"
+                },
+                "partnerId": {
+                  "type": "string",
+                  "description": "The seller ID"
+                },
+                "itemsReceived": {
+                  "type": "integer",
+                  "description": "The number of items received",
+                  "format": "int64"
+                },
+                "itemsSucceeded": {
+                  "type": "integer",
+                  "description": "The number of items in the feed that have successfully processed",
+                  "format": "int64"
+                },
+                "itemsFailed": {
+                  "type": "integer",
+                  "description": "The number of items in the feed that failed due to a data or system error",
+                  "format": "int64"
+                },
+                "itemsProcessing": {
+                  "type": "integer",
+                  "description": "The number of items in the feed that are still in progress",
+                  "format": "int64"
+                },
+                "feedStatus": {
+                  "type": "string",
+                  "description": "Can be one of the following: RECEIVED, INPROGRESS, PROCESSED, or ERROR. For details, see the definitions listed under 'Feed Statuses' at the beginning of this section."
+                },
+                "feedDate": {
+                  "type": "integer",
+                  "description": "The date and time the feed was submitted. Format: yyyymmddThh:mm:ss.xxxz",
+                  "format": "int64"
+                },
+                "batchId": {
+                  "type": "string",
+                  "description": "The batch ID for the feed, if provided"
+                },
+                "modifiedDtm": {
+                  "type": "integer",
+                  "description": "The most recent time the feed was modified. Format: yyyymmddThh:mm:ss.xxxz",
+                  "format": "int64"
+                }
+              },
+              "description": "Information about the individual feed",
+              "xml": {
+                "name": "feed"
+              }
+            }
+          }
+        },
+        "description": "The feed status results"
       },
       "IngestionError": {
         "required": [

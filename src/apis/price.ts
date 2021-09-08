@@ -162,13 +162,13 @@ export interface FeedId {
    * @type {object}
    * @memberof FeedId
    */
-  additionalAttributes?: object;
+  additionalAttributes?: object | null;
   /**
    *
    * @type {object}
    * @memberof FeedId
    */
-  errors?: object;
+  errors?: object | null;
 }
 /**
  *
@@ -418,13 +418,13 @@ export interface InlineResponse2002 {
    * @type {object}
    * @memberof InlineResponse2002
    */
-  additionalAttributes?: object;
+  additionalAttributes?: object | null;
   /**
    *
    * @type {object}
    * @memberof InlineResponse2002
    */
-  errors?: object;
+  errors?: object | null;
 }
 /**
  *

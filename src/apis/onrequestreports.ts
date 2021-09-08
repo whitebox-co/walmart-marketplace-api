@@ -182,7 +182,7 @@ export enum EnumFilter1TypeEnum {
 }
 
 /**
- * Request Payload
+ *
  * @export
  * @interface GenerateReportPayload
  */
@@ -263,7 +263,7 @@ export enum GenerateReportResponseReportTypeEnum {
 }
 
 /**
- * Request Payload
+ *
  * @export
  * @interface InlineObject
  */
@@ -455,7 +455,7 @@ export enum InlineResponse2002ReportTypeEnum {
 }
 
 /**
- * List of requests
+ *
  * @export
  * @interface InlineResponse2003
  */
@@ -523,7 +523,7 @@ export enum InlineResponse2003ReportTypeEnum {
 }
 
 /**
- * Request Payload
+ *
  * @export
  * @interface InlineResponse200Payload
  */
@@ -542,7 +542,7 @@ export interface InlineResponse200Payload {
   excludeColumns?: Array<string>;
 }
 /**
- * List of requests
+ *
  * @export
  * @interface InlineResponse200Requests
  */
@@ -692,7 +692,7 @@ export enum RangeFilter1RowFilterTypeEnum {
 }
 
 /**
- * List of requests
+ *
  * @export
  * @interface RequestStatusResponse
  */
@@ -1396,7 +1396,7 @@ export const OnRequestReportApiFp = function (configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<Array<InlineResponse2002>>
+      ) => AxiosPromise<InlineResponse2002>
     > {
       const localVarAxiosArgs = await localVarAxiosParamCreator.downloadReport(
         requestId,
@@ -1609,7 +1609,7 @@ export const OnRequestReportApiFactory = function (
       accept: string,
       wMCONSUMERCHANNELTYPE?: string,
       options?: any
-    ): AxiosPromise<Array<InlineResponse2002>> {
+    ): AxiosPromise<InlineResponse2002> {
       return localVarFp
         .downloadReport(
           requestId,

@@ -76,10 +76,10 @@ export interface CancelLineStatusType {
   cancellationReason: CancelLineStatusTypeCancellationReasonEnum;
   /**
    *
-   * @type {InlineResponse200ElementsOrderLinesOrderLineQuantity}
+   * @type {InlineResponse200OrderOrderLinesOrderLineQuantity}
    * @memberof CancelLineStatusType
    */
-  statusQuantity: InlineResponse200ElementsOrderLinesOrderLineQuantity;
+  statusQuantity: InlineResponse200OrderOrderLinesOrderLineQuantity;
 }
 
 /**
@@ -114,10 +114,10 @@ export enum CancelLineStatusTypeCancellationReasonEnum {
 export interface CancelLineStatusesType {
   /**
    * List of details about the cancellation status update
-   * @type {Array<V3OrdersPurchaseOrderIdCancelOrderLinesOrderLineStatusesOrderLineStatus>}
+   * @type {Array<V3OrdersPurchaseOrderIdCancelOrderCancellationOrderLinesOrderLineStatusesOrderLineStatus>}
    * @memberof CancelLineStatusesType
    */
-  orderLineStatus: Array<V3OrdersPurchaseOrderIdCancelOrderLinesOrderLineStatusesOrderLineStatus>;
+  orderLineStatus: Array<V3OrdersPurchaseOrderIdCancelOrderCancellationOrderLinesOrderLineStatusesOrderLineStatus>;
 }
 /**
  * Information to update the orderLine with cancellation details
@@ -133,10 +133,10 @@ export interface CancelLineType {
   lineNumber: string;
   /**
    *
-   * @type {V3OrdersPurchaseOrderIdCancelOrderLinesOrderLineStatuses}
+   * @type {V3OrdersPurchaseOrderIdCancelOrderCancellationOrderLinesOrderLineStatuses}
    * @memberof CancelLineType
    */
-  orderLineStatuses: V3OrdersPurchaseOrderIdCancelOrderLinesOrderLineStatuses;
+  orderLineStatuses: V3OrdersPurchaseOrderIdCancelOrderCancellationOrderLinesOrderLineStatuses;
 }
 /**
  * A list of orderLines to be cancelled
@@ -146,10 +146,10 @@ export interface CancelLineType {
 export interface CancelLinesType {
   /**
    * Information to update the orderLine with cancellation details
-   * @type {Array<V3OrdersPurchaseOrderIdCancelOrderLinesOrderLine>}
+   * @type {Array<V3OrdersPurchaseOrderIdCancelOrderCancellationOrderLinesOrderLine>}
    * @memberof CancelLinesType
    */
-  orderLine: Array<V3OrdersPurchaseOrderIdCancelOrderLinesOrderLine>;
+  orderLine: Array<V3OrdersPurchaseOrderIdCancelOrderCancellationOrderLinesOrderLine>;
 }
 /**
  * Information about the package carrier(s)
@@ -164,7 +164,7 @@ export interface CarrierNameType {
    */
   otherCarrier?: string;
   /**
-   * The package shipment carrier. Valid entries are: UPS, USPS, FedEx, Airborne, OnTrac, DHL, LS (LaserShip), UDS (United Delivery Service), UPSMI (UPS Mail Innovations), FDX, PILOT, ESTES, SAIA, FDS Express, Seko Worldwide, FEDEXSP (FedEx SmartPost).
+   * The package shipment carrier. Valid entries are: UPS, USPS, FedEx, Airborne, OnTrac, DHL, LS (LaserShip), UDS (United Delivery Service), UPSMI (UPS Mail Innovations), FDX, PILOT, ESTES, SAIA, FDS Express, Seko Worldwide, HIT Delivery, FEDEXSP (FedEx SmartPost).
    * @type {string}
    * @memberof CarrierNameType
    */
@@ -192,6 +192,7 @@ export enum CarrierNameTypeCarrierEnum {
   Saia = "SAIA",
   FdsExpress = "FDS Express",
   SekoWorldwide = "Seko Worldwide",
+  HitDelivery = "HIT Delivery",
   Fedexsp = "FEDEXSP",
 }
 
@@ -246,16 +247,16 @@ export interface ChargeType {
   chargeName: string;
   /**
    *
-   * @type {InlineResponse200ElementsOrderLinesChargesChargeAmount}
+   * @type {InlineResponse200OrderOrderLinesChargesChargeAmount}
    * @memberof ChargeType
    */
-  chargeAmount: InlineResponse200ElementsOrderLinesChargesChargeAmount;
+  chargeAmount: InlineResponse200OrderOrderLinesChargesChargeAmount;
   /**
    *
-   * @type {InlineResponse200ElementsOrderLinesChargesTax}
+   * @type {InlineResponse200OrderOrderLinesChargesTax}
    * @memberof ChargeType
    */
-  tax?: InlineResponse200ElementsOrderLinesChargesTax;
+  tax?: InlineResponse200OrderOrderLinesChargesTax;
 }
 /**
  * Information relating to the charge for the orderLine
@@ -265,10 +266,10 @@ export interface ChargeType {
 export interface ChargesType {
   /**
    * Information relating to the charge for the orderLine
-   * @type {Array<InlineResponse200ElementsOrderLinesChargesCharge>}
+   * @type {Array<InlineResponse200OrderOrderLinesChargesCharge>}
    * @memberof ChargesType
    */
-  charge?: Array<InlineResponse200ElementsOrderLinesChargesCharge>;
+  charge?: Array<InlineResponse200OrderOrderLinesChargesCharge>;
 }
 /**
  * Information about the purchase order
@@ -278,10 +279,10 @@ export interface ChargesType {
 export interface ElementsType {
   /**
    * Purchase Order List
-   * @type {Array<InlineResponse200ElementsOrder>}
+   * @type {Array<InlineResponse200Order>}
    * @memberof ElementsType
    */
-  order?: Array<InlineResponse200ElementsOrder>;
+  order?: Array<InlineResponse200Order>;
 }
 /**
  * fulfillment information
@@ -309,10 +310,10 @@ export interface FulfillmentType {
   storeId?: string;
   /**
    * Gives pick up datetime information
-   * @type {string}
+   * @type {number}
    * @memberof FulfillmentType
    */
-  pickUpDateTime?: string;
+  pickUpDateTime?: number;
   /**
    * Gives pick up by information
    * @type {string}
@@ -370,10 +371,10 @@ export interface GatewayError {
   category?: GatewayErrorCategoryEnum;
   /**
    *
-   * @type {Array<InlineResponse200Causes>}
+   * @type {Array<InlineResponse2001ListCauses>}
    * @memberof GatewayError
    */
-  causes?: Array<InlineResponse200Causes>;
+  causes?: Array<InlineResponse2001ListCauses>;
   /**
    *
    * @type {{ [key: string]: object; }}
@@ -436,133 +437,146 @@ export enum GatewayErrorGatewayErrorCategoryEnum {
 }
 
 /**
- * Information about the purchase order
+ *
  * @export
  * @interface GetOrderResponse
  */
 export interface GetOrderResponse {
   /**
+   *
+   * @type {InlineResponse200Order}
+   * @memberof GetOrderResponse
+   */
+  order?: InlineResponse200Order;
+}
+/**
+ * Information about the purchase order
+ * @export
+ * @interface GetOrderResponseRecord
+ */
+export interface GetOrderResponseRecord {
+  /**
    * A unique ID associated with the seller\'s purchase order
    * @type {string}
-   * @memberof GetOrderResponse
+   * @memberof GetOrderResponseRecord
    */
   purchaseOrderId: string;
   /**
    * A unique ID associated with the sales order for specified customer
    * @type {string}
-   * @memberof GetOrderResponse
+   * @memberof GetOrderResponseRecord
    */
   customerOrderId: string;
   /**
    * The email address of the customer for the sales order
    * @type {string}
-   * @memberof GetOrderResponse
+   * @memberof GetOrderResponseRecord
    */
   customerEmailId: string;
   /**
    * Specifies if the order is a regular order or replacement order. Possible values are REGULAR or REPLACEMENT. Provided in response only if query parameter replacementInfo=true.
    * @type {string}
-   * @memberof GetOrderResponse
+   * @memberof GetOrderResponseRecord
    */
-  orderType: string;
+  orderType?: string;
   /**
    * customer order ID of the original customer order on which the replacement is created.
    * @type {string}
-   * @memberof GetOrderResponse
+   * @memberof GetOrderResponseRecord
    */
   originalCustomerOrderID?: string;
   /**
    * The date the customer submitted the sales order
-   * @type {string}
-   * @memberof GetOrderResponse
+   * @type {number}
+   * @memberof GetOrderResponseRecord
    */
-  orderDate: string;
+  orderDate: number;
   /**
    * Unique ID associated with the specified buyer
    * @type {string}
-   * @memberof GetOrderResponse
+   * @memberof GetOrderResponseRecord
    */
   buyerId?: string;
   /**
    * Mart information
    * @type {string}
-   * @memberof GetOrderResponse
+   * @memberof GetOrderResponseRecord
    */
   mart?: string;
   /**
    * Indicates a guest customer
    * @type {boolean}
-   * @memberof GetOrderResponse
+   * @memberof GetOrderResponseRecord
    */
   isGuest?: boolean;
   /**
    *
-   * @type {InlineResponse200ElementsShippingInfo}
-   * @memberof GetOrderResponse
+   * @type {InlineResponse200OrderShippingInfo}
+   * @memberof GetOrderResponseRecord
    */
-  shippingInfo: InlineResponse200ElementsShippingInfo;
+  shippingInfo: InlineResponse200OrderShippingInfo;
   /**
    *
-   * @type {InlineResponse200ElementsOrderLines}
-   * @memberof GetOrderResponse
+   * @type {InlineResponse200OrderOrderLines}
+   * @memberof GetOrderResponseRecord
    */
-  orderLines: InlineResponse200ElementsOrderLines;
+  orderLines: InlineResponse200OrderOrderLines;
   /**
    * Payment Types
    * @type {Array<string>}
-   * @memberof GetOrderResponse
+   * @memberof GetOrderResponseRecord
    */
   paymentTypes?: Array<string>;
   /**
    *
-   * @type {InlineResponse200ElementsOrderSummary}
-   * @memberof GetOrderResponse
+   * @type {InlineResponse200OrderOrderSummary}
+   * @memberof GetOrderResponseRecord
    */
-  orderSummary?: InlineResponse200ElementsOrderSummary;
+  orderSummary?: InlineResponse200OrderOrderSummary;
   /**
    * List of pickup persons
-   * @type {Array<InlineResponse200ElementsPickupPersons>}
-   * @memberof GetOrderResponse
+   * @type {Array<InlineResponse200OrderPickupPersons>}
+   * @memberof GetOrderResponseRecord
    */
-  pickupPersons?: Array<InlineResponse200ElementsPickupPersons>;
+  pickupPersons?: Array<InlineResponse200OrderPickupPersons>;
   /**
    *
-   * @type {InlineResponse200ElementsShipNode}
-   * @memberof GetOrderResponse
+   * @type {InlineResponse200OrderShipNode}
+   * @memberof GetOrderResponseRecord
    */
-  shipNode?: InlineResponse200ElementsShipNode;
+  shipNode?: InlineResponse200OrderShipNode;
 }
 /**
- * Information about a shipment
+ *
  * @export
  * @interface InlineObject
  */
 export interface InlineObject {
   /**
-   * Optional. Use this parameter only to update tracking information after order is shipped. Use \'PARTIAL_UPDATE\' as value. Here PARTIAL_UPDATE will indicate that post shipment tracking information needs to be updated
-   * @type {string}
-   * @memberof InlineObject
-   */
-  processMode?: string;
-  /**
    *
-   * @type {V3OrdersPurchaseOrderIdShippingOrderLines}
+   * @type {V3OrdersPurchaseOrderIdCancelOrderCancellation}
    * @memberof InlineObject
    */
-  orderLines: V3OrdersPurchaseOrderIdShippingOrderLines;
+  orderCancellation?: V3OrdersPurchaseOrderIdCancelOrderCancellation;
 }
 /**
- * Container for the cancellation details
+ *
  * @export
  * @interface InlineObject1
  */
 export interface InlineObject1 {
   /**
    *
-   * @type {V3OrdersPurchaseOrderIdCancelOrderLines}
+   * @type {string}
    * @memberof InlineObject1
    */
-  orderLines: V3OrdersPurchaseOrderIdCancelOrderLines;
+  purchaseOrderId: string;
+  /**
+   *
+   * @type {V3OrdersPurchaseOrderIdRefundOrderLines}
+   * @memberof InlineObject1
+   */
+  orderLines: V3OrdersPurchaseOrderIdRefundOrderLines;
 }
 /**
  *
@@ -572,396 +586,550 @@ export interface InlineObject1 {
 export interface InlineObject2 {
   /**
    *
-   * @type {string}
+   * @type {V3OrdersPurchaseOrderIdShippingOrderShipment}
    * @memberof InlineObject2
    */
-  purchaseOrderId: string;
-  /**
-   *
-   * @type {V3OrdersPurchaseOrderIdRefundOrderLines}
-   * @memberof InlineObject2
-   */
-  orderLines: V3OrdersPurchaseOrderIdRefundOrderLines;
+  orderShipment?: V3OrdersPurchaseOrderIdShippingOrderShipment;
 }
 /**
- * List of purchase orders in created state
+ *
  * @export
  * @interface InlineResponse200
  */
 export interface InlineResponse200 {
   /**
    *
-   * @type {Array<InlineResponse200Errors>}
+   * @type {InlineResponse200Order}
    * @memberof InlineResponse200
    */
-  errors?: Array<InlineResponse200Errors>;
-  /**
-   *
-   * @type {InlineResponse200Meta}
-   * @memberof InlineResponse200
-   */
-  meta: InlineResponse200Meta;
-  /**
-   *
-   * @type {InlineResponse200Elements}
-   * @memberof InlineResponse200
-   */
-  elements: InlineResponse200Elements;
+  order?: InlineResponse200Order;
 }
 /**
- * Information about the purchase order
+ *
  * @export
  * @interface InlineResponse2001
  */
 export interface InlineResponse2001 {
   /**
-   * A unique ID associated with the seller\'s purchase order
-   * @type {string}
+   *
+   * @type {InlineResponse2001List}
    * @memberof InlineResponse2001
    */
-  purchaseOrderId: string;
-  /**
-   * A unique ID associated with the sales order for specified customer
-   * @type {string}
-   * @memberof InlineResponse2001
-   */
-  customerOrderId: string;
-  /**
-   * The email address of the customer for the sales order
-   * @type {string}
-   * @memberof InlineResponse2001
-   */
-  customerEmailId: string;
-  /**
-   * The date the customer submitted the sales order
-   * @type {string}
-   * @memberof InlineResponse2001
-   */
-  orderDate: string;
-  /**
-   * Unique ID associated with the specified buyer
-   * @type {string}
-   * @memberof InlineResponse2001
-   */
-  buyerId?: string;
-  /**
-   * Mart information
-   * @type {string}
-   * @memberof InlineResponse2001
-   */
-  mart?: string;
-  /**
-   * Indicates a guest customer
-   * @type {boolean}
-   * @memberof InlineResponse2001
-   */
-  isGuest?: boolean;
+  list?: InlineResponse2001List;
+}
+/**
+ * List of purchase orders in created state
+ * @export
+ * @interface InlineResponse2001List
+ */
+export interface InlineResponse2001List {
   /**
    *
-   * @type {InlineResponse200ElementsShippingInfo}
-   * @memberof InlineResponse2001
+   * @type {Array<InlineResponse2001ListErrors>}
+   * @memberof InlineResponse2001List
    */
-  shippingInfo: InlineResponse200ElementsShippingInfo;
+  errors?: Array<InlineResponse2001ListErrors>;
   /**
    *
-   * @type {InlineResponse200ElementsOrderLines}
-   * @memberof InlineResponse2001
+   * @type {InlineResponse2001ListMeta}
+   * @memberof InlineResponse2001List
    */
-  orderLines: InlineResponse200ElementsOrderLines;
-  /**
-   * Payment Types
-   * @type {Array<string>}
-   * @memberof InlineResponse2001
-   */
-  paymentTypes?: Array<string>;
+  meta: InlineResponse2001ListMeta;
   /**
    *
-   * @type {InlineResponse200ElementsOrderSummary}
-   * @memberof InlineResponse2001
+   * @type {InlineResponse2001ListElements}
+   * @memberof InlineResponse2001List
    */
-  orderSummary?: InlineResponse200ElementsOrderSummary;
-  /**
-   * List of pickup persons
-   * @type {Array<InlineResponse200ElementsPickupPersons>}
-   * @memberof InlineResponse2001
-   */
-  pickupPersons?: Array<InlineResponse200ElementsPickupPersons>;
-  /**
-   *
-   * @type {InlineResponse200ElementsShipNode}
-   * @memberof InlineResponse2001
-   */
-  shipNode?: InlineResponse200ElementsShipNode;
+  elements: InlineResponse2001ListElements;
 }
 /**
  *
  * @export
- * @interface InlineResponse200Causes
+ * @interface InlineResponse2001ListCauses
  */
-export interface InlineResponse200Causes {
+export interface InlineResponse2001ListCauses {
   /**
    *
    * @type {string}
-   * @memberof InlineResponse200Causes
+   * @memberof InlineResponse2001ListCauses
    */
   code?: string;
   /**
    *
    * @type {string}
-   * @memberof InlineResponse200Causes
+   * @memberof InlineResponse2001ListCauses
    */
   field?: string;
   /**
    *
    * @type {string}
-   * @memberof InlineResponse200Causes
+   * @memberof InlineResponse2001ListCauses
    */
   type?: string;
   /**
    *
    * @type {string}
-   * @memberof InlineResponse200Causes
+   * @memberof InlineResponse2001ListCauses
    */
   description?: string;
 }
 /**
  * Information about the purchase order
  * @export
- * @interface InlineResponse200Elements
+ * @interface InlineResponse2001ListElements
  */
-export interface InlineResponse200Elements {
+export interface InlineResponse2001ListElements {
   /**
    * Purchase Order List
-   * @type {Array<InlineResponse200ElementsOrder>}
-   * @memberof InlineResponse200Elements
+   * @type {Array<InlineResponse200Order>}
+   * @memberof InlineResponse2001ListElements
    */
-  order?: Array<InlineResponse200ElementsOrder>;
+  order?: Array<InlineResponse200Order>;
 }
 /**
  *
  * @export
- * @interface InlineResponse200ElementsName
+ * @interface InlineResponse2001ListErrors
  */
-export interface InlineResponse200ElementsName {
+export interface InlineResponse2001ListErrors {
   /**
    *
    * @type {string}
-   * @memberof InlineResponse200ElementsName
+   * @memberof InlineResponse2001ListErrors
    */
-  completeName?: string;
+  code: string;
   /**
    *
    * @type {string}
-   * @memberof InlineResponse200ElementsName
+   * @memberof InlineResponse2001ListErrors
    */
-  firstName?: string;
+  field?: string;
   /**
    *
    * @type {string}
-   * @memberof InlineResponse200ElementsName
+   * @memberof InlineResponse2001ListErrors
    */
-  middleName?: string;
+  description?: string;
   /**
    *
    * @type {string}
-   * @memberof InlineResponse200ElementsName
+   * @memberof InlineResponse2001ListErrors
    */
-  lastName?: string;
+  info?: string;
   /**
    *
    * @type {string}
-   * @memberof InlineResponse200ElementsName
+   * @memberof InlineResponse2001ListErrors
    */
-  generalSuffix?: string;
+  severity?: InlineResponse2001ListErrorsSeverityEnum;
   /**
    *
    * @type {string}
-   * @memberof InlineResponse200ElementsName
+   * @memberof InlineResponse2001ListErrors
    */
-  maturitySuffix?: string;
+  category?: InlineResponse2001ListErrorsCategoryEnum;
+  /**
+   *
+   * @type {Array<InlineResponse2001ListCauses>}
+   * @memberof InlineResponse2001ListErrors
+   */
+  causes?: Array<InlineResponse2001ListCauses>;
+  /**
+   *
+   * @type {{ [key: string]: object; }}
+   * @memberof InlineResponse2001ListErrors
+   */
+  errorIdentifiers?: { [key: string]: object };
   /**
    *
    * @type {string}
-   * @memberof InlineResponse200ElementsName
+   * @memberof InlineResponse2001ListErrors
    */
-  titleOfRespect?: string;
+  component?: string;
   /**
    *
-   * @type {boolean}
-   * @memberof InlineResponse200ElementsName
+   * @type {string}
+   * @memberof InlineResponse2001ListErrors
    */
-  empty?: boolean;
+  type?: string;
+  /**
+   *
+   * @type {string}
+   * @memberof InlineResponse2001ListErrors
+   */
+  serviceName?: string;
+  /**
+   *
+   * @type {string}
+   * @memberof InlineResponse2001ListErrors
+   */
+  gatewayErrorCategory?: InlineResponse2001ListErrorsGatewayErrorCategoryEnum;
+}
+
+/**
+ * @export
+ * @enum {string}
+ */
+export enum InlineResponse2001ListErrorsSeverityEnum {
+  Info = "INFO",
+  Warn = "WARN",
+  Error = "ERROR",
+}
+/**
+ * @export
+ * @enum {string}
+ */
+export enum InlineResponse2001ListErrorsCategoryEnum {
+  Application = "APPLICATION",
+  System = "SYSTEM",
+  Request = "REQUEST",
+  Data = "DATA",
+}
+/**
+ * @export
+ * @enum {string}
+ */
+export enum InlineResponse2001ListErrorsGatewayErrorCategoryEnum {
+  InternalDataError = "INTERNAL_DATA_ERROR",
+  ExternalDataError = "EXTERNAL_DATA_ERROR",
+  SystemError = "SYSTEM_ERROR",
+}
+
+/**
+ * Meta data about the list
+ * @export
+ * @interface InlineResponse2001ListMeta
+ */
+export interface InlineResponse2001ListMeta {
+  /**
+   * Total no of purchase orders.
+   * @type {number}
+   * @memberof InlineResponse2001ListMeta
+   */
+  totalCount?: number;
+  /**
+   * Number of purchase orders in the current page.
+   * @type {number}
+   * @memberof InlineResponse2001ListMeta
+   */
+  limit?: number;
+  /**
+   * String to be used as query parameter for getting next set of purchase orders, when more than 200 orders are retrieved.
+   * @type {string}
+   * @memberof InlineResponse2001ListMeta
+   */
+  nextCursor?: string;
 }
 /**
  * Information about the purchase order
  * @export
- * @interface InlineResponse200ElementsOrder
+ * @interface InlineResponse2002
  */
-export interface InlineResponse200ElementsOrder {
+export interface InlineResponse2002 {
   /**
    * A unique ID associated with the seller\'s purchase order
    * @type {string}
-   * @memberof InlineResponse200ElementsOrder
+   * @memberof InlineResponse2002
    */
   purchaseOrderId: string;
   /**
    * A unique ID associated with the sales order for specified customer
    * @type {string}
-   * @memberof InlineResponse200ElementsOrder
+   * @memberof InlineResponse2002
    */
   customerOrderId: string;
   /**
    * The email address of the customer for the sales order
    * @type {string}
-   * @memberof InlineResponse200ElementsOrder
+   * @memberof InlineResponse2002
    */
   customerEmailId: string;
   /**
-   * Specifies if the order is a regular order or replacement order. Possible values are REGULAR or REPLACEMENT. Provided in response only if query parameter replacementInfo=true.
-   * @type {string}
-   * @memberof InlineResponse200ElementsOrder
-   */
-  orderType: string;
-  /**
-   * customer order ID of the original customer order on which the replacement is created.
-   * @type {string}
-   * @memberof InlineResponse200ElementsOrder
-   */
-  originalCustomerOrderID?: string;
-  /**
    * The date the customer submitted the sales order
    * @type {string}
-   * @memberof InlineResponse200ElementsOrder
+   * @memberof InlineResponse2002
    */
   orderDate: string;
   /**
    * Unique ID associated with the specified buyer
    * @type {string}
-   * @memberof InlineResponse200ElementsOrder
+   * @memberof InlineResponse2002
    */
   buyerId?: string;
   /**
    * Mart information
    * @type {string}
-   * @memberof InlineResponse200ElementsOrder
+   * @memberof InlineResponse2002
    */
   mart?: string;
   /**
    * Indicates a guest customer
    * @type {boolean}
-   * @memberof InlineResponse200ElementsOrder
+   * @memberof InlineResponse2002
    */
   isGuest?: boolean;
   /**
    *
-   * @type {InlineResponse200ElementsShippingInfo}
-   * @memberof InlineResponse200ElementsOrder
+   * @type {InlineResponse200OrderShippingInfo}
+   * @memberof InlineResponse2002
    */
-  shippingInfo: InlineResponse200ElementsShippingInfo;
+  shippingInfo: InlineResponse200OrderShippingInfo;
   /**
    *
-   * @type {InlineResponse200ElementsOrderLines}
-   * @memberof InlineResponse200ElementsOrder
+   * @type {InlineResponse200OrderOrderLines}
+   * @memberof InlineResponse2002
    */
-  orderLines: InlineResponse200ElementsOrderLines;
+  orderLines: InlineResponse200OrderOrderLines;
   /**
    * Payment Types
    * @type {Array<string>}
-   * @memberof InlineResponse200ElementsOrder
+   * @memberof InlineResponse2002
    */
   paymentTypes?: Array<string>;
   /**
    *
-   * @type {InlineResponse200ElementsOrderSummary}
-   * @memberof InlineResponse200ElementsOrder
+   * @type {InlineResponse200OrderOrderSummary}
+   * @memberof InlineResponse2002
    */
-  orderSummary?: InlineResponse200ElementsOrderSummary;
+  orderSummary?: InlineResponse200OrderOrderSummary;
   /**
    * List of pickup persons
-   * @type {Array<InlineResponse200ElementsPickupPersons>}
-   * @memberof InlineResponse200ElementsOrder
+   * @type {Array<InlineResponse200OrderPickupPersons>}
+   * @memberof InlineResponse2002
    */
-  pickupPersons?: Array<InlineResponse200ElementsPickupPersons>;
+  pickupPersons?: Array<InlineResponse200OrderPickupPersons>;
   /**
    *
-   * @type {InlineResponse200ElementsShipNode}
-   * @memberof InlineResponse200ElementsOrder
+   * @type {InlineResponse200OrderShipNode}
+   * @memberof InlineResponse2002
    */
-  shipNode?: InlineResponse200ElementsShipNode;
+  shipNode?: InlineResponse200OrderShipNode;
+}
+/**
+ * Information about the purchase order
+ * @export
+ * @interface InlineResponse200Order
+ */
+export interface InlineResponse200Order {
+  /**
+   * A unique ID associated with the seller\'s purchase order
+   * @type {string}
+   * @memberof InlineResponse200Order
+   */
+  purchaseOrderId: string;
+  /**
+   * A unique ID associated with the sales order for specified customer
+   * @type {string}
+   * @memberof InlineResponse200Order
+   */
+  customerOrderId: string;
+  /**
+   * The email address of the customer for the sales order
+   * @type {string}
+   * @memberof InlineResponse200Order
+   */
+  customerEmailId: string;
+  /**
+   * Specifies if the order is a regular order or replacement order. Possible values are REGULAR or REPLACEMENT. Provided in response only if query parameter replacementInfo=true.
+   * @type {string}
+   * @memberof InlineResponse200Order
+   */
+  orderType?: string;
+  /**
+   * customer order ID of the original customer order on which the replacement is created.
+   * @type {string}
+   * @memberof InlineResponse200Order
+   */
+  originalCustomerOrderID?: string;
+  /**
+   * The date the customer submitted the sales order
+   * @type {number}
+   * @memberof InlineResponse200Order
+   */
+  orderDate: number;
+  /**
+   * Unique ID associated with the specified buyer
+   * @type {string}
+   * @memberof InlineResponse200Order
+   */
+  buyerId?: string;
+  /**
+   * Mart information
+   * @type {string}
+   * @memberof InlineResponse200Order
+   */
+  mart?: string;
+  /**
+   * Indicates a guest customer
+   * @type {boolean}
+   * @memberof InlineResponse200Order
+   */
+  isGuest?: boolean;
+  /**
+   *
+   * @type {InlineResponse200OrderShippingInfo}
+   * @memberof InlineResponse200Order
+   */
+  shippingInfo: InlineResponse200OrderShippingInfo;
+  /**
+   *
+   * @type {InlineResponse200OrderOrderLines}
+   * @memberof InlineResponse200Order
+   */
+  orderLines: InlineResponse200OrderOrderLines;
+  /**
+   * Payment Types
+   * @type {Array<string>}
+   * @memberof InlineResponse200Order
+   */
+  paymentTypes?: Array<string>;
+  /**
+   *
+   * @type {InlineResponse200OrderOrderSummary}
+   * @memberof InlineResponse200Order
+   */
+  orderSummary?: InlineResponse200OrderOrderSummary;
+  /**
+   * List of pickup persons
+   * @type {Array<InlineResponse200OrderPickupPersons>}
+   * @memberof InlineResponse200Order
+   */
+  pickupPersons?: Array<InlineResponse200OrderPickupPersons>;
+  /**
+   *
+   * @type {InlineResponse200OrderShipNode}
+   * @memberof InlineResponse200Order
+   */
+  shipNode?: InlineResponse200OrderShipNode;
+}
+/**
+ *
+ * @export
+ * @interface InlineResponse200OrderName
+ */
+export interface InlineResponse200OrderName {
+  /**
+   *
+   * @type {string}
+   * @memberof InlineResponse200OrderName
+   */
+  completeName?: string;
+  /**
+   *
+   * @type {string}
+   * @memberof InlineResponse200OrderName
+   */
+  firstName?: string;
+  /**
+   *
+   * @type {string}
+   * @memberof InlineResponse200OrderName
+   */
+  middleName?: string;
+  /**
+   *
+   * @type {string}
+   * @memberof InlineResponse200OrderName
+   */
+  lastName?: string;
+  /**
+   *
+   * @type {string}
+   * @memberof InlineResponse200OrderName
+   */
+  generalSuffix?: string;
+  /**
+   *
+   * @type {string}
+   * @memberof InlineResponse200OrderName
+   */
+  maturitySuffix?: string;
+  /**
+   *
+   * @type {string}
+   * @memberof InlineResponse200OrderName
+   */
+  titleOfRespect?: string;
+  /**
+   *
+   * @type {boolean}
+   * @memberof InlineResponse200OrderName
+   */
+  empty?: boolean;
 }
 /**
  * A list of order lines in the order
  * @export
- * @interface InlineResponse200ElementsOrderLines
+ * @interface InlineResponse200OrderOrderLines
  */
-export interface InlineResponse200ElementsOrderLines {
+export interface InlineResponse200OrderOrderLines {
   /**
    * A list of order lines in the order
-   * @type {Array<InlineResponse200ElementsOrderLinesOrderLine>}
-   * @memberof InlineResponse200ElementsOrderLines
+   * @type {Array<InlineResponse200OrderOrderLinesOrderLine>}
+   * @memberof InlineResponse200OrderOrderLines
    */
-  orderLine?: Array<InlineResponse200ElementsOrderLinesOrderLine>;
+  orderLine?: Array<InlineResponse200OrderOrderLinesOrderLine>;
 }
 /**
  * Information relating to the charge for the orderLine
  * @export
- * @interface InlineResponse200ElementsOrderLinesCharges
+ * @interface InlineResponse200OrderOrderLinesCharges
  */
-export interface InlineResponse200ElementsOrderLinesCharges {
+export interface InlineResponse200OrderOrderLinesCharges {
   /**
    * Information relating to the charge for the orderLine
-   * @type {Array<InlineResponse200ElementsOrderLinesChargesCharge>}
-   * @memberof InlineResponse200ElementsOrderLinesCharges
+   * @type {Array<InlineResponse200OrderOrderLinesChargesCharge>}
+   * @memberof InlineResponse200OrderOrderLinesCharges
    */
-  charge?: Array<InlineResponse200ElementsOrderLinesChargesCharge>;
+  charge?: Array<InlineResponse200OrderOrderLinesChargesCharge>;
 }
 /**
  * List of elements that make up a charge
  * @export
- * @interface InlineResponse200ElementsOrderLinesChargesCharge
+ * @interface InlineResponse200OrderOrderLinesChargesCharge
  */
-export interface InlineResponse200ElementsOrderLinesChargesCharge {
+export interface InlineResponse200OrderOrderLinesChargesCharge {
   /**
    * The charge type for line items can be one of the following: PRODUCT or SHIPPING For details, refer to \'Charge Types\'
    * @type {string}
-   * @memberof InlineResponse200ElementsOrderLinesChargesCharge
+   * @memberof InlineResponse200OrderOrderLinesChargesCharge
    */
   chargeType: string;
   /**
    * If chargeType is PRODUCT, chargeName is Item Price. If chargeType is SHIPPING, chargeName is Shipping
    * @type {string}
-   * @memberof InlineResponse200ElementsOrderLinesChargesCharge
+   * @memberof InlineResponse200OrderOrderLinesChargesCharge
    */
   chargeName: string;
   /**
    *
-   * @type {InlineResponse200ElementsOrderLinesChargesChargeAmount}
-   * @memberof InlineResponse200ElementsOrderLinesChargesCharge
+   * @type {InlineResponse200OrderOrderLinesChargesChargeAmount}
+   * @memberof InlineResponse200OrderOrderLinesChargesCharge
    */
-  chargeAmount: InlineResponse200ElementsOrderLinesChargesChargeAmount;
+  chargeAmount: InlineResponse200OrderOrderLinesChargesChargeAmount;
   /**
    *
-   * @type {InlineResponse200ElementsOrderLinesChargesTax}
-   * @memberof InlineResponse200ElementsOrderLinesChargesCharge
+   * @type {InlineResponse200OrderOrderLinesChargesTax}
+   * @memberof InlineResponse200OrderOrderLinesChargesCharge
    */
-  tax?: InlineResponse200ElementsOrderLinesChargesTax;
+  tax?: InlineResponse200OrderOrderLinesChargesTax;
 }
 /**
  * The details for the amount of the tax charge
  * @export
- * @interface InlineResponse200ElementsOrderLinesChargesChargeAmount
+ * @interface InlineResponse200OrderOrderLinesChargesChargeAmount
  */
-export interface InlineResponse200ElementsOrderLinesChargesChargeAmount {
+export interface InlineResponse200OrderOrderLinesChargesChargeAmount {
   /**
    * The type of currency for the charge. Example: USD for US Dollars
    * @type {string}
-   * @memberof InlineResponse200ElementsOrderLinesChargesChargeAmount
+   * @memberof InlineResponse200OrderOrderLinesChargesChargeAmount
    */
-  currency: InlineResponse200ElementsOrderLinesChargesChargeAmountCurrencyEnum;
+  currency: InlineResponse200OrderOrderLinesChargesChargeAmountCurrencyEnum;
   /**
    * The numerical amount for that charge. Example: 9.99
    * @type {number}
-   * @memberof InlineResponse200ElementsOrderLinesChargesChargeAmount
+   * @memberof InlineResponse200OrderOrderLinesChargesChargeAmount
    */
   amount: number;
 }
@@ -970,7 +1138,7 @@ export interface InlineResponse200ElementsOrderLinesChargesChargeAmount {
  * @export
  * @enum {string}
  */
-export enum InlineResponse200ElementsOrderLinesChargesChargeAmountCurrencyEnum {
+export enum InlineResponse200OrderOrderLinesChargesChargeAmountCurrencyEnum {
   Aed = "AED",
   Afn = "AFN",
   All = "ALL",
@@ -1145,216 +1313,216 @@ export enum InlineResponse200ElementsOrderLinesChargesChargeAmountCurrencyEnum {
 /**
  * Tax information for the charge, including taxName and taxAmount
  * @export
- * @interface InlineResponse200ElementsOrderLinesChargesTax
+ * @interface InlineResponse200OrderOrderLinesChargesTax
  */
-export interface InlineResponse200ElementsOrderLinesChargesTax {
+export interface InlineResponse200OrderOrderLinesChargesTax {
   /**
    * The name associated with the tax. Example: \'Sales Tax\'
    * @type {string}
-   * @memberof InlineResponse200ElementsOrderLinesChargesTax
+   * @memberof InlineResponse200OrderOrderLinesChargesTax
    */
   taxName: string;
   /**
    *
-   * @type {InlineResponse200ElementsOrderLinesChargesChargeAmount}
-   * @memberof InlineResponse200ElementsOrderLinesChargesTax
+   * @type {InlineResponse200OrderOrderLinesChargesChargeAmount}
+   * @memberof InlineResponse200OrderOrderLinesChargesTax
    */
-  taxAmount: InlineResponse200ElementsOrderLinesChargesChargeAmount;
+  taxAmount: InlineResponse200OrderOrderLinesChargesChargeAmount;
 }
 /**
  * fulfillment information
  * @export
- * @interface InlineResponse200ElementsOrderLinesFulfillment
+ * @interface InlineResponse200OrderOrderLinesFulfillment
  */
-export interface InlineResponse200ElementsOrderLinesFulfillment {
+export interface InlineResponse200OrderOrderLinesFulfillment {
   /**
    * Example : S2H, S2S, etc.
    * @type {string}
-   * @memberof InlineResponse200ElementsOrderLinesFulfillment
+   * @memberof InlineResponse200OrderOrderLinesFulfillment
    */
   fulfillmentOption?: string;
   /**
    * Example : Value, Expedited, Standard, Rush, etc.
    * @type {string}
-   * @memberof InlineResponse200ElementsOrderLinesFulfillment
+   * @memberof InlineResponse200OrderOrderLinesFulfillment
    */
   shipMethod?: string;
   /**
    * Store Id
    * @type {string}
-   * @memberof InlineResponse200ElementsOrderLinesFulfillment
+   * @memberof InlineResponse200OrderOrderLinesFulfillment
    */
   storeId?: string;
   /**
    * Gives pick up datetime information
-   * @type {string}
-   * @memberof InlineResponse200ElementsOrderLinesFulfillment
+   * @type {number}
+   * @memberof InlineResponse200OrderOrderLinesFulfillment
    */
-  pickUpDateTime?: string;
+  pickUpDateTime?: number;
   /**
    * Gives pick up by information
    * @type {string}
-   * @memberof InlineResponse200ElementsOrderLinesFulfillment
+   * @memberof InlineResponse200OrderOrderLinesFulfillment
    */
   pickUpBy?: string;
   /**
    * Gives shipping program information. Examples TWO_DAY, THREE_DAY
    * @type {string}
-   * @memberof InlineResponse200ElementsOrderLinesFulfillment
+   * @memberof InlineResponse200OrderOrderLinesFulfillment
    */
   shippingProgramType?: string;
 }
 /**
  * The information for the item on the orderLine
  * @export
- * @interface InlineResponse200ElementsOrderLinesItem
+ * @interface InlineResponse200OrderOrderLinesItem
  */
-export interface InlineResponse200ElementsOrderLinesItem {
+export interface InlineResponse200OrderOrderLinesItem {
   /**
    * The name of the product associated with the line item. Example: \'Kenmore CF1\' or \'2086883 Canister Secondary Filter Generic 2 Pack\'
    * @type {string}
-   * @memberof InlineResponse200ElementsOrderLinesItem
+   * @memberof InlineResponse200OrderOrderLinesItem
    */
   productName: string;
   /**
    * An arbitrary alphanumeric unique ID, assigned to each item in the item file
    * @type {string}
-   * @memberof InlineResponse200ElementsOrderLinesItem
+   * @memberof InlineResponse200OrderOrderLinesItem
    */
   sku: string;
   /**
    * Optional. Web URL for the image of the item.
    * @type {string}
-   * @memberof InlineResponse200ElementsOrderLinesItem
+   * @memberof InlineResponse200OrderOrderLinesItem
    */
-  imageUrl: string;
+  imageUrl?: string;
   /**
    *
-   * @type {InlineResponse200ElementsOrderLinesItemWeight}
-   * @memberof InlineResponse200ElementsOrderLinesItem
+   * @type {InlineResponse200OrderOrderLinesItemWeight}
+   * @memberof InlineResponse200OrderOrderLinesItem
    */
-  weight: InlineResponse200ElementsOrderLinesItemWeight;
+  weight?: InlineResponse200OrderOrderLinesItemWeight;
 }
 /**
  * Optional. Weight information for the item.
  * @export
- * @interface InlineResponse200ElementsOrderLinesItemWeight
+ * @interface InlineResponse200OrderOrderLinesItemWeight
  */
-export interface InlineResponse200ElementsOrderLinesItemWeight {
+export interface InlineResponse200OrderOrderLinesItemWeight {
   /**
    * Numerical amount of weight parameter.
    * @type {string}
-   * @memberof InlineResponse200ElementsOrderLinesItemWeight
+   * @memberof InlineResponse200OrderOrderLinesItemWeight
    */
   value: string;
   /**
    * Standard value of measurement of the item. Example: \'Pounds\'
    * @type {string}
-   * @memberof InlineResponse200ElementsOrderLinesItemWeight
+   * @memberof InlineResponse200OrderOrderLinesItemWeight
    */
   unit: string;
 }
 /**
  * Purchase Order line information for each item
  * @export
- * @interface InlineResponse200ElementsOrderLinesOrderLine
+ * @interface InlineResponse200OrderOrderLinesOrderLine
  */
-export interface InlineResponse200ElementsOrderLinesOrderLine {
+export interface InlineResponse200OrderOrderLinesOrderLine {
   /**
    * The line number associated with the details for each individual item in the purchase order
    * @type {string}
-   * @memberof InlineResponse200ElementsOrderLinesOrderLine
+   * @memberof InlineResponse200OrderOrderLinesOrderLine
    */
   lineNumber: string;
   /**
    *
-   * @type {InlineResponse200ElementsOrderLinesItem}
-   * @memberof InlineResponse200ElementsOrderLinesOrderLine
+   * @type {InlineResponse200OrderOrderLinesItem}
+   * @memberof InlineResponse200OrderOrderLinesOrderLine
    */
-  item: InlineResponse200ElementsOrderLinesItem;
+  item: InlineResponse200OrderOrderLinesItem;
   /**
    *
-   * @type {InlineResponse200ElementsOrderLinesCharges}
-   * @memberof InlineResponse200ElementsOrderLinesOrderLine
+   * @type {InlineResponse200OrderOrderLinesCharges}
+   * @memberof InlineResponse200OrderOrderLinesOrderLine
    */
-  charges: InlineResponse200ElementsOrderLinesCharges;
+  charges: InlineResponse200OrderOrderLinesCharges;
   /**
    *
-   * @type {InlineResponse200ElementsOrderLinesOrderLineQuantity}
-   * @memberof InlineResponse200ElementsOrderLinesOrderLine
+   * @type {InlineResponse200OrderOrderLinesOrderLineQuantity}
+   * @memberof InlineResponse200OrderOrderLinesOrderLine
    */
-  orderLineQuantity: InlineResponse200ElementsOrderLinesOrderLineQuantity;
+  orderLineQuantity: InlineResponse200OrderOrderLinesOrderLineQuantity;
   /**
    * The date shown on the recent order status
-   * @type {string}
-   * @memberof InlineResponse200ElementsOrderLinesOrderLine
+   * @type {number}
+   * @memberof InlineResponse200OrderOrderLinesOrderLine
    */
-  statusDate: string;
+  statusDate: number;
   /**
    *
-   * @type {InlineResponse200ElementsOrderLinesOrderLineStatuses}
-   * @memberof InlineResponse200ElementsOrderLinesOrderLine
+   * @type {InlineResponse200OrderOrderLinesOrderLineStatuses}
+   * @memberof InlineResponse200OrderOrderLinesOrderLine
    */
-  orderLineStatuses: InlineResponse200ElementsOrderLinesOrderLineStatuses;
+  orderLineStatuses: InlineResponse200OrderOrderLinesOrderLineStatuses;
   /**
    *
-   * @type {InlineResponse200ElementsOrderLinesRefund}
-   * @memberof InlineResponse200ElementsOrderLinesOrderLine
+   * @type {InlineResponse200OrderOrderLinesRefund}
+   * @memberof InlineResponse200OrderOrderLinesOrderLine
    */
-  refund?: InlineResponse200ElementsOrderLinesRefund;
+  refund?: InlineResponse200OrderOrderLinesRefund;
   /**
    * Ship method stamped at order line level when order is placed
    * @type {string}
-   * @memberof InlineResponse200ElementsOrderLinesOrderLine
+   * @memberof InlineResponse200OrderOrderLinesOrderLine
    */
   originalCarrierMethod?: string;
   /**
    * Reference line Id
    * @type {string}
-   * @memberof InlineResponse200ElementsOrderLinesOrderLine
+   * @memberof InlineResponse200OrderOrderLinesOrderLine
    */
   referenceLineId?: string;
   /**
    *
-   * @type {InlineResponse200ElementsOrderLinesFulfillment}
-   * @memberof InlineResponse200ElementsOrderLinesOrderLine
+   * @type {InlineResponse200OrderOrderLinesFulfillment}
+   * @memberof InlineResponse200OrderOrderLinesOrderLine
    */
-  fulfillment?: InlineResponse200ElementsOrderLinesFulfillment;
+  fulfillment?: InlineResponse200OrderOrderLinesFulfillment;
   /**
    *
    * @type {string}
-   * @memberof InlineResponse200ElementsOrderLinesOrderLine
+   * @memberof InlineResponse200OrderOrderLinesOrderLine
    */
   intentToCancel?: string;
   /**
    * Sets ConfigID for Personalised orders
    * @type {string}
-   * @memberof InlineResponse200ElementsOrderLinesOrderLine
+   * @memberof InlineResponse200OrderOrderLinesOrderLine
    */
   configId?: string;
   /**
    * A unique ID associated with the sales order for specified Seller; gives Sellers the ability to print their own custom order ID on the return label; limit of 30 characters
    * @type {string}
-   * @memberof InlineResponse200ElementsOrderLinesOrderLine
+   * @memberof InlineResponse200OrderOrderLinesOrderLine
    */
   sellerOrderId?: string;
 }
 /**
  * Details about the status update
  * @export
- * @interface InlineResponse200ElementsOrderLinesOrderLineQuantity
+ * @interface InlineResponse200OrderOrderLinesOrderLineQuantity
  */
-export interface InlineResponse200ElementsOrderLinesOrderLineQuantity {
+export interface InlineResponse200OrderOrderLinesOrderLineQuantity {
   /**
    * Unit of quantity
    * @type {string}
-   * @memberof InlineResponse200ElementsOrderLinesOrderLineQuantity
+   * @memberof InlineResponse200OrderOrderLinesOrderLineQuantity
    */
-  unitOfMeasurement: InlineResponse200ElementsOrderLinesOrderLineQuantityUnitOfMeasurementEnum;
+  unitOfMeasurement: InlineResponse200OrderOrderLinesOrderLineQuantityUnitOfMeasurementEnum;
   /**
    * Always use \'1\'
    * @type {string}
-   * @memberof InlineResponse200ElementsOrderLinesOrderLineQuantity
+   * @memberof InlineResponse200OrderOrderLinesOrderLineQuantity
    */
   amount: string;
 }
@@ -1363,7 +1531,7 @@ export interface InlineResponse200ElementsOrderLinesOrderLineQuantity {
  * @export
  * @enum {string}
  */
-export enum InlineResponse200ElementsOrderLinesOrderLineQuantityUnitOfMeasurementEnum {
+export enum InlineResponse200OrderOrderLinesOrderLineQuantityUnitOfMeasurementEnum {
   Each = "EACH",
   Ea = "EA",
 }
@@ -1371,59 +1539,59 @@ export enum InlineResponse200ElementsOrderLinesOrderLineQuantityUnitOfMeasuremen
 /**
  * A list of statuses for the Order Line
  * @export
- * @interface InlineResponse200ElementsOrderLinesOrderLineStatuses
+ * @interface InlineResponse200OrderOrderLinesOrderLineStatuses
  */
-export interface InlineResponse200ElementsOrderLinesOrderLineStatuses {
+export interface InlineResponse200OrderOrderLinesOrderLineStatuses {
   /**
    * Detail List of Order Line status
-   * @type {Array<InlineResponse200ElementsOrderLinesOrderLineStatusesOrderLineStatus>}
-   * @memberof InlineResponse200ElementsOrderLinesOrderLineStatuses
+   * @type {Array<InlineResponse200OrderOrderLinesOrderLineStatusesOrderLineStatus>}
+   * @memberof InlineResponse200OrderOrderLinesOrderLineStatuses
    */
-  orderLineStatus?: Array<InlineResponse200ElementsOrderLinesOrderLineStatusesOrderLineStatus>;
+  orderLineStatus?: Array<InlineResponse200OrderOrderLinesOrderLineStatusesOrderLineStatus>;
 }
 /**
  * Detail List of Order Line status
  * @export
- * @interface InlineResponse200ElementsOrderLinesOrderLineStatusesOrderLineStatus
+ * @interface InlineResponse200OrderOrderLinesOrderLineStatusesOrderLineStatus
  */
-export interface InlineResponse200ElementsOrderLinesOrderLineStatusesOrderLineStatus {
+export interface InlineResponse200OrderOrderLinesOrderLineStatusesOrderLineStatus {
   /**
    * Should be \'Created\'
    * @type {string}
-   * @memberof InlineResponse200ElementsOrderLinesOrderLineStatusesOrderLineStatus
+   * @memberof InlineResponse200OrderOrderLinesOrderLineStatusesOrderLineStatus
    */
-  status: InlineResponse200ElementsOrderLinesOrderLineStatusesOrderLineStatusStatusEnum;
+  status: InlineResponse200OrderOrderLinesOrderLineStatusesOrderLineStatusStatusEnum;
   /**
    *
-   * @type {InlineResponse200ElementsOrderLinesOrderLineQuantity}
-   * @memberof InlineResponse200ElementsOrderLinesOrderLineStatusesOrderLineStatus
+   * @type {InlineResponse200OrderOrderLinesOrderLineQuantity}
+   * @memberof InlineResponse200OrderOrderLinesOrderLineStatusesOrderLineStatus
    */
-  statusQuantity: InlineResponse200ElementsOrderLinesOrderLineQuantity;
+  statusQuantity: InlineResponse200OrderOrderLinesOrderLineQuantity;
   /**
    * If order is cancelled, cancellationReason will explain the reason
    * @type {string}
-   * @memberof InlineResponse200ElementsOrderLinesOrderLineStatusesOrderLineStatus
+   * @memberof InlineResponse200OrderOrderLinesOrderLineStatusesOrderLineStatus
    */
   cancellationReason?: string;
   /**
    *
-   * @type {InlineResponse200ElementsOrderLinesOrderLineStatusesTrackingInfo}
-   * @memberof InlineResponse200ElementsOrderLinesOrderLineStatusesOrderLineStatus
+   * @type {InlineResponse200OrderOrderLinesOrderLineStatusesTrackingInfo}
+   * @memberof InlineResponse200OrderOrderLinesOrderLineStatusesOrderLineStatus
    */
-  trackingInfo?: InlineResponse200ElementsOrderLinesOrderLineStatusesTrackingInfo;
+  trackingInfo?: InlineResponse200OrderOrderLinesOrderLineStatusesTrackingInfo;
   /**
    *
-   * @type {InlineResponse200ElementsOrderLinesOrderLineStatusesReturnCenterAddress}
-   * @memberof InlineResponse200ElementsOrderLinesOrderLineStatusesOrderLineStatus
+   * @type {InlineResponse200OrderOrderLinesOrderLineStatusesReturnCenterAddress}
+   * @memberof InlineResponse200OrderOrderLinesOrderLineStatusesOrderLineStatus
    */
-  returnCenterAddress?: InlineResponse200ElementsOrderLinesOrderLineStatusesReturnCenterAddress;
+  returnCenterAddress?: InlineResponse200OrderOrderLinesOrderLineStatusesReturnCenterAddress;
 }
 
 /**
  * @export
  * @enum {string}
  */
-export enum InlineResponse200ElementsOrderLinesOrderLineStatusesOrderLineStatusStatusEnum {
+export enum InlineResponse200OrderOrderLinesOrderLineStatusesOrderLineStatusStatusEnum {
   Created = "Created",
   Acknowledged = "Acknowledged",
   Shipped = "Shipped",
@@ -1435,98 +1603,98 @@ export enum InlineResponse200ElementsOrderLinesOrderLineStatusesOrderLineStatusS
 /**
  * Gives Sellers the ability to specify the RC center address during fulfillment; any returns created for the PO will always be returned to the RC address specified
  * @export
- * @interface InlineResponse200ElementsOrderLinesOrderLineStatusesReturnCenterAddress
+ * @interface InlineResponse200OrderOrderLinesOrderLineStatusesReturnCenterAddress
  */
-export interface InlineResponse200ElementsOrderLinesOrderLineStatusesReturnCenterAddress {
+export interface InlineResponse200OrderOrderLinesOrderLineStatusesReturnCenterAddress {
   /**
    * The name for the person/place of return address
    * @type {string}
-   * @memberof InlineResponse200ElementsOrderLinesOrderLineStatusesReturnCenterAddress
+   * @memberof InlineResponse200OrderOrderLinesOrderLineStatusesReturnCenterAddress
    */
   name?: string;
   /**
    * The first line of the return address
    * @type {string}
-   * @memberof InlineResponse200ElementsOrderLinesOrderLineStatusesReturnCenterAddress
+   * @memberof InlineResponse200OrderOrderLinesOrderLineStatusesReturnCenterAddress
    */
   address1: string;
   /**
    * The second line of the return address
    * @type {string}
-   * @memberof InlineResponse200ElementsOrderLinesOrderLineStatusesReturnCenterAddress
+   * @memberof InlineResponse200OrderOrderLinesOrderLineStatusesReturnCenterAddress
    */
   address2?: string;
   /**
    * The city of the return address
    * @type {string}
-   * @memberof InlineResponse200ElementsOrderLinesOrderLineStatusesReturnCenterAddress
+   * @memberof InlineResponse200OrderOrderLinesOrderLineStatusesReturnCenterAddress
    */
   city: string;
   /**
    * The state of the return address
    * @type {string}
-   * @memberof InlineResponse200ElementsOrderLinesOrderLineStatusesReturnCenterAddress
+   * @memberof InlineResponse200OrderOrderLinesOrderLineStatusesReturnCenterAddress
    */
   state: string;
   /**
    * The zip code of the return address
    * @type {string}
-   * @memberof InlineResponse200ElementsOrderLinesOrderLineStatusesReturnCenterAddress
+   * @memberof InlineResponse200OrderOrderLinesOrderLineStatusesReturnCenterAddress
    */
   postalCode: string;
   /**
    * The country of the return address
    * @type {string}
-   * @memberof InlineResponse200ElementsOrderLinesOrderLineStatusesReturnCenterAddress
+   * @memberof InlineResponse200OrderOrderLinesOrderLineStatusesReturnCenterAddress
    */
   country: string;
   /**
    * Phone of the center where the package shipment is returned
    * @type {string}
-   * @memberof InlineResponse200ElementsOrderLinesOrderLineStatusesReturnCenterAddress
+   * @memberof InlineResponse200OrderOrderLinesOrderLineStatusesReturnCenterAddress
    */
   dayPhone?: string;
   /**
    * Email of the center where the package shipment is returned
    * @type {string}
-   * @memberof InlineResponse200ElementsOrderLinesOrderLineStatusesReturnCenterAddress
+   * @memberof InlineResponse200OrderOrderLinesOrderLineStatusesReturnCenterAddress
    */
   emailId?: string;
 }
 /**
  * List of information about the package shipment and tracking updates
  * @export
- * @interface InlineResponse200ElementsOrderLinesOrderLineStatusesTrackingInfo
+ * @interface InlineResponse200OrderOrderLinesOrderLineStatusesTrackingInfo
  */
-export interface InlineResponse200ElementsOrderLinesOrderLineStatusesTrackingInfo {
+export interface InlineResponse200OrderOrderLinesOrderLineStatusesTrackingInfo {
   /**
    * The date the package was shipped
-   * @type {string}
-   * @memberof InlineResponse200ElementsOrderLinesOrderLineStatusesTrackingInfo
+   * @type {number}
+   * @memberof InlineResponse200OrderOrderLinesOrderLineStatusesTrackingInfo
    */
-  shipDateTime: string;
+  shipDateTime: number;
   /**
    *
-   * @type {InlineResponse200ElementsOrderLinesOrderLineStatusesTrackingInfoCarrierName}
-   * @memberof InlineResponse200ElementsOrderLinesOrderLineStatusesTrackingInfo
+   * @type {InlineResponse200OrderOrderLinesOrderLineStatusesTrackingInfoCarrierName}
+   * @memberof InlineResponse200OrderOrderLinesOrderLineStatusesTrackingInfo
    */
-  carrierName: InlineResponse200ElementsOrderLinesOrderLineStatusesTrackingInfoCarrierName;
+  carrierName: InlineResponse200OrderOrderLinesOrderLineStatusesTrackingInfoCarrierName;
   /**
    * The shipping method. Can be one of the following: Standard, Express, OneDay, WhiteGlove, Value or Freight
    * @type {string}
-   * @memberof InlineResponse200ElementsOrderLinesOrderLineStatusesTrackingInfo
+   * @memberof InlineResponse200OrderOrderLinesOrderLineStatusesTrackingInfo
    */
-  methodCode: InlineResponse200ElementsOrderLinesOrderLineStatusesTrackingInfoMethodCodeEnum;
+  methodCode: InlineResponse200OrderOrderLinesOrderLineStatusesTrackingInfoMethodCodeEnum;
   /**
    * The shipment tracking number
    * @type {string}
-   * @memberof InlineResponse200ElementsOrderLinesOrderLineStatusesTrackingInfo
+   * @memberof InlineResponse200OrderOrderLinesOrderLineStatusesTrackingInfo
    */
   trackingNumber: string;
   /**
    * The URL for tracking the shipment. This parameter is mandatory if the otherCarrier parameter is used
    * @type {string}
-   * @memberof InlineResponse200ElementsOrderLinesOrderLineStatusesTrackingInfo
+   * @memberof InlineResponse200OrderOrderLinesOrderLineStatusesTrackingInfo
    */
   trackingURL?: string;
 }
@@ -1535,7 +1703,7 @@ export interface InlineResponse200ElementsOrderLinesOrderLineStatusesTrackingInf
  * @export
  * @enum {string}
  */
-export enum InlineResponse200ElementsOrderLinesOrderLineStatusesTrackingInfoMethodCodeEnum {
+export enum InlineResponse200OrderOrderLinesOrderLineStatusesTrackingInfoMethodCodeEnum {
   Standard = "Standard",
   Express = "Express",
   OneDay = "OneDay",
@@ -1547,28 +1715,28 @@ export enum InlineResponse200ElementsOrderLinesOrderLineStatusesTrackingInfoMeth
 /**
  * Information about the package carrier(s)
  * @export
- * @interface InlineResponse200ElementsOrderLinesOrderLineStatusesTrackingInfoCarrierName
+ * @interface InlineResponse200OrderOrderLinesOrderLineStatusesTrackingInfoCarrierName
  */
-export interface InlineResponse200ElementsOrderLinesOrderLineStatusesTrackingInfoCarrierName {
+export interface InlineResponse200OrderOrderLinesOrderLineStatusesTrackingInfoCarrierName {
   /**
    * Other carrier name, When otherCarrier is used, trackingUrl must also be provided
    * @type {string}
-   * @memberof InlineResponse200ElementsOrderLinesOrderLineStatusesTrackingInfoCarrierName
+   * @memberof InlineResponse200OrderOrderLinesOrderLineStatusesTrackingInfoCarrierName
    */
   otherCarrier?: string;
   /**
-   * The package shipment carrier. Valid entries are: UPS, USPS, FedEx, Airborne, OnTrac, DHL, LS (LaserShip), UDS (United Delivery Service), UPSMI (UPS Mail Innovations), FDX, PILOT, ESTES, SAIA, FDS Express, Seko Worldwide, FEDEXSP (FedEx SmartPost).
+   * The package shipment carrier. Valid entries are: UPS, USPS, FedEx, Airborne, OnTrac, DHL, LS (LaserShip), UDS (United Delivery Service), UPSMI (UPS Mail Innovations), FDX, PILOT, ESTES, SAIA, FDS Express, Seko Worldwide, HIT Delivery, FEDEXSP (FedEx SmartPost).
    * @type {string}
-   * @memberof InlineResponse200ElementsOrderLinesOrderLineStatusesTrackingInfoCarrierName
+   * @memberof InlineResponse200OrderOrderLinesOrderLineStatusesTrackingInfoCarrierName
    */
-  carrier?: InlineResponse200ElementsOrderLinesOrderLineStatusesTrackingInfoCarrierNameCarrierEnum;
+  carrier?: InlineResponse200OrderOrderLinesOrderLineStatusesTrackingInfoCarrierNameCarrierEnum;
 }
 
 /**
  * @export
  * @enum {string}
  */
-export enum InlineResponse200ElementsOrderLinesOrderLineStatusesTrackingInfoCarrierNameCarrierEnum {
+export enum InlineResponse200OrderOrderLinesOrderLineStatusesTrackingInfoCarrierNameCarrierEnum {
   Ups = "UPS",
   Usps = "USPS",
   FedEx = "FedEx",
@@ -1585,72 +1753,73 @@ export enum InlineResponse200ElementsOrderLinesOrderLineStatusesTrackingInfoCarr
   Saia = "SAIA",
   FdsExpress = "FDS Express",
   SekoWorldwide = "Seko Worldwide",
+  HitDelivery = "HIT Delivery",
   Fedexsp = "FEDEXSP",
 }
 
 /**
- *
+ * Details about any refund on the order
  * @export
- * @interface InlineResponse200ElementsOrderLinesRefund
+ * @interface InlineResponse200OrderOrderLinesRefund
  */
-export interface InlineResponse200ElementsOrderLinesRefund {
+export interface InlineResponse200OrderOrderLinesRefund {
   /**
    *
    * @type {string}
-   * @memberof InlineResponse200ElementsOrderLinesRefund
+   * @memberof InlineResponse200OrderOrderLinesRefund
    */
   refundId?: string;
   /**
    *
    * @type {string}
-   * @memberof InlineResponse200ElementsOrderLinesRefund
+   * @memberof InlineResponse200OrderOrderLinesRefund
    */
   refundComments?: string;
   /**
    *
-   * @type {InlineResponse200ElementsOrderLinesRefundRefundCharges}
-   * @memberof InlineResponse200ElementsOrderLinesRefund
+   * @type {InlineResponse200OrderOrderLinesRefundRefundCharges}
+   * @memberof InlineResponse200OrderOrderLinesRefund
    */
-  refundCharges: InlineResponse200ElementsOrderLinesRefundRefundCharges;
+  refundCharges: InlineResponse200OrderOrderLinesRefundRefundCharges;
 }
 /**
  *
  * @export
- * @interface InlineResponse200ElementsOrderLinesRefundRefundCharges
+ * @interface InlineResponse200OrderOrderLinesRefundRefundCharges
  */
-export interface InlineResponse200ElementsOrderLinesRefundRefundCharges {
+export interface InlineResponse200OrderOrderLinesRefundRefundCharges {
   /**
    *
-   * @type {Array<InlineResponse200ElementsOrderLinesRefundRefundChargesRefundCharge>}
-   * @memberof InlineResponse200ElementsOrderLinesRefundRefundCharges
+   * @type {Array<InlineResponse200OrderOrderLinesRefundRefundChargesRefundCharge>}
+   * @memberof InlineResponse200OrderOrderLinesRefundRefundCharges
    */
-  refundCharge?: Array<InlineResponse200ElementsOrderLinesRefundRefundChargesRefundCharge>;
+  refundCharge?: Array<InlineResponse200OrderOrderLinesRefundRefundChargesRefundCharge>;
 }
 /**
  *
  * @export
- * @interface InlineResponse200ElementsOrderLinesRefundRefundChargesRefundCharge
+ * @interface InlineResponse200OrderOrderLinesRefundRefundChargesRefundCharge
  */
-export interface InlineResponse200ElementsOrderLinesRefundRefundChargesRefundCharge {
+export interface InlineResponse200OrderOrderLinesRefundRefundChargesRefundCharge {
   /**
    *
    * @type {string}
-   * @memberof InlineResponse200ElementsOrderLinesRefundRefundChargesRefundCharge
+   * @memberof InlineResponse200OrderOrderLinesRefundRefundChargesRefundCharge
    */
-  refundReason: InlineResponse200ElementsOrderLinesRefundRefundChargesRefundChargeRefundReasonEnum;
+  refundReason: InlineResponse200OrderOrderLinesRefundRefundChargesRefundChargeRefundReasonEnum;
   /**
    *
-   * @type {InlineResponse200ElementsOrderLinesChargesCharge}
-   * @memberof InlineResponse200ElementsOrderLinesRefundRefundChargesRefundCharge
+   * @type {InlineResponse200OrderOrderLinesChargesCharge}
+   * @memberof InlineResponse200OrderOrderLinesRefundRefundChargesRefundCharge
    */
-  charge: InlineResponse200ElementsOrderLinesChargesCharge;
+  charge: InlineResponse200OrderOrderLinesChargesCharge;
 }
 
 /**
  * @export
  * @enum {string}
  */
-export enum InlineResponse200ElementsOrderLinesRefundRefundChargesRefundChargeRefundReasonEnum {
+export enum InlineResponse200OrderOrderLinesRefundRefundChargesRefundChargeRefundReasonEnum {
   BillingError = "BillingError",
   TaxExemptCustomer = "TaxExemptCustomer",
   ItemNotAsAdvertised = "ItemNotAsAdvertised",
@@ -1678,66 +1847,66 @@ export enum InlineResponse200ElementsOrderLinesRefundRefundChargesRefundChargeRe
 /**
  * Order Summary
  * @export
- * @interface InlineResponse200ElementsOrderSummary
+ * @interface InlineResponse200OrderOrderSummary
  */
-export interface InlineResponse200ElementsOrderSummary {
+export interface InlineResponse200OrderOrderSummary {
   /**
    *
-   * @type {InlineResponse200ElementsOrderSummaryTotalAmount}
-   * @memberof InlineResponse200ElementsOrderSummary
+   * @type {InlineResponse200OrderOrderSummaryTotalAmount}
+   * @memberof InlineResponse200OrderOrderSummary
    */
-  totalAmount?: InlineResponse200ElementsOrderSummaryTotalAmount;
+  totalAmount?: InlineResponse200OrderOrderSummaryTotalAmount;
   /**
    *
-   * @type {Array<InlineResponse200ElementsOrderSummaryOrderSubTotals>}
-   * @memberof InlineResponse200ElementsOrderSummary
+   * @type {Array<InlineResponse200OrderOrderSummaryOrderSubTotals>}
+   * @memberof InlineResponse200OrderOrderSummary
    */
-  orderSubTotals?: Array<InlineResponse200ElementsOrderSummaryOrderSubTotals>;
+  orderSubTotals?: Array<InlineResponse200OrderOrderSummaryOrderSubTotals>;
 }
 /**
  *
  * @export
- * @interface InlineResponse200ElementsOrderSummaryOrderSubTotals
+ * @interface InlineResponse200OrderOrderSummaryOrderSubTotals
  */
-export interface InlineResponse200ElementsOrderSummaryOrderSubTotals {
+export interface InlineResponse200OrderOrderSummaryOrderSubTotals {
   /**
    *
    * @type {string}
-   * @memberof InlineResponse200ElementsOrderSummaryOrderSubTotals
+   * @memberof InlineResponse200OrderOrderSummaryOrderSubTotals
    */
   subTotalType?: string;
   /**
    *
-   * @type {InlineResponse200ElementsOrderSummaryTotalAmount}
-   * @memberof InlineResponse200ElementsOrderSummaryOrderSubTotals
+   * @type {InlineResponse200OrderOrderSummaryTotalAmount}
+   * @memberof InlineResponse200OrderOrderSummaryOrderSubTotals
    */
-  totalAmount?: InlineResponse200ElementsOrderSummaryTotalAmount;
+  totalAmount?: InlineResponse200OrderOrderSummaryTotalAmount;
 }
 /**
  *
  * @export
- * @interface InlineResponse200ElementsOrderSummaryTotalAmount
+ * @interface InlineResponse200OrderOrderSummaryTotalAmount
  */
-export interface InlineResponse200ElementsOrderSummaryTotalAmount {
+export interface InlineResponse200OrderOrderSummaryTotalAmount {
   /**
    *
    * @type {number}
-   * @memberof InlineResponse200ElementsOrderSummaryTotalAmount
+   * @memberof InlineResponse200OrderOrderSummaryTotalAmount
    */
   currencyAmount: number;
   /**
    *
    * @type {string}
-   * @memberof InlineResponse200ElementsOrderSummaryTotalAmount
+   * @memberof InlineResponse200OrderOrderSummaryTotalAmount
    */
-  currencyUnit: InlineResponse200ElementsOrderSummaryTotalAmountCurrencyUnitEnum;
+  currencyUnit: InlineResponse200OrderOrderSummaryTotalAmountCurrencyUnitEnum;
 }
 
 /**
  * @export
  * @enum {string}
  */
-export enum InlineResponse200ElementsOrderSummaryTotalAmountCurrencyUnitEnum {
+export enum InlineResponse200OrderOrderSummaryTotalAmountCurrencyUnitEnum {
   Aed = "AED",
   Afn = "AFN",
   All = "ALL",
@@ -1912,49 +2081,49 @@ export enum InlineResponse200ElementsOrderSummaryTotalAmountCurrencyUnitEnum {
 /**
  *
  * @export
- * @interface InlineResponse200ElementsPhone
+ * @interface InlineResponse200OrderPhone
  */
-export interface InlineResponse200ElementsPhone {
+export interface InlineResponse200OrderPhone {
   /**
    *
    * @type {string}
-   * @memberof InlineResponse200ElementsPhone
+   * @memberof InlineResponse200OrderPhone
    */
   id?: string;
   /**
    *
    * @type {string}
-   * @memberof InlineResponse200ElementsPhone
+   * @memberof InlineResponse200OrderPhone
    */
   areaCode?: string;
   /**
    *
    * @type {string}
-   * @memberof InlineResponse200ElementsPhone
+   * @memberof InlineResponse200OrderPhone
    */
   extension?: string;
   /**
    *
    * @type {string}
-   * @memberof InlineResponse200ElementsPhone
+   * @memberof InlineResponse200OrderPhone
    */
   completeNumber?: string;
   /**
    *
    * @type {string}
-   * @memberof InlineResponse200ElementsPhone
+   * @memberof InlineResponse200OrderPhone
    */
-  type?: InlineResponse200ElementsPhoneTypeEnum;
+  type?: InlineResponse200OrderPhoneTypeEnum;
   /**
    *
    * @type {string}
-   * @memberof InlineResponse200ElementsPhone
+   * @memberof InlineResponse200OrderPhone
    */
   subscriberNumber?: string;
   /**
    *
    * @type {string}
-   * @memberof InlineResponse200ElementsPhone
+   * @memberof InlineResponse200OrderPhone
    */
   countryCode?: string;
 }
@@ -1963,7 +2132,7 @@ export interface InlineResponse200ElementsPhone {
  * @export
  * @enum {string}
  */
-export enum InlineResponse200ElementsPhoneTypeEnum {
+export enum InlineResponse200OrderPhoneTypeEnum {
   Mobile = "MOBILE",
   Home = "HOME",
   Work = "WORK",
@@ -1972,90 +2141,90 @@ export enum InlineResponse200ElementsPhoneTypeEnum {
 /**
  * List of pickup persons
  * @export
- * @interface InlineResponse200ElementsPickupPersons
+ * @interface InlineResponse200OrderPickupPersons
  */
-export interface InlineResponse200ElementsPickupPersons {
+export interface InlineResponse200OrderPickupPersons {
   /**
    *
-   * @type {InlineResponse200ElementsName}
-   * @memberof InlineResponse200ElementsPickupPersons
+   * @type {InlineResponse200OrderName}
+   * @memberof InlineResponse200OrderPickupPersons
    */
-  name?: InlineResponse200ElementsName;
+  name?: InlineResponse200OrderName;
   /**
    *
-   * @type {InlineResponse200ElementsPhone}
-   * @memberof InlineResponse200ElementsPickupPersons
+   * @type {InlineResponse200OrderPhone}
+   * @memberof InlineResponse200OrderPickupPersons
    */
-  phone?: InlineResponse200ElementsPhone;
+  phone?: InlineResponse200OrderPhone;
 }
 /**
  * Specifies the type of shipNode
  * @export
- * @interface InlineResponse200ElementsShipNode
+ * @interface InlineResponse200OrderShipNode
  */
-export interface InlineResponse200ElementsShipNode {
+export interface InlineResponse200OrderShipNode {
   /**
    * Specifies the type of shipNode. Allowed values are SellerFulfilled, WFSFulfilled and 3PLFulfilled.
    * @type {string}
-   * @memberof InlineResponse200ElementsShipNode
+   * @memberof InlineResponse200OrderShipNode
    */
   type?: string;
   /**
    *
    * @type {string}
-   * @memberof InlineResponse200ElementsShipNode
+   * @memberof InlineResponse200OrderShipNode
    */
   name?: string;
   /**
    *
    * @type {string}
-   * @memberof InlineResponse200ElementsShipNode
+   * @memberof InlineResponse200OrderShipNode
    */
   id?: string;
 }
 /**
  * The shipping information provided by the customer to the seller
  * @export
- * @interface InlineResponse200ElementsShippingInfo
+ * @interface InlineResponse200OrderShippingInfo
  */
-export interface InlineResponse200ElementsShippingInfo {
+export interface InlineResponse200OrderShippingInfo {
   /**
    * The customer\'s phone number
    * @type {string}
-   * @memberof InlineResponse200ElementsShippingInfo
+   * @memberof InlineResponse200OrderShippingInfo
    */
   phone: string;
   /**
    * The estimated time and date for the delivery of the item. Format: yyyy-MM-ddThh:MM:ssZ Example: \'2020-06-15T06:00:00Z\'
-   * @type {string}
-   * @memberof InlineResponse200ElementsShippingInfo
+   * @type {number}
+   * @memberof InlineResponse200OrderShippingInfo
    */
-  estimatedDeliveryDate: string;
+  estimatedDeliveryDate: number;
   /**
    * The estimated time and date when the item will be shipped. Format: yyyy-MM-ddThh:MM:ssZ Example: \'2020-06-15T06:00:00Z\'
-   * @type {string}
-   * @memberof InlineResponse200ElementsShippingInfo
+   * @type {number}
+   * @memberof InlineResponse200OrderShippingInfo
    */
-  estimatedShipDate: string;
+  estimatedShipDate: number;
   /**
    * The shipping method. Can be one of the following: Standard, Express, OneDay, WhiteGlove, Value or Freight
    * @type {string}
-   * @memberof InlineResponse200ElementsShippingInfo
+   * @memberof InlineResponse200OrderShippingInfo
    */
-  methodCode: InlineResponse200ElementsShippingInfoMethodCodeEnum;
+  methodCode: InlineResponse200OrderShippingInfoMethodCodeEnum;
   /**
    *
-   * @type {InlineResponse200ElementsShippingInfoPostalAddress}
-   * @memberof InlineResponse200ElementsShippingInfo
+   * @type {InlineResponse200OrderShippingInfoPostalAddress}
+   * @memberof InlineResponse200OrderShippingInfo
    */
-  postalAddress: InlineResponse200ElementsShippingInfoPostalAddress;
+  postalAddress: InlineResponse200OrderShippingInfoPostalAddress;
 }
 
 /**
  * @export
  * @enum {string}
  */
-export enum InlineResponse200ElementsShippingInfoMethodCodeEnum {
+export enum InlineResponse200OrderShippingInfoMethodCodeEnum {
   Standard = "Standard",
   Express = "Express",
   OneDay = "OneDay",
@@ -2067,191 +2236,57 @@ export enum InlineResponse200ElementsShippingInfoMethodCodeEnum {
 /**
  * Elements of the customer\'s postal address
  * @export
- * @interface InlineResponse200ElementsShippingInfoPostalAddress
+ * @interface InlineResponse200OrderShippingInfoPostalAddress
  */
-export interface InlineResponse200ElementsShippingInfoPostalAddress {
+export interface InlineResponse200OrderShippingInfoPostalAddress {
   /**
    * The name for the person/place of shipping address
    * @type {string}
-   * @memberof InlineResponse200ElementsShippingInfoPostalAddress
+   * @memberof InlineResponse200OrderShippingInfoPostalAddress
    */
   name: string;
   /**
    * The first line of the shipping address
    * @type {string}
-   * @memberof InlineResponse200ElementsShippingInfoPostalAddress
+   * @memberof InlineResponse200OrderShippingInfoPostalAddress
    */
   address1: string;
   /**
    * The second line of the shipping address
    * @type {string}
-   * @memberof InlineResponse200ElementsShippingInfoPostalAddress
+   * @memberof InlineResponse200OrderShippingInfoPostalAddress
    */
   address2?: string;
   /**
    * The city of the shipping address
    * @type {string}
-   * @memberof InlineResponse200ElementsShippingInfoPostalAddress
+   * @memberof InlineResponse200OrderShippingInfoPostalAddress
    */
   city: string;
   /**
    * The state of the shipping address
    * @type {string}
-   * @memberof InlineResponse200ElementsShippingInfoPostalAddress
+   * @memberof InlineResponse200OrderShippingInfoPostalAddress
    */
   state: string;
   /**
    * The zip code of the shipping address
    * @type {string}
-   * @memberof InlineResponse200ElementsShippingInfoPostalAddress
+   * @memberof InlineResponse200OrderShippingInfoPostalAddress
    */
   postalCode: string;
   /**
    * The country of the shipping address
    * @type {string}
-   * @memberof InlineResponse200ElementsShippingInfoPostalAddress
+   * @memberof InlineResponse200OrderShippingInfoPostalAddress
    */
   country: string;
   /**
    * The address type, example: \'RESIDENTIAL\'
    * @type {string}
-   * @memberof InlineResponse200ElementsShippingInfoPostalAddress
+   * @memberof InlineResponse200OrderShippingInfoPostalAddress
    */
   addressType?: string;
-}
-/**
- *
- * @export
- * @interface InlineResponse200Errors
- */
-export interface InlineResponse200Errors {
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse200Errors
-   */
-  code: string;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse200Errors
-   */
-  field?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse200Errors
-   */
-  description?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse200Errors
-   */
-  info?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse200Errors
-   */
-  severity?: InlineResponse200ErrorsSeverityEnum;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse200Errors
-   */
-  category?: InlineResponse200ErrorsCategoryEnum;
-  /**
-   *
-   * @type {Array<InlineResponse200Causes>}
-   * @memberof InlineResponse200Errors
-   */
-  causes?: Array<InlineResponse200Causes>;
-  /**
-   *
-   * @type {{ [key: string]: object; }}
-   * @memberof InlineResponse200Errors
-   */
-  errorIdentifiers?: { [key: string]: object };
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse200Errors
-   */
-  component?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse200Errors
-   */
-  type?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse200Errors
-   */
-  serviceName?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse200Errors
-   */
-  gatewayErrorCategory?: InlineResponse200ErrorsGatewayErrorCategoryEnum;
-}
-
-/**
- * @export
- * @enum {string}
- */
-export enum InlineResponse200ErrorsSeverityEnum {
-  Info = "INFO",
-  Warn = "WARN",
-  Error = "ERROR",
-}
-/**
- * @export
- * @enum {string}
- */
-export enum InlineResponse200ErrorsCategoryEnum {
-  Application = "APPLICATION",
-  System = "SYSTEM",
-  Request = "REQUEST",
-  Data = "DATA",
-}
-/**
- * @export
- * @enum {string}
- */
-export enum InlineResponse200ErrorsGatewayErrorCategoryEnum {
-  InternalDataError = "INTERNAL_DATA_ERROR",
-  ExternalDataError = "EXTERNAL_DATA_ERROR",
-  SystemError = "SYSTEM_ERROR",
-}
-
-/**
- * Meta data about the list
- * @export
- * @interface InlineResponse200Meta
- */
-export interface InlineResponse200Meta {
-  /**
-   * Total no of purchase orders.
-   * @type {number}
-   * @memberof InlineResponse200Meta
-   */
-  totalCount?: number;
-  /**
-   * Number of purchase orders in the current page.
-   * @type {number}
-   * @memberof InlineResponse200Meta
-   */
-  limit?: number;
-  /**
-   * String to be used as query parameter for getting next set of purchase orders, when more than 200 orders are retrieved.
-   * @type {string}
-   * @memberof InlineResponse200Meta
-   */
-  nextCursor?: string;
 }
 /**
  * The information for the item on the orderLine
@@ -2276,13 +2311,13 @@ export interface ItemType {
    * @type {string}
    * @memberof ItemType
    */
-  imageUrl: string;
+  imageUrl?: string;
   /**
    *
-   * @type {InlineResponse200ElementsOrderLinesItemWeight}
+   * @type {InlineResponse200OrderOrderLinesItemWeight}
    * @memberof ItemType
    */
-  weight: InlineResponse200ElementsOrderLinesItemWeight;
+  weight?: InlineResponse200OrderOrderLinesItemWeight;
 }
 /**
  * Meta data about the list
@@ -2751,16 +2786,16 @@ export interface Order {
   isGuest?: boolean;
   /**
    *
-   * @type {InlineResponse200ElementsShippingInfo}
+   * @type {InlineResponse200OrderShippingInfo}
    * @memberof Order
    */
-  shippingInfo: InlineResponse200ElementsShippingInfo;
+  shippingInfo: InlineResponse200OrderShippingInfo;
   /**
    *
-   * @type {InlineResponse200ElementsOrderLines}
+   * @type {InlineResponse200OrderOrderLines}
    * @memberof Order
    */
-  orderLines: InlineResponse200ElementsOrderLines;
+  orderLines: InlineResponse200OrderOrderLines;
   /**
    * Payment Types
    * @type {Array<string>}
@@ -2769,22 +2804,22 @@ export interface Order {
   paymentTypes?: Array<string>;
   /**
    *
-   * @type {InlineResponse200ElementsOrderSummary}
+   * @type {InlineResponse200OrderOrderSummary}
    * @memberof Order
    */
-  orderSummary?: InlineResponse200ElementsOrderSummary;
+  orderSummary?: InlineResponse200OrderOrderSummary;
   /**
    * List of pickup persons
-   * @type {Array<InlineResponse200ElementsPickupPersons>}
+   * @type {Array<InlineResponse200OrderPickupPersons>}
    * @memberof Order
    */
-  pickupPersons?: Array<InlineResponse200ElementsPickupPersons>;
+  pickupPersons?: Array<InlineResponse200OrderPickupPersons>;
   /**
    *
-   * @type {InlineResponse200ElementsShipNode}
+   * @type {InlineResponse200OrderShipNode}
    * @memberof Order
    */
-  shipNode?: InlineResponse200ElementsShipNode;
+  shipNode?: InlineResponse200OrderShipNode;
 }
 /**
  * Container for the cancellation details
@@ -2794,10 +2829,23 @@ export interface Order {
 export interface OrderCancellation {
   /**
    *
-   * @type {V3OrdersPurchaseOrderIdCancelOrderLines}
+   * @type {V3OrdersPurchaseOrderIdCancelOrderCancellationOrderLines}
    * @memberof OrderCancellation
    */
-  orderLines: V3OrdersPurchaseOrderIdCancelOrderLines;
+  orderLines: V3OrdersPurchaseOrderIdCancelOrderCancellationOrderLines;
+}
+/**
+ *
+ * @export
+ * @interface OrderCancellationResponse
+ */
+export interface OrderCancellationResponse {
+  /**
+   *
+   * @type {V3OrdersPurchaseOrderIdCancelOrderCancellation}
+   * @memberof OrderCancellationResponse
+   */
+  orderCancellation?: V3OrdersPurchaseOrderIdCancelOrderCancellation;
 }
 /**
  * Detail List of Order Line status
@@ -2813,10 +2861,10 @@ export interface OrderLineStatusType {
   status: OrderLineStatusTypeStatusEnum;
   /**
    *
-   * @type {InlineResponse200ElementsOrderLinesOrderLineQuantity}
+   * @type {InlineResponse200OrderOrderLinesOrderLineQuantity}
    * @memberof OrderLineStatusType
    */
-  statusQuantity: InlineResponse200ElementsOrderLinesOrderLineQuantity;
+  statusQuantity: InlineResponse200OrderOrderLinesOrderLineQuantity;
   /**
    * If order is cancelled, cancellationReason will explain the reason
    * @type {string}
@@ -2825,16 +2873,16 @@ export interface OrderLineStatusType {
   cancellationReason?: string;
   /**
    *
-   * @type {InlineResponse200ElementsOrderLinesOrderLineStatusesTrackingInfo}
+   * @type {InlineResponse200OrderOrderLinesOrderLineStatusesTrackingInfo}
    * @memberof OrderLineStatusType
    */
-  trackingInfo?: InlineResponse200ElementsOrderLinesOrderLineStatusesTrackingInfo;
+  trackingInfo?: InlineResponse200OrderOrderLinesOrderLineStatusesTrackingInfo;
   /**
    *
-   * @type {InlineResponse200ElementsOrderLinesOrderLineStatusesReturnCenterAddress}
+   * @type {InlineResponse200OrderOrderLinesOrderLineStatusesReturnCenterAddress}
    * @memberof OrderLineStatusType
    */
-  returnCenterAddress?: InlineResponse200ElementsOrderLinesOrderLineStatusesReturnCenterAddress;
+  returnCenterAddress?: InlineResponse200OrderOrderLinesOrderLineStatusesReturnCenterAddress;
 }
 
 /**
@@ -2858,10 +2906,10 @@ export enum OrderLineStatusTypeStatusEnum {
 export interface OrderLineStatusesType {
   /**
    * Detail List of Order Line status
-   * @type {Array<InlineResponse200ElementsOrderLinesOrderLineStatusesOrderLineStatus>}
+   * @type {Array<InlineResponse200OrderOrderLinesOrderLineStatusesOrderLineStatus>}
    * @memberof OrderLineStatusesType
    */
-  orderLineStatus?: Array<InlineResponse200ElementsOrderLinesOrderLineStatusesOrderLineStatus>;
+  orderLineStatus?: Array<InlineResponse200OrderOrderLinesOrderLineStatusesOrderLineStatus>;
 }
 /**
  * Purchase Order line information for each item
@@ -2877,40 +2925,40 @@ export interface OrderLineType {
   lineNumber: string;
   /**
    *
-   * @type {InlineResponse200ElementsOrderLinesItem}
+   * @type {InlineResponse200OrderOrderLinesItem}
    * @memberof OrderLineType
    */
-  item: InlineResponse200ElementsOrderLinesItem;
+  item: InlineResponse200OrderOrderLinesItem;
   /**
    *
-   * @type {InlineResponse200ElementsOrderLinesCharges}
+   * @type {InlineResponse200OrderOrderLinesCharges}
    * @memberof OrderLineType
    */
-  charges: InlineResponse200ElementsOrderLinesCharges;
+  charges: InlineResponse200OrderOrderLinesCharges;
   /**
    *
-   * @type {InlineResponse200ElementsOrderLinesOrderLineQuantity}
+   * @type {InlineResponse200OrderOrderLinesOrderLineQuantity}
    * @memberof OrderLineType
    */
-  orderLineQuantity: InlineResponse200ElementsOrderLinesOrderLineQuantity;
+  orderLineQuantity: InlineResponse200OrderOrderLinesOrderLineQuantity;
   /**
    * The date shown on the recent order status
-   * @type {string}
+   * @type {number}
    * @memberof OrderLineType
    */
-  statusDate: string;
+  statusDate: number;
   /**
    *
-   * @type {InlineResponse200ElementsOrderLinesOrderLineStatuses}
+   * @type {InlineResponse200OrderOrderLinesOrderLineStatuses}
    * @memberof OrderLineType
    */
-  orderLineStatuses: InlineResponse200ElementsOrderLinesOrderLineStatuses;
+  orderLineStatuses: InlineResponse200OrderOrderLinesOrderLineStatuses;
   /**
    *
-   * @type {InlineResponse200ElementsOrderLinesRefund}
+   * @type {InlineResponse200OrderOrderLinesRefund}
    * @memberof OrderLineType
    */
-  refund?: InlineResponse200ElementsOrderLinesRefund;
+  refund?: InlineResponse200OrderOrderLinesRefund;
   /**
    * Ship method stamped at order line level when order is placed
    * @type {string}
@@ -2925,10 +2973,10 @@ export interface OrderLineType {
   referenceLineId?: string;
   /**
    *
-   * @type {InlineResponse200ElementsOrderLinesFulfillment}
+   * @type {InlineResponse200OrderOrderLinesFulfillment}
    * @memberof OrderLineType
    */
-  fulfillment?: InlineResponse200ElementsOrderLinesFulfillment;
+  fulfillment?: InlineResponse200OrderOrderLinesFulfillment;
   /**
    *
    * @type {string}
@@ -2956,10 +3004,10 @@ export interface OrderLineType {
 export interface OrderLinesType {
   /**
    * A list of order lines in the order
-   * @type {Array<InlineResponse200ElementsOrderLinesOrderLine>}
+   * @type {Array<InlineResponse200OrderOrderLinesOrderLine>}
    * @memberof OrderLinesType
    */
-  orderLine?: Array<InlineResponse200ElementsOrderLinesOrderLine>;
+  orderLine?: Array<InlineResponse200OrderOrderLinesOrderLine>;
 }
 /**
  *
@@ -2981,23 +3029,49 @@ export interface OrderRefund {
   orderLines: V3OrdersPurchaseOrderIdRefundOrderLines;
 }
 /**
- * Information about a shipment
+ *
+ * @export
+ * @interface OrderRefundJson
+ */
+export interface OrderRefundJson {
+  /**
+   *
+   * @type {InlineObject1}
+   * @memberof OrderRefundJson
+   */
+  orderRefund?: InlineObject1;
+}
+/**
+ *
  * @export
  * @interface OrderShipment
  */
 export interface OrderShipment {
   /**
+   *
+   * @type {V3OrdersPurchaseOrderIdShippingOrderShipment}
+   * @memberof OrderShipment
+   */
+  orderShipment?: V3OrdersPurchaseOrderIdShippingOrderShipment;
+}
+/**
+ * Information about a shipment
+ * @export
+ * @interface OrderShipmentRecord
+ */
+export interface OrderShipmentRecord {
+  /**
    * Optional. Use this parameter only to update tracking information after order is shipped. Use \'PARTIAL_UPDATE\' as value. Here PARTIAL_UPDATE will indicate that post shipment tracking information needs to be updated
    * @type {string}
-   * @memberof OrderShipment
+   * @memberof OrderShipmentRecord
    */
   processMode?: string;
   /**
    *
-   * @type {V3OrdersPurchaseOrderIdShippingOrderLines}
-   * @memberof OrderShipment
+   * @type {V3OrdersPurchaseOrderIdShippingOrderShipmentOrderLines}
+   * @memberof OrderShipmentRecord
    */
-  orderLines: V3OrdersPurchaseOrderIdShippingOrderLines;
+  orderLines: V3OrdersPurchaseOrderIdShippingOrderShipmentOrderLines;
 }
 /**
  *
@@ -3013,10 +3087,10 @@ export interface OrderSubTotal {
   subTotalType?: string;
   /**
    *
-   * @type {InlineResponse200ElementsOrderSummaryTotalAmount}
+   * @type {InlineResponse200OrderOrderSummaryTotalAmount}
    * @memberof OrderSubTotal
    */
-  totalAmount?: InlineResponse200ElementsOrderSummaryTotalAmount;
+  totalAmount?: InlineResponse200OrderOrderSummaryTotalAmount;
 }
 /**
  * Order Summary
@@ -3026,16 +3100,16 @@ export interface OrderSubTotal {
 export interface OrderSummary {
   /**
    *
-   * @type {InlineResponse200ElementsOrderSummaryTotalAmount}
+   * @type {InlineResponse200OrderOrderSummaryTotalAmount}
    * @memberof OrderSummary
    */
-  totalAmount?: InlineResponse200ElementsOrderSummaryTotalAmount;
+  totalAmount?: InlineResponse200OrderOrderSummaryTotalAmount;
   /**
    *
-   * @type {Array<InlineResponse200ElementsOrderSummaryOrderSubTotals>}
+   * @type {Array<InlineResponse200OrderOrderSummaryOrderSubTotals>}
    * @memberof OrderSummary
    */
-  orderSubTotals?: Array<InlineResponse200ElementsOrderSummaryOrderSubTotals>;
+  orderSubTotals?: Array<InlineResponse200OrderOrderSummaryOrderSubTotals>;
 }
 /**
  *
@@ -3160,16 +3234,16 @@ export enum PhoneTypeEnum {
 export interface PickupPerson {
   /**
    *
-   * @type {InlineResponse200ElementsName}
+   * @type {InlineResponse200OrderName}
    * @memberof PickupPerson
    */
-  name?: InlineResponse200ElementsName;
+  name?: InlineResponse200OrderName;
   /**
    *
-   * @type {InlineResponse200ElementsPhone}
+   * @type {InlineResponse200OrderPhone}
    * @memberof PickupPerson
    */
-  phone?: InlineResponse200ElementsPhone;
+  phone?: InlineResponse200OrderPhone;
 }
 /**
  * Elements of the customer\'s postal address
@@ -3227,29 +3301,42 @@ export interface PostalAddressType {
   addressType?: string;
 }
 /**
- * List of purchase orders in created state
+ *
  * @export
  * @interface PurchaseOrderTypeV3
  */
 export interface PurchaseOrderTypeV3 {
   /**
    *
-   * @type {Array<InlineResponse200Errors>}
+   * @type {InlineResponse2001List}
    * @memberof PurchaseOrderTypeV3
    */
-  errors?: Array<InlineResponse200Errors>;
+  list?: InlineResponse2001List;
+}
+/**
+ * List of purchase orders in created state
+ * @export
+ * @interface PurchaseOrderTypeV3List
+ */
+export interface PurchaseOrderTypeV3List {
   /**
    *
-   * @type {InlineResponse200Meta}
-   * @memberof PurchaseOrderTypeV3
+   * @type {Array<InlineResponse2001ListErrors>}
+   * @memberof PurchaseOrderTypeV3List
    */
-  meta: InlineResponse200Meta;
+  errors?: Array<InlineResponse2001ListErrors>;
   /**
    *
-   * @type {InlineResponse200Elements}
-   * @memberof PurchaseOrderTypeV3
+   * @type {InlineResponse2001ListMeta}
+   * @memberof PurchaseOrderTypeV3List
    */
-  elements: InlineResponse200Elements;
+  meta: InlineResponse2001ListMeta;
+  /**
+   *
+   * @type {InlineResponse2001ListElements}
+   * @memberof PurchaseOrderTypeV3List
+   */
+  elements: InlineResponse2001ListElements;
 }
 /**
  * Details about the status update
@@ -3294,10 +3381,10 @@ export interface RefundChargeType {
   refundReason: RefundChargeTypeRefundReasonEnum;
   /**
    *
-   * @type {InlineResponse200ElementsOrderLinesChargesCharge}
+   * @type {InlineResponse200OrderOrderLinesChargesCharge}
    * @memberof RefundChargeType
    */
-  charge: InlineResponse200ElementsOrderLinesChargesCharge;
+  charge: InlineResponse200OrderOrderLinesChargesCharge;
 }
 
 /**
@@ -3337,10 +3424,10 @@ export enum RefundChargeTypeRefundReasonEnum {
 export interface RefundChargesType {
   /**
    *
-   * @type {Array<InlineResponse200ElementsOrderLinesRefundRefundChargesRefundCharge>}
+   * @type {Array<InlineResponse200OrderOrderLinesRefundRefundChargesRefundCharge>}
    * @memberof RefundChargesType
    */
-  refundCharge?: Array<InlineResponse200ElementsOrderLinesRefundRefundChargesRefundCharge>;
+  refundCharge?: Array<InlineResponse200OrderOrderLinesRefundRefundChargesRefundCharge>;
 }
 /**
  *
@@ -3375,7 +3462,7 @@ export interface RefundLinesType {
   orderLine: Array<V3OrdersPurchaseOrderIdRefundOrderLinesOrderLine>;
 }
 /**
- *
+ * Details about any refund on the order
  * @export
  * @interface RefundType
  */
@@ -3394,10 +3481,10 @@ export interface RefundType {
   refundComments?: string;
   /**
    *
-   * @type {InlineResponse200ElementsOrderLinesRefundRefundCharges}
+   * @type {InlineResponse200OrderOrderLinesRefundRefundCharges}
    * @memberof RefundType
    */
-  refundCharges: InlineResponse200ElementsOrderLinesRefundRefundCharges;
+  refundCharges: InlineResponse200OrderOrderLinesRefundRefundCharges;
 }
 /**
  *
@@ -3407,10 +3494,10 @@ export interface RefundType {
 export interface RefundsType {
   /**
    *
-   * @type {Array<InlineResponse200ElementsOrderLinesRefund>}
+   * @type {Array<InlineResponse200OrderOrderLinesRefund>}
    * @memberof RefundsType
    */
-  refund: Array<InlineResponse200ElementsOrderLinesRefund>;
+  refund: Array<InlineResponse200OrderOrderLinesRefund>;
 }
 /**
  * Gives Sellers the ability to specify the RC center address during fulfillment; any returns created for the PO will always be returned to the RC address specified
@@ -3487,28 +3574,28 @@ export interface ShipLineStatusType {
   status: ShipLineStatusTypeStatusEnum;
   /**
    *
-   * @type {V3OrdersPurchaseOrderIdShippingOrderLinesOrderLineStatusesAsn}
+   * @type {V3OrdersPurchaseOrderIdShippingOrderShipmentOrderLinesOrderLineStatusesAsn}
    * @memberof ShipLineStatusType
    */
-  asn?: V3OrdersPurchaseOrderIdShippingOrderLinesOrderLineStatusesAsn;
+  asn?: V3OrdersPurchaseOrderIdShippingOrderShipmentOrderLinesOrderLineStatusesAsn;
   /**
    *
-   * @type {InlineResponse200ElementsOrderLinesOrderLineQuantity}
+   * @type {InlineResponse200OrderOrderLinesOrderLineQuantity}
    * @memberof ShipLineStatusType
    */
-  statusQuantity: InlineResponse200ElementsOrderLinesOrderLineQuantity;
+  statusQuantity: InlineResponse200OrderOrderLinesOrderLineQuantity;
   /**
    *
-   * @type {InlineResponse200ElementsOrderLinesOrderLineStatusesTrackingInfo}
+   * @type {InlineResponse200OrderOrderLinesOrderLineStatusesTrackingInfo}
    * @memberof ShipLineStatusType
    */
-  trackingInfo: InlineResponse200ElementsOrderLinesOrderLineStatusesTrackingInfo;
+  trackingInfo: InlineResponse200OrderOrderLinesOrderLineStatusesTrackingInfo;
   /**
    *
-   * @type {InlineResponse200ElementsOrderLinesOrderLineStatusesReturnCenterAddress}
+   * @type {InlineResponse200OrderOrderLinesOrderLineStatusesReturnCenterAddress}
    * @memberof ShipLineStatusType
    */
-  returnCenterAddress?: InlineResponse200ElementsOrderLinesOrderLineStatusesReturnCenterAddress;
+  returnCenterAddress?: InlineResponse200OrderOrderLinesOrderLineStatusesReturnCenterAddress;
 }
 
 /**
@@ -3532,10 +3619,10 @@ export enum ShipLineStatusTypeStatusEnum {
 export interface ShipLineStatusesType {
   /**
    * Details about the Order Line status
-   * @type {Array<V3OrdersPurchaseOrderIdShippingOrderLinesOrderLineStatusesOrderLineStatus>}
+   * @type {Array<V3OrdersPurchaseOrderIdShippingOrderShipmentOrderLinesOrderLineStatusesOrderLineStatus>}
    * @memberof ShipLineStatusesType
    */
-  orderLineStatus: Array<V3OrdersPurchaseOrderIdShippingOrderLinesOrderLineStatusesOrderLineStatus>;
+  orderLineStatus: Array<V3OrdersPurchaseOrderIdShippingOrderShipmentOrderLinesOrderLineStatusesOrderLineStatus>;
 }
 /**
  * Specifies the type of shipNode
@@ -3576,16 +3663,16 @@ export interface ShippingInfoType {
   phone: string;
   /**
    * The estimated time and date for the delivery of the item. Format: yyyy-MM-ddThh:MM:ssZ Example: \'2020-06-15T06:00:00Z\'
-   * @type {string}
+   * @type {number}
    * @memberof ShippingInfoType
    */
-  estimatedDeliveryDate: string;
+  estimatedDeliveryDate: number;
   /**
    * The estimated time and date when the item will be shipped. Format: yyyy-MM-ddThh:MM:ssZ Example: \'2020-06-15T06:00:00Z\'
-   * @type {string}
+   * @type {number}
    * @memberof ShippingInfoType
    */
-  estimatedShipDate: string;
+  estimatedShipDate: number;
   /**
    * The shipping method. Can be one of the following: Standard, Express, OneDay, WhiteGlove, Value or Freight
    * @type {string}
@@ -3594,10 +3681,10 @@ export interface ShippingInfoType {
   methodCode: ShippingInfoTypeMethodCodeEnum;
   /**
    *
-   * @type {InlineResponse200ElementsShippingInfoPostalAddress}
+   * @type {InlineResponse200OrderShippingInfoPostalAddress}
    * @memberof ShippingInfoType
    */
-  postalAddress: InlineResponse200ElementsShippingInfoPostalAddress;
+  postalAddress: InlineResponse200OrderShippingInfoPostalAddress;
 }
 
 /**
@@ -3633,10 +3720,10 @@ export interface ShippingLineType {
   sellerOrderId?: string;
   /**
    *
-   * @type {V3OrdersPurchaseOrderIdShippingOrderLinesOrderLineStatuses}
+   * @type {V3OrdersPurchaseOrderIdShippingOrderShipmentOrderLinesOrderLineStatuses}
    * @memberof ShippingLineType
    */
-  orderLineStatuses: V3OrdersPurchaseOrderIdShippingOrderLinesOrderLineStatuses;
+  orderLineStatuses: V3OrdersPurchaseOrderIdShippingOrderShipmentOrderLinesOrderLineStatuses;
   /**
    *
    * @type {string}
@@ -3652,10 +3739,10 @@ export interface ShippingLineType {
 export interface ShippingLinesType {
   /**
    * Information about one order line shipment
-   * @type {Array<V3OrdersPurchaseOrderIdShippingOrderLinesOrderLine>}
+   * @type {Array<V3OrdersPurchaseOrderIdShippingOrderShipmentOrderLinesOrderLine>}
    * @memberof ShippingLinesType
    */
-  orderLine: Array<V3OrdersPurchaseOrderIdShippingOrderLinesOrderLine>;
+  orderLine: Array<V3OrdersPurchaseOrderIdShippingOrderShipmentOrderLinesOrderLine>;
 }
 /**
  * Tax information for the charge, including taxName and taxAmount
@@ -3671,10 +3758,10 @@ export interface TaxType {
   taxName: string;
   /**
    *
-   * @type {InlineResponse200ElementsOrderLinesChargesChargeAmount}
+   * @type {InlineResponse200OrderOrderLinesChargesChargeAmount}
    * @memberof TaxType
    */
-  taxAmount: InlineResponse200ElementsOrderLinesChargesChargeAmount;
+  taxAmount: InlineResponse200OrderOrderLinesChargesChargeAmount;
 }
 /**
  * List of information about the package shipment and tracking updates
@@ -3684,16 +3771,16 @@ export interface TaxType {
 export interface TrackingInfoType {
   /**
    * The date the package was shipped
-   * @type {string}
+   * @type {number}
    * @memberof TrackingInfoType
    */
-  shipDateTime: string;
+  shipDateTime: number;
   /**
    *
-   * @type {InlineResponse200ElementsOrderLinesOrderLineStatusesTrackingInfoCarrierName}
+   * @type {InlineResponse200OrderOrderLinesOrderLineStatusesTrackingInfoCarrierName}
    * @memberof TrackingInfoType
    */
-  carrierName: InlineResponse200ElementsOrderLinesOrderLineStatusesTrackingInfoCarrierName;
+  carrierName: InlineResponse200OrderOrderLinesOrderLineStatusesTrackingInfoCarrierName;
   /**
    * The shipping method. Can be one of the following: Standard, Express, OneDay, WhiteGlove, Value or Freight
    * @type {string}
@@ -3728,81 +3815,94 @@ export enum TrackingInfoTypeMethodCodeEnum {
 }
 
 /**
+ * Container for the cancellation details
+ * @export
+ * @interface V3OrdersPurchaseOrderIdCancelOrderCancellation
+ */
+export interface V3OrdersPurchaseOrderIdCancelOrderCancellation {
+  /**
+   *
+   * @type {V3OrdersPurchaseOrderIdCancelOrderCancellationOrderLines}
+   * @memberof V3OrdersPurchaseOrderIdCancelOrderCancellation
+   */
+  orderLines: V3OrdersPurchaseOrderIdCancelOrderCancellationOrderLines;
+}
+/**
  * A list of orderLines to be cancelled
  * @export
- * @interface V3OrdersPurchaseOrderIdCancelOrderLines
+ * @interface V3OrdersPurchaseOrderIdCancelOrderCancellationOrderLines
  */
-export interface V3OrdersPurchaseOrderIdCancelOrderLines {
+export interface V3OrdersPurchaseOrderIdCancelOrderCancellationOrderLines {
   /**
    * Information to update the orderLine with cancellation details
-   * @type {Array<V3OrdersPurchaseOrderIdCancelOrderLinesOrderLine>}
-   * @memberof V3OrdersPurchaseOrderIdCancelOrderLines
+   * @type {Array<V3OrdersPurchaseOrderIdCancelOrderCancellationOrderLinesOrderLine>}
+   * @memberof V3OrdersPurchaseOrderIdCancelOrderCancellationOrderLines
    */
-  orderLine: Array<V3OrdersPurchaseOrderIdCancelOrderLinesOrderLine>;
+  orderLine: Array<V3OrdersPurchaseOrderIdCancelOrderCancellationOrderLinesOrderLine>;
 }
 /**
  * Information to update the orderLine with cancellation details
  * @export
- * @interface V3OrdersPurchaseOrderIdCancelOrderLinesOrderLine
+ * @interface V3OrdersPurchaseOrderIdCancelOrderCancellationOrderLinesOrderLine
  */
-export interface V3OrdersPurchaseOrderIdCancelOrderLinesOrderLine {
+export interface V3OrdersPurchaseOrderIdCancelOrderCancellationOrderLinesOrderLine {
   /**
    *
    * @type {string}
-   * @memberof V3OrdersPurchaseOrderIdCancelOrderLinesOrderLine
+   * @memberof V3OrdersPurchaseOrderIdCancelOrderCancellationOrderLinesOrderLine
    */
   lineNumber: string;
   /**
    *
-   * @type {V3OrdersPurchaseOrderIdCancelOrderLinesOrderLineStatuses}
-   * @memberof V3OrdersPurchaseOrderIdCancelOrderLinesOrderLine
+   * @type {V3OrdersPurchaseOrderIdCancelOrderCancellationOrderLinesOrderLineStatuses}
+   * @memberof V3OrdersPurchaseOrderIdCancelOrderCancellationOrderLinesOrderLine
    */
-  orderLineStatuses: V3OrdersPurchaseOrderIdCancelOrderLinesOrderLineStatuses;
+  orderLineStatuses: V3OrdersPurchaseOrderIdCancelOrderCancellationOrderLinesOrderLineStatuses;
 }
 /**
  * A list of statuses which should contain the new cancellation status
  * @export
- * @interface V3OrdersPurchaseOrderIdCancelOrderLinesOrderLineStatuses
+ * @interface V3OrdersPurchaseOrderIdCancelOrderCancellationOrderLinesOrderLineStatuses
  */
-export interface V3OrdersPurchaseOrderIdCancelOrderLinesOrderLineStatuses {
+export interface V3OrdersPurchaseOrderIdCancelOrderCancellationOrderLinesOrderLineStatuses {
   /**
    * List of details about the cancellation status update
-   * @type {Array<V3OrdersPurchaseOrderIdCancelOrderLinesOrderLineStatusesOrderLineStatus>}
-   * @memberof V3OrdersPurchaseOrderIdCancelOrderLinesOrderLineStatuses
+   * @type {Array<V3OrdersPurchaseOrderIdCancelOrderCancellationOrderLinesOrderLineStatusesOrderLineStatus>}
+   * @memberof V3OrdersPurchaseOrderIdCancelOrderCancellationOrderLinesOrderLineStatuses
    */
-  orderLineStatus: Array<V3OrdersPurchaseOrderIdCancelOrderLinesOrderLineStatusesOrderLineStatus>;
+  orderLineStatus: Array<V3OrdersPurchaseOrderIdCancelOrderCancellationOrderLinesOrderLineStatusesOrderLineStatus>;
 }
 /**
  * List of details about the cancellation status update
  * @export
- * @interface V3OrdersPurchaseOrderIdCancelOrderLinesOrderLineStatusesOrderLineStatus
+ * @interface V3OrdersPurchaseOrderIdCancelOrderCancellationOrderLinesOrderLineStatusesOrderLineStatus
  */
-export interface V3OrdersPurchaseOrderIdCancelOrderLinesOrderLineStatusesOrderLineStatus {
+export interface V3OrdersPurchaseOrderIdCancelOrderCancellationOrderLinesOrderLineStatusesOrderLineStatus {
   /**
    * Use \'Cancelled\'
    * @type {string}
-   * @memberof V3OrdersPurchaseOrderIdCancelOrderLinesOrderLineStatusesOrderLineStatus
+   * @memberof V3OrdersPurchaseOrderIdCancelOrderCancellationOrderLinesOrderLineStatusesOrderLineStatus
    */
-  status: V3OrdersPurchaseOrderIdCancelOrderLinesOrderLineStatusesOrderLineStatusStatusEnum;
+  status: V3OrdersPurchaseOrderIdCancelOrderCancellationOrderLinesOrderLineStatusesOrderLineStatusStatusEnum;
   /**
    * Reason for cancellation. Example: \'CUSTOMER_REQUESTED_SELLER_TO_CANCEL\'
    * @type {string}
-   * @memberof V3OrdersPurchaseOrderIdCancelOrderLinesOrderLineStatusesOrderLineStatus
+   * @memberof V3OrdersPurchaseOrderIdCancelOrderCancellationOrderLinesOrderLineStatusesOrderLineStatus
    */
-  cancellationReason: V3OrdersPurchaseOrderIdCancelOrderLinesOrderLineStatusesOrderLineStatusCancellationReasonEnum;
+  cancellationReason: V3OrdersPurchaseOrderIdCancelOrderCancellationOrderLinesOrderLineStatusesOrderLineStatusCancellationReasonEnum;
   /**
    *
-   * @type {InlineResponse200ElementsOrderLinesOrderLineQuantity}
-   * @memberof V3OrdersPurchaseOrderIdCancelOrderLinesOrderLineStatusesOrderLineStatus
+   * @type {InlineResponse200OrderOrderLinesOrderLineQuantity}
+   * @memberof V3OrdersPurchaseOrderIdCancelOrderCancellationOrderLinesOrderLineStatusesOrderLineStatus
    */
-  statusQuantity: InlineResponse200ElementsOrderLinesOrderLineQuantity;
+  statusQuantity: InlineResponse200OrderOrderLinesOrderLineQuantity;
 }
 
 /**
  * @export
  * @enum {string}
  */
-export enum V3OrdersPurchaseOrderIdCancelOrderLinesOrderLineStatusesOrderLineStatusStatusEnum {
+export enum V3OrdersPurchaseOrderIdCancelOrderCancellationOrderLinesOrderLineStatusesOrderLineStatusStatusEnum {
   Created = "Created",
   Acknowledged = "Acknowledged",
   Shipped = "Shipped",
@@ -3814,7 +3914,7 @@ export enum V3OrdersPurchaseOrderIdCancelOrderLinesOrderLineStatusesOrderLineSta
  * @export
  * @enum {string}
  */
-export enum V3OrdersPurchaseOrderIdCancelOrderLinesOrderLineStatusesOrderLineStatusCancellationReasonEnum {
+export enum V3OrdersPurchaseOrderIdCancelOrderCancellationOrderLinesOrderLineStatusesOrderLineStatusCancellationReasonEnum {
   CustomerRequestedSellerToCancel = "CUSTOMER_REQUESTED_SELLER_TO_CANCEL",
   SellerCancelPricingError = "SELLER_CANCEL_PRICING_ERROR",
   SellerCancelOutOfStock = "SELLER_CANCEL_OUT_OF_STOCK",
@@ -3862,130 +3962,149 @@ export interface V3OrdersPurchaseOrderIdRefundOrderLinesOrderLine {
 export interface V3OrdersPurchaseOrderIdRefundOrderLinesRefunds {
   /**
    *
-   * @type {Array<InlineResponse200ElementsOrderLinesRefund>}
+   * @type {Array<InlineResponse200OrderOrderLinesRefund>}
    * @memberof V3OrdersPurchaseOrderIdRefundOrderLinesRefunds
    */
-  refund: Array<InlineResponse200ElementsOrderLinesRefund>;
+  refund: Array<InlineResponse200OrderOrderLinesRefund>;
+}
+/**
+ * Information about a shipment
+ * @export
+ * @interface V3OrdersPurchaseOrderIdShippingOrderShipment
+ */
+export interface V3OrdersPurchaseOrderIdShippingOrderShipment {
+  /**
+   * Optional. Use this parameter only to update tracking information after order is shipped. Use \'PARTIAL_UPDATE\' as value. Here PARTIAL_UPDATE will indicate that post shipment tracking information needs to be updated
+   * @type {string}
+   * @memberof V3OrdersPurchaseOrderIdShippingOrderShipment
+   */
+  processMode?: string;
+  /**
+   *
+   * @type {V3OrdersPurchaseOrderIdShippingOrderShipmentOrderLines}
+   * @memberof V3OrdersPurchaseOrderIdShippingOrderShipment
+   */
+  orderLines: V3OrdersPurchaseOrderIdShippingOrderShipmentOrderLines;
 }
 /**
  * List of orderLines in the shipment
  * @export
- * @interface V3OrdersPurchaseOrderIdShippingOrderLines
+ * @interface V3OrdersPurchaseOrderIdShippingOrderShipmentOrderLines
  */
-export interface V3OrdersPurchaseOrderIdShippingOrderLines {
+export interface V3OrdersPurchaseOrderIdShippingOrderShipmentOrderLines {
   /**
    * Information about one order line shipment
-   * @type {Array<V3OrdersPurchaseOrderIdShippingOrderLinesOrderLine>}
-   * @memberof V3OrdersPurchaseOrderIdShippingOrderLines
+   * @type {Array<V3OrdersPurchaseOrderIdShippingOrderShipmentOrderLinesOrderLine>}
+   * @memberof V3OrdersPurchaseOrderIdShippingOrderShipmentOrderLines
    */
-  orderLine: Array<V3OrdersPurchaseOrderIdShippingOrderLinesOrderLine>;
+  orderLine: Array<V3OrdersPurchaseOrderIdShippingOrderShipmentOrderLinesOrderLine>;
 }
 /**
  * Information about one order line shipment
  * @export
- * @interface V3OrdersPurchaseOrderIdShippingOrderLinesOrderLine
+ * @interface V3OrdersPurchaseOrderIdShippingOrderShipmentOrderLinesOrderLine
  */
-export interface V3OrdersPurchaseOrderIdShippingOrderLinesOrderLine {
+export interface V3OrdersPurchaseOrderIdShippingOrderShipmentOrderLinesOrderLine {
   /**
    * The line number associated with the details for each individual item in the purchase order
    * @type {string}
-   * @memberof V3OrdersPurchaseOrderIdShippingOrderLinesOrderLine
+   * @memberof V3OrdersPurchaseOrderIdShippingOrderShipmentOrderLinesOrderLine
    */
   lineNumber: string;
   /**
    * A unique ID associated with the sales order for specified Seller; gives Sellers the ability to print their own custom order ID on the return label; limit of 30 characters
    * @type {string}
-   * @memberof V3OrdersPurchaseOrderIdShippingOrderLinesOrderLine
+   * @memberof V3OrdersPurchaseOrderIdShippingOrderShipmentOrderLinesOrderLine
    */
   sellerOrderId?: string;
   /**
    *
-   * @type {V3OrdersPurchaseOrderIdShippingOrderLinesOrderLineStatuses}
-   * @memberof V3OrdersPurchaseOrderIdShippingOrderLinesOrderLine
+   * @type {V3OrdersPurchaseOrderIdShippingOrderShipmentOrderLinesOrderLineStatuses}
+   * @memberof V3OrdersPurchaseOrderIdShippingOrderShipmentOrderLinesOrderLine
    */
-  orderLineStatuses: V3OrdersPurchaseOrderIdShippingOrderLinesOrderLineStatuses;
+  orderLineStatuses: V3OrdersPurchaseOrderIdShippingOrderShipmentOrderLinesOrderLineStatuses;
   /**
    *
    * @type {string}
-   * @memberof V3OrdersPurchaseOrderIdShippingOrderLinesOrderLine
+   * @memberof V3OrdersPurchaseOrderIdShippingOrderShipmentOrderLinesOrderLine
    */
   sellerOrderNo?: string;
 }
 /**
  * A list of status updates for that orderLine, including shipping status updates
  * @export
- * @interface V3OrdersPurchaseOrderIdShippingOrderLinesOrderLineStatuses
+ * @interface V3OrdersPurchaseOrderIdShippingOrderShipmentOrderLinesOrderLineStatuses
  */
-export interface V3OrdersPurchaseOrderIdShippingOrderLinesOrderLineStatuses {
+export interface V3OrdersPurchaseOrderIdShippingOrderShipmentOrderLinesOrderLineStatuses {
   /**
    * Details about the Order Line status
-   * @type {Array<V3OrdersPurchaseOrderIdShippingOrderLinesOrderLineStatusesOrderLineStatus>}
-   * @memberof V3OrdersPurchaseOrderIdShippingOrderLinesOrderLineStatuses
+   * @type {Array<V3OrdersPurchaseOrderIdShippingOrderShipmentOrderLinesOrderLineStatusesOrderLineStatus>}
+   * @memberof V3OrdersPurchaseOrderIdShippingOrderShipmentOrderLinesOrderLineStatuses
    */
-  orderLineStatus: Array<V3OrdersPurchaseOrderIdShippingOrderLinesOrderLineStatusesOrderLineStatus>;
+  orderLineStatus: Array<V3OrdersPurchaseOrderIdShippingOrderShipmentOrderLinesOrderLineStatusesOrderLineStatus>;
 }
 /**
  *
  * @export
- * @interface V3OrdersPurchaseOrderIdShippingOrderLinesOrderLineStatusesAsn
+ * @interface V3OrdersPurchaseOrderIdShippingOrderShipmentOrderLinesOrderLineStatusesAsn
  */
-export interface V3OrdersPurchaseOrderIdShippingOrderLinesOrderLineStatusesAsn {
+export interface V3OrdersPurchaseOrderIdShippingOrderShipmentOrderLinesOrderLineStatusesAsn {
   /**
    *
    * @type {string}
-   * @memberof V3OrdersPurchaseOrderIdShippingOrderLinesOrderLineStatusesAsn
+   * @memberof V3OrdersPurchaseOrderIdShippingOrderShipmentOrderLinesOrderLineStatusesAsn
    */
   packageASN: string;
   /**
    *
    * @type {string}
-   * @memberof V3OrdersPurchaseOrderIdShippingOrderLinesOrderLineStatusesAsn
+   * @memberof V3OrdersPurchaseOrderIdShippingOrderShipmentOrderLinesOrderLineStatusesAsn
    */
   palletASN?: string;
 }
 /**
  * Details about the Order Line status
  * @export
- * @interface V3OrdersPurchaseOrderIdShippingOrderLinesOrderLineStatusesOrderLineStatus
+ * @interface V3OrdersPurchaseOrderIdShippingOrderShipmentOrderLinesOrderLineStatusesOrderLineStatus
  */
-export interface V3OrdersPurchaseOrderIdShippingOrderLinesOrderLineStatusesOrderLineStatus {
+export interface V3OrdersPurchaseOrderIdShippingOrderShipmentOrderLinesOrderLineStatusesOrderLineStatus {
   /**
    * Use \'Shipped\'
    * @type {string}
-   * @memberof V3OrdersPurchaseOrderIdShippingOrderLinesOrderLineStatusesOrderLineStatus
+   * @memberof V3OrdersPurchaseOrderIdShippingOrderShipmentOrderLinesOrderLineStatusesOrderLineStatus
    */
-  status: V3OrdersPurchaseOrderIdShippingOrderLinesOrderLineStatusesOrderLineStatusStatusEnum;
+  status: V3OrdersPurchaseOrderIdShippingOrderShipmentOrderLinesOrderLineStatusesOrderLineStatusStatusEnum;
   /**
    *
-   * @type {V3OrdersPurchaseOrderIdShippingOrderLinesOrderLineStatusesAsn}
-   * @memberof V3OrdersPurchaseOrderIdShippingOrderLinesOrderLineStatusesOrderLineStatus
+   * @type {V3OrdersPurchaseOrderIdShippingOrderShipmentOrderLinesOrderLineStatusesAsn}
+   * @memberof V3OrdersPurchaseOrderIdShippingOrderShipmentOrderLinesOrderLineStatusesOrderLineStatus
    */
-  asn?: V3OrdersPurchaseOrderIdShippingOrderLinesOrderLineStatusesAsn;
+  asn?: V3OrdersPurchaseOrderIdShippingOrderShipmentOrderLinesOrderLineStatusesAsn;
   /**
    *
-   * @type {InlineResponse200ElementsOrderLinesOrderLineQuantity}
-   * @memberof V3OrdersPurchaseOrderIdShippingOrderLinesOrderLineStatusesOrderLineStatus
+   * @type {InlineResponse200OrderOrderLinesOrderLineQuantity}
+   * @memberof V3OrdersPurchaseOrderIdShippingOrderShipmentOrderLinesOrderLineStatusesOrderLineStatus
    */
-  statusQuantity: InlineResponse200ElementsOrderLinesOrderLineQuantity;
+  statusQuantity: InlineResponse200OrderOrderLinesOrderLineQuantity;
   /**
    *
-   * @type {InlineResponse200ElementsOrderLinesOrderLineStatusesTrackingInfo}
-   * @memberof V3OrdersPurchaseOrderIdShippingOrderLinesOrderLineStatusesOrderLineStatus
+   * @type {InlineResponse200OrderOrderLinesOrderLineStatusesTrackingInfo}
+   * @memberof V3OrdersPurchaseOrderIdShippingOrderShipmentOrderLinesOrderLineStatusesOrderLineStatus
    */
-  trackingInfo: InlineResponse200ElementsOrderLinesOrderLineStatusesTrackingInfo;
+  trackingInfo: InlineResponse200OrderOrderLinesOrderLineStatusesTrackingInfo;
   /**
    *
-   * @type {InlineResponse200ElementsOrderLinesOrderLineStatusesReturnCenterAddress}
-   * @memberof V3OrdersPurchaseOrderIdShippingOrderLinesOrderLineStatusesOrderLineStatus
+   * @type {InlineResponse200OrderOrderLinesOrderLineStatusesReturnCenterAddress}
+   * @memberof V3OrdersPurchaseOrderIdShippingOrderShipmentOrderLinesOrderLineStatusesOrderLineStatus
    */
-  returnCenterAddress?: InlineResponse200ElementsOrderLinesOrderLineStatusesReturnCenterAddress;
+  returnCenterAddress?: InlineResponse200OrderOrderLinesOrderLineStatusesReturnCenterAddress;
 }
 
 /**
  * @export
  * @enum {string}
  */
-export enum V3OrdersPurchaseOrderIdShippingOrderLinesOrderLineStatusesOrderLineStatusStatusEnum {
+export enum V3OrdersPurchaseOrderIdShippingOrderShipmentOrderLinesOrderLineStatusesOrderLineStatusStatusEnum {
   Created = "Created",
   Acknowledged = "Acknowledged",
   Shipped = "Shipped",
@@ -4137,7 +4256,7 @@ export const OrdersApiAxiosParamCreator = function (
      * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
      * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
      * @param {string} wMSVCNAME Walmart Service Name
-     * @param {InlineObject1} inlineObject1
+     * @param {InlineObject} inlineObject
      * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -4148,7 +4267,7 @@ export const OrdersApiAxiosParamCreator = function (
       wMSECACCESSTOKEN: string,
       wMQOSCORRELATIONID: string,
       wMSVCNAME: string,
-      inlineObject1: InlineObject1,
+      inlineObject: InlineObject,
       wMCONSUMERCHANNELTYPE?: string,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -4170,8 +4289,8 @@ export const OrdersApiAxiosParamCreator = function (
       );
       // verify required parameter 'wMSVCNAME' is not null or undefined
       assertParamExists("cancelOrderLines", "wMSVCNAME", wMSVCNAME);
-      // verify required parameter 'inlineObject1' is not null or undefined
-      assertParamExists("cancelOrderLines", "inlineObject1", inlineObject1);
+      // verify required parameter 'inlineObject' is not null or undefined
+      assertParamExists("cancelOrderLines", "inlineObject", inlineObject);
       const localVarPath = `/v3/orders/{purchaseOrderId}/cancel`.replace(
         `{${"purchaseOrderId"}}`,
         encodeURIComponent(String(purchaseOrderId))
@@ -4222,7 +4341,7 @@ export const OrdersApiAxiosParamCreator = function (
         localVarHeaderParameter["WM_SVC.NAME"] = String(wMSVCNAME);
       }
 
-      localVarHeaderParameter["Content-Type"] = "application/xml";
+      localVarHeaderParameter["Content-Type"] = "application/json";
 
       setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
       let headersFromBaseOptions =
@@ -4233,7 +4352,7 @@ export const OrdersApiAxiosParamCreator = function (
         ...options.headers,
       };
       localVarRequestOptions.data = serializeDataIfNeeded(
-        inlineObject1,
+        inlineObject,
         localVarRequestOptions,
         configuration
       );
@@ -4720,7 +4839,7 @@ export const OrdersApiAxiosParamCreator = function (
      * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
      * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
      * @param {string} wMSVCNAME Walmart Service Name
-     * @param {InlineObject2} inlineObject2
+     * @param {InlineObject1} inlineObject1
      * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -4731,7 +4850,7 @@ export const OrdersApiAxiosParamCreator = function (
       wMSECACCESSTOKEN: string,
       wMQOSCORRELATIONID: string,
       wMSVCNAME: string,
-      inlineObject2: InlineObject2,
+      inlineObject1: InlineObject1,
       wMCONSUMERCHANNELTYPE?: string,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -4753,9 +4872,123 @@ export const OrdersApiAxiosParamCreator = function (
       );
       // verify required parameter 'wMSVCNAME' is not null or undefined
       assertParamExists("refundOrderLines", "wMSVCNAME", wMSVCNAME);
-      // verify required parameter 'inlineObject2' is not null or undefined
-      assertParamExists("refundOrderLines", "inlineObject2", inlineObject2);
+      // verify required parameter 'inlineObject1' is not null or undefined
+      assertParamExists("refundOrderLines", "inlineObject1", inlineObject1);
       const localVarPath = `/v3/orders/{purchaseOrderId}/refund`.replace(
+        `{${"purchaseOrderId"}}`,
+        encodeURIComponent(String(purchaseOrderId))
+      );
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication basicScheme required
+      // http basic authentication required
+      setBasicAuthToObject(localVarRequestOptions, configuration);
+
+      if (authorization !== undefined && authorization !== null) {
+        localVarHeaderParameter["Authorization"] = String(authorization);
+      }
+
+      if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
+        localVarHeaderParameter["WM_SEC.ACCESS_TOKEN"] =
+          String(wMSECACCESSTOKEN);
+      }
+
+      if (
+        wMCONSUMERCHANNELTYPE !== undefined &&
+        wMCONSUMERCHANNELTYPE !== null
+      ) {
+        localVarHeaderParameter["WM_CONSUMER.CHANNEL.TYPE"] = String(
+          wMCONSUMERCHANNELTYPE
+        );
+      }
+
+      if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
+        localVarHeaderParameter["WM_QOS.CORRELATION_ID"] =
+          String(wMQOSCORRELATIONID);
+      }
+
+      if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
+        localVarHeaderParameter["WM_SVC.NAME"] = String(wMSVCNAME);
+      }
+
+      localVarHeaderParameter["Content-Type"] = "application/xml";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        inlineObject1,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * Updates the status of order lines to Shipped and trigger the charge to the customer. The response to a successful call contains the order with the shipped line items.
+     * @summary Ship Order Lines
+     * @param {string} purchaseOrderId purchaseOrderId
+     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+     * @param {string} wMSVCNAME Walmart Service Name
+     * @param {InlineObject2} inlineObject2
+     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    shippingUpdates: async (
+      purchaseOrderId: string,
+      authorization: string,
+      wMSECACCESSTOKEN: string,
+      wMQOSCORRELATIONID: string,
+      wMSVCNAME: string,
+      inlineObject2: InlineObject2,
+      wMCONSUMERCHANNELTYPE?: string,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'purchaseOrderId' is not null or undefined
+      assertParamExists("shippingUpdates", "purchaseOrderId", purchaseOrderId);
+      // verify required parameter 'authorization' is not null or undefined
+      assertParamExists("shippingUpdates", "authorization", authorization);
+      // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
+      assertParamExists(
+        "shippingUpdates",
+        "wMSECACCESSTOKEN",
+        wMSECACCESSTOKEN
+      );
+      // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
+      assertParamExists(
+        "shippingUpdates",
+        "wMQOSCORRELATIONID",
+        wMQOSCORRELATIONID
+      );
+      // verify required parameter 'wMSVCNAME' is not null or undefined
+      assertParamExists("shippingUpdates", "wMSVCNAME", wMSVCNAME);
+      // verify required parameter 'inlineObject2' is not null or undefined
+      assertParamExists("shippingUpdates", "inlineObject2", inlineObject2);
+      const localVarPath = `/v3/orders/{purchaseOrderId}/shipping`.replace(
         `{${"purchaseOrderId"}}`,
         encodeURIComponent(String(purchaseOrderId))
       );
@@ -4826,120 +5059,6 @@ export const OrdersApiAxiosParamCreator = function (
         options: localVarRequestOptions,
       };
     },
-    /**
-     * Updates the status of order lines to Shipped and trigger the charge to the customer. The response to a successful call contains the order with the shipped line items.
-     * @summary Ship Order Lines
-     * @param {string} purchaseOrderId purchaseOrderId
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {InlineObject} inlineObject
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    shippingUpdates: async (
-      purchaseOrderId: string,
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      inlineObject: InlineObject,
-      wMCONSUMERCHANNELTYPE?: string,
-      options: any = {}
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'purchaseOrderId' is not null or undefined
-      assertParamExists("shippingUpdates", "purchaseOrderId", purchaseOrderId);
-      // verify required parameter 'authorization' is not null or undefined
-      assertParamExists("shippingUpdates", "authorization", authorization);
-      // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
-      assertParamExists(
-        "shippingUpdates",
-        "wMSECACCESSTOKEN",
-        wMSECACCESSTOKEN
-      );
-      // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
-      assertParamExists(
-        "shippingUpdates",
-        "wMQOSCORRELATIONID",
-        wMQOSCORRELATIONID
-      );
-      // verify required parameter 'wMSVCNAME' is not null or undefined
-      assertParamExists("shippingUpdates", "wMSVCNAME", wMSVCNAME);
-      // verify required parameter 'inlineObject' is not null or undefined
-      assertParamExists("shippingUpdates", "inlineObject", inlineObject);
-      const localVarPath = `/v3/orders/{purchaseOrderId}/shipping`.replace(
-        `{${"purchaseOrderId"}}`,
-        encodeURIComponent(String(purchaseOrderId))
-      );
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
-
-      const localVarRequestOptions = {
-        method: "POST",
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
-
-      // authentication basicScheme required
-      // http basic authentication required
-      setBasicAuthToObject(localVarRequestOptions, configuration);
-
-      if (authorization !== undefined && authorization !== null) {
-        localVarHeaderParameter["Authorization"] = String(authorization);
-      }
-
-      if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
-        localVarHeaderParameter["WM_SEC.ACCESS_TOKEN"] =
-          String(wMSECACCESSTOKEN);
-      }
-
-      if (
-        wMCONSUMERCHANNELTYPE !== undefined &&
-        wMCONSUMERCHANNELTYPE !== null
-      ) {
-        localVarHeaderParameter["WM_CONSUMER.CHANNEL.TYPE"] = String(
-          wMCONSUMERCHANNELTYPE
-        );
-      }
-
-      if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
-        localVarHeaderParameter["WM_QOS.CORRELATION_ID"] =
-          String(wMQOSCORRELATIONID);
-      }
-
-      if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
-        localVarHeaderParameter["WM_SVC.NAME"] = String(wMSVCNAME);
-      }
-
-      localVarHeaderParameter["Content-Type"] = "application/json";
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
-      localVarRequestOptions.data = serializeDataIfNeeded(
-        inlineObject,
-        localVarRequestOptions,
-        configuration
-      );
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
   };
 };
 
@@ -4974,7 +5093,7 @@ export const OrdersApiFp = function (configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<InlineResponse200ElementsOrder>
+      ) => AxiosPromise<InlineResponse200>
     > {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.acknowledgeOrders(
@@ -5001,7 +5120,7 @@ export const OrdersApiFp = function (configuration?: Configuration) {
      * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
      * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
      * @param {string} wMSVCNAME Walmart Service Name
-     * @param {InlineObject1} inlineObject1
+     * @param {InlineObject} inlineObject
      * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -5012,14 +5131,14 @@ export const OrdersApiFp = function (configuration?: Configuration) {
       wMSECACCESSTOKEN: string,
       wMQOSCORRELATIONID: string,
       wMSVCNAME: string,
-      inlineObject1: InlineObject1,
+      inlineObject: InlineObject,
       wMCONSUMERCHANNELTYPE?: string,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<InlineResponse200ElementsOrder>
+      ) => AxiosPromise<InlineResponse200>
     > {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.cancelOrderLines(
@@ -5028,7 +5147,7 @@ export const OrdersApiFp = function (configuration?: Configuration) {
           wMSECACCESSTOKEN,
           wMQOSCORRELATIONID,
           wMSVCNAME,
-          inlineObject1,
+          inlineObject,
           wMCONSUMERCHANNELTYPE,
           options
         );
@@ -5093,7 +5212,7 @@ export const OrdersApiFp = function (configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<InlineResponse200>
+      ) => AxiosPromise<InlineResponse2001>
     > {
       const localVarAxiosArgs = await localVarAxiosParamCreator.getAllOrders(
         authorization,
@@ -5174,7 +5293,7 @@ export const OrdersApiFp = function (configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<InlineResponse200>
+      ) => AxiosPromise<InlineResponse2001>
     > {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.getAllReleasedOrders(
@@ -5233,7 +5352,7 @@ export const OrdersApiFp = function (configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<InlineResponse2001>
+      ) => AxiosPromise<InlineResponse2002>
     > {
       const localVarAxiosArgs = await localVarAxiosParamCreator.getAnOrder(
         purchaseOrderId,
@@ -5261,7 +5380,7 @@ export const OrdersApiFp = function (configuration?: Configuration) {
      * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
      * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
      * @param {string} wMSVCNAME Walmart Service Name
-     * @param {InlineObject2} inlineObject2
+     * @param {InlineObject1} inlineObject1
      * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -5272,14 +5391,14 @@ export const OrdersApiFp = function (configuration?: Configuration) {
       wMSECACCESSTOKEN: string,
       wMQOSCORRELATIONID: string,
       wMSVCNAME: string,
-      inlineObject2: InlineObject2,
+      inlineObject1: InlineObject1,
       wMCONSUMERCHANNELTYPE?: string,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<InlineResponse200ElementsOrder>
+      ) => AxiosPromise<InlineResponse200>
     > {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.refundOrderLines(
@@ -5288,7 +5407,7 @@ export const OrdersApiFp = function (configuration?: Configuration) {
           wMSECACCESSTOKEN,
           wMQOSCORRELATIONID,
           wMSVCNAME,
-          inlineObject2,
+          inlineObject1,
           wMCONSUMERCHANNELTYPE,
           options
         );
@@ -5307,7 +5426,7 @@ export const OrdersApiFp = function (configuration?: Configuration) {
      * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
      * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
      * @param {string} wMSVCNAME Walmart Service Name
-     * @param {InlineObject} inlineObject
+     * @param {InlineObject2} inlineObject2
      * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -5318,14 +5437,14 @@ export const OrdersApiFp = function (configuration?: Configuration) {
       wMSECACCESSTOKEN: string,
       wMQOSCORRELATIONID: string,
       wMSVCNAME: string,
-      inlineObject: InlineObject,
+      inlineObject2: InlineObject2,
       wMCONSUMERCHANNELTYPE?: string,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<InlineResponse200ElementsOrder>
+      ) => AxiosPromise<InlineResponse200>
     > {
       const localVarAxiosArgs = await localVarAxiosParamCreator.shippingUpdates(
         purchaseOrderId,
@@ -5333,7 +5452,7 @@ export const OrdersApiFp = function (configuration?: Configuration) {
         wMSECACCESSTOKEN,
         wMQOSCORRELATIONID,
         wMSVCNAME,
-        inlineObject,
+        inlineObject2,
         wMCONSUMERCHANNELTYPE,
         options
       );
@@ -5378,7 +5497,7 @@ export const OrdersApiFactory = function (
       wMSVCNAME: string,
       wMCONSUMERCHANNELTYPE?: string,
       options?: any
-    ): AxiosPromise<InlineResponse200ElementsOrder> {
+    ): AxiosPromise<InlineResponse200> {
       return localVarFp
         .acknowledgeOrders(
           purchaseOrderId,
@@ -5399,7 +5518,7 @@ export const OrdersApiFactory = function (
      * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
      * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
      * @param {string} wMSVCNAME Walmart Service Name
-     * @param {InlineObject1} inlineObject1
+     * @param {InlineObject} inlineObject
      * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -5410,10 +5529,10 @@ export const OrdersApiFactory = function (
       wMSECACCESSTOKEN: string,
       wMQOSCORRELATIONID: string,
       wMSVCNAME: string,
-      inlineObject1: InlineObject1,
+      inlineObject: InlineObject,
       wMCONSUMERCHANNELTYPE?: string,
       options?: any
-    ): AxiosPromise<InlineResponse200ElementsOrder> {
+    ): AxiosPromise<InlineResponse200> {
       return localVarFp
         .cancelOrderLines(
           purchaseOrderId,
@@ -5421,7 +5540,7 @@ export const OrdersApiFactory = function (
           wMSECACCESSTOKEN,
           wMQOSCORRELATIONID,
           wMSVCNAME,
-          inlineObject1,
+          inlineObject,
           wMCONSUMERCHANNELTYPE,
           options
         )
@@ -5477,7 +5596,7 @@ export const OrdersApiFactory = function (
       orderType?: string,
       wMCONSUMERCHANNELTYPE?: string,
       options?: any
-    ): AxiosPromise<InlineResponse200> {
+    ): AxiosPromise<InlineResponse2001> {
       return localVarFp
         .getAllOrders(
           authorization,
@@ -5549,7 +5668,7 @@ export const OrdersApiFactory = function (
       orderType?: string,
       wMCONSUMERCHANNELTYPE?: string,
       options?: any
-    ): AxiosPromise<InlineResponse200> {
+    ): AxiosPromise<InlineResponse2001> {
       return localVarFp
         .getAllReleasedOrders(
           authorization,
@@ -5598,7 +5717,7 @@ export const OrdersApiFactory = function (
       replacementInfo?: string,
       wMCONSUMERCHANNELTYPE?: string,
       options?: any
-    ): AxiosPromise<InlineResponse2001> {
+    ): AxiosPromise<InlineResponse2002> {
       return localVarFp
         .getAnOrder(
           purchaseOrderId,
@@ -5621,7 +5740,7 @@ export const OrdersApiFactory = function (
      * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
      * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
      * @param {string} wMSVCNAME Walmart Service Name
-     * @param {InlineObject2} inlineObject2
+     * @param {InlineObject1} inlineObject1
      * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -5632,10 +5751,10 @@ export const OrdersApiFactory = function (
       wMSECACCESSTOKEN: string,
       wMQOSCORRELATIONID: string,
       wMSVCNAME: string,
-      inlineObject2: InlineObject2,
+      inlineObject1: InlineObject1,
       wMCONSUMERCHANNELTYPE?: string,
       options?: any
-    ): AxiosPromise<InlineResponse200ElementsOrder> {
+    ): AxiosPromise<InlineResponse200> {
       return localVarFp
         .refundOrderLines(
           purchaseOrderId,
@@ -5643,7 +5762,7 @@ export const OrdersApiFactory = function (
           wMSECACCESSTOKEN,
           wMQOSCORRELATIONID,
           wMSVCNAME,
-          inlineObject2,
+          inlineObject1,
           wMCONSUMERCHANNELTYPE,
           options
         )
@@ -5657,7 +5776,7 @@ export const OrdersApiFactory = function (
      * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
      * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
      * @param {string} wMSVCNAME Walmart Service Name
-     * @param {InlineObject} inlineObject
+     * @param {InlineObject2} inlineObject2
      * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -5668,10 +5787,10 @@ export const OrdersApiFactory = function (
       wMSECACCESSTOKEN: string,
       wMQOSCORRELATIONID: string,
       wMSVCNAME: string,
-      inlineObject: InlineObject,
+      inlineObject2: InlineObject2,
       wMCONSUMERCHANNELTYPE?: string,
       options?: any
-    ): AxiosPromise<InlineResponse200ElementsOrder> {
+    ): AxiosPromise<InlineResponse200> {
       return localVarFp
         .shippingUpdates(
           purchaseOrderId,
@@ -5679,7 +5798,7 @@ export const OrdersApiFactory = function (
           wMSECACCESSTOKEN,
           wMQOSCORRELATIONID,
           wMSVCNAME,
-          inlineObject,
+          inlineObject2,
           wMCONSUMERCHANNELTYPE,
           options
         )
@@ -5780,10 +5899,10 @@ export interface OrdersApiCancelOrderLinesRequest {
 
   /**
    *
-   * @type {InlineObject1}
+   * @type {InlineObject}
    * @memberof OrdersApiCancelOrderLines
    */
-  readonly inlineObject1: InlineObject1;
+  readonly inlineObject: InlineObject;
 
   /**
    * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
@@ -6186,10 +6305,10 @@ export interface OrdersApiRefundOrderLinesRequest {
 
   /**
    *
-   * @type {InlineObject2}
+   * @type {InlineObject1}
    * @memberof OrdersApiRefundOrderLines
    */
-  readonly inlineObject2: InlineObject2;
+  readonly inlineObject1: InlineObject1;
 
   /**
    * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
@@ -6242,10 +6361,10 @@ export interface OrdersApiShippingUpdatesRequest {
 
   /**
    *
-   * @type {InlineObject}
+   * @type {InlineObject2}
    * @memberof OrdersApiShippingUpdates
    */
-  readonly inlineObject: InlineObject;
+  readonly inlineObject2: InlineObject2;
 
   /**
    * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
@@ -6306,7 +6425,7 @@ export class OrdersApi extends BaseAPI {
         requestParameters.wMSECACCESSTOKEN,
         requestParameters.wMQOSCORRELATIONID,
         requestParameters.wMSVCNAME,
-        requestParameters.inlineObject1,
+        requestParameters.inlineObject,
         requestParameters.wMCONSUMERCHANNELTYPE,
         options
       )
@@ -6436,7 +6555,7 @@ export class OrdersApi extends BaseAPI {
         requestParameters.wMSECACCESSTOKEN,
         requestParameters.wMQOSCORRELATIONID,
         requestParameters.wMSVCNAME,
-        requestParameters.inlineObject2,
+        requestParameters.inlineObject1,
         requestParameters.wMCONSUMERCHANNELTYPE,
         options
       )
@@ -6462,7 +6581,7 @@ export class OrdersApi extends BaseAPI {
         requestParameters.wMSECACCESSTOKEN,
         requestParameters.wMQOSCORRELATIONID,
         requestParameters.wMSVCNAME,
-        requestParameters.inlineObject,
+        requestParameters.inlineObject2,
         requestParameters.wMCONSUMERCHANNELTYPE,
         options
       )

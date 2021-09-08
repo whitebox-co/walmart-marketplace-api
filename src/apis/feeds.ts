@@ -130,10 +130,10 @@ export interface FeedRecord {
   feedStatus?: string;
   /**
    * The date and time the feed was submitted. Format: yyyymmddThh:mm:ss.xxxz
-   * @type {string}
+   * @type {number}
    * @memberof FeedRecord
    */
-  feedDate?: string;
+  feedDate?: number;
   /**
    * The batch ID for the feed, if provided
    * @type {string}
@@ -142,10 +142,10 @@ export interface FeedRecord {
   batchId?: string;
   /**
    * The most recent time the feed was modified. Format: yyyymmddThh:mm:ss.xxxz
-   * @type {string}
+   * @type {number}
    * @memberof FeedRecord
    */
-  modifiedDtm?: string;
+  modifiedDtm?: number;
 }
 /**
  *
@@ -178,11 +178,11 @@ export interface FeedRecordResponse {
    */
   limit?: number;
   /**
-   * The feed status results
-   * @type {Array<InlineResponse200Results>}
+   *
+   * @type {InlineResponse200Results}
    * @memberof FeedRecordResponse
    */
-  results?: Array<InlineResponse200Results>;
+  results?: InlineResponse200Results;
 }
 /**
  *
@@ -373,11 +373,11 @@ export interface InlineResponse200 {
    */
   limit?: number;
   /**
-   * The feed status results
-   * @type {Array<InlineResponse200Results>}
+   *
+   * @type {InlineResponse200Results}
    * @memberof InlineResponse200
    */
-  results?: Array<InlineResponse200Results>;
+  results?: InlineResponse200Results;
 }
 /**
  *
@@ -723,83 +723,96 @@ export enum InlineResponse200ErrorsGatewayErrorCategoryEnum {
 }
 
 /**
- * Information about the individual feed
+ * The feed status results
  * @export
  * @interface InlineResponse200Results
  */
 export interface InlineResponse200Results {
   /**
+   * The feed status results
+   * @type {Array<InlineResponse200ResultsFeed>}
+   * @memberof InlineResponse200Results
+   */
+  feed?: Array<InlineResponse200ResultsFeed>;
+}
+/**
+ * Information about the individual feed
+ * @export
+ * @interface InlineResponse200ResultsFeed
+ */
+export interface InlineResponse200ResultsFeed {
+  /**
    * A unique ID used for tracking the Feed File
    * @type {string}
-   * @memberof InlineResponse200Results
+   * @memberof InlineResponse200ResultsFeed
    */
   feedId?: string;
   /**
    * The source of the feed
    * @type {string}
-   * @memberof InlineResponse200Results
+   * @memberof InlineResponse200ResultsFeed
    */
   feedSource?: string;
   /**
    * The feed type
    * @type {string}
-   * @memberof InlineResponse200Results
+   * @memberof InlineResponse200ResultsFeed
    */
   feedType?: string;
   /**
    * The seller ID
    * @type {string}
-   * @memberof InlineResponse200Results
+   * @memberof InlineResponse200ResultsFeed
    */
   partnerId?: string;
   /**
    * The number of items received
    * @type {number}
-   * @memberof InlineResponse200Results
+   * @memberof InlineResponse200ResultsFeed
    */
   itemsReceived?: number;
   /**
    * The number of items in the feed that have successfully processed
    * @type {number}
-   * @memberof InlineResponse200Results
+   * @memberof InlineResponse200ResultsFeed
    */
   itemsSucceeded?: number;
   /**
    * The number of items in the feed that failed due to a data or system error
    * @type {number}
-   * @memberof InlineResponse200Results
+   * @memberof InlineResponse200ResultsFeed
    */
   itemsFailed?: number;
   /**
    * The number of items in the feed that are still in progress
    * @type {number}
-   * @memberof InlineResponse200Results
+   * @memberof InlineResponse200ResultsFeed
    */
   itemsProcessing?: number;
   /**
    * Can be one of the following: RECEIVED, INPROGRESS, PROCESSED, or ERROR. For details, see the definitions listed under \'Feed Statuses\' at the beginning of this section.
    * @type {string}
-   * @memberof InlineResponse200Results
+   * @memberof InlineResponse200ResultsFeed
    */
   feedStatus?: string;
   /**
    * The date and time the feed was submitted. Format: yyyymmddThh:mm:ss.xxxz
-   * @type {string}
-   * @memberof InlineResponse200Results
+   * @type {number}
+   * @memberof InlineResponse200ResultsFeed
    */
-  feedDate?: string;
+  feedDate?: number;
   /**
    * The batch ID for the feed, if provided
    * @type {string}
-   * @memberof InlineResponse200Results
+   * @memberof InlineResponse200ResultsFeed
    */
   batchId?: string;
   /**
    * The most recent time the feed was modified. Format: yyyymmddThh:mm:ss.xxxz
-   * @type {string}
-   * @memberof InlineResponse200Results
+   * @type {number}
+   * @memberof InlineResponse200ResultsFeed
    */
-  modifiedDtm?: string;
+  modifiedDtm?: number;
 }
 /**
  * List of ingestion status details for items in the feed
@@ -953,6 +966,20 @@ export enum PartnerItemIngestionStatusIngestionStatusEnum {
   DataError = "DATA_ERROR",
   SystemError = "SYSTEM_ERROR",
   TimeoutError = "TIMEOUT_ERROR",
+}
+
+/**
+ * The feed status results
+ * @export
+ * @interface ResultRecord
+ */
+export interface ResultRecord {
+  /**
+   * The feed status results
+   * @type {Array<InlineResponse200ResultsFeed>}
+   * @memberof ResultRecord
+   */
+  feed?: Array<InlineResponse200ResultsFeed>;
 }
 
 /**

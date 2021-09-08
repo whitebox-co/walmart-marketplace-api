@@ -763,10 +763,12 @@
                       "description": "A unique ID, returned from the Bulk Upload API, used for tracking the feed file"
                     },
                     "additionalAttributes": {
-                      "type": "object"
+                      "type": "object",
+                      "nullable": true
                     },
                     "errors": {
-                      "type": "object"
+                      "type": "object",
+                      "nullable": true
                     }
                   }
                 },
@@ -781,10 +783,12 @@
                       "description": "A unique ID, returned from the Bulk Upload API, used for tracking the feed file"
                     },
                     "additionalAttributes": {
-                      "type": "object"
+                      "type": "object",
+                      "nullable": true
                     },
                     "errors": {
-                      "type": "object"
+                      "type": "object",
+                      "nullable": true
                     }
                   }
                 },
@@ -1320,10 +1324,12 @@
             "description": "A unique ID, returned from the Bulk Upload API, used for tracking the feed file"
           },
           "additionalAttributes": {
-            "type": "object"
+            "type": "object",
+            "nullable": true
           },
           "errors": {
-            "type": "object"
+            "type": "object",
+            "nullable": true
           }
         }
       }
