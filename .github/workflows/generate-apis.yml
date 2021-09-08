@@ -6,11 +6,30 @@ on:
     workflow_dispatch:
 
 jobs:
-    generate:
-        name: Generate
-
+    changes:
+        name: Check For Changes
         runs-on: ubuntu-latest
+        outputs:
+            hasChanges: ${{ steps.changes.outputs.hasChanges }}
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2
 
+            - name: Install
+              uses: bahmutov/npm-install@v1
+
+            - name: Run Check
+              run: npm run check-for-changes
+
+            - name: Set hasChanges Output
+              run: echo "::set-output name=hasChanges::$(cat hasChanges.txt)"
+              shell: bash
+
+    generate:
+        name: Generate API
+        needs: changes
+        if: '${{ needs.changes.outputs.hasChanges == 1}}'
+        runs-on: ubuntu-latest
         steps:
             - name: Checkout
               uses: actions/checkout@v2
@@ -29,15 +48,19 @@ jobs:
             - name: Install
               uses: bahmutov/npm-install@v1
 
+            - name: Download Schemas
+              id: generate
+              run: npm run download-schemas
+
             - name: Generate API
               id: generate
               run: npm run generate-apis
 
             - name: Lint
-              run: npm run lint:fix
+              run: npm run lint-fix:ts
 
             - name: Test
-              run: npm t
+              run: npm run test:unit
 
             - name: Test integration
               run: npm run test:integration

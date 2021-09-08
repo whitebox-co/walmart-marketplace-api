@@ -40,6 +40,7 @@
 		"prepare": "husky install",
 		"prebuild": "npm run clean",
 		"build": "npm run clean && tsc --build tsconfig.json",
+		"check-for-changes": "cross-env RUN_CHECK_FOR_CHANGES=true ts-node utils/check-for-changes | bunyan -o short",
 		"clean": "rm -rf lib",
 		"dev": "ts-node-dev --respawn --transpile-only src",
 		"docs": "typedoc && live-server --open=./docs/typedoc/index.html",
@@ -59,8 +60,7 @@
 		"test:unit:watch": "jest tests/unit --watchAll",
 		"semantic-release": "semantic-release",
 		"preversion": "npm run build",
-		"postversion": "ts-node --transpile-only --pretty utils/bump-version.ts",
-		"release:beta": "npm version prerelease --preid=beta && npm publish --tag beta"
+		"postversion": "ts-node --transpile-only --pretty utils/bump-version.ts"
 	},
 	"devDependencies": {
 		"@commitlint/cli": "^13.1.0",
