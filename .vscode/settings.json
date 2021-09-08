@@ -33,6 +33,10 @@
 		"sonarjs",
 		"swaggerui",
 		"typedoc",
-		"uuidv"
+		"uuidv",
+		"MCONSUMERCHANNELTYPE",
+		"MQOSCORRELATIONID",
+		"MSVCNAME",
+		"prebuild"
 	]
 }
