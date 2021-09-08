@@ -21,6 +21,7 @@ jest.mock('ts-morph', () => {
 						getInterfaces: jest.fn().mockReturnValue([]),
 					};
 				}),
+				createSourceFile: jest.fn(),
 			};
 		}),
 	};
@@ -124,6 +125,15 @@ describe('api-generator', () => {
 			return {
 				getName: () => {
 					return name;
+				},
+				getInstanceMethods: () => {
+					return [
+						{
+							getName: () => {
+								name;
+							},
+						},
+					];
 				},
 			};
 		};
