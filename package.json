@@ -53,7 +53,7 @@
 		"lint:ts": "eslint . --ext ts",
 		"lint-fix:ts": "eslint . --ext ts --fix",
 		"start": "ts-node --transpile-only --pretty src",
-		"test:integration": "jest tests/integration --setupFiles dotenv/config",
+		"test:integration": "jest tests/integration/apis/auth --setupFiles dotenv/config",
 		"test:unit": "jest tests/unit",
 		"test:watch": "jest tests --watchAll",
 		"test:integration:watch": "jest tests/integration --setupFiles dotenv/config --watchAll",

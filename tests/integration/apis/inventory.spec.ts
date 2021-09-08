@@ -1,7 +1,9 @@
 import * as env from '../../environment';
 import walmartApi, { InventoryApi, defaultParams } from '../../../src/index';
+import { addInterceptors, removeInterceptors } from '../../../utils/payload-interceptors';
 
-describe('inventory', () => {
+describe(`${InventoryApi.name}`, () => {
+	let interceptors: any;
 	let inventoryApi: InventoryApi;
 
 	beforeAll(async () => {
@@ -10,6 +12,15 @@ describe('inventory', () => {
 			clientSecret: env.CLIENT_SECRET,
 			consumerChannelType: env.CONSUMER_CHANNEL_TYPE,
 		});
+	});
+
+	beforeEach(() => {
+		const testName = expect.getState().currentTestName;
+		interceptors = Object.values(addInterceptors(testName));
+	});
+
+	afterEach(() => {
+		removeInterceptors(interceptors);
 	});
 
 	it('should instantiate the api', () => {
@@ -43,5 +54,14 @@ describe('inventory', () => {
 
 	describe('#updateMultiNodeInventory', () => {
 		// TODO: Implement ME!!
+	});
+
+	describe('solution-provider-use-cases', () => {
+		// Scenario 1 - Bulk Inventory Update - Update inventory in bulk - minimum of 10 items in a single feed
+		it('should pass Scenario 1', () => {
+			// TODO: Implement ME!!
+
+			expect(true).toEqual(false);
+		});
 	});
 });
