@@ -1,33 +1,42 @@
 # Walmart Marketplace API SDK
 
 ![GitHub](https://img.shields.io/github/license/whitebox-co/walmart-marketplace-api)
-![GitHub branch checks state](https://img.shields.io/github/checks-status/whitebox-co/walmart-marketplace-api/main?label=checks)
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/whitebox-co/walmart-marketplace-api/generate-apis?label=api-generation)
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/whitebox-co/walmart-marketplace-api/release)
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/whitebox-co/walmart-marketplace-api/test?label=tests)
+![GitHub](https://img.shields.io/github/package-json/v/whitebox-co/walmart-marketplace-api)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/whitebox-co/walmart-marketplace-api/Release?label=main)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/whitebox-co/walmart-marketplace-api/Develop?label=develop)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/whitebox-co/walmart-marketplace-api/Release?label=api-generator)
+![GitHub Workflow Status](https://img.shields.io/snyk/vulnerabilities/github/whitebox-co/walmart-marketplace-api?label=snyk%20vulnerbilities)
+![GitHub Workflow Status](https://img.shields.io/maintenance/yes/2021)
 
-A fully typed and auto generated TypeScript and Node.js API library for the Walmart Marketplace API.
+A fully typed and auto generated TypeScript library for the [Walmart Marketplace Rest API](https://developer.walmart.com/doc/us/mp/us-mp-intro/).
+
+This library automatically generates typescript types, classes, interfaces, integration tests, and UI documentation based directly off of
+the Walmart Marketplace OpenAPI specification.
 
 ## Why?
 
-Because Walmart does not provide an easy way to download swagger/openapi docs to generate projects, nor do they provide
-a Typescript Library to access their endpoints.
+TLDR: It did not exist and we really needed it!
+
+-   [Walmart](https://github.com/walmartlabs) does not provide an easy way to download their swagger and openapi docs to generate projects.
+-   They do not provide a [Typescript library](https://github.com/orgs/walmartlabs/repositories?q=&type=&language=typescript&sort=) to access their endpoints
+-   Their [javascript library ](https://github.com/walmartlabs/walmart-api) is deprecated.
 
 ## How it works
 
--   An OpenAPI schema is downloaded from Walmart for each section of a the Walmart Marketplace API.
--   Models are generated based off of each api using openapi generator.
--   Clients are generated based off of each api and the models using custom typescript generators.
--   Integration Test Stubs are auto generated for every api function.
--   Documentation is generated or updated based on the latest openapi schemas.
+-   An [OpenAPI Schema](https://spec.openapis.org/oas/latest.html) is downloaded from Walmart for each section of a
+    the Walmart Marketplace API.
+-   API Classes are generated using the amazing [openapi-generator](https://github.com/OpenAPITools/openapi-generator)
+    against each schema.
+-   Integration Test stubs are auto generated for every generated api class and function.
+-   Documentation is auto generated and updated based on the latest openapi schemas changes.
+-   Existing implementations did not include full walmart REST implementation and did not meet our needs.
 
 ## Installation
 
-Note: We will eventually have builds automated, tagged properly, and published to npm. Until that point only local
-installs will work.
+Packages are maintained on both [Github](https://github.com/whitebox-co/walmart-marketplace-api/packages) and [NPM](https://www.npmjs.com/package/@whitebox-co/walmart-marketplace-api).
 
 ```sh
-npm install
+npm install @whitebox-co/walmart-marketplace-api
 ```
 
 ## Usage
@@ -133,6 +142,20 @@ npm run docs:swaggerui
 
 ## Development
 
+### Prerequisites
+
+-   [Java Runtime](https://www.java.com/en/download/manual.jsp) - Necessary to run the openapi-generator
+-   [Node](https://nodejs.org/en/) - To install and build the library.
+-   [Walmart Marketplace API Experience](https://developer.walmart.com/doc/us/mp/us-mp-intro/) - Helpful to have experience with the Walmart Marketplace REST API.
+
+### Installation
+
+Assuming all prerequisites are met.
+
+```sh
+npm install
+```
+
 ### Commands
 
 ```sh
@@ -196,9 +219,9 @@ These need to be moved over to github issues.
 
 ## Contributing
 
-Feel free to open PR's. Whitebox is currently using this in our production code and we will evaluate changes
+Feel free to open PR's. [Whitebox](https://whitebox.com/) is currently using this in our production code and we will evaluate changes
 on a case by case basis.
 
 ## License
 
-This project is licensed under the MIT License.
+![GitHub](https://img.shields.io/github/license/whitebox-co/walmart-marketplace-api)
