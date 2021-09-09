@@ -70,10 +70,10 @@ export interface CategoryPayload {
   category?: string;
   /**
    * Specific kind of category
-   * @type {Array<InlineResponse2001Subcategory>}
+   * @type {Array<InlineResponse2002Subcategory>}
    * @memberof CategoryPayload
    */
-  subcategory?: Array<InlineResponse2001Subcategory>;
+  subcategory?: Array<InlineResponse2002Subcategory>;
 }
 /**
  *
@@ -108,10 +108,10 @@ export interface GetCategories {
   status?: string;
   /**
    *
-   * @type {InlineResponse200Response}
+   * @type {InlineResponse2001Response}
    * @memberof GetCategories
    */
-  response?: InlineResponse200Response;
+  response?: InlineResponse2001Response;
 }
 /**
  *
@@ -127,10 +127,10 @@ export interface GetDepartmentList {
   status?: string;
   /**
    *
-   * @type {Array<InlineResponse2002Payload>}
+   * @type {Array<InlineResponse200Payload>}
    * @memberof GetDepartmentList
    */
-  payload?: Array<InlineResponse2002Payload>;
+  payload?: Array<InlineResponse200Payload>;
 }
 /**
  *
@@ -146,10 +146,10 @@ export interface InlineResponse200 {
   status?: string;
   /**
    *
-   * @type {InlineResponse200Response}
+   * @type {Array<InlineResponse200Payload>}
    * @memberof InlineResponse200
    */
-  response?: InlineResponse200Response;
+  payload?: Array<InlineResponse200Payload>;
 }
 /**
  *
@@ -165,48 +165,54 @@ export interface InlineResponse2001 {
   status?: string;
   /**
    *
-   * @type {Array<InlineResponse2001Payload>}
+   * @type {InlineResponse2001Response}
    * @memberof InlineResponse2001
    */
-  payload?: Array<InlineResponse2001Payload>;
+  response?: InlineResponse2001Response;
 }
 /**
  *
  * @export
- * @interface InlineResponse2001Payload
+ * @interface InlineResponse2001Response
  */
-export interface InlineResponse2001Payload {
+export interface InlineResponse2001Response {
   /**
-   * Type of item
+   * The department name for which the categories have to be fetched
    * @type {string}
-   * @memberof InlineResponse2001Payload
+   * @memberof InlineResponse2001Response
    */
-  category?: string;
+  departmentName?: string;
   /**
-   * Specific kind of category
-   * @type {Array<InlineResponse2001Subcategory>}
-   * @memberof InlineResponse2001Payload
+   * The department id for which the categories have to be fetched
+   * @type {string}
+   * @memberof InlineResponse2001Response
    */
-  subcategory?: Array<InlineResponse2001Subcategory>;
+  departmentId?: string;
+  /**
+   *
+   * @type {Array<InlineResponse2001ResponseCategory>}
+   * @memberof InlineResponse2001Response
+   */
+  category?: Array<InlineResponse2001ResponseCategory>;
 }
 /**
- * Specific kind of category
+ *
  * @export
- * @interface InlineResponse2001Subcategory
+ * @interface InlineResponse2001ResponseCategory
  */
-export interface InlineResponse2001Subcategory {
+export interface InlineResponse2001ResponseCategory {
   /**
-   * Name of specific kind of category
+   * The category name for which the top trending items have to be fetched
    * @type {string}
-   * @memberof InlineResponse2001Subcategory
+   * @memberof InlineResponse2001ResponseCategory
    */
-  subCategoryName?: string;
+  categoryName?: string;
   /**
-   * ID of specific kind of category
+   * The category id for which the top trending items have to be fetched
    * @type {string}
-   * @memberof InlineResponse2001Subcategory
+   * @memberof InlineResponse2001ResponseCategory
    */
-  subCategoryId?: string;
+  categoryId?: string;
 }
 /**
  *
@@ -230,90 +236,84 @@ export interface InlineResponse2002 {
 /**
  *
  * @export
- * @interface InlineResponse2002Departments
+ * @interface InlineResponse2002Payload
  */
-export interface InlineResponse2002Departments {
+export interface InlineResponse2002Payload {
+  /**
+   * Type of item
+   * @type {string}
+   * @memberof InlineResponse2002Payload
+   */
+  category?: string;
+  /**
+   * Specific kind of category
+   * @type {Array<InlineResponse2002Subcategory>}
+   * @memberof InlineResponse2002Payload
+   */
+  subcategory?: Array<InlineResponse2002Subcategory>;
+}
+/**
+ * Specific kind of category
+ * @export
+ * @interface InlineResponse2002Subcategory
+ */
+export interface InlineResponse2002Subcategory {
+  /**
+   * Name of specific kind of category
+   * @type {string}
+   * @memberof InlineResponse2002Subcategory
+   */
+  subCategoryName?: string;
+  /**
+   * ID of specific kind of category
+   * @type {string}
+   * @memberof InlineResponse2002Subcategory
+   */
+  subCategoryId?: string;
+}
+/**
+ *
+ * @export
+ * @interface InlineResponse200Departments
+ */
+export interface InlineResponse200Departments {
   /**
    * The department name for which the categories have to be fetched
    * @type {string}
-   * @memberof InlineResponse2002Departments
+   * @memberof InlineResponse200Departments
    */
   departmentName?: string;
   /**
    * The department id for which the categories have to be fetched
    * @type {string}
-   * @memberof InlineResponse2002Departments
+   * @memberof InlineResponse200Departments
    */
   departmentId?: string;
 }
 /**
  *
  * @export
- * @interface InlineResponse2002Payload
+ * @interface InlineResponse200Payload
  */
-export interface InlineResponse2002Payload {
+export interface InlineResponse200Payload {
   /**
    * The super-department name for which the department have to be fetched
    * @type {string}
-   * @memberof InlineResponse2002Payload
+   * @memberof InlineResponse200Payload
    */
   superDepartment?: string;
   /**
    * The super-department id for which the department have to be fetched
    * @type {string}
-   * @memberof InlineResponse2002Payload
+   * @memberof InlineResponse200Payload
    */
   superDepartmentId?: string;
   /**
    *
-   * @type {Array<InlineResponse2002Departments>}
-   * @memberof InlineResponse2002Payload
+   * @type {Array<InlineResponse200Departments>}
+   * @memberof InlineResponse200Payload
    */
-  departments?: Array<InlineResponse2002Departments>;
-}
-/**
- *
- * @export
- * @interface InlineResponse200Response
- */
-export interface InlineResponse200Response {
-  /**
-   * The department name for which the categories have to be fetched
-   * @type {string}
-   * @memberof InlineResponse200Response
-   */
-  departmentName?: string;
-  /**
-   * The department id for which the categories have to be fetched
-   * @type {string}
-   * @memberof InlineResponse200Response
-   */
-  departmentId?: string;
-  /**
-   *
-   * @type {Array<InlineResponse200ResponseCategory>}
-   * @memberof InlineResponse200Response
-   */
-  category?: Array<InlineResponse200ResponseCategory>;
-}
-/**
- *
- * @export
- * @interface InlineResponse200ResponseCategory
- */
-export interface InlineResponse200ResponseCategory {
-  /**
-   * The category name for which the top trending items have to be fetched
-   * @type {string}
-   * @memberof InlineResponse200ResponseCategory
-   */
-  categoryName?: string;
-  /**
-   * The category id for which the top trending items have to be fetched
-   * @type {string}
-   * @memberof InlineResponse200ResponseCategory
-   */
-  categoryId?: string;
+  departments?: Array<InlineResponse200Departments>;
 }
 /**
  *
@@ -335,10 +335,10 @@ export interface Payload {
   superDepartmentId?: string;
   /**
    *
-   * @type {Array<InlineResponse2002Departments>}
+   * @type {Array<InlineResponse200Departments>}
    * @memberof Payload
    */
-  departments?: Array<InlineResponse2002Departments>;
+  departments?: Array<InlineResponse200Departments>;
 }
 /**
  *
@@ -360,10 +360,10 @@ export interface Response {
   departmentId?: string;
   /**
    *
-   * @type {Array<InlineResponse200ResponseCategory>}
+   * @type {Array<InlineResponse2001ResponseCategory>}
    * @memberof Response
    */
-  category?: Array<InlineResponse200ResponseCategory>;
+  category?: Array<InlineResponse2001ResponseCategory>;
 }
 /**
  * Specific kind of category
@@ -398,10 +398,10 @@ export interface TaxonomyResponseDTO {
   status?: string;
   /**
    *
-   * @type {Array<InlineResponse2001Payload>}
+   * @type {Array<InlineResponse2002Payload>}
    * @memberof TaxonomyResponseDTO
    */
-  payload?: Array<InlineResponse2001Payload>;
+  payload?: Array<InlineResponse2002Payload>;
 }
 
 /**
@@ -751,7 +751,7 @@ export const UtilitiesApiFp = function (configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<InlineResponse200>
+      ) => AxiosPromise<InlineResponse2001>
     > {
       const localVarAxiosArgs = await localVarAxiosParamCreator.getCategories(
         departmentId,
@@ -791,7 +791,7 @@ export const UtilitiesApiFp = function (configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<InlineResponse2002>
+      ) => AxiosPromise<InlineResponse200>
     > {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.getDepartmentList(
@@ -835,7 +835,7 @@ export const UtilitiesApiFp = function (configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<InlineResponse2001>
+      ) => AxiosPromise<InlineResponse2002>
     > {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.getTaxonomyResponse(
@@ -889,7 +889,7 @@ export const UtilitiesApiFactory = function (
       wMSVCNAME: string,
       wMCONSUMERCHANNELTYPE?: string,
       options?: any
-    ): AxiosPromise<InlineResponse200> {
+    ): AxiosPromise<InlineResponse2001> {
       return localVarFp
         .getCategories(
           departmentId,
@@ -920,7 +920,7 @@ export const UtilitiesApiFactory = function (
       wMSVCNAME: string,
       wMCONSUMERCHANNELTYPE?: string,
       options?: any
-    ): AxiosPromise<InlineResponse2002> {
+    ): AxiosPromise<InlineResponse200> {
       return localVarFp
         .getDepartmentList(
           authorization,
@@ -954,7 +954,7 @@ export const UtilitiesApiFactory = function (
       version?: "3.2" | "4.0" | "4.1" | "4.2",
       wMCONSUMERCHANNELTYPE?: string,
       options?: any
-    ): AxiosPromise<InlineResponse2001> {
+    ): AxiosPromise<InlineResponse2002> {
       return localVarFp
         .getTaxonomyResponse(
           authorization,

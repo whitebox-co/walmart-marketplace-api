@@ -247,16 +247,16 @@ export interface ChargeType {
   chargeName: string;
   /**
    *
-   * @type {InlineResponse200OrderOrderLinesChargesChargeAmount}
+   * @type {V3OrdersPurchaseOrderIdRefundOrderLinesRefundsRefundChargesChargeChargeAmount}
    * @memberof ChargeType
    */
-  chargeAmount: InlineResponse200OrderOrderLinesChargesChargeAmount;
+  chargeAmount: V3OrdersPurchaseOrderIdRefundOrderLinesRefundsRefundChargesChargeChargeAmount;
   /**
    *
-   * @type {InlineResponse200OrderOrderLinesChargesTax}
+   * @type {V3OrdersPurchaseOrderIdRefundOrderLinesRefundsRefundChargesChargeTax}
    * @memberof ChargeType
    */
-  tax?: InlineResponse200OrderOrderLinesChargesTax;
+  tax?: V3OrdersPurchaseOrderIdRefundOrderLinesRefundsRefundChargesChargeTax;
 }
 /**
  * Information relating to the charge for the orderLine
@@ -266,10 +266,10 @@ export interface ChargeType {
 export interface ChargesType {
   /**
    * Information relating to the charge for the orderLine
-   * @type {Array<InlineResponse200OrderOrderLinesChargesCharge>}
+   * @type {Array<V3OrdersPurchaseOrderIdRefundOrderLinesRefundsRefundChargesCharge>}
    * @memberof ChargesType
    */
-  charge?: Array<InlineResponse200OrderOrderLinesChargesCharge>;
+  charge?: Array<V3OrdersPurchaseOrderIdRefundOrderLinesRefundsRefundChargesCharge>;
 }
 /**
  * Information about the purchase order
@@ -554,10 +554,16 @@ export interface GetOrderResponseRecord {
 export interface InlineObject {
   /**
    *
-   * @type {V3OrdersPurchaseOrderIdCancelOrderCancellation}
+   * @type {string}
    * @memberof InlineObject
    */
-  orderCancellation?: V3OrdersPurchaseOrderIdCancelOrderCancellation;
+  purchaseOrderId: string;
+  /**
+   *
+   * @type {V3OrdersPurchaseOrderIdRefundOrderLines}
+   * @memberof InlineObject
+   */
+  orderLines: V3OrdersPurchaseOrderIdRefundOrderLines;
 }
 /**
  *
@@ -567,16 +573,10 @@ export interface InlineObject {
 export interface InlineObject1 {
   /**
    *
-   * @type {string}
+   * @type {V3OrdersPurchaseOrderIdShippingOrderShipment}
    * @memberof InlineObject1
    */
-  purchaseOrderId: string;
-  /**
-   *
-   * @type {V3OrdersPurchaseOrderIdRefundOrderLines}
-   * @memberof InlineObject1
-   */
-  orderLines: V3OrdersPurchaseOrderIdRefundOrderLines;
+  orderShipment?: V3OrdersPurchaseOrderIdShippingOrderShipment;
 }
 /**
  *
@@ -586,10 +586,10 @@ export interface InlineObject1 {
 export interface InlineObject2 {
   /**
    *
-   * @type {V3OrdersPurchaseOrderIdShippingOrderShipment}
+   * @type {V3OrdersPurchaseOrderIdCancelOrderCancellation}
    * @memberof InlineObject2
    */
-  orderShipment?: V3OrdersPurchaseOrderIdShippingOrderShipment;
+  orderCancellation?: V3OrdersPurchaseOrderIdCancelOrderCancellation;
 }
 /**
  *
@@ -1078,256 +1078,10 @@ export interface InlineResponse200OrderOrderLines {
 export interface InlineResponse200OrderOrderLinesCharges {
   /**
    * Information relating to the charge for the orderLine
-   * @type {Array<InlineResponse200OrderOrderLinesChargesCharge>}
+   * @type {Array<V3OrdersPurchaseOrderIdRefundOrderLinesRefundsRefundChargesCharge>}
    * @memberof InlineResponse200OrderOrderLinesCharges
    */
-  charge?: Array<InlineResponse200OrderOrderLinesChargesCharge>;
-}
-/**
- * List of elements that make up a charge
- * @export
- * @interface InlineResponse200OrderOrderLinesChargesCharge
- */
-export interface InlineResponse200OrderOrderLinesChargesCharge {
-  /**
-   * The charge type for line items can be one of the following: PRODUCT or SHIPPING For details, refer to \'Charge Types\'
-   * @type {string}
-   * @memberof InlineResponse200OrderOrderLinesChargesCharge
-   */
-  chargeType: string;
-  /**
-   * If chargeType is PRODUCT, chargeName is Item Price. If chargeType is SHIPPING, chargeName is Shipping
-   * @type {string}
-   * @memberof InlineResponse200OrderOrderLinesChargesCharge
-   */
-  chargeName: string;
-  /**
-   *
-   * @type {InlineResponse200OrderOrderLinesChargesChargeAmount}
-   * @memberof InlineResponse200OrderOrderLinesChargesCharge
-   */
-  chargeAmount: InlineResponse200OrderOrderLinesChargesChargeAmount;
-  /**
-   *
-   * @type {InlineResponse200OrderOrderLinesChargesTax}
-   * @memberof InlineResponse200OrderOrderLinesChargesCharge
-   */
-  tax?: InlineResponse200OrderOrderLinesChargesTax;
-}
-/**
- * The details for the amount of the tax charge
- * @export
- * @interface InlineResponse200OrderOrderLinesChargesChargeAmount
- */
-export interface InlineResponse200OrderOrderLinesChargesChargeAmount {
-  /**
-   * The type of currency for the charge. Example: USD for US Dollars
-   * @type {string}
-   * @memberof InlineResponse200OrderOrderLinesChargesChargeAmount
-   */
-  currency: InlineResponse200OrderOrderLinesChargesChargeAmountCurrencyEnum;
-  /**
-   * The numerical amount for that charge. Example: 9.99
-   * @type {number}
-   * @memberof InlineResponse200OrderOrderLinesChargesChargeAmount
-   */
-  amount: number;
-}
-
-/**
- * @export
- * @enum {string}
- */
-export enum InlineResponse200OrderOrderLinesChargesChargeAmountCurrencyEnum {
-  Aed = "AED",
-  Afn = "AFN",
-  All = "ALL",
-  Amd = "AMD",
-  Ang = "ANG",
-  Aoa = "AOA",
-  Ars = "ARS",
-  Aud = "AUD",
-  Awg = "AWG",
-  Azn = "AZN",
-  Bam = "BAM",
-  Bbd = "BBD",
-  Bdt = "BDT",
-  Bgn = "BGN",
-  Bhd = "BHD",
-  Bif = "BIF",
-  Bmd = "BMD",
-  Bnd = "BND",
-  Bob = "BOB",
-  Brl = "BRL",
-  Bsd = "BSD",
-  Btn = "BTN",
-  Bwp = "BWP",
-  Byr = "BYR",
-  Bzd = "BZD",
-  Cad = "CAD",
-  Cdf = "CDF",
-  Chf = "CHF",
-  Clp = "CLP",
-  Cny = "CNY",
-  Cop = "COP",
-  Crc = "CRC",
-  Cup = "CUP",
-  Cve = "CVE",
-  Czk = "CZK",
-  Djf = "DJF",
-  Dkk = "DKK",
-  Dop = "DOP",
-  Dzd = "DZD",
-  Egp = "EGP",
-  Ern = "ERN",
-  Etb = "ETB",
-  Eur = "EUR",
-  Fjd = "FJD",
-  Fkp = "FKP",
-  Gbp = "GBP",
-  Gel = "GEL",
-  Ghs = "GHS",
-  Gip = "GIP",
-  Gmd = "GMD",
-  Gnf = "GNF",
-  Gtq = "GTQ",
-  Gyd = "GYD",
-  Hkd = "HKD",
-  Hnl = "HNL",
-  Hrk = "HRK",
-  Htg = "HTG",
-  Huf = "HUF",
-  Idr = "IDR",
-  Ils = "ILS",
-  Inr = "INR",
-  Iqd = "IQD",
-  Irr = "IRR",
-  Isk = "ISK",
-  Jmd = "JMD",
-  Jod = "JOD",
-  Jpy = "JPY",
-  Kes = "KES",
-  Kgs = "KGS",
-  Khr = "KHR",
-  Kmf = "KMF",
-  Kpw = "KPW",
-  Krw = "KRW",
-  Kwd = "KWD",
-  Kyd = "KYD",
-  Kzt = "KZT",
-  Lak = "LAK",
-  Lbp = "LBP",
-  Lkr = "LKR",
-  Lrd = "LRD",
-  Lsl = "LSL",
-  Ltl = "LTL",
-  Lvl = "LVL",
-  Lyd = "LYD",
-  Mad = "MAD",
-  Mdl = "MDL",
-  Mga = "MGA",
-  Mkd = "MKD",
-  Mmk = "MMK",
-  Mnt = "MNT",
-  Mop = "MOP",
-  Mro = "MRO",
-  Mur = "MUR",
-  Mvr = "MVR",
-  Mwk = "MWK",
-  Mxn = "MXN",
-  Myr = "MYR",
-  Mzn = "MZN",
-  Nad = "NAD",
-  Ngn = "NGN",
-  Nio = "NIO",
-  Nok = "NOK",
-  Npr = "NPR",
-  Nzd = "NZD",
-  Omr = "OMR",
-  Pab = "PAB",
-  Pen = "PEN",
-  Pgk = "PGK",
-  Php = "PHP",
-  Pkr = "PKR",
-  Pln = "PLN",
-  Pyg = "PYG",
-  Qar = "QAR",
-  Ron = "RON",
-  Rsd = "RSD",
-  Rub = "RUB",
-  Rur = "RUR",
-  Rwf = "RWF",
-  Sar = "SAR",
-  Sbd = "SBD",
-  Scr = "SCR",
-  Sdg = "SDG",
-  Sek = "SEK",
-  Sgd = "SGD",
-  Shp = "SHP",
-  Sll = "SLL",
-  Sos = "SOS",
-  Srd = "SRD",
-  Std = "STD",
-  Syp = "SYP",
-  Szl = "SZL",
-  Thb = "THB",
-  Tjs = "TJS",
-  Tmt = "TMT",
-  Tnd = "TND",
-  Top = "TOP",
-  Try = "TRY",
-  Ttd = "TTD",
-  Twd = "TWD",
-  Tzs = "TZS",
-  Uah = "UAH",
-  Ugx = "UGX",
-  Usd = "USD",
-  Uyu = "UYU",
-  Uzs = "UZS",
-  Vef = "VEF",
-  Vnd = "VND",
-  Vuv = "VUV",
-  Wst = "WST",
-  Xaf = "XAF",
-  Xag = "XAG",
-  Xau = "XAU",
-  Xba = "XBA",
-  Xbb = "XBB",
-  Xbc = "XBC",
-  Xbd = "XBD",
-  Xcd = "XCD",
-  Xdr = "XDR",
-  Xfu = "XFU",
-  Xof = "XOF",
-  Xpd = "XPD",
-  Xpf = "XPF",
-  Xpt = "XPT",
-  Xts = "XTS",
-  Xxx = "XXX",
-  Yer = "YER",
-  Zar = "ZAR",
-  Zmk = "ZMK",
-  Zwl = "ZWL",
-}
-
-/**
- * Tax information for the charge, including taxName and taxAmount
- * @export
- * @interface InlineResponse200OrderOrderLinesChargesTax
- */
-export interface InlineResponse200OrderOrderLinesChargesTax {
-  /**
-   * The name associated with the tax. Example: \'Sales Tax\'
-   * @type {string}
-   * @memberof InlineResponse200OrderOrderLinesChargesTax
-   */
-  taxName: string;
-  /**
-   *
-   * @type {InlineResponse200OrderOrderLinesChargesChargeAmount}
-   * @memberof InlineResponse200OrderOrderLinesChargesTax
-   */
-  taxAmount: InlineResponse200OrderOrderLinesChargesChargeAmount;
+  charge?: Array<V3OrdersPurchaseOrderIdRefundOrderLinesRefundsRefundChargesCharge>;
 }
 /**
  * fulfillment information
@@ -1466,10 +1220,10 @@ export interface InlineResponse200OrderOrderLinesOrderLine {
   orderLineStatuses: InlineResponse200OrderOrderLinesOrderLineStatuses;
   /**
    *
-   * @type {InlineResponse200OrderOrderLinesRefund}
+   * @type {V3OrdersPurchaseOrderIdRefundOrderLinesRefundsRefund}
    * @memberof InlineResponse200OrderOrderLinesOrderLine
    */
-  refund?: InlineResponse200OrderOrderLinesRefund;
+  refund?: V3OrdersPurchaseOrderIdRefundOrderLinesRefundsRefund;
   /**
    * Ship method stamped at order line level when order is placed
    * @type {string}
@@ -1755,93 +1509,6 @@ export enum InlineResponse200OrderOrderLinesOrderLineStatusesTrackingInfoCarrier
   SekoWorldwide = "Seko Worldwide",
   HitDelivery = "HIT Delivery",
   Fedexsp = "FEDEXSP",
-}
-
-/**
- * Details about any refund on the order
- * @export
- * @interface InlineResponse200OrderOrderLinesRefund
- */
-export interface InlineResponse200OrderOrderLinesRefund {
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse200OrderOrderLinesRefund
-   */
-  refundId?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse200OrderOrderLinesRefund
-   */
-  refundComments?: string;
-  /**
-   *
-   * @type {InlineResponse200OrderOrderLinesRefundRefundCharges}
-   * @memberof InlineResponse200OrderOrderLinesRefund
-   */
-  refundCharges: InlineResponse200OrderOrderLinesRefundRefundCharges;
-}
-/**
- *
- * @export
- * @interface InlineResponse200OrderOrderLinesRefundRefundCharges
- */
-export interface InlineResponse200OrderOrderLinesRefundRefundCharges {
-  /**
-   *
-   * @type {Array<InlineResponse200OrderOrderLinesRefundRefundChargesRefundCharge>}
-   * @memberof InlineResponse200OrderOrderLinesRefundRefundCharges
-   */
-  refundCharge?: Array<InlineResponse200OrderOrderLinesRefundRefundChargesRefundCharge>;
-}
-/**
- *
- * @export
- * @interface InlineResponse200OrderOrderLinesRefundRefundChargesRefundCharge
- */
-export interface InlineResponse200OrderOrderLinesRefundRefundChargesRefundCharge {
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse200OrderOrderLinesRefundRefundChargesRefundCharge
-   */
-  refundReason: InlineResponse200OrderOrderLinesRefundRefundChargesRefundChargeRefundReasonEnum;
-  /**
-   *
-   * @type {InlineResponse200OrderOrderLinesChargesCharge}
-   * @memberof InlineResponse200OrderOrderLinesRefundRefundChargesRefundCharge
-   */
-  charge: InlineResponse200OrderOrderLinesChargesCharge;
-}
-
-/**
- * @export
- * @enum {string}
- */
-export enum InlineResponse200OrderOrderLinesRefundRefundChargesRefundChargeRefundReasonEnum {
-  BillingError = "BillingError",
-  TaxExemptCustomer = "TaxExemptCustomer",
-  ItemNotAsAdvertised = "ItemNotAsAdvertised",
-  IncorrectItemReceived = "IncorrectItemReceived",
-  CancelledYetShipped = "CancelledYetShipped",
-  ItemNotReceivedByCustomer = "ItemNotReceivedByCustomer",
-  IncorrectShippingPrice = "IncorrectShippingPrice",
-  DamagedItem = "DamagedItem",
-  DefectiveItem = "DefectiveItem",
-  CustomerChangedMind = "CustomerChangedMind",
-  CustomerReceivedItemLate = "CustomerReceivedItemLate",
-  MissingPartsInstructions = "Missing Parts / Instructions",
-  FinanceGoodwill = "Finance -> Goodwill",
-  FinanceRollback = "Finance -> Rollback",
-  BuyerCanceled = "Buyer canceled",
-  CustomerReturnedItem = "Customer returned item",
-  GeneralAdjustment = "General adjustment",
-  MerchandiseNotReceived = "Merchandise not received",
-  QualityMissingPartsInstructions = "Quality -> Missing Parts / Instructions",
-  ShippingDeliveryDamaged = "Shipping & Delivery -> Damaged",
-  ShippingDeliveryShippingPriceDiscrepancy = "Shipping & Delivery -> Shipping Price Discrepancy",
-  Others = "Others",
 }
 
 /**
@@ -2955,10 +2622,10 @@ export interface OrderLineType {
   orderLineStatuses: InlineResponse200OrderOrderLinesOrderLineStatuses;
   /**
    *
-   * @type {InlineResponse200OrderOrderLinesRefund}
+   * @type {V3OrdersPurchaseOrderIdRefundOrderLinesRefundsRefund}
    * @memberof OrderLineType
    */
-  refund?: InlineResponse200OrderOrderLinesRefund;
+  refund?: V3OrdersPurchaseOrderIdRefundOrderLinesRefundsRefund;
   /**
    * Ship method stamped at order line level when order is placed
    * @type {string}
@@ -3036,10 +2703,10 @@ export interface OrderRefund {
 export interface OrderRefundJson {
   /**
    *
-   * @type {InlineObject1}
+   * @type {InlineObject}
    * @memberof OrderRefundJson
    */
-  orderRefund?: InlineObject1;
+  orderRefund?: InlineObject;
 }
 /**
  *
@@ -3381,10 +3048,10 @@ export interface RefundChargeType {
   refundReason: RefundChargeTypeRefundReasonEnum;
   /**
    *
-   * @type {InlineResponse200OrderOrderLinesChargesCharge}
+   * @type {V3OrdersPurchaseOrderIdRefundOrderLinesRefundsRefundChargesCharge}
    * @memberof RefundChargeType
    */
-  charge: InlineResponse200OrderOrderLinesChargesCharge;
+  charge: V3OrdersPurchaseOrderIdRefundOrderLinesRefundsRefundChargesCharge;
 }
 
 /**
@@ -3424,10 +3091,10 @@ export enum RefundChargeTypeRefundReasonEnum {
 export interface RefundChargesType {
   /**
    *
-   * @type {Array<InlineResponse200OrderOrderLinesRefundRefundChargesRefundCharge>}
+   * @type {Array<V3OrdersPurchaseOrderIdRefundOrderLinesRefundsRefundChargesRefundCharge>}
    * @memberof RefundChargesType
    */
-  refundCharge?: Array<InlineResponse200OrderOrderLinesRefundRefundChargesRefundCharge>;
+  refundCharge?: Array<V3OrdersPurchaseOrderIdRefundOrderLinesRefundsRefundChargesRefundCharge>;
 }
 /**
  *
@@ -3481,10 +3148,10 @@ export interface RefundType {
   refundComments?: string;
   /**
    *
-   * @type {InlineResponse200OrderOrderLinesRefundRefundCharges}
+   * @type {V3OrdersPurchaseOrderIdRefundOrderLinesRefundsRefundCharges}
    * @memberof RefundType
    */
-  refundCharges: InlineResponse200OrderOrderLinesRefundRefundCharges;
+  refundCharges: V3OrdersPurchaseOrderIdRefundOrderLinesRefundsRefundCharges;
 }
 /**
  *
@@ -3494,10 +3161,10 @@ export interface RefundType {
 export interface RefundsType {
   /**
    *
-   * @type {Array<InlineResponse200OrderOrderLinesRefund>}
+   * @type {Array<V3OrdersPurchaseOrderIdRefundOrderLinesRefundsRefund>}
    * @memberof RefundsType
    */
-  refund: Array<InlineResponse200OrderOrderLinesRefund>;
+  refund: Array<V3OrdersPurchaseOrderIdRefundOrderLinesRefundsRefund>;
 }
 /**
  * Gives Sellers the ability to specify the RC center address during fulfillment; any returns created for the PO will always be returned to the RC address specified
@@ -3758,10 +3425,10 @@ export interface TaxType {
   taxName: string;
   /**
    *
-   * @type {InlineResponse200OrderOrderLinesChargesChargeAmount}
+   * @type {V3OrdersPurchaseOrderIdRefundOrderLinesRefundsRefundChargesChargeChargeAmount}
    * @memberof TaxType
    */
-  taxAmount: InlineResponse200OrderOrderLinesChargesChargeAmount;
+  taxAmount: V3OrdersPurchaseOrderIdRefundOrderLinesRefundsRefundChargesChargeChargeAmount;
 }
 /**
  * List of information about the package shipment and tracking updates
@@ -3962,11 +3629,344 @@ export interface V3OrdersPurchaseOrderIdRefundOrderLinesOrderLine {
 export interface V3OrdersPurchaseOrderIdRefundOrderLinesRefunds {
   /**
    *
-   * @type {Array<InlineResponse200OrderOrderLinesRefund>}
+   * @type {Array<V3OrdersPurchaseOrderIdRefundOrderLinesRefundsRefund>}
    * @memberof V3OrdersPurchaseOrderIdRefundOrderLinesRefunds
    */
-  refund: Array<InlineResponse200OrderOrderLinesRefund>;
+  refund: Array<V3OrdersPurchaseOrderIdRefundOrderLinesRefundsRefund>;
 }
+/**
+ * Details about any refund on the order
+ * @export
+ * @interface V3OrdersPurchaseOrderIdRefundOrderLinesRefundsRefund
+ */
+export interface V3OrdersPurchaseOrderIdRefundOrderLinesRefundsRefund {
+  /**
+   *
+   * @type {string}
+   * @memberof V3OrdersPurchaseOrderIdRefundOrderLinesRefundsRefund
+   */
+  refundId?: string;
+  /**
+   *
+   * @type {string}
+   * @memberof V3OrdersPurchaseOrderIdRefundOrderLinesRefundsRefund
+   */
+  refundComments?: string;
+  /**
+   *
+   * @type {V3OrdersPurchaseOrderIdRefundOrderLinesRefundsRefundCharges}
+   * @memberof V3OrdersPurchaseOrderIdRefundOrderLinesRefundsRefund
+   */
+  refundCharges: V3OrdersPurchaseOrderIdRefundOrderLinesRefundsRefundCharges;
+}
+/**
+ *
+ * @export
+ * @interface V3OrdersPurchaseOrderIdRefundOrderLinesRefundsRefundCharges
+ */
+export interface V3OrdersPurchaseOrderIdRefundOrderLinesRefundsRefundCharges {
+  /**
+   *
+   * @type {Array<V3OrdersPurchaseOrderIdRefundOrderLinesRefundsRefundChargesRefundCharge>}
+   * @memberof V3OrdersPurchaseOrderIdRefundOrderLinesRefundsRefundCharges
+   */
+  refundCharge?: Array<V3OrdersPurchaseOrderIdRefundOrderLinesRefundsRefundChargesRefundCharge>;
+}
+/**
+ * List of elements that make up a charge
+ * @export
+ * @interface V3OrdersPurchaseOrderIdRefundOrderLinesRefundsRefundChargesCharge
+ */
+export interface V3OrdersPurchaseOrderIdRefundOrderLinesRefundsRefundChargesCharge {
+  /**
+   * The charge type for line items can be one of the following: PRODUCT or SHIPPING For details, refer to \'Charge Types\'
+   * @type {string}
+   * @memberof V3OrdersPurchaseOrderIdRefundOrderLinesRefundsRefundChargesCharge
+   */
+  chargeType: string;
+  /**
+   * If chargeType is PRODUCT, chargeName is Item Price. If chargeType is SHIPPING, chargeName is Shipping
+   * @type {string}
+   * @memberof V3OrdersPurchaseOrderIdRefundOrderLinesRefundsRefundChargesCharge
+   */
+  chargeName: string;
+  /**
+   *
+   * @type {V3OrdersPurchaseOrderIdRefundOrderLinesRefundsRefundChargesChargeChargeAmount}
+   * @memberof V3OrdersPurchaseOrderIdRefundOrderLinesRefundsRefundChargesCharge
+   */
+  chargeAmount: V3OrdersPurchaseOrderIdRefundOrderLinesRefundsRefundChargesChargeChargeAmount;
+  /**
+   *
+   * @type {V3OrdersPurchaseOrderIdRefundOrderLinesRefundsRefundChargesChargeTax}
+   * @memberof V3OrdersPurchaseOrderIdRefundOrderLinesRefundsRefundChargesCharge
+   */
+  tax?: V3OrdersPurchaseOrderIdRefundOrderLinesRefundsRefundChargesChargeTax;
+}
+/**
+ * The details for the amount of the tax charge
+ * @export
+ * @interface V3OrdersPurchaseOrderIdRefundOrderLinesRefundsRefundChargesChargeChargeAmount
+ */
+export interface V3OrdersPurchaseOrderIdRefundOrderLinesRefundsRefundChargesChargeChargeAmount {
+  /**
+   * The type of currency for the charge. Example: USD for US Dollars
+   * @type {string}
+   * @memberof V3OrdersPurchaseOrderIdRefundOrderLinesRefundsRefundChargesChargeChargeAmount
+   */
+  currency: V3OrdersPurchaseOrderIdRefundOrderLinesRefundsRefundChargesChargeChargeAmountCurrencyEnum;
+  /**
+   * The numerical amount for that charge. Example: 9.99
+   * @type {number}
+   * @memberof V3OrdersPurchaseOrderIdRefundOrderLinesRefundsRefundChargesChargeChargeAmount
+   */
+  amount: number;
+}
+
+/**
+ * @export
+ * @enum {string}
+ */
+export enum V3OrdersPurchaseOrderIdRefundOrderLinesRefundsRefundChargesChargeChargeAmountCurrencyEnum {
+  Aed = "AED",
+  Afn = "AFN",
+  All = "ALL",
+  Amd = "AMD",
+  Ang = "ANG",
+  Aoa = "AOA",
+  Ars = "ARS",
+  Aud = "AUD",
+  Awg = "AWG",
+  Azn = "AZN",
+  Bam = "BAM",
+  Bbd = "BBD",
+  Bdt = "BDT",
+  Bgn = "BGN",
+  Bhd = "BHD",
+  Bif = "BIF",
+  Bmd = "BMD",
+  Bnd = "BND",
+  Bob = "BOB",
+  Brl = "BRL",
+  Bsd = "BSD",
+  Btn = "BTN",
+  Bwp = "BWP",
+  Byr = "BYR",
+  Bzd = "BZD",
+  Cad = "CAD",
+  Cdf = "CDF",
+  Chf = "CHF",
+  Clp = "CLP",
+  Cny = "CNY",
+  Cop = "COP",
+  Crc = "CRC",
+  Cup = "CUP",
+  Cve = "CVE",
+  Czk = "CZK",
+  Djf = "DJF",
+  Dkk = "DKK",
+  Dop = "DOP",
+  Dzd = "DZD",
+  Egp = "EGP",
+  Ern = "ERN",
+  Etb = "ETB",
+  Eur = "EUR",
+  Fjd = "FJD",
+  Fkp = "FKP",
+  Gbp = "GBP",
+  Gel = "GEL",
+  Ghs = "GHS",
+  Gip = "GIP",
+  Gmd = "GMD",
+  Gnf = "GNF",
+  Gtq = "GTQ",
+  Gyd = "GYD",
+  Hkd = "HKD",
+  Hnl = "HNL",
+  Hrk = "HRK",
+  Htg = "HTG",
+  Huf = "HUF",
+  Idr = "IDR",
+  Ils = "ILS",
+  Inr = "INR",
+  Iqd = "IQD",
+  Irr = "IRR",
+  Isk = "ISK",
+  Jmd = "JMD",
+  Jod = "JOD",
+  Jpy = "JPY",
+  Kes = "KES",
+  Kgs = "KGS",
+  Khr = "KHR",
+  Kmf = "KMF",
+  Kpw = "KPW",
+  Krw = "KRW",
+  Kwd = "KWD",
+  Kyd = "KYD",
+  Kzt = "KZT",
+  Lak = "LAK",
+  Lbp = "LBP",
+  Lkr = "LKR",
+  Lrd = "LRD",
+  Lsl = "LSL",
+  Ltl = "LTL",
+  Lvl = "LVL",
+  Lyd = "LYD",
+  Mad = "MAD",
+  Mdl = "MDL",
+  Mga = "MGA",
+  Mkd = "MKD",
+  Mmk = "MMK",
+  Mnt = "MNT",
+  Mop = "MOP",
+  Mro = "MRO",
+  Mur = "MUR",
+  Mvr = "MVR",
+  Mwk = "MWK",
+  Mxn = "MXN",
+  Myr = "MYR",
+  Mzn = "MZN",
+  Nad = "NAD",
+  Ngn = "NGN",
+  Nio = "NIO",
+  Nok = "NOK",
+  Npr = "NPR",
+  Nzd = "NZD",
+  Omr = "OMR",
+  Pab = "PAB",
+  Pen = "PEN",
+  Pgk = "PGK",
+  Php = "PHP",
+  Pkr = "PKR",
+  Pln = "PLN",
+  Pyg = "PYG",
+  Qar = "QAR",
+  Ron = "RON",
+  Rsd = "RSD",
+  Rub = "RUB",
+  Rur = "RUR",
+  Rwf = "RWF",
+  Sar = "SAR",
+  Sbd = "SBD",
+  Scr = "SCR",
+  Sdg = "SDG",
+  Sek = "SEK",
+  Sgd = "SGD",
+  Shp = "SHP",
+  Sll = "SLL",
+  Sos = "SOS",
+  Srd = "SRD",
+  Std = "STD",
+  Syp = "SYP",
+  Szl = "SZL",
+  Thb = "THB",
+  Tjs = "TJS",
+  Tmt = "TMT",
+  Tnd = "TND",
+  Top = "TOP",
+  Try = "TRY",
+  Ttd = "TTD",
+  Twd = "TWD",
+  Tzs = "TZS",
+  Uah = "UAH",
+  Ugx = "UGX",
+  Usd = "USD",
+  Uyu = "UYU",
+  Uzs = "UZS",
+  Vef = "VEF",
+  Vnd = "VND",
+  Vuv = "VUV",
+  Wst = "WST",
+  Xaf = "XAF",
+  Xag = "XAG",
+  Xau = "XAU",
+  Xba = "XBA",
+  Xbb = "XBB",
+  Xbc = "XBC",
+  Xbd = "XBD",
+  Xcd = "XCD",
+  Xdr = "XDR",
+  Xfu = "XFU",
+  Xof = "XOF",
+  Xpd = "XPD",
+  Xpf = "XPF",
+  Xpt = "XPT",
+  Xts = "XTS",
+  Xxx = "XXX",
+  Yer = "YER",
+  Zar = "ZAR",
+  Zmk = "ZMK",
+  Zwl = "ZWL",
+}
+
+/**
+ * Tax information for the charge, including taxName and taxAmount
+ * @export
+ * @interface V3OrdersPurchaseOrderIdRefundOrderLinesRefundsRefundChargesChargeTax
+ */
+export interface V3OrdersPurchaseOrderIdRefundOrderLinesRefundsRefundChargesChargeTax {
+  /**
+   * The name associated with the tax. Example: \'Sales Tax\'
+   * @type {string}
+   * @memberof V3OrdersPurchaseOrderIdRefundOrderLinesRefundsRefundChargesChargeTax
+   */
+  taxName: string;
+  /**
+   *
+   * @type {V3OrdersPurchaseOrderIdRefundOrderLinesRefundsRefundChargesChargeChargeAmount}
+   * @memberof V3OrdersPurchaseOrderIdRefundOrderLinesRefundsRefundChargesChargeTax
+   */
+  taxAmount: V3OrdersPurchaseOrderIdRefundOrderLinesRefundsRefundChargesChargeChargeAmount;
+}
+/**
+ *
+ * @export
+ * @interface V3OrdersPurchaseOrderIdRefundOrderLinesRefundsRefundChargesRefundCharge
+ */
+export interface V3OrdersPurchaseOrderIdRefundOrderLinesRefundsRefundChargesRefundCharge {
+  /**
+   *
+   * @type {string}
+   * @memberof V3OrdersPurchaseOrderIdRefundOrderLinesRefundsRefundChargesRefundCharge
+   */
+  refundReason: V3OrdersPurchaseOrderIdRefundOrderLinesRefundsRefundChargesRefundChargeRefundReasonEnum;
+  /**
+   *
+   * @type {V3OrdersPurchaseOrderIdRefundOrderLinesRefundsRefundChargesCharge}
+   * @memberof V3OrdersPurchaseOrderIdRefundOrderLinesRefundsRefundChargesRefundCharge
+   */
+  charge: V3OrdersPurchaseOrderIdRefundOrderLinesRefundsRefundChargesCharge;
+}
+
+/**
+ * @export
+ * @enum {string}
+ */
+export enum V3OrdersPurchaseOrderIdRefundOrderLinesRefundsRefundChargesRefundChargeRefundReasonEnum {
+  BillingError = "BillingError",
+  TaxExemptCustomer = "TaxExemptCustomer",
+  ItemNotAsAdvertised = "ItemNotAsAdvertised",
+  IncorrectItemReceived = "IncorrectItemReceived",
+  CancelledYetShipped = "CancelledYetShipped",
+  ItemNotReceivedByCustomer = "ItemNotReceivedByCustomer",
+  IncorrectShippingPrice = "IncorrectShippingPrice",
+  DamagedItem = "DamagedItem",
+  DefectiveItem = "DefectiveItem",
+  CustomerChangedMind = "CustomerChangedMind",
+  CustomerReceivedItemLate = "CustomerReceivedItemLate",
+  MissingPartsInstructions = "Missing Parts / Instructions",
+  FinanceGoodwill = "Finance -> Goodwill",
+  FinanceRollback = "Finance -> Rollback",
+  BuyerCanceled = "Buyer canceled",
+  CustomerReturnedItem = "Customer returned item",
+  GeneralAdjustment = "General adjustment",
+  MerchandiseNotReceived = "Merchandise not received",
+  QualityMissingPartsInstructions = "Quality -> Missing Parts / Instructions",
+  ShippingDeliveryDamaged = "Shipping & Delivery -> Damaged",
+  ShippingDeliveryShippingPriceDiscrepancy = "Shipping & Delivery -> Shipping Price Discrepancy",
+  Others = "Others",
+}
+
 /**
  * Information about a shipment
  * @export
@@ -4256,7 +4256,7 @@ export const OrdersApiAxiosParamCreator = function (
      * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
      * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
      * @param {string} wMSVCNAME Walmart Service Name
-     * @param {InlineObject} inlineObject
+     * @param {InlineObject2} inlineObject2
      * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -4267,7 +4267,7 @@ export const OrdersApiAxiosParamCreator = function (
       wMSECACCESSTOKEN: string,
       wMQOSCORRELATIONID: string,
       wMSVCNAME: string,
-      inlineObject: InlineObject,
+      inlineObject2: InlineObject2,
       wMCONSUMERCHANNELTYPE?: string,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -4289,8 +4289,8 @@ export const OrdersApiAxiosParamCreator = function (
       );
       // verify required parameter 'wMSVCNAME' is not null or undefined
       assertParamExists("cancelOrderLines", "wMSVCNAME", wMSVCNAME);
-      // verify required parameter 'inlineObject' is not null or undefined
-      assertParamExists("cancelOrderLines", "inlineObject", inlineObject);
+      // verify required parameter 'inlineObject2' is not null or undefined
+      assertParamExists("cancelOrderLines", "inlineObject2", inlineObject2);
       const localVarPath = `/v3/orders/{purchaseOrderId}/cancel`.replace(
         `{${"purchaseOrderId"}}`,
         encodeURIComponent(String(purchaseOrderId))
@@ -4352,7 +4352,7 @@ export const OrdersApiAxiosParamCreator = function (
         ...options.headers,
       };
       localVarRequestOptions.data = serializeDataIfNeeded(
-        inlineObject,
+        inlineObject2,
         localVarRequestOptions,
         configuration
       );
@@ -4839,7 +4839,7 @@ export const OrdersApiAxiosParamCreator = function (
      * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
      * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
      * @param {string} wMSVCNAME Walmart Service Name
-     * @param {InlineObject1} inlineObject1
+     * @param {InlineObject} inlineObject
      * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -4850,7 +4850,7 @@ export const OrdersApiAxiosParamCreator = function (
       wMSECACCESSTOKEN: string,
       wMQOSCORRELATIONID: string,
       wMSVCNAME: string,
-      inlineObject1: InlineObject1,
+      inlineObject: InlineObject,
       wMCONSUMERCHANNELTYPE?: string,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -4872,8 +4872,8 @@ export const OrdersApiAxiosParamCreator = function (
       );
       // verify required parameter 'wMSVCNAME' is not null or undefined
       assertParamExists("refundOrderLines", "wMSVCNAME", wMSVCNAME);
-      // verify required parameter 'inlineObject1' is not null or undefined
-      assertParamExists("refundOrderLines", "inlineObject1", inlineObject1);
+      // verify required parameter 'inlineObject' is not null or undefined
+      assertParamExists("refundOrderLines", "inlineObject", inlineObject);
       const localVarPath = `/v3/orders/{purchaseOrderId}/refund`.replace(
         `{${"purchaseOrderId"}}`,
         encodeURIComponent(String(purchaseOrderId))
@@ -4935,7 +4935,7 @@ export const OrdersApiAxiosParamCreator = function (
         ...options.headers,
       };
       localVarRequestOptions.data = serializeDataIfNeeded(
-        inlineObject1,
+        inlineObject,
         localVarRequestOptions,
         configuration
       );
@@ -4953,7 +4953,7 @@ export const OrdersApiAxiosParamCreator = function (
      * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
      * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
      * @param {string} wMSVCNAME Walmart Service Name
-     * @param {InlineObject2} inlineObject2
+     * @param {InlineObject1} inlineObject1
      * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -4964,7 +4964,7 @@ export const OrdersApiAxiosParamCreator = function (
       wMSECACCESSTOKEN: string,
       wMQOSCORRELATIONID: string,
       wMSVCNAME: string,
-      inlineObject2: InlineObject2,
+      inlineObject1: InlineObject1,
       wMCONSUMERCHANNELTYPE?: string,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -4986,8 +4986,8 @@ export const OrdersApiAxiosParamCreator = function (
       );
       // verify required parameter 'wMSVCNAME' is not null or undefined
       assertParamExists("shippingUpdates", "wMSVCNAME", wMSVCNAME);
-      // verify required parameter 'inlineObject2' is not null or undefined
-      assertParamExists("shippingUpdates", "inlineObject2", inlineObject2);
+      // verify required parameter 'inlineObject1' is not null or undefined
+      assertParamExists("shippingUpdates", "inlineObject1", inlineObject1);
       const localVarPath = `/v3/orders/{purchaseOrderId}/shipping`.replace(
         `{${"purchaseOrderId"}}`,
         encodeURIComponent(String(purchaseOrderId))
@@ -5049,7 +5049,7 @@ export const OrdersApiAxiosParamCreator = function (
         ...options.headers,
       };
       localVarRequestOptions.data = serializeDataIfNeeded(
-        inlineObject2,
+        inlineObject1,
         localVarRequestOptions,
         configuration
       );
@@ -5120,7 +5120,7 @@ export const OrdersApiFp = function (configuration?: Configuration) {
      * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
      * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
      * @param {string} wMSVCNAME Walmart Service Name
-     * @param {InlineObject} inlineObject
+     * @param {InlineObject2} inlineObject2
      * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -5131,7 +5131,7 @@ export const OrdersApiFp = function (configuration?: Configuration) {
       wMSECACCESSTOKEN: string,
       wMQOSCORRELATIONID: string,
       wMSVCNAME: string,
-      inlineObject: InlineObject,
+      inlineObject2: InlineObject2,
       wMCONSUMERCHANNELTYPE?: string,
       options?: any
     ): Promise<
@@ -5147,7 +5147,7 @@ export const OrdersApiFp = function (configuration?: Configuration) {
           wMSECACCESSTOKEN,
           wMQOSCORRELATIONID,
           wMSVCNAME,
-          inlineObject,
+          inlineObject2,
           wMCONSUMERCHANNELTYPE,
           options
         );
@@ -5380,7 +5380,7 @@ export const OrdersApiFp = function (configuration?: Configuration) {
      * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
      * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
      * @param {string} wMSVCNAME Walmart Service Name
-     * @param {InlineObject1} inlineObject1
+     * @param {InlineObject} inlineObject
      * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -5391,7 +5391,7 @@ export const OrdersApiFp = function (configuration?: Configuration) {
       wMSECACCESSTOKEN: string,
       wMQOSCORRELATIONID: string,
       wMSVCNAME: string,
-      inlineObject1: InlineObject1,
+      inlineObject: InlineObject,
       wMCONSUMERCHANNELTYPE?: string,
       options?: any
     ): Promise<
@@ -5407,7 +5407,7 @@ export const OrdersApiFp = function (configuration?: Configuration) {
           wMSECACCESSTOKEN,
           wMQOSCORRELATIONID,
           wMSVCNAME,
-          inlineObject1,
+          inlineObject,
           wMCONSUMERCHANNELTYPE,
           options
         );
@@ -5426,7 +5426,7 @@ export const OrdersApiFp = function (configuration?: Configuration) {
      * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
      * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
      * @param {string} wMSVCNAME Walmart Service Name
-     * @param {InlineObject2} inlineObject2
+     * @param {InlineObject1} inlineObject1
      * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -5437,7 +5437,7 @@ export const OrdersApiFp = function (configuration?: Configuration) {
       wMSECACCESSTOKEN: string,
       wMQOSCORRELATIONID: string,
       wMSVCNAME: string,
-      inlineObject2: InlineObject2,
+      inlineObject1: InlineObject1,
       wMCONSUMERCHANNELTYPE?: string,
       options?: any
     ): Promise<
@@ -5452,7 +5452,7 @@ export const OrdersApiFp = function (configuration?: Configuration) {
         wMSECACCESSTOKEN,
         wMQOSCORRELATIONID,
         wMSVCNAME,
-        inlineObject2,
+        inlineObject1,
         wMCONSUMERCHANNELTYPE,
         options
       );
@@ -5518,7 +5518,7 @@ export const OrdersApiFactory = function (
      * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
      * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
      * @param {string} wMSVCNAME Walmart Service Name
-     * @param {InlineObject} inlineObject
+     * @param {InlineObject2} inlineObject2
      * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -5529,7 +5529,7 @@ export const OrdersApiFactory = function (
       wMSECACCESSTOKEN: string,
       wMQOSCORRELATIONID: string,
       wMSVCNAME: string,
-      inlineObject: InlineObject,
+      inlineObject2: InlineObject2,
       wMCONSUMERCHANNELTYPE?: string,
       options?: any
     ): AxiosPromise<InlineResponse200> {
@@ -5540,7 +5540,7 @@ export const OrdersApiFactory = function (
           wMSECACCESSTOKEN,
           wMQOSCORRELATIONID,
           wMSVCNAME,
-          inlineObject,
+          inlineObject2,
           wMCONSUMERCHANNELTYPE,
           options
         )
@@ -5740,7 +5740,7 @@ export const OrdersApiFactory = function (
      * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
      * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
      * @param {string} wMSVCNAME Walmart Service Name
-     * @param {InlineObject1} inlineObject1
+     * @param {InlineObject} inlineObject
      * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -5751,7 +5751,7 @@ export const OrdersApiFactory = function (
       wMSECACCESSTOKEN: string,
       wMQOSCORRELATIONID: string,
       wMSVCNAME: string,
-      inlineObject1: InlineObject1,
+      inlineObject: InlineObject,
       wMCONSUMERCHANNELTYPE?: string,
       options?: any
     ): AxiosPromise<InlineResponse200> {
@@ -5762,7 +5762,7 @@ export const OrdersApiFactory = function (
           wMSECACCESSTOKEN,
           wMQOSCORRELATIONID,
           wMSVCNAME,
-          inlineObject1,
+          inlineObject,
           wMCONSUMERCHANNELTYPE,
           options
         )
@@ -5776,7 +5776,7 @@ export const OrdersApiFactory = function (
      * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
      * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
      * @param {string} wMSVCNAME Walmart Service Name
-     * @param {InlineObject2} inlineObject2
+     * @param {InlineObject1} inlineObject1
      * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -5787,7 +5787,7 @@ export const OrdersApiFactory = function (
       wMSECACCESSTOKEN: string,
       wMQOSCORRELATIONID: string,
       wMSVCNAME: string,
-      inlineObject2: InlineObject2,
+      inlineObject1: InlineObject1,
       wMCONSUMERCHANNELTYPE?: string,
       options?: any
     ): AxiosPromise<InlineResponse200> {
@@ -5798,7 +5798,7 @@ export const OrdersApiFactory = function (
           wMSECACCESSTOKEN,
           wMQOSCORRELATIONID,
           wMSVCNAME,
-          inlineObject2,
+          inlineObject1,
           wMCONSUMERCHANNELTYPE,
           options
         )
@@ -5899,10 +5899,10 @@ export interface OrdersApiCancelOrderLinesRequest {
 
   /**
    *
-   * @type {InlineObject}
+   * @type {InlineObject2}
    * @memberof OrdersApiCancelOrderLines
    */
-  readonly inlineObject: InlineObject;
+  readonly inlineObject2: InlineObject2;
 
   /**
    * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
@@ -6305,10 +6305,10 @@ export interface OrdersApiRefundOrderLinesRequest {
 
   /**
    *
-   * @type {InlineObject1}
+   * @type {InlineObject}
    * @memberof OrdersApiRefundOrderLines
    */
-  readonly inlineObject1: InlineObject1;
+  readonly inlineObject: InlineObject;
 
   /**
    * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
@@ -6361,10 +6361,10 @@ export interface OrdersApiShippingUpdatesRequest {
 
   /**
    *
-   * @type {InlineObject2}
+   * @type {InlineObject1}
    * @memberof OrdersApiShippingUpdates
    */
-  readonly inlineObject2: InlineObject2;
+  readonly inlineObject1: InlineObject1;
 
   /**
    * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
@@ -6425,7 +6425,7 @@ export class OrdersApi extends BaseAPI {
         requestParameters.wMSECACCESSTOKEN,
         requestParameters.wMQOSCORRELATIONID,
         requestParameters.wMSVCNAME,
-        requestParameters.inlineObject,
+        requestParameters.inlineObject2,
         requestParameters.wMCONSUMERCHANNELTYPE,
         options
       )
@@ -6555,7 +6555,7 @@ export class OrdersApi extends BaseAPI {
         requestParameters.wMSECACCESSTOKEN,
         requestParameters.wMQOSCORRELATIONID,
         requestParameters.wMSVCNAME,
-        requestParameters.inlineObject1,
+        requestParameters.inlineObject,
         requestParameters.wMCONSUMERCHANNELTYPE,
         options
       )
@@ -6581,7 +6581,7 @@ export class OrdersApi extends BaseAPI {
         requestParameters.wMSECACCESSTOKEN,
         requestParameters.wMQOSCORRELATIONID,
         requestParameters.wMSVCNAME,
-        requestParameters.inlineObject2,
+        requestParameters.inlineObject1,
         requestParameters.wMCONSUMERCHANNELTYPE,
         options
       )
