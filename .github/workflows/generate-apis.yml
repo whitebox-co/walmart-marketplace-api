@@ -1,0 +1,86 @@
+name: Generate API
+
+on:
+    schedule:
+        - cron: '0 1 * * *'
+    workflow_dispatch:
+
+jobs:
+    changes:
+        name: Check For Changes
+        runs-on: ubuntu-latest
+        outputs:
+            hasChanges: ${{ steps.changes.outputs.hasChanges }}
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2
+
+            - name: Install
+              uses: bahmutov/npm-install@v1
+
+            - name: Run Check
+              run: npm run check-for-changes
+
+            - name: Set hasChanges Output
+              id: changes
+              run: echo "::set-output name=hasChanges::$(cat hasChanges.txt)"
+              shell: bash
+
+    generate:
+        name: Generate API
+        needs: changes
+        if: '${{ needs.changes.outputs.hasChanges == 1}}'
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2
+
+            - name: Setup Node
+              uses: actions/setup-node@v2
+              with:
+                  node-version: 14
+
+            - name: Setup Java
+              uses: actions/setup-java@v2
+              with:
+                  distribution: adopt
+                  java-version: 11
+
+            - name: Install
+              uses: bahmutov/npm-install@v1
+
+            - name: Download Schemas
+              id: download
+              run: npm run download-schemas
+
+            - name: Generate API
+              id: generate
+              run: npm run generate-apis
+
+            - name: Lint
+              run: npm run lint-fix:ts
+
+            - name: Test
+              run: npm run test:unit
+
+            - name: Test integration
+              run: npm run test:integration
+              env:
+                  CLIENT_ID: ${{ secrets.WALMART_CLIENT_ID }}
+                  CLIENT_SECRET: ${{ secrets.WALMART_CLIENT_SECRET }}
+                  CONSUMER_CHANNEL_TYPE: ${{ secrets.WALMART_CONSUMER_CHANNEL_TYPE }}
+
+            - name: Build
+              run: npm run build
+
+            - name: Create Pull Request
+              id: cpr
+              uses: peter-evans/create-pull-request@v3
+              with:
+                  token: ${{ secrets.GITHUB_TOKEN }}
+                  commit-message: 'chore: update auto generated api'
+                  title: 'whitebox-bot: Update auto generated API'
+                  body: ${{steps.generate.outputs.pr-body}}
+                  committer: Whitebox Bot <whitebox-bot@whitebox.com>
+                  branch: chore/update-generated-api
+                  delete-branch: true

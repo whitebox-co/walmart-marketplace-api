@@ -1,0 +1,13 @@
+# compiled output
+/dist
+/tmp
+/lib
+/docs
+/coverage
+/.vscode
+
+# dependencies
+/node_modules
+
+# SPS XSD -> TS types
+/lib/types/sps/xmlns

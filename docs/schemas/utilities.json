@@ -1,0 +1,875 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Utilities Management",
+    "description": "Utilities Management API"
+  },
+  "servers": [
+    {
+      "url": "https://marketplace.walmartapis.com",
+      "description": "Production URL"
+    },
+    {
+      "url": "https://sandbox.walmartapis.com",
+      "description": "Sandbox URL"
+    }
+  ],
+  "security": [
+    {
+      "basicScheme": []
+    }
+  ],
+  "paths": {
+    "/v3/utilities/taxonomy/departments/{departmentId}": {
+      "get": {
+        "tags": [
+          "Utilities"
+        ],
+        "summary": "All Categories",
+        "description": "Get list of categories for a specific department",
+        "operationId": "getCategories",
+        "parameters": [
+          {
+            "name": "departmentId",
+            "in": "path",
+            "description": "departmentId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Basic YzcyOTFjNmItNzI5MC00...."
+          },
+          {
+            "in": "header",
+            "name": "WM_SEC.ACCESS_TOKEN",
+            "description": "The access token retrieved in the Token API call",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
+          },
+          {
+            "in": "header",
+            "name": "WM_CONSUMER.CHANNEL.TYPE",
+            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "WM_QOS.CORRELATION_ID",
+            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
+          },
+          {
+            "in": "header",
+            "name": "WM_SVC.NAME",
+            "description": "Walmart Service Name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Walmart Service Name"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "response": {
+                      "type": "object",
+                      "properties": {
+                        "departmentName": {
+                          "type": "string",
+                          "description": "The department name for which the categories have to be fetched"
+                        },
+                        "departmentId": {
+                          "type": "string",
+                          "description": "The department id for which the categories have to be fetched"
+                        },
+                        "category": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "categoryName": {
+                                "type": "string",
+                                "description": "The category name for which the top trending items have to be fetched"
+                              },
+                              "categoryId": {
+                                "type": "string",
+                                "description": "The category id for which the top trending items have to be fetched"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "status": "SUCCESS",
+                  "response": {
+                    "departmentName": "LAUNDRY AND HOUSEHOLD CHEMICALS",
+                    "departmentId": "44003",
+                    "category": [
+                      {
+                        "categoryName": "CLEANING PRODUCTS",
+                        "categoryId": "44106"
+                      },
+                      {
+                        "categoryName": "LAUNDRY CARE",
+                        "categoryId": "44108"
+                      },
+                      {
+                        "categoryName": "HOUSEHOLD CHEMICALS L3",
+                        "categoryId": "1044076"
+                      },
+                      {
+                        "categoryName": "HOME FRAGRANCE",
+                        "categoryId": "44107"
+                      },
+                      {
+                        "categoryName": "CLEANING TOOLS",
+                        "categoryId": "1044080"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/utilities/taxonomy": {
+      "get": {
+        "tags": [
+          "Utilities"
+        ],
+        "summary": "Taxonomy by spec",
+        "description": "The Taxonomy by Item spec API exposes the category taxonomy that Walmart.com uses to categorize items for each Item spec version. It returns a list of all Categories and Sub-categories that are available on Walmart.com for the Item spec version you specify.\nYou can specify the feedType and version for these available Item specs. Make sure to specify the corresponding version that is available for that feed type:\n*   Item spec 3.2 feed type: item\n*   Item spec 4.0 feed types: MP_ITEM, MP_WFS_ITEM, or MP_MAINTENANCE\n*   Item spec 4.1 feed types: MP_WFS_ITEM, or MP_MAINTENANCE\n*   Item spec 4.2 feed type: MP_ITEM or MP_WFS_ITEM\n*   Item spec 4.3 feed type: MP_ITEM or MP_MAINTENANCE",
+        "operationId": "getTaxonomyResponse",
+        "parameters": [
+          {
+            "name": "feedType",
+            "in": "query",
+            "description": "Specifies the Feed Type",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "item",
+                "MP_ITEM",
+                "MP_WFS_ITEM",
+                "MP_MAINTENANCE"
+              ]
+            }
+          },
+          {
+            "name": "version",
+            "in": "query",
+            "description": "Specifies the version for the Feed Type",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "3.2",
+                "4.0",
+                "4.1",
+                "4.2"
+              ]
+            }
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Basic YzcyOTFjNmItNzI5MC00...."
+          },
+          {
+            "in": "header",
+            "name": "WM_SEC.ACCESS_TOKEN",
+            "description": "The access token retrieved in the Token API call",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
+          },
+          {
+            "in": "header",
+            "name": "WM_CONSUMER.CHANNEL.TYPE",
+            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "WM_QOS.CORRELATION_ID",
+            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
+          },
+          {
+            "in": "header",
+            "name": "WM_SVC.NAME",
+            "description": "Walmart Service Name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Walmart Service Name"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "payload": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "category": {
+                            "type": "string",
+                            "description": "Type of item"
+                          },
+                          "subcategory": {
+                            "type": "array",
+                            "description": "Specific kind of category",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "subCategoryName": {
+                                  "type": "string",
+                                  "description": "Name of specific kind of category"
+                                },
+                                "subCategoryId": {
+                                  "type": "string",
+                                  "description": "ID of specific kind of category"
+                                }
+                              },
+                              "description": "Specific kind of category"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "status": "SUCCESS",
+                  "payload": [
+                    {
+                      "category": "Animal",
+                      "subcategory": [
+                        {
+                          "subCategoryName": "Animal Accessories",
+                          "subCategoryId": "559c5d924fff3d64de18bf45"
+                        },
+                        {
+                          "subCategoryName": "Animal Food",
+                          "subCategoryId": "559c5d8f4fff3d64de18bf3d"
+                        },
+                        {
+                          "subCategoryName": "Animal Health & Grooming",
+                          "subCategoryId": "559c5d90ed25b136f13a05df"
+                        },
+                        {
+                          "subCategoryName": "Animal Other",
+                          "subCategoryId": "56f2eb66208f9a06158f1748"
+                        }
+                      ]
+                    },
+                    {
+                      "category": "Art & Craft",
+                      "subcategory": [
+                        {
+                          "subCategoryName": "Art & Craft",
+                          "subCategoryId": "571fdff7208f9a0cdb760a7f"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/utilities/taxonomy/departments": {
+      "get": {
+        "tags": [
+          "Utilities"
+        ],
+        "summary": "All Departments",
+        "description": "Get list of departments",
+        "operationId": "getDepartmentList",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Basic YzcyOTFjNmItNzI5MC00...."
+          },
+          {
+            "in": "header",
+            "name": "WM_SEC.ACCESS_TOKEN",
+            "description": "The access token retrieved in the Token API call",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
+          },
+          {
+            "in": "header",
+            "name": "WM_CONSUMER.CHANNEL.TYPE",
+            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "WM_QOS.CORRELATION_ID",
+            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
+          },
+          {
+            "in": "header",
+            "name": "WM_SVC.NAME",
+            "description": "Walmart Service Name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Walmart Service Name"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "payload": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "superDepartment": {
+                            "type": "string",
+                            "description": "The super-department name for which the department have to be fetched"
+                          },
+                          "superDepartmentId": {
+                            "type": "string",
+                            "description": "The super-department id for which the department have to be fetched"
+                          },
+                          "departments": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "departmentName": {
+                                  "type": "string",
+                                  "description": "The department name for which the categories have to be fetched"
+                                },
+                                "departmentId": {
+                                  "type": "string",
+                                  "description": "The department id for which the categories have to be fetched"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "status": "SUCCESS",
+                  "payload": [
+                    {
+                      "superDepartment": "13 HOUSEHOLD CHEMICALS",
+                      "superDepartmentId": "44000",
+                      "departments": [
+                        {
+                          "departmentName": "LAUNDRY AND HOUSEHOLD CHEMICALS",
+                          "departmentId": "44003"
+                        },
+                        {
+                          "departmentName": "HOUSEHOLD CHEMICALS MISC L2",
+                          "departmentId": "44004"
+                        }
+                      ]
+                    },
+                    {
+                      "superDepartment": "94 PRODUCE",
+                      "superDepartmentId": "80100",
+                      "departments": [
+                        {
+                          "departmentName": "PRODUCE L2",
+                          "departmentId": "1080100"
+                        }
+                      ]
+                    },
+                    {
+                      "superDepartment": "01 CANDY AND TOBACCO",
+                      "superDepartmentId": "86000",
+                      "departments": [
+                        {
+                          "departmentName": "CANDY AND TOBACCO L2",
+                          "departmentId": "1086000"
+                        }
+                      ]
+                    },
+                    {
+                      "superDepartment": "34 LADIES APPAREL",
+                      "superDepartmentId": "56000",
+                      "departments": [
+                        {
+                          "departmentName": "WOMENS SEASONAL",
+                          "departmentId": "56007"
+                        },
+                        {
+                          "departmentName": "WOMENS",
+                          "departmentId": "56004"
+                        },
+                        {
+                          "departmentName": "JUNIORS",
+                          "departmentId": "56002"
+                        },
+                        {
+                          "departmentName": "WOMENS PLUS",
+                          "departmentId": "56006"
+                        },
+                        {
+                          "departmentName": "OUTDOOR WOMENS HIKE AND ALPINE APPAREL",
+                          "departmentId": "1056114"
+                        },
+                        {
+                          "departmentName": "WOMENS ACTIVEWEAR",
+                          "departmentId": "56146"
+                        },
+                        {
+                          "departmentName": "MATERNITY",
+                          "departmentId": "56003"
+                        },
+                        {
+                          "departmentName": "LADIES APPAREL MISC L2",
+                          "departmentId": "1056125"
+                        }
+                      ]
+                    },
+                    {
+                      "superDepartment": "08 PETS AND SUPPLIES",
+                      "superDepartmentId": "47000",
+                      "departments": [
+                        {
+                          "departmentName": "PETS L2",
+                          "departmentId": "1047022"
+                        },
+                        {
+                          "departmentName": "CAT",
+                          "departmentId": "47012"
+                        },
+                        {
+                          "departmentName": "BIRD AQUATICS SMALL ANIMAL",
+                          "departmentId": "47014"
+                        },
+                        {
+                          "departmentName": "DOG",
+                          "departmentId": "47010"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Category": {
+        "type": "object",
+        "properties": {
+          "categoryName": {
+            "type": "string",
+            "description": "The category name for which the top trending items have to be fetched"
+          },
+          "categoryId": {
+            "type": "string",
+            "description": "The category id for which the top trending items have to be fetched"
+          }
+        }
+      },
+      "GetCategories": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "response": {
+            "type": "object",
+            "properties": {
+              "departmentName": {
+                "type": "string",
+                "description": "The department name for which the categories have to be fetched"
+              },
+              "departmentId": {
+                "type": "string",
+                "description": "The department id for which the categories have to be fetched"
+              },
+              "category": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "categoryName": {
+                      "type": "string",
+                      "description": "The category name for which the top trending items have to be fetched"
+                    },
+                    "categoryId": {
+                      "type": "string",
+                      "description": "The category id for which the top trending items have to be fetched"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "Response": {
+        "type": "object",
+        "properties": {
+          "departmentName": {
+            "type": "string",
+            "description": "The department name for which the categories have to be fetched"
+          },
+          "departmentId": {
+            "type": "string",
+            "description": "The department id for which the categories have to be fetched"
+          },
+          "category": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "categoryName": {
+                  "type": "string",
+                  "description": "The category name for which the top trending items have to be fetched"
+                },
+                "categoryId": {
+                  "type": "string",
+                  "description": "The category id for which the top trending items have to be fetched"
+                }
+              }
+            }
+          }
+        }
+      },
+      "CategoryPayload": {
+        "type": "object",
+        "properties": {
+          "category": {
+            "type": "string",
+            "description": "Type of item"
+          },
+          "subcategory": {
+            "type": "array",
+            "description": "Specific kind of category",
+            "items": {
+              "type": "object",
+              "properties": {
+                "subCategoryName": {
+                  "type": "string",
+                  "description": "Name of specific kind of category"
+                },
+                "subCategoryId": {
+                  "type": "string",
+                  "description": "ID of specific kind of category"
+                }
+              },
+              "description": "Specific kind of category"
+            }
+          }
+        }
+      },
+      "SubCategory": {
+        "type": "object",
+        "properties": {
+          "subCategoryName": {
+            "type": "string",
+            "description": "Name of specific kind of category"
+          },
+          "subCategoryId": {
+            "type": "string",
+            "description": "ID of specific kind of category"
+          }
+        },
+        "description": "Specific kind of category"
+      },
+      "TaxonomyResponseDTO": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "payload": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "category": {
+                  "type": "string",
+                  "description": "Type of item"
+                },
+                "subcategory": {
+                  "type": "array",
+                  "description": "Specific kind of category",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "subCategoryName": {
+                        "type": "string",
+                        "description": "Name of specific kind of category"
+                      },
+                      "subCategoryId": {
+                        "type": "string",
+                        "description": "ID of specific kind of category"
+                      }
+                    },
+                    "description": "Specific kind of category"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "Department": {
+        "type": "object",
+        "properties": {
+          "departmentName": {
+            "type": "string",
+            "description": "The department name for which the categories have to be fetched"
+          },
+          "departmentId": {
+            "type": "string",
+            "description": "The department id for which the categories have to be fetched"
+          }
+        }
+      },
+      "GetDepartmentList": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "payload": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "superDepartment": {
+                  "type": "string",
+                  "description": "The super-department name for which the department have to be fetched"
+                },
+                "superDepartmentId": {
+                  "type": "string",
+                  "description": "The super-department id for which the department have to be fetched"
+                },
+                "departments": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "departmentName": {
+                        "type": "string",
+                        "description": "The department name for which the categories have to be fetched"
+                      },
+                      "departmentId": {
+                        "type": "string",
+                        "description": "The department id for which the categories have to be fetched"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "Payload": {
+        "type": "object",
+        "properties": {
+          "superDepartment": {
+            "type": "string",
+            "description": "The super-department name for which the department have to be fetched"
+          },
+          "superDepartmentId": {
+            "type": "string",
+            "description": "The super-department id for which the department have to be fetched"
+          },
+          "departments": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "departmentName": {
+                  "type": "string",
+                  "description": "The department name for which the categories have to be fetched"
+                },
+                "departmentId": {
+                  "type": "string",
+                  "description": "The department id for which the categories have to be fetched"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "parameters": {
+      "authorization": {
+        "name": "Authorization",
+        "in": "header",
+        "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "example": "Basic YzcyOTFjNmItNzI5MC00...."
+      },
+      "accessToken": {
+        "name": "WM_SEC.ACCESS_TOKEN",
+        "in": "header",
+        "description": "The access token retrieved in the Token API call",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
+      },
+      "channelType": {
+        "name": "WM_CONSUMER.CHANNEL.TYPE",
+        "in": "header",
+        "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "correlationId": {
+        "name": "WM_QOS.CORRELATION_ID",
+        "in": "header",
+        "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
+      },
+      "svcName": {
+        "name": "WM_SVC.NAME",
+        "in": "header",
+        "description": "Walmart Service Name",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "example": "Walmart Service Name"
+      },
+      "accept": {
+        "name": "Accept",
+        "in": "header",
+        "description": "Only supported Media Type : application/json",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "example": "application/json"
+      },
+      "content-type": {
+        "name": "Content-Type",
+        "in": "header",
+        "description": "Only supported Media Type : application/json",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "example": "application/json"
+      }
+    },
+    "securitySchemes": {
+      "basicScheme": {
+        "type": "http",
+        "description": "",
+        "name": "Authorization",
+        "in": "header",
+        "scheme": "basic"
+      }
+    }
+  }
+}
