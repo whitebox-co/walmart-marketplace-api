@@ -76,10 +76,10 @@ export interface Cause {
 export interface Elements {
   /**
    *
-   * @type {Array<InlineResponse200ElementsInventories>}
+   * @type {Array<InlineResponse2002ElementsInventories>}
    * @memberof Elements
    */
-  inventories?: Array<InlineResponse200ElementsInventories>;
+  inventories?: Array<InlineResponse2002ElementsInventories>;
 }
 /**
  *
@@ -120,10 +120,10 @@ export interface GetAllInventoriesDTO {
   sku?: string;
   /**
    *
-   * @type {Array<InlineResponse200ElementsNodes>}
+   * @type {Array<InlineResponse2002ElementsNodes>}
    * @memberof GetAllInventoriesDTO
    */
-  nodes?: Array<InlineResponse200ElementsNodes>;
+  nodes?: Array<InlineResponse2002ElementsNodes>;
 }
 /**
  *
@@ -139,16 +139,16 @@ export interface GetAllInventoriesNodeDTO {
   shipNode?: string;
   /**
    *
-   * @type {InlineResponse200ElementsInputQty}
+   * @type {InlineResponse200Quantity}
    * @memberof GetAllInventoriesNodeDTO
    */
-  inputQty?: InlineResponse200ElementsInputQty;
+  inputQty?: InlineResponse200Quantity;
   /**
    *
-   * @type {InlineResponse200ElementsInputQty}
+   * @type {InlineResponse200Quantity}
    * @memberof GetAllInventoriesNodeDTO
    */
-  availToSellQty?: InlineResponse200ElementsInputQty;
+  availToSellQty?: InlineResponse200Quantity;
 }
 /**
  *
@@ -182,11 +182,17 @@ export interface Headers {
  */
 export interface InlineObject {
   /**
-   *
-   * @type {V3InventoriesSkuInventories}
+   * A seller-provided Product ID. Response will have decoded value.
+   * @type {string}
    * @memberof InlineObject
    */
-  inventories: V3InventoriesSkuInventories;
+  sku: string;
+  /**
+   *
+   * @type {InlineResponse200Quantity}
+   * @memberof InlineObject
+   */
+  quantity: InlineResponse200Quantity;
 }
 /**
  *
@@ -195,17 +201,11 @@ export interface InlineObject {
  */
 export interface InlineObject1 {
   /**
-   * A seller-provided Product ID. Response will have decoded value.
-   * @type {string}
-   * @memberof InlineObject1
-   */
-  sku: string;
-  /**
    *
-   * @type {InlineResponse200ElementsInputQty}
+   * @type {V3InventoriesSkuInventories}
    * @memberof InlineObject1
    */
-  quantity: InlineResponse200ElementsInputQty;
+  inventories: V3InventoriesSkuInventories;
 }
 /**
  *
@@ -214,17 +214,17 @@ export interface InlineObject1 {
  */
 export interface InlineResponse200 {
   /**
-   *
-   * @type {InlineResponse200Meta}
+   * A seller-provided Product ID. Response will have decoded value.
+   * @type {string}
    * @memberof InlineResponse200
    */
-  meta?: InlineResponse200Meta;
+  sku: string;
   /**
    *
-   * @type {InlineResponse200Elements}
+   * @type {InlineResponse200Quantity}
    * @memberof InlineResponse200
    */
-  elements?: InlineResponse200Elements;
+  quantity: InlineResponse200Quantity;
 }
 /**
  *
@@ -233,101 +233,303 @@ export interface InlineResponse200 {
  */
 export interface InlineResponse2001 {
   /**
-   * An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item.
-   * @type {string}
+   *
+   * @type {InlineResponse2001Headers}
    * @memberof InlineResponse2001
    */
-  sku?: string;
+  headers?: InlineResponse2001Headers;
   /**
    *
-   * @type {Array<InlineResponse2001Nodes>}
+   * @type {InlineResponse2001Payload}
    * @memberof InlineResponse2001
    */
-  nodes?: Array<InlineResponse2001Nodes>;
+  payload?: InlineResponse2001Payload;
 }
 /**
  *
  * @export
- * @interface InlineResponse2001Causes
+ * @interface InlineResponse2001Headers
  */
-export interface InlineResponse2001Causes {
+export interface InlineResponse2001Headers {
+  /**
+   * Total number of results for query.
+   * @type {number}
+   * @memberof InlineResponse2001Headers
+   */
+  totalCount?: number;
+  /**
+   * Information about the quantity in inventory
+   * @type {number}
+   * @memberof InlineResponse2001Headers
+   */
+  limit?: number;
+  /**
+   * Offset is the number of records you wish to skip before selecting results.
+   * @type {number}
+   * @memberof InlineResponse2001Headers
+   */
+  offset?: number;
+}
+/**
+ *
+ * @export
+ * @interface InlineResponse2001Payload
+ */
+export interface InlineResponse2001Payload {
+  /**
+   *
+   * @type {Array<InlineResponse2001PayloadInventory>}
+   * @memberof InlineResponse2001Payload
+   */
+  inventory?: Array<InlineResponse2001PayloadInventory>;
+}
+/**
+ *
+ * @export
+ * @interface InlineResponse2001PayloadInventory
+ */
+export interface InlineResponse2001PayloadInventory {
+  /**
+   * An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item.
+   * @type {string}
+   * @memberof InlineResponse2001PayloadInventory
+   */
+  sku?: string;
+  /**
+   *
+   * @type {Array<InlineResponse2001PayloadShipNodes>}
+   * @memberof InlineResponse2001PayloadInventory
+   */
+  shipNodes?: Array<InlineResponse2001PayloadShipNodes>;
+}
+/**
+ *
+ * @export
+ * @interface InlineResponse2001PayloadShipNodes
+ */
+export interface InlineResponse2001PayloadShipNodes {
+  /**
+   * Last changes date for the item.
+   * @type {string}
+   * @memberof InlineResponse2001PayloadShipNodes
+   */
+  modifiedDate?: string;
+  /**
+   * The available quantity is the quantity of an item that is available to be allocated to orders.
+   * @type {number}
+   * @memberof InlineResponse2001PayloadShipNodes
+   */
+  availToSellQty?: number;
+  /**
+   * The on-hand balance is the quantity of active inventory stored at the warehouse.Active inventory is defined as the usable amount of an item that is in the warehouse.Inventory is active if it is not damaged, expired or being inspected.
+   * @type {number}
+   * @memberof InlineResponse2001PayloadShipNodes
+   */
+  onHandQty?: number;
+  /**
+   * Identifies fulfillment aspect of invetory. Walmart, seller or 3PL fulfilled. Possible value is \'WFSFulfilled\'. In later phase we will also add seller fulfilled inventory.
+   * @type {string}
+   * @memberof InlineResponse2001PayloadShipNodes
+   */
+  shipNodeType?: string;
+}
+/**
+ *
+ * @export
+ * @interface InlineResponse2002
+ */
+export interface InlineResponse2002 {
+  /**
+   *
+   * @type {InlineResponse2002Meta}
+   * @memberof InlineResponse2002
+   */
+  meta?: InlineResponse2002Meta;
+  /**
+   *
+   * @type {InlineResponse2002Elements}
+   * @memberof InlineResponse2002
+   */
+  elements?: InlineResponse2002Elements;
+}
+/**
+ *
+ * @export
+ * @interface InlineResponse2002Elements
+ */
+export interface InlineResponse2002Elements {
+  /**
+   *
+   * @type {Array<InlineResponse2002ElementsInventories>}
+   * @memberof InlineResponse2002Elements
+   */
+  inventories?: Array<InlineResponse2002ElementsInventories>;
+}
+/**
+ *
+ * @export
+ * @interface InlineResponse2002ElementsInventories
+ */
+export interface InlineResponse2002ElementsInventories {
+  /**
+   * An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item.
+   * @type {string}
+   * @memberof InlineResponse2002ElementsInventories
+   */
+  sku?: string;
+  /**
+   *
+   * @type {Array<InlineResponse2002ElementsNodes>}
+   * @memberof InlineResponse2002ElementsInventories
+   */
+  nodes?: Array<InlineResponse2002ElementsNodes>;
+}
+/**
+ *
+ * @export
+ * @interface InlineResponse2002ElementsNodes
+ */
+export interface InlineResponse2002ElementsNodes {
+  /**
+   * ShipNode Id of the ship node for which the inventory is requested
+   * @type {string}
+   * @memberof InlineResponse2002ElementsNodes
+   */
+  shipNode?: string;
+  /**
+   *
+   * @type {InlineResponse200Quantity}
+   * @memberof InlineResponse2002ElementsNodes
+   */
+  inputQty?: InlineResponse200Quantity;
+  /**
+   *
+   * @type {InlineResponse200Quantity}
+   * @memberof InlineResponse2002ElementsNodes
+   */
+  availToSellQty?: InlineResponse200Quantity;
+}
+/**
+ *
+ * @export
+ * @interface InlineResponse2002Meta
+ */
+export interface InlineResponse2002Meta {
+  /**
+   * Total number of Skus of the Seller. Example: \'235\'
+   * @type {number}
+   * @memberof InlineResponse2002Meta
+   */
+  totalCount?: number;
+  /**
+   * Used for pagination to fetch the next set of items.
+   * @type {string}
+   * @memberof InlineResponse2002Meta
+   */
+  nextCursor?: string;
+}
+/**
+ *
+ * @export
+ * @interface InlineResponse2003
+ */
+export interface InlineResponse2003 {
+  /**
+   * An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item.
+   * @type {string}
+   * @memberof InlineResponse2003
+   */
+  sku?: string;
+  /**
+   *
+   * @type {Array<InlineResponse2003Nodes>}
+   * @memberof InlineResponse2003
+   */
+  nodes?: Array<InlineResponse2003Nodes>;
+}
+/**
+ *
+ * @export
+ * @interface InlineResponse2003Causes
+ */
+export interface InlineResponse2003Causes {
   /**
    *
    * @type {string}
-   * @memberof InlineResponse2001Causes
+   * @memberof InlineResponse2003Causes
    */
   code?: string;
   /**
    *
    * @type {string}
-   * @memberof InlineResponse2001Causes
+   * @memberof InlineResponse2003Causes
    */
   field?: string;
   /**
    *
    * @type {string}
-   * @memberof InlineResponse2001Causes
+   * @memberof InlineResponse2003Causes
    */
   type?: string;
   /**
    *
    * @type {string}
-   * @memberof InlineResponse2001Causes
+   * @memberof InlineResponse2003Causes
    */
   description?: string;
 }
 /**
- *
+ * Node Update Error description.
  * @export
- * @interface InlineResponse2001Errors
+ * @interface InlineResponse2003Errors
  */
-export interface InlineResponse2001Errors {
+export interface InlineResponse2003Errors {
   /**
    *
    * @type {string}
-   * @memberof InlineResponse2001Errors
+   * @memberof InlineResponse2003Errors
    */
   code: string;
   /**
    *
    * @type {string}
-   * @memberof InlineResponse2001Errors
+   * @memberof InlineResponse2003Errors
    */
   field?: string;
   /**
    *
    * @type {string}
-   * @memberof InlineResponse2001Errors
+   * @memberof InlineResponse2003Errors
    */
   description?: string;
   /**
    *
    * @type {string}
-   * @memberof InlineResponse2001Errors
+   * @memberof InlineResponse2003Errors
    */
   info?: string;
   /**
    *
    * @type {string}
-   * @memberof InlineResponse2001Errors
+   * @memberof InlineResponse2003Errors
    */
-  severity?: InlineResponse2001ErrorsSeverityEnum;
+  severity?: InlineResponse2003ErrorsSeverityEnum;
   /**
    *
    * @type {string}
-   * @memberof InlineResponse2001Errors
+   * @memberof InlineResponse2003Errors
    */
-  category?: InlineResponse2001ErrorsCategoryEnum;
+  category?: InlineResponse2003ErrorsCategoryEnum;
   /**
    *
-   * @type {Array<InlineResponse2001Causes>}
-   * @memberof InlineResponse2001Errors
+   * @type {Array<InlineResponse2003Causes>}
+   * @memberof InlineResponse2003Errors
    */
-  causes?: Array<InlineResponse2001Causes>;
+  causes?: Array<InlineResponse2003Causes>;
   /**
    *
    * @type {{ [key: string]: object; }}
-   * @memberof InlineResponse2001Errors
+   * @memberof InlineResponse2003Errors
    */
   errorIdentifiers?: { [key: string]: object };
 }
@@ -336,7 +538,7 @@ export interface InlineResponse2001Errors {
  * @export
  * @enum {string}
  */
-export enum InlineResponse2001ErrorsSeverityEnum {
+export enum InlineResponse2003ErrorsSeverityEnum {
   Info = "INFO",
   Warn = "WARN",
   Error = "ERROR",
@@ -345,7 +547,7 @@ export enum InlineResponse2001ErrorsSeverityEnum {
  * @export
  * @enum {string}
  */
-export enum InlineResponse2001ErrorsCategoryEnum {
+export enum InlineResponse2003ErrorsCategoryEnum {
   Application = "APPLICATION",
   System = "SYSTEM",
   Request = "REQUEST",
@@ -355,96 +557,33 @@ export enum InlineResponse2001ErrorsCategoryEnum {
 /**
  *
  * @export
- * @interface InlineResponse2001Nodes
+ * @interface InlineResponse2003Nodes
  */
-export interface InlineResponse2001Nodes {
+export interface InlineResponse2003Nodes {
   /**
    * ShipNode Id of the ship node for which the inventory is requested
    * @type {string}
-   * @memberof InlineResponse2001Nodes
+   * @memberof InlineResponse2003Nodes
    */
   shipNode?: string;
   /**
    *
-   * @type {InlineResponse200ElementsInputQty}
-   * @memberof InlineResponse2001Nodes
+   * @type {InlineResponse200Quantity}
+   * @memberof InlineResponse2003Nodes
    */
-  inputQty?: InlineResponse200ElementsInputQty;
+  inputQty?: InlineResponse200Quantity;
   /**
    *
-   * @type {InlineResponse200ElementsInputQty}
-   * @memberof InlineResponse2001Nodes
+   * @type {InlineResponse200Quantity}
+   * @memberof InlineResponse2003Nodes
    */
-  availToSellQty?: InlineResponse200ElementsInputQty;
+  availToSellQty?: InlineResponse200Quantity;
   /**
    *
-   * @type {Array<InlineResponse2001Errors>}
-   * @memberof InlineResponse2001Nodes
+   * @type {Array<InlineResponse2003Errors>}
+   * @memberof InlineResponse2003Nodes
    */
-  errors?: Array<InlineResponse2001Errors>;
-}
-/**
- *
- * @export
- * @interface InlineResponse2002
- */
-export interface InlineResponse2002 {
-  /**
-   * An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item.
-   * @type {string}
-   * @memberof InlineResponse2002
-   */
-  sku?: string;
-  /**
-   *
-   * @type {Array<InlineResponse2002Nodes>}
-   * @memberof InlineResponse2002
-   */
-  nodes?: Array<InlineResponse2002Nodes>;
-}
-/**
- *
- * @export
- * @interface InlineResponse2002Nodes
- */
-export interface InlineResponse2002Nodes {
-  /**
-   * ShipNode Id of the ship node for which the inventory is requested
-   * @type {string}
-   * @memberof InlineResponse2002Nodes
-   */
-  shipNode?: string;
-  /**
-   * Node Update status. Example: \'Success\'
-   * @type {string}
-   * @memberof InlineResponse2002Nodes
-   */
-  status?: string;
-  /**
-   * Node Update Error description.
-   * @type {Array<InlineResponse2001Errors>}
-   * @memberof InlineResponse2002Nodes
-   */
-  errors?: Array<InlineResponse2001Errors>;
-}
-/**
- *
- * @export
- * @interface InlineResponse2003
- */
-export interface InlineResponse2003 {
-  /**
-   * A seller-provided Product ID. Response will have decoded value.
-   * @type {string}
-   * @memberof InlineResponse2003
-   */
-  sku: string;
-  /**
-   *
-   * @type {InlineResponse200ElementsInputQty}
-   * @memberof InlineResponse2003
-   */
-  quantity: InlineResponse200ElementsInputQty;
+  errors?: Array<InlineResponse2003Errors>;
 }
 /**
  *
@@ -453,105 +592,42 @@ export interface InlineResponse2003 {
  */
 export interface InlineResponse2004 {
   /**
-   *
-   * @type {InlineResponse2004Headers}
-   * @memberof InlineResponse2004
-   */
-  headers?: InlineResponse2004Headers;
-  /**
-   *
-   * @type {InlineResponse2004Payload}
-   * @memberof InlineResponse2004
-   */
-  payload?: InlineResponse2004Payload;
-}
-/**
- *
- * @export
- * @interface InlineResponse2004Headers
- */
-export interface InlineResponse2004Headers {
-  /**
-   * Total number of results for query.
-   * @type {number}
-   * @memberof InlineResponse2004Headers
-   */
-  totalCount?: number;
-  /**
-   * Information about the quantity in inventory
-   * @type {number}
-   * @memberof InlineResponse2004Headers
-   */
-  limit?: number;
-  /**
-   * Offset is the number of records you wish to skip before selecting results.
-   * @type {number}
-   * @memberof InlineResponse2004Headers
-   */
-  offset?: number;
-}
-/**
- *
- * @export
- * @interface InlineResponse2004Payload
- */
-export interface InlineResponse2004Payload {
-  /**
-   *
-   * @type {Array<InlineResponse2004PayloadInventory>}
-   * @memberof InlineResponse2004Payload
-   */
-  inventory?: Array<InlineResponse2004PayloadInventory>;
-}
-/**
- *
- * @export
- * @interface InlineResponse2004PayloadInventory
- */
-export interface InlineResponse2004PayloadInventory {
-  /**
    * An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item.
    * @type {string}
-   * @memberof InlineResponse2004PayloadInventory
+   * @memberof InlineResponse2004
    */
   sku?: string;
   /**
    *
-   * @type {Array<InlineResponse2004PayloadShipNodes>}
-   * @memberof InlineResponse2004PayloadInventory
+   * @type {Array<InlineResponse2004Nodes>}
+   * @memberof InlineResponse2004
    */
-  shipNodes?: Array<InlineResponse2004PayloadShipNodes>;
+  nodes?: Array<InlineResponse2004Nodes>;
 }
 /**
  *
  * @export
- * @interface InlineResponse2004PayloadShipNodes
+ * @interface InlineResponse2004Nodes
  */
-export interface InlineResponse2004PayloadShipNodes {
+export interface InlineResponse2004Nodes {
   /**
-   * Last changes date for the item.
+   * ShipNode Id of the ship node for which the inventory is requested
    * @type {string}
-   * @memberof InlineResponse2004PayloadShipNodes
+   * @memberof InlineResponse2004Nodes
    */
-  modifiedDate?: string;
+  shipNode?: string;
   /**
-   * The available quantity is the quantity of an item that is available to be allocated to orders.
-   * @type {number}
-   * @memberof InlineResponse2004PayloadShipNodes
-   */
-  availToSellQty?: number;
-  /**
-   * The on-hand balance is the quantity of active inventory stored at the warehouse.Active inventory is defined as the usable amount of an item that is in the warehouse.Inventory is active if it is not damaged, expired or being inspected.
-   * @type {number}
-   * @memberof InlineResponse2004PayloadShipNodes
-   */
-  onHandQty?: number;
-  /**
-   * Identifies fulfillment aspect of invetory. Walmart, seller or 3PL fulfilled. Possible value is \'WFSFulfilled\'. In later phase we will also add seller fulfilled inventory.
+   * Node Update status. Example: \'Success\'
    * @type {string}
-   * @memberof InlineResponse2004PayloadShipNodes
+   * @memberof InlineResponse2004Nodes
    */
-  shipNodeType?: string;
+  status?: string;
+  /**
+   * Node Update Error description.
+   * @type {Array<InlineResponse2003Errors>}
+   * @memberof InlineResponse2004Nodes
+   */
+  errors?: Array<InlineResponse2003Errors>;
 }
 /**
  *
@@ -581,32 +657,19 @@ export interface InlineResponse2005 {
 /**
  *
  * @export
- * @interface InlineResponse200Elements
+ * @interface InlineResponse200Quantity
  */
-export interface InlineResponse200Elements {
-  /**
-   *
-   * @type {Array<InlineResponse200ElementsInventories>}
-   * @memberof InlineResponse200Elements
-   */
-  inventories?: Array<InlineResponse200ElementsInventories>;
-}
-/**
- * Information about the quantity in inventory
- * @export
- * @interface InlineResponse200ElementsInputQty
- */
-export interface InlineResponse200ElementsInputQty {
+export interface InlineResponse200Quantity {
   /**
    * The unit of measurement. Example: \'EACH\'
    * @type {string}
-   * @memberof InlineResponse200ElementsInputQty
+   * @memberof InlineResponse200Quantity
    */
-  unit: InlineResponse200ElementsInputQtyUnitEnum;
+  unit: InlineResponse200QuantityUnitEnum;
   /**
    * The number available in the inventory
    * @type {number}
-   * @memberof InlineResponse200ElementsInputQty
+   * @memberof InlineResponse200Quantity
    */
   amount: number;
 }
@@ -615,73 +678,10 @@ export interface InlineResponse200ElementsInputQty {
  * @export
  * @enum {string}
  */
-export enum InlineResponse200ElementsInputQtyUnitEnum {
+export enum InlineResponse200QuantityUnitEnum {
   Each = "EACH",
 }
 
-/**
- *
- * @export
- * @interface InlineResponse200ElementsInventories
- */
-export interface InlineResponse200ElementsInventories {
-  /**
-   * An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item.
-   * @type {string}
-   * @memberof InlineResponse200ElementsInventories
-   */
-  sku?: string;
-  /**
-   *
-   * @type {Array<InlineResponse200ElementsNodes>}
-   * @memberof InlineResponse200ElementsInventories
-   */
-  nodes?: Array<InlineResponse200ElementsNodes>;
-}
-/**
- *
- * @export
- * @interface InlineResponse200ElementsNodes
- */
-export interface InlineResponse200ElementsNodes {
-  /**
-   * ShipNode Id of the ship node for which the inventory is requested
-   * @type {string}
-   * @memberof InlineResponse200ElementsNodes
-   */
-  shipNode?: string;
-  /**
-   *
-   * @type {InlineResponse200ElementsInputQty}
-   * @memberof InlineResponse200ElementsNodes
-   */
-  inputQty?: InlineResponse200ElementsInputQty;
-  /**
-   *
-   * @type {InlineResponse200ElementsInputQty}
-   * @memberof InlineResponse200ElementsNodes
-   */
-  availToSellQty?: InlineResponse200ElementsInputQty;
-}
-/**
- *
- * @export
- * @interface InlineResponse200Meta
- */
-export interface InlineResponse200Meta {
-  /**
-   * Total number of Skus of the Seller. Example: \'235\'
-   * @type {number}
-   * @memberof InlineResponse200Meta
-   */
-  totalCount?: number;
-  /**
-   * Used for pagination to fetch the next set of items.
-   * @type {string}
-   * @memberof InlineResponse200Meta
-   */
-  nextCursor?: string;
-}
 /**
  *
  * @export
@@ -696,10 +696,10 @@ export interface InventoriesDTO {
   sku?: string;
   /**
    *
-   * @type {Array<InlineResponse2001Nodes>}
+   * @type {Array<InlineResponse2003Nodes>}
    * @memberof InventoriesDTO
    */
-  nodes?: Array<InlineResponse2001Nodes>;
+  nodes?: Array<InlineResponse2003Nodes>;
 }
 /**
  *
@@ -715,10 +715,10 @@ export interface Inventory {
   sku: string;
   /**
    *
-   * @type {InlineResponse200ElementsInputQty}
+   * @type {InlineResponse200Quantity}
    * @memberof Inventory
    */
-  quantity: InlineResponse200ElementsInputQty;
+  quantity: InlineResponse200Quantity;
 }
 /**
  *
@@ -734,10 +734,10 @@ export interface InventoryWFS {
   sku?: string;
   /**
    *
-   * @type {Array<InlineResponse2004PayloadShipNodes>}
+   * @type {Array<InlineResponse2001PayloadShipNodes>}
    * @memberof InventoryWFS
    */
-  shipNodes?: Array<InlineResponse2004PayloadShipNodes>;
+  shipNodes?: Array<InlineResponse2001PayloadShipNodes>;
 }
 /**
  *
@@ -759,7 +759,7 @@ export interface Meta {
   nextCursor?: string;
 }
 /**
- *
+ * Node Update Error description.
  * @export
  * @interface ModelError
  */
@@ -802,10 +802,10 @@ export interface ModelError {
   category?: ModelErrorCategoryEnum;
   /**
    *
-   * @type {Array<InlineResponse2001Causes>}
+   * @type {Array<InlineResponse2003Causes>}
    * @memberof ModelError
    */
-  causes?: Array<InlineResponse2001Causes>;
+  causes?: Array<InlineResponse2003Causes>;
   /**
    *
    * @type {{ [key: string]: object; }}
@@ -842,16 +842,16 @@ export enum ModelErrorCategoryEnum {
 export interface MultiNodeInventoryFetchResponseDTO {
   /**
    *
-   * @type {InlineResponse200Meta}
+   * @type {InlineResponse2002Meta}
    * @memberof MultiNodeInventoryFetchResponseDTO
    */
-  meta?: InlineResponse200Meta;
+  meta?: InlineResponse2002Meta;
   /**
    *
-   * @type {InlineResponse200Elements}
+   * @type {InlineResponse2002Elements}
    * @memberof MultiNodeInventoryFetchResponseDTO
    */
-  elements?: InlineResponse200Elements;
+  elements?: InlineResponse2002Elements;
 }
 /**
  *
@@ -880,10 +880,10 @@ export interface MultiNodeInventoryUpdateResponseDTO {
   sku?: string;
   /**
    *
-   * @type {Array<InlineResponse2002Nodes>}
+   * @type {Array<InlineResponse2004Nodes>}
    * @memberof MultiNodeInventoryUpdateResponseDTO
    */
-  nodes?: Array<InlineResponse2002Nodes>;
+  nodes?: Array<InlineResponse2004Nodes>;
 }
 /**
  *
@@ -899,22 +899,22 @@ export interface NodeDTO {
   shipNode?: string;
   /**
    *
-   * @type {InlineResponse200ElementsInputQty}
+   * @type {InlineResponse200Quantity}
    * @memberof NodeDTO
    */
-  inputQty?: InlineResponse200ElementsInputQty;
+  inputQty?: InlineResponse200Quantity;
   /**
    *
-   * @type {InlineResponse200ElementsInputQty}
+   * @type {InlineResponse200Quantity}
    * @memberof NodeDTO
    */
-  availToSellQty?: InlineResponse200ElementsInputQty;
+  availToSellQty?: InlineResponse200Quantity;
   /**
    *
-   * @type {Array<InlineResponse2001Errors>}
+   * @type {Array<InlineResponse2003Errors>}
    * @memberof NodeDTO
    */
-  errors?: Array<InlineResponse2001Errors>;
+  errors?: Array<InlineResponse2003Errors>;
 }
 /**
  *
@@ -924,10 +924,10 @@ export interface NodeDTO {
 export interface Payload {
   /**
    *
-   * @type {Array<InlineResponse2004PayloadInventory>}
+   * @type {Array<InlineResponse2001PayloadInventory>}
    * @memberof Payload
    */
-  inventory?: Array<InlineResponse2004PayloadInventory>;
+  inventory?: Array<InlineResponse2001PayloadInventory>;
 }
 /**
  *
@@ -961,7 +961,7 @@ export interface ShipNodes {
   shipNodeType?: string;
 }
 /**
- * Information about the quantity in inventory
+ *
  * @export
  * @interface SupplyQuantity
  */
@@ -1015,10 +1015,10 @@ export interface UpdateInventoriesRequestNodeDTO {
   shipNode: string;
   /**
    *
-   * @type {InlineResponse200ElementsInputQty}
+   * @type {InlineResponse200Quantity}
    * @memberof UpdateInventoriesRequestNodeDTO
    */
-  inputQty: InlineResponse200ElementsInputQty;
+  inputQty: InlineResponse200Quantity;
 }
 /**
  *
@@ -1040,10 +1040,10 @@ export interface UpdateInventoriesResponseNodeDTO {
   status?: string;
   /**
    * Node Update Error description.
-   * @type {Array<InlineResponse2001Errors>}
+   * @type {Array<InlineResponse2003Errors>}
    * @memberof UpdateInventoriesResponseNodeDTO
    */
-  errors?: Array<InlineResponse2001Errors>;
+  errors?: Array<InlineResponse2003Errors>;
 }
 /**
  *
@@ -1072,10 +1072,10 @@ export interface V3InventoriesSkuInventoriesNodes {
   shipNode: string;
   /**
    *
-   * @type {InlineResponse200ElementsInputQty}
+   * @type {InlineResponse200Quantity}
    * @memberof V3InventoriesSkuInventoriesNodes
    */
-  inputQty: InlineResponse200ElementsInputQty;
+  inputQty: InlineResponse200Quantity;
 }
 /**
  *
@@ -1085,16 +1085,16 @@ export interface V3InventoriesSkuInventoriesNodes {
 export interface WfsInventoryDTO {
   /**
    *
-   * @type {InlineResponse2004Headers}
+   * @type {InlineResponse2001Headers}
    * @memberof WfsInventoryDTO
    */
-  headers?: InlineResponse2004Headers;
+  headers?: InlineResponse2001Headers;
   /**
    *
-   * @type {InlineResponse2004Payload}
+   * @type {InlineResponse2001Payload}
    * @memberof WfsInventoryDTO
    */
-  payload?: InlineResponse2004Payload;
+  payload?: InlineResponse2001Payload;
 }
 
 /**
@@ -1735,7 +1735,7 @@ export const InventoryApiAxiosParamCreator = function (
      * @param {string} wMCONSUMERCHANNELTYPE A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
      * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
      * @param {string} wMSVCNAME Walmart Service Name
-     * @param {InlineObject1} inlineObject1
+     * @param {InlineObject} inlineObject
      * @param {string} [shipNode] The shipNode for which the inventory is to be updated.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1747,7 +1747,7 @@ export const InventoryApiAxiosParamCreator = function (
       wMCONSUMERCHANNELTYPE: string,
       wMQOSCORRELATIONID: string,
       wMSVCNAME: string,
-      inlineObject1: InlineObject1,
+      inlineObject: InlineObject,
       shipNode?: string,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -1779,11 +1779,11 @@ export const InventoryApiAxiosParamCreator = function (
       );
       // verify required parameter 'wMSVCNAME' is not null or undefined
       assertParamExists("updateInventoryForAnItem", "wMSVCNAME", wMSVCNAME);
-      // verify required parameter 'inlineObject1' is not null or undefined
+      // verify required parameter 'inlineObject' is not null or undefined
       assertParamExists(
         "updateInventoryForAnItem",
-        "inlineObject1",
-        inlineObject1
+        "inlineObject",
+        inlineObject
       );
       const localVarPath = `/v3/inventory`;
       // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -1851,7 +1851,7 @@ export const InventoryApiAxiosParamCreator = function (
         ...options.headers,
       };
       localVarRequestOptions.data = serializeDataIfNeeded(
-        inlineObject1,
+        inlineObject,
         localVarRequestOptions,
         configuration
       );
@@ -1870,7 +1870,7 @@ export const InventoryApiAxiosParamCreator = function (
      * @param {string} wMCONSUMERCHANNELTYPE A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
      * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
      * @param {string} wMSVCNAME Walmart Service Name
-     * @param {InlineObject} inlineObject
+     * @param {InlineObject1} inlineObject1
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1881,7 +1881,7 @@ export const InventoryApiAxiosParamCreator = function (
       wMCONSUMERCHANNELTYPE: string,
       wMQOSCORRELATIONID: string,
       wMSVCNAME: string,
-      inlineObject: InlineObject,
+      inlineObject1: InlineObject1,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'sku' is not null or undefined
@@ -1912,11 +1912,11 @@ export const InventoryApiAxiosParamCreator = function (
       );
       // verify required parameter 'wMSVCNAME' is not null or undefined
       assertParamExists("updateMultiNodeInventory", "wMSVCNAME", wMSVCNAME);
-      // verify required parameter 'inlineObject' is not null or undefined
+      // verify required parameter 'inlineObject1' is not null or undefined
       assertParamExists(
         "updateMultiNodeInventory",
-        "inlineObject",
-        inlineObject
+        "inlineObject1",
+        inlineObject1
       );
       const localVarPath = `/v3/inventories/{sku}`.replace(
         `{${"sku"}}`,
@@ -1979,7 +1979,7 @@ export const InventoryApiAxiosParamCreator = function (
         ...options.headers,
       };
       localVarRequestOptions.data = serializeDataIfNeeded(
-        inlineObject,
+        inlineObject1,
         localVarRequestOptions,
         configuration
       );
@@ -2026,7 +2026,7 @@ export const InventoryApiFp = function (configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<InlineResponse2003>
+      ) => AxiosPromise<InlineResponse200>
     > {
       const localVarAxiosArgs = await localVarAxiosParamCreator.getInventory(
         sku,
@@ -2071,7 +2071,7 @@ export const InventoryApiFp = function (configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<InlineResponse200>
+      ) => AxiosPromise<InlineResponse2002>
     > {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.getMultiNodeInventoryForAllSkuAndAllShipNodes(
@@ -2117,7 +2117,7 @@ export const InventoryApiFp = function (configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<InlineResponse2001>
+      ) => AxiosPromise<InlineResponse2003>
     > {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.getMultiNodeInventoryForSkuAndAllShipnodes(
@@ -2169,7 +2169,7 @@ export const InventoryApiFp = function (configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<InlineResponse2004>
+      ) => AxiosPromise<InlineResponse2001>
     > {
       const localVarAxiosArgs = await localVarAxiosParamCreator.getWFSInventory(
         authorization,
@@ -2249,7 +2249,7 @@ export const InventoryApiFp = function (configuration?: Configuration) {
      * @param {string} wMCONSUMERCHANNELTYPE A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
      * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
      * @param {string} wMSVCNAME Walmart Service Name
-     * @param {InlineObject1} inlineObject1
+     * @param {InlineObject} inlineObject
      * @param {string} [shipNode] The shipNode for which the inventory is to be updated.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -2261,11 +2261,11 @@ export const InventoryApiFp = function (configuration?: Configuration) {
       wMCONSUMERCHANNELTYPE: string,
       wMQOSCORRELATIONID: string,
       wMSVCNAME: string,
-      inlineObject1: InlineObject1,
+      inlineObject: InlineObject,
       shipNode?: string,
       options?: any
     ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineObject1>
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineObject>
     > {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.updateInventoryForAnItem(
@@ -2275,7 +2275,7 @@ export const InventoryApiFp = function (configuration?: Configuration) {
           wMCONSUMERCHANNELTYPE,
           wMQOSCORRELATIONID,
           wMSVCNAME,
-          inlineObject1,
+          inlineObject,
           shipNode,
           options
         );
@@ -2295,7 +2295,7 @@ export const InventoryApiFp = function (configuration?: Configuration) {
      * @param {string} wMCONSUMERCHANNELTYPE A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
      * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
      * @param {string} wMSVCNAME Walmart Service Name
-     * @param {InlineObject} inlineObject
+     * @param {InlineObject1} inlineObject1
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -2306,13 +2306,13 @@ export const InventoryApiFp = function (configuration?: Configuration) {
       wMCONSUMERCHANNELTYPE: string,
       wMQOSCORRELATIONID: string,
       wMSVCNAME: string,
-      inlineObject: InlineObject,
+      inlineObject1: InlineObject1,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<InlineResponse2002>
+      ) => AxiosPromise<InlineResponse2004>
     > {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.updateMultiNodeInventory(
@@ -2322,7 +2322,7 @@ export const InventoryApiFp = function (configuration?: Configuration) {
           wMCONSUMERCHANNELTYPE,
           wMQOSCORRELATIONID,
           wMSVCNAME,
-          inlineObject,
+          inlineObject1,
           options
         );
       return createRequestFunction(
@@ -2368,7 +2368,7 @@ export const InventoryApiFactory = function (
       wMSVCNAME: string,
       shipNode?: string,
       options?: any
-    ): AxiosPromise<InlineResponse2003> {
+    ): AxiosPromise<InlineResponse200> {
       return localVarFp
         .getInventory(
           sku,
@@ -2404,7 +2404,7 @@ export const InventoryApiFactory = function (
       limit?: string,
       nextCursor?: string,
       options?: any
-    ): AxiosPromise<InlineResponse200> {
+    ): AxiosPromise<InlineResponse2002> {
       return localVarFp
         .getMultiNodeInventoryForAllSkuAndAllShipNodes(
           authorization,
@@ -2440,7 +2440,7 @@ export const InventoryApiFactory = function (
       wMSVCNAME: string,
       shipNode?: string,
       options?: any
-    ): AxiosPromise<InlineResponse2001> {
+    ): AxiosPromise<InlineResponse2003> {
       return localVarFp
         .getMultiNodeInventoryForSkuAndAllShipnodes(
           sku,
@@ -2482,7 +2482,7 @@ export const InventoryApiFactory = function (
       limit?: string,
       offset?: string,
       options?: any
-    ): AxiosPromise<InlineResponse2004> {
+    ): AxiosPromise<InlineResponse2001> {
       return localVarFp
         .getWFSInventory(
           authorization,
@@ -2547,7 +2547,7 @@ export const InventoryApiFactory = function (
      * @param {string} wMCONSUMERCHANNELTYPE A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
      * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
      * @param {string} wMSVCNAME Walmart Service Name
-     * @param {InlineObject1} inlineObject1
+     * @param {InlineObject} inlineObject
      * @param {string} [shipNode] The shipNode for which the inventory is to be updated.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -2559,10 +2559,10 @@ export const InventoryApiFactory = function (
       wMCONSUMERCHANNELTYPE: string,
       wMQOSCORRELATIONID: string,
       wMSVCNAME: string,
-      inlineObject1: InlineObject1,
+      inlineObject: InlineObject,
       shipNode?: string,
       options?: any
-    ): AxiosPromise<InlineObject1> {
+    ): AxiosPromise<InlineObject> {
       return localVarFp
         .updateInventoryForAnItem(
           sku,
@@ -2571,7 +2571,7 @@ export const InventoryApiFactory = function (
           wMCONSUMERCHANNELTYPE,
           wMQOSCORRELATIONID,
           wMSVCNAME,
-          inlineObject1,
+          inlineObject,
           shipNode,
           options
         )
@@ -2586,7 +2586,7 @@ export const InventoryApiFactory = function (
      * @param {string} wMCONSUMERCHANNELTYPE A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
      * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
      * @param {string} wMSVCNAME Walmart Service Name
-     * @param {InlineObject} inlineObject
+     * @param {InlineObject1} inlineObject1
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -2597,9 +2597,9 @@ export const InventoryApiFactory = function (
       wMCONSUMERCHANNELTYPE: string,
       wMQOSCORRELATIONID: string,
       wMSVCNAME: string,
-      inlineObject: InlineObject,
+      inlineObject1: InlineObject1,
       options?: any
-    ): AxiosPromise<InlineResponse2002> {
+    ): AxiosPromise<InlineResponse2004> {
       return localVarFp
         .updateMultiNodeInventory(
           sku,
@@ -2608,7 +2608,7 @@ export const InventoryApiFactory = function (
           wMCONSUMERCHANNELTYPE,
           wMQOSCORRELATIONID,
           wMSVCNAME,
-          inlineObject,
+          inlineObject1,
           options
         )
         .then((request) => request(axios, basePath));
@@ -2974,10 +2974,10 @@ export interface InventoryApiUpdateInventoryForAnItemRequest {
 
   /**
    *
-   * @type {InlineObject1}
+   * @type {InlineObject}
    * @memberof InventoryApiUpdateInventoryForAnItem
    */
-  readonly inlineObject1: InlineObject1;
+  readonly inlineObject: InlineObject;
 
   /**
    * The shipNode for which the inventory is to be updated.
@@ -3037,10 +3037,10 @@ export interface InventoryApiUpdateMultiNodeInventoryRequest {
 
   /**
    *
-   * @type {InlineObject}
+   * @type {InlineObject1}
    * @memberof InventoryApiUpdateMultiNodeInventory
    */
-  readonly inlineObject: InlineObject;
+  readonly inlineObject1: InlineObject1;
 }
 
 /**
@@ -3204,7 +3204,7 @@ export class InventoryApi extends BaseAPI {
         requestParameters.wMCONSUMERCHANNELTYPE,
         requestParameters.wMQOSCORRELATIONID,
         requestParameters.wMSVCNAME,
-        requestParameters.inlineObject1,
+        requestParameters.inlineObject,
         requestParameters.shipNode,
         options
       )
@@ -3231,7 +3231,7 @@ export class InventoryApi extends BaseAPI {
         requestParameters.wMCONSUMERCHANNELTYPE,
         requestParameters.wMQOSCORRELATIONID,
         requestParameters.wMSVCNAME,
-        requestParameters.inlineObject,
+        requestParameters.inlineObject1,
         options
       )
       .then((request) => request(this.axios, this.basePath));
