@@ -1,0 +1,2667 @@
+<?xml version="1.0" ?>
+<xsd:schema elementFormDefault="qualified" targetNamespace="http://walmart.com/" version="3.2" xmlns:wm="http://walmart.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="MPCommons.xsd"/>
+  <xsd:complexType name="Photography">
+    <xsd:choice maxOccurs="1" minOccurs="0">
+      <xsd:element name="CamerasAndLenses" type="wm:CamerasAndLenses"/>
+      <xsd:element name="PhotoAccessories" type="wm:PhotoAccessories"/>
+    </xsd:choice>
+  </xsd:complexType>
+  <xsd:complexType name="CamerasAndLenses">
+    <xsd:all>
+      <xsd:element maxOccurs="1" minOccurs="1" name="shortDescription">
+        <xsd:annotation>
+          <xsd:documentation>Overview of the key selling points of the item, marketing content, and highlights in paragraph form. For SEO purposes, repeat the product name and relevant keywords here.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Required"/>
+            <wm:displayName>Description</wm:displayName>
+            <wm:group>Basic</wm:group>
+            <wm:rank>8000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="keyFeatures" type="wm:KeyFeatures">
+        <xsd:annotation>
+          <xsd:documentation>Key features will appear as bulleted text on the item page and in search results. Key features help the user understand the benefits of the product with a simple and clean format. We highly recommended using three or more key features.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Key Features</wm:displayName>
+            <wm:group>Basic</wm:group>
+            <wm:rank>9000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="1" name="brand">
+        <xsd:annotation>
+          <xsd:documentation>Name, term, design or other feature that distinguishes one seller's product from those of others. This can be the name of the company associated with the product, but not always. If item does not have a brand, use &quot;Unbranded&quot;.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Required"/>
+            <wm:displayName>Brand</wm:displayName>
+            <wm:group>Basic</wm:group>
+            <wm:rank>11000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="60"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="manufacturer">
+        <xsd:annotation>
+          <xsd:documentation>Manufacturer is the maker of the product. This is the name of the company that produces the product, not necessarily the brand name of the item. For some products, the manufacturer and the brand may be the same.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Manufacturer</wm:displayName>
+            <wm:group>Basic</wm:group>
+            <wm:rank>12000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="60"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="manufacturerPartNumber">
+        <xsd:annotation>
+          <xsd:documentation>MPN uniquely identifies the product to its manufacturer. For many products this will be identical to the model number. Some manufacturers distinguish part number from model number. Having this information allows customers to search for items on the site and informs product matching.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Manufacturer Part Number</wm:displayName>
+            <wm:group>Basic</wm:group>
+            <wm:rank>13000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="60"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="modelNumber">
+        <xsd:annotation>
+          <xsd:documentation>Model numbers allow manufacturers to keep track of each hardware device and identify or replace the proper part when needed. Model numbers are often found on the bottom, back, or side of a product. Having this information allows customers to search for items on the site and informs product matching.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Model Number</wm:displayName>
+            <wm:group>Basic</wm:group>
+            <wm:rank>14000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="60"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="multipackQuantity">
+        <xsd:annotation>
+          <xsd:documentation>The number of identical, individually packaged-for-sale items. If an item does not contain other items, does not contain identical items, or if the items contained within cannot be sold individually, the value for this attribute should be &quot;1.&quot; Examples: (1) A single bottle of 50 pills has a &quot;Multipack Quantity&quot; of &quot;1.&quot; (2) A package containing two identical bottles of 50 pills has a &quot;Multipack Quantity&quot; of 2. (3) A 6-pack of soda labelled for individual sale connected by plastic rings has a &quot;Multipack Quantity&quot; of &quot;6.&quot; (4) A 6-pack of soda in a box whose cans are not marked for individual sale has a &quot;Multipack Quantity&quot; of &quot;1.&quot; (5) A gift basket of 5 different items has a &quot;Multipack Quantity&quot; of &quot;1.&quot;</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Multipack Quantity</wm:displayName>
+            <wm:group>Basic</wm:group>
+            <wm:rank>15000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:integer">
+            <xsd:totalDigits value="4"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="countPerPack">
+        <xsd:annotation>
+          <xsd:documentation>The number of identical items inside each individual pack given by the &quot;Multipack Quantity&quot; attribute. Examples: (1) A single bottle of 50 pills has a &quot;Count Per Pack&quot; of &quot;50.&quot; (2) A package containing two identical bottles of 50 pills has a &quot;Count Per Pack&quot; of 50. (3) A 6-pack of soda labelled for individual sale connected by plastic rings has a &quot;Count Per Pack&quot; of &quot;1.&quot; (4) A 6-pack of soda in a box whose cans are not marked for individual sale has a &quot;Count Per Pack&quot; of &quot;6.&quot; (5) A gift basket of 5 different items has a &quot;Count Per Pack&quot; of &quot;1.&quot;</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Count Per Pack</wm:displayName>
+            <wm:group>Basic</wm:group>
+            <wm:rank>15500</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:integer">
+            <xsd:totalDigits value="4"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="count">
+        <xsd:annotation>
+          <xsd:documentation>The total number of identical items in the package or box; a result of the multiplication of Multipack Quantity by Count Per Pack. Examples: (1) A single bottle of 50 pills has a &quot;Total Count&quot; of 50. (2) A package containing two identical bottles of 50 pills has a &quot;Total Count&quot; of 100. (3) A gift basket of 5 different items has a &quot;Total Count&quot; of 1.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Total Count</wm:displayName>
+            <wm:group>Basic</wm:group>
+            <wm:rank>15550</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="7"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="pieceCount">
+        <xsd:annotation>
+          <xsd:documentation>The number of small pieces, slices, or different items within the product. Piece Count applies to things such as puzzles, building block sets, and products that contain multiple different items (such as tool sets, dinnerware sets, gift baskets, art sets, makeup kits, or shaving kits). EXAMPLE: (1) A 500-piece puzzle has a &quot;Piece Count&quot; of 500. (2) A 105-Piece Socket Wrench set has a piece count of &quot;105.&quot; (3) A gift basket of 5 different items has a &quot;Piece Count&quot; of 5.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Number of Pieces</wm:displayName>
+            <wm:group>Basic</wm:group>
+            <wm:rank>15575</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:integer">
+            <xsd:totalDigits value="20"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="1" name="mainImageUrl">
+        <xsd:annotation>
+          <xsd:documentation>Main image of the item. Image URL must end in the file name. Image URL must be static and have no redirections. Preferred file type: JPEG Accepted file types: JPG, PNG, GIF, BMP Recommended image resolution: 3000 x 3000 pixels at 300 ppi. Minimum image size requirements: Zoom capability: 2000 x 2000 pixels at 300 ppi. Non-zoom minimum: 500 x 500 pixels at 72 ppi. Maximum file size: 2 MB.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Required"/>
+            <wm:displayName>Main Image URL</wm:displayName>
+            <wm:group>Images</wm:group>
+            <wm:rank>16000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:anyURI"/>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="productSecondaryImageURL" type="wm:ProductSecondaryImageURL">
+        <xsd:annotation>
+          <xsd:documentation>Secondary images of the item. Image URL must end in the file name. Image URL must be static and have no redirections. Preferred file type: JPEG Accepted file types: JPG, PNG, GIF, BMP Recommended image resolution: 3000 x 3000 pixels at 300 ppi. Minimum image size requirements: Zoom capability: 2000 x 2000 pixels at 300 ppi. Non-zoom minimum: 500 x 500 pixels at 72 ppi. Maximum file size: 2 MB.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Additional Image URL</wm:displayName>
+            <wm:group>Images</wm:group>
+            <wm:rank>17000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="numberOfMegapixels">
+        <xsd:annotation>
+          <xsd:documentation>The resolution at which this item records images.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Number of Megapixels</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>19000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element maxOccurs="1" minOccurs="1" name="measure">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:decimal">
+                  <xsd:totalDigits value="16"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element maxOccurs="1" minOccurs="1" name="unit">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:enumeration value="MP"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="digitalZoom">
+        <xsd:annotation>
+          <xsd:documentation>Measure of the magnification power provided by a feature that electronically enlarges the image area at the center of the frame, trims away the outside edges of the picture, and interpolates the result to the pixel dimensions of the original. Important to consumers because digital zoom reduces the image resolution and the image quality vs. optical zoom, which does not affect the quality of the zoomed image.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Digital Zoom</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>20000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="opticalZoom">
+        <xsd:annotation>
+          <xsd:documentation>Measure of the magnification power of a physical optical zoom lens. For example, a camera with an optical zoom of 4x allows the users to magnify image up to 4x larger. Important to consumers because optical zoom results in better image quality than zoom that is digitally generated. </xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Optical Zoom</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>21000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="magnification">
+        <xsd:annotation>
+          <xsd:documentation>Number expressing a ratio of how much a device’s optical system can increase (or decrease) an image as compared to the true size. Typically applied to products such as magnifying lenses and microscopes and expressed as a number followed by an x.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Magnification</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>22000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="sensorResolution" type="wm:ResolutionUnit">
+        <xsd:annotation>
+          <xsd:documentation>One specification describing the smallest detectable incremental change of input parameter that can be detected in the output signal. Expressed either as a proportion of the full-scale reading, or as an absolute. Used for a variety of sensor types and importance varies with product.  For example for digital cameras, image sensor resolution is an important factor for image quality.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Sensor Resolution</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>23000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="lensDiameter">
+        <xsd:annotation>
+          <xsd:documentation>Measurement of the diameter of the front portion of the lens, measured in mm. For cameras, important factor to fit accessories such as filters.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Lens Diameter</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>24000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element maxOccurs="1" minOccurs="1" name="measure">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:decimal">
+                  <xsd:totalDigits value="16"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element maxOccurs="1" minOccurs="1" name="unit">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:enumeration value="mm"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="lensCoating">
+        <xsd:annotation>
+          <xsd:documentation>Type of thin layer of material applied to the surface of lenses or other optical elements that provide specific effects. Usually applied to components such as camera lenses to improve resistance to scratches, or provide a mirror effect for sunglasses.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Lens Coating</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>25000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="lensFilterType">
+        <xsd:annotation>
+          <xsd:documentation>Terms describing the kind of filter attached to a lens. Typically camera lens filters affect the amount and type of light that enters the lens.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Lens Filter Type</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>26000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="cameraLensType">
+        <xsd:annotation>
+          <xsd:documentation>Description of the lens' focal length, optical characteristics or special features.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Camera Lens Features</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>27000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="hasFlash">
+        <xsd:annotation>
+          <xsd:documentation>Y indicates the device incorporates a camera flash.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Has Flash</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>28000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Yes"/>
+            <xsd:enumeration value="No"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="flashType">
+        <xsd:annotation>
+          <xsd:documentation>The structure of an artificial light unit that a camera includes or can accommodate.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Flash Type</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>29000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="minimumShutterSpeed">
+        <xsd:annotation>
+          <xsd:documentation>Measured in seconds.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Minimum Shutter Speed</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>32000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element maxOccurs="1" minOccurs="1" name="measure">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:decimal">
+                  <xsd:totalDigits value="16"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element maxOccurs="1" minOccurs="1" name="unit">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:enumeration value="s"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="maximumShutterSpeed">
+        <xsd:annotation>
+          <xsd:documentation>Measured in seconds.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Maximum Shutter Speed</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>33000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element maxOccurs="1" minOccurs="1" name="measure">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:decimal">
+                  <xsd:totalDigits value="16"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element maxOccurs="1" minOccurs="1" name="unit">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:enumeration value="s"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="focusType" type="wm:FocusType">
+        <xsd:annotation>
+          <xsd:documentation>Terms that describe modes, mechanisms, or control arrangements that adjust optical focus on the device. For example, if item is a pair of binoculars, focus type would describe weather the lenses on binoculars can be adjusted independently of one another.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Focus Type</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>34000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="focalLength">
+        <xsd:annotation>
+          <xsd:documentation>On a camera or lens, the distance between the image sensor and the lens when the subject is in focus, usually stated as a range in millimeters. </xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Focal Length</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>35000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element maxOccurs="1" minOccurs="1" name="measure">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="4000"/>
+                  <xsd:minLength value="1"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element maxOccurs="1" minOccurs="1" name="unit">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:enumeration value="mm"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="focalRatio">
+        <xsd:annotation>
+          <xsd:documentation>Ratio of the lens's focal length, to the diameter of the entrance pupil (optical image of the physical aperture stop, as 'seen' through the front of the lens system). Also known as the f-number or f-stop, this number indicates lens speed, an important selection criteria based on intended photographic use.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Focal Ratio</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>36000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="minimumAperture">
+        <xsd:annotation>
+          <xsd:documentation>The smallest aperture this item accommodates, indicating the how much light can pass through the lens and typically expressed in f-numbers.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Minimum Aperture</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>37000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="maximumAperture">
+        <xsd:annotation>
+          <xsd:documentation>Size of the largest aperture this item accommodates. For products such as cameras, this is the f-stop (f-number) of the widest opening the lens mechanism can produce. Important selection factor for consumers who look for a low f/stop value. This indicates more light can enter the lens and allow a faster shutter speed; especially in low light conditions.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Maximum Aperture</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>38000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="exposureModes" type="wm:ExposureModes">
+        <xsd:annotation>
+          <xsd:documentation>Available settings to control shutter speed and lens aperture.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Exposure Modes</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>39000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="displayTechnology">
+        <xsd:annotation>
+          <xsd:documentation>The primary technology used for the item's display.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Display Technology</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>40000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="displayResolution">
+        <xsd:annotation>
+          <xsd:documentation>If the item has a screen display, the resolution value of the screen component of the product. Typically measured as the number of pixels creating the display expressed as number of columns x number of rows. For example, a digital camera's screen resolution (vs. the image quality the camera can produce) of 640x480.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Display Resolution</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>41000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="screenSize">
+        <xsd:annotation>
+          <xsd:documentation>Typically measured on the diagonal in inches.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Screen Size</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>42000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element maxOccurs="1" minOccurs="1" name="measure">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:decimal">
+                  <xsd:totalDigits value="16"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element maxOccurs="1" minOccurs="1" name="unit">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:enumeration value="in"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="diameter">
+        <xsd:annotation>
+          <xsd:documentation>The measurement from one side of a circle to the other, through the middle. </xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Diameter</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>44000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element maxOccurs="1" minOccurs="1" name="measure">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:decimal">
+                  <xsd:totalDigits value="16"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element maxOccurs="1" minOccurs="1" name="unit">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:enumeration value="in"/>
+                  <xsd:enumeration value="cm"/>
+                  <xsd:enumeration value="mm"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="color">
+        <xsd:annotation>
+          <xsd:documentation>Color as described by the manufacturer.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Color</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>45000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="colorCategory">
+        <xsd:annotation>
+          <xsd:documentation>Select the color from a short list that best describes the general color of the item. This improves searchability as it allows customers to view items by color from the left navigation when they perform a search.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Color Category</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>46000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" name="colorCategoryValue">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:enumeration value="Beige"/>
+                  <xsd:enumeration value="Black"/>
+                  <xsd:enumeration value="Blue"/>
+                  <xsd:enumeration value="Bronze"/>
+                  <xsd:enumeration value="Brown"/>
+                  <xsd:enumeration value="Clear"/>
+                  <xsd:enumeration value="Gold"/>
+                  <xsd:enumeration value="Gray"/>
+                  <xsd:enumeration value="Green"/>
+                  <xsd:enumeration value="Multi-color"/>
+                  <xsd:enumeration value="Off-White"/>
+                  <xsd:enumeration value="Orange"/>
+                  <xsd:enumeration value="Pink"/>
+                  <xsd:enumeration value="Purple"/>
+                  <xsd:enumeration value="Red"/>
+                  <xsd:enumeration value="Silver"/>
+                  <xsd:enumeration value="White"/>
+                  <xsd:enumeration value="Yellow"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="assembledProductLength">
+        <xsd:annotation>
+          <xsd:documentation>The length of the fully assembled product. NOTE: This information is shown on the item page.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Assembled Product Length</wm:displayName>
+            <wm:group>Dimensions</wm:group>
+            <wm:rank>49000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element maxOccurs="1" minOccurs="1" name="measure">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:decimal">
+                  <xsd:totalDigits value="16"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element maxOccurs="1" minOccurs="1" name="unit">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:enumeration value="in"/>
+                  <xsd:enumeration value="ft"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="assembledProductWidth">
+        <xsd:annotation>
+          <xsd:documentation>The width of the fully assembled product. NOTE: This information is shown on the item page.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Assembled Product Width</wm:displayName>
+            <wm:group>Dimensions</wm:group>
+            <wm:rank>50000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element maxOccurs="1" minOccurs="1" name="measure">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:decimal">
+                  <xsd:totalDigits value="16"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element maxOccurs="1" minOccurs="1" name="unit">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:enumeration value="in"/>
+                  <xsd:enumeration value="ft"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="assembledProductHeight">
+        <xsd:annotation>
+          <xsd:documentation>The height of the fully assembled product. NOTE: This information is shown on the item page.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Assembled Product Height</wm:displayName>
+            <wm:group>Dimensions</wm:group>
+            <wm:rank>51000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element maxOccurs="1" minOccurs="1" name="measure">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:decimal">
+                  <xsd:totalDigits value="16"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element maxOccurs="1" minOccurs="1" name="unit">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:enumeration value="in"/>
+                  <xsd:enumeration value="ft"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="assembledProductWeight">
+        <xsd:annotation>
+          <xsd:documentation>The weight of the fully assembled product. NOTE: This information is shown on the item page.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Assembled Product Weight</wm:displayName>
+            <wm:group>Dimensions</wm:group>
+            <wm:rank>52000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element maxOccurs="1" minOccurs="1" name="measure">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:decimal">
+                  <xsd:totalDigits value="16"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element maxOccurs="1" minOccurs="1" name="unit">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:enumeration value="oz"/>
+                  <xsd:enumeration value="lb"/>
+                  <xsd:enumeration value="g"/>
+                  <xsd:enumeration value="kg"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="variantGroupId">
+        <xsd:annotation>
+          <xsd:documentation>Required if item is a variant. Make up a number and/or letter code for “Variant Group ID” and add this to all variations of the same product. Partners must ensure uniqueness of their Variant Group IDs.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Conditionally Required"/>
+            <wm:conditionalAttributes>
+              <wm:conditionalAttributeGroup>
+                <wm:conditionalAttribute name="variantAttributeNames" value="ANY"/>
+              </wm:conditionalAttributeGroup>
+            </wm:conditionalAttributes>
+            <wm:displayName>Variant Group ID</wm:displayName>
+            <wm:group>Item Variants</wm:group>
+            <wm:rank>54000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="300"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="variantAttributeNames">
+        <xsd:annotation>
+          <xsd:documentation>Designate all attributes by which the item is varying. Variant attributes are limited to those designated for each category. </xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Conditionally Required"/>
+            <wm:conditionalAttributes>
+              <wm:conditionalAttributeGroup>
+                <wm:conditionalAttribute name="variantGroupId" value="ANY"/>
+              </wm:conditionalAttributeGroup>
+            </wm:conditionalAttributes>
+            <wm:displayName>Variant Attribute Names</wm:displayName>
+            <wm:group>Item Variants</wm:group>
+            <wm:rank>55000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" name="variantAttributeName">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:enumeration value="color"/>
+                  <xsd:enumeration value="material"/>
+                  <xsd:enumeration value="finish"/>
+                  <xsd:enumeration value="focalLength"/>
+                  <xsd:enumeration value="displayResolution"/>
+                  <xsd:enumeration value="capacity"/>
+                  <xsd:enumeration value="shape"/>
+                  <xsd:enumeration value="diameter"/>
+                  <xsd:enumeration value="sportsTeam"/>
+                  <xsd:enumeration value="count"/>
+                  <xsd:enumeration value="size"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="isPrimaryVariant">
+        <xsd:annotation>
+          <xsd:documentation>Note whether item is intended as the main variant in a variant grouping. The primary variant will appear as the image when customers search and the first image displayed on the item page. This should be set as &quot;Yes&quot; for only one item in a group of variants.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Is Primary Variant</wm:displayName>
+            <wm:group>Item Variants</wm:group>
+            <wm:rank>56000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Yes"/>
+            <xsd:enumeration value="No"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="isProp65WarningRequired">
+        <xsd:annotation>
+          <xsd:documentation>Selecting &quot;Y&quot; indicates the product requires California's Proposition 65 special warning. Proposition 65 entitles California consumers to special warnings for products that contain chemicals known to the state of California to cause cancer and birth defects or other reproductive harm if certain criteria are met (such as quantity of chemical contained in the product). See the portions of the California Health and Safety Code related to Proposition 65 for more information.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Is Prop 65 Warning Required</wm:displayName>
+            <wm:group>Compliance</wm:group>
+            <wm:rank>60000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Yes"/>
+            <xsd:enumeration value="No"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="prop65WarningText">
+        <xsd:annotation>
+          <xsd:documentation>This is a particular statement legally required by the State of California for certain products to warn consumers about potential health dangers. See the portions of the California Health and Safety Code related to Proposition 65 to see what products require labels and to verify the text of your warning label.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Conditionally Required"/>
+            <wm:conditionalAttributes>
+              <wm:conditionalAttributeGroup>
+                <wm:conditionalAttribute name="isProp65WarningRequired" value="Yes"/>
+              </wm:conditionalAttributeGroup>
+            </wm:conditionalAttributes>
+            <wm:displayName>Prop 65 Warning Text</wm:displayName>
+            <wm:group>Compliance</wm:group>
+            <wm:rank>61000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="batteryTechnologyType">
+        <xsd:annotation>
+          <xsd:documentation>Please select the Battery Technology Type from the list provided. NOTE: If battery type is lead acid, lead acid (nonspillable), lithium ion, or lithium metal, please ensure that you have obtained a hazardous materials risk assessment through WERCS  before setting up your item. </xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Conditionally Required"/>
+            <wm:conditionalAttributes>
+              <wm:conditionalAttributeGroup>
+                <wm:conditionalAttribute name="hasBatteries" value="Yes"/>
+              </wm:conditionalAttributeGroup>
+            </wm:conditionalAttributes>
+            <wm:displayName>Contained Battery Type</wm:displayName>
+            <wm:group>Compliance</wm:group>
+            <wm:rank>64000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Does Not Contain a Battery"/>
+            <xsd:enumeration value="Alkaline"/>
+            <xsd:enumeration value="Carbon Zinc"/>
+            <xsd:enumeration value="Lead Acid"/>
+            <xsd:enumeration value="Lead Acid (Nonspillable)"/>
+            <xsd:enumeration value="Lithium Primary (Lithium Metal)"/>
+            <xsd:enumeration value="Lithium Ion"/>
+            <xsd:enumeration value="Magnesium"/>
+            <xsd:enumeration value="Mercury"/>
+            <xsd:enumeration value="Nickel Cadmium"/>
+            <xsd:enumeration value="Nickel Metal Hydride"/>
+            <xsd:enumeration value="Silver"/>
+            <xsd:enumeration value="Thermal"/>
+            <xsd:enumeration value="Other"/>
+            <xsd:enumeration value="Multiple Types"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="isAssemblyRequired">
+        <xsd:annotation>
+          <xsd:documentation>Is product unassembled and must be put together before use?</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Is Assembly Required</wm:displayName>
+            <wm:group>Compliance</wm:group>
+            <wm:rank>66000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Yes"/>
+            <xsd:enumeration value="No"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="assemblyInstructions">
+        <xsd:annotation>
+          <xsd:documentation>Provide a URL to an image or PDF asset showing assembly instructions for items requiring assembly. URLs must be static and have no query parameters. URLs must begin with http:// or https:// and should end in in the file name.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Conditionally Required"/>
+            <wm:conditionalAttributes>
+              <wm:conditionalAttributeGroup>
+                <wm:conditionalAttribute name="isAssemblyRequired" value="Yes"/>
+              </wm:conditionalAttributeGroup>
+            </wm:conditionalAttributes>
+            <wm:displayName>Assembly Instructions</wm:displayName>
+            <wm:group>Compliance</wm:group>
+            <wm:rank>67000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:anyURI"/>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="hasWarranty">
+        <xsd:annotation>
+          <xsd:documentation>Y indicates the item comes with a warranty. If an item has a warranty, then enter EITHER the warranty URL or the warranty text in the appropriate field.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Has Warranty</wm:displayName>
+            <wm:group>Compliance</wm:group>
+            <wm:rank>69000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Yes"/>
+            <xsd:enumeration value="No"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="warrantyURL">
+        <xsd:annotation>
+          <xsd:documentation>If you indicated that your item has a warranty, provide either the Warranty URL or Warranty Text. The Warranty URL is the web location of the image, PDF, or link to the manufacturer's warranty page, showing the warranty and its terms, including the duration of the warranty. URLs must begin with http:// or https:// NOTE: Please remember to update the link and/or text of the warranty as the warranty changes. If supplying an image, provide the final destination image URL (no-redirects) that is publicly accessible (no username/password required) and ends in a proper image extension. Recommended file type: JPEG Accepted file types: JPG, PNG, GIF, BMP Maximum file size: 2 GB. If the Ingredients have been included in another image, you may repeat the URL here. </xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Conditionally Required"/>
+            <wm:conditionalAttributes>
+              <wm:conditionalAttributeGroup>
+                <wm:conditionalAttribute name="warrantyText" value="null"/>
+                <wm:conditionalAttribute name="hasWarranty" value="Yes"/>
+              </wm:conditionalAttributeGroup>
+            </wm:conditionalAttributes>
+            <wm:displayName>Warranty URL</wm:displayName>
+            <wm:group>Compliance</wm:group>
+            <wm:rank>70000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:anyURI"/>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="warrantyText">
+        <xsd:annotation>
+          <xsd:documentation>If you marked Y for &quot;Has Warranty&quot; provide the Warranty URL or Warranty Text (the full text of the warranty terms, including what is covered by the warranty and the duration of the warranty). NOTE: please remember to update the text of your warranty as your warranty changes.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Conditionally Required"/>
+            <wm:conditionalAttributes>
+              <wm:conditionalAttributeGroup>
+                <wm:conditionalAttribute name="warrantyURL" value="null"/>
+                <wm:conditionalAttribute name="hasWarranty" value="Yes"/>
+              </wm:conditionalAttributeGroup>
+            </wm:conditionalAttributes>
+            <wm:displayName>Warranty Text</wm:displayName>
+            <wm:group>Compliance</wm:group>
+            <wm:rank>71000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="1000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="accessoriesIncluded" type="wm:AccessoriesIncluded">
+        <xsd:annotation>
+          <xsd:documentation>Listing of any supplementary items that come with the product. Important information for consumers because accessories typically provide additional convenience, utility, attractiveness or safety to or for a product. </xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Accessories Included</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>78000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="hasTouchscreen">
+        <xsd:annotation>
+          <xsd:documentation>Does the display have touchscreen capabilities?</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Has Touchscreen</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>79000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Yes"/>
+            <xsd:enumeration value="No"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="hasMemoryCardSlot">
+        <xsd:annotation>
+          <xsd:documentation>Y indicates the item has a place to insert electronic memory data storage device used to record digital information.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Has Memory Card Slot</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>80000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Yes"/>
+            <xsd:enumeration value="No"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="memoryCardType" type="wm:MemoryCardFormat">
+        <xsd:annotation>
+          <xsd:documentation>The memory card format applicable to the product.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Memory Card Format</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>81000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="recordableMediaFormats" type="wm:RecordableMediaFormats">
+        <xsd:annotation>
+          <xsd:documentation>The recording technologies compatible with the item.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Recordable Media Formats</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>82000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="wirelessTechnologies" type="wm:WirelessTechnologies">
+        <xsd:annotation>
+          <xsd:documentation>Any wireless communications standard used within or by the item.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Wireless Technologies</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>83000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="connections" type="wm:Connections">
+        <xsd:annotation>
+          <xsd:documentation>The standardized connections provided on the item.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Connector Type</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>84000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="isPortable">
+        <xsd:annotation>
+          <xsd:documentation>Is the item designed to be easily moved?</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Is Portable</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>85000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Yes"/>
+            <xsd:enumeration value="No"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="isWaterproof">
+        <xsd:annotation>
+          <xsd:documentation>Y indicates that the item has been especially made to be resistant to water, to some degree.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Is Waterproof</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>86000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Yes"/>
+            <xsd:enumeration value="No"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="hasSelfTimer">
+        <xsd:annotation>
+          <xsd:documentation>Y indicates the device has a feature that allows a countdown, or a timed delay before taking an action, such as taking a photo.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Has Self-Timer</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>88000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Yes"/>
+            <xsd:enumeration value="No"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="selfTimerDelay" type="wm:SelfTimerDelay">
+        <xsd:annotation>
+          <xsd:documentation>Length of time the self-timer will allow before it takes an action, such as taking a photo.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Self-Timer Delay</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>89000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="standbyTime">
+        <xsd:annotation>
+          <xsd:documentation>The number of continuous hours the device may remain in standby mode before shutting down.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Standby Time</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>90000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element maxOccurs="1" minOccurs="1" name="measure">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:decimal">
+                  <xsd:totalDigits value="16"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element maxOccurs="1" minOccurs="1" name="unit">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:enumeration value="h"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="fieldOfView">
+        <xsd:annotation>
+          <xsd:documentation>Measure of the area that can be seen through a lens of an item, as specified by the manufacturer. Attribute applied to such products as microscopes, telescopes and rifle scopes.  Can be expressed as the angular field of view (in degrees) or the true field of view (in feet). </xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Field of View</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>94000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="isParfocal">
+        <xsd:annotation>
+          <xsd:documentation>Y indicates the item has a lens that stays in focus when magnification/focal length is changed. For example, a microscope that stays in focus when the microscope objective is rotated.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Is Parfocal</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>95000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Yes"/>
+            <xsd:enumeration value="No"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="shootingMode">
+        <xsd:annotation>
+          <xsd:documentation>Available settings designed to accommodate different photographic situations. </xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Shooting Mode</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>97000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="microphoneIncluded">
+        <xsd:annotation>
+          <xsd:documentation>Y indicates the item contains a microphone to record sound, either internally or externally.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Microphone Included</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>99000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Yes"/>
+            <xsd:enumeration value="No"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="hasHandle">
+        <xsd:annotation>
+          <xsd:documentation>Y indicates the item contains a grip to make the item easier to hold, carry, or control.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Has Handle</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>100000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Yes"/>
+            <xsd:enumeration value="No"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="isMulticoated">
+        <xsd:annotation>
+          <xsd:documentation>Y indicates the item has a series of layers of coatings; For example, eye glasses that have layers of anti-reflective coatings.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Is Multicoated</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>101000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Yes"/>
+            <xsd:enumeration value="No"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="hasRedEyeReduction">
+        <xsd:annotation>
+          <xsd:documentation>Y indicates the item has a feature to reduce the appearance of red pupils in photos due to the red-eye effect.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Has Red Eye Reduction</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>102000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Yes"/>
+            <xsd:enumeration value="No"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="hasNightVision">
+        <xsd:annotation>
+          <xsd:documentation>Does this device have features that give users the ability to see in low light conditions?</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Has Night Vision</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>103000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Yes"/>
+            <xsd:enumeration value="No"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="isFogResistant">
+        <xsd:annotation>
+          <xsd:documentation>Has this product been treated to prevent the condensation of water on its surface?</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Is Fog-Resistant</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>104000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Yes"/>
+            <xsd:enumeration value="No"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="attachmentStyle">
+        <xsd:annotation>
+          <xsd:documentation>Description of how the product is able to attach to other surfaces or items. Also used for product fit. For example, bayonet is an attachment style describing how a camera lens attaches to the camera body</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Attachment Style</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>105000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="hasShoulderStrap">
+        <xsd:annotation>
+          <xsd:documentation>Y indicates the item comes with a strap that allows a user to suspend the item from the shoulders.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Has Shoulder Strap</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>107000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Yes"/>
+            <xsd:enumeration value="No"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="compatibleBrands" type="wm:CompatibleBrands">
+        <xsd:annotation>
+          <xsd:documentation>A list of the brands most commonly compatible with the item.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Compatible Brands</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>108000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="compatibleDevices">
+        <xsd:annotation>
+          <xsd:documentation>A list of the devices compatible with the item.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Compatible Devices</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>109000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="material">
+        <xsd:annotation>
+          <xsd:documentation>The main material(s) that a product is made of. This does not need to be an exhaustive list, but should contain the predominant or functionally important material/materials. Fabric material specifics should be entered using the &quot;Fabric Content&quot; attribute.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Material</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>110000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="cleaningCareAndMaintenance">
+        <xsd:annotation>
+          <xsd:documentation>Description of how the item should be cleaned and maintained.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Cleaning, Care &amp; Maintenance</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>113000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="globalBrandLicense" type="wm:BrandLicense">
+        <xsd:annotation>
+          <xsd:documentation>A brand name that is not owned by the product brand, but is licensed for the particular product. (Often character and media tie-ins and promotions.)</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Brand License</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>114000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="features" type="wm:AdditionalFeatures">
+        <xsd:annotation>
+          <xsd:documentation>List notable features of the item.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Additional Features</wm:displayName>
+            <wm:group>Nice to Have</wm:group>
+            <wm:rank>123000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="keywords">
+        <xsd:annotation>
+          <xsd:documentation>Words that people would use to search for this item. Keywords can include synonyms and related terms.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Keywords</wm:displayName>
+            <wm:group>Nice to Have</wm:group>
+            <wm:rank>124000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="swatchImages">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Enter the swatch image location in &quot;Swatch Image URL&quot; and its corresponding variant attribute name in &quot;Swatch Variant Attribute&quot;. Required for products with visual variations, like color or pattern. List the swatches in the order you recommend they appear on the site.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" name="swatchImage">
+              <xsd:complexType>
+                <xsd:all>
+                  <xsd:element maxOccurs="1" minOccurs="1" name="swatchVariantAttribute">
+                    <xsd:annotation>
+                      <xsd:documentation>Attribute name corresponding to the swatch.</xsd:documentation>
+                      <xsd:appinfo>
+                        <wm:requiredLevel value="Conditionally Required"/>
+                        <wm:conditionalAttributes>
+                          <wm:conditionalAttributeGroup>
+                            <wm:conditionalAttribute name="swatchImageUrl" value="ANY"/>
+                          </wm:conditionalAttributeGroup>
+                        </wm:conditionalAttributes>
+                        <wm:displayName>Swatch Variant Attribute</wm:displayName>
+                        <wm:group>Item Variants</wm:group>
+                      </xsd:appinfo>
+                    </xsd:annotation>
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:enumeration value="color"/>
+                        <xsd:enumeration value="material"/>
+                        <xsd:enumeration value="finish"/>
+                        <xsd:enumeration value="focalLength"/>
+                        <xsd:enumeration value="displayResolution"/>
+                        <xsd:enumeration value="capacity"/>
+                        <xsd:enumeration value="shape"/>
+                        <xsd:enumeration value="diameter"/>
+                        <xsd:enumeration value="sportsTeam"/>
+                        <xsd:enumeration value="count"/>
+                        <xsd:enumeration value="size"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element maxOccurs="1" minOccurs="1" name="swatchImageUrl">
+                    <xsd:annotation>
+                      <xsd:documentation>URL of the color or pattern swatch image. This is required for products with visual variations and will be shown as a small square on the item page. Recommended resolution is 100 x 100 pixels. Provide the final destination image URL (no-redirects) that is publicly accessible (no username/password required) and ends in a proper image extension such as, .jpg, .png or .gif.</xsd:documentation>
+                      <xsd:appinfo>
+                        <wm:requiredLevel value="Conditionally Required"/>
+                        <wm:conditionalAttributes>
+                          <wm:conditionalAttributeGroup>
+                            <wm:conditionalAttribute name="swatchVariantAttribute" value="ANY"/>
+                          </wm:conditionalAttributeGroup>
+                        </wm:conditionalAttributes>
+                        <wm:displayName>Swatch Image URL</wm:displayName>
+                        <wm:group>Item Variants</wm:group>
+                      </xsd:appinfo>
+                    </xsd:annotation>
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:anyURI"/>
+                    </xsd:simpleType>
+                  </xsd:element>
+                </xsd:all>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="PhotoAccessories">
+    <xsd:all>
+      <xsd:element maxOccurs="1" minOccurs="1" name="shortDescription">
+        <xsd:annotation>
+          <xsd:documentation>Overview of the key selling points of the item, marketing content, and highlights in paragraph form. For SEO purposes, repeat the product name and relevant keywords here.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Required"/>
+            <wm:displayName>Description</wm:displayName>
+            <wm:group>Basic</wm:group>
+            <wm:rank>8000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="keyFeatures" type="wm:KeyFeatures">
+        <xsd:annotation>
+          <xsd:documentation>Key features will appear as bulleted text on the item page and in search results. Key features help the user understand the benefits of the product with a simple and clean format. We highly recommended using three or more key features.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Key Features</wm:displayName>
+            <wm:group>Basic</wm:group>
+            <wm:rank>9000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="1" name="brand">
+        <xsd:annotation>
+          <xsd:documentation>Name, term, design or other feature that distinguishes one seller's product from those of others. This can be the name of the company associated with the product, but not always. If item does not have a brand, use &quot;Unbranded&quot;.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Required"/>
+            <wm:displayName>Brand</wm:displayName>
+            <wm:group>Basic</wm:group>
+            <wm:rank>11000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="60"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="manufacturer">
+        <xsd:annotation>
+          <xsd:documentation>Manufacturer is the maker of the product. This is the name of the company that produces the product, not necessarily the brand name of the item. For some products, the manufacturer and the brand may be the same.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Manufacturer</wm:displayName>
+            <wm:group>Basic</wm:group>
+            <wm:rank>12000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="60"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="manufacturerPartNumber">
+        <xsd:annotation>
+          <xsd:documentation>MPN uniquely identifies the product to its manufacturer. For many products this will be identical to the model number. Some manufacturers distinguish part number from model number. Having this information allows customers to search for items on the site and informs product matching.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Manufacturer Part Number</wm:displayName>
+            <wm:group>Basic</wm:group>
+            <wm:rank>13000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="60"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="modelNumber">
+        <xsd:annotation>
+          <xsd:documentation>Model numbers allow manufacturers to keep track of each hardware device and identify or replace the proper part when needed. Model numbers are often found on the bottom, back, or side of a product. Having this information allows customers to search for items on the site and informs product matching.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Model Number</wm:displayName>
+            <wm:group>Basic</wm:group>
+            <wm:rank>14000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="60"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="multipackQuantity">
+        <xsd:annotation>
+          <xsd:documentation>The number of identical, individually packaged-for-sale items. If an item does not contain other items, does not contain identical items, or if the items contained within cannot be sold individually, the value for this attribute should be &quot;1.&quot; Examples: (1) A single bottle of 50 pills has a &quot;Multipack Quantity&quot; of &quot;1.&quot; (2) A package containing two identical bottles of 50 pills has a &quot;Multipack Quantity&quot; of 2. (3) A 6-pack of soda labelled for individual sale connected by plastic rings has a &quot;Multipack Quantity&quot; of &quot;6.&quot; (4) A 6-pack of soda in a box whose cans are not marked for individual sale has a &quot;Multipack Quantity&quot; of &quot;1.&quot; (5) A gift basket of 5 different items has a &quot;Multipack Quantity&quot; of &quot;1.&quot;</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Multipack Quantity</wm:displayName>
+            <wm:group>Basic</wm:group>
+            <wm:rank>15000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:integer">
+            <xsd:totalDigits value="4"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="countPerPack">
+        <xsd:annotation>
+          <xsd:documentation>The number of identical items inside each individual pack given by the &quot;Multipack Quantity&quot; attribute. Examples: (1) A single bottle of 50 pills has a &quot;Count Per Pack&quot; of &quot;50.&quot; (2) A package containing two identical bottles of 50 pills has a &quot;Count Per Pack&quot; of 50. (3) A 6-pack of soda labelled for individual sale connected by plastic rings has a &quot;Count Per Pack&quot; of &quot;1.&quot; (4) A 6-pack of soda in a box whose cans are not marked for individual sale has a &quot;Count Per Pack&quot; of &quot;6.&quot; (5) A gift basket of 5 different items has a &quot;Count Per Pack&quot; of &quot;1.&quot;</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Count Per Pack</wm:displayName>
+            <wm:group>Basic</wm:group>
+            <wm:rank>15500</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:integer">
+            <xsd:totalDigits value="4"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="count">
+        <xsd:annotation>
+          <xsd:documentation>The total number of identical items in the package or box; a result of the multiplication of Multipack Quantity by Count Per Pack. Examples: (1) A single bottle of 50 pills has a &quot;Total Count&quot; of 50. (2) A package containing two identical bottles of 50 pills has a &quot;Total Count&quot; of 100. (3) A gift basket of 5 different items has a &quot;Total Count&quot; of 1.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Total Count</wm:displayName>
+            <wm:group>Basic</wm:group>
+            <wm:rank>15550</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="7"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="1" name="mainImageUrl">
+        <xsd:annotation>
+          <xsd:documentation>Main image of the item. Image URL must end in the file name. Image URL must be static and have no redirections. Preferred file type: JPEG Accepted file types: JPG, PNG, GIF, BMP Recommended image resolution: 3000 x 3000 pixels at 300 ppi. Minimum image size requirements: Zoom capability: 2000 x 2000 pixels at 300 ppi. Non-zoom minimum: 500 x 500 pixels at 72 ppi. Maximum file size: 2 MB.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Required"/>
+            <wm:displayName>Main Image URL</wm:displayName>
+            <wm:group>Images</wm:group>
+            <wm:rank>16000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:anyURI"/>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="productSecondaryImageURL" type="wm:ProductSecondaryImageURL">
+        <xsd:annotation>
+          <xsd:documentation>Secondary images of the item. Image URL must end in the file name. Image URL must be static and have no redirections. Preferred file type: JPEG Accepted file types: JPG, PNG, GIF, BMP Recommended image resolution: 3000 x 3000 pixels at 300 ppi. Minimum image size requirements: Zoom capability: 2000 x 2000 pixels at 300 ppi. Non-zoom minimum: 500 x 500 pixels at 72 ppi. Maximum file size: 2 MB.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Additional Image URL</wm:displayName>
+            <wm:group>Images</wm:group>
+            <wm:rank>17000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="compatibleBrands" type="wm:CompatibleBrands">
+        <xsd:annotation>
+          <xsd:documentation>A list of the brands most commonly compatible with the item.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Compatible Brands</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>19000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="compatibleDevices">
+        <xsd:annotation>
+          <xsd:documentation>A list of the devices compatible with the item.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Compatible Devices</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>20000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="color">
+        <xsd:annotation>
+          <xsd:documentation>Color as described by the manufacturer.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Color</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>21000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="colorCategory">
+        <xsd:annotation>
+          <xsd:documentation>Select the color from a short list that best describes the general color of the item. This improves searchability as it allows customers to view items by color from the left navigation when they perform a search.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Color Category</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>22000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" name="colorCategoryValue">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:enumeration value="Beige"/>
+                  <xsd:enumeration value="Black"/>
+                  <xsd:enumeration value="Blue"/>
+                  <xsd:enumeration value="Bronze"/>
+                  <xsd:enumeration value="Brown"/>
+                  <xsd:enumeration value="Clear"/>
+                  <xsd:enumeration value="Gold"/>
+                  <xsd:enumeration value="Gray"/>
+                  <xsd:enumeration value="Green"/>
+                  <xsd:enumeration value="Multi-color"/>
+                  <xsd:enumeration value="Off-White"/>
+                  <xsd:enumeration value="Orange"/>
+                  <xsd:enumeration value="Pink"/>
+                  <xsd:enumeration value="Purple"/>
+                  <xsd:enumeration value="Red"/>
+                  <xsd:enumeration value="Silver"/>
+                  <xsd:enumeration value="White"/>
+                  <xsd:enumeration value="Yellow"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="material">
+        <xsd:annotation>
+          <xsd:documentation>The main material(s) that a product is made of. This does not need to be an exhaustive list, but should contain the predominant or functionally important material/materials. Fabric material specifics should be entered using the &quot;Fabric Content&quot; attribute.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Material</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>23000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="memoryCardType" type="wm:MemoryCardFormat">
+        <xsd:annotation>
+          <xsd:documentation>The memory card format applicable to the product.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Memory Card Format</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>24000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="recordableMediaFormats" type="wm:RecordableMediaFormats">
+        <xsd:annotation>
+          <xsd:documentation>The recording technologies compatible with the item.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Recordable Media Formats</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>25000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="connections" type="wm:Connections">
+        <xsd:annotation>
+          <xsd:documentation>The standardized connections provided on the item.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Connector Type</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>26000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="size">
+        <xsd:annotation>
+          <xsd:documentation>Overall dimensions of an item. Used only for products that do not already have a more specific 'x size' attribute, such as ring size or clothing size. </xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Size</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>27000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="assembledProductLength">
+        <xsd:annotation>
+          <xsd:documentation>The length of the fully assembled product. NOTE: This information is shown on the item page.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Assembled Product Length</wm:displayName>
+            <wm:group>Dimensions</wm:group>
+            <wm:rank>30000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element maxOccurs="1" minOccurs="1" name="measure">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:decimal">
+                  <xsd:totalDigits value="16"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element maxOccurs="1" minOccurs="1" name="unit">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:enumeration value="in"/>
+                  <xsd:enumeration value="ft"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="assembledProductWidth">
+        <xsd:annotation>
+          <xsd:documentation>The width of the fully assembled product. NOTE: This information is shown on the item page.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Assembled Product Width</wm:displayName>
+            <wm:group>Dimensions</wm:group>
+            <wm:rank>31000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element maxOccurs="1" minOccurs="1" name="measure">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:decimal">
+                  <xsd:totalDigits value="16"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element maxOccurs="1" minOccurs="1" name="unit">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:enumeration value="in"/>
+                  <xsd:enumeration value="ft"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="assembledProductHeight">
+        <xsd:annotation>
+          <xsd:documentation>The height of the fully assembled product. NOTE: This information is shown on the item page.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Assembled Product Height</wm:displayName>
+            <wm:group>Dimensions</wm:group>
+            <wm:rank>32000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element maxOccurs="1" minOccurs="1" name="measure">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:decimal">
+                  <xsd:totalDigits value="16"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element maxOccurs="1" minOccurs="1" name="unit">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:enumeration value="in"/>
+                  <xsd:enumeration value="ft"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="assembledProductWeight">
+        <xsd:annotation>
+          <xsd:documentation>The weight of the fully assembled product. NOTE: This information is shown on the item page.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Assembled Product Weight</wm:displayName>
+            <wm:group>Dimensions</wm:group>
+            <wm:rank>33000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element maxOccurs="1" minOccurs="1" name="measure">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:decimal">
+                  <xsd:totalDigits value="16"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element maxOccurs="1" minOccurs="1" name="unit">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:enumeration value="oz"/>
+                  <xsd:enumeration value="lb"/>
+                  <xsd:enumeration value="g"/>
+                  <xsd:enumeration value="kg"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="variantGroupId">
+        <xsd:annotation>
+          <xsd:documentation>Required if item is a variant. Make up a number and/or letter code for “Variant Group ID” and add this to all variations of the same product. Partners must ensure uniqueness of their Variant Group IDs.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Conditionally Required"/>
+            <wm:conditionalAttributes>
+              <wm:conditionalAttributeGroup>
+                <wm:conditionalAttribute name="variantAttributeNames" value="ANY"/>
+              </wm:conditionalAttributeGroup>
+            </wm:conditionalAttributes>
+            <wm:displayName>Variant Group ID</wm:displayName>
+            <wm:group>Item Variants</wm:group>
+            <wm:rank>35000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="300"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="variantAttributeNames">
+        <xsd:annotation>
+          <xsd:documentation>Designate all attributes by which the item is varying. Variant attributes are limited to those designated for each category. </xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Conditionally Required"/>
+            <wm:conditionalAttributes>
+              <wm:conditionalAttributeGroup>
+                <wm:conditionalAttribute name="variantGroupId" value="ANY"/>
+              </wm:conditionalAttributeGroup>
+            </wm:conditionalAttributes>
+            <wm:displayName>Variant Attribute Names</wm:displayName>
+            <wm:group>Item Variants</wm:group>
+            <wm:rank>36000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" name="variantAttributeName">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:enumeration value="color"/>
+                  <xsd:enumeration value="material"/>
+                  <xsd:enumeration value="finish"/>
+                  <xsd:enumeration value="focalLength"/>
+                  <xsd:enumeration value="displayResolution"/>
+                  <xsd:enumeration value="capacity"/>
+                  <xsd:enumeration value="shape"/>
+                  <xsd:enumeration value="diameter"/>
+                  <xsd:enumeration value="sportsTeam"/>
+                  <xsd:enumeration value="count"/>
+                  <xsd:enumeration value="size"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="isPrimaryVariant">
+        <xsd:annotation>
+          <xsd:documentation>Note whether item is intended as the main variant in a variant grouping. The primary variant will appear as the image when customers search and the first image displayed on the item page. This should be set as &quot;Yes&quot; for only one item in a group of variants.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Is Primary Variant</wm:displayName>
+            <wm:group>Item Variants</wm:group>
+            <wm:rank>37000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Yes"/>
+            <xsd:enumeration value="No"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="isProp65WarningRequired">
+        <xsd:annotation>
+          <xsd:documentation>Selecting &quot;Y&quot; indicates the product requires California's Proposition 65 special warning. Proposition 65 entitles California consumers to special warnings for products that contain chemicals known to the state of California to cause cancer and birth defects or other reproductive harm if certain criteria are met (such as quantity of chemical contained in the product). See the portions of the California Health and Safety Code related to Proposition 65 for more information.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Is Prop 65 Warning Required</wm:displayName>
+            <wm:group>Compliance</wm:group>
+            <wm:rank>41000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Yes"/>
+            <xsd:enumeration value="No"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="prop65WarningText">
+        <xsd:annotation>
+          <xsd:documentation>This is a particular statement legally required by the State of California for certain products to warn consumers about potential health dangers. See the portions of the California Health and Safety Code related to Proposition 65 to see what products require labels and to verify the text of your warning label.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Conditionally Required"/>
+            <wm:conditionalAttributes>
+              <wm:conditionalAttributeGroup>
+                <wm:conditionalAttribute name="isProp65WarningRequired" value="Yes"/>
+              </wm:conditionalAttributeGroup>
+            </wm:conditionalAttributes>
+            <wm:displayName>Prop 65 Warning Text</wm:displayName>
+            <wm:group>Compliance</wm:group>
+            <wm:rank>42000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="batteryTechnologyType">
+        <xsd:annotation>
+          <xsd:documentation>Please select the Battery Technology Type from the list provided. NOTE: If battery type is lead acid, lead acid (nonspillable), lithium ion, or lithium metal, please ensure that you have obtained a hazardous materials risk assessment through WERCS  before setting up your item. </xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Conditionally Required"/>
+            <wm:conditionalAttributes>
+              <wm:conditionalAttributeGroup>
+                <wm:conditionalAttribute name="hasBatteries" value="Yes"/>
+              </wm:conditionalAttributeGroup>
+            </wm:conditionalAttributes>
+            <wm:displayName>Contained Battery Type</wm:displayName>
+            <wm:group>Compliance</wm:group>
+            <wm:rank>45000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Does Not Contain a Battery"/>
+            <xsd:enumeration value="Alkaline"/>
+            <xsd:enumeration value="Carbon Zinc"/>
+            <xsd:enumeration value="Lead Acid"/>
+            <xsd:enumeration value="Lead Acid (Nonspillable)"/>
+            <xsd:enumeration value="Lithium Primary (Lithium Metal)"/>
+            <xsd:enumeration value="Lithium Ion"/>
+            <xsd:enumeration value="Magnesium"/>
+            <xsd:enumeration value="Mercury"/>
+            <xsd:enumeration value="Nickel Cadmium"/>
+            <xsd:enumeration value="Nickel Metal Hydride"/>
+            <xsd:enumeration value="Silver"/>
+            <xsd:enumeration value="Thermal"/>
+            <xsd:enumeration value="Other"/>
+            <xsd:enumeration value="Multiple Types"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="hasWarranty">
+        <xsd:annotation>
+          <xsd:documentation>Y indicates the item comes with a warranty. If an item has a warranty, then enter EITHER the warranty URL or the warranty text in the appropriate field.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Has Warranty</wm:displayName>
+            <wm:group>Compliance</wm:group>
+            <wm:rank>49000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Yes"/>
+            <xsd:enumeration value="No"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="warrantyURL">
+        <xsd:annotation>
+          <xsd:documentation>If you indicated that your item has a warranty, provide either the Warranty URL or Warranty Text. The Warranty URL is the web location of the image, PDF, or link to the manufacturer's warranty page, showing the warranty and its terms, including the duration of the warranty. URLs must begin with http:// or https:// NOTE: Please remember to update the link and/or text of the warranty as the warranty changes. If supplying an image, provide the final destination image URL (no-redirects) that is publicly accessible (no username/password required) and ends in a proper image extension. Recommended file type: JPEG Accepted file types: JPG, PNG, GIF, BMP Maximum file size: 2 GB. If the Ingredients have been included in another image, you may repeat the URL here. </xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Conditionally Required"/>
+            <wm:conditionalAttributes>
+              <wm:conditionalAttributeGroup>
+                <wm:conditionalAttribute name="warrantyText" value="null"/>
+                <wm:conditionalAttribute name="hasWarranty" value="Yes"/>
+              </wm:conditionalAttributeGroup>
+            </wm:conditionalAttributes>
+            <wm:displayName>Warranty URL</wm:displayName>
+            <wm:group>Compliance</wm:group>
+            <wm:rank>50000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:anyURI"/>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="warrantyText">
+        <xsd:annotation>
+          <xsd:documentation>If you marked Y for &quot;Has Warranty&quot; provide the Warranty URL or Warranty Text (the full text of the warranty terms, including what is covered by the warranty and the duration of the warranty). NOTE: please remember to update the text of your warranty as your warranty changes.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Conditionally Required"/>
+            <wm:conditionalAttributes>
+              <wm:conditionalAttributeGroup>
+                <wm:conditionalAttribute name="warrantyURL" value="null"/>
+                <wm:conditionalAttribute name="hasWarranty" value="Yes"/>
+              </wm:conditionalAttributeGroup>
+            </wm:conditionalAttributes>
+            <wm:displayName>Warranty Text</wm:displayName>
+            <wm:group>Compliance</wm:group>
+            <wm:rank>51000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="1000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="globalBrandLicense" type="wm:BrandLicense">
+        <xsd:annotation>
+          <xsd:documentation>A brand name that is not owned by the product brand, but is licensed for the particular product. (Often character and media tie-ins and promotions.)</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Brand License</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>62000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="isAssemblyRequired">
+        <xsd:annotation>
+          <xsd:documentation>Is product unassembled and must be put together before use?</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Is Assembly Required</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>64000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Yes"/>
+            <xsd:enumeration value="No"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="assemblyInstructions">
+        <xsd:annotation>
+          <xsd:documentation>Provide a URL to an image or PDF asset showing assembly instructions for items requiring assembly. URLs must be static and have no query parameters. URLs must begin with http:// or https:// and should end in in the file name.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Conditionally Required"/>
+            <wm:conditionalAttributes>
+              <wm:conditionalAttributeGroup>
+                <wm:conditionalAttribute name="isAssemblyRequired" value="Yes"/>
+              </wm:conditionalAttributeGroup>
+            </wm:conditionalAttributes>
+            <wm:displayName>Assembly Instructions</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>65000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:anyURI"/>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="wirelessTechnologies" type="wm:WirelessTechnologies">
+        <xsd:annotation>
+          <xsd:documentation>Any wireless communications standard used within or by the item.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Wireless Technologies</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>66250</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="displayTechnology">
+        <xsd:annotation>
+          <xsd:documentation>The primary technology used for the item's display.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Display Technology</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>67000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="accessoriesIncluded" type="wm:AccessoriesIncluded">
+        <xsd:annotation>
+          <xsd:documentation>Listing of any supplementary items that come with the product. Important information for consumers because accessories typically provide additional convenience, utility, attractiveness or safety to or for a product. </xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Accessories Included</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>71000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="isWaterproof">
+        <xsd:annotation>
+          <xsd:documentation>Y indicates that the item has been especially made to be resistant to water, to some degree.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Is Waterproof</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>73000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Yes"/>
+            <xsd:enumeration value="No"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="recommendedUses" type="wm:RecommendedUses">
+        <xsd:annotation>
+          <xsd:documentation>Further clarification of what the item may be used for. This improves searchability when customers search for general terms like &quot;birthday party&quot; that do not include the names of specific items.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Recommended Use</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>75000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="cleaningCareAndMaintenance">
+        <xsd:annotation>
+          <xsd:documentation>Description of how the item should be cleaned and maintained.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Cleaning, Care &amp; Maintenance</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>77000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="shape">
+        <xsd:annotation>
+          <xsd:documentation>Physical shape of the item. Used in a wide variety of products including rugs, toys and large appliances.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Shape</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>78000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="pattern">
+        <xsd:annotation>
+          <xsd:documentation>Decorative design or visual ornamentation, often with a thematic, recurring motif.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Pattern</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>79000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="capacity">
+        <xsd:annotation>
+          <xsd:documentation>A product's available space. Capacity is often provided for items that contain multiple pieces of something or that can accommodate some number of objects.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Capacity</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>81000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="inputsAndOutputs" type="wm:InputsAndOutputs">
+        <xsd:annotation>
+          <xsd:documentation>Enter the type and quantity of each input and/or output connection provided on the product.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Inputs &amp; Outputs</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>83000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="lightOutput">
+        <xsd:annotation>
+          <xsd:documentation>The amount of visible light emitted by a source, measured in lumens.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Light Output</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>86000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element maxOccurs="1" minOccurs="1" name="measure">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:integer">
+                  <xsd:totalDigits value="400"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element maxOccurs="1" minOccurs="1" name="unit">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:enumeration value="lm"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="lightBulbType">
+        <xsd:annotation>
+          <xsd:documentation>Category of light bulb based on method to produce the light. Important to consumers because each type has different characteristics including bulb life, energy efficiency and color temperature. For example LED bulbs have a greater bulb life than equivalent incandescent bulbs.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Light Bulb Type</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>87000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="volts">
+        <xsd:annotation>
+          <xsd:documentation>Number of volts the product produces or requires. The significance of voltage varies with type of product. For example, if product is an appliance, used to describe the outlet voltage required. If an item (such as a power supply) both produces and requires different voltages, each type of voltage should be included.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Volts</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>88000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element maxOccurs="1" minOccurs="1" name="measure">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:decimal">
+                  <xsd:totalDigits value="16"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element maxOccurs="1" minOccurs="1" name="unit">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:enumeration value="mV"/>
+                  <xsd:enumeration value="V"/>
+                  <xsd:enumeration value="VAC"/>
+                  <xsd:enumeration value="VDC"/>
+                  <xsd:enumeration value="kV"/>
+                  <xsd:enumeration value="kVAC"/>
+                  <xsd:enumeration value="kVDC"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="watts">
+        <xsd:annotation>
+          <xsd:documentation>Number of watts (wattage) of electrical power the product produces or consumes. This attribute is used in a wide variety of products including appliances, light bulbs, electronic equipment and electrical components.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Watts</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>89000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element maxOccurs="1" minOccurs="1" name="measure">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:decimal">
+                  <xsd:totalDigits value="16"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element maxOccurs="1" minOccurs="1" name="unit">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:enumeration value="W"/>
+                  <xsd:enumeration value="kW"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="features" type="wm:AdditionalFeatures">
+        <xsd:annotation>
+          <xsd:documentation>List notable features of the item.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Additional Features</wm:displayName>
+            <wm:group>Nice to Have</wm:group>
+            <wm:rank>103000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="keywords">
+        <xsd:annotation>
+          <xsd:documentation>Words that people would use to search for this item. Keywords can include synonyms and related terms.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Keywords</wm:displayName>
+            <wm:group>Nice to Have</wm:group>
+            <wm:rank>104000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="swatchImages">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Enter the swatch image location in &quot;Swatch Image URL&quot; and its corresponding variant attribute name in &quot;Swatch Variant Attribute&quot;. Required for products with visual variations, like color or pattern. List the swatches in the order you recommend they appear on the site.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" name="swatchImage">
+              <xsd:complexType>
+                <xsd:all>
+                  <xsd:element maxOccurs="1" minOccurs="1" name="swatchVariantAttribute">
+                    <xsd:annotation>
+                      <xsd:documentation>Attribute name corresponding to the swatch.</xsd:documentation>
+                      <xsd:appinfo>
+                        <wm:requiredLevel value="Conditionally Required"/>
+                        <wm:conditionalAttributes>
+                          <wm:conditionalAttributeGroup>
+                            <wm:conditionalAttribute name="swatchImageUrl" value="ANY"/>
+                          </wm:conditionalAttributeGroup>
+                        </wm:conditionalAttributes>
+                        <wm:displayName>Swatch Variant Attribute</wm:displayName>
+                        <wm:group>Item Variants</wm:group>
+                      </xsd:appinfo>
+                    </xsd:annotation>
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:enumeration value="color"/>
+                        <xsd:enumeration value="material"/>
+                        <xsd:enumeration value="finish"/>
+                        <xsd:enumeration value="focalLength"/>
+                        <xsd:enumeration value="displayResolution"/>
+                        <xsd:enumeration value="capacity"/>
+                        <xsd:enumeration value="shape"/>
+                        <xsd:enumeration value="diameter"/>
+                        <xsd:enumeration value="sportsTeam"/>
+                        <xsd:enumeration value="count"/>
+                        <xsd:enumeration value="size"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element maxOccurs="1" minOccurs="1" name="swatchImageUrl">
+                    <xsd:annotation>
+                      <xsd:documentation>URL of the color or pattern swatch image. This is required for products with visual variations and will be shown as a small square on the item page. Recommended resolution is 100 x 100 pixels. Provide the final destination image URL (no-redirects) that is publicly accessible (no username/password required) and ends in a proper image extension such as, .jpg, .png or .gif.</xsd:documentation>
+                      <xsd:appinfo>
+                        <wm:requiredLevel value="Conditionally Required"/>
+                        <wm:conditionalAttributes>
+                          <wm:conditionalAttributeGroup>
+                            <wm:conditionalAttribute name="swatchVariantAttribute" value="ANY"/>
+                          </wm:conditionalAttributeGroup>
+                        </wm:conditionalAttributes>
+                        <wm:displayName>Swatch Image URL</wm:displayName>
+                        <wm:group>Item Variants</wm:group>
+                      </xsd:appinfo>
+                    </xsd:annotation>
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:anyURI"/>
+                    </xsd:simpleType>
+                  </xsd:element>
+                </xsd:all>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+</xsd:schema>

@@ -1,0 +1,856 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#", 
+    "type": "object", 
+    "title": "Office", 
+    "properties": {
+        "Office": {
+            "$schema": "http://json-schema.org/draft-04/schema#", 
+            "type": "object", 
+            "properties": {
+                "shortDescription": {
+                    "type": "string", 
+                    "title": "Description", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "keyFeatures": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Key Features", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 500
+                    }, 
+                    "minItems": 1
+                }, 
+                "brand": {
+                    "type": "string", 
+                    "title": "Brand", 
+                    "minLength": 1, 
+                    "maxLength": 60
+                }, 
+                "manufacturer": {
+                    "type": "string", 
+                    "title": "Manufacturer", 
+                    "minLength": 1, 
+                    "maxLength": 60
+                }, 
+                "modelNumber": {
+                    "type": "string", 
+                    "title": "Model Number", 
+                    "minLength": 1, 
+                    "maxLength": 60
+                }, 
+                "manufacturerPartNumber": {
+                    "type": "string", 
+                    "title": "Manufacturer Part Number", 
+                    "minLength": 1, 
+                    "maxLength": 60
+                }, 
+                "multipackQuantity": {
+                    "type": "integer", 
+                    "title": "Multipack Quantity", 
+                    "minimum": 0, 
+                    "maximum": 10000, 
+                    "exclusiveMaximum": false
+                }, 
+                "countPerPack": {
+                    "type": "integer", 
+                    "title": "Count Per Pack", 
+                    "minimum": 0, 
+                    "maximum": 100000, 
+                    "exclusiveMaximum": false
+                }, 
+                "count": {
+                    "type": "string", 
+                    "title": "Total Count", 
+                    "minLength": 1, 
+                    "maxLength": 7
+                }, 
+                "pieceCount": {
+                    "type": "integer", 
+                    "title": "Number of Pieces", 
+                    "minimum": 0, 
+                    "maximum": 1000000, 
+                    "exclusiveMaximum": false
+                }, 
+                "mainImageUrl": {
+                    "type": "string", 
+                    "title": "Main Image URL", 
+                    "minLength": 1, 
+                    "maxLength": 2000, 
+                    "format": "uri"
+                }, 
+                "productSecondaryImageURL": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Additional Image URL", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 2000, 
+                        "format": "uri"
+                    }, 
+                    "minItems": 1
+                }, 
+                "color": {
+                    "type": "string", 
+                    "title": "Color", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "colorCategory": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Color Category", 
+                    "items": {
+                        "type": "string", 
+                        "enum": [
+                            "Blue", 
+                            "Brown", 
+                            "Gold", 
+                            "Gray", 
+                            "Purple", 
+                            "Clear", 
+                            "Yellow", 
+                            "Multi-color", 
+                            "Black", 
+                            "Beige", 
+                            "Pink", 
+                            "Orange", 
+                            "Green", 
+                            "White", 
+                            "Red", 
+                            "Off-White", 
+                            "Silver", 
+                            "Bronze"
+                        ]
+                    }, 
+                    "minItems": 1
+                }, 
+                "size": {
+                    "type": "string", 
+                    "title": "Size", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "ageGroup": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Age Group", 
+                    "items": {
+                        "type": "string", 
+                        "enum": [
+                            "Teen", 
+                            "Infant", 
+                            "Toddler", 
+                            "Adult", 
+                            "Child"
+                        ]
+                    }, 
+                    "minItems": 1
+                }, 
+                "material": {
+                    "type": "string", 
+                    "title": "Material", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "capacity": {
+                    "type": "string", 
+                    "title": "Capacity", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "occasion": {
+                    "type": "string", 
+                    "title": "Occasion", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "paperSize": {
+                    "type": "string", 
+                    "title": "Paper Size", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "assembledProductLength": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Assembled Product Length", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "ft", 
+                                "in"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "assembledProductWidth": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Assembled Product Width", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "ft", 
+                                "in"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "assembledProductHeight": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Assembled Product Height", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "ft", 
+                                "in"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "assembledProductWeight": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Assembled Product Weight", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "kg", 
+                                "lb", 
+                                "oz", 
+                                "g"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "variantGroupId": {
+                    "type": "string", 
+                    "title": "Variant Group ID", 
+                    "minLength": 1, 
+                    "maxLength": 300
+                }, 
+                "variantAttributeNames": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Variant Attribute Names", 
+                    "items": {
+                        "type": "string", 
+                        "enum": [
+                            "count", 
+                            "capacity", 
+                            "color", 
+                            "numberOfSheets", 
+                            "material", 
+                            "sportsTeam", 
+                            "paperSize", 
+                            "countPerPack", 
+                            "shape", 
+                            "envelopeSize", 
+                            "size"
+                        ]
+                    }, 
+                    "minItems": 1
+                }, 
+                "isPrimaryVariant": {
+                    "type": "string", 
+                    "title": "Is Primary Variant", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "swatchImages": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Swatch Images", 
+                    "items": {
+                        "$schema": "http://json-schema.org/draft-04/schema#", 
+                        "type": "object", 
+                        "properties": {
+                            "swatchVariantAttribute": {
+                                "type": "string", 
+                                "title": "Swatch Variant Attribute", 
+                                "minLength": 1
+                            }, 
+                            "swatchImageUrl": {
+                                "type": "string", 
+                                "title": "Swatch Image URL", 
+                                "minLength": 1, 
+                                "maxLength": 2000, 
+                                "format": "uri"
+                            }
+                        }, 
+                        "additionalProperties": false
+                    }, 
+                    "minItems": 1
+                }, 
+                "isProp65WarningRequired": {
+                    "type": "string", 
+                    "title": "Is Prop 65 Warning Required", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "prop65WarningText": {
+                    "type": "string", 
+                    "title": "Prop 65 Warning Text", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "smallPartsWarnings": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Small Parts Warning Code", 
+                    "items": {
+                        "type": "integer", 
+                        "enum": [
+                            0, 
+                            1, 
+                            2, 
+                            3, 
+                            4, 
+                            5, 
+                            6
+                        ]
+                    }, 
+                    "minItems": 1
+                }, 
+                "batteryTechnologyType": {
+                    "type": "string", 
+                    "title": "Contained Battery Type", 
+                    "enum": [
+                        "Mercury", 
+                        "Lead Acid (Nonspillable)", 
+                        "Carbon Zinc", 
+                        "Alkaline", 
+                        "Does Not Contain a Battery", 
+                        "Thermal", 
+                        "Lithium Primary (Lithium Metal)", 
+                        "Nickel Cadmium", 
+                        "Lithium Ion", 
+                        "Nickel Metal Hydride", 
+                        "Lead Acid", 
+                        "Multiple Types", 
+                        "Other", 
+                        "Silver", 
+                        "Magnesium"
+                    ]
+                }, 
+                "hasExpiration": {
+                    "type": "string", 
+                    "title": "Has Expiration", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "hasWarranty": {
+                    "type": "string", 
+                    "title": "Has Warranty", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "warrantyURL": {
+                    "type": "string", 
+                    "title": "Warranty URL", 
+                    "minLength": 1, 
+                    "maxLength": 200, 
+                    "format": "uri"
+                }, 
+                "warrantyText": {
+                    "type": "string", 
+                    "title": "Warranty Text", 
+                    "minLength": 1, 
+                    "maxLength": 1000
+                }, 
+                "isLightingFactsLabelRequired": {
+                    "type": "string", 
+                    "title": "Is Lighting Facts Label Required", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "lightingFactsLabel": {
+                    "type": "string", 
+                    "title": "Lighting Facts", 
+                    "minLength": 1, 
+                    "maxLength": 2000, 
+                    "format": "uri"
+                }, 
+                "pattern": {
+                    "type": "string", 
+                    "title": "Pattern", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "shape": {
+                    "type": "string", 
+                    "title": "Shape", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "finish": {
+                    "type": "string", 
+                    "title": "Finish", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "theme": {
+                    "type": "string", 
+                    "title": "Theme", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "globalBrandLicense": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Brand License", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 4000
+                    }, 
+                    "minItems": 1
+                }, 
+                "compatibleDevices": {
+                    "type": "string", 
+                    "title": "Compatible Devices", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "isPowered": {
+                    "type": "string", 
+                    "title": "Is Powered", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "powerType": {
+                    "type": "string", 
+                    "title": "Power Type", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "brightness": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Brightness", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "lm"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "dexterity": {
+                    "type": "string", 
+                    "title": "Dexterity", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "systemOfMeasurement": {
+                    "type": "string", 
+                    "title": "System of Measurement", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "holeSize": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Hole Size", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "in"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "year": {
+                    "type": "integer", 
+                    "title": "Year", 
+                    "minimum": 0, 
+                    "maximum": 1000000, 
+                    "exclusiveMaximum": false
+                }, 
+                "calendarFormat": {
+                    "type": "string", 
+                    "title": "Calendar Format", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "calendarTerm": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Calendar Term", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "months"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "numberOfSheets": {
+                    "type": "integer", 
+                    "title": "Number of Sheets", 
+                    "minimum": 0, 
+                    "maximum": 1000000, 
+                    "exclusiveMaximum": false
+                }, 
+                "envelopeSize": {
+                    "type": "number", 
+                    "title": "Envelope Size", 
+                    "minimum": 0, 
+                    "maximum": 1000000, 
+                    "exclusiveMaximum": false, 
+                    "multipleOf": 0.01
+                }, 
+                "inkColor": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Ink Color", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 4000
+                    }, 
+                    "minItems": 1
+                }, 
+                "isRefillable": {
+                    "type": "string", 
+                    "title": "Is Refillable", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "isRetractable": {
+                    "type": "string", 
+                    "title": "Is Retractable", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "isIndustrial": {
+                    "type": "string", 
+                    "title": "Is Industrial", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "isAntiglare": {
+                    "type": "string", 
+                    "title": "Is Antiglare", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "isMagnetic": {
+                    "type": "string", 
+                    "title": "Is Magnetic", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "isTearResistant": {
+                    "type": "string", 
+                    "title": "Is Tear-Resistant", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "recommendedUses": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Recommended Use", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 4000
+                    }, 
+                    "minItems": 1
+                }, 
+                "hpprintercartridgeNumber": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "HP Printer Cartridge Number", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 40
+                    }, 
+                    "minItems": 1
+                }, 
+                "pencilLeadDiameter": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Pencil Lead Diameter", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "mm"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "string", 
+                            "minLength": 1
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "tabCut": {
+                    "type": "string", 
+                    "title": "Tab Cut", 
+                    "enum": [
+                        "undercut", 
+                        "2/5 cut - right of center", 
+                        "2/5 cut - right position", 
+                        "1/2 cut", 
+                        "1/3 cut", 
+                        "1/5 cut"
+                    ]
+                }, 
+                "tabColor": {
+                    "type": "string", 
+                    "title": "Tab Color", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "isMadeFromRecycledMaterial": {
+                    "type": "string", 
+                    "title": "Is Made From Recycled Material", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "isLined": {
+                    "type": "string", 
+                    "title": "Is Lined", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "recycledMaterialContent": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Recycled Material Content", 
+                    "items": {
+                        "$schema": "http://json-schema.org/draft-04/schema#", 
+                        "type": "object", 
+                        "properties": {
+                            "recycledMaterial": {
+                                "type": "string", 
+                                "title": "Recycled Material", 
+                                "minLength": 1, 
+                                "maxLength": 4000
+                            }, 
+                            "percentageOfRecycledMaterial": {
+                                "type": "number", 
+                                "title": "Percentage of Recycled Material", 
+                                "minimum": 0, 
+                                "maximum": 1000000, 
+                                "exclusiveMaximum": false, 
+                                "multipleOf": 0.01
+                            }
+                        }, 
+                        "required": [
+                            "recycledMaterial"
+                        ], 
+                        "additionalProperties": false
+                    }, 
+                    "minItems": 1
+                }, 
+                "overallExpansion": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Overall Expansion", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "inches"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "paperClipSize": {
+                    "type": "string", 
+                    "title": "Paper Clip Size", 
+                    "enum": [
+                        "Jumbo", 
+                        "No. 1", 
+                        "No. 2", 
+                        "No. 3"
+                    ]
+                }, 
+                "penPointSize": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Pen Point Size", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "mm"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }
+            }, 
+            "required": [
+                "brand", 
+                "shortDescription", 
+                "mainImageUrl"
+            ], 
+            "additionalProperties": false
+        }
+    }, 
+    "oneOf": [
+        {
+            "required": [
+                "Office"
+            ]
+        }
+    ], 
+    "additionalProperties": false
+}

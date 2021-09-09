@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Schema for data exchanged between Walmart and its partners.
+  Copyright 2015 Walmart Corporation. All rights reserved.
+-->
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:wm="http://walmart.com/" targetNamespace="http://walmart.com/"
+	elementFormDefault="qualified" version="3.2">
+
+   <xsd:include schemaLocation="MPProduct.xsd"/>
+   <xsd:include schemaLocation="MPOffer.xsd"/>
+
+ 	<xsd:element name="MPItem" type="wm:MPItem"/>
+    <xsd:complexType name="MPItem">
+      <xsd:sequence>
+        <xsd:element name="processMode" default="CREATE">
+        <xsd:annotation>
+          <xsd:documentation>
+              CREATE: Use this mode for creating a new item. If requester sends PRODUCT_ONLY with PROCESS_MODE ‘CREATE’, then error will be returned. For create, requested needs to send Product and Offer.
+              REPLACE_ALL: Use this mode to update product and offer information. NOTE: This is a wipe and replace command. Requester can send this for PRODUCT_ONLY or OFFER_ONLY.
+              PARTIAL_UPDATE: Use PROCESS_MODE ‘PARTIAL_UPDATE’ for PRODUCT_ONLY. Note: ‘PARTIAL_UPDATE’ is not supported for offer updates.
+          </xsd:documentation>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="CREATE" />
+            <xsd:enumeration value="REPLACE_ALL" />
+            <xsd:enumeration value="PARTIAL_UPDATE" />
+          </xsd:restriction>
+        </xsd:simpleType>
+        </xsd:element>
+        <xsd:element name="feedDate" type="xsd:dateTime" minOccurs="0">
+          <xsd:annotation>
+            <xsd:documentation>
+              Date after which the offer is no longer valid
+              The dateTime is specified in the following form "YYYY-MM-DDThh:mm:ss" where:
+                YYYY  indicates the year
+                MM    indicates the month
+                DD    indicates the day
+                T     indicates the start of the required time section
+                hh    indicates the hour
+                mm    indicates the minute
+                ss    indicates the second
+                Note: All components are required!
+            </xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+       <xsd:element maxOccurs="1" minOccurs="1" name="sku">
+        <xsd:annotation>
+          <xsd:documentation>The string of letters and/or numbers a partner uses to identify the item, also known as the Vendor Stock Number. Walmart includes this value in all communications regarding item information such as orders.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Required"/>
+            <wm:displayName>SKU</wm:displayName>
+            <wm:group>Basic</wm:group>
+            <wm:rank>1500</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="50"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+       <xsd:element maxOccurs="1" minOccurs="1" name="productIdentifiers" type="wm:ProductIdentifiers">
+        <xsd:annotation>
+          <xsd:documentation>Specify at least one Product ID and its ID Type.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Required"/>
+            <wm:displayName>Product Identifiers</wm:displayName>
+            <wm:group>Basic</wm:group>
+            <wm:rank>1000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+       <xsd:element name="MPProduct" type="wm:MPProduct" minOccurs="0"/>
+       <xsd:element name="MPOffer" type="wm:MPOffer" minOccurs="0"/>
+      </xsd:sequence>
+    </xsd:complexType>
+
+
+</xsd:schema>

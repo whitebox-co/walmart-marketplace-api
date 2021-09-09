@@ -1,0 +1,4201 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#", 
+    "type": "object", 
+    "title": "Vehicle", 
+    "properties": {
+        "Tires": {
+            "$schema": "http://json-schema.org/draft-04/schema#", 
+            "type": "object", 
+            "properties": {
+                "shortDescription": {
+                    "type": "string", 
+                    "title": "Description", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "keyFeatures": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Key Features", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 500
+                    }, 
+                    "minItems": 1
+                }, 
+                "brand": {
+                    "type": "string", 
+                    "title": "Brand", 
+                    "minLength": 1, 
+                    "maxLength": 60
+                }, 
+                "manufacturer": {
+                    "type": "string", 
+                    "title": "Manufacturer", 
+                    "minLength": 1, 
+                    "maxLength": 60
+                }, 
+                "modelNumber": {
+                    "type": "string", 
+                    "title": "Model Number", 
+                    "minLength": 1, 
+                    "maxLength": 60
+                }, 
+                "manufacturerPartNumber": {
+                    "type": "string", 
+                    "title": "Manufacturer Part Number", 
+                    "minLength": 1, 
+                    "maxLength": 60
+                }, 
+                "multipackQuantity": {
+                    "type": "integer", 
+                    "title": "Multipack Quantity", 
+                    "minimum": 0, 
+                    "maximum": 10000, 
+                    "exclusiveMaximum": false
+                }, 
+                "countPerPack": {
+                    "type": "integer", 
+                    "title": "Count Per Pack", 
+                    "minimum": 0, 
+                    "maximum": 100000, 
+                    "exclusiveMaximum": false
+                }, 
+                "count": {
+                    "type": "string", 
+                    "title": "Total Count", 
+                    "minLength": 1, 
+                    "maxLength": 7
+                }, 
+                "mainImageUrl": {
+                    "type": "string", 
+                    "title": "Main Image URL", 
+                    "minLength": 1, 
+                    "maxLength": 2000, 
+                    "format": "uri"
+                }, 
+                "productSecondaryImageURL": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Additional Image URL", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 2000, 
+                        "format": "uri"
+                    }, 
+                    "minItems": 1
+                }, 
+                "color": {
+                    "type": "string", 
+                    "title": "Color", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "tireSize": {
+                    "type": "string", 
+                    "title": "Tire Size", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "vehicleClassDesignator": {
+                    "type": "string", 
+                    "title": "Vehicle Class Designator", 
+                    "minLength": 1, 
+                    "maxLength": 2
+                }, 
+                "tireWidth": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Tire Width", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "Mil", 
+                                "Inches", 
+                                "Micrometers", 
+                                "French", 
+                                "Feet", 
+                                "Miles", 
+                                "Meters", 
+                                "Millimeters", 
+                                "Gauge", 
+                                "Centimeters", 
+                                "Yards"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "tireAspectRatio": {
+                    "type": "integer", 
+                    "title": "Tire Aspect Ratio", 
+                    "minimum": 0, 
+                    "maximum": 1000000, 
+                    "exclusiveMaximum": false
+                }, 
+                "tireSpeedRating": {
+                    "type": "string", 
+                    "title": "Tire Speed Rating", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "wheelDiameter": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Wheel Diameter", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "Mil", 
+                                "Inches", 
+                                "Micrometers", 
+                                "French", 
+                                "Feet", 
+                                "Miles", 
+                                "Meters", 
+                                "Millimeters", 
+                                "Gauge", 
+                                "Centimeters", 
+                                "Yards"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "tireLoadRange": {
+                    "type": "string", 
+                    "title": "Tire Load Range", 
+                    "enum": [
+                        "A", 
+                        "C", 
+                        "B", 
+                        "E", 
+                        "D", 
+                        "G", 
+                        "F", 
+                        "H", 
+                        "J", 
+                        "M", 
+                        "L", 
+                        "N"
+                    ]
+                }, 
+                "overallDiameter": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Overall Diameter", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "in"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "tireSeason": {
+                    "type": "string", 
+                    "title": "Tire Season", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "mudAndSnowRated": {
+                    "type": "string", 
+                    "title": "Mud & Snow Rated", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "isRunFlat": {
+                    "type": "string", 
+                    "title": "Is Run Flat", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "constructionType": {
+                    "type": "string", 
+                    "title": "Construction Type", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "treadDepth": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Tread Depth", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "Mil", 
+                                "Inches", 
+                                "Micrometers", 
+                                "French", 
+                                "Feet", 
+                                "Miles", 
+                                "Meters", 
+                                "Millimeters", 
+                                "Gauge", 
+                                "Centimeters", 
+                                "Yards"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "treadWidth": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Tread Width", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "Mil", 
+                                "Inches", 
+                                "Micrometers", 
+                                "French", 
+                                "Feet", 
+                                "Miles", 
+                                "Meters", 
+                                "Millimeters", 
+                                "Gauge", 
+                                "Centimeters", 
+                                "Yards"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "tireLoadIndex": {
+                    "type": "integer", 
+                    "title": "Tire Load Index", 
+                    "minimum": 0, 
+                    "maximum": 1000000, 
+                    "exclusiveMaximum": false
+                }, 
+                "tireTreadwearRating": {
+                    "type": "integer", 
+                    "title": "Tire Treadwear Rating", 
+                    "minimum": 0, 
+                    "maximum": 1000000, 
+                    "exclusiveMaximum": false
+                }, 
+                "tireTractionRating": {
+                    "type": "string", 
+                    "title": "Tire Traction Rating", 
+                    "enum": [
+                        "A", 
+                        "AA", 
+                        "C", 
+                        "B"
+                    ]
+                }, 
+                "tireTemperatureRating": {
+                    "type": "string", 
+                    "title": "Tire Temperature Rating", 
+                    "enum": [
+                        "A", 
+                        "C", 
+                        "B"
+                    ]
+                }, 
+                "tireSidewallStyle": {
+                    "type": "string", 
+                    "title": "Tire Sidewall Style", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "maximumInflationPressure": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Maximum Inflation Pressure", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "Bar", 
+                                "psi", 
+                                "Pa"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "uniformTireQualityGrade": {
+                    "type": "string", 
+                    "title": "Uniform Tire Quality Grade (UTQG)", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "tireType": {
+                    "type": "string", 
+                    "title": "Tire Type", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "assembledProductWeight": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Assembled Product Weight", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "kg", 
+                                "lb", 
+                                "oz", 
+                                "g"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "variantGroupId": {
+                    "type": "string", 
+                    "title": "Variant Group ID", 
+                    "minLength": 1, 
+                    "maxLength": 300
+                }, 
+                "variantAttributeNames": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Variant Attribute Names", 
+                    "items": {
+                        "type": "string", 
+                        "enum": [
+                            "count", 
+                            "diameter", 
+                            "finish", 
+                            "color", 
+                            "sportsTeam", 
+                            "vehicleYear", 
+                            "shape", 
+                            "vehicleModel", 
+                            "vehicleMake", 
+                            "engineModel", 
+                            "size"
+                        ]
+                    }, 
+                    "minItems": 1
+                }, 
+                "isPrimaryVariant": {
+                    "type": "string", 
+                    "title": "Is Primary Variant", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "swatchImages": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Swatch Images", 
+                    "items": {
+                        "$schema": "http://json-schema.org/draft-04/schema#", 
+                        "type": "object", 
+                        "properties": {
+                            "swatchVariantAttribute": {
+                                "type": "string", 
+                                "title": "Swatch Variant Attribute", 
+                                "minLength": 1
+                            }, 
+                            "swatchImageUrl": {
+                                "type": "string", 
+                                "title": "Swatch Image URL", 
+                                "minLength": 1, 
+                                "maxLength": 2000, 
+                                "format": "uri"
+                            }
+                        }, 
+                        "additionalProperties": false
+                    }, 
+                    "minItems": 1
+                }, 
+                "isProp65WarningRequired": {
+                    "type": "string", 
+                    "title": "Is Prop 65 Warning Required", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "prop65WarningText": {
+                    "type": "string", 
+                    "title": "Prop 65 Warning Text", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "hasWarranty": {
+                    "type": "string", 
+                    "title": "Has Warranty", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "warrantyURL": {
+                    "type": "string", 
+                    "title": "Warranty URL", 
+                    "minLength": 1, 
+                    "maxLength": 200, 
+                    "format": "uri"
+                }, 
+                "warrantyText": {
+                    "type": "string", 
+                    "title": "Warranty Text", 
+                    "minLength": 1, 
+                    "maxLength": 1000
+                }, 
+                "features": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Additional Features", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 4000
+                    }, 
+                    "minItems": 1
+                }, 
+                "keywords": {
+                    "type": "string", 
+                    "title": "Keywords", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }
+            }, 
+            "required": [
+                "brand", 
+                "shortDescription", 
+                "mainImageUrl", 
+                "tireSize"
+            ], 
+            "additionalProperties": false
+        }, 
+        "LandVehicles": {
+            "$schema": "http://json-schema.org/draft-04/schema#", 
+            "type": "object", 
+            "properties": {
+                "shortDescription": {
+                    "type": "string", 
+                    "title": "Description", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "keyFeatures": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Key Features", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 500
+                    }, 
+                    "minItems": 1
+                }, 
+                "brand": {
+                    "type": "string", 
+                    "title": "Brand", 
+                    "minLength": 1, 
+                    "maxLength": 60
+                }, 
+                "manufacturer": {
+                    "type": "string", 
+                    "title": "Manufacturer", 
+                    "minLength": 1, 
+                    "maxLength": 60
+                }, 
+                "manufacturerPartNumber": {
+                    "type": "string", 
+                    "title": "Manufacturer Part Number", 
+                    "minLength": 1, 
+                    "maxLength": 60
+                }, 
+                "modelNumber": {
+                    "type": "string", 
+                    "title": "Model Number", 
+                    "minLength": 1, 
+                    "maxLength": 60
+                }, 
+                "mainImageUrl": {
+                    "type": "string", 
+                    "title": "Main Image URL", 
+                    "minLength": 1, 
+                    "maxLength": 2000, 
+                    "format": "uri"
+                }, 
+                "productSecondaryImageURL": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Additional Image URL", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 2000, 
+                        "format": "uri"
+                    }, 
+                    "minItems": 1
+                }, 
+                "color": {
+                    "type": "string", 
+                    "title": "Color", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "vehicleType": {
+                    "type": "string", 
+                    "title": "Vehicle Category", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "vehicleYear": {
+                    "type": "integer", 
+                    "title": "Vehicle Year", 
+                    "minimum": 0, 
+                    "maximum": 1000000, 
+                    "exclusiveMaximum": false
+                }, 
+                "vehicleMake": {
+                    "type": "string", 
+                    "title": "Vehicle Make", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "vehicleModel": {
+                    "type": "string", 
+                    "title": "Vehicle Model", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "submodel": {
+                    "type": "string", 
+                    "title": "Submodel", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "powertrain": {
+                    "type": "string", 
+                    "title": "Powertrain", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "drivetrain": {
+                    "type": "string", 
+                    "title": "Drivetrain", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "transmissionDesignation": {
+                    "type": "string", 
+                    "title": "Transmission Designation", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "engineModel": {
+                    "type": "string", 
+                    "title": "Engine Model", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "engineDisplacement": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Engine Displacement", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "cc", 
+                                "CID"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "boreStroke": {
+                    "type": "string", 
+                    "title": "Bore x Stroke", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "inductionSystem": {
+                    "type": "string", 
+                    "title": "Induction System", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "compressionRatio": {
+                    "type": "string", 
+                    "title": "Compression Ratio", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "maximumEnginePower": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Maximum Engine Power", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "Horsepower", 
+                                "Decibels", 
+                                "Watts", 
+                                "Joules", 
+                                "BTUs"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "torque": {
+                    "type": "number", 
+                    "title": "Torque", 
+                    "minimum": 0, 
+                    "maximum": 1000000, 
+                    "exclusiveMaximum": false, 
+                    "multipleOf": 0.01
+                }, 
+                "acceleration": {
+                    "type": "string", 
+                    "title": "Acceleration", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "topSpeed": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Top Speed", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "Feet Per Minute", 
+                                "Kilometers Per Hour", 
+                                "Meters Per Second", 
+                                "Revolutions Per Minute", 
+                                "Radian Per Second", 
+                                "Miles Per Hour", 
+                                "Meters Per Second Squared"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "coolingSystem": {
+                    "type": "string", 
+                    "title": "Cooling System", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "fuelRequirement": {
+                    "type": "string", 
+                    "title": "Fuel Requirement", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "fuelSystem": {
+                    "type": "string", 
+                    "title": "Fuel System", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "fuelCapacity": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Fuel Capacity", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "gal", 
+                                "L"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "averageFuelConsumption": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Average Fuel Consumption", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "mpg"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "frontSuspension": {
+                    "type": "string", 
+                    "title": "Front Suspension", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "rearSuspension": {
+                    "type": "string", 
+                    "title": "Rear Suspension", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "frontBrakes": {
+                    "type": "string", 
+                    "title": "Front Brakes", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "rearBrakes": {
+                    "type": "string", 
+                    "title": "Rear Brakes", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "frontWheels": {
+                    "type": "string", 
+                    "title": "Front Wheels", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "rearWheels": {
+                    "type": "string", 
+                    "title": "Rear Wheels", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "frontTires": {
+                    "type": "string", 
+                    "title": "Front Tires", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "rearTires": {
+                    "type": "string", 
+                    "title": "Rear Tires", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "seatingCapacity": {
+                    "type": "integer", 
+                    "title": "Seating Capacity", 
+                    "minimum": 0, 
+                    "maximum": 1000000, 
+                    "exclusiveMaximum": false
+                }, 
+                "seatHeight": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Seat Height", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "in"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "wheelbase": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Wheelbase", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "ft", 
+                                "in"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "curbWeight": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Curb Weight", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "lb"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "towingCapacity": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Towing Capacity", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "lb"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "assembledProductLength": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Assembled Product Length", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "ft", 
+                                "in"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "assembledProductWidth": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Assembled Product Width", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "ft", 
+                                "in"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "assembledProductHeight": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Assembled Product Height", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "ft", 
+                                "in"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "variantGroupId": {
+                    "type": "string", 
+                    "title": "Variant Group ID", 
+                    "minLength": 1, 
+                    "maxLength": 300
+                }, 
+                "variantAttributeNames": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Variant Attribute Names", 
+                    "items": {
+                        "type": "string", 
+                        "enum": [
+                            "count", 
+                            "diameter", 
+                            "finish", 
+                            "color", 
+                            "sportsTeam", 
+                            "vehicleYear", 
+                            "shape", 
+                            "vehicleModel", 
+                            "vehicleMake", 
+                            "engineModel", 
+                            "size"
+                        ]
+                    }, 
+                    "minItems": 1
+                }, 
+                "isPrimaryVariant": {
+                    "type": "string", 
+                    "title": "Is Primary Variant", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "swatchImages": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Swatch Images", 
+                    "items": {
+                        "$schema": "http://json-schema.org/draft-04/schema#", 
+                        "type": "object", 
+                        "properties": {
+                            "swatchVariantAttribute": {
+                                "type": "string", 
+                                "title": "Swatch Variant Attribute", 
+                                "minLength": 1
+                            }, 
+                            "swatchImageUrl": {
+                                "type": "string", 
+                                "title": "Swatch Image URL", 
+                                "minLength": 1, 
+                                "maxLength": 2000, 
+                                "format": "uri"
+                            }
+                        }, 
+                        "additionalProperties": false
+                    }, 
+                    "minItems": 1
+                }, 
+                "isProp65WarningRequired": {
+                    "type": "string", 
+                    "title": "Is Prop 65 Warning Required", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "prop65WarningText": {
+                    "type": "string", 
+                    "title": "Prop 65 Warning Text", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "batteryTechnologyType": {
+                    "type": "string", 
+                    "title": "Contained Battery Type", 
+                    "enum": [
+                        "Mercury", 
+                        "Lead Acid (Nonspillable)", 
+                        "Carbon Zinc", 
+                        "Alkaline", 
+                        "Does Not Contain a Battery", 
+                        "Thermal", 
+                        "Lithium Primary (Lithium Metal)", 
+                        "Nickel Cadmium", 
+                        "Lithium Ion", 
+                        "Nickel Metal Hydride", 
+                        "Lead Acid", 
+                        "Multiple Types", 
+                        "Other", 
+                        "Silver", 
+                        "Magnesium"
+                    ]
+                }, 
+                "hasWarranty": {
+                    "type": "string", 
+                    "title": "Has Warranty", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "warrantyURL": {
+                    "type": "string", 
+                    "title": "Warranty URL", 
+                    "minLength": 1, 
+                    "maxLength": 200, 
+                    "format": "uri"
+                }, 
+                "warrantyText": {
+                    "type": "string", 
+                    "title": "Warranty Text", 
+                    "minLength": 1, 
+                    "maxLength": 1000
+                }, 
+                "hasFuelContainer": {
+                    "type": "string", 
+                    "title": "Has Fuel Container", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "compositeWoodCertificationCode": {
+                    "type": "integer", 
+                    "title": "Composite Wood Certification Code", 
+                    "enum": [
+                        1, 
+                        7, 
+                        8
+                    ]
+                }, 
+                "requiresTextileActLabeling": {
+                    "type": "string", 
+                    "title": "Requires Textile Act Labeling", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "countryOfOriginTextiles": {
+                    "type": "string", 
+                    "title": "Country of Origin - Textiles", 
+                    "enum": [
+                        "USA and Imported", 
+                        "Imported", 
+                        "USA", 
+                        "USA or Imported"
+                    ]
+                }, 
+                "fabricContent": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Fabric Content", 
+                    "items": {
+                        "$schema": "http://json-schema.org/draft-04/schema#", 
+                        "type": "object", 
+                        "properties": {
+                            "materialName": {
+                                "type": "string", 
+                                "title": "Fabric Material Name", 
+                                "minLength": 1, 
+                                "maxLength": 4000
+                            }, 
+                            "materialPercentage": {
+                                "type": "number", 
+                                "title": "Fabric Material Percentage", 
+                                "minimum": 0, 
+                                "maximum": 1000000, 
+                                "exclusiveMaximum": false, 
+                                "multipleOf": 0.01
+                            }
+                        }, 
+                        "required": [
+                            "materialName"
+                        ], 
+                        "additionalProperties": false
+                    }, 
+                    "minItems": 1
+                }, 
+                "features": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Additional Features", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 4000
+                    }, 
+                    "minItems": 1
+                }, 
+                "keywords": {
+                    "type": "string", 
+                    "title": "Keywords", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }
+            }, 
+            "required": [
+                "requiresTextileActLabeling", 
+                "brand", 
+                "shortDescription", 
+                "mainImageUrl"
+            ], 
+            "additionalProperties": false
+        }, 
+        "VehiclePartsAndAccessories": {
+            "$schema": "http://json-schema.org/draft-04/schema#", 
+            "type": "object", 
+            "properties": {
+                "shortDescription": {
+                    "type": "string", 
+                    "title": "Description", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "keyFeatures": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Key Features", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 500
+                    }, 
+                    "minItems": 1
+                }, 
+                "brand": {
+                    "type": "string", 
+                    "title": "Brand", 
+                    "minLength": 1, 
+                    "maxLength": 60
+                }, 
+                "manufacturer": {
+                    "type": "string", 
+                    "title": "Manufacturer", 
+                    "minLength": 1, 
+                    "maxLength": 60
+                }, 
+                "manufacturerPartNumber": {
+                    "type": "string", 
+                    "title": "Manufacturer Part Number", 
+                    "minLength": 1, 
+                    "maxLength": 60
+                }, 
+                "modelNumber": {
+                    "type": "string", 
+                    "title": "Model Number", 
+                    "minLength": 1, 
+                    "maxLength": 60
+                }, 
+                "unitsPerConsumerUnit": {
+                    "type": "integer", 
+                    "title": "Package Count", 
+                    "minimum": 0, 
+                    "maximum": 1000000, 
+                    "exclusiveMaximum": false
+                }, 
+                "multipackQuantity": {
+                    "type": "integer", 
+                    "title": "Multipack Quantity", 
+                    "minimum": 0, 
+                    "maximum": 10000, 
+                    "exclusiveMaximum": false
+                }, 
+                "countPerPack": {
+                    "type": "integer", 
+                    "title": "Count Per Pack", 
+                    "minimum": 0, 
+                    "maximum": 100000, 
+                    "exclusiveMaximum": false
+                }, 
+                "count": {
+                    "type": "string", 
+                    "title": "Total Count", 
+                    "minLength": 1, 
+                    "maxLength": 7
+                }, 
+                "pieceCount": {
+                    "type": "integer", 
+                    "title": "Number of Pieces", 
+                    "minimum": 0, 
+                    "maximum": 1000000, 
+                    "exclusiveMaximum": false
+                }, 
+                "mainImageUrl": {
+                    "type": "string", 
+                    "title": "Main Image URL", 
+                    "minLength": 1, 
+                    "maxLength": 2000, 
+                    "format": "uri"
+                }, 
+                "productSecondaryImageURL": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Additional Image URL", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 2000, 
+                        "format": "uri"
+                    }, 
+                    "minItems": 1
+                }, 
+                "color": {
+                    "type": "string", 
+                    "title": "Color", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "form": {
+                    "type": "string", 
+                    "title": "Form", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "shape": {
+                    "type": "string", 
+                    "title": "Shape", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "size": {
+                    "type": "string", 
+                    "title": "Size", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "finish": {
+                    "type": "string", 
+                    "title": "Finish", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "fillMaterial": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Fill Material", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 4000
+                    }, 
+                    "minItems": 1
+                }, 
+                "compatibleCars": {
+                    "type": "string", 
+                    "title": "Compatible Cars", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "compatibleBrands": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Compatible Brands", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 4000
+                    }, 
+                    "minItems": 1
+                }, 
+                "compatibleDevices": {
+                    "type": "string", 
+                    "title": "Compatible Devices", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "isPowered": {
+                    "type": "string", 
+                    "title": "Is Powered", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "powerType": {
+                    "type": "string", 
+                    "title": "Power Type", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "fluidOunces": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Fluid Ounces", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "fl oz"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "amps": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Amps", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "A", 
+                                "mA"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "coldCrankAmp": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Cold Crank Amp", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "Coulombs", 
+                                "Amps", 
+                                "Ohms", 
+                                "Volts"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "beamSpread": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Beam Spread", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "ft"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "beamAngle": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Beam Angle", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "\u00ba"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "inDashSystem": {
+                    "type": "string", 
+                    "title": "In-Dash System", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "interfaceType": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Interface Type", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 4000
+                    }, 
+                    "minItems": 1
+                }, 
+                "displayTechnology": {
+                    "type": "string", 
+                    "title": "Display Technology", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "displayResolution": {
+                    "type": "string", 
+                    "title": "Display Resolution", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "fastenerHeadType": {
+                    "type": "string", 
+                    "title": "Fastener Head Type", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "connections": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Connector Type", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 4000
+                    }, 
+                    "minItems": 1
+                }, 
+                "cableLength": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Cable Length", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "ft", 
+                                "in"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "chainLength": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Chain Length", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "ft", 
+                                "cm", 
+                                "in"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "candlePower": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Candle Power", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "Lux", 
+                                "Lumens Per Watt", 
+                                "Candelas Per Square Meter", 
+                                "Lumens", 
+                                "Lumen Seconds", 
+                                "Lumen Seconds Per Meter", 
+                                "Lux Seconds", 
+                                "Candelas"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "fuelType": {
+                    "type": "string", 
+                    "title": "Fuel Type", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "flashPoint": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Flash Point", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "Kelvin", 
+                                "Degrees Centigrade", 
+                                "Degrees Celsius", 
+                                "Degrees Fahrenheit"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "filterLife": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Filter Life", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "Seconds", 
+                                "Months", 
+                                "Days", 
+                                "Years", 
+                                "Hours", 
+                                "Minutes", 
+                                "Milliseconds"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "lightBulbType": {
+                    "type": "string", 
+                    "title": "Light Bulb Type", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "isLockable": {
+                    "type": "string", 
+                    "title": "Is Lockable", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "isReusable": {
+                    "type": "string", 
+                    "title": "Is Reusable", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "breakingStrength": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Breaking Strength", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "lb"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "maximumMotorSpeed": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Maximum Motor Speed", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "Feet Per Minute", 
+                                "Kilometers Per Hour", 
+                                "Meters Per Second", 
+                                "Revolutions Per Minute", 
+                                "Radian Per Second", 
+                                "Miles Per Hour", 
+                                "Meters Per Second Squared"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "maximumTemperature": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Maximum Temperature", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "\u00baF", 
+                                "\u00baK", 
+                                "\u00baC"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "numberOfOutlets": {
+                    "type": "integer", 
+                    "title": "Number of Outlets", 
+                    "minimum": 0, 
+                    "maximum": 1000000, 
+                    "exclusiveMaximum": false
+                }, 
+                "receiverCompatibility": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Receiver Compatibility", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "in"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "reserveCapacity": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Reserve Capacity", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "min"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "loadCapacity": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Rated Load Capacity", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "psi", 
+                                "psf"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "horsepower": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Horsepower", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "HP"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "saeDotCompliant": {
+                    "type": "string", 
+                    "title": "SAE DOT-Compliant", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "shackleClearance": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Shackle Clearance", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "in"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "shackleDiameter": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Shackle Diameter", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "in"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "shackleLength": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Shackle Length", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "in"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "shankLength": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Shank Length", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "in"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "shearStrength": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Shear Strength", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "lb"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "hitchClass": {
+                    "type": "string", 
+                    "title": "Hitch Class", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "dropDistance": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Drop Distance", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "in"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "string", 
+                            "minLength": 1
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "assembledProductLength": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Assembled Product Length", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "ft", 
+                                "in"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "assembledProductWidth": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Assembled Product Width", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "ft", 
+                                "in"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "assembledProductHeight": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Assembled Product Height", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "ft", 
+                                "in"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "assembledProductWeight": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Assembled Product Weight", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "kg", 
+                                "lb", 
+                                "oz", 
+                                "g"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "variantGroupId": {
+                    "type": "string", 
+                    "title": "Variant Group ID", 
+                    "minLength": 1, 
+                    "maxLength": 300
+                }, 
+                "variantAttributeNames": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Variant Attribute Names", 
+                    "items": {
+                        "type": "string", 
+                        "enum": [
+                            "count", 
+                            "diameter", 
+                            "finish", 
+                            "color", 
+                            "sportsTeam", 
+                            "vehicleYear", 
+                            "shape", 
+                            "vehicleModel", 
+                            "vehicleMake", 
+                            "engineModel", 
+                            "size"
+                        ]
+                    }, 
+                    "minItems": 1
+                }, 
+                "isPrimaryVariant": {
+                    "type": "string", 
+                    "title": "Is Primary Variant", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "swatchImages": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Swatch Images", 
+                    "items": {
+                        "$schema": "http://json-schema.org/draft-04/schema#", 
+                        "type": "object", 
+                        "properties": {
+                            "swatchVariantAttribute": {
+                                "type": "string", 
+                                "title": "Swatch Variant Attribute", 
+                                "minLength": 1
+                            }, 
+                            "swatchImageUrl": {
+                                "type": "string", 
+                                "title": "Swatch Image URL", 
+                                "minLength": 1, 
+                                "maxLength": 2000, 
+                                "format": "uri"
+                            }
+                        }, 
+                        "additionalProperties": false
+                    }, 
+                    "minItems": 1
+                }, 
+                "isProp65WarningRequired": {
+                    "type": "string", 
+                    "title": "Is Prop 65 Warning Required", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "prop65WarningText": {
+                    "type": "string", 
+                    "title": "Prop 65 Warning Text", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "batteryTechnologyType": {
+                    "type": "string", 
+                    "title": "Contained Battery Type", 
+                    "enum": [
+                        "Mercury", 
+                        "Lead Acid (Nonspillable)", 
+                        "Carbon Zinc", 
+                        "Alkaline", 
+                        "Does Not Contain a Battery", 
+                        "Thermal", 
+                        "Lithium Primary (Lithium Metal)", 
+                        "Nickel Cadmium", 
+                        "Lithium Ion", 
+                        "Nickel Metal Hydride", 
+                        "Lead Acid", 
+                        "Multiple Types", 
+                        "Other", 
+                        "Silver", 
+                        "Magnesium"
+                    ]
+                }, 
+                "isAerosol": {
+                    "type": "string", 
+                    "title": "Contains Aerosol", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "isChemical": {
+                    "type": "string", 
+                    "title": "Contains Chemical", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "compositeWoodCertificationCode": {
+                    "type": "integer", 
+                    "title": "Composite Wood Certification Code", 
+                    "enum": [
+                        1, 
+                        7, 
+                        8
+                    ]
+                }, 
+                "hasWarranty": {
+                    "type": "string", 
+                    "title": "Has Warranty", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "warrantyURL": {
+                    "type": "string", 
+                    "title": "Warranty URL", 
+                    "minLength": 1, 
+                    "maxLength": 200, 
+                    "format": "uri"
+                }, 
+                "warrantyText": {
+                    "type": "string", 
+                    "title": "Warranty Text", 
+                    "minLength": 1, 
+                    "maxLength": 1000
+                }, 
+                "hasFuelContainer": {
+                    "type": "string", 
+                    "title": "Has Fuel Container", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "vehicleType": {
+                    "type": "string", 
+                    "title": "Vehicle Category", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "motorOilViscosity": {
+                    "type": "string", 
+                    "title": "Motor Oil Viscosity", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "fabricContent": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Fabric Content", 
+                    "items": {
+                        "$schema": "http://json-schema.org/draft-04/schema#", 
+                        "type": "object", 
+                        "properties": {
+                            "materialName": {
+                                "type": "string", 
+                                "title": "Fabric Material Name", 
+                                "minLength": 1, 
+                                "maxLength": 4000
+                            }, 
+                            "materialPercentage": {
+                                "type": "number", 
+                                "title": "Fabric Material Percentage", 
+                                "minimum": 0, 
+                                "maximum": 1000000, 
+                                "exclusiveMaximum": false, 
+                                "multipleOf": 0.01
+                            }
+                        }, 
+                        "required": [
+                            "materialName"
+                        ], 
+                        "additionalProperties": false
+                    }, 
+                    "minItems": 1
+                }, 
+                "fabricCareInstructions": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Fabric Care Instructions", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 4000
+                    }, 
+                    "minItems": 1
+                }, 
+                "sportsLeague": {
+                    "type": "string", 
+                    "title": "Sports League", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "sportsTeam": {
+                    "type": "string", 
+                    "title": "Sports Team", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "athlete": {
+                    "type": "string", 
+                    "title": "Athlete", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "autographedBy": {
+                    "type": "string", 
+                    "title": "Autographed by", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "features": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Additional Features", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 4000
+                    }, 
+                    "minItems": 1
+                }, 
+                "keywords": {
+                    "type": "string", 
+                    "title": "Keywords", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }
+            }, 
+            "required": [
+                "brand", 
+                "shortDescription", 
+                "mainImageUrl"
+            ], 
+            "additionalProperties": false
+        }, 
+        "WheelsAndWheelComponents": {
+            "$schema": "http://json-schema.org/draft-04/schema#", 
+            "type": "object", 
+            "properties": {
+                "shortDescription": {
+                    "type": "string", 
+                    "title": "Description", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "keyFeatures": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Key Features", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 500
+                    }, 
+                    "minItems": 1
+                }, 
+                "brand": {
+                    "type": "string", 
+                    "title": "Brand", 
+                    "minLength": 1, 
+                    "maxLength": 60
+                }, 
+                "manufacturer": {
+                    "type": "string", 
+                    "title": "Manufacturer", 
+                    "minLength": 1, 
+                    "maxLength": 60
+                }, 
+                "manufacturerPartNumber": {
+                    "type": "string", 
+                    "title": "Manufacturer Part Number", 
+                    "minLength": 1, 
+                    "maxLength": 60
+                }, 
+                "modelNumber": {
+                    "type": "string", 
+                    "title": "Model Number", 
+                    "minLength": 1, 
+                    "maxLength": 60
+                }, 
+                "multipackQuantity": {
+                    "type": "integer", 
+                    "title": "Multipack Quantity", 
+                    "minimum": 0, 
+                    "maximum": 10000, 
+                    "exclusiveMaximum": false
+                }, 
+                "countPerPack": {
+                    "type": "integer", 
+                    "title": "Count Per Pack", 
+                    "minimum": 0, 
+                    "maximum": 100000, 
+                    "exclusiveMaximum": false
+                }, 
+                "count": {
+                    "type": "string", 
+                    "title": "Total Count", 
+                    "minLength": 1, 
+                    "maxLength": 7
+                }, 
+                "mainImageUrl": {
+                    "type": "string", 
+                    "title": "Main Image URL", 
+                    "minLength": 1, 
+                    "maxLength": 2000, 
+                    "format": "uri"
+                }, 
+                "productSecondaryImageURL": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Additional Image URL", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 2000, 
+                        "format": "uri"
+                    }, 
+                    "minItems": 1
+                }, 
+                "color": {
+                    "type": "string", 
+                    "title": "Color", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "finish": {
+                    "type": "string", 
+                    "title": "Finish", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "material": {
+                    "type": "string", 
+                    "title": "Material", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "vehicleRimSize": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Vehicle Rim Size", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "Mil", 
+                                "Inches", 
+                                "Micrometers", 
+                                "French", 
+                                "Feet", 
+                                "Miles", 
+                                "Meters", 
+                                "Millimeters", 
+                                "Gauge", 
+                                "Centimeters", 
+                                "Yards"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "diameter": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Diameter", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "mm", 
+                                "cm", 
+                                "in"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "compatibleTireSize": {
+                    "type": "string", 
+                    "title": "Compatible Tire Size", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "numberOfSpokes": {
+                    "type": "integer", 
+                    "title": "Number of Spokes", 
+                    "minimum": 0, 
+                    "maximum": 1000000, 
+                    "exclusiveMaximum": false
+                }, 
+                "assembledProductLength": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Assembled Product Length", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "ft", 
+                                "in"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "assembledProductWidth": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Assembled Product Width", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "ft", 
+                                "in"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "assembledProductHeight": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Assembled Product Height", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "ft", 
+                                "in"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "assembledProductWeight": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Assembled Product Weight", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "kg", 
+                                "lb", 
+                                "oz", 
+                                "g"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "variantGroupId": {
+                    "type": "string", 
+                    "title": "Variant Group ID", 
+                    "minLength": 1, 
+                    "maxLength": 300
+                }, 
+                "variantAttributeNames": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Variant Attribute Names", 
+                    "items": {
+                        "type": "string", 
+                        "enum": [
+                            "count", 
+                            "diameter", 
+                            "finish", 
+                            "color", 
+                            "sportsTeam", 
+                            "vehicleYear", 
+                            "shape", 
+                            "vehicleModel", 
+                            "vehicleMake", 
+                            "engineModel", 
+                            "size"
+                        ]
+                    }, 
+                    "minItems": 1
+                }, 
+                "isPrimaryVariant": {
+                    "type": "string", 
+                    "title": "Is Primary Variant", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "swatchImages": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Swatch Images", 
+                    "items": {
+                        "$schema": "http://json-schema.org/draft-04/schema#", 
+                        "type": "object", 
+                        "properties": {
+                            "swatchVariantAttribute": {
+                                "type": "string", 
+                                "title": "Swatch Variant Attribute", 
+                                "minLength": 1
+                            }, 
+                            "swatchImageUrl": {
+                                "type": "string", 
+                                "title": "Swatch Image URL", 
+                                "minLength": 1, 
+                                "maxLength": 2000, 
+                                "format": "uri"
+                            }
+                        }, 
+                        "additionalProperties": false
+                    }, 
+                    "minItems": 1
+                }, 
+                "isProp65WarningRequired": {
+                    "type": "string", 
+                    "title": "Is Prop 65 Warning Required", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "prop65WarningText": {
+                    "type": "string", 
+                    "title": "Prop 65 Warning Text", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "batteryTechnologyType": {
+                    "type": "string", 
+                    "title": "Contained Battery Type", 
+                    "enum": [
+                        "Mercury", 
+                        "Lead Acid (Nonspillable)", 
+                        "Carbon Zinc", 
+                        "Alkaline", 
+                        "Does Not Contain a Battery", 
+                        "Thermal", 
+                        "Lithium Primary (Lithium Metal)", 
+                        "Nickel Cadmium", 
+                        "Lithium Ion", 
+                        "Nickel Metal Hydride", 
+                        "Lead Acid", 
+                        "Multiple Types", 
+                        "Other", 
+                        "Silver", 
+                        "Magnesium"
+                    ]
+                }, 
+                "hasWarranty": {
+                    "type": "string", 
+                    "title": "Has Warranty", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "warrantyURL": {
+                    "type": "string", 
+                    "title": "Warranty URL", 
+                    "minLength": 1, 
+                    "maxLength": 200, 
+                    "format": "uri"
+                }, 
+                "warrantyText": {
+                    "type": "string", 
+                    "title": "Warranty Text", 
+                    "minLength": 1, 
+                    "maxLength": 1000
+                }, 
+                "features": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Additional Features", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 4000
+                    }, 
+                    "minItems": 1
+                }, 
+                "keywords": {
+                    "type": "string", 
+                    "title": "Keywords", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }
+            }, 
+            "required": [
+                "brand", 
+                "shortDescription", 
+                "mainImageUrl"
+            ], 
+            "additionalProperties": false
+        }, 
+        "VehicleOther": {
+            "$schema": "http://json-schema.org/draft-04/schema#", 
+            "type": "object", 
+            "properties": {
+                "shortDescription": {
+                    "type": "string", 
+                    "title": "Description", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "keyFeatures": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Key Features", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 500
+                    }, 
+                    "minItems": 1
+                }, 
+                "brand": {
+                    "type": "string", 
+                    "title": "Brand", 
+                    "minLength": 1, 
+                    "maxLength": 60
+                }, 
+                "manufacturer": {
+                    "type": "string", 
+                    "title": "Manufacturer", 
+                    "minLength": 1, 
+                    "maxLength": 60
+                }, 
+                "manufacturerPartNumber": {
+                    "type": "string", 
+                    "title": "Manufacturer Part Number", 
+                    "minLength": 1, 
+                    "maxLength": 60
+                }, 
+                "modelNumber": {
+                    "type": "string", 
+                    "title": "Model Number", 
+                    "minLength": 1, 
+                    "maxLength": 60
+                }, 
+                "multipackQuantity": {
+                    "type": "integer", 
+                    "title": "Multipack Quantity", 
+                    "minimum": 0, 
+                    "maximum": 10000, 
+                    "exclusiveMaximum": false
+                }, 
+                "countPerPack": {
+                    "type": "integer", 
+                    "title": "Count Per Pack", 
+                    "minimum": 0, 
+                    "maximum": 100000, 
+                    "exclusiveMaximum": false
+                }, 
+                "count": {
+                    "type": "string", 
+                    "title": "Total Count", 
+                    "minLength": 1, 
+                    "maxLength": 7
+                }, 
+                "pieceCount": {
+                    "type": "integer", 
+                    "title": "Number of Pieces", 
+                    "minimum": 0, 
+                    "maximum": 1000000, 
+                    "exclusiveMaximum": false
+                }, 
+                "mainImageUrl": {
+                    "type": "string", 
+                    "title": "Main Image URL", 
+                    "minLength": 1, 
+                    "maxLength": 2000, 
+                    "format": "uri"
+                }, 
+                "productSecondaryImageURL": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Additional Image URL", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 2000, 
+                        "format": "uri"
+                    }, 
+                    "minItems": 1
+                }, 
+                "color": {
+                    "type": "string", 
+                    "title": "Color", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "size": {
+                    "type": "string", 
+                    "title": "Size", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "assembledProductLength": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Assembled Product Length", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "ft", 
+                                "in"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "assembledProductWidth": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Assembled Product Width", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "ft", 
+                                "in"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "assembledProductHeight": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Assembled Product Height", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "ft", 
+                                "in"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "assembledProductWeight": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Assembled Product Weight", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "kg", 
+                                "lb", 
+                                "oz", 
+                                "g"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "variantGroupId": {
+                    "type": "string", 
+                    "title": "Variant Group ID", 
+                    "minLength": 1, 
+                    "maxLength": 300
+                }, 
+                "variantAttributeNames": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Variant Attribute Names", 
+                    "items": {
+                        "type": "string", 
+                        "enum": [
+                            "count", 
+                            "diameter", 
+                            "finish", 
+                            "color", 
+                            "sportsTeam", 
+                            "vehicleYear", 
+                            "shape", 
+                            "vehicleModel", 
+                            "vehicleMake", 
+                            "engineModel", 
+                            "size"
+                        ]
+                    }, 
+                    "minItems": 1
+                }, 
+                "isPrimaryVariant": {
+                    "type": "string", 
+                    "title": "Is Primary Variant", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "swatchImages": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Swatch Images", 
+                    "items": {
+                        "$schema": "http://json-schema.org/draft-04/schema#", 
+                        "type": "object", 
+                        "properties": {
+                            "swatchVariantAttribute": {
+                                "type": "string", 
+                                "title": "Swatch Variant Attribute", 
+                                "minLength": 1
+                            }, 
+                            "swatchImageUrl": {
+                                "type": "string", 
+                                "title": "Swatch Image URL", 
+                                "minLength": 1, 
+                                "maxLength": 2000, 
+                                "format": "uri"
+                            }
+                        }, 
+                        "additionalProperties": false
+                    }, 
+                    "minItems": 1
+                }, 
+                "isProp65WarningRequired": {
+                    "type": "string", 
+                    "title": "Is Prop 65 Warning Required", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "prop65WarningText": {
+                    "type": "string", 
+                    "title": "Prop 65 Warning Text", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "batteryTechnologyType": {
+                    "type": "string", 
+                    "title": "Contained Battery Type", 
+                    "enum": [
+                        "Mercury", 
+                        "Lead Acid (Nonspillable)", 
+                        "Carbon Zinc", 
+                        "Alkaline", 
+                        "Does Not Contain a Battery", 
+                        "Thermal", 
+                        "Lithium Primary (Lithium Metal)", 
+                        "Nickel Cadmium", 
+                        "Lithium Ion", 
+                        "Nickel Metal Hydride", 
+                        "Lead Acid", 
+                        "Multiple Types", 
+                        "Other", 
+                        "Silver", 
+                        "Magnesium"
+                    ]
+                }, 
+                "hasWarranty": {
+                    "type": "string", 
+                    "title": "Has Warranty", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "warrantyURL": {
+                    "type": "string", 
+                    "title": "Warranty URL", 
+                    "minLength": 1, 
+                    "maxLength": 200, 
+                    "format": "uri"
+                }, 
+                "warrantyText": {
+                    "type": "string", 
+                    "title": "Warranty Text", 
+                    "minLength": 1, 
+                    "maxLength": 1000
+                }, 
+                "hasFuelContainer": {
+                    "type": "string", 
+                    "title": "Has Fuel Container", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "requiresTextileActLabeling": {
+                    "type": "string", 
+                    "title": "Requires Textile Act Labeling", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "countryOfOriginTextiles": {
+                    "type": "string", 
+                    "title": "Country of Origin - Textiles", 
+                    "enum": [
+                        "USA and Imported", 
+                        "Imported", 
+                        "USA", 
+                        "USA or Imported"
+                    ]
+                }, 
+                "fabricContent": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Fabric Content", 
+                    "items": {
+                        "$schema": "http://json-schema.org/draft-04/schema#", 
+                        "type": "object", 
+                        "properties": {
+                            "materialName": {
+                                "type": "string", 
+                                "title": "Fabric Material Name", 
+                                "minLength": 1, 
+                                "maxLength": 4000
+                            }, 
+                            "materialPercentage": {
+                                "type": "number", 
+                                "title": "Fabric Material Percentage", 
+                                "minimum": 0, 
+                                "maximum": 1000000, 
+                                "exclusiveMaximum": false, 
+                                "multipleOf": 0.01
+                            }
+                        }, 
+                        "required": [
+                            "materialName"
+                        ], 
+                        "additionalProperties": false
+                    }, 
+                    "minItems": 1
+                }, 
+                "vehicleType": {
+                    "type": "string", 
+                    "title": "Vehicle Category", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "sportsLeague": {
+                    "type": "string", 
+                    "title": "Sports League", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "sportsTeam": {
+                    "type": "string", 
+                    "title": "Sports Team", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "athlete": {
+                    "type": "string", 
+                    "title": "Athlete", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "autographedBy": {
+                    "type": "string", 
+                    "title": "Autographed by", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "features": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Additional Features", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 4000
+                    }, 
+                    "minItems": 1
+                }, 
+                "keywords": {
+                    "type": "string", 
+                    "title": "Keywords", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }
+            }, 
+            "required": [
+                "requiresTextileActLabeling", 
+                "brand", 
+                "shortDescription", 
+                "mainImageUrl"
+            ], 
+            "additionalProperties": false
+        }, 
+        "Watercraft": {
+            "$schema": "http://json-schema.org/draft-04/schema#", 
+            "type": "object", 
+            "properties": {
+                "shortDescription": {
+                    "type": "string", 
+                    "title": "Description", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "keyFeatures": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Key Features", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 500
+                    }, 
+                    "minItems": 1
+                }, 
+                "brand": {
+                    "type": "string", 
+                    "title": "Brand", 
+                    "minLength": 1, 
+                    "maxLength": 60
+                }, 
+                "manufacturer": {
+                    "type": "string", 
+                    "title": "Manufacturer", 
+                    "minLength": 1, 
+                    "maxLength": 60
+                }, 
+                "mainImageUrl": {
+                    "type": "string", 
+                    "title": "Main Image URL", 
+                    "minLength": 1, 
+                    "maxLength": 2000, 
+                    "format": "uri"
+                }, 
+                "productSecondaryImageURL": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Additional Image URL", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 2000, 
+                        "format": "uri"
+                    }, 
+                    "minItems": 1
+                }, 
+                "color": {
+                    "type": "string", 
+                    "title": "Color", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "vehicleType": {
+                    "type": "string", 
+                    "title": "Vehicle Category", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "vehicleYear": {
+                    "type": "integer", 
+                    "title": "Vehicle Year", 
+                    "minimum": 0, 
+                    "maximum": 1000000, 
+                    "exclusiveMaximum": false
+                }, 
+                "vehicleMake": {
+                    "type": "string", 
+                    "title": "Vehicle Make", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "vehicleModel": {
+                    "type": "string", 
+                    "title": "Vehicle Model", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "submodel": {
+                    "type": "string", 
+                    "title": "Submodel", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "engineLocation": {
+                    "type": "string", 
+                    "title": "Engine Location", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "engineModel": {
+                    "type": "string", 
+                    "title": "Engine Model", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "engineDisplacement": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Engine Displacement", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "cc", 
+                                "CID"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "boreStroke": {
+                    "type": "string", 
+                    "title": "Bore x Stroke", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "inductionSystem": {
+                    "type": "string", 
+                    "title": "Induction System", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "compressionRatio": {
+                    "type": "string", 
+                    "title": "Compression Ratio", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "maximumEnginePower": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Maximum Engine Power", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "Horsepower", 
+                                "Decibels", 
+                                "Watts", 
+                                "Joules", 
+                                "BTUs"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "propulsionSystem": {
+                    "type": "string", 
+                    "title": "Propulsion System", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "coolingSystem": {
+                    "type": "string", 
+                    "title": "Cooling System", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "thrust": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Thrust", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "lb"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "impellerPropeller": {
+                    "type": "string", 
+                    "title": "Impeller / Propeller", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "topSpeed": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Top Speed", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "Feet Per Minute", 
+                                "Kilometers Per Hour", 
+                                "Meters Per Second", 
+                                "Revolutions Per Minute", 
+                                "Radian Per Second", 
+                                "Miles Per Hour", 
+                                "Meters Per Second Squared"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "fuelRequirement": {
+                    "type": "string", 
+                    "title": "Fuel Requirement", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "fuelSystem": {
+                    "type": "string", 
+                    "title": "Fuel System", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "fuelCapacity": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Fuel Capacity", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "gal", 
+                                "L"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "averageFuelConsumption": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Average Fuel Consumption", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "mpg"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "hullLength": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Hull Length", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "ft"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "beam": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Beam", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "ft"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "airDraft": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Air Draft", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "ft"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "draft": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Draft", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "ft"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "dryWeight": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Dry Weight", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "lb"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "waterCapacity": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Water Capacity", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "gal", 
+                                "L"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "seatingCapacity": {
+                    "type": "integer", 
+                    "title": "Seating Capacity", 
+                    "minimum": 0, 
+                    "maximum": 1000000, 
+                    "exclusiveMaximum": false
+                }, 
+                "assembledProductLength": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Assembled Product Length", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "ft", 
+                                "in"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "assembledProductWidth": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Assembled Product Width", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "ft", 
+                                "in"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "assembledProductHeight": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Assembled Product Height", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "ft", 
+                                "in"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "assembledProductWeight": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Assembled Product Weight", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "kg", 
+                                "lb", 
+                                "oz", 
+                                "g"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "variantGroupId": {
+                    "type": "string", 
+                    "title": "Variant Group ID", 
+                    "minLength": 1, 
+                    "maxLength": 300
+                }, 
+                "variantAttributeNames": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Variant Attribute Names", 
+                    "items": {
+                        "type": "string", 
+                        "enum": [
+                            "count", 
+                            "diameter", 
+                            "finish", 
+                            "color", 
+                            "sportsTeam", 
+                            "vehicleYear", 
+                            "shape", 
+                            "vehicleModel", 
+                            "vehicleMake", 
+                            "engineModel", 
+                            "size"
+                        ]
+                    }, 
+                    "minItems": 1
+                }, 
+                "isPrimaryVariant": {
+                    "type": "string", 
+                    "title": "Is Primary Variant", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "swatchImages": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Swatch Images", 
+                    "items": {
+                        "$schema": "http://json-schema.org/draft-04/schema#", 
+                        "type": "object", 
+                        "properties": {
+                            "swatchVariantAttribute": {
+                                "type": "string", 
+                                "title": "Swatch Variant Attribute", 
+                                "minLength": 1
+                            }, 
+                            "swatchImageUrl": {
+                                "type": "string", 
+                                "title": "Swatch Image URL", 
+                                "minLength": 1, 
+                                "maxLength": 2000, 
+                                "format": "uri"
+                            }
+                        }, 
+                        "additionalProperties": false
+                    }, 
+                    "minItems": 1
+                }, 
+                "isProp65WarningRequired": {
+                    "type": "string", 
+                    "title": "Is Prop 65 Warning Required", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "prop65WarningText": {
+                    "type": "string", 
+                    "title": "Prop 65 Warning Text", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "smallPartsWarnings": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Small Parts Warning Code", 
+                    "items": {
+                        "type": "integer", 
+                        "enum": [
+                            0, 
+                            1, 
+                            2, 
+                            3, 
+                            4, 
+                            5, 
+                            6
+                        ]
+                    }, 
+                    "minItems": 1
+                }, 
+                "hasBatteries": {
+                    "type": "string", 
+                    "title": "Contains Batteries", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "batteryTechnologyType": {
+                    "type": "string", 
+                    "title": "Contained Battery Type", 
+                    "enum": [
+                        "Mercury", 
+                        "Lead Acid (Nonspillable)", 
+                        "Carbon Zinc", 
+                        "Alkaline", 
+                        "Does Not Contain a Battery", 
+                        "Thermal", 
+                        "Lithium Primary (Lithium Metal)", 
+                        "Nickel Cadmium", 
+                        "Lithium Ion", 
+                        "Nickel Metal Hydride", 
+                        "Lead Acid", 
+                        "Multiple Types", 
+                        "Other", 
+                        "Silver", 
+                        "Magnesium"
+                    ]
+                }, 
+                "hasWarranty": {
+                    "type": "string", 
+                    "title": "Has Warranty", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "warrantyURL": {
+                    "type": "string", 
+                    "title": "Warranty URL", 
+                    "minLength": 1, 
+                    "maxLength": 200, 
+                    "format": "uri"
+                }, 
+                "warrantyText": {
+                    "type": "string", 
+                    "title": "Warranty Text", 
+                    "minLength": 1, 
+                    "maxLength": 1000
+                }, 
+                "sportsLeague": {
+                    "type": "string", 
+                    "title": "Sports League", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "athlete": {
+                    "type": "string", 
+                    "title": "Athlete", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "features": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Additional Features", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 4000
+                    }, 
+                    "minItems": 1
+                }, 
+                "keywords": {
+                    "type": "string", 
+                    "title": "Keywords", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }
+            }, 
+            "required": [
+                "brand", 
+                "shortDescription", 
+                "mainImageUrl"
+            ], 
+            "additionalProperties": false
+        }
+    }, 
+    "oneOf": [
+        {
+            "required": [
+                "Tires"
+            ]
+        }, 
+        {
+            "required": [
+                "LandVehicles"
+            ]
+        }, 
+        {
+            "required": [
+                "VehiclePartsAndAccessories"
+            ]
+        }, 
+        {
+            "required": [
+                "WheelsAndWheelComponents"
+            ]
+        }, 
+        {
+            "required": [
+                "VehicleOther"
+            ]
+        }, 
+        {
+            "required": [
+                "Watercraft"
+            ]
+        }
+    ], 
+    "additionalProperties": false
+}

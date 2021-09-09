@@ -1,0 +1,41 @@
+{
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "type": "object",
+    "properties": {
+      "RetireItemHeader": {
+        "type": "object",
+        "properties": {
+          "feedDate": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "feedDate",
+          "version"
+        ]
+      },
+      "RetireItem": {
+        "type": "array",
+        "items": [
+          {
+            "type": "object",
+            "properties": {
+              "sku": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "sku"
+            ]
+          }
+        ]
+      }
+    },
+    "required": [
+      "RetireItemHeader",
+      "RetireItem"
+    ]
+  }

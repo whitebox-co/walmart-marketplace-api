@@ -1,0 +1,218 @@
+{"assertions":{
+  "HealthAndBeauty":{
+    "variantGroupId":{
+      "variantAttributeNames":"OR DEPENDENCY",
+      "additionalVariantAttributeNames":"OR DEPENDENCY",
+      "message":"variantAttributeNames is required when variantGroupId is present and additionalVariantAttributeNames is missing"
+    },
+    "variantAttributeNames":{
+      "variantGroupId":"DEPENDENCY",
+      "message":"variantGroupId is required when variantAttributeNames is present"
+    },
+    "hasBatteries":[
+      {
+        "hasBatteries":"Yes OR Oui"
+      },
+      { "batteryTechnologyType":"MUST",
+        "message":"batteryTechnologyType is required when hasBatteries = Yes"
+      }
+    ],
+    "hasPricePerUnit":[
+      {"hasPricePerUnit":"Yes"},
+      {"pricePerUnitQuantity":"MUST",
+        "message":"pricePerUnitQuantity is required when hasPricePerUnit = Yes"},
+      {"pricePerUnitUom":"MUST",
+        "message":"pricePerUnitUom is required when hasPricePerUnit = Yes"}
+    ]
+  },
+  "MedicalAids":{
+    "variantAttributeNames":{
+      "variantGroupId":"DEPENDENCY",
+      "message":"variantGroupId is required when variantAttributeNames is present"
+    },
+    "variantGroupId":{
+      "variantAttributeNames":"DEPENDENCY",
+      "message":"variantAttributeNames is required when variantGroupId is present"
+    },
+    "isProp65WarningRequired":[
+      {"isProp65WarningRequired":"Yes OR Oui"},
+      {"prop65WarningText":"MUST",
+        "message":"prop65WarningText is required when isProp65WarningRequired = Yes"}
+    ],
+    "hasBatteries":[
+      {
+        "hasBatteries":"Yes OR Oui"
+      },
+      { "batteryTechnologyType":"MUST",
+        "message":"batteryTechnologyType is required when hasBatteries = Yes"
+      }
+    ],
+    "hasWarranty":[
+      {"hasWarranty":"Yes OR Oui"},
+      {"warrantyURL":"NOT |warrantyText",
+        "message":"warrantyURL is required when warrantyText is missing and hasWarranty = Yes"
+      },
+      {"warrantyText":"NOT |warrantyURL",
+        "message":"warrantyText is required when warrantyURL is missing and hasWarranty = Yes"
+      }
+    ]
+  },
+  "Optical":{
+    "variantAttributeNames":{
+      "variantGroupId":"DEPENDENCY",
+      "message":"variantGroupId is required when variantAttributeNames is present"
+    },
+    "variantGroupId":{
+      "variantAttributeNames":"OR DEPENDENCY",
+      "additionalVariantAttributeNames":"OR DEPENDENCY",
+      "message":"variantAttributeNames is required when variantGroupId is present and additionalVariantAttributeNames is missing"
+    },
+    "isProp65WarningRequired":[
+      {"isProp65WarningRequired":"Yes OR Oui"},
+      {"prop65WarningText":"MUST",
+        "message":"prop65WarningText is required when isProp65WarningRequired = Yes"}
+    ],
+    "hasBatteries":[
+      {
+        "hasBatteries":"Yes OR Oui"
+      },
+      { "batteryTechnologyType":"MUST",
+        "message":"batteryTechnologyType is required when hasBatteries = Yes"
+      }
+    ],
+    "hasWarranty":[
+      {"hasWarranty":"Yes OR Oui"},
+      {"warrantyURL":"NOT |warrantyText",
+        "message":"warrantyURL is required when warrantyText is missing and hasWarranty = Yes"
+      },
+      {"warrantyText":"NOT |warrantyURL",
+        "message":"warrantyText is required when warrantyURL is missing and hasWarranty = Yes"
+      }
+    ]
+  },
+  "MedicineAndSupplements":{
+    "variantAttributeNames":{
+      "variantGroupId":"DEPENDENCY",
+      "message":"variantGroupId is required when variantAttributeNames is present"
+    },
+    "variantGroupId":{
+      "variantAttributeNames":"OR DEPENDENCY",
+      "additionalVariantAttributeNames":"OR DEPENDENCY",
+      "message":"variantAttributeNames is required when variantGroupId is present and additionalVariantAttributeNames is missing"
+    },
+    "isProp65WarningRequired":[
+      {"isProp65WarningRequired":"Yes OR Oui"},
+      {"prop65WarningText":"MUST",
+        "message":"prop65WarningText is required when isProp65WarningRequired = Yes"}
+    ],
+    "hasPricePerUnit":[
+      {"hasPricePerUnit":"Yes"},
+      {"pricePerUnitQuantity":"MUST",
+        "message":"pricePerUnitQuantity is required when hasPricePerUnit = Yes"},
+      {"pricePerUnitUom":"MUST",
+        "message":"pricePerUnitUom is required when hasPricePerUnit = Yes"}
+    ],
+    "isDrugFactsLabelRequired":[
+      {"isDrugFactsLabelRequired":"Yes OR Oui"},
+      {"drugFactsLabel":"MUST",
+        "message":"drugFactsLabel is required when isDrugFactsLabelRequired = Yes"}
+    ],
+    "isSupplementFactsLabelRequired":[
+      {"isSupplementFactsLabelRequired":"Yes OR Oui"},
+      {"supplementFactsLabel":"MUST",
+        "message":"supplementFactsLabel is required when isSupplementFactsLabelRequired = Yes"}
+    ],
+    "isNutritionFactsLabelRequired":[
+      {"isNutritionFactsLabelRequired":"Yes OR Oui"},
+      {"nutritionFactsLabel":"MUST",
+        "message":"nutritionFactsLabel is required when isNutritionFactsLabelRequired = Yes"}
+    ],
+    "hasIngredientList":[
+      {"hasIngredientList":"Yes OR Oui"},
+      {"ingredients":"NOT |ingredientListImage",
+        "message":"ingredients is required when hasIngredientList = Yes and ingredientListImage is missing"},
+      {"ingredientListImage":"NOT |ingredients",
+        "message":"ingredientListImage is required when hasIngredientList = Yes and ingredients is missing"}
+    ]
+  },
+  "HealthAndBeautyElectronics":{
+    "variantAttributeNames":{
+      "variantGroupId":"DEPENDENCY",
+      "message":"variantGroupId is required when variantAttributeNames is present"
+    },
+    "variantGroupId":{
+      "variantAttributeNames":"OR DEPENDENCY",
+      "additionalVariantAttributeNames":"OR DEPENDENCY",
+      "message":"variantAttributeNames is required when variantGroupId is present and additionalVariantAttributeNames is missing"
+    },
+    "isProp65WarningRequired":[
+      {"isProp65WarningRequired":"Yes OR Oui"},
+      {"prop65WarningText":"MUST",
+        "message":"prop65WarningText is required when isProp65WarningRequired = Yes"}
+    ],
+    "hasBatteries":[
+      {
+        "hasBatteries":"Yes OR Oui"
+      },
+      { "batteryTechnologyType":"MUST",
+        "message":"batteryTechnologyType is required when hasBatteries = Yes"
+      }
+    ],
+    "hasStateRestrictions":[
+      {"hasStateRestrictions":"Yes OR Oui"},
+      {"stateRestrictions":"MUST",
+        "message":"stateRestrictions is required when hasStateRestrictions = Yes"}
+    ],
+    "hasWarranty":[
+      {"hasWarranty":"Yes OR Oui"},
+      {"warrantyURL":"NOT |warrantyText",
+        "message":"warrantyURL is required when warrantyText is missing and hasWarranty = Yes"
+      },
+      {"warrantyText":"NOT |warrantyURL",
+        "message":"warrantyText is required when warrantyURL is missing and hasWarranty = Yes"
+      }
+    ]
+  },
+  "PersonalCare":{
+    "variantGroupId":{
+      "variantAttributeNames":"DEPENDENCY",
+      "message":"variantAttributeNames is required when variantGroupId is present"
+    },
+    "variantAttributeNames":{
+      "variantGroupId":"DEPENDENCY",
+      "message":"variantGroupId is required when variantAttributeNames is present"
+    },
+    "isProp65WarningRequired":[
+      {"isProp65WarningRequired":"Yes OR Oui"},
+      {"prop65WarningText":"MUST",
+        "message":"prop65WarningText is required when isProp65WarningRequired = Yes"}
+    ],
+    "hasBatteries":[
+      {
+        "hasBatteries":"Yes OR Oui"
+      },
+      { "batteryTechnologyType":"MUST",
+        "message":"batteryTechnologyType is required when hasBatteries = Yes"
+      }
+    ],
+    "hasPricePerUnit":[
+      {"hasPricePerUnit":"Yes"},
+      {"pricePerUnitQuantity":"MUST",
+        "message":"pricePerUnitQuantity is required when hasPricePerUnit = Yes"},
+      {"pricePerUnitUom":"MUST",
+        "message":"pricePerUnitUom is required when hasPricePerUnit = Yes"}
+    ],
+    "isDrugFactsLabelRequired":[
+      {"isDrugFactsLabelRequired":"Yes OR Oui"},
+      {"drugFactsLabel":"MUST",
+        "message":"drugFactsLabel is required when isDrugFactsLabelRequired = Yes"}
+    ],
+    "hasIngredientList":[
+      {"hasIngredientList":"Yes OR Oui"},
+      {"ingredientListImage":"NOT |ingredients",
+        "message":"ingredientListImage is required when hasIngredientList = Yes and ingredients is missing"},
+      {"ingredients":"NOT |ingredientListImage",
+        "message":"ingredients is required when hasIngredientList = Yes and ingredientListImage is missing"}
+    ]
+  }
+}}

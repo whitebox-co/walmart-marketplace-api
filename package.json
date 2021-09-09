@@ -96,6 +96,7 @@
 		"npm": "^7.22.0",
 		"openapi-types": "^9.1.0",
 		"prettier": "^2.3.2",
+		"quicktype": "^15.0.260",
 		"semantic-release": "^17.4.7",
 		"ts-jest": "^27.0.4",
 		"ts-morph": "^11.0.3",

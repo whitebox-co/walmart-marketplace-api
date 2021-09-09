@@ -1,0 +1,1758 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#", 
+    "type": "object", 
+    "title": "Media", 
+    "properties": {
+        "Movies": {
+            "$schema": "http://json-schema.org/draft-04/schema#", 
+            "type": "object", 
+            "properties": {
+                "shortDescription": {
+                    "type": "string", 
+                    "title": "Description", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "keyFeatures": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Key Features", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 500
+                    }, 
+                    "minItems": 1
+                }, 
+                "synopsis": {
+                    "type": "string", 
+                    "title": "Synopsis", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "multipackQuantity": {
+                    "type": "integer", 
+                    "title": "Multipack Quantity", 
+                    "minimum": 0, 
+                    "maximum": 10000, 
+                    "exclusiveMaximum": false
+                }, 
+                "countPerPack": {
+                    "type": "integer", 
+                    "title": "Count Per Pack", 
+                    "minimum": 0, 
+                    "maximum": 100000, 
+                    "exclusiveMaximum": false
+                }, 
+                "count": {
+                    "type": "string", 
+                    "title": "Total Count", 
+                    "minLength": 1, 
+                    "maxLength": 7
+                }, 
+                "mainImageUrl": {
+                    "type": "string", 
+                    "title": "Main Image URL", 
+                    "minLength": 1, 
+                    "maxLength": 2000, 
+                    "format": "uri"
+                }, 
+                "productSecondaryImageURL": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Additional Image URL", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 2000, 
+                        "format": "uri"
+                    }, 
+                    "minItems": 1
+                }, 
+                "title": {
+                    "type": "string", 
+                    "title": "Title", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "physicalMediaFormat": {
+                    "type": "string", 
+                    "title": "Physical Media Format", 
+                    "enum": [
+                        "USB stick", 
+                        "DVD", 
+                        "8-Track Tape", 
+                        "miniDV Tape", 
+                        "CD", 
+                        "VHS Tape", 
+                        "LP", 
+                        "Blu-Ray", 
+                        "Cassette Tape", 
+                        "printed media"
+                    ]
+                }, 
+                "mpaaRating": {
+                    "type": "string", 
+                    "title": "MPAA Rating", 
+                    "enum": [
+                        "G", 
+                        "NC-17", 
+                        "PG-13", 
+                        "R", 
+                        "Not Rated", 
+                        "PG"
+                    ]
+                }, 
+                "ratingReason": {
+                    "type": "string", 
+                    "title": "Rating Reason", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "movieGenre": {
+                    "type": "string", 
+                    "title": "Movie Genre", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "movieSubgenre": {
+                    "type": "string", 
+                    "title": "Movie Subgenre", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "seriesTitle": {
+                    "type": "string", 
+                    "title": "Series Title", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "numberInSeries": {
+                    "type": "integer", 
+                    "title": "Number in Series", 
+                    "minimum": 0, 
+                    "maximum": 1000000, 
+                    "exclusiveMaximum": false
+                }, 
+                "director": {
+                    "type": "string", 
+                    "title": "Director", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "actors": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Actors", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 4000
+                    }, 
+                    "minItems": 1
+                }, 
+                "screenwriter": {
+                    "type": "string", 
+                    "title": "Screenwriter", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "studioProductionCompany": {
+                    "type": "string", 
+                    "title": "Studio & Production Company", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "targetAudience": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Target Audience", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 4000
+                    }, 
+                    "minItems": 1
+                }, 
+                "awardsWon": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Awards Won", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 4000
+                    }, 
+                    "minItems": 1
+                }, 
+                "character": {
+                    "type": "string", 
+                    "title": "Character", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "variantGroupId": {
+                    "type": "string", 
+                    "title": "Variant Group ID", 
+                    "minLength": 1, 
+                    "maxLength": 300
+                }, 
+                "variantAttributeNames": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Variant Attribute Names", 
+                    "items": {
+                        "type": "string", 
+                        "enum": [
+                            "count", 
+                            "countPerPack", 
+                            "bookFormat", 
+                            "physicalMediaFormat", 
+                            "sportsTeam", 
+                            "edition"
+                        ]
+                    }, 
+                    "minItems": 1
+                }, 
+                "isPrimaryVariant": {
+                    "type": "string", 
+                    "title": "Is Primary Variant", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "swatchImages": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Swatch Images", 
+                    "items": {
+                        "$schema": "http://json-schema.org/draft-04/schema#", 
+                        "type": "object", 
+                        "properties": {
+                            "swatchVariantAttribute": {
+                                "type": "string", 
+                                "title": "Swatch Variant Attribute", 
+                                "minLength": 1
+                            }, 
+                            "swatchImageUrl": {
+                                "type": "string", 
+                                "title": "Swatch Image URL", 
+                                "minLength": 1, 
+                                "maxLength": 2000, 
+                                "format": "uri"
+                            }
+                        }, 
+                        "additionalProperties": false
+                    }, 
+                    "minItems": 1
+                }, 
+                "duration": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Duration", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "min"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "theatricalReleaseDate": {
+                    "type": "string", 
+                    "title": "Theatrical Release Date", 
+                    "format": "date-time"
+                }, 
+                "isDubbed": {
+                    "type": "string", 
+                    "title": "Is Dubbed", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "dubbedLanguages": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Dubbed Languages", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 4000
+                    }, 
+                    "minItems": 1
+                }, 
+                "hasSubtitles": {
+                    "type": "string", 
+                    "title": "Has Subtitles", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "subtitledLanguages": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Subtitled Languages", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 4000
+                    }, 
+                    "minItems": 1
+                }, 
+                "audioTrackCodec": {
+                    "type": "string", 
+                    "title": "Audio Track Codec", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "aspectRatio": {
+                    "type": "string", 
+                    "title": "Aspect Ratio", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "isAdultProduct": {
+                    "type": "string", 
+                    "title": "Is Adult Product", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "originalLanguages": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Original Languages", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 4000
+                    }, 
+                    "minItems": 1
+                }, 
+                "edition": {
+                    "type": "string", 
+                    "title": "Edition", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "numberOfDiscs": {
+                    "type": "integer", 
+                    "title": "Number of Discs", 
+                    "minimum": 0, 
+                    "maximum": 1000000, 
+                    "exclusiveMaximum": false
+                }, 
+                "sportsLeague": {
+                    "type": "string", 
+                    "title": "Sports League", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "sportsTeam": {
+                    "type": "string", 
+                    "title": "Sports Team", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "athlete": {
+                    "type": "string", 
+                    "title": "Athlete", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "autographedBy": {
+                    "type": "string", 
+                    "title": "Autographed by", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "features": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Additional Features", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 4000
+                    }, 
+                    "minItems": 1
+                }, 
+                "keywords": {
+                    "type": "string", 
+                    "title": "Keywords", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }
+            }, 
+            "required": [
+                "mpaaRating", 
+                "shortDescription", 
+                "mainImageUrl"
+            ], 
+            "additionalProperties": false
+        }, 
+        "Music": {
+            "$schema": "http://json-schema.org/draft-04/schema#", 
+            "type": "object", 
+            "properties": {
+                "shortDescription": {
+                    "type": "string", 
+                    "title": "Description", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "keyFeatures": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Key Features", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 500
+                    }, 
+                    "minItems": 1
+                }, 
+                "synopsis": {
+                    "type": "string", 
+                    "title": "Synopsis", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "multipackQuantity": {
+                    "type": "integer", 
+                    "title": "Multipack Quantity", 
+                    "minimum": 0, 
+                    "maximum": 10000, 
+                    "exclusiveMaximum": false
+                }, 
+                "countPerPack": {
+                    "type": "integer", 
+                    "title": "Count Per Pack", 
+                    "minimum": 0, 
+                    "maximum": 100000, 
+                    "exclusiveMaximum": false
+                }, 
+                "count": {
+                    "type": "string", 
+                    "title": "Total Count", 
+                    "minLength": 1, 
+                    "maxLength": 7
+                }, 
+                "mainImageUrl": {
+                    "type": "string", 
+                    "title": "Main Image URL", 
+                    "minLength": 1, 
+                    "maxLength": 2000, 
+                    "format": "uri"
+                }, 
+                "productSecondaryImageURL": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Additional Image URL", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 2000, 
+                        "format": "uri"
+                    }, 
+                    "minItems": 1
+                }, 
+                "title": {
+                    "type": "string", 
+                    "title": "Title", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "physicalMediaFormat": {
+                    "type": "string", 
+                    "title": "Physical Media Format", 
+                    "enum": [
+                        "USB stick", 
+                        "DVD", 
+                        "8-Track Tape", 
+                        "miniDV Tape", 
+                        "CD", 
+                        "VHS Tape", 
+                        "LP", 
+                        "Blu-Ray", 
+                        "Cassette Tape", 
+                        "printed media"
+                    ]
+                }, 
+                "performer": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Performer", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 4000
+                    }, 
+                    "minItems": 1
+                }, 
+                "songwriter": {
+                    "type": "string", 
+                    "title": "Songwriter", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "musicGenre": {
+                    "type": "string", 
+                    "title": "Music Genre", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "musicSubGenre": {
+                    "type": "string", 
+                    "title": "Music Subgenre", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "targetAudience": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Target Audience", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 4000
+                    }, 
+                    "minItems": 1
+                }, 
+                "awardsWon": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Awards Won", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 4000
+                    }, 
+                    "minItems": 1
+                }, 
+                "character": {
+                    "type": "string", 
+                    "title": "Character", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "variantGroupId": {
+                    "type": "string", 
+                    "title": "Variant Group ID", 
+                    "minLength": 1, 
+                    "maxLength": 300
+                }, 
+                "variantAttributeNames": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Variant Attribute Names", 
+                    "items": {
+                        "type": "string", 
+                        "enum": [
+                            "count", 
+                            "countPerPack", 
+                            "bookFormat", 
+                            "physicalMediaFormat", 
+                            "sportsTeam", 
+                            "edition"
+                        ]
+                    }, 
+                    "minItems": 1
+                }, 
+                "isPrimaryVariant": {
+                    "type": "string", 
+                    "title": "Is Primary Variant", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "swatchImages": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Swatch Images", 
+                    "items": {
+                        "$schema": "http://json-schema.org/draft-04/schema#", 
+                        "type": "object", 
+                        "properties": {
+                            "swatchVariantAttribute": {
+                                "type": "string", 
+                                "title": "Swatch Variant Attribute", 
+                                "minLength": 1
+                            }, 
+                            "swatchImageUrl": {
+                                "type": "string", 
+                                "title": "Swatch Image URL", 
+                                "minLength": 1, 
+                                "maxLength": 2000, 
+                                "format": "uri"
+                            }
+                        }, 
+                        "additionalProperties": false
+                    }, 
+                    "minItems": 1
+                }, 
+                "digitalAudioFileFormat": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Digital Audio File Format", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 400
+                    }, 
+                    "minItems": 1
+                }, 
+                "recordLabel": {
+                    "type": "string", 
+                    "title": "Record Label", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "releaseDate": {
+                    "type": "string", 
+                    "title": "Release Date", 
+                    "format": "date-time"
+                }, 
+                "musicReleaseType": {
+                    "type": "string", 
+                    "title": "Music Release", 
+                    "minLength": 1, 
+                    "maxLength": 400
+                }, 
+                "trackListings": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Track Listings", 
+                    "items": {
+                        "$schema": "http://json-schema.org/draft-04/schema#", 
+                        "type": "object", 
+                        "properties": {
+                            "trackNumber": {
+                                "type": "integer", 
+                                "title": "Track Number", 
+                                "minimum": 0, 
+                                "maximum": 1000000, 
+                                "exclusiveMaximum": false
+                            }, 
+                            "trackName": {
+                                "type": "string", 
+                                "title": "Track Name", 
+                                "minLength": 1, 
+                                "maxLength": 4000
+                            }, 
+                            "trackDuration": {
+                                "type": "string", 
+                                "title": "Track Duration", 
+                                "minLength": 1, 
+                                "maxLength": 400
+                            }
+                        }, 
+                        "additionalProperties": false
+                    }, 
+                    "minItems": 1
+                }, 
+                "numberOfTracks": {
+                    "type": "integer", 
+                    "title": "Number of Tracks", 
+                    "minimum": 0, 
+                    "maximum": 1000000, 
+                    "exclusiveMaximum": false
+                }, 
+                "musicProducer": {
+                    "type": "string", 
+                    "title": "Music Producer", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "seriesTitle": {
+                    "type": "string", 
+                    "title": "Series Title", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "numberInSeries": {
+                    "type": "integer", 
+                    "title": "Number in Series", 
+                    "minimum": 0, 
+                    "maximum": 1000000, 
+                    "exclusiveMaximum": false
+                }, 
+                "isEdited": {
+                    "type": "string", 
+                    "title": "Is Edited", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "isEnhanced": {
+                    "type": "string", 
+                    "title": "Is Enhanced", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "edition": {
+                    "type": "string", 
+                    "title": "Edition", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "hasParentalAdvisoryLabel": {
+                    "type": "string", 
+                    "title": "Has Parental Advisory Label", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "ratingReason": {
+                    "type": "string", 
+                    "title": "Rating Reason", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "parentalAdvisoryLabelURL": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Parental Advisory Label URL", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 4000
+                    }, 
+                    "minItems": 1
+                }, 
+                "numberOfDiscs": {
+                    "type": "integer", 
+                    "title": "Number of Discs", 
+                    "minimum": 0, 
+                    "maximum": 1000000, 
+                    "exclusiveMaximum": false
+                }, 
+                "isAdultProduct": {
+                    "type": "string", 
+                    "title": "Is Adult Product", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "originalLanguages": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Original Languages", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 4000
+                    }, 
+                    "minItems": 1
+                }, 
+                "autographedBy": {
+                    "type": "string", 
+                    "title": "Autographed by", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "features": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Additional Features", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 4000
+                    }, 
+                    "minItems": 1
+                }, 
+                "keywords": {
+                    "type": "string", 
+                    "title": "Keywords", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }
+            }, 
+            "required": [
+                "shortDescription", 
+                "mainImageUrl"
+            ], 
+            "additionalProperties": false
+        }, 
+        "TVShows": {
+            "$schema": "http://json-schema.org/draft-04/schema#", 
+            "type": "object", 
+            "properties": {
+                "shortDescription": {
+                    "type": "string", 
+                    "title": "Description", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "keyFeatures": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Key Features", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 500
+                    }, 
+                    "minItems": 1
+                }, 
+                "synopsis": {
+                    "type": "string", 
+                    "title": "Synopsis", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "countPerPack": {
+                    "type": "integer", 
+                    "title": "Count Per Pack", 
+                    "minimum": 0, 
+                    "maximum": 100000, 
+                    "exclusiveMaximum": false
+                }, 
+                "multipackQuantity": {
+                    "type": "integer", 
+                    "title": "Multipack Quantity", 
+                    "minimum": 0, 
+                    "maximum": 10000, 
+                    "exclusiveMaximum": false
+                }, 
+                "count": {
+                    "type": "string", 
+                    "title": "Total Count", 
+                    "minLength": 1, 
+                    "maxLength": 7
+                }, 
+                "mainImageUrl": {
+                    "type": "string", 
+                    "title": "Main Image URL", 
+                    "minLength": 1, 
+                    "maxLength": 2000, 
+                    "format": "uri"
+                }, 
+                "productSecondaryImageURL": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Additional Image URL", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 2000, 
+                        "format": "uri"
+                    }, 
+                    "minItems": 1
+                }, 
+                "title": {
+                    "type": "string", 
+                    "title": "Title", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "physicalMediaFormat": {
+                    "type": "string", 
+                    "title": "Physical Media Format", 
+                    "enum": [
+                        "USB stick", 
+                        "DVD", 
+                        "8-Track Tape", 
+                        "miniDV Tape", 
+                        "CD", 
+                        "VHS Tape", 
+                        "LP", 
+                        "Blu-Ray", 
+                        "Cassette Tape", 
+                        "printed media"
+                    ]
+                }, 
+                "tvRating": {
+                    "type": "string", 
+                    "title": "TV Rating", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "ratingReason": {
+                    "type": "string", 
+                    "title": "Rating Reason", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "tvShowGenre": {
+                    "type": "string", 
+                    "title": "TV Show Genre", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "tvShowSubgenre": {
+                    "type": "string", 
+                    "title": "TV Show Subgenre", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "tvNetwork": {
+                    "type": "string", 
+                    "title": "TV Network", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "seriesTitle": {
+                    "type": "string", 
+                    "title": "Series Title", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "numberInSeries": {
+                    "type": "integer", 
+                    "title": "Number in Series", 
+                    "minimum": 0, 
+                    "maximum": 1000000, 
+                    "exclusiveMaximum": false
+                }, 
+                "tvShowSeason": {
+                    "type": "string", 
+                    "title": "TV Show Season", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "character": {
+                    "type": "string", 
+                    "title": "Character", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "numberOfEpisodes": {
+                    "type": "integer", 
+                    "title": "Number of Episodes", 
+                    "minimum": 0, 
+                    "maximum": 1000000, 
+                    "exclusiveMaximum": false
+                }, 
+                "episode": {
+                    "type": "integer", 
+                    "title": "Episode", 
+                    "minimum": 0, 
+                    "maximum": 1000000, 
+                    "exclusiveMaximum": false
+                }, 
+                "director": {
+                    "type": "string", 
+                    "title": "Director", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "actors": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Actors", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 4000
+                    }, 
+                    "minItems": 1
+                }, 
+                "screenwriter": {
+                    "type": "string", 
+                    "title": "Screenwriter", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "studioProductionCompany": {
+                    "type": "string", 
+                    "title": "Studio & Production Company", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "targetAudience": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Target Audience", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 4000
+                    }, 
+                    "minItems": 1
+                }, 
+                "awardsWon": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Awards Won", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 4000
+                    }, 
+                    "minItems": 1
+                }, 
+                "variantGroupId": {
+                    "type": "string", 
+                    "title": "Variant Group ID", 
+                    "minLength": 1, 
+                    "maxLength": 300
+                }, 
+                "variantAttributeNames": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Variant Attribute Names", 
+                    "items": {
+                        "type": "string", 
+                        "enum": [
+                            "count", 
+                            "countPerPack", 
+                            "bookFormat", 
+                            "physicalMediaFormat", 
+                            "sportsTeam", 
+                            "edition"
+                        ]
+                    }, 
+                    "minItems": 1
+                }, 
+                "isPrimaryVariant": {
+                    "type": "string", 
+                    "title": "Is Primary Variant", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "swatchImages": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Swatch Images", 
+                    "items": {
+                        "$schema": "http://json-schema.org/draft-04/schema#", 
+                        "type": "object", 
+                        "properties": {
+                            "swatchVariantAttribute": {
+                                "type": "string", 
+                                "title": "Swatch Variant Attribute", 
+                                "minLength": 1
+                            }, 
+                            "swatchImageUrl": {
+                                "type": "string", 
+                                "title": "Swatch Image URL", 
+                                "minLength": 1, 
+                                "maxLength": 2000, 
+                                "format": "uri"
+                            }
+                        }, 
+                        "additionalProperties": false
+                    }, 
+                    "minItems": 1
+                }, 
+                "isAdultProduct": {
+                    "type": "string", 
+                    "title": "Is Adult Product", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "numberOfDiscs": {
+                    "type": "integer", 
+                    "title": "Number of Discs", 
+                    "minimum": 0, 
+                    "maximum": 1000000, 
+                    "exclusiveMaximum": false
+                }, 
+                "originalLanguages": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Original Languages", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 4000
+                    }, 
+                    "minItems": 1
+                }, 
+                "edition": {
+                    "type": "string", 
+                    "title": "Edition", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "releaseDate": {
+                    "type": "string", 
+                    "title": "Release Date", 
+                    "format": "date-time"
+                }, 
+                "duration": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Duration", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "min"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "hasSubtitles": {
+                    "type": "string", 
+                    "title": "Has Subtitles", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "subtitledLanguages": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Subtitled Languages", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 4000
+                    }, 
+                    "minItems": 1
+                }, 
+                "isDubbed": {
+                    "type": "string", 
+                    "title": "Is Dubbed", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "dubbedLanguages": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Dubbed Languages", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 4000
+                    }, 
+                    "minItems": 1
+                }, 
+                "audioTrackCodec": {
+                    "type": "string", 
+                    "title": "Audio Track Codec", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "aspectRatio": {
+                    "type": "string", 
+                    "title": "Aspect Ratio", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "sportsLeague": {
+                    "type": "string", 
+                    "title": "Sports League", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "sportsTeam": {
+                    "type": "string", 
+                    "title": "Sports Team", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "athlete": {
+                    "type": "string", 
+                    "title": "Athlete", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "features": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Additional Features", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 4000
+                    }, 
+                    "minItems": 1
+                }, 
+                "keywords": {
+                    "type": "string", 
+                    "title": "Keywords", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "dvdReleaseDate": {
+                    "type": "string", 
+                    "title": "DVD Release Date", 
+                    "format": "date-time"
+                }
+            }, 
+            "required": [
+                "shortDescription", 
+                "mainImageUrl", 
+                "tvRating"
+            ], 
+            "additionalProperties": false
+        }, 
+        "BooksAndMagazines": {
+            "$schema": "http://json-schema.org/draft-04/schema#", 
+            "type": "object", 
+            "properties": {
+                "shortDescription": {
+                    "type": "string", 
+                    "title": "Description", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "keyFeatures": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Key Features", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 500
+                    }, 
+                    "minItems": 1
+                }, 
+                "synopsis": {
+                    "type": "string", 
+                    "title": "Synopsis", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "multipackQuantity": {
+                    "type": "integer", 
+                    "title": "Multipack Quantity", 
+                    "minimum": 0, 
+                    "maximum": 10000, 
+                    "exclusiveMaximum": false
+                }, 
+                "countPerPack": {
+                    "type": "integer", 
+                    "title": "Count Per Pack", 
+                    "minimum": 0, 
+                    "maximum": 100000, 
+                    "exclusiveMaximum": false
+                }, 
+                "count": {
+                    "type": "string", 
+                    "title": "Total Count", 
+                    "minLength": 1, 
+                    "maxLength": 7
+                }, 
+                "mainImageUrl": {
+                    "type": "string", 
+                    "title": "Main Image URL", 
+                    "minLength": 1, 
+                    "maxLength": 2000, 
+                    "format": "uri"
+                }, 
+                "productSecondaryImageURL": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Additional Image URL", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 2000, 
+                        "format": "uri"
+                    }, 
+                    "minItems": 1
+                }, 
+                "title": {
+                    "type": "string", 
+                    "title": "Title", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "bookFormat": {
+                    "type": "string", 
+                    "title": "Book Format", 
+                    "enum": [
+                        "Paperback", 
+                        "eBook", 
+                        "Audiobook", 
+                        "Board Book", 
+                        "Library Binding", 
+                        "Hardcover", 
+                        "Other"
+                    ]
+                }, 
+                "author": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Author", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 4000
+                    }, 
+                    "minItems": 1
+                }, 
+                "publisher": {
+                    "type": "string", 
+                    "title": "Publisher", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "publicationDate": {
+                    "type": "string", 
+                    "title": "Publication Date", 
+                    "format": "date-time"
+                }, 
+                "originalPublicationDate": {
+                    "type": "string", 
+                    "title": "Original Publication Date", 
+                    "format": "date-time"
+                }, 
+                "targetAudience": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Target Audience", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 4000
+                    }, 
+                    "minItems": 1
+                }, 
+                "awardsWon": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Awards Won", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 4000
+                    }, 
+                    "minItems": 1
+                }, 
+                "character": {
+                    "type": "string", 
+                    "title": "Character", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "fictionNonfiction": {
+                    "type": "string", 
+                    "title": "Fiction/Nonfiction", 
+                    "enum": [
+                        "Non-Fiction", 
+                        "Fiction"
+                    ]
+                }, 
+                "genre": {
+                    "type": "string", 
+                    "title": "Genre", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "subgenre": {
+                    "type": "string", 
+                    "title": "Subgenre", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "subject": {
+                    "type": "string", 
+                    "title": "Subject", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "seriesTitle": {
+                    "type": "string", 
+                    "title": "Series Title", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "numberInSeries": {
+                    "type": "integer", 
+                    "title": "Number in Series", 
+                    "minimum": 0, 
+                    "maximum": 1000000, 
+                    "exclusiveMaximum": false
+                }, 
+                "issue": {
+                    "type": "string", 
+                    "title": "Issue", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "assembledProductLength": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Assembled Product Length", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "ft", 
+                                "in"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "assembledProductWidth": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Assembled Product Width", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "ft", 
+                                "in"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "assembledProductHeight": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Assembled Product Height", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "ft", 
+                                "in"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "assembledProductWeight": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Assembled Product Weight", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "kg", 
+                                "lb", 
+                                "oz", 
+                                "g"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "variantGroupId": {
+                    "type": "string", 
+                    "title": "Variant Group ID", 
+                    "minLength": 1, 
+                    "maxLength": 300
+                }, 
+                "variantAttributeNames": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Variant Attribute Names", 
+                    "items": {
+                        "type": "string", 
+                        "enum": [
+                            "count", 
+                            "countPerPack", 
+                            "bookFormat", 
+                            "physicalMediaFormat", 
+                            "sportsTeam", 
+                            "edition"
+                        ]
+                    }, 
+                    "minItems": 1
+                }, 
+                "isPrimaryVariant": {
+                    "type": "string", 
+                    "title": "Is Primary Variant", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "swatchImages": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Swatch Images", 
+                    "items": {
+                        "$schema": "http://json-schema.org/draft-04/schema#", 
+                        "type": "object", 
+                        "properties": {
+                            "swatchVariantAttribute": {
+                                "type": "string", 
+                                "title": "Swatch Variant Attribute", 
+                                "minLength": 1
+                            }, 
+                            "swatchImageUrl": {
+                                "type": "string", 
+                                "title": "Swatch Image URL", 
+                                "minLength": 1, 
+                                "maxLength": 2000, 
+                                "format": "uri"
+                            }
+                        }, 
+                        "additionalProperties": false
+                    }, 
+                    "minItems": 1
+                }, 
+                "smallPartsWarnings": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Small Parts Warning Code", 
+                    "items": {
+                        "type": "integer", 
+                        "enum": [
+                            0, 
+                            1, 
+                            2, 
+                            3, 
+                            4, 
+                            5, 
+                            6
+                        ]
+                    }, 
+                    "minItems": 1
+                }, 
+                "isAdultProduct": {
+                    "type": "string", 
+                    "title": "Is Adult Product", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "edition": {
+                    "type": "string", 
+                    "title": "Edition", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "numberOfDiscs": {
+                    "type": "integer", 
+                    "title": "Number of Discs", 
+                    "minimum": 0, 
+                    "maximum": 1000000, 
+                    "exclusiveMaximum": false
+                }, 
+                "originalLanguages": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Original Languages", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 4000
+                    }, 
+                    "minItems": 1
+                }, 
+                "numberOfPages": {
+                    "type": "integer", 
+                    "title": "Number of Pages", 
+                    "minimum": 0, 
+                    "maximum": 1000000, 
+                    "exclusiveMaximum": false
+                }, 
+                "isUnabridged": {
+                    "type": "string", 
+                    "title": "Is Unabridged", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "isLargePrint": {
+                    "type": "string", 
+                    "title": "Is Large Print", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "readingLevel": {
+                    "type": "string", 
+                    "title": "Reading Level", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "editor": {
+                    "type": "string", 
+                    "title": "Editor", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "translator": {
+                    "type": "string", 
+                    "title": "Translator", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "translatedFrom": {
+                    "type": "string", 
+                    "title": "Translated From", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "illustrator": {
+                    "type": "string", 
+                    "title": "Illustrator", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "bisacSubjectCodes": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "BISAC Subject Code", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 4000
+                    }, 
+                    "minItems": 1
+                }, 
+                "sportsLeague": {
+                    "type": "string", 
+                    "title": "Sports League", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "sportsTeam": {
+                    "type": "string", 
+                    "title": "Sports Team", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "athlete": {
+                    "type": "string", 
+                    "title": "Athlete", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "autographedBy": {
+                    "type": "string", 
+                    "title": "Autographed by", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "features": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Additional Features", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 4000
+                    }, 
+                    "minItems": 1
+                }, 
+                "keywords": {
+                    "type": "string", 
+                    "title": "Keywords", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }
+            }, 
+            "required": [
+                "shortDescription", 
+                "mainImageUrl"
+            ], 
+            "additionalProperties": false
+        }
+    }, 
+    "oneOf": [
+        {
+            "required": [
+                "Movies"
+            ]
+        }, 
+        {
+            "required": [
+                "Music"
+            ]
+        }, 
+        {
+            "required": [
+                "TVShows"
+            ]
+        }, 
+        {
+            "required": [
+                "BooksAndMagazines"
+            ]
+        }
+    ], 
+    "additionalProperties": false
+}

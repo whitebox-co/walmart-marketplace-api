@@ -1,0 +1,309 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#", 
+    "type": "object", 
+    "title": "MPItemFeed", 
+    "properties": {
+        "MPItemFeedHeader": {
+            "$schema": "http://json-schema.org/draft-04/schema#", 
+            "type": "object", 
+            "properties": {
+                "requestId": {
+                    "type": "string", 
+                    "title": "Request ID", 
+                    "minLength": 1, 
+                    "maxLength": 64
+                }, 
+                "requestBatchId": {
+                    "type": "string", 
+                    "title": "Request Batch ID", 
+                    "minLength": 1, 
+                    "maxLength": 64
+                }, 
+                "feedDate": {
+                    "type": "string", 
+                    "title": "Feed Date", 
+                    "format": "date-time"
+                }, 
+                "processMode": {
+                    "type": "string", 
+                    "title": "Process Mode", 
+                    "enum": [
+                        "MERGE", 
+                        "REPLACE"
+                    ]
+                }, 
+                "subset": {
+                    "type": "string", 
+                    "title": "Subset", 
+                    "minLength": 1, 
+                    "maxLength": 400
+                }, 
+                "Mart": {
+                    "type": "string", 
+                    "title": "Mart", 
+                    "enum": [
+                        "WALMART_CA", 
+                        "WALMART_US", 
+                        "ASDA_GM"
+                    ]
+                }, 
+                "sellingChannel": {
+                    "type": "string", 
+                    "title": "Selling Channel", 
+                    "enum": [
+                        "mpsetupbymatch"
+                    ]
+                }, 
+                "version": {
+                    "type": "string", 
+                    "title": "Spec Version", 
+                    "enum": [
+                        "1.0"
+                    ]
+                }, 
+                "locale": {
+                    "type": "string", 
+                    "title": "Locale", 
+                    "enum": [
+                        "en"
+                    ]
+                }
+            }, 
+            "required": [
+                "locale", 
+                "sellingChannel", 
+                "version"
+            ], 
+            "additionalProperties": false
+        }, 
+        "MPItem": {
+            "$schema": "http://json-schema.org/draft-04/schema#", 
+            "type": "array", 
+            "title": "MPItem", 
+            "items": {
+                "$schema": "http://json-schema.org/draft-04/schema#", 
+                "type": "object", 
+                "properties": {
+                    "Item": {
+                        "$schema": "http://json-schema.org/draft-04/schema#", 
+                        "type": "object", 
+                        "properties": {
+                            "sku": {
+                                "type": "string", 
+                                "title": "SKU", 
+                                "minLength": 1, 
+                                "maxLength": 50
+                            }, 
+                            "productIdentifiers": {
+                                "$schema": "http://json-schema.org/draft-04/schema#", 
+                                "type": "object", 
+                                "properties": {
+                                    "productIdType": {
+                                        "type": "string", 
+                                        "title": "Product ID Type", 
+                                        "enum": [
+                                            "ISBN", 
+                                            "GTIN", 
+                                            "UPC", 
+                                            "EAN"
+                                        ]
+                                    }, 
+                                    "productId": {
+                                        "type": "string", 
+                                        "title": "Product ID", 
+                                        "minLength": 1, 
+                                        "maxLength": 14
+                                    }
+                                }, 
+                                "required": [
+                                    "productIdType", 
+                                    "productId"
+                                ], 
+                                "additionalProperties": false
+                            }, 
+                            "price": {
+                                "type": "number", 
+                                "title": "Selling Price", 
+                                "minimum": 0, 
+                                "maximum": 10000000000000000, 
+                                "exclusiveMaximum": false, 
+                                "multipleOf": 0.01
+                            }, 
+                            "ShippingWeight": {
+                                "type": "number", 
+                                "title": "Shipping Weight (lbs)", 
+                                "minimum": 0, 
+                                "maximum": 10000000000000000, 
+                                "exclusiveMaximum": false, 
+                                "multipleOf": 0.001
+                            }, 
+                            "productCategory": {
+                                "type": "string", 
+                                "title": "Product Category", 
+                                "enum": [
+                                    "Safety & Emergency", 
+                                    "TVs & Video Displays", 
+                                    "Sound & Recording", 
+                                    "Animal Accessories", 
+                                    "Carriers & Accessories", 
+                                    "Animal Other", 
+                                    "Vehicle Other", 
+                                    "Art & Craft", 
+                                    "Storage", 
+                                    "Costumes", 
+                                    "Electronics Cables", 
+                                    "Electrical", 
+                                    "Watches", 
+                                    "Cycling", 
+                                    "Cases & Bags", 
+                                    "Video Projectors", 
+                                    "Baby Clothing", 
+                                    "Computer Components", 
+                                    "Jewelry", 
+                                    "Tires", 
+                                    "Medicine & Supplements", 
+                                    "Decorations & Favors", 
+                                    "Funeral", 
+                                    "Photo Accessories", 
+                                    "Baby Furniture", 
+                                    "Baby Transport", 
+                                    "Watercraft", 
+                                    "Optical", 
+                                    "Electronics Accessories", 
+                                    "Health & Beauty Electronics", 
+                                    "Tools", 
+                                    "Large Appliances", 
+                                    "Bedding", 
+                                    "Sports & Recreation Other", 
+                                    "Furniture", 
+                                    "TV Shows", 
+                                    "Gift Supply & Awards", 
+                                    "Land Vehicles", 
+                                    "Wheels & Wheel Components", 
+                                    "Food & Beverage", 
+                                    "Home Decor, Kitchen, & Other", 
+                                    "Baby Diapering, Care, & Other", 
+                                    "Garden & Patio", 
+                                    "Grills & Outdoor Cooking", 
+                                    "Computers", 
+                                    "Baby Toys", 
+                                    "Instrument Accessories", 
+                                    "Household Cleaning Products & Supplies", 
+                                    "Software", 
+                                    "Musical Instruments", 
+                                    "Footwear", 
+                                    "Building Supply", 
+                                    "Tools & Hardware Other", 
+                                    "Ceremonial Clothing & Accessories", 
+                                    "Plumbing & HVAC", 
+                                    "Optics", 
+                                    "Beauty, Personal Care, & Hygiene", 
+                                    "Music Cases & Bags", 
+                                    "Toys", 
+                                    "Office", 
+                                    "Fuels & Lubricants", 
+                                    "Movies", 
+                                    "Baby Food", 
+                                    "Cameras & Lenses", 
+                                    "Books & Magazines", 
+                                    "Vehicle Parts & Accessories", 
+                                    "Video Games", 
+                                    "Hardware", 
+                                    "Electronics Other", 
+                                    "Other", 
+                                    "Medical Aids & Equipment", 
+                                    "Animal Health & Grooming", 
+                                    "Animal Food", 
+                                    "Music", 
+                                    "Printers, Scanners, & Imaging", 
+                                    "Clothing"
+                                ]
+                            }, 
+                            "asin": {
+                                "type": "string", 
+                                "title": "ASIN", 
+                                "minLength": 1, 
+                                "maxLength": 11
+                            }, 
+                            "additionalProductAttributes": {
+                                "$schema": "http://json-schema.org/draft-04/schema#", 
+                                "type": "array", 
+                                "title": "Additional Product Attributes", 
+                                "items": {
+                                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                                    "type": "object", 
+                                    "properties": {
+                                        "productAttributeName": {
+                                            "type": "string", 
+                                            "title": "Additional Product Attribute Name", 
+                                            "minLength": 1, 
+                                            "maxLength": 100
+                                        }, 
+                                        "productAttributeValue": {
+                                            "type": "string", 
+                                            "title": "Additional Product Attribute Value", 
+                                            "minLength": 1, 
+                                            "maxLength": 4000
+                                        }
+                                    }, 
+                                    "required": [
+                                        "productAttributeValue", 
+                                        "productAttributeName"
+                                    ], 
+                                    "additionalProperties": false
+                                }, 
+                                "minItems": 1
+                            }, 
+                            "additionalOfferAttributes": {
+                                "$schema": "http://json-schema.org/draft-04/schema#", 
+                                "type": "array", 
+                                "title": "Additional Offer Attributes", 
+                                "items": {
+                                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                                    "type": "object", 
+                                    "properties": {
+                                        "additionalOfferAttributeName": {
+                                            "type": "string", 
+                                            "title": "Additional Offer Attribute Name", 
+                                            "minLength": 1, 
+                                            "maxLength": 100
+                                        }, 
+                                        "additionalOfferAttributeValue": {
+                                            "type": "string", 
+                                            "title": "Additional Offer Attribute Value", 
+                                            "minLength": 1, 
+                                            "maxLength": 100
+                                        }
+                                    }, 
+                                    "required": [
+                                        "additionalOfferAttributeName", 
+                                        "additionalOfferAttributeValue"
+                                    ], 
+                                    "additionalProperties": false
+                                }, 
+                                "minItems": 1
+                            }
+                        }, 
+                        "required": [
+                            "sku", 
+                            "ShippingWeight", 
+                            "price", 
+                            "productIdentifiers"
+                        ], 
+                        "additionalProperties": false
+                    }
+                }, 
+                "required": [
+                    "Item"
+                ], 
+                "additionalProperties": false
+            }, 
+            "minItems": 1
+        }
+    }, 
+    "required": [
+        "MPItem", 
+        "MPItemFeedHeader"
+    ], 
+    "additionalProperties": false
+}

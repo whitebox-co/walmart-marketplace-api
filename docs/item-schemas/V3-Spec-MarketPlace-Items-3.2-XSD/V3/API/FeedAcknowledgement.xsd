@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<!--
+  Schema for data exchanged between Walmart and its partners.
+  Copyright 2015 Walmart Corporation. All rights reserved.
+-->
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	  xmlns="http://walmart.com/" 
+	  targetNamespace="http://walmart.com/"
+	  elementFormDefault="qualified" 
+	  version="2.0">
+
+	<xsd:include schemaLocation="FeedCommons.xsd" />
+
+	<xsd:element name="FeedAcknowledgement" type="FeedAcknowledgement" />
+
+	<xsd:complexType name="FeedAcknowledgement">
+		<xsd:complexContent>
+			<xsd:extension base="gatewayBaseEntity">
+				<xsd:sequence>
+					<xsd:element name="feedId" type="xsd:string" minOccurs="0" />
+					<xsd:element name="additionalAttributes" type="NameValueAttributes" minOccurs="0">
+			        <xsd:annotation>
+			          <xsd:documentation>
+			            additional attributes bag, content will depend on partner type
+			          </xsd:documentation>
+			        </xsd:annotation>
+			      </xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+</xsd:schema>
+

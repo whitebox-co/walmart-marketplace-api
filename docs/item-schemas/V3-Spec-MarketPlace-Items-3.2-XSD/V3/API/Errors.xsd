@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<!--
+  Schema for data exchanged between Walmart and its partners.
+  Copyright 2015 Walmart Corporation. All rights reserved.
+-->
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+    xmlns="http://walmart.com/"
+	  targetNamespace="http://walmart.com/" 
+	  elementFormDefault="qualified"
+	  version="2.0">
+	  
+  <xsd:element name="errors">
+	  <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="error" type="error" minOccurs="1" maxOccurs="unbounded" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:complexType name="error">
+    <xsd:sequence>
+      <xsd:element name="code" type="xsd:string" minOccurs="1" />
+      <xsd:element name="field" type="xsd:string" minOccurs="0" />
+      <xsd:element name="description" type="xsd:string" minOccurs="0" />
+      <xsd:element name="info" type="xsd:string" minOccurs="1" />
+      <xsd:element name="severity" type="errorSeverity" minOccurs="1" />
+      <xsd:element name="category" type="errorCategory" minOccurs="1" />
+      <xsd:element name="causes" minOccurs="0">
+        <xsd:complexType>
+          <xsd:sequence>
+                <xsd:element name="cause" type="cause" minOccurs="0" maxOccurs="unbounded" />
+            	</xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      	<xsd:element name="errorIdentifiers" type="xsd:anyType"/>
+    	</xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="cause">
+    <xsd:sequence>
+      <xsd:element name="code" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="field" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="type" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="description" type="xsd:string" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:simpleType name="errorSeverity">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="INFO"/>
+      <xsd:enumeration value="WARN"/>
+      <xsd:enumeration value="ERROR"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="errorCategory">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="APPLICATION"/>
+      <xsd:enumeration value="SYSTEM"/>
+      <xsd:enumeration value="REQUEST"/>
+      <xsd:enumeration value="DATA"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  
+</xsd:schema>

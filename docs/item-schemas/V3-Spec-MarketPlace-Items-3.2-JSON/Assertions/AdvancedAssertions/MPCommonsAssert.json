@@ -1,0 +1,72 @@
+{
+  "assertions": {
+    "MPCommons": {
+      "variantGroupId": {
+        "variantAttributeNames": "OR DEPENDENCY",
+        "additionalVariantAttributeNames": "OR DEPENDENCY",
+        "message": "variantAttributeNames is required when variantGroupId is present and additionalVariantAttributeNames is missing"
+      },
+      "variantAttributeNames": {
+        "variantGroupId": "DEPENDENCY",
+        "message": "variantGroupId is required when variantAttributeNames is present"
+      },
+      "hasBatteries": [
+        {
+          "hasBatteries": "Yes OR Oui"
+        },
+        {
+          "batteryTechnologyType": "MUST",
+          "message": "batteryTechnologyType is required when hasBatteries = Yes"
+        }
+      ],
+      "isProp65WarningRequired": [
+        {
+          "isProp65WarningRequired": "Yes OR Oui"
+        },
+        {
+          "prop65WarningText": "MUST",
+          "message": "prop65WarningText is required when isProp65WarningRequired = Yes"
+        }
+      ],
+      "hasStateRestrictions": [
+        {
+          "hasStateRestrictions": "Yes OR Oui"
+        },
+        {
+          "stateRestrictions": "MUST",
+          "message": "stateRestrictions is required when hasStateRestrictions = Yes"
+        }
+      ],
+      "hasWarranty": [
+        {
+          "hasWarranty": "Yes OR Oui"
+        },
+        {
+          "warrantyText": "NOT |warrantyURL",
+          "message": "warrantyText is required when warrantyURL is missing and hasWarranty = Yes"
+        },
+        {
+          "warrantyURL": "NOT |warrantyText",
+          "message": "warrantyURL is required when warrantyText is missing and hasWarranty = Yes"
+        }
+      ]
+    },
+    "NumberOfPlayers": [
+      {
+        "ShippingOverrideAction": "REPLACE_ALL"
+      },
+      {
+        "shippingOverride ": "MUST",
+        "message": "shippingOverride is required when ShippingOverrideAction = REPLACE_ALL"
+      },
+      {
+        "ShippingOverrideAction": "DELETE_ALL"
+      },
+      {
+        "shippingOverride ": "NOT",
+        "message": "shippingOverride is not required when ShippingOverrideAction = DELETE_ALL"
+      }
+
+    ]
+  }
+}
