@@ -22,6 +22,7 @@ jobs:
               run: npm run check-for-changes
 
             - name: Set hasChanges Output
+              id: changes
               run: echo "::set-output name=hasChanges::$(cat hasChanges.txt)"
               shell: bash
 
@@ -49,7 +50,7 @@ jobs:
               uses: bahmutov/npm-install@v1
 
             - name: Download Schemas
-              id: generate
+              id: download
               run: npm run download-schemas
 
             - name: Generate API
