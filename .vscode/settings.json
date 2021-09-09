@@ -1,0 +1,42 @@
+{
+	"files.exclude": {},
+	"search.exclude": {
+		"lib/**": true,
+		"node_modules/**": true,
+		".eslintcache": true
+	},
+	"files.watcherExclude": {
+		"lib/**": true,
+		"node_modules/**": true,
+		".eslintcache": true
+	},
+	"typescript.suggest.autoImports": true,
+	"cSpell.words": [
+		"Discoverability",
+		"Metum",
+		"Partnerprofile",
+		"Shipnodes",
+		"Skus",
+		"Submap",
+		"Transactable",
+		"Whitebox",
+		"api's",
+		"camelcase",
+		"lagtime",
+		"npmignore",
+		"onrequestreports",
+		"openapi",
+		"openapitools",
+		"plshipnodes",
+		"redoc",
+		"respawn",
+		"sonarjs",
+		"swaggerui",
+		"typedoc",
+		"uuidv",
+		"MCONSUMERCHANNELTYPE",
+		"MQOSCORRELATIONID",
+		"MSVCNAME",
+		"prebuild"
+	]
+}
