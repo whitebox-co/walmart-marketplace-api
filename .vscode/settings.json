@@ -10,6 +10,30 @@
 		"node_modules/**": true,
 		".eslintcache": true
 	},
+	"css.validate": false,
+	"less.validate": false,
+	"scss.validate": false,
+	"markdown.preview.fontSize": 16,
+	"prettier.singleQuote": true,
+	"prettier.printWidth": 120,
+	"prettier.tabWidth": 4,
+	"prettier.arrowParens": "always",
+	"prettier.useTabs": true,
+	"javascript.preferences.quoteStyle": "single",
+	"typescript.preferences.quoteStyle": "single",
+	"editor.tabSize": 4,
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"editor.formatOnPaste": true,
+	"editor.formatOnSave": true,
+	"editor.copyWithSyntaxHighlighting": false,
+	"editor.quickSuggestions": true,
+	"editor.quickSuggestionsDelay": 100,
+	"editor.wordBasedSuggestions": true,
+	"editor.parameterHints.enabled": false,
+	"editor.tabCompletion": "on",
+	"editor.wordWrap": "wordWrapColumn",
+	"editor.wordWrapColumn": 120,
+	"editor.rulers": [120],
 	"typescript.suggest.autoImports": true,
 	"cSpell.words": [
 		"Discoverability",
@@ -37,6 +61,8 @@
 		"MCONSUMERCHANNELTYPE",
 		"MQOSCORRELATIONID",
 		"MSVCNAME",
-		"prebuild"
+		"prebuild",
+		"markdownlint",
+		"TLDR"
 	]
 }
