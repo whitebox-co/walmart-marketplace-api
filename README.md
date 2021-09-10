@@ -218,7 +218,7 @@ quicktype -l ts ./docs/item-schemas/MP_WFS_ITEM_SPEC_4.2.json -o ./src/models/v4
 quicktype -l ts ./docs/item-schemas/V3-Spec-Marketplace-Items-3.2-JSON/ -o ./src/models/v3/mpItems3.2.ts
 ```
 
-[MP_MAINTENANCE_SPEC_4.3.json](./docs/item-schemas/MP_MAINTENANENCE_SPEC_4.3.json) will fail to generate as
+[MP_MAINTENANCE_SPEC_4.3.json](./docs/item-schemas/MP_MAINTENANCE_SPEC_4.3.json) will fail to generate as
 is not a complete schema. It is missing at the end of the file. Complain to walmart!
 
 ## Token Authorization and Caching
@@ -244,7 +244,7 @@ These need to be moved over to github issues.
 -   Walmart provides [Item specs](https://developer.walmart.com/doc/us/us-mp/us-mp-items/#1232) in the form of JSON
     Schemas on their Developer Site. Unfortunately, these item schemas are in RTF format. We had to convert them to
     plaintext and back to JSON in order to get typescript generation working.
--   [MP_MAINTENANCE_SPEC_4.3.json](./docs/item-schemas/MP_MAINTENANENCE_SPEC_4.3.json) provided from walmart
+-   [MP_MAINTENANCE_SPEC_4.3.json](./docs/item-schemas/MP_MAINTENANCE_SPEC_4.3.json) provided from walmart
     is not a complete schema. Upon downloading this file you will notice that a bunch of json is missing at the end of
     the file. For this reason we were not able to generate types for this spec.
 
