@@ -1,0 +1,71 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#", 
+    "type": "object", 
+    "title": "MPItem", 
+    "properties": {
+        "feedDate": {
+            "type": "string", 
+            "title": "Feed Date", 
+            "format": "date-time"
+        }, 
+        "processMode": {
+            "type": "string", 
+            "title": "Process Mode", 
+            "enum": [
+                "CREATE", 
+                "REPLACE_ALL",
+                "PARTIAL_UPDATE"
+            ]
+        }, 
+        "sku": {
+            "type": "string", 
+            "title": "SKU", 
+            "minLength": 1, 
+            "maxLength": 50
+        }, 
+        "productIdentifiers": {
+            "$schema": "http://json-schema.org/draft-04/schema#", 
+            "type": "array", 
+            "title": "Product Identifiers", 
+            "items": {
+                "$schema": "http://json-schema.org/draft-04/schema#", 
+                "type": "object", 
+                "properties": {
+                    "productIdType": {
+                        "type": "string", 
+                        "title": "Product ID Type", 
+                        "enum": [
+                            "ISBN", 
+                            "GTIN", 
+                            "UPC", 
+                            "EAN"
+                        ]
+                    }, 
+                    "productId": {
+                        "type": "string", 
+                        "title": "Product ID", 
+                        "minLength": 1, 
+                        "maxLength": 14
+                    }
+                }, 
+                "required": [
+                    "productIdType", 
+                    "productId"
+                ], 
+                "additionalProperties": false
+            }, 
+            "minItems": 1
+        }, 
+        "MPProduct": {
+            "$ref": "MPProduct.json"
+        }, 
+        "MPOffer": {
+            "$ref": "MPOffer.json"
+        }
+    },
+    "required": [
+        "sku", 
+        "productIdentifiers"
+    ], 
+    "additionalProperties": false
+}

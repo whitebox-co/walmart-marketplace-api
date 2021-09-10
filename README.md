@@ -1,30 +1,49 @@
 # Walmart Marketplace API SDK
 
 ![GitHub](https://img.shields.io/github/license/whitebox-co/walmart-marketplace-api)
-![GitHub branch checks state](https://img.shields.io/github/checks-status/whitebox-co/walmart-marketplace-api/main?label=checks)
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/whitebox-co/walmart-marketplace-api/generate-apis?label=api-generation)
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/whitebox-co/walmart-marketplace-api/release)
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/whitebox-co/walmart-marketplace-api/test?label=tests)
+![GitHub](https://img.shields.io/github/package-json/v/whitebox-co/walmart-marketplace-api)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/whitebox-co/walmart-marketplace-api/Release?label=main)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/whitebox-co/walmart-marketplace-api/Develop?label=develop)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/whitebox-co/walmart-marketplace-api/Release?label=api-generator)
+![GitHub Workflow Status](https://img.shields.io/snyk/vulnerabilities/github/whitebox-co/walmart-marketplace-api?label=snyk%20vulnerbilities)
+![GitHub Workflow Status](https://img.shields.io/maintenance/yes/2021)
 
-A fully typed and auto generated TypeScript and Node.js API library for the Walmart Marketplace API.
+A fully typed and auto generated [TypeScript](https://www.typescriptlang.org) library for the
+[Walmart Marketplace Rest API](https://developer.walmart.com/doc/us/mp/us-mp-intro/).
+
+This library automatically generates typescript types, classes, interfaces, integration tests, and UI documentation
+based directly off of the Walmart Marketplace OpenAPI specification.
 
 ## Why?
 
-Because Walmart does not provide an easy way to download swagger/openapi docs to generate projects, nor do they provide
-a Typescript Library to access their endpoints.
+TLDR: It did not exist and we really needed it!
+
+-   [Walmart](https://github.com/walmartlabs) does not provide an easy way to download their swagger and openapi docs to
+    generate projects.
+-   They do not provide a [Typescript library](https://github.com/orgs/walmartlabs/repositories?q=&type=&language=typescript&sort=)
+    to access their endpoints
+-   Their [javascript library](https://github.com/walmartlabs/walmart-api) is deprecated.
 
 ## How it works
 
--   An OpenAPI schema is downloaded from Walmart for each section of a the Walmart Marketplace API.
--   Models are generated based off of each api using openapi generator.
--   Clients are generated based off of each api and the models using custom typescript generators.
--   Integration Test Stubs are auto generated for every api function.
--   Documentation is generated or updated based on the latest openapi schemas.
+-   An [OpenAPI Schema](https://spec.openapis.org/oas/latest.html) is downloaded from Walmart for each section of a
+    the Walmart Marketplace API.
+-   API Classes are generated using the amazing [openapi-generator](https://github.com/OpenAPITools/openapi-generator)
+    against each schema.
+-   Integration Test stubs are auto generated for every generated api class and function.
+-   Documentation is auto generated and updated based on the latest openapi schemas changes.
+-   Existing implementations did not include full walmart REST implementation and did not meet our needs.
 
 ## Installation
 
-Note: We will eventually have builds automated, tagged properly, and published to npm. Until that point only local
-installs will work.
+Packages are maintained on both [Github](https://github.com/whitebox-co/walmart-marketplace-api/packages) and
+[NPM](https://www.npmjs.com/package/@whitebox-co/walmart-marketplace-api).
+
+```sh
+npm install @whitebox-co/walmart-marketplace-api
+```
+
+For development assuming all prerequisites are met.
 
 ```sh
 npm install
@@ -133,6 +152,13 @@ npm run docs:swaggerui
 
 ## Development
 
+### Prerequisites
+
+-   [Java Runtime](https://www.java.com/en/download/manual.jsp) - Necessary to run the openapi-generator
+-   [Node](https://nodejs.org/en/) - To install and build the library.
+-   [Walmart Marketplace API Experience](https://developer.walmart.com/doc/us/mp/us-mp-intro/) - Helpful to have
+    experience with the Walmart Marketplace REST API.
+
 ### Commands
 
 ```sh
@@ -173,6 +199,28 @@ npm run generate-apis
 Which will start the generation and processing of all of the schemas and eventually finish with all api's created in
 the `src/apis` directory.
 
+## Item Model Generation
+
+Item Models
+[(MP_ITEM_MATCH, MP_ITEM, MP_MAINTENANCE, MP_WFS_ITEM)](https://developer.walmart.com/doc/us/us-mp/us-mp-items/#1232)
+are saved to the [docs/item-schemas](docs/items-schemas) directory.
+
+These schemas are generated manually into the models found in the [src/models] directory using [quicktype](https://github.com/quicktype/quicktype).
+
+If you wish to generate these for some reason, install `quicktype` globally and issue the following commands:
+
+```sh
+quicktype -l ts ./docs/item-schemas/MP_ITEM_MATCH_v4.json -o ./src/models/v4/mpItemMatch.ts
+quicktype -l ts ./docs/item-schemas/MP_ITEM_SPEC_4.3.json -o ./src/models/v4/mpItem4.3.ts
+quicktype -l ts ./docs/item-schemas/MP_MAINTENANCE_SPEC_4.3.json -o ./src/models/v4/mpMaintenance4.3.ts
+quicktype -l ts ./docs/item-schemas/MP_WFS_ITEM_SPEC_4.2.json -o ./src/models/v4/mpWfsItem4.2.ts
+
+quicktype -l ts ./docs/item-schemas/V3-Spec-Marketplace-Items-3.2-JSON/ -o ./src/models/v3/mpItems3.2.ts
+```
+
+[MP_MAINTENANCE_SPEC_4.3.json](./docs/item-schemas/MP_MAINTENANCE_SPEC_4.3.json) will fail to generate as
+is not a complete schema. It is missing at the end of the file. Complain to walmart!
+
 ## Token Authorization and Caching
 
 Tokens are retrieved from walmart during the authorization process and then get cached until they expire. When they
@@ -193,12 +241,18 @@ These need to be moved over to github issues.
 -   Generation is only including the first schema response example. In some cases that is the xml response only.
 -   There are some differences in received responses vs expected response. These are documented as TODO in the code.
 -   There is currently no internal throttle controller and Walmart does have different throttling limits per api.
+-   Walmart provides [Item specs](https://developer.walmart.com/doc/us/us-mp/us-mp-items/#1232) in the form of JSON
+    Schemas on their Developer Site. Unfortunately, these item schemas are in RTF format. We had to convert them to
+    plaintext and back to JSON in order to get typescript generation working.
+-   [MP_MAINTENANCE_SPEC_4.3.json](./docs/item-schemas/MP_MAINTENANCE_SPEC_4.3.json) provided from walmart
+    is not a complete schema. Upon downloading this file you will notice that a bunch of json is missing at the end of
+    the file. For this reason we were not able to generate types for this spec.
 
 ## Contributing
 
-Feel free to open PR's. Whitebox is currently using this in our production code and we will evaluate changes
-on a case by case basis.
+Feel free to open PR's. [Whitebox](https://whitebox.com/) is currently using this in our production code and we will
+evaluate changes on a case by case basis.
 
 ## License
 
-This project is licensed under the MIT License.
+![GitHub](https://img.shields.io/github/license/whitebox-co/walmart-marketplace-api)

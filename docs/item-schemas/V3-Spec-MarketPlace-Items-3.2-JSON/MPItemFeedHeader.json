@@ -1,0 +1,43 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#", 
+    "type": "object", 
+    "properties": {
+        "version": {
+            "type": "string", 
+            "title": "Spec Version", 
+            "enum": [
+                "3.2"
+            ]
+        }, 
+        "requestId": {
+            "type": "string", 
+            "title": "Request ID", 
+            "minLength": 1, 
+            "maxLength": 64
+        }, 
+        "requestBatchId": {
+            "type": "string", 
+            "title": "Request Batch ID", 
+            "minLength": 1, 
+            "maxLength": 64
+        }, 
+        "feedDate": {
+            "type": "string", 
+            "title": "Feed Date", 
+            "format": "date-time"
+        }, 
+        "mart": {
+            "type": "string", 
+            "title": "Mart", 
+            "enum": [
+                "WALMART_CA", 
+                "WALMART_US", 
+                "ASDA_GM"
+            ]
+        }
+    }, 
+    "required": [
+        "version"
+    ], 
+    "additionalProperties": false
+}

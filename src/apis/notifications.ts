@@ -131,16 +131,16 @@ export interface CreateSubscriptionRequestRecord {
   eventUrl: string;
   /**
    *
-   * @type {V3WebhooksSubscriptionsSubscriptionIdAuthDetails}
+   * @type {InlineResponse2001AuthDetails}
    * @memberof CreateSubscriptionRequestRecord
    */
-  authDetails?: V3WebhooksSubscriptionsSubscriptionIdAuthDetails;
+  authDetails?: InlineResponse2001AuthDetails;
   /**
    *
-   * @type {V3WebhooksSubscriptionsSubscriptionIdHeaders}
+   * @type {InlineResponse2001Headers}
    * @memberof CreateSubscriptionRequestRecord
    */
-  headers?: V3WebhooksSubscriptionsSubscriptionIdHeaders;
+  headers?: InlineResponse2001Headers;
   /**
    * Status of the subscription. Allowed values are ACTIVE or INACTIVE. To create subscription, use status = ACTIVE. Notification will be triggered only if subscription is in ACTIVE status
    * @type {string}
@@ -200,10 +200,10 @@ export interface EventTypes {
 export interface Events {
   /**
    * List of events
-   * @type {Array<InlineResponse2002>}
+   * @type {Array<InlineResponse2001Events>}
    * @memberof Events
    */
-  events?: Array<InlineResponse2002>;
+  events?: Array<InlineResponse2001Events>;
 }
 /**
  * Headers required for accessing the destination URL
@@ -225,47 +225,11 @@ export interface Headers {
  */
 export interface InlineObject {
   /**
-   * Event that is subscribed for notifications.
-   * @type {string}
-   * @memberof InlineObject
-   */
-  eventType?: string;
-  /**
-   * Version of the specific event type
-   * @type {string}
-   * @memberof InlineObject
-   */
-  eventVersion?: string;
-  /**
-   * Delegated access scope that event type is mapped to.
-   * @type {string}
-   * @memberof InlineObject
-   */
-  resourceName?: string;
-  /**
-   * Destination URL where notification will be received by seller
-   * @type {string}
-   * @memberof InlineObject
-   */
-  eventUrl?: string;
-  /**
    *
-   * @type {V3WebhooksSubscriptionsSubscriptionIdAuthDetails}
+   * @type {Array<V3WebhooksSubscriptionsEvents>}
    * @memberof InlineObject
    */
-  authDetails?: V3WebhooksSubscriptionsSubscriptionIdAuthDetails;
-  /**
-   *
-   * @type {V3WebhooksSubscriptionsSubscriptionIdHeaders}
-   * @memberof InlineObject
-   */
-  headers?: V3WebhooksSubscriptionsSubscriptionIdHeaders;
-  /**
-   * Status of the subscription. Allowed values are ACTIVE or INACTIVE
-   * @type {string}
-   * @memberof InlineObject
-   */
-  status?: string;
+  events?: Array<V3WebhooksSubscriptionsEvents>;
 }
 /**
  *
@@ -274,41 +238,47 @@ export interface InlineObject {
  */
 export interface InlineObject1 {
   /**
-   * Event that you want to subscribe to
+   * Event that is subscribed for notifications.
    * @type {string}
    * @memberof InlineObject1
    */
-  eventType: string;
+  eventType?: string;
   /**
    * Version of the specific event type
    * @type {string}
    * @memberof InlineObject1
    */
-  eventVersion: string;
+  eventVersion?: string;
   /**
-   * Functional category that event type is mapped to.
+   * Delegated access scope that event type is mapped to.
    * @type {string}
    * @memberof InlineObject1
    */
-  resourceName: string;
+  resourceName?: string;
   /**
    * Destination URL where notification will be received by seller
    * @type {string}
    * @memberof InlineObject1
    */
-  eventUrl: string;
+  eventUrl?: string;
   /**
    *
-   * @type {V3WebhooksSubscriptionsSubscriptionIdAuthDetails}
+   * @type {InlineResponse2001AuthDetails}
    * @memberof InlineObject1
    */
-  authDetails?: V3WebhooksSubscriptionsSubscriptionIdAuthDetails;
+  authDetails?: InlineResponse2001AuthDetails;
   /**
    *
-   * @type {V3WebhooksSubscriptionsSubscriptionIdHeaders}
+   * @type {InlineResponse2001Headers}
    * @memberof InlineObject1
    */
-  headers?: V3WebhooksSubscriptionsSubscriptionIdHeaders;
+  headers?: InlineResponse2001Headers;
+  /**
+   * Status of the subscription. Allowed values are ACTIVE or INACTIVE
+   * @type {string}
+   * @memberof InlineObject1
+   */
+  status?: string;
 }
 /**
  *
@@ -317,11 +287,41 @@ export interface InlineObject1 {
  */
 export interface InlineObject2 {
   /**
-   *
-   * @type {Array<V3WebhooksSubscriptionsEvents>}
+   * Event that you want to subscribe to
+   * @type {string}
    * @memberof InlineObject2
    */
-  events?: Array<V3WebhooksSubscriptionsEvents>;
+  eventType: string;
+  /**
+   * Version of the specific event type
+   * @type {string}
+   * @memberof InlineObject2
+   */
+  eventVersion: string;
+  /**
+   * Functional category that event type is mapped to.
+   * @type {string}
+   * @memberof InlineObject2
+   */
+  resourceName: string;
+  /**
+   * Destination URL where notification will be received by seller
+   * @type {string}
+   * @memberof InlineObject2
+   */
+  eventUrl: string;
+  /**
+   *
+   * @type {InlineResponse2001AuthDetails}
+   * @memberof InlineObject2
+   */
+  authDetails?: InlineResponse2001AuthDetails;
+  /**
+   *
+   * @type {InlineResponse2001Headers}
+   * @memberof InlineObject2
+   */
+  headers?: InlineResponse2001Headers;
 }
 /**
  *
@@ -343,91 +343,166 @@ export interface InlineResponse200 {
  */
 export interface InlineResponse2001 {
   /**
-   * Subscription Id of the subscription that is deleted
-   * @type {string}
+   * List of events
+   * @type {Array<InlineResponse2001Events>}
    * @memberof InlineResponse2001
    */
-  subscriptionId?: string;
-  /**
-   * Message confirming that the subscription has been deleted
-   * @type {string}
-   * @memberof InlineResponse2001
-   */
-  message?: string;
+  events?: Array<InlineResponse2001Events>;
 }
 /**
- * List of events
+ * Authentication details for accessing the destination URL, if URL is protected
  * @export
- * @interface InlineResponse2002
+ * @interface InlineResponse2001AuthDetails
  */
-export interface InlineResponse2002 {
+export interface InlineResponse2001AuthDetails {
   /**
-   *
-   * @type {Array<InlineResponse2002Event>}
-   * @memberof InlineResponse2002
+   * enumeration: BASIC_AUTH,OAUTH,HMAC
+   * @type {string}
+   * @memberof InlineResponse2001AuthDetails
    */
-  event?: Array<InlineResponse2002Event>;
+  authMethod?: string;
+  /**
+   * UserName to access destination URL
+   * @type {string}
+   * @memberof InlineResponse2001AuthDetails
+   */
+  userName?: string;
+  /**
+   * Password to access destination URL
+   * @type {string}
+   * @memberof InlineResponse2001AuthDetails
+   */
+  password?: string;
+  /**
+   * authHeaderName , using which authorization header will be passed
+   * @type {string}
+   * @memberof InlineResponse2001AuthDetails
+   */
+  authHeaderName?: string;
+  /**
+   * OAUTH URL
+   * @type {string}
+   * @memberof InlineResponse2001AuthDetails
+   */
+  authUrl?: string;
+  /**
+   * Client Secret for OAUTH URL / HMAC
+   * @type {string}
+   * @memberof InlineResponse2001AuthDetails
+   */
+  clientSecret?: string;
+  /**
+   * ClientId for OAUTH URL
+   * @type {string}
+   * @memberof InlineResponse2001AuthDetails
+   */
+  clientId?: string;
 }
 /**
  *
  * @export
- * @interface InlineResponse2002Event
+ * @interface InlineResponse2001Event
  */
-export interface InlineResponse2002Event {
+export interface InlineResponse2001Event {
   /**
    * Event for which the subscription is created
    * @type {string}
-   * @memberof InlineResponse2002Event
+   * @memberof InlineResponse2001Event
    */
   eventType?: string;
   /**
    * Unique ID for the subscription that can be used for fetching details, editing or deleting the subscription
    * @type {string}
-   * @memberof InlineResponse2002Event
+   * @memberof InlineResponse2001Event
    */
   subscriptionId?: string;
   /**
    * Partner ID of the seller who created the subscription
    * @type {string}
-   * @memberof InlineResponse2002Event
+   * @memberof InlineResponse2001Event
    */
   partnerId?: string;
   /**
    * Version of the event type for which the subscription is created
    * @type {string}
-   * @memberof InlineResponse2002Event
+   * @memberof InlineResponse2001Event
    */
   eventVersion?: string;
   /**
    * Delegated access scope that event type is mapped to.
    * @type {string}
-   * @memberof InlineResponse2002Event
+   * @memberof InlineResponse2001Event
    */
   resourceName?: string;
   /**
    * ACTIVE or INACTIVE status of the subscription
    * @type {string}
-   * @memberof InlineResponse2002Event
+   * @memberof InlineResponse2001Event
    */
   status?: string;
   /**
    * Destination URL where notification will be received by seller
    * @type {string}
-   * @memberof InlineResponse2002Event
+   * @memberof InlineResponse2001Event
    */
   eventUrl?: string;
   /**
    *
-   * @type {V3WebhooksSubscriptionsSubscriptionIdAuthDetails}
-   * @memberof InlineResponse2002Event
+   * @type {InlineResponse2001AuthDetails}
+   * @memberof InlineResponse2001Event
    */
-  authDetails?: V3WebhooksSubscriptionsSubscriptionIdAuthDetails;
+  authDetails?: InlineResponse2001AuthDetails;
   /**
    *
-   * @type {V3WebhooksSubscriptionsSubscriptionIdHeaders}
-   * @memberof InlineResponse2002Event
+   * @type {InlineResponse2001Headers}
+   * @memberof InlineResponse2001Event
    */
-  headers?: V3WebhooksSubscriptionsSubscriptionIdHeaders;
+  headers?: InlineResponse2001Headers;
+}
+/**
+ *
+ * @export
+ * @interface InlineResponse2001Events
+ */
+export interface InlineResponse2001Events {
+  /**
+   *
+   * @type {Array<InlineResponse2001Event>}
+   * @memberof InlineResponse2001Events
+   */
+  event?: Array<InlineResponse2001Event>;
+}
+/**
+ * Headers required for accessing the destination URL
+ * @export
+ * @interface InlineResponse2001Headers
+ */
+export interface InlineResponse2001Headers {
+  /**
+   *
+   * @type {string}
+   * @memberof InlineResponse2001Headers
+   */
+  content_type?: string;
+}
+/**
+ *
+ * @export
+ * @interface InlineResponse2002
+ */
+export interface InlineResponse2002 {
+  /**
+   * Subscription Id of the subscription that is deleted
+   * @type {string}
+   * @memberof InlineResponse2002
+   */
+  subscriptionId?: string;
+  /**
+   * Message confirming that the subscription has been deleted
+   * @type {string}
+   * @memberof InlineResponse2002
+   */
+  message?: string;
 }
 /**
  *
@@ -441,19 +516,6 @@ export interface InlineResponse2003 {
    * @memberof InlineResponse2003
    */
   message?: string;
-}
-/**
- *
- * @export
- * @interface InlineResponse2004
- */
-export interface InlineResponse2004 {
-  /**
-   * List of events
-   * @type {Array<InlineResponse2002>}
-   * @memberof InlineResponse2004
-   */
-  events?: Array<InlineResponse2002>;
 }
 /**
  * List of event types
@@ -506,17 +568,17 @@ export interface SubscriptionDeleteResponseDTO {
   message?: string;
 }
 /**
- * List of events
+ *
  * @export
  * @interface SubscriptionResponseDTO
  */
 export interface SubscriptionResponseDTO {
   /**
    *
-   * @type {Array<InlineResponse2002Event>}
+   * @type {Array<InlineResponse2001Event>}
    * @memberof SubscriptionResponseDTO
    */
-  event?: Array<InlineResponse2002Event>;
+  event?: Array<InlineResponse2001Event>;
 }
 /**
  *
@@ -568,16 +630,16 @@ export interface SubscriptionResponseDTORecord {
   eventUrl?: string;
   /**
    *
-   * @type {V3WebhooksSubscriptionsSubscriptionIdAuthDetails}
+   * @type {InlineResponse2001AuthDetails}
    * @memberof SubscriptionResponseDTORecord
    */
-  authDetails?: V3WebhooksSubscriptionsSubscriptionIdAuthDetails;
+  authDetails?: InlineResponse2001AuthDetails;
   /**
    *
-   * @type {V3WebhooksSubscriptionsSubscriptionIdHeaders}
+   * @type {InlineResponse2001Headers}
    * @memberof SubscriptionResponseDTORecord
    */
-  headers?: V3WebhooksSubscriptionsSubscriptionIdHeaders;
+  headers?: InlineResponse2001Headers;
 }
 /**
  *
@@ -611,16 +673,16 @@ export interface TestNotificationRequest {
   eventUrl: string;
   /**
    *
-   * @type {V3WebhooksSubscriptionsSubscriptionIdAuthDetails}
+   * @type {InlineResponse2001AuthDetails}
    * @memberof TestNotificationRequest
    */
-  authDetails?: V3WebhooksSubscriptionsSubscriptionIdAuthDetails;
+  authDetails?: InlineResponse2001AuthDetails;
   /**
    *
-   * @type {V3WebhooksSubscriptionsSubscriptionIdHeaders}
+   * @type {InlineResponse2001Headers}
    * @memberof TestNotificationRequest
    */
-  headers?: V3WebhooksSubscriptionsSubscriptionIdHeaders;
+  headers?: InlineResponse2001Headers;
 }
 /**
  *
@@ -667,16 +729,16 @@ export interface UpdateSubscriptionRequest {
   eventUrl?: string;
   /**
    *
-   * @type {V3WebhooksSubscriptionsSubscriptionIdAuthDetails}
+   * @type {InlineResponse2001AuthDetails}
    * @memberof UpdateSubscriptionRequest
    */
-  authDetails?: V3WebhooksSubscriptionsSubscriptionIdAuthDetails;
+  authDetails?: InlineResponse2001AuthDetails;
   /**
    *
-   * @type {V3WebhooksSubscriptionsSubscriptionIdHeaders}
+   * @type {InlineResponse2001Headers}
    * @memberof UpdateSubscriptionRequest
    */
-  headers?: V3WebhooksSubscriptionsSubscriptionIdHeaders;
+  headers?: InlineResponse2001Headers;
   /**
    * Status of the subscription. Allowed values are ACTIVE or INACTIVE
    * @type {string}
@@ -716,84 +778,22 @@ export interface V3WebhooksSubscriptionsEvents {
   eventUrl: string;
   /**
    *
-   * @type {V3WebhooksSubscriptionsSubscriptionIdAuthDetails}
+   * @type {InlineResponse2001AuthDetails}
    * @memberof V3WebhooksSubscriptionsEvents
    */
-  authDetails?: V3WebhooksSubscriptionsSubscriptionIdAuthDetails;
+  authDetails?: InlineResponse2001AuthDetails;
   /**
    *
-   * @type {V3WebhooksSubscriptionsSubscriptionIdHeaders}
+   * @type {InlineResponse2001Headers}
    * @memberof V3WebhooksSubscriptionsEvents
    */
-  headers?: V3WebhooksSubscriptionsSubscriptionIdHeaders;
+  headers?: InlineResponse2001Headers;
   /**
    * Status of the subscription. Allowed values are ACTIVE or INACTIVE. To create subscription, use status = ACTIVE. Notification will be triggered only if subscription is in ACTIVE status
    * @type {string}
    * @memberof V3WebhooksSubscriptionsEvents
    */
   status: string;
-}
-/**
- * Authentication details for accessing the destination URL, if URL is protected
- * @export
- * @interface V3WebhooksSubscriptionsSubscriptionIdAuthDetails
- */
-export interface V3WebhooksSubscriptionsSubscriptionIdAuthDetails {
-  /**
-   * enumeration: BASIC_AUTH,OAUTH,HMAC
-   * @type {string}
-   * @memberof V3WebhooksSubscriptionsSubscriptionIdAuthDetails
-   */
-  authMethod?: string;
-  /**
-   * UserName to access destination URL
-   * @type {string}
-   * @memberof V3WebhooksSubscriptionsSubscriptionIdAuthDetails
-   */
-  userName?: string;
-  /**
-   * Password to access destination URL
-   * @type {string}
-   * @memberof V3WebhooksSubscriptionsSubscriptionIdAuthDetails
-   */
-  password?: string;
-  /**
-   * authHeaderName , using which authorization header will be passed
-   * @type {string}
-   * @memberof V3WebhooksSubscriptionsSubscriptionIdAuthDetails
-   */
-  authHeaderName?: string;
-  /**
-   * OAUTH URL
-   * @type {string}
-   * @memberof V3WebhooksSubscriptionsSubscriptionIdAuthDetails
-   */
-  authUrl?: string;
-  /**
-   * Client Secret for OAUTH URL / HMAC
-   * @type {string}
-   * @memberof V3WebhooksSubscriptionsSubscriptionIdAuthDetails
-   */
-  clientSecret?: string;
-  /**
-   * ClientId for OAUTH URL
-   * @type {string}
-   * @memberof V3WebhooksSubscriptionsSubscriptionIdAuthDetails
-   */
-  clientId?: string;
-}
-/**
- * Headers required for accessing the destination URL
- * @export
- * @interface V3WebhooksSubscriptionsSubscriptionIdHeaders
- */
-export interface V3WebhooksSubscriptionsSubscriptionIdHeaders {
-  /**
-   *
-   * @type {string}
-   * @memberof V3WebhooksSubscriptionsSubscriptionIdHeaders
-   */
-  content_type?: string;
 }
 
 /**
@@ -811,7 +811,7 @@ export const NotificationsApiAxiosParamCreator = function (
      * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
      * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
      * @param {string} wMSVCNAME Walmart Service Name
-     * @param {InlineObject2} inlineObject2
+     * @param {InlineObject} inlineObject
      * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -821,7 +821,7 @@ export const NotificationsApiAxiosParamCreator = function (
       wMSECACCESSTOKEN: string,
       wMQOSCORRELATIONID: string,
       wMSVCNAME: string,
-      inlineObject2: InlineObject2,
+      inlineObject: InlineObject,
       wMCONSUMERCHANNELTYPE?: string,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -841,8 +841,8 @@ export const NotificationsApiAxiosParamCreator = function (
       );
       // verify required parameter 'wMSVCNAME' is not null or undefined
       assertParamExists("createSubscription", "wMSVCNAME", wMSVCNAME);
-      // verify required parameter 'inlineObject2' is not null or undefined
-      assertParamExists("createSubscription", "inlineObject2", inlineObject2);
+      // verify required parameter 'inlineObject' is not null or undefined
+      assertParamExists("createSubscription", "inlineObject", inlineObject);
       const localVarPath = `/v3/webhooks/subscriptions`;
       // use dummy base URL string because the URL constructor only accepts absolute URLs.
       const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -901,7 +901,7 @@ export const NotificationsApiAxiosParamCreator = function (
         ...options.headers,
       };
       localVarRequestOptions.data = serializeDataIfNeeded(
-        inlineObject2,
+        inlineObject,
         localVarRequestOptions,
         configuration
       );
@@ -1234,7 +1234,7 @@ export const NotificationsApiAxiosParamCreator = function (
      * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
      * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
      * @param {string} wMSVCNAME Walmart Service Name
-     * @param {InlineObject1} inlineObject1
+     * @param {InlineObject2} inlineObject2
      * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1244,7 +1244,7 @@ export const NotificationsApiAxiosParamCreator = function (
       wMSECACCESSTOKEN: string,
       wMQOSCORRELATIONID: string,
       wMSVCNAME: string,
-      inlineObject1: InlineObject1,
+      inlineObject2: InlineObject2,
       wMCONSUMERCHANNELTYPE?: string,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -1264,8 +1264,8 @@ export const NotificationsApiAxiosParamCreator = function (
       );
       // verify required parameter 'wMSVCNAME' is not null or undefined
       assertParamExists("testNotification", "wMSVCNAME", wMSVCNAME);
-      // verify required parameter 'inlineObject1' is not null or undefined
-      assertParamExists("testNotification", "inlineObject1", inlineObject1);
+      // verify required parameter 'inlineObject2' is not null or undefined
+      assertParamExists("testNotification", "inlineObject2", inlineObject2);
       const localVarPath = `/v3/webhooks/test`;
       // use dummy base URL string because the URL constructor only accepts absolute URLs.
       const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -1324,7 +1324,7 @@ export const NotificationsApiAxiosParamCreator = function (
         ...options.headers,
       };
       localVarRequestOptions.data = serializeDataIfNeeded(
-        inlineObject1,
+        inlineObject2,
         localVarRequestOptions,
         configuration
       );
@@ -1342,7 +1342,7 @@ export const NotificationsApiAxiosParamCreator = function (
      * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
      * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
      * @param {string} wMSVCNAME Walmart Service Name
-     * @param {InlineObject} inlineObject
+     * @param {InlineObject1} inlineObject1
      * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1353,7 +1353,7 @@ export const NotificationsApiAxiosParamCreator = function (
       wMSECACCESSTOKEN: string,
       wMQOSCORRELATIONID: string,
       wMSVCNAME: string,
-      inlineObject: InlineObject,
+      inlineObject1: InlineObject1,
       wMCONSUMERCHANNELTYPE?: string,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -1375,8 +1375,8 @@ export const NotificationsApiAxiosParamCreator = function (
       );
       // verify required parameter 'wMSVCNAME' is not null or undefined
       assertParamExists("updateSubscription", "wMSVCNAME", wMSVCNAME);
-      // verify required parameter 'inlineObject' is not null or undefined
-      assertParamExists("updateSubscription", "inlineObject", inlineObject);
+      // verify required parameter 'inlineObject1' is not null or undefined
+      assertParamExists("updateSubscription", "inlineObject1", inlineObject1);
       const localVarPath =
         `/v3/webhooks/subscriptions/{subscriptionId}`.replace(
           `{${"subscriptionId"}}`,
@@ -1439,7 +1439,7 @@ export const NotificationsApiAxiosParamCreator = function (
         ...options.headers,
       };
       localVarRequestOptions.data = serializeDataIfNeeded(
-        inlineObject,
+        inlineObject1,
         localVarRequestOptions,
         configuration
       );
@@ -1467,7 +1467,7 @@ export const NotificationsApiFp = function (configuration?: Configuration) {
      * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
      * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
      * @param {string} wMSVCNAME Walmart Service Name
-     * @param {InlineObject2} inlineObject2
+     * @param {InlineObject} inlineObject
      * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1477,14 +1477,14 @@ export const NotificationsApiFp = function (configuration?: Configuration) {
       wMSECACCESSTOKEN: string,
       wMQOSCORRELATIONID: string,
       wMSVCNAME: string,
-      inlineObject2: InlineObject2,
+      inlineObject: InlineObject,
       wMCONSUMERCHANNELTYPE?: string,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<InlineResponse2002>
+      ) => AxiosPromise<InlineResponse2001Events>
     > {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.createSubscription(
@@ -1492,7 +1492,7 @@ export const NotificationsApiFp = function (configuration?: Configuration) {
           wMSECACCESSTOKEN,
           wMQOSCORRELATIONID,
           wMSVCNAME,
-          inlineObject2,
+          inlineObject,
           wMCONSUMERCHANNELTYPE,
           options
         );
@@ -1527,7 +1527,7 @@ export const NotificationsApiFp = function (configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<InlineResponse2001>
+      ) => AxiosPromise<InlineResponse2002>
     > {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.deleteSubscription(
@@ -1576,7 +1576,7 @@ export const NotificationsApiFp = function (configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<InlineResponse2004>
+      ) => AxiosPromise<InlineResponse2001>
     > {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.getAllSubscriptions(
@@ -1644,7 +1644,7 @@ export const NotificationsApiFp = function (configuration?: Configuration) {
      * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
      * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
      * @param {string} wMSVCNAME Walmart Service Name
-     * @param {InlineObject1} inlineObject1
+     * @param {InlineObject2} inlineObject2
      * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1654,7 +1654,7 @@ export const NotificationsApiFp = function (configuration?: Configuration) {
       wMSECACCESSTOKEN: string,
       wMQOSCORRELATIONID: string,
       wMSVCNAME: string,
-      inlineObject1: InlineObject1,
+      inlineObject2: InlineObject2,
       wMCONSUMERCHANNELTYPE?: string,
       options?: any
     ): Promise<
@@ -1669,7 +1669,7 @@ export const NotificationsApiFp = function (configuration?: Configuration) {
           wMSECACCESSTOKEN,
           wMQOSCORRELATIONID,
           wMSVCNAME,
-          inlineObject1,
+          inlineObject2,
           wMCONSUMERCHANNELTYPE,
           options
         );
@@ -1688,7 +1688,7 @@ export const NotificationsApiFp = function (configuration?: Configuration) {
      * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
      * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
      * @param {string} wMSVCNAME Walmart Service Name
-     * @param {InlineObject} inlineObject
+     * @param {InlineObject1} inlineObject1
      * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1699,14 +1699,14 @@ export const NotificationsApiFp = function (configuration?: Configuration) {
       wMSECACCESSTOKEN: string,
       wMQOSCORRELATIONID: string,
       wMSVCNAME: string,
-      inlineObject: InlineObject,
+      inlineObject1: InlineObject1,
       wMCONSUMERCHANNELTYPE?: string,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<InlineResponse2002>
+      ) => AxiosPromise<InlineResponse2001Events>
     > {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.updateSubscription(
@@ -1715,7 +1715,7 @@ export const NotificationsApiFp = function (configuration?: Configuration) {
           wMSECACCESSTOKEN,
           wMQOSCORRELATIONID,
           wMSVCNAME,
-          inlineObject,
+          inlineObject1,
           wMCONSUMERCHANNELTYPE,
           options
         );
@@ -1747,7 +1747,7 @@ export const NotificationsApiFactory = function (
      * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
      * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
      * @param {string} wMSVCNAME Walmart Service Name
-     * @param {InlineObject2} inlineObject2
+     * @param {InlineObject} inlineObject
      * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1757,17 +1757,17 @@ export const NotificationsApiFactory = function (
       wMSECACCESSTOKEN: string,
       wMQOSCORRELATIONID: string,
       wMSVCNAME: string,
-      inlineObject2: InlineObject2,
+      inlineObject: InlineObject,
       wMCONSUMERCHANNELTYPE?: string,
       options?: any
-    ): AxiosPromise<InlineResponse2002> {
+    ): AxiosPromise<InlineResponse2001Events> {
       return localVarFp
         .createSubscription(
           authorization,
           wMSECACCESSTOKEN,
           wMQOSCORRELATIONID,
           wMSVCNAME,
-          inlineObject2,
+          inlineObject,
           wMCONSUMERCHANNELTYPE,
           options
         )
@@ -1793,7 +1793,7 @@ export const NotificationsApiFactory = function (
       wMSVCNAME: string,
       wMCONSUMERCHANNELTYPE?: string,
       options?: any
-    ): AxiosPromise<InlineResponse2001> {
+    ): AxiosPromise<InlineResponse2002> {
       return localVarFp
         .deleteSubscription(
           subscriptionId,
@@ -1832,7 +1832,7 @@ export const NotificationsApiFactory = function (
       status?: string,
       wMCONSUMERCHANNELTYPE?: string,
       options?: any
-    ): AxiosPromise<InlineResponse2004> {
+    ): AxiosPromise<InlineResponse2001> {
       return localVarFp
         .getAllSubscriptions(
           authorization,
@@ -1885,7 +1885,7 @@ export const NotificationsApiFactory = function (
      * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
      * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
      * @param {string} wMSVCNAME Walmart Service Name
-     * @param {InlineObject1} inlineObject1
+     * @param {InlineObject2} inlineObject2
      * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1895,7 +1895,7 @@ export const NotificationsApiFactory = function (
       wMSECACCESSTOKEN: string,
       wMQOSCORRELATIONID: string,
       wMSVCNAME: string,
-      inlineObject1: InlineObject1,
+      inlineObject2: InlineObject2,
       wMCONSUMERCHANNELTYPE?: string,
       options?: any
     ): AxiosPromise<InlineResponse2003> {
@@ -1905,7 +1905,7 @@ export const NotificationsApiFactory = function (
           wMSECACCESSTOKEN,
           wMQOSCORRELATIONID,
           wMSVCNAME,
-          inlineObject1,
+          inlineObject2,
           wMCONSUMERCHANNELTYPE,
           options
         )
@@ -1919,7 +1919,7 @@ export const NotificationsApiFactory = function (
      * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
      * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
      * @param {string} wMSVCNAME Walmart Service Name
-     * @param {InlineObject} inlineObject
+     * @param {InlineObject1} inlineObject1
      * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1930,10 +1930,10 @@ export const NotificationsApiFactory = function (
       wMSECACCESSTOKEN: string,
       wMQOSCORRELATIONID: string,
       wMSVCNAME: string,
-      inlineObject: InlineObject,
+      inlineObject1: InlineObject1,
       wMCONSUMERCHANNELTYPE?: string,
       options?: any
-    ): AxiosPromise<InlineResponse2002> {
+    ): AxiosPromise<InlineResponse2001Events> {
       return localVarFp
         .updateSubscription(
           subscriptionId,
@@ -1941,7 +1941,7 @@ export const NotificationsApiFactory = function (
           wMSECACCESSTOKEN,
           wMQOSCORRELATIONID,
           wMSVCNAME,
-          inlineObject,
+          inlineObject1,
           wMCONSUMERCHANNELTYPE,
           options
         )
@@ -1986,10 +1986,10 @@ export interface NotificationsApiCreateSubscriptionRequest {
 
   /**
    *
-   * @type {InlineObject2}
+   * @type {InlineObject}
    * @memberof NotificationsApiCreateSubscription
    */
-  readonly inlineObject2: InlineObject2;
+  readonly inlineObject: InlineObject;
 
   /**
    * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
@@ -2196,10 +2196,10 @@ export interface NotificationsApiTestNotificationRequest {
 
   /**
    *
-   * @type {InlineObject1}
+   * @type {InlineObject2}
    * @memberof NotificationsApiTestNotification
    */
-  readonly inlineObject1: InlineObject1;
+  readonly inlineObject2: InlineObject2;
 
   /**
    * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
@@ -2252,10 +2252,10 @@ export interface NotificationsApiUpdateSubscriptionRequest {
 
   /**
    *
-   * @type {InlineObject}
+   * @type {InlineObject1}
    * @memberof NotificationsApiUpdateSubscription
    */
-  readonly inlineObject: InlineObject;
+  readonly inlineObject1: InlineObject1;
 
   /**
    * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
@@ -2290,7 +2290,7 @@ export class NotificationsApi extends BaseAPI {
         requestParameters.wMSECACCESSTOKEN,
         requestParameters.wMQOSCORRELATIONID,
         requestParameters.wMSVCNAME,
-        requestParameters.inlineObject2,
+        requestParameters.inlineObject,
         requestParameters.wMCONSUMERCHANNELTYPE,
         options
       )
@@ -2392,7 +2392,7 @@ export class NotificationsApi extends BaseAPI {
         requestParameters.wMSECACCESSTOKEN,
         requestParameters.wMQOSCORRELATIONID,
         requestParameters.wMSVCNAME,
-        requestParameters.inlineObject1,
+        requestParameters.inlineObject2,
         requestParameters.wMCONSUMERCHANNELTYPE,
         options
       )
@@ -2418,7 +2418,7 @@ export class NotificationsApi extends BaseAPI {
         requestParameters.wMSECACCESSTOKEN,
         requestParameters.wMQOSCORRELATIONID,
         requestParameters.wMSVCNAME,
-        requestParameters.inlineObject,
+        requestParameters.inlineObject1,
         requestParameters.wMCONSUMERCHANNELTYPE,
         options
       )

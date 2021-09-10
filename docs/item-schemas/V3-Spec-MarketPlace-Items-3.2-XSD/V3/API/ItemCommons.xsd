@@ -1,0 +1,401 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns="http://walmart.com/"
+            targetNamespace="http://walmart.com/"
+            elementFormDefault="qualified"
+            version="1.2">
+
+    <xsd:include schemaLocation="ItemCommons.xsd"/>
+
+    <xsd:complexType name="Measurement">
+        <xsd:sequence>
+            <xsd:element name="value" type="xsd:double" minOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Represents  Value of measurement
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="unit" type="UnitOfMeasurement" minOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Represents  Unit of Measurement
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:simpleType name="UnitOfMeasurement">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="EA"/>
+            <xsd:enumeration value="FT"/>
+            <xsd:enumeration value="IN"/>
+            <xsd:enumeration value="INCH"/>
+            <xsd:enumeration value="YD"/>
+            <xsd:enumeration value="M"/>
+            <xsd:enumeration value="CM"/>
+            <xsd:enumeration value="MM"/>
+            <xsd:enumeration value="KG"/>
+            <xsd:enumeration value="G"/>
+            <xsd:enumeration value="MG"/>
+            <xsd:enumeration value="POUND"/>
+            <xsd:enumeration value="LB"/>
+            <xsd:enumeration value="OZ"/>
+            <xsd:enumeration value="FOZ"/>
+            <xsd:enumeration value="GAL"/>
+            <xsd:enumeration value="QT"/>
+            <xsd:enumeration value="PT"/>
+            <xsd:enumeration value="IMPGAL"/>
+            <xsd:enumeration value="IMPQT"/>
+            <xsd:enumeration value="IMPPT"/>
+            <xsd:enumeration value="L"/>
+            <xsd:enumeration value="ML"/>
+            <xsd:enumeration value="CC"/>
+            <xsd:enumeration value="CBM"/>
+            <xsd:enumeration value="CFT"/>
+            <xsd:enumeration value="CYD"/>
+            <xsd:enumeration value="CIN"/>
+            <xsd:enumeration value="SM"/>
+            <xsd:enumeration value="SFT"/>
+            <xsd:enumeration value="SYD"/>
+            <xsd:enumeration value="SIN"/>
+            <xsd:enumeration value="SCM"/>
+            <xsd:enumeration value="SMM"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:complexType name="WeightMeasure">
+        <xsd:sequence>
+            <xsd:element name="value" type="xsd:double" minOccurs="1">
+            </xsd:element>
+            <xsd:element name="unit" type="UnitOfWeight" minOccurs="1">
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:simpleType name="UnitOfWeight">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="KG"/>
+            <xsd:enumeration value="G"/>
+            <xsd:enumeration value="MG"/>
+            <xsd:enumeration value="LB"/>
+            <xsd:enumeration value="OZ"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:complexType name="TimeMeasure">
+        <xsd:sequence>
+            <xsd:element name="value" type="xsd:double" minOccurs="1">
+            </xsd:element>
+            <xsd:element name="unit" type="UnitOfTime" minOccurs="1">
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:simpleType name="UnitOfTime">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="S" />
+            <xsd:enumeration value="MIN" />
+            <xsd:enumeration value="HR" />
+            <xsd:enumeration value="DAY" />
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:complexType name="Money">
+        <xsd:sequence>
+            <xsd:element name="currency" type="CurrencyCode" minOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Represents  the Currency of the price
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="amount" minOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Represents  the price
+                    </xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:decimal">
+                        <xsd:totalDigits value="11"/>
+                        <xsd:fractionDigits value="4"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:simpleType name="CurrencyCode">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="AED" />
+            <xsd:enumeration value="AFN" />
+            <xsd:enumeration value="ALL" />
+            <xsd:enumeration value="AMD"/>
+            <xsd:enumeration value="ANG"/>
+            <xsd:enumeration value="AOA"/>
+            <xsd:enumeration value="ARS"/>
+            <xsd:enumeration value="AUD"/>
+            <xsd:enumeration value="AWG"/>
+            <xsd:enumeration value="AZN"/>
+            <xsd:enumeration value="BAM"/>
+            <xsd:enumeration value="BBD"/>
+            <xsd:enumeration value="BDT"/>
+            <xsd:enumeration value="BGN"/>
+            <xsd:enumeration value="BHD"/>
+            <xsd:enumeration value="BIF"/>
+            <xsd:enumeration value="BMD"/>
+            <xsd:enumeration value="BND"/>
+            <xsd:enumeration value="BOB"/>
+            <xsd:enumeration value="BRL"/>
+            <xsd:enumeration value="BSD"/>
+            <xsd:enumeration value="BTN"/>
+            <xsd:enumeration value="BWP"/>
+            <xsd:enumeration value="BYR"/>
+            <xsd:enumeration value="BZD"/>
+            <xsd:enumeration value="CAD"/>
+            <xsd:enumeration value="CDF"/>
+            <xsd:enumeration value="CHF"/>
+            <xsd:enumeration value="CLP"/>
+            <xsd:enumeration value="CNY"/>
+            <xsd:enumeration value="COP"/>
+            <xsd:enumeration value="CRC"/>
+            <xsd:enumeration value="CUP"/>
+            <xsd:enumeration value="CVE"/>
+            <xsd:enumeration value="CZK"/>
+            <xsd:enumeration value="DJF"/>
+            <xsd:enumeration value="DKK"/>
+            <xsd:enumeration value="DOP"/>
+            <xsd:enumeration value="DZD"/>
+            <xsd:enumeration value="EGP"/>
+            <xsd:enumeration value="ERN"/>
+            <xsd:enumeration value="ETB"/>
+            <xsd:enumeration value="EUR"/>
+            <xsd:enumeration value="FJD"/>
+            <xsd:enumeration value="FKP"/>
+            <xsd:enumeration value="GBP"/>
+            <xsd:enumeration value="GEL"/>
+            <xsd:enumeration value="GHS"/>
+            <xsd:enumeration value="GIP"/>
+            <xsd:enumeration value="GMD"/>
+            <xsd:enumeration value="GNF"/>
+            <xsd:enumeration value="GTQ"/>
+            <xsd:enumeration value="GYD"/>
+            <xsd:enumeration value="HKD"/>
+            <xsd:enumeration value="HNL"/>
+            <xsd:enumeration value="HRK"/>
+            <xsd:enumeration value="HTG"/>
+            <xsd:enumeration value="HUF"/>
+            <xsd:enumeration value="IDR"/>
+            <xsd:enumeration value="ILS"/>
+            <xsd:enumeration value="INR"/>
+            <xsd:enumeration value="IQD"/>
+            <xsd:enumeration value="IRR"/>
+            <xsd:enumeration value="ISK"/>
+            <xsd:enumeration value="JMD"/>
+            <xsd:enumeration value="JOD"/>
+            <xsd:enumeration value="JPY"/>
+            <xsd:enumeration value="KES"/>
+            <xsd:enumeration value="KGS"/>
+            <xsd:enumeration value="KHR"/>
+            <xsd:enumeration value="KMF"/>
+            <xsd:enumeration value="KPW"/>
+            <xsd:enumeration value="KRW"/>
+            <xsd:enumeration value="KWD"/>
+            <xsd:enumeration value="KYD"/>
+            <xsd:enumeration value="KZT"/>
+            <xsd:enumeration value="LAK"/>
+            <xsd:enumeration value="LBP"/>
+            <xsd:enumeration value="LKR"/>
+            <xsd:enumeration value="LRD"/>
+            <xsd:enumeration value="LSL"/>
+            <xsd:enumeration value="LTL"/>
+            <xsd:enumeration value="LVL"/>
+            <xsd:enumeration value="LYD"/>
+            <xsd:enumeration value="MAD"/>
+            <xsd:enumeration value="MDL"/>
+            <xsd:enumeration value="MGA"/>
+            <xsd:enumeration value="MKD"/>
+            <xsd:enumeration value="MMK"/>
+            <xsd:enumeration value="MNT"/>
+            <xsd:enumeration value="MOP"/>
+            <xsd:enumeration value="MRO"/>
+            <xsd:enumeration value="MUR"/>
+            <xsd:enumeration value="MVR"/>
+            <xsd:enumeration value="MWK"/>
+            <xsd:enumeration value="MXN"/>
+            <xsd:enumeration value="MYR"/>
+            <xsd:enumeration value="MZN"/>
+            <xsd:enumeration value="NAD"/>
+            <xsd:enumeration value="NGN"/>
+            <xsd:enumeration value="NIO"/>
+            <xsd:enumeration value="NOK"/>
+            <xsd:enumeration value="NPR"/>
+            <xsd:enumeration value="NZD"/>
+            <xsd:enumeration value="OMR"/>
+            <xsd:enumeration value="PAB"/>
+            <xsd:enumeration value="PEN"/>
+            <xsd:enumeration value="PGK"/>
+            <xsd:enumeration value="PHP"/>
+            <xsd:enumeration value="PKR"/>
+            <xsd:enumeration value="PLN"/>
+            <xsd:enumeration value="PYG"/>
+            <xsd:enumeration value="QAR"/>
+            <xsd:enumeration value="RON"/>
+            <xsd:enumeration value="RSD"/>
+            <xsd:enumeration value="RUB"/>
+            <xsd:enumeration value="RUR"/>
+            <xsd:enumeration value="RWF"/>
+            <xsd:enumeration value="SAR"/>
+            <xsd:enumeration value="SBD"/>
+            <xsd:enumeration value="SCR"/>
+            <xsd:enumeration value="SDG"/>
+            <xsd:enumeration value="SEK"/>
+            <xsd:enumeration value="SGD"/>
+            <xsd:enumeration value="SHP"/>
+            <xsd:enumeration value="SLL"/>
+            <xsd:enumeration value="SOS"/>
+            <xsd:enumeration value="SRD"/>
+            <xsd:enumeration value="STD"/>
+            <xsd:enumeration value="SYP"/>
+            <xsd:enumeration value="SZL"/>
+            <xsd:enumeration value="THB"/>
+            <xsd:enumeration value="TJS"/>
+            <xsd:enumeration value="TMT"/>
+            <xsd:enumeration value="TND"/>
+            <xsd:enumeration value="TOP"/>
+            <xsd:enumeration value="TRY"/>
+            <xsd:enumeration value="TTD"/>
+            <xsd:enumeration value="TWD"/>
+            <xsd:enumeration value="TZS"/>
+            <xsd:enumeration value="UAH"/>
+            <xsd:enumeration value="UGX"/>
+            <xsd:enumeration value="USD"/>
+            <xsd:enumeration value="UYU"/>
+            <xsd:enumeration value="UZS"/>
+            <xsd:enumeration value="VEF"/>
+            <xsd:enumeration value="VND"/>
+            <xsd:enumeration value="VUV"/>
+            <xsd:enumeration value="WST"/>
+            <xsd:enumeration value="XAF"/>
+            <xsd:enumeration value="XAG"/>
+            <xsd:enumeration value="XAU"/>
+            <xsd:enumeration value="XBA"/>
+            <xsd:enumeration value="XBB"/>
+            <xsd:enumeration value="XBC"/>
+            <xsd:enumeration value="XBD"/>
+            <xsd:enumeration value="XCD"/>
+            <xsd:enumeration value="XDR"/>
+            <xsd:enumeration value="XFU"/>
+            <xsd:enumeration value="XOF"/>
+            <xsd:enumeration value="XPD"/>
+            <xsd:enumeration value="XPF"/>
+            <xsd:enumeration value="XPT"/>
+            <xsd:enumeration value="XTS"/>
+            <xsd:enumeration value="XXX"/>
+            <xsd:enumeration value="YER"/>
+            <xsd:enumeration value="ZAR"/>
+            <xsd:enumeration value="ZMK"/>
+            <xsd:enumeration value="ZWL"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:complexType name="MPNameValueAttributes">
+        <xsd:sequence>
+            <xsd:element name="NameValueAttribute" type="MPNameValueAttribute" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="MPNameValueAttribute">
+        <xsd:sequence>
+            <xsd:element name="name" type="xsd:string" minOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        name
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="type" type="ValueType" minOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        type
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="value" type="MPAttributeValue" minOccurs="1" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Set of values for the attribute
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="MPAttributeValue">
+        <xsd:sequence>
+            <xsd:element name="value" type="xsd:string" minOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        value expressed in string
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="group" type="xsd:string" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        list of values
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="rank" type="xsd:int" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        list of values
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:simpleType name="ValueType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="LOCALIZABLE_TEXT" />
+            <xsd:enumeration value="STRING" />
+            <xsd:enumeration value="BOOLEAN" />
+            <xsd:enumeration value="INTEGER" />
+            <xsd:enumeration value="DECIMAL" />
+            <xsd:enumeration value="DATE" />
+            <xsd:enumeration value="TIMESTAMP" />
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="Mart">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="WALMART_US" />
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="ShipMethod">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="STANDARD"/>
+            <xsd:enumeration value="EXPEDITED"/>
+            <xsd:enumeration value="FREIGHT"/>
+            <xsd:enumeration value="ONE_DAY"/>
+            <xsd:enumeration value="FREIGHT_WITH_WHITE_GLOVE"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="ShipRegion">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="STREET_48_STATES" />
+            <xsd:enumeration value="PO_BOX_48_STATES" />
+            <xsd:enumeration value="STREET_AK_AND_HI" />
+            <xsd:enumeration value="PO_BOX_AK_AND_HI" />
+            <xsd:enumeration value="PO_BOX_US_PROTECTORATES" />
+            <xsd:enumeration value="STREET_US_PROTECTORATES" />
+            <xsd:enumeration value="APO_FPO" />
+        </xsd:restriction>
+    </xsd:simpleType>
+
+</xsd:schema>

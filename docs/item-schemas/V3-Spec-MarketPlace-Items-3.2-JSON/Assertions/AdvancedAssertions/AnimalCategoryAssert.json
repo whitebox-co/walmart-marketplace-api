@@ -1,0 +1,220 @@
+{"assertions":{
+  "Animal":{
+    "variantGroupId":{
+      "variantAttributeNames":"OR DEPENDENCY",
+      "additionalVariantAttributeNames":"OR DEPENDENCY",
+      "message":"variantAttributeNames is required when variantGroupId is present and additionalVariantAttributeNames is missing"
+    },
+    "variantAttributeNames":{
+      "variantGroupId":"DEPENDENCY",
+      "message":"variantGroupId is required when variantAttributeNames is present"
+    },
+    "additionalVariantAttributeNames":{
+      "variantGroupId":"DEPENDENCY",
+      "message":"variantGroupId is required when additionalVariantAttributeNames is present"
+    },
+    "hasBatteries":[
+      {
+        "hasBatteries":"Yes OR Oui"
+      },
+      { "batteryTechnologyType":"MUST",
+        "message":"batteryTechnologyType is required when hasBatteries = Yes"
+      }
+    ],
+    "hasWarranty":[
+      {"hasWarranty":"Yes OR Oui"},
+      {"warrantyText":"NOT |warrantyURL",
+        "message":"warrantyText is required when warrantyURL is missing and hasWarranty = Yes"
+      },
+      {"warrantyURL":"NOT |warrantyText",
+        "message":"warrantyURL is required when warrantyText is missing and hasWarranty = Yes"
+      }
+    ],
+    "hasPricePerUnit":[
+      {"hasPricePerUnit":"Yes"},
+      {"pricePerUnitQuantity":"MUST",
+        "message":"pricePerUnitQuantity is required when hasPricePerUnit = Yes"},
+      {"pricePerUnitUom":"MUST",
+        "message":"pricePerUnitUom is required when hasPricePerUnit = Yes"}
+    ],
+    "hasExpiration":[
+      {"hasExpiration":"Yes"},
+      {"shelfLife":"MUST",
+        "message":"shelfLife is required when hasExpiration = Yes"}
+    ]
+  },
+  "AnimalHealthAndGrooming":{
+    "variantAttributeNames":{
+      "variantGroupId":"DEPENDENCY",
+      "message":"variantAttributeNames is required when variantGroupId is present"
+    },
+    "variantGroupId":{
+      "variantAttributeNames":"DEPENDENCY",
+      "message":"variantAttributeNames is required when variantGroupId is present"
+    },
+    "isProp65WarningRequired":[
+      {"isProp65WarningRequired":"Yes OR Oui"},
+      {"prop65WarningText":"MUST",
+        "message":"prop65WarningText is required when isProp65WarningRequired = Yes"}
+    ],
+    "hasPricePerUnit":[
+      {"hasPricePerUnit":"Yes"},
+      {"pricePerUnitQuantity":"MUST",
+        "message":"pricePerUnitQuantity is required when hasPricePerUnit = Yes"},
+      {"pricePerUnitUom":"MUST",
+        "message":"pricePerUnitUom is required when hasPricePerUnit = Yes"}
+    ],
+    "hasWarranty":[
+      {"hasWarranty":"Yes OR Oui"},
+      {"warrantyURL":"NOT |warrantyText",
+        "message":"warrantyURL is required when warrantyText is missing and hasWarranty = Yes"},
+      {"warrantyText":"NOT |warrantyURL",
+        "message":"warrantyText is required when warrantyURL is missing and hasWarranty = Yes"}
+    ],
+    "isNutritionFactsLabelRequired":[
+      {"isNutritionFactsLabelRequired":"Yes OR Oui"},
+      {"nutritionFactsLabel":"MUST",
+        "message":"nutritionFactsLabel is required when isNutritionFactsLabelRequired = Yes"}
+    ],
+    "hasIngredientList":[
+      {"hasIngredientList":"Yes OR Oui"},
+      {"ingredients":"MUST",
+        "ingredientListImage":"OR DEPENDENCY",
+        "message":"ingredients is required when hasIngredientList = Yes and ingredientListImage is missing"}
+    ],
+
+    "isDrugFactsLabelRequired":[
+      {"isDrugFactsLabelRequired":"Yes OR Oui"},
+      {"drugFactsLabel":"MUST",
+        "message":"drugFactsLabel is required when isDrugFactsLabelRequired = Yes"}
+    ]
+  },
+
+  "AnimalAccessories":{
+    "variantAttributeNames":{
+      "variantGroupId":"OR DEPENDENCY",
+      "message":"variantGroupId is required when variantAttributeNames is present"
+    },
+    "variantGroupId":{
+      "variantAttributeNames":"OR DEPENDENCY",
+      "additionalVariantAttributeNames":"OR DEPENDENCY",
+      "message":"variantAttributeNames is required when variantGroupId is present"
+    },
+    "isProp65WarningRequired":[
+      {"isProp65WarningRequired":"Yes OR Oui"},
+      {"prop65WarningText":"MUST",
+        "message":"prop65WarningText is required when isProp65WarningRequired = Yes"}
+    ],
+    "hasBatteries":[
+      {"hasBatteries":"Yes OR Oui"},
+      {"batteryTechnologyType":"MUST",
+        "message":"batteryTechnologyType is required when hasBatteries = Yes"}
+    ],
+    "requiresTextileActLabeling":[
+      {"requiresTextileActLabeling":"Yes OR Oui"},
+      {"countryOfOriginTextiles":"MUST",
+        "message":"countryOfOriginTextiles is required when requiresTextileActLabeling = Yes"}
+    ],
+    "hasPricePerUnit":[
+      {"hasPricePerUnit":"Yes"},
+      {"pricePerUnitQuantity":"MUST",
+        "message":"pricePerUnitQuantity is required when hasPricePerUnit = Yes"},
+      {"pricePerUnitUom":"MUST",
+        "message":"pricePerUnitUom is required when hasPricePerUnit = Yes"}
+    ],
+    "hasWarranty":[
+      {"hasWarranty":"Yes OR Oui"},
+      {"warrantyURL":"NOT |warrantyText",
+        "message":"warrantyURL is required when warrantyText is missing and hasWarranty = Yes"},
+      {"warrantyText":"NOT |warrantyURL",
+        "message":"warrantyText is required when warrantyURL is missing and hasWarranty = Yes"}
+    ]
+  },
+  "AnimalFood":{
+    "variantAttributeNames":{
+      "variantGroupId":"DEPENDENCY",
+      "message":"variantGroupId is required when variantAttributeNames is present"
+    },
+    "variantGroupId":{
+      "variantAttributeNames":"DEPENDENCY",
+      "message":"variantAttributeNames is required when variantGroupId is present"
+    },
+
+    "isProp65WarningRequired":[
+      {"isProp65WarningRequired":"Yes OR Oui"},
+      {"prop65WarningText":"MUST",
+        "message":"prop65WarningText is required when isProp65WarningRequired = Yes"}
+    ],
+    "hasPricePerUnit":[
+      {"hasPricePerUnit":"Yes"},
+      {"pricePerUnitQuantity":"MUST",
+        "message":"pricePerUnitQuantity is required when hasPricePerUnit = Yes"},
+      {"pricePerUnitUom":"MUST",
+        "message":"pricePerUnitUom is required when hasPricePerUnit = Yes"}
+    ],
+    "hasWarranty":[
+      {"hasWarranty":"Yes OR Oui"},
+      {"warrantyText":"NOT |warrantyURL",
+        "message":"warrantyText is required when warrantyURL is missing and hasWarranty = Yes"},
+      {"warrantyURL":"NOT |warrantyText",
+        "message":"warrantyURL is required when warrantyText is missing and hasWarranty = Yes"}
+    ],
+    "hasStateRestrictions":[
+      {"hasStateRestrictions":"Yes OR Oui"},
+      {"stateRestrictions":"MUST",
+        "message":"stateRestrictions is required when hasStateRestrictions = Yes"}
+    ],
+    "isNutritionFactsLabelRequired":[
+      {"isNutritionFactsLabelRequired":"Yes OR Oui"},
+      {"nutritionFactsLabel":"MUST",
+        "message":"nutritionFactsLabel is required when isNutritionFactsLabelRequired = Yes"},
+      {"nutritionIngredientsImage":"MUST",
+        "message":"nutritionIngredientsImage is required when isNutritionFactsLabelRequired = Yes"}
+    ]
+  },
+  "AnimalEverythingElse":{
+    "variantAttributeNames":{
+      "variantGroupId":"DEPENDENCY",
+      "message":"variantGroupId is required when variantAttributeNames is present"
+    },
+    "variantGroupId":{
+      "variantAttributeNames":" DEPENDENCY",
+      "message":"variantAttributeNames is required when variantGroupId is present and additionalVariantAttributeNames is missing"
+    },
+    "hasBatteries":[
+      {"hasBatteries":"Yes OR Oui"},
+      {"batteryTechnologyType":"MUST",
+        "message":"batteryTechnologyType is required when hasBatteries = Yes"}
+    ],
+    "hasWarranty":[
+      {"hasWarranty":"Yes OR Oui"},
+      {"warrantyText":"NOT |warrantyURL",
+        "message":"warrantyText is required when warrantyURL is missing and hasWarranty = Yes"},
+      {"warrantyURL":"NOT |warrantyText",
+        "message":"warrantyURL is required when warrantyText is missing and hasWarranty = Yes"}
+    ],
+    "hasPricePerUnit":[
+      {"hasPricePerUnit":"Yes"},
+      {"pricePerUnitQuantity":"MUST",
+        "message":"pricePerUnitQuantity is required when hasPricePerUnit = Yes"},
+      {"pricePerUnitUom":"MUST",
+        "message":"pricePerUnitUom is required when hasPricePerUnit = Yes"}
+    ],
+    "isProp65WarningRequired":[
+      {"isProp65WarningRequired":"Yes OR Oui"},
+      {"prop65WarningText":"MUST",
+        "message":"prop65WarningText is required when isProp65WarningRequired = Yes"}
+    ],
+    "requiresTextileActLabeling":[
+      {"requiresTextileActLabeling":"Yes OR Oui"},
+      {"countryOfOriginTextiles":"MUST",
+        "message":"countryOfOriginTextiles is required when requiresTextileActLabeling = Yes"}
+    ],
+    "hasExpiration":[
+      {"hasExpiration":"Yes"},
+      {"shelfLife":"MUST",
+        "message":"shelfLife is required when hasExpiration = Yes"}
+    ]
+  }
+
+}}

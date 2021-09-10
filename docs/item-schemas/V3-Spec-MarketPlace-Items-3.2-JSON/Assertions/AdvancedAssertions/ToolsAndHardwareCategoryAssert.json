@@ -1,0 +1,221 @@
+{"assertions":{
+  "ToolsAndHardware" :
+  {
+    "variantGroupId":{
+      "variantAttributeNames":"OR DEPENDENCY",
+      "additionalVariantAttributeNames":"OR DEPENDENCY",
+      "message":"variantAttributeNames is required when variantGroupId is present and additionalVariantAttributeNames is missing"
+    },
+    "variantAttributeNames":{
+      "variantGroupId":"DEPENDENCY",
+      "message":"variantGroupId is required when variantAttributeNames is present"
+    },
+    "additionalVariantAttributeNames":{
+      "variantGroupId":"DEPENDENCY",
+      "message":"variantGroupId is required when additionalVariantAttributeNames is present"
+    },
+    "isProp65WarningRequired":[
+      {"isProp65WarningRequired":"Yes OR Oui"},
+      {"prop65WarningText":"MUST",
+        "message":"prop65WarningText is required when isProp65WarningRequired = Yes"}
+    ],
+    "hasStateRestrictions":[
+      {"hasStateRestrictions":"Yes OR Oui"},
+      {"stateRestrictions":"MUST",
+        "message":"stateRestrictions is required when hasStateRestrictions = Yes"}
+    ],
+    "hasBatteries":[
+      {"hasBatteries":"Yes OR Oui"},
+      {"batteryTechnologyType":"MUST",
+        "message":"batteryTechnologyType is required when hasBatteries = Yes"}
+    ],
+    "hasWarranty":[
+      {"hasWarranty":"Yes OR Oui"},
+      {"warrantyText":"NOT |warrantyURL",
+        "message":"warrantyText is required when warrantyURL is missing and hasWarranty = Yes"},
+      {"warrantyURL":"NOT |warrantyText",
+        "message":"warrantyURL is required when warrantyText is missing and hasWarranty = Yes"}
+    ]
+  },
+  "BuildingSupply": {
+    "variantAttributeNames":{
+      "variantGroupId":"DEPENDENCY",
+      "message":"variantGroupId is required when variantAttributeNames is present"
+    },
+    "variantGroupId":{
+      "variantAttributeNames":"DEPENDENCY",
+      "message":"variantAttributeNames is required when variantGroupId is present"
+    },
+    "isProp65WarningRequired":[
+      {"isProp65WarningRequired":"Yes OR Oui"},
+      {"prop65WarningText":"MUST",
+        "message":"prop65WarningText is required when isProp65WarningRequired = Yes"}
+    ],
+    "hasBatteries":[
+      {"hasBatteries":"Yes OR Oui"},
+      {"batteryTechnologyType":"MUST",
+        "message":"batteryTechnologyType is required when hasBatteries = Yes"}
+    ],
+    "hasWarranty":[
+      {"hasWarranty":"Yes OR Oui"},
+      {"warrantyURL":"NOT |warrantyText",
+        "message":"warrantyURL is required when warrantyText is missing and hasWarranty = Yes"},
+      {"warrantyText":"NOT |warrantyURL",
+        "message":"warrantyText is required when warrantyURL is missing and hasWarranty = Yes"}
+    ],
+    "hasIngredientList":[
+      {"hasIngredientList":"Yes OR Oui"},
+      {"ingredientListImage":"NOT |ingredients",
+        "message":"ingredientListImage is required when hasIngredientList = Yes and ingredients is missing"},
+      {"ingredients":"NOT |ingredientListImage",
+        "message":"ingredients is required when hasIngredientList = Yes and ingredientListImage is missing"}
+    ]
+  },
+  "Electrical": {
+    "variantAttributeNames":{
+      "variantGroupId":"DEPENDENCY",
+      "message":"variantGroupId is required when variantAttributeNames is present"
+    },
+    "variantGroupId":{
+      "variantAttributeNames":"OR DEPENDENCY",
+      "additionalVariantAttributeNames":"OR DEPENDENCY",
+      "message":"variantAttributeNames is required when variantGroupId is present and additionalVariantAttributeNames is missing"
+    },
+    "isProp65WarningRequired":[
+      {"isProp65WarningRequired":"Yes OR Oui"},
+      {"prop65WarningText":"MUST",
+        "message":"prop65WarningText is required when isProp65WarningRequired = Yes"}
+    ],
+    "hasBatteries":[
+      {"hasBatteries":"Yes OR Oui"},
+      {"batteryTechnologyType":"MUST",
+        "message":"batteryTechnologyType is required when hasBatteries = Yes"}
+    ],
+    "hasWarranty":[
+      {"hasWarranty":"Yes OR Oui"},
+      {"warrantyURL":"NOT |warrantyText",
+        "message":"warrantyURL is required when warrantyText is missing and hasWarranty = Yes"},
+      {"warrantyText":"NOT |warrantyURL",
+        "message":"warrantyText is required when warrantyURL is missing and hasWarranty = Yes"}
+    ]
+  },
+  "Hardware":{
+    "variantGroupId":{
+      "variantAttributeNames":"OR DEPENDENCY",
+      "additionalVariantAttributeNames":"OR DEPENDENCY",
+      "message":"variantAttributeNames is required when variantGroupId is present and additionalVariantAttributeNames is missing"
+    },
+    "variantAttributeNames":{
+      "variantGroupId":"DEPENDENCY",
+      "message":"variantGroupId is required when variantAttributeNames is present"
+    },
+    "additionalVariantAttributeNames":{
+      "variantGroupId":"DEPENDENCY",
+      "message":"variantGroupId is required when additionalVariantAttributeNames is present"
+    },
+    "isProp65WarningRequired":[
+      {"isProp65WarningRequired":"Yes OR Oui"},
+      {"prop65WarningText":"MUST",
+        "message":"prop65WarningText is required when isProp65WarningRequired = Yes"}
+    ],
+    "hasBatteries":[
+      {"hasBatteries":"Yes OR Oui"},
+      {"batteryTechnologyType":"MUST",
+        "message":"batteryTechnologyType is required when hasBatteries = Yes"}
+    ],
+    "hasWarranty":[
+      {"hasWarranty":"Yes OR Oui"},
+      {"warrantyURL":"NOT |warrantyText",
+        "message":"warrantyURL is required when warrantyText is missing and hasWarranty = Yes"},
+      {"warrantyText":"NOT |warrantyURL",
+        "message":"warrantyText is required when warrantyURL is missing and hasWarranty = Yes"}
+    ]
+  },
+  "PlumbingAndHVAC":{
+    "variantAttributeNames":{
+      "variantGroupId":"DEPENDENCY",
+      "message":"variantGroupId is required when variantAttributeNames is present"
+    },
+    "variantGroupId":{
+      "variantAttributeNames":"DEPENDENCY",
+      "additionalVariantAttributeNames":"DEPENDENCY",
+      "message":"variantAttributeNames is required when variantGroupId is present"
+    },
+    "additionalVariantAttributeNames":{
+      "variantGroupId":"DEPENDENCY",
+      "message":"variantGroupId is required when additionalVariantAttributeNames is present"
+    },
+    "isProp65WarningRequired":[
+      {"isProp65WarningRequired":"Yes OR Oui"},
+      {"prop65WarningText":"MUST",
+        "message":"prop65WarningText is required when isProp65WarningRequired = Yes"}
+    ],
+    "hasBatteries":[
+      {"hasBatteries":"Yes OR Oui"},
+      {"batteryTechnologyType":"MUST",
+        "message":"batteryTechnologyType is required when hasBatteries = Yes"}
+    ],
+    "hasWarranty":[
+      {"hasWarranty":"Yes OR Oui"},
+      {"warrantyURL":"NOT |warrantyText",
+        "message":"warrantyURL is required when warrantyText is missing and hasWarranty = Yes"},
+      {"warrantyText":"NOT |warrantyURL",
+        "message":"warrantyText is required when warrantyURL is missing and hasWarranty = Yes"}
+    ]
+  },
+  "Tools":{
+    "variantGroupId":{
+      "variantAttributeNames":{
+        "variantGroupId":"DEPENDENCY",
+        "message":"variantGroupId is required when variantAttributeNames is present"
+      },
+      "variantAttributeNames":"DEPENDENCY",
+      "additionalVariantAttributeNames":"DEPENDENCY",
+      "message":"variantAttributeNames is required when variantGroupId is present"
+    },
+    "isProp65WarningRequired":[
+      {"isProp65WarningRequired":"Yes OR Oui"},
+      {"prop65WarningText":"MUST",
+        "message":"prop65WarningText is required when isProp65WarningRequired = Yes"}
+    ],
+    "hasBatteries":[
+      {"hasBatteries":"Yes OR Oui"},
+      {"batteryTechnologyType":"MUST",
+        "message":"batteryTechnologyType is required when hasBatteries = Yes"}
+    ],
+    "hasWarranty":[
+      {"hasWarranty":"Yes OR Oui"},
+      {"warrantyURL":"NOT |warrantyText",
+        "message":"warrantyURL is required when warrantyText is missing and hasWarranty = Yes"},
+      {"warrantyText":"NOT |warrantyURL",
+        "message":"warrantyText is required when warrantyURL is missing and hasWarranty = Yes"}
+    ]
+  },
+  "ToolsAndHardwareOther":{
+    "variantAttributeNames":{
+      "variantGroupId":"DEPENDENCY",
+      "message":"variantGroupId is required when variantAttributeNames is present"
+    },
+    "variantGroupId":{
+      "variantAttributeNames":"DEPENDENCY",
+      "message":"variantAttributeNames is required when variantGroupId is present"
+    },
+    "isProp65WarningRequired":[
+      {"isProp65WarningRequired":"Yes OR Oui"},
+      {"prop65WarningText":"MUST",
+        "message":"prop65WarningText is required when isProp65WarningRequired = Yes"}
+    ],
+    "hasBatteries":[
+      {"hasBatteries":"Yes OR Oui"},
+      {"batteryTechnologyType":"MUST",
+        "message":"batteryTechnologyType is required when hasBatteries = Yes"}
+    ],
+    "hasWarranty":[
+      {"hasWarranty":"Yes OR Oui"},
+      {"warrantyURL":"NOT |warrantyText",
+        "message":"warrantyURL is required when warrantyText is missing and hasWarranty = Yes"},
+      {"warrantyText":"NOT |warrantyURL",
+        "message":"warrantyText is required when warrantyURL is missing and hasWarranty = Yes"}
+    ]
+  }
+}}

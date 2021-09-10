@@ -31,7 +31,7 @@ jobs:
             - name: Build
               run: npm run build
 
-            - name: Semantic Release
+            - name: Semantic Release Github
               if: success()
               env:
                   GIT_AUTHOR_NAME: Whitebox Bot
@@ -39,5 +39,4 @@ jobs:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                   NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                   NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                  SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
               run: npm run semantic-release

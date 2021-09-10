@@ -858,59 +858,17 @@ export interface InlineResponse200 {
    */
   shipNode?: string;
   /**
-   * Defines if the fulfillment center is virtual, seller owned or third party owned. Allowed values: PHYSICAL, VIRTUAL, 3PL.
-   * @type {string}
-   * @memberof InlineResponse200
-   */
-  nodeType?: string;
-  /**
    * Name of the fulfillment center.
    * @type {string}
    * @memberof InlineResponse200
    */
   shipNodeName?: string;
   /**
-   * Status of fulfillment center. Allowed values: ACTIVE, INACTIVE..
-   * @type {string}
-   * @memberof InlineResponse200
-   */
-  status?: string;
-  /**
-   * Time zone that the seller ships from.Allowed timezones are PST, EST, CST, MST.
-   * @type {string}
-   * @memberof InlineResponse200
-   */
-  timeZone?: string;
-  /**
-   * The services supported by the defined physical ship node . The allowed values: TWO_DAY_DELIVERY.
+   * Two day shipping regions defined by Walmart for sellers.
    * @type {Array<string>}
    * @memberof InlineResponse200
    */
-  distributorSupportedServices?: Array<string>;
-  /**
-   * Custom node identifier provided by seller. Allowed values are alphanumeric | String
-   * @type {string}
-   * @memberof InlineResponse200
-   */
-  customNodeId?: string;
-  /**
-   *
-   * @type {V3SettingsShippingShipnodesPostalAddress}
-   * @memberof InlineResponse200
-   */
-  postalAddress?: V3SettingsShippingShipnodesPostalAddress;
-  /**
-   * Shipping Details.
-   * @type {Array<V3SettingsShippingShipnodesShippingDetails>}
-   * @memberof InlineResponse200
-   */
-  shippingDetails?: Array<V3SettingsShippingShipnodesShippingDetails>;
-  /**
-   *
-   * @type {V3SettingsShippingShipnodesCalendarDayConfiguration}
-   * @memberof InlineResponse200
-   */
-  calendarDayConfiguration?: V3SettingsShippingShipnodesCalendarDayConfiguration;
+  coverageArea?: Array<string>;
 }
 /**
  *
@@ -925,17 +883,59 @@ export interface InlineResponse2001 {
    */
   shipNode?: string;
   /**
+   * Defines if the fulfillment center is virtual, seller owned or third party owned. Allowed values: PHYSICAL, VIRTUAL, 3PL.
+   * @type {string}
+   * @memberof InlineResponse2001
+   */
+  nodeType?: string;
+  /**
    * Name of the fulfillment center.
    * @type {string}
    * @memberof InlineResponse2001
    */
   shipNodeName?: string;
   /**
-   * Two day shipping regions defined by Walmart for sellers.
+   * Status of fulfillment center. Allowed values: ACTIVE, INACTIVE..
+   * @type {string}
+   * @memberof InlineResponse2001
+   */
+  status?: string;
+  /**
+   * Time zone that the seller ships from.Allowed timezones are PST, EST, CST, MST.
+   * @type {string}
+   * @memberof InlineResponse2001
+   */
+  timeZone?: string;
+  /**
+   * The services supported by the defined physical ship node . The allowed values: TWO_DAY_DELIVERY.
    * @type {Array<string>}
    * @memberof InlineResponse2001
    */
-  coverageArea?: Array<string>;
+  distributorSupportedServices?: Array<string>;
+  /**
+   * Custom node identifier provided by seller. Allowed values are alphanumeric | String
+   * @type {string}
+   * @memberof InlineResponse2001
+   */
+  customNodeId?: string;
+  /**
+   *
+   * @type {V3SettingsShippingShipnodesPostalAddress}
+   * @memberof InlineResponse2001
+   */
+  postalAddress?: V3SettingsShippingShipnodesPostalAddress;
+  /**
+   * Shipping Details.
+   * @type {Array<V3SettingsShippingShipnodesShippingDetails>}
+   * @memberof InlineResponse2001
+   */
+  shippingDetails?: Array<V3SettingsShippingShipnodesShippingDetails>;
+  /**
+   *
+   * @type {V3SettingsShippingShipnodesCalendarDayConfiguration}
+   * @memberof InlineResponse2001
+   */
+  calendarDayConfiguration?: V3SettingsShippingShipnodesCalendarDayConfiguration;
 }
 /**
  *
@@ -1145,11 +1145,30 @@ export enum InlineResponse2003StatusEnum {
  */
 export interface InlineResponse2004 {
   /**
-   * Shipping Template ID
-   * @type {string}
+   *
+   * @type {InlineResponse2004Partner}
    * @memberof InlineResponse2004
    */
-  id?: string;
+  partner?: InlineResponse2004Partner;
+  /**
+   * List of seller configurations like Seller Account & feed throttling values
+   * @type {Array<object>}
+   * @memberof InlineResponse2004
+   */
+  configurations?: Array<object>;
+}
+/**
+ * Details of partner
+ * @export
+ * @interface InlineResponse2004Partner
+ */
+export interface InlineResponse2004Partner {
+  /**
+   * The seller ID
+   * @type {string}
+   * @memberof InlineResponse2004Partner
+   */
+  partnerId?: string;
 }
 /**
  *
@@ -1159,29 +1178,16 @@ export interface InlineResponse2004 {
 export interface InlineResponse2005 {
   /**
    *
-   * @type {InlineResponse2005Partner}
+   * @type {InlineResponse2004Partner}
    * @memberof InlineResponse2005
    */
-  partner?: InlineResponse2005Partner;
+  partner?: InlineResponse2004Partner;
   /**
-   * List of seller configurations like Seller Account & feed throttling values
+   * List of seller configurations like Lag Time
    * @type {Array<object>}
    * @memberof InlineResponse2005
    */
   configurations?: Array<object>;
-}
-/**
- * Details of partner
- * @export
- * @interface InlineResponse2005Partner
- */
-export interface InlineResponse2005Partner {
-  /**
-   * The seller ID
-   * @type {string}
-   * @memberof InlineResponse2005Partner
-   */
-  partnerId?: string;
 }
 /**
  *
@@ -1190,17 +1196,17 @@ export interface InlineResponse2005Partner {
  */
 export interface InlineResponse2006 {
   /**
-   *
-   * @type {InlineResponse2005Partner}
+   * The fulfillment center or ship node Id which uniquely identifies each facility and is autogenerated during the creation of fulfillment center. Every time a facility is added, a new ship node id is generated.
+   * @type {string}
    * @memberof InlineResponse2006
    */
-  partner?: InlineResponse2005Partner;
+  shipNode?: string;
   /**
-   * List of seller configurations like Lag Time
-   * @type {Array<object>}
+   * Name of the fulfillment center.
+   * @type {string}
    * @memberof InlineResponse2006
    */
-  configurations?: Array<object>;
+  shipNodeName?: string;
 }
 /**
  *
@@ -1209,17 +1215,11 @@ export interface InlineResponse2006 {
  */
 export interface InlineResponse2007 {
   /**
-   * The fulfillment center or ship node Id which uniquely identifies each facility and is autogenerated during the creation of fulfillment center. Every time a facility is added, a new ship node id is generated.
+   * Shipping Template ID
    * @type {string}
    * @memberof InlineResponse2007
    */
-  shipNode?: string;
-  /**
-   * Name of the fulfillment center.
-   * @type {string}
-   * @memberof InlineResponse2007
-   */
-  shipNodeName?: string;
+  id?: string;
 }
 /**
  *
@@ -1383,10 +1383,10 @@ export interface PartnerConfigAnyOf1 {
 export interface PartnerConfigsResponseDTO {
   /**
    *
-   * @type {InlineResponse2005Partner}
+   * @type {InlineResponse2004Partner}
    * @memberof PartnerConfigsResponseDTO
    */
-  partner?: InlineResponse2005Partner;
+  partner?: InlineResponse2004Partner;
   /**
    * List of seller configurations like Seller Account & feed throttling values
    * @type {Array<object>}
@@ -1817,10 +1817,10 @@ export enum ShippingConfigAnyOfConfigurationNameEnum {
 export interface ShippingConfigsResponseDTO {
   /**
    *
-   * @type {InlineResponse2005Partner}
+   * @type {InlineResponse2004Partner}
    * @memberof ShippingConfigsResponseDTO
    */
-  partner?: InlineResponse2005Partner;
+  partner?: InlineResponse2004Partner;
   /**
    * List of seller configurations like Lag Time
    * @type {Array<object>}
@@ -4916,7 +4916,7 @@ export const SettingsApiFp = function (configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<Array<InlineResponse200>>
+      ) => AxiosPromise<Array<InlineResponse2001>>
     > {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.createFulfillmentCenter(
@@ -5002,7 +5002,7 @@ export const SettingsApiFp = function (configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<InlineResponse2004>
+      ) => AxiosPromise<InlineResponse2007>
     > {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.deleteShippingTemplateDetails(
@@ -5043,7 +5043,7 @@ export const SettingsApiFp = function (configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<Array<InlineResponse2007>>
+      ) => AxiosPromise<Array<InlineResponse2006>>
     > {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.get3PFulfillmentProviders(
@@ -5085,7 +5085,7 @@ export const SettingsApiFp = function (configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<Array<InlineResponse200>>
+      ) => AxiosPromise<Array<InlineResponse2001>>
     > {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.getAllFulfillmentCenters(
@@ -5206,7 +5206,7 @@ export const SettingsApiFp = function (configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<Array<InlineResponse2001>>
+      ) => AxiosPromise<Array<InlineResponse200>>
     > {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.getCoverageForFulfillmentCenters(
@@ -5246,7 +5246,7 @@ export const SettingsApiFp = function (configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<InlineResponse2005>
+      ) => AxiosPromise<InlineResponse2004>
     > {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.getPartnerConfigurations(
@@ -5286,7 +5286,7 @@ export const SettingsApiFp = function (configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<InlineResponse2006>
+      ) => AxiosPromise<InlineResponse2005>
     > {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.getShippingConfigurations(
@@ -5411,7 +5411,7 @@ export const SettingsApiFp = function (configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<InlineResponse200>
+      ) => AxiosPromise<InlineResponse2001>
     > {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.updateFulfillmentCenter(
@@ -5543,7 +5543,7 @@ export const SettingsApiFactory = function (
       inlineObject1: InlineObject1,
       wMCONSUMERCHANNELTYPE?: string,
       options?: any
-    ): AxiosPromise<Array<InlineResponse200>> {
+    ): AxiosPromise<Array<InlineResponse2001>> {
       return localVarFp
         .createFulfillmentCenter(
           authorization,
@@ -5609,7 +5609,7 @@ export const SettingsApiFactory = function (
       wMSVCNAME: string,
       wMCONSUMERCHANNELTYPE?: string,
       options?: any
-    ): AxiosPromise<InlineResponse2004> {
+    ): AxiosPromise<InlineResponse2007> {
       return localVarFp
         .deleteShippingTemplateDetails(
           templateId,
@@ -5640,7 +5640,7 @@ export const SettingsApiFactory = function (
       wMSVCNAME: string,
       wMCONSUMERCHANNELTYPE?: string,
       options?: any
-    ): AxiosPromise<Array<InlineResponse2007>> {
+    ): AxiosPromise<Array<InlineResponse2006>> {
       return localVarFp
         .get3PFulfillmentProviders(
           authorization,
@@ -5672,7 +5672,7 @@ export const SettingsApiFactory = function (
       includeCalendarDayConfiguration?: boolean,
       wMCONSUMERCHANNELTYPE?: string,
       options?: any
-    ): AxiosPromise<Array<InlineResponse200>> {
+    ): AxiosPromise<Array<InlineResponse2001>> {
       return localVarFp
         .getAllFulfillmentCenters(
           authorization,
@@ -5763,7 +5763,7 @@ export const SettingsApiFactory = function (
       wMSVCNAME: string,
       wMCONSUMERCHANNELTYPE?: string,
       options?: any
-    ): AxiosPromise<Array<InlineResponse2001>> {
+    ): AxiosPromise<Array<InlineResponse200>> {
       return localVarFp
         .getCoverageForFulfillmentCenters(
           authorization,
@@ -5793,7 +5793,7 @@ export const SettingsApiFactory = function (
       wMSVCNAME: string,
       wMCONSUMERCHANNELTYPE?: string,
       options?: any
-    ): AxiosPromise<InlineResponse2005> {
+    ): AxiosPromise<InlineResponse2004> {
       return localVarFp
         .getPartnerConfigurations(
           authorization,
@@ -5823,7 +5823,7 @@ export const SettingsApiFactory = function (
       wMSVCNAME: string,
       wMCONSUMERCHANNELTYPE?: string,
       options?: any
-    ): AxiosPromise<InlineResponse2006> {
+    ): AxiosPromise<InlineResponse2005> {
       return localVarFp
         .getShippingConfigurations(
           authorization,
@@ -5918,7 +5918,7 @@ export const SettingsApiFactory = function (
       inlineObject: InlineObject,
       wMCONSUMERCHANNELTYPE?: string,
       options?: any
-    ): AxiosPromise<InlineResponse200> {
+    ): AxiosPromise<InlineResponse2001> {
       return localVarFp
         .updateFulfillmentCenter(
           authorization,

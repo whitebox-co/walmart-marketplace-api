@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Schema for data exchanged between Walmart and its partners.
+  Copyright 2015 Walmart Corporation. All rights reserved.
+-->
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:wm="http://walmart.com/"
+  targetNamespace="http://walmart.com/"
+  elementFormDefault="qualified"
+  version="3.2">
+
+  <xsd:include schemaLocation="MPCommons.xsd"/>
+  <xsd:element name="MPItemFeedHeader" type="wm:MPItemFeedHeader"/>
+
+  <xsd:complexType name="MPItemFeedHeader">
+    <xsd:all>
+      <xsd:element name="version" minOccurs="1" default="3.2">
+        <xsd:annotation>
+          <xsd:documentation>
+            This indicates schema version associated with the XML payload
+          </xsd:documentation>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="3.2" />
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element name="requestId" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation>
+            partner's ID of the feed, partner's ID to correlate feed and feed response
+          </xsd:documentation>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="64"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element name="requestBatchId" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation>
+            Represents external generated batchId
+          </xsd:documentation>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="64"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element name="feedDate" type="xsd:dateTime" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation>
+            Date after which the offer is no longer valid
+            The dateTime is specified in the following form "YYYY-MM-DDThh:mm:ss" where:
+            YYYY  indicates the year
+            MM    indicates the month
+            DD    indicates the day
+            T     indicates the start of the required time section
+            hh    indicates the hour
+            mm    indicates the minute
+            ss    indicates the second
+            Note: All components are required!
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="mart" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>
+            Mart where the item would be listed
+          </xsd:documentation>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="WALMART_US" />
+            <xsd:enumeration value="ASDA_GM" />
+            <xsd:enumeration value="WALMART_CA" />
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+
+</xsd:schema>

@@ -2,7 +2,7 @@ import { Configuration } from './apis/configuration';
 import { AuthenticationApi, InlineResponse200 } from './apis/auth';
 import { v4 as uuidv4 } from 'uuid';
 import { AxiosResponse } from 'axios';
-import { intercept } from './util/interceptor';
+import { apiInterceptor } from './util/interceptors';
 import { defaultParams, WalmartMarketplaceApi } from './constants';
 
 export interface WalmartApiCredentials {
@@ -158,8 +158,8 @@ const getConfiguredApi = async <T extends WalmartMarketplaceApi>(
 	const authorizedConfiguration = await getAuthorizedConfiguration(credentials);
 	const api = new Api(authorizedConfiguration);
 
-	// run an interceptor in order to fill in defaultParams necessary for each call.
-	return intercept(api, (fnName: string, fnArgs: any) => {
+	// run an apiInterceptor in order to fill in defaultParams necessary for each call.
+	return apiInterceptor(api, (fnName: string, fnArgs: any) => {
 		const defaultParams = getDefaultParams(credentialsCache[credentials.clientId]);
 
 		// apply default params to first arg which is always a request object.

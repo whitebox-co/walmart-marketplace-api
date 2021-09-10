@@ -12,7 +12,7 @@ import path from 'path';
 import { name, version } from '../package.json';
 import { USER_AGENT } from '../src/constants';
 
-const CONSTANTS_FILE = path.join(__dirname, '../lib/constants.js');
+const CONSTANTS_FILE = path.join(__dirname, '../lib/src/constants.js');
 
 const constants = readFileSync(CONSTANTS_FILE, { encoding: 'utf8' });
 const replaced = constants.replace(USER_AGENT, `${name}/${version}`);

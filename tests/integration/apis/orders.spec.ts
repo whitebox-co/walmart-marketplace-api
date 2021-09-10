@@ -1,7 +1,9 @@
 import * as env from '../../environment';
 import walmartApi, { OrdersApi, defaultParams } from '../../../src/index';
+import { addInterceptors, removeInterceptors } from '../../../utils/payload-interceptors';
 
 describe('orders', () => {
+	let interceptors: any;
 	let ordersApi: OrdersApi;
 
 	beforeAll(async () => {
@@ -10,6 +12,15 @@ describe('orders', () => {
 			clientSecret: env.CLIENT_SECRET,
 			consumerChannelType: env.CONSUMER_CHANNEL_TYPE,
 		});
+	});
+
+	beforeEach(() => {
+		const testName = expect.getState().currentTestName;
+		interceptors = Object.values(addInterceptors(testName));
+	});
+
+	afterEach(() => {
+		removeInterceptors(interceptors);
 	});
 
 	it('should instantiate the api', () => {
@@ -43,5 +54,28 @@ describe('orders', () => {
 
 	describe('#shippingUpdates', () => {
 		// TODO: Implement ME!!
+	});
+
+	describe('solution-provider-use-cases', () => {
+		// Scenario 1 - Acknowledge - Acknowledge an order
+		it('should pass Scenario 1', () => {
+			// TODO: Implement ME!!
+
+			expect(true).toEqual(false);
+		});
+
+		// Scenario 4 - Ship entire order - Ship an order with multi lines
+		it('should pass Scenario 4', () => {
+			// TODO: Implement ME!!
+
+			expect(true).toEqual(false);
+		});
+
+		// Scenario 5 - Ship order line - Ship one order line at a time in a multi line order
+		it('should pass Scenario 5', () => {
+			// TODO: Implement ME!!
+
+			expect(true).toEqual(false);
+		});
 	});
 });

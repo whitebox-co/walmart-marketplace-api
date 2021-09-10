@@ -1,0 +1,121 @@
+{"assertions":{
+  "CarriersAndAccessoriesCategory":{
+    "variantGroupId":{
+      "variantAttributeNames":"OR DEPENDENCY",
+      "additionalVariantAttributeNames":"OR DEPENDENCY",
+      "message":"variantAttributeNames is required when variantGroupId is present and additionalVariantAttributeNames is missing"
+    },
+    "variantAttributeNames":{
+      "variantGroupId":"DEPENDENCY",
+      "message":"variantGroupId is required when variantAttributeNames is present"
+    },
+    "isProp65WarningRequired":[
+      {"isProp65WarningRequired":"Yes OR Oui"},
+      {"prop65WarningText":"MUST",
+        "message":"prop65WarningText is required when isProp65WarningRequired = Yes"}
+    ],
+    "hasBatteries":[
+      {
+        "hasBatteries":"Yes OR Oui"
+      },
+      { "batteryTechnologyType":"MUST",
+        "message":"batteryTechnologyType is required when hasBatteries = Yes"
+      }
+    ],
+    "hasWarranty":[
+      {"hasWarranty":"Yes OR Oui"},
+      {"warrantyText":"NOT |warrantyURL",
+        "message":"warrantyText is required when warrantyURL is missing and hasWarranty = Yes"
+      },
+      {"warrantyURL":"NOT |warrantyText",
+        "message":"warrantyURL is required when warrantyText is missing and hasWarranty = Yes"
+      }
+    ],
+    "hasStateRestrictions":[
+      {"hasStateRestrictions":"Yes OR Oui"},
+      {"stateRestrictions":"MUST",
+        "message":"stateRestrictions is required when hasStateRestrictions = Yes"}
+    ],
+    "requiresTextileActLabeling":[
+      {"requiresTextileActLabeling":"Yes OR Oui"},
+      {"countryOfOriginTextiles":"MUST",
+        "message":"countryOfOriginTextiles is required when requiresTextileActLabeling = Yes"}
+    ]
+  },
+  "CasesAndBags":{
+    "variantAttributeNames":{
+      "variantGroupId":"DEPENDENCY",
+      "message":"variantGroupId is required when variantAttributeNames is present"
+    },
+    "variantGroupId":{
+      "variantAttributeNames":"OR DEPENDENCY",
+      "additionalVariantAttributeNames":"OR DEPENDENCY",
+      "message":"variantAttributeNames is required when variantGroupId is present and additionalVariantAttributeNames is missing"
+    },
+    "isProp65WarningRequired":[
+      {"isProp65WarningRequired":"Yes OR Oui"},
+      {"prop65WarningText":"MUST",
+        "message":"prop65WarningText is required when isProp65WarningRequired = Yes"}
+    ],
+    "hasBatteries":[
+      {
+        "hasBatteries":"Yes OR Oui"
+      },
+      { "batteryTechnologyType":"MUST",
+        "message":"batteryTechnologyType is required when hasBatteries = Yes"
+      }
+    ],
+    "hasWarranty":[
+      {"hasWarranty":"Yes OR Oui"},
+      {"warrantyURL":"NOT |warrantyText",
+        "message":"warrantyURL is required when warrantyText is missing and hasWarranty = Yes"
+      },
+      {"warrantyText":"NOT |warrantyURL",
+        "message":"warrantyText is required when warrantyURL is missing and hasWarranty = Yes"
+      }
+    ],
+    "requiresTextileActLabeling":[
+      {"requiresTextileActLabeling":"Yes OR Oui"},
+      {"countryOfOriginTextiles":"MUST",
+        "message":"countryOfOriginTextiles is required when requiresTextileActLabeling = Yes"}
+    ]
+  },
+  "CarriersAndAccessories":{
+    "variantAttributeNames":{
+      "variantGroupId":"DEPENDENCY",
+      "message":"variantGroupId is required when variantAttributeNames is present"
+    },
+    "variantGroupId":{
+      "variantAttributeNames":"OR DEPENDENCY",
+      "additionalVariantAttributeNames":"OR DEPENDENCY",
+      "message":"variantAttributeNames is required when variantGroupId is present and additionalVariantAttributeNames is missing"
+    },
+    "isProp65WarningRequired":[
+      {"isProp65WarningRequired":"Yes OR Oui"},
+      {"prop65WarningText":"MUST",
+        "message":"prop65WarningText is required when isProp65WarningRequired = Yes"}
+    ],
+    "hasBatteries":[
+      {
+        "hasBatteries":"Yes OR Oui"
+      },
+      { "batteryTechnologyType":"MUST",
+        "message":"batteryTechnologyType is required when hasBatteries = Yes"
+      }
+    ],
+    "hasWarranty":[
+      {"hasWarranty":"Yes OR Oui"},
+      {"warrantyURL":"NOT |warrantyText",
+        "message":"warrantyURL is required when warrantyText is missing and hasWarranty = Yes"
+      },
+      {"warrantyText":"NOT |warrantyURL",
+        "message":"warrantyText is required when warrantyURL is missing and hasWarranty = Yes"
+      }
+    ],
+    "requiresTextileActLabeling":[
+      {"requiresTextileActLabeling":"Yes OR Oui"},
+      {"countryOfOriginTextiles":"MUST",
+        "message":"countryOfOriginTextiles is required when requiresTextileActLabeling = Yes"}
+    ]
+  }
+}}

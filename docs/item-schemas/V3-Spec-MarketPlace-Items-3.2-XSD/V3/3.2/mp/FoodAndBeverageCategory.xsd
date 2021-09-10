@@ -1,0 +1,2022 @@
+<?xml version="1.0" ?>
+<xsd:schema elementFormDefault="qualified" targetNamespace="http://walmart.com/" version="3.2" xmlns:wm="http://walmart.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="MPCommons.xsd"/>
+  <xsd:complexType name="FoodAndBeverageCategory">
+    <xsd:choice maxOccurs="1" minOccurs="0">
+      <xsd:element name="AlcoholicBeverages" type="wm:AlcoholicBeverages"/>
+      <xsd:element name="FoodAndBeverage" type="wm:FoodAndBeverage"/>
+    </xsd:choice>
+  </xsd:complexType>
+  <xsd:complexType name="AlcoholicBeverages">
+    <xsd:all>
+      <xsd:element maxOccurs="1" minOccurs="1" name="shortDescription">
+        <xsd:annotation>
+          <xsd:documentation>Overview of the key selling points of the item, marketing content, and highlights in paragraph form. For SEO purposes, repeat the product name and relevant keywords here.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Required"/>
+            <wm:displayName>Description</wm:displayName>
+            <wm:group>Basic</wm:group>
+            <wm:rank>8000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="keyFeatures" type="wm:KeyFeatures">
+        <xsd:annotation>
+          <xsd:documentation>Key features will appear as bulleted text on the item page and in search results. Key features help the user understand the benefits of the product with a simple and clean format. We highly recommended using three or more key features.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Key Features</wm:displayName>
+            <wm:group>Basic</wm:group>
+            <wm:rank>9000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="1" name="brand">
+        <xsd:annotation>
+          <xsd:documentation>Name, term, design or other feature that distinguishes one seller's product from those of others. This can be the name of the company associated with the product, but not always. If item does not have a brand, use &quot;Unbranded&quot;.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Required"/>
+            <wm:displayName>Brand</wm:displayName>
+            <wm:group>Basic</wm:group>
+            <wm:rank>11000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="60"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="manufacturer">
+        <xsd:annotation>
+          <xsd:documentation>Manufacturer is the maker of the product. This is the name of the company that produces the product, not necessarily the brand name of the item. For some products, the manufacturer and the brand may be the same.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Manufacturer</wm:displayName>
+            <wm:group>Basic</wm:group>
+            <wm:rank>12000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="60"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="manufacturerPartNumber">
+        <xsd:annotation>
+          <xsd:documentation>MPN uniquely identifies the product to its manufacturer. For many products this will be identical to the model number. Some manufacturers distinguish part number from model number. Having this information allows customers to search for items on the site and informs product matching.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Manufacturer Part Number</wm:displayName>
+            <wm:group>Basic</wm:group>
+            <wm:rank>13000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="60"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="modelNumber">
+        <xsd:annotation>
+          <xsd:documentation>Model numbers allow manufacturers to keep track of each hardware device and identify or replace the proper part when needed. Model numbers are often found on the bottom, back, or side of a product. Having this information allows customers to search for items on the site and informs product matching.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Model Number</wm:displayName>
+            <wm:group>Basic</wm:group>
+            <wm:rank>14000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="60"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="multipackQuantity">
+        <xsd:annotation>
+          <xsd:documentation>The number of identical, individually packaged-for-sale items. If an item does not contain other items, does not contain identical items, or if the items contained within cannot be sold individually, the value for this attribute should be &quot;1.&quot; Examples: (1) A single bottle of 50 pills has a &quot;Multipack Quantity&quot; of &quot;1.&quot; (2) A package containing two identical bottles of 50 pills has a &quot;Multipack Quantity&quot; of 2. (3) A 6-pack of soda labelled for individual sale connected by plastic rings has a &quot;Multipack Quantity&quot; of &quot;6.&quot; (4) A 6-pack of soda in a box whose cans are not marked for individual sale has a &quot;Multipack Quantity&quot; of &quot;1.&quot; (5) A gift basket of 5 different items has a &quot;Multipack Quantity&quot; of &quot;1.&quot;</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Multipack Quantity</wm:displayName>
+            <wm:group>Basic</wm:group>
+            <wm:rank>15000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:integer">
+            <xsd:totalDigits value="4"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="countPerPack">
+        <xsd:annotation>
+          <xsd:documentation>The number of identical items inside each individual pack given by the &quot;Multipack Quantity&quot; attribute. Examples: (1) A single bottle of 50 pills has a &quot;Count Per Pack&quot; of &quot;50.&quot; (2) A package containing two identical bottles of 50 pills has a &quot;Count Per Pack&quot; of 50. (3) A 6-pack of soda labelled for individual sale connected by plastic rings has a &quot;Count Per Pack&quot; of &quot;1.&quot; (4) A 6-pack of soda in a box whose cans are not marked for individual sale has a &quot;Count Per Pack&quot; of &quot;6.&quot; (5) A gift basket of 5 different items has a &quot;Count Per Pack&quot; of &quot;1.&quot;</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Count Per Pack</wm:displayName>
+            <wm:group>Basic</wm:group>
+            <wm:rank>15500</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:integer">
+            <xsd:totalDigits value="4"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="count">
+        <xsd:annotation>
+          <xsd:documentation>The total number of identical items in the package or box; a result of the multiplication of Multipack Quantity by Count Per Pack. Examples: (1) A single bottle of 50 pills has a &quot;Total Count&quot; of 50. (2) A package containing two identical bottles of 50 pills has a &quot;Total Count&quot; of 100. (3) A gift basket of 5 different items has a &quot;Total Count&quot; of 1.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Total Count</wm:displayName>
+            <wm:group>Basic</wm:group>
+            <wm:rank>15550</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="7"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="1" name="mainImageUrl">
+        <xsd:annotation>
+          <xsd:documentation>Main image of the item. Image URL must end in the file name. Image URL must be static and have no redirections. Preferred file type: JPEG Accepted file types: JPG, PNG, GIF, BMP Recommended image resolution: 3000 x 3000 pixels at 300 ppi. Minimum image size requirements: Zoom capability: 2000 x 2000 pixels at 300 ppi. Non-zoom minimum: 500 x 500 pixels at 72 ppi. Maximum file size: 2 MB.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Required"/>
+            <wm:displayName>Main Image URL</wm:displayName>
+            <wm:group>Images</wm:group>
+            <wm:rank>16000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:anyURI"/>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="productSecondaryImageURL" type="wm:ProductSecondaryImageURL">
+        <xsd:annotation>
+          <xsd:documentation>Secondary images of the item. Image URL must end in the file name. Image URL must be static and have no redirections. Preferred file type: JPEG Accepted file types: JPG, PNG, GIF, BMP Recommended image resolution: 3000 x 3000 pixels at 300 ppi. Minimum image size requirements: Zoom capability: 2000 x 2000 pixels at 300 ppi. Non-zoom minimum: 500 x 500 pixels at 72 ppi. Maximum file size: 2 MB.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Additional Image URL</wm:displayName>
+            <wm:group>Images</wm:group>
+            <wm:rank>17000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="flavor">
+        <xsd:annotation>
+          <xsd:documentation>The distinctive taste or flavor of the item, as provided by manufacturer. This is used for a wide variety of products, including food and beverages for both animals and humans. This may also apply to non-food items that come in flavors, including dental products, cigars and smoker wood chips.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Flavor</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>19000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="size">
+        <xsd:annotation>
+          <xsd:documentation>Overall dimensions of an item. Used only for products that do not already have a more specific 'x size' attribute, such as ring size or clothing size. </xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Size</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>21000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="variantGroupId">
+        <xsd:annotation>
+          <xsd:documentation>Required if item is a variant. Make up a number and/or letter code for “Variant Group ID” and add this to all variations of the same product. Partners must ensure uniqueness of their Variant Group IDs.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Conditionally Required"/>
+            <wm:conditionalAttributes>
+              <wm:conditionalAttributeGroup>
+                <wm:conditionalAttribute name="variantAttributeNames" value="ANY"/>
+              </wm:conditionalAttributeGroup>
+            </wm:conditionalAttributes>
+            <wm:displayName>Variant Group ID</wm:displayName>
+            <wm:group>Item Variants</wm:group>
+            <wm:rank>23000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="300"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="variantAttributeNames">
+        <xsd:annotation>
+          <xsd:documentation>Designate all attributes by which the item is varying. Variant attributes are limited to those designated for each category. </xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Conditionally Required"/>
+            <wm:conditionalAttributes>
+              <wm:conditionalAttributeGroup>
+                <wm:conditionalAttribute name="variantGroupId" value="ANY"/>
+              </wm:conditionalAttributeGroup>
+            </wm:conditionalAttributes>
+            <wm:displayName>Variant Attribute Names</wm:displayName>
+            <wm:group>Item Variants</wm:group>
+            <wm:rank>24000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" name="variantAttributeName">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:enumeration value="flavor"/>
+                  <xsd:enumeration value="size"/>
+                  <xsd:enumeration value="sportsTeam"/>
+                  <xsd:enumeration value="countPerPack"/>
+                  <xsd:enumeration value="count"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="isPrimaryVariant">
+        <xsd:annotation>
+          <xsd:documentation>Note whether item is intended as the main variant in a variant grouping. The primary variant will appear as the image when customers search and the first image displayed on the item page. This should be set as &quot;Yes&quot; for only one item in a group of variants.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Is Primary Variant</wm:displayName>
+            <wm:group>Item Variants</wm:group>
+            <wm:rank>25000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Yes"/>
+            <xsd:enumeration value="No"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="isProp65WarningRequired">
+        <xsd:annotation>
+          <xsd:documentation>Selecting &quot;Y&quot; indicates the product requires California's Proposition 65 special warning. Proposition 65 entitles California consumers to special warnings for products that contain chemicals known to the state of California to cause cancer and birth defects or other reproductive harm if certain criteria are met (such as quantity of chemical contained in the product). See the portions of the California Health and Safety Code related to Proposition 65 for more information.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Is Prop 65 Warning Required</wm:displayName>
+            <wm:group>Compliance</wm:group>
+            <wm:rank>29000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Yes"/>
+            <xsd:enumeration value="No"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="prop65WarningText">
+        <xsd:annotation>
+          <xsd:documentation>This is a particular statement legally required by the State of California for certain products to warn consumers about potential health dangers. See the portions of the California Health and Safety Code related to Proposition 65 to see what products require labels and to verify the text of your warning label.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Conditionally Required"/>
+            <wm:conditionalAttributes>
+              <wm:conditionalAttributeGroup>
+                <wm:conditionalAttribute name="isProp65WarningRequired" value="Yes"/>
+              </wm:conditionalAttributeGroup>
+            </wm:conditionalAttributes>
+            <wm:displayName>Prop 65 Warning Text</wm:displayName>
+            <wm:group>Compliance</wm:group>
+            <wm:rank>30000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="hasExpiration">
+        <xsd:annotation>
+          <xsd:documentation>Select Yes if product is labeled with any type of expiration or code date that indicates when product should no longer be consumed or no longer at best quality (e.g. Best If Used By,  Best By, Use By, etc. ). Some examples of items with expiration dates include food, cleaning supplies, beauty products, etc.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Has Expiration</wm:displayName>
+            <wm:group>Compliance</wm:group>
+            <wm:rank>31000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Yes"/>
+            <xsd:enumeration value="No"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="hasPricePerUnit">
+        <xsd:annotation>
+          <xsd:documentation>Mark as &quot;Y&quot; if your item is any of the following: food used for human or domestic animal consumption; ingredients added to food; napkins; tissues; toilet paper; foil, plastic wrap, wax paper, parchment paper; paper towels; disposable plates, bowls, and cutlery; detergents, soaps, waxes, and other cleansing agents; non-prescription drugs, female hygeine products, and toiletries; automotive fluids and cleaners; rock salt; diapers, pullups and swimmers; fertilizer; kitty litter.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Has Price Per Unit</wm:displayName>
+            <wm:group>Compliance</wm:group>
+            <wm:rank>33000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Yes"/>
+            <xsd:enumeration value="No"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="pricePerUnitQuantity">
+        <xsd:annotation>
+          <xsd:documentation>Enter the quantity of units for the item, based on the &quot;PPU Unit of Measure&quot; you selected. For example, a gallon of milk should be 128.  NOTE: Do not enter the price. </xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Conditionally Required"/>
+            <wm:conditionalAttributes>
+              <wm:conditionalAttributeGroup>
+                <wm:conditionalAttribute name="hasPricePerUnit" value="Yes"/>
+              </wm:conditionalAttributeGroup>
+            </wm:conditionalAttributes>
+            <wm:displayName>PPU Quantity of Units</wm:displayName>
+            <wm:group>Compliance</wm:group>
+            <wm:rank>35000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:decimal">
+            <xsd:totalDigits value="16"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="pricePerUnitUom">
+        <xsd:annotation>
+          <xsd:documentation>The units that will be used to calculate the &quot;Price Per Unit&quot; for your product. For example, a gallon of milk has a &quot;PPU Unit of Measure&quot; of Fluid Ounces. NOTE: This may not be the Unit of Measure on the label.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Conditionally Required"/>
+            <wm:conditionalAttributes>
+              <wm:conditionalAttributeGroup>
+                <wm:conditionalAttribute name="hasPricePerUnit" value="Yes"/>
+              </wm:conditionalAttributeGroup>
+            </wm:conditionalAttributes>
+            <wm:displayName>PPU Unit of Measure</wm:displayName>
+            <wm:group>Compliance</wm:group>
+            <wm:rank>35500</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Ounce"/>
+            <xsd:enumeration value="Fluid Ounce"/>
+            <xsd:enumeration value="Yard"/>
+            <xsd:enumeration value="Square Foot"/>
+            <xsd:enumeration value="Cubic Foot"/>
+            <xsd:enumeration value="Foot"/>
+            <xsd:enumeration value="Inch"/>
+            <xsd:enumeration value="Pound"/>
+            <xsd:enumeration value="Each"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="hasGMOs">
+        <xsd:annotation>
+          <xsd:documentation>Does your product contain Genetically Modified Organisms (GMOS) whose DNA has been altered using genetic engineering techniques?</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Has GMOs</wm:displayName>
+            <wm:group>Compliance</wm:group>
+            <wm:rank>36000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Yes"/>
+            <xsd:enumeration value="No"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="isNutritionFactsLabelRequired">
+        <xsd:annotation>
+          <xsd:documentation>Indicates if item requires nutritional facts labeling per FDA guidelines. If yes, please provide the following elements in one or more images 1) The Nutrition Facts and 2) Ingredients. Both attributes are required. If both elements are contained in one image, you may repeat the URL in both attributes. </xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Is Nutrition Facts and Ingredient Label Required</wm:displayName>
+            <wm:group>Compliance</wm:group>
+            <wm:rank>40500</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Yes"/>
+            <xsd:enumeration value="No"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="nutritionFactsLabel">
+        <xsd:annotation>
+          <xsd:documentation>Image URL of the nutritional facts label. Provide the final destination image URL (no-redirects) that is publicly accessible (no username/password required) and ends in a proper image extension. Recommended file type: JPEG Accepted file types: JPG, PNG, GIF, BMP Maximum file size: 2 GB.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Conditionally Required"/>
+            <wm:conditionalAttributes>
+              <wm:conditionalAttributeGroup>
+                <wm:conditionalAttribute name="isNutritionFactsLabelRequired" value="Yes"/>
+              </wm:conditionalAttributeGroup>
+            </wm:conditionalAttributes>
+            <wm:displayName>Nutrition Facts Label Image</wm:displayName>
+            <wm:group>Compliance</wm:group>
+            <wm:rank>41750</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="2000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="nutritionIngredientsImage">
+        <xsd:annotation>
+          <xsd:documentation>URL of image. Provide the final destination image URL (no-redirects) that is publicly accessible (no username/password required) and ends in a proper image extension. Recommended file type: JPEG Accepted file types: JPG, PNG, GIF, BMP Maximum file size: 2 GB. If the Ingredients have been included in another image, you may repeat the URL here. </xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Conditionally Required"/>
+            <wm:conditionalAttributes>
+              <wm:conditionalAttributeGroup>
+                <wm:conditionalAttribute name="isNutritionFactsLabelRequired" value="Yes"/>
+              </wm:conditionalAttributeGroup>
+            </wm:conditionalAttributes>
+            <wm:displayName>Nutrition Ingredients Image</wm:displayName>
+            <wm:group>Compliance</wm:group>
+            <wm:rank>42375</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="400"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="alcoholContentByVolume">
+        <xsd:annotation>
+          <xsd:documentation>Percentage of alcohol by volume.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Alcohol Content by Volume</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>43000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="alcoholProof">
+        <xsd:annotation>
+          <xsd:documentation>Measure of ethanol (alcohol), which is twice the Alcohol by Volume.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Alcohol Proof</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>44000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="alcoholClassAndType">
+        <xsd:annotation>
+          <xsd:documentation>Common classification terms for alcoholic beverages. Select all that apply.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Alcohol Class &amp; Type</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>45000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="neutralSpiritsColoringAndFlavoring">
+        <xsd:annotation>
+          <xsd:documentation>A statement of composition, if an alcoholic beverage has additives.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Neutral Spirits Coloring &amp; Flavoring</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>46000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="wineAppellation">
+        <xsd:annotation>
+          <xsd:documentation>Legally defined and protected geographical indication used to identify where the grapes for a wine were grown.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Wine Appellation</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>47000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="wineVarietal">
+        <xsd:annotation>
+          <xsd:documentation>Grape variety that wine is derived from or, in the absence of one varietal, the varietal blend.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Wine Varietal</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>48000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="vintage">
+        <xsd:annotation>
+          <xsd:documentation>The year the item was created, such as for wine or cheese.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Vintage</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>48500</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:integer">
+            <xsd:totalDigits value="4"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="isNonGrape">
+        <xsd:annotation>
+          <xsd:documentation>Indicates that wine was made from fruit other than grapes.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Is Non-Grape</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>49000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Yes"/>
+            <xsd:enumeration value="No"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="isEstateBottled">
+        <xsd:annotation>
+          <xsd:documentation>Indicates that 100% of the wine came from grapes grown on land owned or controlled by the winery, which must be located in a viticultural area.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Is Estate Bottled</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>50000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Yes"/>
+            <xsd:enumeration value="No"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="containsSulfites">
+        <xsd:annotation>
+          <xsd:documentation>Indicates whether the beverage contains the level of sulfites required for labeling as such by law.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Contains Sulfites</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>51000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Yes"/>
+            <xsd:enumeration value="No"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="timeAged">
+        <xsd:annotation>
+          <xsd:documentation>Amount of time an item is aged, such as for whiskey or cheese.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Time Aged</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>52000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element maxOccurs="1" minOccurs="1" name="measure">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:decimal">
+                  <xsd:totalDigits value="16"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element maxOccurs="1" minOccurs="1" name="unit">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:enumeration value="months"/>
+                  <xsd:enumeration value="years"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="ingredients">
+        <xsd:annotation>
+          <xsd:documentation>The list of all ingredients contained in an item, as found on the product label mandated by FDA guidelines. The ingredients should be listed in descending order by weight. The label must list the names of any FDA-certified color additives, but some ingredients can be listed collectively as flavors, spices, artificial flavoring or artificial colors. Refer to the FDA Food Labeling Guide for more guidelines.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Ingredients Text</wm:displayName>
+            <wm:group>Compliance</wm:group>
+            <wm:rank>53000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="containerType" type="wm:ContainerType">
+        <xsd:annotation>
+          <xsd:documentation>The kind of physical package or receptacle that contains the product as presented to the consumer. Also used to describe storage items. Consumers may select different products based on their container preferences. For example, a parent may select juice packaged in boxes rather than bottles for use in childrens' lunch boxes.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Container Type</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>53500</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="swatchImages">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Enter the swatch image location in &quot;Swatch Image URL&quot; and its corresponding variant attribute name in &quot;Swatch Variant Attribute&quot;. Required for products with visual variations, like color or pattern. List the swatches in the order you recommend they appear on the site.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" name="swatchImage">
+              <xsd:complexType>
+                <xsd:all>
+                  <xsd:element maxOccurs="1" minOccurs="1" name="swatchVariantAttribute">
+                    <xsd:annotation>
+                      <xsd:documentation>Attribute name corresponding to the swatch.</xsd:documentation>
+                      <xsd:appinfo>
+                        <wm:requiredLevel value="Conditionally Required"/>
+                        <wm:conditionalAttributes>
+                          <wm:conditionalAttributeGroup>
+                            <wm:conditionalAttribute name="swatchImageUrl" value="ANY"/>
+                          </wm:conditionalAttributeGroup>
+                        </wm:conditionalAttributes>
+                        <wm:displayName>Swatch Variant Attribute</wm:displayName>
+                        <wm:group>Item Variants</wm:group>
+                      </xsd:appinfo>
+                    </xsd:annotation>
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:enumeration value="flavor"/>
+                        <xsd:enumeration value="size"/>
+                        <xsd:enumeration value="sportsTeam"/>
+                        <xsd:enumeration value="countPerPack"/>
+                        <xsd:enumeration value="count"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element maxOccurs="1" minOccurs="1" name="swatchImageUrl">
+                    <xsd:annotation>
+                      <xsd:documentation>URL of the color or pattern swatch image. This is required for products with visual variations and will be shown as a small square on the item page. Recommended resolution is 100 x 100 pixels. Provide the final destination image URL (no-redirects) that is publicly accessible (no username/password required) and ends in a proper image extension such as, .jpg, .png or .gif.</xsd:documentation>
+                      <xsd:appinfo>
+                        <wm:requiredLevel value="Conditionally Required"/>
+                        <wm:conditionalAttributes>
+                          <wm:conditionalAttributeGroup>
+                            <wm:conditionalAttribute name="swatchVariantAttribute" value="ANY"/>
+                          </wm:conditionalAttributeGroup>
+                        </wm:conditionalAttributes>
+                        <wm:displayName>Swatch Image URL</wm:displayName>
+                        <wm:group>Item Variants</wm:group>
+                      </xsd:appinfo>
+                    </xsd:annotation>
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:anyURI"/>
+                    </xsd:simpleType>
+                  </xsd:element>
+                </xsd:all>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="FoodAndBeverage">
+    <xsd:all>
+      <xsd:element maxOccurs="1" minOccurs="1" name="shortDescription">
+        <xsd:annotation>
+          <xsd:documentation>Overview of the key selling points of the item, marketing content, and highlights in paragraph form. For SEO purposes, repeat the product name and relevant keywords here.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Required"/>
+            <wm:displayName>Description</wm:displayName>
+            <wm:group>Basic</wm:group>
+            <wm:rank>8000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="keyFeatures" type="wm:KeyFeatures">
+        <xsd:annotation>
+          <xsd:documentation>Key features will appear as bulleted text on the item page and in search results. Key features help the user understand the benefits of the product with a simple and clean format. We highly recommended using three or more key features.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Key Features</wm:displayName>
+            <wm:group>Basic</wm:group>
+            <wm:rank>9000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="1" name="brand">
+        <xsd:annotation>
+          <xsd:documentation>Name, term, design or other feature that distinguishes one seller's product from those of others. This can be the name of the company associated with the product, but not always. If item does not have a brand, use &quot;Unbranded&quot;.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Required"/>
+            <wm:displayName>Brand</wm:displayName>
+            <wm:group>Basic</wm:group>
+            <wm:rank>11000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="60"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="manufacturer">
+        <xsd:annotation>
+          <xsd:documentation>Manufacturer is the maker of the product. This is the name of the company that produces the product, not necessarily the brand name of the item. For some products, the manufacturer and the brand may be the same.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Manufacturer</wm:displayName>
+            <wm:group>Basic</wm:group>
+            <wm:rank>12000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="60"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="manufacturerPartNumber">
+        <xsd:annotation>
+          <xsd:documentation>MPN uniquely identifies the product to its manufacturer. For many products this will be identical to the model number. Some manufacturers distinguish part number from model number. Having this information allows customers to search for items on the site and informs product matching.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Manufacturer Part Number</wm:displayName>
+            <wm:group>Basic</wm:group>
+            <wm:rank>13000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="60"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="modelNumber">
+        <xsd:annotation>
+          <xsd:documentation>Model numbers allow manufacturers to keep track of each hardware device and identify or replace the proper part when needed. Model numbers are often found on the bottom, back, or side of a product. Having this information allows customers to search for items on the site and informs product matching.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Model Number</wm:displayName>
+            <wm:group>Basic</wm:group>
+            <wm:rank>14000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="60"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="multipackQuantity">
+        <xsd:annotation>
+          <xsd:documentation>The number of identical, individually packaged-for-sale items. If an item does not contain other items, does not contain identical items, or if the items contained within cannot be sold individually, the value for this attribute should be &quot;1.&quot; Examples: (1) A single bottle of 50 pills has a &quot;Multipack Quantity&quot; of &quot;1.&quot; (2) A package containing two identical bottles of 50 pills has a &quot;Multipack Quantity&quot; of 2. (3) A 6-pack of soda labelled for individual sale connected by plastic rings has a &quot;Multipack Quantity&quot; of &quot;6.&quot; (4) A 6-pack of soda in a box whose cans are not marked for individual sale has a &quot;Multipack Quantity&quot; of &quot;1.&quot; (5) A gift basket of 5 different items has a &quot;Multipack Quantity&quot; of &quot;1.&quot;</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Multipack Quantity</wm:displayName>
+            <wm:group>Basic</wm:group>
+            <wm:rank>14500</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:integer">
+            <xsd:totalDigits value="4"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="countPerPack">
+        <xsd:annotation>
+          <xsd:documentation>The number of identical items inside each individual pack given by the &quot;Multipack Quantity&quot; attribute. Examples: (1) A single bottle of 50 pills has a &quot;Count Per Pack&quot; of &quot;50.&quot; (2) A package containing two identical bottles of 50 pills has a &quot;Count Per Pack&quot; of 50. (3) A 6-pack of soda labelled for individual sale connected by plastic rings has a &quot;Count Per Pack&quot; of &quot;1.&quot; (4) A 6-pack of soda in a box whose cans are not marked for individual sale has a &quot;Count Per Pack&quot; of &quot;6.&quot; (5) A gift basket of 5 different items has a &quot;Count Per Pack&quot; of &quot;1.&quot;</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Count Per Pack</wm:displayName>
+            <wm:group>Basic</wm:group>
+            <wm:rank>15000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:integer">
+            <xsd:totalDigits value="4"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="count">
+        <xsd:annotation>
+          <xsd:documentation>The total number of identical items in the package or box; a result of the multiplication of Multipack Quantity by Count Per Pack. Examples: (1) A single bottle of 50 pills has a &quot;Total Count&quot; of 50. (2) A package containing two identical bottles of 50 pills has a &quot;Total Count&quot; of 100. (3) A gift basket of 5 different items has a &quot;Total Count&quot; of 1.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Total Count</wm:displayName>
+            <wm:group>Basic</wm:group>
+            <wm:rank>15050</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="7"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="1" name="mainImageUrl">
+        <xsd:annotation>
+          <xsd:documentation>Main image of the item. Image URL must end in the file name. Image URL must be static and have no redirections. Preferred file type: JPEG Accepted file types: JPG, PNG, GIF, BMP Recommended image resolution: 3000 x 3000 pixels at 300 ppi. Minimum image size requirements: Zoom capability: 2000 x 2000 pixels at 300 ppi. Non-zoom minimum: 500 x 500 pixels at 72 ppi. Maximum file size: 2 MB.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Required"/>
+            <wm:displayName>Main Image URL</wm:displayName>
+            <wm:group>Images</wm:group>
+            <wm:rank>16000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:anyURI"/>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="productSecondaryImageURL" type="wm:ProductSecondaryImageURL">
+        <xsd:annotation>
+          <xsd:documentation>Secondary images of the item. Image URL must end in the file name. Image URL must be static and have no redirections. Preferred file type: JPEG Accepted file types: JPG, PNG, GIF, BMP Recommended image resolution: 3000 x 3000 pixels at 300 ppi. Minimum image size requirements: Zoom capability: 2000 x 2000 pixels at 300 ppi. Non-zoom minimum: 500 x 500 pixels at 72 ppi. Maximum file size: 2 MB.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Additional Image URL</wm:displayName>
+            <wm:group>Images</wm:group>
+            <wm:rank>17000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="pieceCount">
+        <xsd:annotation>
+          <xsd:documentation>The number of small pieces, slices, or different items within the product. Piece Count applies to things such as puzzles, building block sets, and products that contain multiple different items (such as tool sets, dinnerware sets, gift baskets, art sets, makeup kits, or shaving kits). EXAMPLE: (1) A 500-piece puzzle has a &quot;Piece Count&quot; of 500. (2) A 105-Piece Socket Wrench set has a piece count of &quot;105.&quot; (3) A gift basket of 5 different items has a &quot;Piece Count&quot; of 5.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Number of Pieces</wm:displayName>
+            <wm:group>Basic</wm:group>
+            <wm:rank>17400</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:integer">
+            <xsd:totalDigits value="20"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="flavor">
+        <xsd:annotation>
+          <xsd:documentation>The distinctive taste or flavor of the item, as provided by manufacturer. This is used for a wide variety of products, including food and beverages for both animals and humans. This may also apply to non-food items that come in flavors, including dental products, cigars and smoker wood chips.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Flavor</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>19000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="isReadyToEat">
+        <xsd:annotation>
+          <xsd:documentation>Food that can be consumed without further preparation, according to FDA guidelines. For more information see FDA Food Code 2009: Chapter 1-201.10 Definitions.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Is Ready-to-Eat</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>20000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Yes"/>
+            <xsd:enumeration value="No"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="size">
+        <xsd:annotation>
+          <xsd:documentation>Overall dimensions of an item. Used only for products that do not already have a more specific 'x size' attribute, such as ring size or clothing size. </xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Size</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>22000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="meal">
+        <xsd:annotation>
+          <xsd:documentation>A meal that is normally tied to a particular time of day: breakfast, lunch, dinner, tea. </xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Meal</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>23000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="variantGroupId">
+        <xsd:annotation>
+          <xsd:documentation>Required if item is a variant. Make up a number and/or letter code for “Variant Group ID” and add this to all variations of the same product. Partners must ensure uniqueness of their Variant Group IDs.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Conditionally Required"/>
+            <wm:conditionalAttributes>
+              <wm:conditionalAttributeGroup>
+                <wm:conditionalAttribute name="variantAttributeNames" value="ANY"/>
+              </wm:conditionalAttributeGroup>
+            </wm:conditionalAttributes>
+            <wm:displayName>Variant Group ID</wm:displayName>
+            <wm:group>Item Variants</wm:group>
+            <wm:rank>24000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="300"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="variantAttributeNames">
+        <xsd:annotation>
+          <xsd:documentation>Designate all attributes by which the item is varying. Variant attributes are limited to those designated for each category. </xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Conditionally Required"/>
+            <wm:conditionalAttributes>
+              <wm:conditionalAttributeGroup>
+                <wm:conditionalAttribute name="variantGroupId" value="ANY"/>
+              </wm:conditionalAttributeGroup>
+            </wm:conditionalAttributes>
+            <wm:displayName>Variant Attribute Names</wm:displayName>
+            <wm:group>Item Variants</wm:group>
+            <wm:rank>25000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" name="variantAttributeName">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:enumeration value="flavor"/>
+                  <xsd:enumeration value="size"/>
+                  <xsd:enumeration value="sportsTeam"/>
+                  <xsd:enumeration value="countPerPack"/>
+                  <xsd:enumeration value="count"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="isPrimaryVariant">
+        <xsd:annotation>
+          <xsd:documentation>Note whether item is intended as the main variant in a variant grouping. The primary variant will appear as the image when customers search and the first image displayed on the item page. This should be set as &quot;Yes&quot; for only one item in a group of variants.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Is Primary Variant</wm:displayName>
+            <wm:group>Item Variants</wm:group>
+            <wm:rank>26000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Yes"/>
+            <xsd:enumeration value="No"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="isProp65WarningRequired">
+        <xsd:annotation>
+          <xsd:documentation>Selecting &quot;Y&quot; indicates the product requires California's Proposition 65 special warning. Proposition 65 entitles California consumers to special warnings for products that contain chemicals known to the state of California to cause cancer and birth defects or other reproductive harm if certain criteria are met (such as quantity of chemical contained in the product). See the portions of the California Health and Safety Code related to Proposition 65 for more information.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Is Prop 65 Warning Required</wm:displayName>
+            <wm:group>Compliance</wm:group>
+            <wm:rank>30000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Yes"/>
+            <xsd:enumeration value="No"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="prop65WarningText">
+        <xsd:annotation>
+          <xsd:documentation>This is a particular statement legally required by the State of California for certain products to warn consumers about potential health dangers. See the portions of the California Health and Safety Code related to Proposition 65 to see what products require labels and to verify the text of your warning label.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Conditionally Required"/>
+            <wm:conditionalAttributes>
+              <wm:conditionalAttributeGroup>
+                <wm:conditionalAttribute name="isProp65WarningRequired" value="Yes"/>
+              </wm:conditionalAttributeGroup>
+            </wm:conditionalAttributes>
+            <wm:displayName>Prop 65 Warning Text</wm:displayName>
+            <wm:group>Compliance</wm:group>
+            <wm:rank>31000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="isNutritionFactsLabelRequired">
+        <xsd:annotation>
+          <xsd:documentation>Indicates if item requires nutritional facts labeling per FDA guidelines. If yes, please provide the following elements in one or more images 1) The Nutrition Facts and 2) Ingredients. Both attributes are required. If both elements are contained in one image, you may repeat the URL in both attributes. </xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Is Nutrition Facts and Ingredient Label Required</wm:displayName>
+            <wm:group>Compliance</wm:group>
+            <wm:rank>33000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Yes"/>
+            <xsd:enumeration value="No"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="nutritionFactsLabel">
+        <xsd:annotation>
+          <xsd:documentation>Image URL of the nutritional facts label. Provide the final destination image URL (no-redirects) that is publicly accessible (no username/password required) and ends in a proper image extension. Recommended file type: JPEG Accepted file types: JPG, PNG, GIF, BMP Maximum file size: 2 GB.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Conditionally Required"/>
+            <wm:conditionalAttributes>
+              <wm:conditionalAttributeGroup>
+                <wm:conditionalAttribute name="isNutritionFactsLabelRequired" value="Yes"/>
+              </wm:conditionalAttributeGroup>
+            </wm:conditionalAttributes>
+            <wm:displayName>Nutrition Facts Label Image</wm:displayName>
+            <wm:group>Compliance</wm:group>
+            <wm:rank>34000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="2000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="nutritionIngredientsImage">
+        <xsd:annotation>
+          <xsd:documentation>URL of image. Provide the final destination image URL (no-redirects) that is publicly accessible (no username/password required) and ends in a proper image extension. Recommended file type: JPEG Accepted file types: JPG, PNG, GIF, BMP Maximum file size: 2 GB. If the Ingredients have been included in another image, you may repeat the URL here. </xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Conditionally Required"/>
+            <wm:conditionalAttributes>
+              <wm:conditionalAttributeGroup>
+                <wm:conditionalAttribute name="isNutritionFactsLabelRequired" value="Yes"/>
+              </wm:conditionalAttributeGroup>
+            </wm:conditionalAttributes>
+            <wm:displayName>Nutrition Ingredients Image</wm:displayName>
+            <wm:group>Compliance</wm:group>
+            <wm:rank>35000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="400"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="hasExpiration">
+        <xsd:annotation>
+          <xsd:documentation>Select Yes if product is labeled with any type of expiration or code date that indicates when product should no longer be consumed or no longer at best quality (e.g. Best If Used By,  Best By, Use By, etc. ). Some examples of items with expiration dates include food, cleaning supplies, beauty products, etc.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Has Expiration</wm:displayName>
+            <wm:group>Compliance</wm:group>
+            <wm:rank>38000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Yes"/>
+            <xsd:enumeration value="No"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="hasPricePerUnit">
+        <xsd:annotation>
+          <xsd:documentation>Mark as &quot;Y&quot; if your item is any of the following: food used for human or domestic animal consumption; ingredients added to food; napkins; tissues; toilet paper; foil, plastic wrap, wax paper, parchment paper; paper towels; disposable plates, bowls, and cutlery; detergents, soaps, waxes, and other cleansing agents; non-prescription drugs, female hygeine products, and toiletries; automotive fluids and cleaners; rock salt; diapers, pullups and swimmers; fertilizer; kitty litter.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Has Price Per Unit</wm:displayName>
+            <wm:group>Compliance</wm:group>
+            <wm:rank>40000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Yes"/>
+            <xsd:enumeration value="No"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="pricePerUnitQuantity">
+        <xsd:annotation>
+          <xsd:documentation>Enter the quantity of units for the item, based on the &quot;PPU Unit of Measure&quot; you selected. For example, a gallon of milk should be 128.  NOTE: Do not enter the price. </xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Conditionally Required"/>
+            <wm:conditionalAttributes>
+              <wm:conditionalAttributeGroup>
+                <wm:conditionalAttribute name="hasPricePerUnit" value="Yes"/>
+              </wm:conditionalAttributeGroup>
+            </wm:conditionalAttributes>
+            <wm:displayName>PPU Quantity of Units</wm:displayName>
+            <wm:group>Compliance</wm:group>
+            <wm:rank>42000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:decimal">
+            <xsd:totalDigits value="16"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="pricePerUnitUom">
+        <xsd:annotation>
+          <xsd:documentation>The units that will be used to calculate the &quot;Price Per Unit&quot; for your product. For example, a gallon of milk has a &quot;PPU Unit of Measure&quot; of Fluid Ounces. NOTE: This may not be the Unit of Measure on the label.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Conditionally Required"/>
+            <wm:conditionalAttributes>
+              <wm:conditionalAttributeGroup>
+                <wm:conditionalAttribute name="hasPricePerUnit" value="Yes"/>
+              </wm:conditionalAttributeGroup>
+            </wm:conditionalAttributes>
+            <wm:displayName>PPU Unit of Measure</wm:displayName>
+            <wm:group>Compliance</wm:group>
+            <wm:rank>42500</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Ounce"/>
+            <xsd:enumeration value="Fluid Ounce"/>
+            <xsd:enumeration value="Yard"/>
+            <xsd:enumeration value="Square Foot"/>
+            <xsd:enumeration value="Cubic Foot"/>
+            <xsd:enumeration value="Foot"/>
+            <xsd:enumeration value="Inch"/>
+            <xsd:enumeration value="Pound"/>
+            <xsd:enumeration value="Each"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="hasGMOs">
+        <xsd:annotation>
+          <xsd:documentation>Does your product contain Genetically Modified Organisms (GMOS) whose DNA has been altered using genetic engineering techniques?</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Has GMOs</wm:displayName>
+            <wm:group>Compliance</wm:group>
+            <wm:rank>43000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Yes"/>
+            <xsd:enumeration value="No"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="isGmoFree">
+        <xsd:annotation>
+          <xsd:documentation>Does your product make any claims about containing no Genetically Modified Organisms (GMOs) on its packaging, or in the description on the website?</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>GMO-Free Claim</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>50000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Yes"/>
+            <xsd:enumeration value="No"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="servingSize">
+        <xsd:annotation>
+          <xsd:documentation>Measurement value specifying the amount of the item typically used as a reference on the label of that item to list per serving information (nutrients, calories, total fat). Applicable for a wide variety of products including food, beverages, and nutritional supplements. </xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Serving Size</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>51000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="servingsPerContainer">
+        <xsd:annotation>
+          <xsd:documentation>Number of servings contained in the item's package (box, bottle, bag).</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Servings Per Container</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>52000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:decimal">
+            <xsd:totalDigits value="15"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="calories">
+        <xsd:annotation>
+          <xsd:documentation>Number of calories contained in one serving, as found on the food label.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Calories Per Serving</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>53000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element maxOccurs="1" minOccurs="1" name="measure">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:integer">
+                  <xsd:totalDigits value="15"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element maxOccurs="1" minOccurs="1" name="unit">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:enumeration value="Calories"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="caloriesFromFat">
+        <xsd:annotation>
+          <xsd:documentation>Number of calories derived from fat, as found on the food label.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Fat Calories Per Serving</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>54000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element maxOccurs="1" minOccurs="1" name="measure">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:integer">
+                  <xsd:totalDigits value="15"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element maxOccurs="1" minOccurs="1" name="unit">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:enumeration value="Calories"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="totalFat">
+        <xsd:annotation>
+          <xsd:documentation>Total number of fat calories per serving, expressed in grams, milligrams, or less than a certain number of grams.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Total Fat Per Serving</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>55000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element maxOccurs="1" minOccurs="1" name="measure">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:decimal">
+                  <xsd:totalDigits value="16"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element maxOccurs="1" minOccurs="1" name="unit">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:enumeration value="g"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="totalFatPercentageDailyValue">
+        <xsd:annotation>
+          <xsd:documentation>Percent daily value of fat per serving, according to the food label.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Total Fat Percentage Daily Value</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>56000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:decimal">
+            <xsd:totalDigits value="16"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="fatCaloriesPerGram">
+        <xsd:annotation>
+          <xsd:documentation>The number of calories in one gram of fat, as may be provided in Nutritional Facts according to FDA guidelines.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Fat Calories Per Gram</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>57000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element maxOccurs="1" minOccurs="1" name="measure">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:integer">
+                  <xsd:totalDigits value="15"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element maxOccurs="1" minOccurs="1" name="unit">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:enumeration value="Calories"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="totalCarbohydrate">
+        <xsd:annotation>
+          <xsd:documentation>Total number of carbohydrates per serving, expressed in grams or less than a certain number of grams.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Total Carbohydrate</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>58000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element maxOccurs="1" minOccurs="1" name="measure">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:decimal">
+                  <xsd:totalDigits value="16"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element maxOccurs="1" minOccurs="1" name="unit">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:enumeration value="g"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="totalCarbohydratePercentageDailyValue">
+        <xsd:annotation>
+          <xsd:documentation>Percent daily value of carbohydrates per serving.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Total Carbohydrate Percentage Daily Value</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>59000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:decimal">
+            <xsd:totalDigits value="16"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="carbohydrateCaloriesPerGram">
+        <xsd:annotation>
+          <xsd:documentation>The number of calories in one gram of carbohydrates, as may be provided in Nutritional Facts according to FDA guidelines.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Carbohydrate Calories Per Gram</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>60000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element maxOccurs="1" minOccurs="1" name="measure">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:integer">
+                  <xsd:totalDigits value="15"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element maxOccurs="1" minOccurs="1" name="unit">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:enumeration value="Calories"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="nutrients" type="wm:Nutrients">
+        <xsd:annotation>
+          <xsd:documentation>Additional nutrients, not including total fat or total carbohydrates, which should be entered in &quot;Total Fat&quot; and &quot;Total Carbohydrate&quot; respectively.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Nutrients</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>61000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="proteinCaloriesPerGram">
+        <xsd:annotation>
+          <xsd:documentation>The number of calories in one gram of protein, as may be provided in Nutritional Facts according to FDA guidelines.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Protein Calories Per Gram</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>66000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element maxOccurs="1" minOccurs="1" name="measure">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:integer">
+                  <xsd:totalDigits value="15"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element maxOccurs="1" minOccurs="1" name="unit">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:enumeration value="Calories"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="totalProteinPercentageDailyValue">
+        <xsd:annotation>
+          <xsd:documentation>Percent daily value of protein per serving.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Total Protein Percentage Daily Value</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>67000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:decimal">
+            <xsd:totalDigits value="16"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="totalProtein">
+        <xsd:annotation>
+          <xsd:documentation>Total protein per serving, expressed in grams, milligrams, or less than.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Total Protein Per Serving</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>68000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element maxOccurs="1" minOccurs="1" name="measure">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:decimal">
+                  <xsd:totalDigits value="16"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element maxOccurs="1" minOccurs="1" name="unit">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:enumeration value="g"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="foodForm">
+        <xsd:annotation>
+          <xsd:documentation>Describes the form of the food if the food is sold in a variety of forms, such as sliced and unsliced, whole or halves, etc.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Food Form</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>69000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="containerType" type="wm:ContainerType">
+        <xsd:annotation>
+          <xsd:documentation>The kind of physical package or receptacle that contains the product as presented to the consumer. Also used to describe storage items. Consumers may select different products based on their container preferences. For example, a parent may select juice packaged in boxes rather than bottles for use in childrens' lunch boxes.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Container Type</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>70000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="timeAged">
+        <xsd:annotation>
+          <xsd:documentation>Amount of time an item is aged, such as for whiskey or cheese.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Time Aged</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>71000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element maxOccurs="1" minOccurs="1" name="measure">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:decimal">
+                  <xsd:totalDigits value="16"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element maxOccurs="1" minOccurs="1" name="unit">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:enumeration value="months"/>
+                  <xsd:enumeration value="years"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="isImitation">
+        <xsd:annotation>
+          <xsd:documentation>Generally a new food that resembles a traditional food and is a substitute for the traditional food must be labeled as an imitation, especially if the new food contains less protein or a lesser amount of any essential vitamin or mineral.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Is Imitation</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>72000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Yes"/>
+            <xsd:enumeration value="No"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="ingredients">
+        <xsd:annotation>
+          <xsd:documentation>The list of all ingredients contained in an item, as found on the product label mandated by FDA guidelines. The ingredients should be listed in descending order by weight. The label must list the names of any FDA-certified color additives, but some ingredients can be listed collectively as flavors, spices, artificial flavoring or artificial colors. Refer to the FDA Food Labeling Guide for more guidelines.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Ingredients Text</wm:displayName>
+            <wm:group>Compliance</wm:group>
+            <wm:rank>73000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="usdaInspected">
+        <xsd:annotation>
+          <xsd:documentation>Has your product been inspected by the United States Department of Agriculture? There are a number of food products that are under the jurisdiction of the Food Safety and Inspection Service (FSIS), and are thus subject to inspection, including: egg products (liquid, frozen or dried), meat, and poultry. Refer to the FDA / USDA Food Standards and Labeling Policy Book for exceptions and more detailed guidelines.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>USDA-Inspected</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>74000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Yes"/>
+            <xsd:enumeration value="No"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="hasHighFructoseCornSyrup">
+        <xsd:annotation>
+          <xsd:documentation>Select &quot;Y&quot; if High Fructose Corn Syrup is in the ingredient list.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Has High Fructose Corn Syrup</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>75000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Yes"/>
+            <xsd:enumeration value="No"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="foodAllergenStatements" type="wm:FoodAllergenStatements">
+        <xsd:annotation>
+          <xsd:documentation>Statement regarding any ingredients that may be food allergens, often written as &quot;Contains X&quot; or &quot;Manufactured in a facility which processes Y.&quot;</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Allergens</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>76000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="instructions">
+        <xsd:annotation>
+          <xsd:documentation>Detailed information telling how the product should be operated or assembled.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Instructions</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>77000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="caffeineDesignation">
+        <xsd:annotation>
+          <xsd:documentation>Differentiates between items that have no naturally occurring caffeine, caffeine removed by processing, naturally caffeinated, or added caffeine.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Caffeine Designation</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>78000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Naturally Caffeinated"/>
+            <xsd:enumeration value="Caffeine Added"/>
+            <xsd:enumeration value="Naturally Decaffeinated"/>
+            <xsd:enumeration value="Decaffeinated"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="spiceLevel">
+        <xsd:annotation>
+          <xsd:documentation>Level of spice (i.e. &quot;hotness&quot;) in an item, if applicable.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Spice Level</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>79000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="isMadeInHomeKitchen">
+        <xsd:annotation>
+          <xsd:documentation>Indicates if the item was made for consumption in a home kitchen, as defined by the FDA.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Is Made in a Home Kitchen</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>80000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Yes"/>
+            <xsd:enumeration value="No"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="beefCut">
+        <xsd:annotation>
+          <xsd:documentation>Retail term describing the portion cut (vs. primal cut) based on the part of the animal the meat is cut from. Important selection criteria because different cuts of beef have different characteristics, uses, and preferred cooking methods. For example, chuck meat is from the cow’s shoulder and is typically tough, but flavorful and used for beef cuts such as ground chuck (hamburger) and stew meat.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Beef Cut</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>81000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="poultryCut">
+        <xsd:annotation>
+          <xsd:documentation>Term identifying the part of the bird (typically chicken, turkey, or goose). Important selection criteria because different cuts of poultry have different flavor and texture. </xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Poultry Cut</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>82000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="releaseDate">
+        <xsd:annotation>
+          <xsd:documentation>Indicates the release date of a product from the manufacturer, in the format yyyy-mm-dd. This will be the date on which distribution of the product will be initiated.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Release Date</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>83000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:date"/>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="safeHandlingInstructions">
+        <xsd:annotation>
+          <xsd:documentation>Instructions for storage or preparation of potentially hazardous fresh food. NOTE: Required for raw meat products.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Safe Handling Instructions</wm:displayName>
+            <wm:group>Nice to Have</wm:group>
+            <wm:rank>92000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="cuisine" type="wm:Cuisine">
+        <xsd:annotation>
+          <xsd:documentation>Indicates the cooking style, especially regional or cultural cuisines, you might use the food to prepare.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Cuisine</wm:displayName>
+            <wm:group>Nice to Have</wm:group>
+            <wm:rank>93000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="foodPreparationTips" type="wm:FoodPreparationTips">
+        <xsd:annotation>
+          <xsd:documentation>Helpful information related to food preparation.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Food Preparation Tips</wm:displayName>
+            <wm:group>Nice to Have</wm:group>
+            <wm:rank>94000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="foodStorageTips" type="wm:FoodStorageTips">
+        <xsd:annotation>
+          <xsd:documentation>Helpful information related to food storage.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Food Storage Tips</wm:displayName>
+            <wm:group>Nice to Have</wm:group>
+            <wm:rank>95000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="character">
+        <xsd:annotation>
+          <xsd:documentation>A person or entity portrayed in print or visual media. A character might be a fictional personality or an actual living person.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Character</wm:displayName>
+            <wm:group>Nice to Have</wm:group>
+            <wm:rank>96000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="swatchImages">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Enter the swatch image location in &quot;Swatch Image URL&quot; and its corresponding variant attribute name in &quot;Swatch Variant Attribute&quot;. Required for products with visual variations, like color or pattern. List the swatches in the order you recommend they appear on the site.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" name="swatchImage">
+              <xsd:complexType>
+                <xsd:all>
+                  <xsd:element maxOccurs="1" minOccurs="1" name="swatchVariantAttribute">
+                    <xsd:annotation>
+                      <xsd:documentation>Attribute name corresponding to the swatch.</xsd:documentation>
+                      <xsd:appinfo>
+                        <wm:requiredLevel value="Conditionally Required"/>
+                        <wm:conditionalAttributes>
+                          <wm:conditionalAttributeGroup>
+                            <wm:conditionalAttribute name="swatchImageUrl" value="ANY"/>
+                          </wm:conditionalAttributeGroup>
+                        </wm:conditionalAttributes>
+                        <wm:displayName>Swatch Variant Attribute</wm:displayName>
+                        <wm:group>Item Variants</wm:group>
+                      </xsd:appinfo>
+                    </xsd:annotation>
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:enumeration value="flavor"/>
+                        <xsd:enumeration value="size"/>
+                        <xsd:enumeration value="sportsTeam"/>
+                        <xsd:enumeration value="countPerPack"/>
+                        <xsd:enumeration value="count"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element maxOccurs="1" minOccurs="1" name="swatchImageUrl">
+                    <xsd:annotation>
+                      <xsd:documentation>URL of the color or pattern swatch image. This is required for products with visual variations and will be shown as a small square on the item page. Recommended resolution is 100 x 100 pixels. Provide the final destination image URL (no-redirects) that is publicly accessible (no username/password required) and ends in a proper image extension such as, .jpg, .png or .gif.</xsd:documentation>
+                      <xsd:appinfo>
+                        <wm:requiredLevel value="Conditionally Required"/>
+                        <wm:conditionalAttributes>
+                          <wm:conditionalAttributeGroup>
+                            <wm:conditionalAttribute name="swatchVariantAttribute" value="ANY"/>
+                          </wm:conditionalAttributeGroup>
+                        </wm:conditionalAttributes>
+                        <wm:displayName>Swatch Image URL</wm:displayName>
+                        <wm:group>Item Variants</wm:group>
+                      </xsd:appinfo>
+                    </xsd:annotation>
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:anyURI"/>
+                    </xsd:simpleType>
+                  </xsd:element>
+                </xsd:all>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+</xsd:schema>

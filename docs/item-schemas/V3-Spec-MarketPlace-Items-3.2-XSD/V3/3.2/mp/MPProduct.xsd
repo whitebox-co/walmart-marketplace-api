@@ -1,0 +1,141 @@
+<?xml version="1.0" ?>
+<xsd:schema elementFormDefault="qualified" targetNamespace="http://walmart.com/" version="3.2" xmlns:wm="http://walmart.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="MPCommons.xsd"/>
+  <xsd:include schemaLocation="HealthAndBeauty.xsd"/>
+  <xsd:include schemaLocation="Home.xsd"/>
+  <xsd:include schemaLocation="FurnitureCategory.xsd"/>
+  <xsd:include schemaLocation="ArtAndCraftCategory.xsd"/>
+  <xsd:include schemaLocation="FoodAndBeverageCategory.xsd"/>
+  <xsd:include schemaLocation="ToolsAndHardware.xsd"/>
+  <xsd:include schemaLocation="SportAndRecreation.xsd"/>
+  <xsd:include schemaLocation="Photography.xsd"/>
+  <xsd:include schemaLocation="Animal.xsd"/>
+  <xsd:include schemaLocation="OccasionAndSeasonal.xsd"/>
+  <xsd:include schemaLocation="GardenAndPatioCategory.xsd"/>
+  <xsd:include schemaLocation="FootwearCategory.xsd"/>
+  <xsd:include schemaLocation="Baby.xsd"/>
+  <xsd:include schemaLocation="CarriersAndAccessoriesCategory.xsd"/>
+  <xsd:include schemaLocation="Media.xsd"/>
+  <xsd:include schemaLocation="MusicalInstrument.xsd"/>
+  <xsd:include schemaLocation="OfficeCategory.xsd"/>
+  <xsd:include schemaLocation="OtherCategory.xsd"/>
+  <xsd:include schemaLocation="ToysCategory.xsd"/>
+  <xsd:include schemaLocation="WatchesCategory.xsd"/>
+  <xsd:include schemaLocation="Vehicle.xsd"/>
+  <xsd:include schemaLocation="ClothingCategory.xsd"/>
+  <xsd:include schemaLocation="JewelryCategory.xsd"/>
+  <xsd:include schemaLocation="Electronics.xsd"/>
+  <xsd:complexType name="MPProduct">
+    <xsd:all>
+      <xsd:element maxOccurs="1" minOccurs="0" name="SkuUpdate">
+        <xsd:annotation>
+          <xsd:documentation>Selecting Y allows the replacement of a previously submitted SKU associated with a standardized unique identifier (i.e. GTIN, ISBN, UPC, EAN) without generating an error. If Y is not selected, the system will not permit the uploading of two SKUs with the same standardized unique identifier. NOTE: You should only select Y if you are deliberately replacing a SKU. Selecting Y in other circumstances may lead to data loss.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>SKU Update</wm:displayName>
+            <wm:group>Basic</wm:group>
+            <wm:rank>None</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Yes"/>
+            <xsd:enumeration value="No"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="msrp">
+        <xsd:annotation>
+          <xsd:documentation>Manufacturer's suggested retail price. This is not the price that Walmart customers will pay for your product. Enter 2 digits to the right of the decimal point. Do not use commas or dollar signs.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>MSRP</wm:displayName>
+            <wm:group>Offer</wm:group>
+            <wm:rank>1750</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:decimal">
+            <xsd:totalDigits value="8"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="1" name="productName">
+        <xsd:annotation>
+          <xsd:documentation>Title of the product to be displayed on the Item Page. The standard form is: Brand + Defining Qualities + Item Name + Pack Count, if applicable.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Required"/>
+            <wm:displayName>Product Name</wm:displayName>
+            <wm:group>Basic</wm:group>
+            <wm:rank>2000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="200"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="additionalProductAttributes" type="wm:AdditionalProductAttributes">
+        <xsd:annotation>
+          <xsd:documentation>Use this name value appear to add attributes to your product that do not appear in this template. Walmart may provide direction to leverage these fields for special optimizations.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Additional Product Attributes</wm:displayName>
+            <wm:group>Nice to Have</wm:group>
+            <wm:rank>65000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="ProductIdUpdate">
+        <xsd:annotation>
+          <xsd:documentation>Update an Item's Product ID (eg: GTIN, UPC, ISBN, ISSN, EAN). Product ID is an important identifier in Walmart systems. Walmart merges items with the same Product ID and shows them as one item sold by multiple sellers. If you provide the wrong Product ID, your item will be merged incorrectly, which can increase your order cancellation rate, create bad customer experience, produce customers fraud complaints and result in a lower rating on your Vendor Scorecard</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Product Id Update</wm:displayName>
+            <wm:group>Basic</wm:group>
+            <wm:rank>66000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Yes"/>
+            <xsd:enumeration value="No"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="1" ref="wm:category"/>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="category">
+    <xsd:complexType>
+      <xsd:choice maxOccurs="1" minOccurs="1">
+        <xsd:element name="HealthAndBeauty" type="wm:HealthAndBeauty"/>
+        <xsd:element name="Home" type="wm:Home"/>
+        <xsd:element name="FurnitureCategory" type="wm:FurnitureCategory"/>
+        <xsd:element name="ArtAndCraftCategory" type="wm:ArtAndCraftCategory"/>
+        <xsd:element name="FoodAndBeverageCategory" type="wm:FoodAndBeverageCategory"/>
+        <xsd:element name="ToolsAndHardware" type="wm:ToolsAndHardware"/>
+        <xsd:element name="SportAndRecreation" type="wm:SportAndRecreation"/>
+        <xsd:element name="Photography" type="wm:Photography"/>
+        <xsd:element name="Animal" type="wm:Animal"/>
+        <xsd:element name="OccasionAndSeasonal" type="wm:OccasionAndSeasonal"/>
+        <xsd:element name="GardenAndPatioCategory" type="wm:GardenAndPatioCategory"/>
+        <xsd:element name="FootwearCategory" type="wm:FootwearCategory"/>
+        <xsd:element name="Baby" type="wm:Baby"/>
+        <xsd:element name="CarriersAndAccessoriesCategory" type="wm:CarriersAndAccessoriesCategory"/>
+        <xsd:element name="Media" type="wm:Media"/>
+        <xsd:element name="MusicalInstrument" type="wm:MusicalInstrument"/>
+        <xsd:element name="OfficeCategory" type="wm:OfficeCategory"/>
+        <xsd:element name="OtherCategory" type="wm:OtherCategory"/>
+        <xsd:element name="ToysCategory" type="wm:ToysCategory"/>
+        <xsd:element name="WatchesCategory" type="wm:WatchesCategory"/>
+        <xsd:element name="Vehicle" type="wm:Vehicle"/>
+        <xsd:element name="ClothingCategory" type="wm:ClothingCategory"/>
+        <xsd:element name="JewelryCategory" type="wm:JewelryCategory"/>
+        <xsd:element name="Electronics" type="wm:Electronics"/>
+      </xsd:choice>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>
