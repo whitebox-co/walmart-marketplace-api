@@ -27,7 +27,6 @@
     "/lib"
   ],
   "scripts": {
-    "prebuild": "npm run clean",
     "build": "npm run clean && tsc --build tsconfig.json",
     "check-for-changes": "cross-env RUN_CHECK_FOR_CHANGES=true ts-node utils/check-for-changes | bunyan -o short",
     "clean": "rm -rf lib",
@@ -49,7 +48,6 @@
     "test:unit": "jest tests/unit",
     "test:unit:watch": "jest tests/unit --watchAll",
     "test:watch": "jest tests --watchAll",
-    "preversion": "npm run build",
     "postversion": "ts-node --transpile-only --pretty utils/bump-version.ts"
   },
   "types": "lib/index.d.ts",
@@ -125,8 +123,7 @@
       "eslint --cache --fix"
     ],
     "*.md": [
-      "prettier --write",
-      "markdownlint --fix"
+      "prettier --write"
     ],
     "package.json": [
       "prettier-package-json --write --expand-users"
