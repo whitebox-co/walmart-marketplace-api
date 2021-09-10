@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Schema for data exchanged between Walmart and its partners.
+  Copyright 2015 Walmart Corporation. All rights reserved.
+-->
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:wm="http://walmart.com/"
+  targetNamespace="http://walmart.com/"
+  elementFormDefault="qualified"
+  version="3.2">
+
+   <xsd:include schemaLocation="MPItemFeedHeader.xsd" />
+   <xsd:include schemaLocation="MPItem.xsd"/>
+
+
+<xsd:element name="MPItemFeed">
+	<xsd:complexType>
+		<xsd:sequence>
+			<xsd:element name="MPItemFeedHeader" type="wm:MPItemFeedHeader" minOccurs="1" maxOccurs="1">
+	          <xsd:annotation>
+	            <xsd:documentation>
+	              Feed header
+	            </xsd:documentation>
+	          </xsd:annotation>
+	        </xsd:element>
+			<xsd:element name="MPItem" type="wm:MPItem" minOccurs="1" maxOccurs="10000"/>
+		</xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+
+
+</xsd:schema>

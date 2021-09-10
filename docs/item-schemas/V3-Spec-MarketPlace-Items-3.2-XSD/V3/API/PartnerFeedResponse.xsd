@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Schema for data exchanged between Walmart and its partners. Copyright 2015 Walmart Corporation. All rights reserved. -->
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://walmart.com/" targetNamespace="http://walmart.com/" elementFormDefault="qualified" version="2.0">
+
+  <xsd:include schemaLocation="FeedCommons.xsd"/>
+
+  <xsd:element name="PartnerFeedResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="feedId" type="xsd:string" minOccurs="1">
+          <xsd:annotation>
+            <xsd:documentation>
+              UUID - a correlation id to partners so that they can query the status and response later for the feed
+            </xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element name="feedStatus" type="FeedStatus" minOccurs="1">
+          <xsd:annotation>
+            <xsd:documentation>
+              overall status of the request. Item statuses are in items detail.
+            </xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element name="shipNode" type="xsd:string" minOccurs="0">
+          <xsd:annotation>
+            <xsd:documentation>
+              shipNode.
+            </xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element name="submittedBy" minOccurs="0">
+          <xsd:annotation>
+            <xsd:documentation>
+              User who submitted the feed in system
+            </xsd:documentation>
+          </xsd:annotation>
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:maxLength value="20"/>
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element name="feedSubmissionDate" type="xsd:dateTime" minOccurs="0" maxOccurs="1">
+          <xsd:annotation>
+            <xsd:documentation>
+              Represents Date at which the feed was submitted
+            </xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element name="ingestionErrors" minOccurs="0">
+          <xsd:annotation>
+            <xsd:documentation>
+              errors
+            </xsd:documentation>
+          </xsd:annotation>
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="ingestionError" type="IngestionError" minOccurs="0" maxOccurs="1000"></xsd:element>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element name="itemsReceived" type="xsd:int" minOccurs="0">
+          <xsd:annotation>
+            <xsd:documentation>
+              how many components were found in the feed
+            </xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element name="itemsSucceeded" type="xsd:int" minOccurs="0">
+          <xsd:annotation>
+            <xsd:documentation>
+              how many items succeeded
+            </xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element name="itemsFailed" type="xsd:int" minOccurs="0">
+          <xsd:annotation>
+            <xsd:documentation>
+              how many items ended in error, due to data error or system error, exact error type will be indicated by error code for the item
+            </xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element name="itemsProcessing" type="xsd:int" minOccurs="0">
+          <xsd:annotation>
+            <xsd:documentation>
+              how many items are still being processed?
+            </xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element name="offset" type="xsd:int" minOccurs="0">
+          <xsd:annotation>
+            <xsd:documentation>
+              index of the first item status being reported in this response, 0 based offset, used for response pagination of large feeds
+            </xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element name="limit" type="xsd:int" minOccurs="0">
+          <xsd:annotation>
+            <xsd:documentation>
+              number of items being reported in this response, used for response pagination of large feeds
+            </xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element name="itemDetails" minOccurs="0">
+          <xsd:annotation>
+            <xsd:documentation>
+              Indicates detailed response for the feed
+            </xsd:documentation>
+          </xsd:annotation>
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="itemIngestionStatus" type="PartnerItemIngestionStatus" minOccurs="0" maxOccurs="1000"></xsd:element>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element name="additionalAttributes" type="NameValueAttributes" minOccurs="0">
+          <xsd:annotation>
+            <xsd:documentation>
+              additional attributes bag, content will depend on partner type
+            </xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:complexType name="PartnerItemIngestionStatus">
+    <xsd:sequence>
+      <xsd:element name="martId" type="xsd:int" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation>
+            martId of the offer listing, 0 for the default mart for the tenant (tenant ID is in the header)
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="sku" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation>
+            may not be provided when SKU was not found in input data
+          </xsd:documentation>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="255"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element name="wpid" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation>
+            WPID
+          </xsd:documentation>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="12"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element name="index" type="xsd:int" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation>
+            position of the item in the feed
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="itemid" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation>
+            crossref_item_id
+          </xsd:documentation>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="255"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="productIdentifiers" type="ProductIdentifiers">
+        <xsd:annotation>
+          <xsd:documentation>Send in response at least one Product ID and its ID Type.</xsd:documentation>
+          <xsd:appinfo>
+            <requiredLevel value="Required"/>
+            <displayName>Product Identifiers</displayName>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="ingestionStatus" type="ItemStatus" minOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation></xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="ingestionErrors" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation>
+            ingestion errors
+          </xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="ingestionError" type="IngestionError" minOccurs="0" maxOccurs="1000"></xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="additionalAttributes" type="NameValueAttributes" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation>
+            additional attributes bag, content will depend on partner type
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ProductIdentifiers">
+    <xsd:annotation>
+      <xsd:documentation>Specify at least one Product ID and its ID Type.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="productIdentifier" type="productIdentifier"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="productIdentifier">
+    <xsd:all>
+      <xsd:element maxOccurs="1" minOccurs="1" name="productIdType">
+        <xsd:annotation>
+          <xsd:documentation>UPC: GTIN-12, the 12-digit number including check-digit. If less than 12-digits, such as UPC-E which is 8-digits, add leading zeros up to 12-digits.; GTIN: GTIN-14, the 14-digit number including check-digit. If less than 14-digits
+            add leading zeros up to 14-digits. ISBN: International Standard Book Number, the 10 or 13-digit number including check-digit.; EAN: GTIN-13, the 13-digit number including check-digit. If less than 13-digits add leading zeros up to 13-digits.</xsd:documentation>
+          <xsd:appinfo>
+            <requiredLevel value="Required"/>
+            <displayName>Product ID Type</displayName>
+            <group>Basic</group>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="UPC"/>
+            <xsd:enumeration value="GTIN"/>
+            <xsd:enumeration value="ISBN"/>
+            <xsd:enumeration value="EAN"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="1" name="productId">
+        <xsd:annotation>
+          <xsd:documentation>Alphanumeric ID that uniquely identifies the product. Used in conjunction with &quot;Product ID Type&quot;. NOTE: For GTIN-14 or UPC, include the check digit.</xsd:documentation>
+          <xsd:appinfo>
+            <requiredLevel value="Required"/>
+            <displayName>Product ID</displayName>
+            <group>Basic</group>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="14"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+
+</xsd:schema>

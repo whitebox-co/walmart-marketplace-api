@@ -1,0 +1,194 @@
+<?xml version="1.0" ?>
+<xsd:schema elementFormDefault="qualified" targetNamespace="http://walmart.com/" version="3.2" xmlns:wm="http://walmart.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="MPCommons.xsd"/>
+  <xsd:complexType name="MPOffer">
+    <xsd:all>
+      <xsd:element maxOccurs="1" minOccurs="0" name="price">
+        <xsd:annotation>
+          <xsd:documentation>The price the customer pays for the product. Please do not use commas or currency symbols. </xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Price</wm:displayName>
+            <wm:group>Offer</wm:group>
+            <wm:rank>1000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:decimal">
+            <xsd:totalDigits value="16"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="MinimumAdvertisedPrice">
+        <xsd:annotation>
+          <xsd:documentation>The item's lowest advertised price as agreed upon by the supplier and retailer. </xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Minimum Advertised Price</wm:displayName>
+            <wm:group>Offer</wm:group>
+            <wm:rank>2000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:decimal">
+            <xsd:totalDigits value="16"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="StartDate">
+        <xsd:annotation>
+          <xsd:documentation>Indicates the date when the item is available to be published on the site.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Site Start Date</wm:displayName>
+            <wm:group>Offer</wm:group>
+            <wm:rank>3000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:date"/>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="EndDate">
+        <xsd:annotation>
+          <xsd:documentation>Indicates the date when the partner's item should be removed from the site.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Site End Date</wm:displayName>
+            <wm:group>Offer</wm:group>
+            <wm:rank>4000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:date"/>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="MustShipAlone">
+        <xsd:annotation>
+          <xsd:documentation>Select &quot;Y&quot; if your item cannot ship with another item in the same box. If marked &quot;Y,&quot; the ship alone item will not be grouped for ship price calculation.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Must Ship Alone</wm:displayName>
+            <wm:group>Offer</wm:group>
+            <wm:rank>5000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Yes"/>
+            <xsd:enumeration value="No"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="ShippingWeight">
+        <xsd:annotation>
+          <xsd:documentation>Input the weight of the individual selling unit.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Shipping Weight</wm:displayName>
+            <wm:group>Dimensions</wm:group>
+            <wm:rank>9000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element maxOccurs="1" minOccurs="1" name="measure">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:decimal">
+                  <xsd:totalDigits value="16"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element maxOccurs="1" minOccurs="1" name="unit">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:enumeration value="lb"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="ProductTaxCode">
+        <xsd:annotation>
+          <xsd:documentation>This is a seven digit code used in Taxware that enables customers to save money on sales tax based on their state of residence and the properties of the product. To learn how to select the correct code, you may watch this video: https://vimeo.com/164512893 </xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Product Tax Code</wm:displayName>
+            <wm:group>Basic</wm:group>
+            <wm:rank>10000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:integer">
+            <xsd:totalDigits value="10"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="shipsInOriginalPackaging">
+        <xsd:annotation>
+          <xsd:documentation>Can this product be shipped in the original packaging without being put in an outer box? Notes: 1) This is to indicate whether it's *possible* for the item to be shipped in original box, not whether it is required. 2) This was previously known as &quot;Ships As-Is.&quot;</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Ships in Original Packaging</wm:displayName>
+            <wm:group>Dimensions</wm:group>
+            <wm:rank>11000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Yes"/>
+            <xsd:enumeration value="No"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="additionalOfferAttributes" type="wm:AdditionalOfferAttributes">
+        <xsd:annotation>
+          <xsd:documentation> If there is other information that is not in the Spec, you can create one using a name-value pair.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Additional Offer Attributes</wm:displayName>
+            <wm:group>Nice to Have</wm:group>
+            <wm:rank>16000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="ShippingOverrides" type="wm:ShippingOverrides">
+        <xsd:annotation>
+          <xsd:documentation>Collection of all Shipping Overrides for this item.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Shipping Overrides</wm:displayName>
+            <wm:group>Offer</wm:group>
+            <wm:rank>20000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="ShippingProgramOverrides" type="wm:ShippingProgramOverrides">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Shipping Program Overrides</wm:displayName>
+            <wm:group>Offer</wm:group>
+            <wm:rank>21000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="fulfillmentLagTime">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Fulfillment Lag Time</wm:displayName>
+            <wm:group>Offer</wm:group>
+            <wm:rank>24000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:integer">
+            <xsd:totalDigits value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+</xsd:schema>

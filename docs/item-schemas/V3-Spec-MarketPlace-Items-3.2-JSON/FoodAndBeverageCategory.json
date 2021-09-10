@@ -1,0 +1,1095 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#", 
+    "type": "object", 
+    "title": "Food & Beverage", 
+    "properties": {
+        "AlcoholicBeverages": {
+            "$schema": "http://json-schema.org/draft-04/schema#", 
+            "type": "object", 
+            "properties": {
+                "shortDescription": {
+                    "type": "string", 
+                    "title": "Description", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "keyFeatures": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Key Features", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 500
+                    }, 
+                    "minItems": 1
+                }, 
+                "brand": {
+                    "type": "string", 
+                    "title": "Brand", 
+                    "minLength": 1, 
+                    "maxLength": 60
+                }, 
+                "manufacturer": {
+                    "type": "string", 
+                    "title": "Manufacturer", 
+                    "minLength": 1, 
+                    "maxLength": 60
+                }, 
+                "manufacturerPartNumber": {
+                    "type": "string", 
+                    "title": "Manufacturer Part Number", 
+                    "minLength": 1, 
+                    "maxLength": 60
+                }, 
+                "modelNumber": {
+                    "type": "string", 
+                    "title": "Model Number", 
+                    "minLength": 1, 
+                    "maxLength": 60
+                }, 
+                "multipackQuantity": {
+                    "type": "integer", 
+                    "title": "Multipack Quantity", 
+                    "minimum": 0, 
+                    "maximum": 10000, 
+                    "exclusiveMaximum": false
+                }, 
+                "countPerPack": {
+                    "type": "integer", 
+                    "title": "Count Per Pack", 
+                    "minimum": 0, 
+                    "maximum": 100000, 
+                    "exclusiveMaximum": false
+                }, 
+                "count": {
+                    "type": "string", 
+                    "title": "Total Count", 
+                    "minLength": 1, 
+                    "maxLength": 7
+                }, 
+                "mainImageUrl": {
+                    "type": "string", 
+                    "title": "Main Image URL", 
+                    "minLength": 1, 
+                    "maxLength": 2000, 
+                    "format": "uri"
+                }, 
+                "productSecondaryImageURL": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Additional Image URL", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 2000, 
+                        "format": "uri"
+                    }, 
+                    "minItems": 1
+                }, 
+                "flavor": {
+                    "type": "string", 
+                    "title": "Flavor", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "size": {
+                    "type": "string", 
+                    "title": "Size", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "variantGroupId": {
+                    "type": "string", 
+                    "title": "Variant Group ID", 
+                    "minLength": 1, 
+                    "maxLength": 300
+                }, 
+                "variantAttributeNames": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Variant Attribute Names", 
+                    "items": {
+                        "type": "string", 
+                        "enum": [
+                            "count", 
+                            "countPerPack", 
+                            "flavor", 
+                            "sportsTeam", 
+                            "size"
+                        ]
+                    }, 
+                    "minItems": 1
+                }, 
+                "isPrimaryVariant": {
+                    "type": "string", 
+                    "title": "Is Primary Variant", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "swatchImages": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Swatch Images", 
+                    "items": {
+                        "$schema": "http://json-schema.org/draft-04/schema#", 
+                        "type": "object", 
+                        "properties": {
+                            "swatchVariantAttribute": {
+                                "type": "string", 
+                                "title": "Swatch Variant Attribute", 
+                                "minLength": 1
+                            }, 
+                            "swatchImageUrl": {
+                                "type": "string", 
+                                "title": "Swatch Image URL", 
+                                "minLength": 1, 
+                                "maxLength": 2000, 
+                                "format": "uri"
+                            }
+                        }, 
+                        "additionalProperties": false
+                    }, 
+                    "minItems": 1
+                }, 
+                "isProp65WarningRequired": {
+                    "type": "string", 
+                    "title": "Is Prop 65 Warning Required", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "prop65WarningText": {
+                    "type": "string", 
+                    "title": "Prop 65 Warning Text", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "hasExpiration": {
+                    "type": "string", 
+                    "title": "Has Expiration", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "hasPricePerUnit": {
+                    "type": "string", 
+                    "title": "Has Price Per Unit", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "pricePerUnitQuantity": {
+                    "type": "number", 
+                    "title": "PPU Quantity of Units", 
+                    "minimum": 0, 
+                    "maximum": 1000000, 
+                    "exclusiveMaximum": false, 
+                    "multipleOf": 0.01
+                }, 
+                "pricePerUnitUom": {
+                    "type": "string", 
+                    "title": "PPU Unit of Measure", 
+                    "enum": [
+                        "Pound", 
+                        "Yard", 
+                        "Square Foot", 
+                        "Inch", 
+                        "Ounce", 
+                        "Fluid Ounce", 
+                        "Each", 
+                        "Foot", 
+                        "Cubic Foot"
+                    ]
+                }, 
+                "hasGMOs": {
+                    "type": "string", 
+                    "title": "Has GMOs", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "isNutritionFactsLabelRequired": {
+                    "type": "string", 
+                    "title": "Is Nutrition Facts and Ingredient Label Required", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "nutritionFactsLabel": {
+                    "type": "string", 
+                    "title": "Nutrition Facts Label Image", 
+                    "minLength": 1, 
+                    "maxLength": 2000
+                }, 
+                "nutritionIngredientsImage": {
+                    "type": "string", 
+                    "title": "Nutrition Ingredients Image", 
+                    "minLength": 1, 
+                    "maxLength": 400
+                }, 
+                "alcoholContentByVolume": {
+                    "type": "string", 
+                    "title": "Alcohol Content by Volume", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "alcoholProof": {
+                    "type": "string", 
+                    "title": "Alcohol Proof", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "alcoholClassAndType": {
+                    "type": "string", 
+                    "title": "Alcohol Class & Type", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "neutralSpiritsColoringAndFlavoring": {
+                    "type": "string", 
+                    "title": "Neutral Spirits Coloring & Flavoring", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "wineAppellation": {
+                    "type": "string", 
+                    "title": "Wine Appellation", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "wineVarietal": {
+                    "type": "string", 
+                    "title": "Wine Varietal", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "vintage": {
+                    "type": "integer", 
+                    "title": "Vintage", 
+                    "minimum": 0, 
+                    "maximum": 10000, 
+                    "exclusiveMaximum": false
+                }, 
+                "isNonGrape": {
+                    "type": "string", 
+                    "title": "Is Non-Grape", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "isEstateBottled": {
+                    "type": "string", 
+                    "title": "Is Estate Bottled", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "containsSulfites": {
+                    "type": "string", 
+                    "title": "Contains Sulfites", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "timeAged": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Time Aged", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "months", 
+                                "years"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "ingredients": {
+                    "type": "string", 
+                    "title": "Ingredients Text", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "containerType": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Container Type", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 4000
+                    }, 
+                    "minItems": 1
+                }
+            }, 
+            "required": [
+                "brand", 
+                "shortDescription", 
+                "mainImageUrl"
+            ], 
+            "additionalProperties": false
+        }, 
+        "FoodAndBeverage": {
+            "$schema": "http://json-schema.org/draft-04/schema#", 
+            "type": "object", 
+            "properties": {
+                "shortDescription": {
+                    "type": "string", 
+                    "title": "Description", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "keyFeatures": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Key Features", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 500
+                    }, 
+                    "minItems": 1
+                }, 
+                "brand": {
+                    "type": "string", 
+                    "title": "Brand", 
+                    "minLength": 1, 
+                    "maxLength": 60
+                }, 
+                "manufacturer": {
+                    "type": "string", 
+                    "title": "Manufacturer", 
+                    "minLength": 1, 
+                    "maxLength": 60
+                }, 
+                "manufacturerPartNumber": {
+                    "type": "string", 
+                    "title": "Manufacturer Part Number", 
+                    "minLength": 1, 
+                    "maxLength": 60
+                }, 
+                "modelNumber": {
+                    "type": "string", 
+                    "title": "Model Number", 
+                    "minLength": 1, 
+                    "maxLength": 60
+                }, 
+                "multipackQuantity": {
+                    "type": "integer", 
+                    "title": "Multipack Quantity", 
+                    "minimum": 0, 
+                    "maximum": 10000, 
+                    "exclusiveMaximum": false
+                }, 
+                "countPerPack": {
+                    "type": "integer", 
+                    "title": "Count Per Pack", 
+                    "minimum": 0, 
+                    "maximum": 100000, 
+                    "exclusiveMaximum": false
+                }, 
+                "count": {
+                    "type": "string", 
+                    "title": "Total Count", 
+                    "minLength": 1, 
+                    "maxLength": 7
+                }, 
+                "mainImageUrl": {
+                    "type": "string", 
+                    "title": "Main Image URL", 
+                    "minLength": 1, 
+                    "maxLength": 2000, 
+                    "format": "uri"
+                }, 
+                "productSecondaryImageURL": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Additional Image URL", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 2000, 
+                        "format": "uri"
+                    }, 
+                    "minItems": 1
+                }, 
+                "pieceCount": {
+                    "type": "integer", 
+                    "title": "Number of Pieces", 
+                    "minimum": 0, 
+                    "maximum": 1000000, 
+                    "exclusiveMaximum": false
+                }, 
+                "flavor": {
+                    "type": "string", 
+                    "title": "Flavor", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "isReadyToEat": {
+                    "type": "string", 
+                    "title": "Is Ready-to-Eat", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "size": {
+                    "type": "string", 
+                    "title": "Size", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "meal": {
+                    "type": "string", 
+                    "title": "Meal", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "variantGroupId": {
+                    "type": "string", 
+                    "title": "Variant Group ID", 
+                    "minLength": 1, 
+                    "maxLength": 300
+                }, 
+                "variantAttributeNames": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Variant Attribute Names", 
+                    "items": {
+                        "type": "string", 
+                        "enum": [
+                            "count", 
+                            "countPerPack", 
+                            "flavor", 
+                            "sportsTeam", 
+                            "size"
+                        ]
+                    }, 
+                    "minItems": 1
+                }, 
+                "isPrimaryVariant": {
+                    "type": "string", 
+                    "title": "Is Primary Variant", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "swatchImages": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Swatch Images", 
+                    "items": {
+                        "$schema": "http://json-schema.org/draft-04/schema#", 
+                        "type": "object", 
+                        "properties": {
+                            "swatchVariantAttribute": {
+                                "type": "string", 
+                                "title": "Swatch Variant Attribute", 
+                                "minLength": 1
+                            }, 
+                            "swatchImageUrl": {
+                                "type": "string", 
+                                "title": "Swatch Image URL", 
+                                "minLength": 1, 
+                                "maxLength": 2000, 
+                                "format": "uri"
+                            }
+                        }, 
+                        "additionalProperties": false
+                    }, 
+                    "minItems": 1
+                }, 
+                "isProp65WarningRequired": {
+                    "type": "string", 
+                    "title": "Is Prop 65 Warning Required", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "prop65WarningText": {
+                    "type": "string", 
+                    "title": "Prop 65 Warning Text", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "isNutritionFactsLabelRequired": {
+                    "type": "string", 
+                    "title": "Is Nutrition Facts and Ingredient Label Required", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "nutritionFactsLabel": {
+                    "type": "string", 
+                    "title": "Nutrition Facts Label Image", 
+                    "minLength": 1, 
+                    "maxLength": 2000
+                }, 
+                "nutritionIngredientsImage": {
+                    "type": "string", 
+                    "title": "Nutrition Ingredients Image", 
+                    "minLength": 1, 
+                    "maxLength": 400
+                }, 
+                "hasExpiration": {
+                    "type": "string", 
+                    "title": "Has Expiration", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "hasPricePerUnit": {
+                    "type": "string", 
+                    "title": "Has Price Per Unit", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "pricePerUnitQuantity": {
+                    "type": "number", 
+                    "title": "PPU Quantity of Units", 
+                    "minimum": 0, 
+                    "maximum": 1000000, 
+                    "exclusiveMaximum": false, 
+                    "multipleOf": 0.01
+                }, 
+                "pricePerUnitUom": {
+                    "type": "string", 
+                    "title": "PPU Unit of Measure", 
+                    "enum": [
+                        "Pound", 
+                        "Yard", 
+                        "Square Foot", 
+                        "Inch", 
+                        "Ounce", 
+                        "Fluid Ounce", 
+                        "Each", 
+                        "Foot", 
+                        "Cubic Foot"
+                    ]
+                }, 
+                "hasGMOs": {
+                    "type": "string", 
+                    "title": "Has GMOs", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "isGmoFree": {
+                    "type": "string", 
+                    "title": "GMO-Free Claim", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "servingSize": {
+                    "type": "string", 
+                    "title": "Serving Size", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "servingsPerContainer": {
+                    "type": "number", 
+                    "title": "Servings Per Container", 
+                    "minimum": 0, 
+                    "maximum": 1000000, 
+                    "exclusiveMaximum": false, 
+                    "multipleOf": 0.01
+                }, 
+                "calories": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Calories Per Serving", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "Calories"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "caloriesFromFat": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Fat Calories Per Serving", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "Calories"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "totalFat": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Total Fat Per Serving", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "g"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "totalFatPercentageDailyValue": {
+                    "type": "number", 
+                    "title": "Total Fat Percentage Daily Value", 
+                    "minimum": 0, 
+                    "maximum": 1000000, 
+                    "exclusiveMaximum": false, 
+                    "multipleOf": 0.01
+                }, 
+                "fatCaloriesPerGram": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Fat Calories Per Gram", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "Calories"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "totalCarbohydrate": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Total Carbohydrate", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "g"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "totalCarbohydratePercentageDailyValue": {
+                    "type": "number", 
+                    "title": "Total Carbohydrate Percentage Daily Value", 
+                    "minimum": 0, 
+                    "maximum": 1000000, 
+                    "exclusiveMaximum": false, 
+                    "multipleOf": 0.01
+                }, 
+                "carbohydrateCaloriesPerGram": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Carbohydrate Calories Per Gram", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "Calories"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "nutrients": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Nutrients", 
+                    "items": {
+                        "$schema": "http://json-schema.org/draft-04/schema#", 
+                        "type": "object", 
+                        "properties": {
+                            "nutrientName": {
+                                "type": "string", 
+                                "title": "Nutrient Name", 
+                                "minLength": 1, 
+                                "maxLength": 4000
+                            }, 
+                            "nutrientAmount": {
+                                "type": "string", 
+                                "title": "Nutrient Amount", 
+                                "minLength": 1, 
+                                "maxLength": 400
+                            }, 
+                            "nutrientPercentageDailyValue": {
+                                "type": "string", 
+                                "title": "Nutrient Percentage Daily Value", 
+                                "minLength": 1, 
+                                "maxLength": 20
+                            }, 
+                            "nutrientFootnote": {
+                                "type": "string", 
+                                "title": "Nutrient Footnote", 
+                                "minLength": 1, 
+                                "maxLength": 4000
+                            }
+                        }, 
+                        "required": [
+                            "nutrientAmount", 
+                            "nutrientName", 
+                            "nutrientPercentageDailyValue"
+                        ], 
+                        "additionalProperties": false
+                    }, 
+                    "minItems": 1
+                }, 
+                "proteinCaloriesPerGram": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Protein Calories Per Gram", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "Calories"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "totalProteinPercentageDailyValue": {
+                    "type": "number", 
+                    "title": "Total Protein Percentage Daily Value", 
+                    "minimum": 0, 
+                    "maximum": 1000000, 
+                    "exclusiveMaximum": false, 
+                    "multipleOf": 0.01
+                }, 
+                "totalProtein": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Total Protein Per Serving", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "g"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "foodForm": {
+                    "type": "string", 
+                    "title": "Food Form", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "containerType": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Container Type", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 4000
+                    }, 
+                    "minItems": 1
+                }, 
+                "timeAged": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Time Aged", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "months", 
+                                "years"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "isImitation": {
+                    "type": "string", 
+                    "title": "Is Imitation", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "ingredients": {
+                    "type": "string", 
+                    "title": "Ingredients Text", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "usdaInspected": {
+                    "type": "string", 
+                    "title": "USDA-Inspected", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "hasHighFructoseCornSyrup": {
+                    "type": "string", 
+                    "title": "Has High Fructose Corn Syrup", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "foodAllergenStatements": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Allergens", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 4000
+                    }, 
+                    "minItems": 1
+                }, 
+                "instructions": {
+                    "type": "string", 
+                    "title": "Instructions", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "caffeineDesignation": {
+                    "type": "string", 
+                    "title": "Caffeine Designation", 
+                    "enum": [
+                        "Caffeine Added", 
+                        "Decaffeinated", 
+                        "Naturally Decaffeinated", 
+                        "Naturally Caffeinated"
+                    ]
+                }, 
+                "spiceLevel": {
+                    "type": "string", 
+                    "title": "Spice Level", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "isMadeInHomeKitchen": {
+                    "type": "string", 
+                    "title": "Is Made in a Home Kitchen", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "beefCut": {
+                    "type": "string", 
+                    "title": "Beef Cut", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "poultryCut": {
+                    "type": "string", 
+                    "title": "Poultry Cut", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "releaseDate": {
+                    "type": "string", 
+                    "title": "Release Date", 
+                    "format": "date-time"
+                }, 
+                "safeHandlingInstructions": {
+                    "type": "string", 
+                    "title": "Safe Handling Instructions", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "cuisine": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Cuisine", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 4000
+                    }, 
+                    "minItems": 1
+                }, 
+                "foodPreparationTips": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Food Preparation Tips", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 4000
+                    }, 
+                    "minItems": 1
+                }, 
+                "foodStorageTips": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Food Storage Tips", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 4000
+                    }, 
+                    "minItems": 1
+                }, 
+                "character": {
+                    "type": "string", 
+                    "title": "Character", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }
+            }, 
+            "required": [
+                "brand", 
+                "shortDescription", 
+                "mainImageUrl"
+            ], 
+            "additionalProperties": false
+        }
+    }, 
+    "oneOf": [
+        {
+            "required": [
+                "AlcoholicBeverages"
+            ]
+        }, 
+        {
+            "required": [
+                "FoodAndBeverage"
+            ]
+        }
+    ], 
+    "additionalProperties": false
+}

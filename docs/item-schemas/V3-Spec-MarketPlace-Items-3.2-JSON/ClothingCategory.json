@@ -1,0 +1,1119 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#", 
+    "type": "object", 
+    "title": "Clothing", 
+    "properties": {
+        "Clothing": {
+            "$schema": "http://json-schema.org/draft-04/schema#", 
+            "type": "object", 
+            "properties": {
+                "shortDescription": {
+                    "type": "string", 
+                    "title": "Description", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "keyFeatures": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Key Features", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 500
+                    }, 
+                    "minItems": 1
+                }, 
+                "brand": {
+                    "type": "string", 
+                    "title": "Brand", 
+                    "minLength": 1, 
+                    "maxLength": 60
+                }, 
+                "manufacturer": {
+                    "type": "string", 
+                    "title": "Manufacturer", 
+                    "minLength": 1, 
+                    "maxLength": 60
+                }, 
+                "manufacturerPartNumber": {
+                    "type": "string", 
+                    "title": "Manufacturer Part Number", 
+                    "minLength": 1, 
+                    "maxLength": 60
+                }, 
+                "multipackQuantity": {
+                    "type": "integer", 
+                    "title": "Multipack Quantity", 
+                    "minimum": 0, 
+                    "maximum": 10000, 
+                    "exclusiveMaximum": false
+                }, 
+                "countPerPack": {
+                    "type": "integer", 
+                    "title": "Count Per Pack", 
+                    "minimum": 0, 
+                    "maximum": 100000, 
+                    "exclusiveMaximum": false
+                }, 
+                "count": {
+                    "type": "string", 
+                    "title": "Total Count", 
+                    "minLength": 1, 
+                    "maxLength": 7
+                }, 
+                "pieceCount": {
+                    "type": "integer", 
+                    "title": "Number of Pieces", 
+                    "minimum": 0, 
+                    "maximum": 1000000, 
+                    "exclusiveMaximum": false
+                }, 
+                "modelNumber": {
+                    "type": "string", 
+                    "title": "Model Number", 
+                    "minLength": 1, 
+                    "maxLength": 60
+                }, 
+                "mainImageUrl": {
+                    "type": "string", 
+                    "title": "Main Image URL", 
+                    "minLength": 1, 
+                    "maxLength": 2000, 
+                    "format": "uri"
+                }, 
+                "productSecondaryImageURL": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Additional Image URL", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 2000, 
+                        "format": "uri"
+                    }, 
+                    "minItems": 1
+                }, 
+                "color": {
+                    "type": "string", 
+                    "title": "Color", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "colorCategory": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Color Category", 
+                    "items": {
+                        "type": "string", 
+                        "enum": [
+                            "Blue", 
+                            "Brown", 
+                            "Gold", 
+                            "Gray", 
+                            "Purple", 
+                            "Clear", 
+                            "Yellow", 
+                            "Multi-color", 
+                            "Black", 
+                            "Beige", 
+                            "Pink", 
+                            "Orange", 
+                            "Green", 
+                            "White", 
+                            "Red", 
+                            "Off-White", 
+                            "Silver", 
+                            "Bronze"
+                        ]
+                    }, 
+                    "minItems": 1
+                }, 
+                "pattern": {
+                    "type": "string", 
+                    "title": "Pattern", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "material": {
+                    "type": "string", 
+                    "title": "Material", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "gender": {
+                    "type": "string", 
+                    "title": "Gender", 
+                    "enum": [
+                        "Unisex", 
+                        "Male", 
+                        "Female"
+                    ]
+                }, 
+                "ageGroup": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Age Group", 
+                    "items": {
+                        "type": "string", 
+                        "enum": [
+                            "Tween", 
+                            "Teen", 
+                            "Adult", 
+                            "Child"
+                        ]
+                    }, 
+                    "minItems": 1
+                }, 
+                "clothingSizeGroup": {
+                    "type": "string", 
+                    "title": "Clothing Size Group", 
+                    "enum": [
+                        "Women's Plus", 
+                        "Young Men\u2019s", 
+                        "Juniors", 
+                        "Petite", 
+                        "Men", 
+                        "Girls", 
+                        "Boys", 
+                        "Big & Tall", 
+                        "Maternity", 
+                        "Junior Plus", 
+                        "Maternity Plus", 
+                        "Petite Plus", 
+                        "Husky", 
+                        "Women", 
+                        "Girls' Plus"
+                    ]
+                }, 
+                "clothingSize": {
+                    "type": "string", 
+                    "title": "Clothing Size", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "isSet": {
+                    "type": "string", 
+                    "title": "Is Set", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "variantGroupId": {
+                    "type": "string", 
+                    "title": "Variant Group ID", 
+                    "minLength": 1, 
+                    "maxLength": 300
+                }, 
+                "variantAttributeNames": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Variant Attribute Names", 
+                    "items": {
+                        "type": "string", 
+                        "enum": [
+                            "count", 
+                            "pantySize", 
+                            "material", 
+                            "color", 
+                            "pattern", 
+                            "clothingFit", 
+                            "clothingSize", 
+                            "sportsTeam", 
+                            "inseam", 
+                            "accentColor", 
+                            "countPerPack", 
+                            "waistSize", 
+                            "academicInstitution", 
+                            "sockSize", 
+                            "braBandSize", 
+                            "braCupSize", 
+                            "hatSize", 
+                            "braSize", 
+                            "neckSize", 
+                            "character"
+                        ]
+                    }, 
+                    "minItems": 1
+                }, 
+                "isPrimaryVariant": {
+                    "type": "string", 
+                    "title": "Is Primary Variant", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "swatchImages": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Swatch Images", 
+                    "items": {
+                        "$schema": "http://json-schema.org/draft-04/schema#", 
+                        "type": "object", 
+                        "properties": {
+                            "swatchVariantAttribute": {
+                                "type": "string", 
+                                "title": "Swatch Variant Attribute", 
+                                "minLength": 1
+                            }, 
+                            "swatchImageUrl": {
+                                "type": "string", 
+                                "title": "Swatch Image URL", 
+                                "minLength": 1, 
+                                "maxLength": 2000, 
+                                "format": "uri"
+                            }
+                        }, 
+                        "additionalProperties": false
+                    }, 
+                    "minItems": 1
+                }, 
+                "isProp65WarningRequired": {
+                    "type": "string", 
+                    "title": "Is Prop 65 Warning Required", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "prop65WarningText": {
+                    "type": "string", 
+                    "title": "Prop 65 Warning Text", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "smallPartsWarnings": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Small Parts Warning Code", 
+                    "items": {
+                        "type": "integer", 
+                        "enum": [
+                            0, 
+                            1, 
+                            2, 
+                            3, 
+                            4, 
+                            5, 
+                            6
+                        ]
+                    }, 
+                    "minItems": 1
+                }, 
+                "requiresTextileActLabeling": {
+                    "type": "string", 
+                    "title": "Requires Textile Act Labeling", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "countryOfOriginTextiles": {
+                    "type": "string", 
+                    "title": "Country of Origin - Textiles", 
+                    "enum": [
+                        "USA and Imported", 
+                        "Imported", 
+                        "USA", 
+                        "USA or Imported"
+                    ]
+                }, 
+                "batteryTechnologyType": {
+                    "type": "string", 
+                    "title": "Contained Battery Type", 
+                    "enum": [
+                        "Mercury", 
+                        "Lead Acid (Nonspillable)", 
+                        "Carbon Zinc", 
+                        "Alkaline", 
+                        "Does Not Contain a Battery", 
+                        "Thermal", 
+                        "Lithium Primary (Lithium Metal)", 
+                        "Nickel Cadmium", 
+                        "Lithium Ion", 
+                        "Nickel Metal Hydride", 
+                        "Lead Acid", 
+                        "Multiple Types", 
+                        "Other", 
+                        "Silver", 
+                        "Magnesium"
+                    ]
+                }, 
+                "hasWarranty": {
+                    "type": "string", 
+                    "title": "Has Warranty", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "warrantyURL": {
+                    "type": "string", 
+                    "title": "Warranty URL", 
+                    "minLength": 1, 
+                    "maxLength": 200, 
+                    "format": "uri"
+                }, 
+                "warrantyText": {
+                    "type": "string", 
+                    "title": "Warranty Text", 
+                    "minLength": 1, 
+                    "maxLength": 1000
+                }, 
+                "clothingTopStyle": {
+                    "type": "string", 
+                    "title": "Clothing Top Style", 
+                    "minLength": 1, 
+                    "maxLength": 400
+                }, 
+                "dressShirtSize": {
+                    "type": "string", 
+                    "title": "Dress Shirt Size", 
+                    "minLength": 1, 
+                    "maxLength": 400
+                }, 
+                "sleeveStyle": {
+                    "type": "string", 
+                    "title": "Sleeve Style", 
+                    "minLength": 1, 
+                    "maxLength": 400
+                }, 
+                "sleeveLengthStyle": {
+                    "type": "string", 
+                    "title": "Sleeve Length Style", 
+                    "enum": [
+                        "3/4 Sleeve", 
+                        "Elbow-Length", 
+                        "Long Sleeve", 
+                        "Sleeveless", 
+                        "1/4 Sleeve", 
+                        "Short Sleeve"
+                    ]
+                }, 
+                "shirtNeckStyle": {
+                    "type": "string", 
+                    "title": "Clothing Neck Style", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "collarType": {
+                    "type": "string", 
+                    "title": "Collar Style", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "jacketStyle": {
+                    "type": "string", 
+                    "title": "Jacket Style", 
+                    "minLength": 1, 
+                    "maxLength": 400
+                }, 
+                "suitBreastingStyle": {
+                    "type": "string", 
+                    "title": "Suit Breasting Style", 
+                    "enum": [
+                        "single-breasted", 
+                        "double-breasted"
+                    ]
+                }, 
+                "sweaterStyle": {
+                    "type": "string", 
+                    "title": "Sweater Style", 
+                    "minLength": 1, 
+                    "maxLength": 400
+                }, 
+                "scarfStyle": {
+                    "type": "string", 
+                    "title": "Scarf Style", 
+                    "minLength": 1, 
+                    "maxLength": 400
+                }, 
+                "upperBodyStrapConfiguration": {
+                    "type": "string", 
+                    "title": "Upper Body Strap Configuration", 
+                    "minLength": 1, 
+                    "maxLength": 400
+                }, 
+                "hatSize": {
+                    "type": "string", 
+                    "title": "Hat Size", 
+                    "enum": [
+                        "7 3/4", 
+                        "6 3/4", 
+                        "7 1/8", 
+                        "8 1/8", 
+                        "7 1/2", 
+                        "6 1/2", 
+                        "7 3/8", 
+                        "6 3/8", 
+                        "7 1/4", 
+                        "6 1/4", 
+                        "7 7/8", 
+                        "7", 
+                        "6 7/8", 
+                        "8", 
+                        "7 5/8", 
+                        "6 5/8"
+                    ]
+                }, 
+                "hatStyle": {
+                    "type": "string", 
+                    "title": "Hat Style", 
+                    "minLength": 1, 
+                    "maxLength": 400
+                }, 
+                "braStyle": {
+                    "type": "string", 
+                    "title": "Bra Style", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "braSize": {
+                    "type": "string", 
+                    "title": "Bra Size", 
+                    "minLength": 1, 
+                    "maxLength": 400
+                }, 
+                "chestSize": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Chest Size", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "cm", 
+                                "in"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "pantRise": {
+                    "type": "string", 
+                    "title": "Waist Rise", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "waistStyle": {
+                    "type": "string", 
+                    "title": "Waist Style", 
+                    "minLength": 1, 
+                    "maxLength": 400
+                }, 
+                "waistSize": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Waist Size", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "in"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "pantySize": {
+                    "type": "string", 
+                    "title": "Panty Size", 
+                    "enum": [
+                        "24", 
+                        "25", 
+                        "26", 
+                        "27", 
+                        "20", 
+                        "21", 
+                        "22", 
+                        "23", 
+                        "28", 
+                        "29", 
+                        "1", 
+                        "0", 
+                        "3", 
+                        "2", 
+                        "5", 
+                        "4", 
+                        "7", 
+                        "6", 
+                        "9", 
+                        "8", 
+                        "11", 
+                        "10", 
+                        "13", 
+                        "12", 
+                        "15", 
+                        "14", 
+                        "17", 
+                        "16", 
+                        "19", 
+                        "18", 
+                        "31", 
+                        "30", 
+                        "34", 
+                        "33", 
+                        "32"
+                    ]
+                }, 
+                "skirtLength": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Skirt Length", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "cm", 
+                                "in"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "legOpeningCut": {
+                    "type": "string", 
+                    "title": "Leg Opening Cut", 
+                    "enum": [
+                        "at hip", 
+                        "high-cut", 
+                        "below hip", 
+                        "regular"
+                    ]
+                }, 
+                "pantLegCut": {
+                    "type": "string", 
+                    "title": "Pant Leg Cut", 
+                    "minLength": 1, 
+                    "maxLength": 400
+                }, 
+                "jeanStyle": {
+                    "type": "string", 
+                    "title": "Jean Style", 
+                    "minLength": 1, 
+                    "maxLength": 400
+                }, 
+                "jeanWash": {
+                    "type": "string", 
+                    "title": "Jean Wash", 
+                    "minLength": 1, 
+                    "maxLength": 400
+                }, 
+                "jeanFinish": {
+                    "type": "string", 
+                    "title": "Jean Finish", 
+                    "minLength": 1, 
+                    "maxLength": 400
+                }, 
+                "pantSize": {
+                    "type": "string", 
+                    "title": "Pant Size", 
+                    "minLength": 1, 
+                    "maxLength": 400
+                }, 
+                "pantFit": {
+                    "type": "string", 
+                    "title": "Pant Fit", 
+                    "minLength": 1, 
+                    "maxLength": 400
+                }, 
+                "pantStyle": {
+                    "type": "string", 
+                    "title": "Pant Style", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "beltStyle": {
+                    "type": "string", 
+                    "title": "Belt Style", 
+                    "minLength": 1, 
+                    "maxLength": 400
+                }, 
+                "beltBuckleStyle": {
+                    "type": "string", 
+                    "title": "Belt Buckle Style", 
+                    "minLength": 1, 
+                    "maxLength": 400
+                }, 
+                "pantyStyle": {
+                    "type": "string", 
+                    "title": "Underpant/Swim Bottom Style", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "shortsStyle": {
+                    "type": "string", 
+                    "title": "Shorts Style", 
+                    "minLength": 1, 
+                    "maxLength": 400
+                }, 
+                "skirtAndDressCut": {
+                    "type": "string", 
+                    "title": "Skirt Style", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "skirtLengthStyle": {
+                    "type": "string", 
+                    "title": "Skirt Length Style", 
+                    "minLength": 1, 
+                    "maxLength": 400
+                }, 
+                "hosieryStyle": {
+                    "type": "string", 
+                    "title": "Hosiery Style", 
+                    "minLength": 1, 
+                    "maxLength": 400
+                }, 
+                "tightsSheerness": {
+                    "type": "string", 
+                    "title": "Sheerness", 
+                    "enum": [
+                        "thick opaque", 
+                        "sheer", 
+                        "semi-opaque", 
+                        "ultra-sheer", 
+                        "opaque"
+                    ]
+                }, 
+                "underwearStyle": {
+                    "type": "string", 
+                    "title": "Underwear Style", 
+                    "minLength": 1, 
+                    "maxLength": 400
+                }, 
+                "sockSize": {
+                    "type": "string", 
+                    "title": "Sock Size", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "sockStyle": {
+                    "type": "string", 
+                    "title": "Sock Style", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "sockRise": {
+                    "type": "string", 
+                    "title": "Sock Rise", 
+                    "enum": [
+                        "knee-high", 
+                        "no-show", 
+                        "crew", 
+                        "thigh-high", 
+                        "low-cut", 
+                        "quarter"
+                    ]
+                }, 
+                "fabricContent": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Fabric Content", 
+                    "items": {
+                        "$schema": "http://json-schema.org/draft-04/schema#", 
+                        "type": "object", 
+                        "properties": {
+                            "materialName": {
+                                "type": "string", 
+                                "title": "Fabric Material Name", 
+                                "minLength": 1, 
+                                "maxLength": 4000
+                            }, 
+                            "materialPercentage": {
+                                "type": "number", 
+                                "title": "Fabric Material Percentage", 
+                                "minimum": 0, 
+                                "maximum": 1000000, 
+                                "exclusiveMaximum": false, 
+                                "multipleOf": 0.01
+                            }
+                        }, 
+                        "required": [
+                            "materialName"
+                        ], 
+                        "additionalProperties": false
+                    }, 
+                    "minItems": 1
+                }, 
+                "fabricCareInstructions": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Fabric Care Instructions", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 4000
+                    }, 
+                    "minItems": 1
+                }, 
+                "accentColor": {
+                    "type": "string", 
+                    "title": "Accent Color", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "clothingWeight": {
+                    "type": "string", 
+                    "title": "Clothing Weight", 
+                    "enum": [
+                        "mid-weight", 
+                        "heavyweight", 
+                        "lightweight"
+                    ]
+                }, 
+                "clothingStyle": {
+                    "type": "string", 
+                    "title": "Clothing Style", 
+                    "minLength": 1, 
+                    "maxLength": 200
+                }, 
+                "clothingFit": {
+                    "type": "string", 
+                    "title": "Clothing Fit", 
+                    "minLength": 1, 
+                    "maxLength": 400
+                }, 
+                "clothingCut": {
+                    "type": "string", 
+                    "title": "Clothing Cut", 
+                    "minLength": 1, 
+                    "maxLength": 400
+                }, 
+                "clothingLengthStyle": {
+                    "type": "string", 
+                    "title": "Clothing Length Style", 
+                    "minLength": 1, 
+                    "maxLength": 400
+                }, 
+                "fastenerType": {
+                    "type": "string", 
+                    "title": "Closure Type", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "swimsuitStyle": {
+                    "type": "string", 
+                    "title": "Swimsuit Style", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "dressStyle": {
+                    "type": "string", 
+                    "title": "Dress Style", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "gotsCertification": {
+                    "type": "string", 
+                    "title": "GOTS Certification", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "theme": {
+                    "type": "string", 
+                    "title": "Theme", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "character": {
+                    "type": "string", 
+                    "title": "Character", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "globalBrandLicense": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Brand License", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 4000
+                    }, 
+                    "minItems": 1
+                }, 
+                "sportsLeague": {
+                    "type": "string", 
+                    "title": "Sports League", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "sportsTeam": {
+                    "type": "string", 
+                    "title": "Sports Team", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "occasion": {
+                    "type": "string", 
+                    "title": "Occasion", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "activity": {
+                    "type": "string", 
+                    "title": "Activity", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "sport": {
+                    "type": "string", 
+                    "title": "Sport", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "season": {
+                    "type": "string", 
+                    "title": "Season", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "weather": {
+                    "type": "string", 
+                    "title": "Weather", 
+                    "minLength": 1, 
+                    "maxLength": 400
+                }, 
+                "isMaternity": {
+                    "type": "string", 
+                    "title": "Is Maternity", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "academicInstitution": {
+                    "type": "string", 
+                    "title": "Academic Institution", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "athlete": {
+                    "type": "string", 
+                    "title": "Athlete", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "autographedBy": {
+                    "type": "string", 
+                    "title": "Autographed by", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "braBandSize": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Bra Band Size", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "in"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "braCupSize": {
+                    "type": "string", 
+                    "title": "Bra Cup Size", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }, 
+                "neckSize": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Neck Size", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "in"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "sleeveLength": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Sleeve Length", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "in"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "inseam": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "object", 
+                    "title": "Inseam", 
+                    "properties": {
+                        "unit": {
+                            "type": "string", 
+                            "enum": [
+                                "in"
+                            ]
+                        }, 
+                        "measure": {
+                            "type": "number", 
+                            "minimum": 0, 
+                            "maximum": 1000000, 
+                            "exclusiveMaximum": false, 
+                            "multipleOf": 0.001
+                        }
+                    }, 
+                    "required": [
+                        "unit", 
+                        "measure"
+                    ], 
+                    "additionalProperties": false
+                }, 
+                "isMadeFromRecycledMaterial": {
+                    "type": "string", 
+                    "title": "Is Made From Recycled Material", 
+                    "enum": [
+                        "Yes", 
+                        "No"
+                    ]
+                }, 
+                "recycledMaterialContent": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Recycled Material Content", 
+                    "items": {
+                        "$schema": "http://json-schema.org/draft-04/schema#", 
+                        "type": "object", 
+                        "properties": {
+                            "recycledMaterial": {
+                                "type": "string", 
+                                "title": "Recycled Material", 
+                                "minLength": 1, 
+                                "maxLength": 4000
+                            }, 
+                            "percentageOfRecycledMaterial": {
+                                "type": "number", 
+                                "title": "Percentage of Recycled Material", 
+                                "minimum": 0, 
+                                "maximum": 1000000, 
+                                "exclusiveMaximum": false, 
+                                "multipleOf": 0.01
+                            }
+                        }, 
+                        "required": [
+                            "recycledMaterial"
+                        ], 
+                        "additionalProperties": false
+                    }, 
+                    "minItems": 1
+                }, 
+                "features": {
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "type": "array", 
+                    "title": "Additional Features", 
+                    "items": {
+                        "type": "string", 
+                        "minLength": 1, 
+                        "maxLength": 4000
+                    }, 
+                    "minItems": 1
+                }, 
+                "keywords": {
+                    "type": "string", 
+                    "title": "Keywords", 
+                    "minLength": 1, 
+                    "maxLength": 4000
+                }
+            }, 
+            "required": [
+                "brand", 
+                "shortDescription", 
+                "mainImageUrl"
+            ], 
+            "additionalProperties": false
+        }
+    }, 
+    "oneOf": [
+        {
+            "required": [
+                "Clothing"
+            ]
+        }
+    ], 
+    "additionalProperties": false
+}

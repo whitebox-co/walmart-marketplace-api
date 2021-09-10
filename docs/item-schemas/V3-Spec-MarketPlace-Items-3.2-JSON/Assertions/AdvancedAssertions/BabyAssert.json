@@ -1,0 +1,240 @@
+{"assertions":{
+  "Baby":
+  {
+    "variantAttributeNames":{
+      "variantGroupId":"DEPENDENCY",
+      "message":"variantGroupId is required when variantAttributeNames is present"
+    },
+    "variantGroupId":{
+      "variantAttributeNames":"DEPENDENCY",
+      "message":"variantAttributeNames is required when variantGroupId is present"
+    },
+    "hasBatteries":[
+      {
+        "hasBatteries":"Yes OR Oui"
+      },
+      { "batteryTechnologyType":"MUST",
+        "message":"batteryTechnologyType is required when hasBatteries = Yes"
+      }
+    ]
+  },
+  "BabyFood":
+  {
+    "variantAttributeNames":{
+      "variantGroupId":"DEPENDENCY",
+      "message":"variantGroupId is required when variantAttributeNames is present"
+    },
+    "variantGroupId":{
+      "variantAttributeNames":"DEPENDENCY",
+      "message":"variantAttributeNames is required when variantGroupId is present"
+    },
+    "isProp65WarningRequired":[
+      {"isProp65WarningRequired":"Yes OR Oui"},
+      {"prop65WarningText":"MUST",
+        "message":"prop65WarningText is required when isProp65WarningRequired = Yes"}
+    ],
+    "hasPricePerUnit":[
+      {"hasPricePerUnit":"Yes"},
+      {"pricePerUnitQuantity":"MUST",
+        "message":"pricePerUnitQuantity is required when hasPricePerUnit = Yes"},
+      {"pricePerUnitUom":"MUST",
+        "message":"pricePerUnitUom is required when hasPricePerUnit = Yes"}
+    ],
+    "hasExpiration":[
+      {"hasExpiration":"Yes"},
+      {"shelfLife":"MUST",
+        "message":"shelfLife is required when hasExpiration = Yes"}
+    ],
+    "isNutritionFactsLabelRequired":[
+      {"isNutritionFactsLabelRequired":"Yes OR Oui"},
+      {"nutritionFactsLabel":"MUST",
+        "message":"nutritionFactsLabel is required when isNutritionFactsLabelRequired = Yes"},
+      {"nutritionIngredientsImage":"MUST",
+        "message":"nutritionIngredientsImage is required when isNutritionFactsLabelRequired = Yes"}
+    ],
+    "hasIngredientList":[
+      {"hasIngredientList":"Yes OR Oui"},
+      {"ingredientListImage":"NOT |ingredients",
+        "message":"ingredientListImage is required when hasIngredientList = Yes and ingredients is missing"},
+      {"ingredients":"NOT |ingredientListImage",
+        "message":"ingredients is required when hasIngredientList = Yes and ingredientListImage is missing"}
+    ]
+
+  },
+  "BabyOther":{
+    "variantAttributeNames":{
+      "variantGroupId":"DEPENDENCY",
+      "message":"variantGroupId is required when variantAttributeNames is present"
+    },
+    "variantGroupId":{
+      "variantAttributeNames":"DEPENDENCY",
+      "message":"variantAttributeNames is required when variantGroupId is present"
+    },
+    "isProp65WarningRequired":[
+      {"isProp65WarningRequired":"Yes OR Oui"},
+      {"prop65WarningText":"MUST",
+        "message":"prop65WarningText is required when isProp65WarningRequired = Yes"}
+    ],
+    "hasBatteries":[
+      {
+        "hasBatteries":"Yes OR Oui"
+      },
+      { "batteryTechnologyType":"MUST",
+        "message":"batteryTechnologyType is required when hasBatteries = Yes"
+      }
+    ],
+    "hasPricePerUnit":[
+      {"hasPricePerUnit":"Yes"},
+      {"pricePerUnitQuantity":"MUST",
+        "message":"pricePerUnitQuantity is required when hasPricePerUnit = Yes"},
+      {"pricePerUnitUom":"MUST",
+        "message":"pricePerUnitUom is required when hasPricePerUnit = Yes"}
+    ],
+    "hasWarranty":[
+      {"hasWarranty":"Yes OR Oui"},
+      {"warrantyText":"NOT |warrantyURL",
+        "message":"warrantyText is required when warrantyURL is missing and hasWarranty = Yes"
+      },
+      {"warrantyURL":"NOT |warrantyText",
+        "message":"warrantyURL is required when warrantyText is missing and hasWarranty = Yes"
+      }
+    ],
+    "hasIngredientList":[
+      {"hasIngredientList":"Yes OR Oui"},
+      {"ingredientListImage":"NOT |ingredients",
+        "message":"ingredientListImage is required when hasIngredientList = Yes and ingredients is missing"},
+      {"ingredients":"NOT |ingredientListImage",
+        "message":"ingredients is required when hasIngredientList = Yes and ingredientListImage is missing"}
+    ],
+    "requiresTextileActLabeling":[
+      {"requiresTextileActLabeling":"Yes OR Oui"},
+      {"countryOfOriginTextiles":"MUST",
+        "message":"countryOfOriginTextiles is required when requiresTextileActLabeling = Yes"}
+    ]
+  },
+  "ChildCarSeats":{
+    "variantAttributeNames":{
+      "variantGroupId":"DEPENDENCY",
+      "message":"variantGroupId is required when variantAttributeNames is present"
+    },
+    "variantGroupId":{
+      "variantAttributeNames":"DEPENDENCY",
+      "message":"variantAttributeNames is required when variantGroupId is present"
+    },
+    "isProp65WarningRequired":[
+      {"isProp65WarningRequired":"Yes OR Oui"},
+      {"prop65WarningText":"MUST",
+        "message":"prop65WarningText is required when isProp65WarningRequired = Yes"}
+    ],
+    "hasBatteries":[
+      {
+        "hasBatteries":"Yes OR Oui"
+      },
+      { "batteryTechnologyType":"MUST",
+        "message":"batteryTechnologyType is required when hasBatteries = Yes"
+      }
+    ],
+    "hasWarranty":[
+      {"hasWarranty":"Yes OR Oui"},
+      {"warrantyText":"NOT |warrantyURL",
+        "message":"warrantyText is required when warrantyURL is missing and hasWarranty = Yes"
+      },
+      {"warrantyURL":"NOT |warrantyText",
+        "message":"warrantyURL is required when warrantyText is missing and hasWarranty = Yes"
+      }
+    ],
+    "isAssemblyRequired":[
+      {"isAssemblyRequired":"Yes OR Oui"},
+      {"assemblyInstructions":"MUST",
+        "message":"assemblyInstructions is required when isAssemblyRequired = Yes"}
+    ],
+    "requiresTextileActLabeling":[
+      {"requiresTextileActLabeling":"Yes OR Oui"},
+      {"countryOfOriginTextiles":"MUST",
+        "message":"countryOfOriginTextiles is required when requiresTextileActLabeling = Yes"}
+    ]
+  },
+  "BabyFurniture":{
+    "variantAttributeNames":{
+      "variantGroupId":"DEPENDENCY",
+      "message":"variantGroupId is required when variantAttributeNames is present"
+    },
+    "variantGroupId":{
+      "variantAttributeNames":"DEPENDENCY", 
+      "message":"variantAttributeNames is required when variantGroupId is present"
+    },
+    "isProp65WarningRequired":[
+      {"isProp65WarningRequired":"Yes OR Oui"},
+      {"prop65WarningText":"MUST",
+        "message":"prop65WarningText is required when isProp65WarningRequired = Yes"}
+    ],
+    "requiresTextileActLabeling":[
+      {"requiresTextileActLabeling":"Yes OR Oui"},
+      {"countryOfOriginTextiles":"MUST",
+        "message":"countryOfOriginTextiles is required when requiresTextileActLabeling = Yes"}
+    ],
+    "hasWarranty":[
+      {"hasWarranty":"Yes OR Oui"},
+      {"warrantyURL":"NOT |warrantyText",
+        "message":"warrantyURL is required when warrantyText is missing and hasWarranty = Yes"
+      },
+      {"warrantyText":"NOT |warrantyURL",
+        "message":"warrantyText is required when warrantyURL is missing and hasWarranty = Yes"
+      }
+    ],
+    "isAssemblyRequired":[
+      {"isAssemblyRequired":"Yes OR Oui"},
+      {"assemblyInstructions":"MUST",
+        "message":"assemblyInstructions is required when isAssemblyRequired = Yes"}
+    ]
+  },
+  "BabyToys":{
+    "variantGroupId":{
+      "variantAttributeNames":"DEPENDENCY",
+      "message":"variantAttributeNames is required when variantGroupId is present"
+    },
+    "variantAttributeNames":{
+      "variantGroupId":"DEPENDENCY",
+      "message":"variantGroupId is required when variantAttributeNames is present"
+    },
+    "isProp65WarningRequired":[
+      {"isProp65WarningRequired":"Yes OR Oui"},
+      {"prop65WarningText":"MUST",
+        "message":"prop65WarningText is required when isProp65WarningRequired = Yes"}
+    ],
+    "hasWarranty":[
+      {"hasWarranty":"Yes OR Oui"},
+      {"warrantyText":"NOT |warrantyURL",
+        "message":"warrantyText is required when warrantyURL is missing and hasWarranty = Yes"
+      },
+      {"warrantyURL":"NOT |warrantyText",
+        "message":"warrantyURL is required when warrantyText is missing and hasWarranty = Yes"
+      }
+    ],
+    "isAssemblyRequired":[
+      {"isAssemblyRequired":"Yes OR Oui"},
+      {"assemblyInstructions":"MUST",
+        "message":"assemblyInstructions is required when isAssemblyRequired = Yes"}
+    ]
+  },
+  "BabyClothing":{
+    "variantAttributeNames":{
+      "variantGroupId":"DEPENDENCY",
+      "message":"variantGroupId is required when variantAttributeNames is present"
+    },
+    "variantGroupId":{
+      "variantAttributeNames":"DEPENDENCY",
+      "message":"variantAttributeNames is required when variantGroupId is present"
+    },
+    "isProp65WarningRequired":[
+      {"isProp65WarningRequired":"Yes OR Oui"},
+      {"prop65WarningText":"MUST",
+        "message":"prop65WarningText is required when isProp65WarningRequired = Yes"}
+    ],
+    "requiresTextileActLabeling":[
+      {"requiresTextileActLabeling":"Yes OR Oui"},
+      {"countryOfOriginTextiles":"MUST",
+        "message":"countryOfOriginTextiles is required when requiresTextileActLabeling = Yes"}
+    ]
+  }
+}}

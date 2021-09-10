@@ -1,0 +1,3995 @@
+<?xml version="1.0" ?>
+<xsd:schema elementFormDefault="qualified" targetNamespace="http://walmart.com/" version="3.2" xmlns:wm="http://walmart.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:complexType name="HolidayLightingStyle">
+    <xsd:annotation>
+      <xsd:documentation>Term describing the shape and configuration of decorative lights for special occasions. Used for selection based on use and effect. For example, icicle lights are used decorate tops of windows at during the Christmas holiday season.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="holidayLightingStyleValue">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="NumberOfPlayers">
+    <xsd:annotation>
+      <xsd:documentation>Number of players that can participate in the game.	</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element maxOccurs="1" minOccurs="0" name="minimumNumberOfPlayers">
+        <xsd:annotation>
+          <xsd:documentation>The minimum number of people required to play the game.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Minimum Number of Players</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:integer">
+            <xsd:totalDigits value="7"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="maximumNumberOfPlayers">
+        <xsd:annotation>
+          <xsd:documentation>The maximum number of people for which the game is intended.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Maximum Number of Players</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:integer">
+            <xsd:totalDigits value="7"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="AnimalHealthConcern">
+    <xsd:annotation>
+      <xsd:documentation>Type of condition that the item is intended to address.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="animalHealthConcernValue">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="RecommendedSurfaces">
+    <xsd:annotation>
+      <xsd:documentation>The surfaces that a product is marketed for, or meant to be compatible with.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="recommendedSurface">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="Author">
+    <xsd:annotation>
+      <xsd:documentation>The name (or pseudonym) of the person who wrote a book, as written on the cover and/or title page.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="authorValue">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="RingStyle">
+    <xsd:annotation>
+      <xsd:documentation>Form or design of a ring</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="ringStyleValue">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="EducationalFocus">
+    <xsd:annotation>
+      <xsd:documentation>Is the item intended to improve a particular educational skill? </xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="educationalFocus">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="VariantAttributeNames">
+    <xsd:annotation>
+      <xsd:documentation>Designate all attributes by which the item is varying. Variant attributes are limited to those designated for each category. </xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="variantAttributeName">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string"/>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="MobileOperatingSystem">
+    <xsd:annotation>
+      <xsd:documentation>The operating system loaded on the device or upon which the software is designed to operate.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="mobileOperatingSystemValue">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="Actors">
+    <xsd:annotation>
+      <xsd:documentation>Actors who receive top billing in a movie or television show.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="actor">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="SelfTimerDelay">
+    <xsd:annotation>
+      <xsd:documentation>Length of time the self-timer will allow before it takes an action, such as taking a photo.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="selfTimerDelayValue" type="wm:TimeUnit"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="Instrument">
+    <xsd:annotation>
+      <xsd:documentation>The name(s) of the musical instrument(s) or equipment this accessory is intended for/compatible with.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="instrumentValue">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ExposureModes">
+    <xsd:annotation>
+      <xsd:documentation>Available settings to control shutter speed and lens aperture.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="exposureMode">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="InputsAndOutputs">
+    <xsd:annotation>
+      <xsd:documentation>Enter the type and quantity of each input and/or output connection provided on the product.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="inputsAndOutput" type="wm:inputsAndOutput"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="inputsAndOutput">
+    <xsd:all>
+      <xsd:element maxOccurs="1" minOccurs="1" name="inputOutputType">
+        <xsd:annotation>
+          <xsd:documentation>Type of connection. Please specify whether the connection supports input, output or input/output.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Required"/>
+            <wm:displayName>Input/Output Type</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="inputOutputQuantity">
+        <xsd:annotation>
+          <xsd:documentation>Number of connections corresponding to the Input/Output type.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Input/Output Quantity</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:integer">
+            <xsd:totalDigits value="7"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="InkColor">
+    <xsd:annotation>
+      <xsd:documentation>The ink color of pens, markers, ink pads, and other writing implements.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="inkColorValue">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="AccessoriesIncluded">
+    <xsd:annotation>
+      <xsd:documentation>Listing of any supplementary items that come with the product. Important information for consumers because accessories typically provide additional convenience, utility, attractiveness or safety to or for a product. </xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="accessoriesIncludedValue">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="InterfaceType">
+    <xsd:annotation>
+      <xsd:documentation>Industry term describing the electronic connection enabling devices to communicate with each other. Used in a wide variety of electronic products including cables, computers, and cameras. Important selection factor for compatibility. For example, a cable that allows transfer of photos from a digital camera to a computer using a USB interface.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="interfaceTypeValue">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="Performer">
+    <xsd:annotation>
+      <xsd:documentation>The performer/s or name of group on the album or single.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="performerValue">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="DubbedLanguages">
+    <xsd:annotation>
+      <xsd:documentation>Language(s) that a film has been dubbed with</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="dubbedLanguage">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="OriginalLanguages">
+    <xsd:annotation>
+      <xsd:documentation>The original language of the work. Usually this will be one language, but occasionally more than one is appropriate. For example, if a movie is dubbed in English but the original language is Chinese, enter &quot;Chinese.&quot;</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="originalLanguage">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="FillMaterial">
+    <xsd:annotation>
+      <xsd:documentation>The material used to stuff the item (in a cushion or plush toy, for example).</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="fillMaterialValue">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="BodyParts">
+    <xsd:annotation>
+      <xsd:documentation>The body part/s for which the item is intended.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="bodyPart">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="StopUseIndications">
+    <xsd:annotation>
+      <xsd:documentation>Text that describes symptoms, or lack thereof that indicate when to stop taking a medicine. </xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="stopUseIndication">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="CpuSocketType">
+    <xsd:annotation>
+      <xsd:documentation>The interface of, or required by, the central processing unit.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="cpuSocketTypeValue">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="SubtitledLanguages">
+    <xsd:annotation>
+      <xsd:documentation>Language(s) that a film's subtitles have been written in</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="subtitledLanguage">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="TargetAudience">
+    <xsd:annotation>
+      <xsd:documentation>The demographic for which the item is targeted.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="targetAudienceValue">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="DiaposableBabyDiaperType">
+    <xsd:annotation>
+      <xsd:documentation>Type of disposable diaper</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="diaposableBabyDiaperTypeValue">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="RecommendedRooms">
+    <xsd:annotation>
+      <xsd:documentation>The rooms where the item is likely or recommended to be used.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="recommendedRoom">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="FoodAllergenStatements">
+    <xsd:annotation>
+      <xsd:documentation>Statement regarding any ingredients that may be food allergens, often written as &quot;Contains X&quot; or &quot;Manufactured in a facility which processes Y.&quot;</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="foodAllergenStatement">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="InactiveIngredients">
+    <xsd:annotation>
+      <xsd:documentation>The list of inactive ingredients in order of potency, as shown on the item label.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="inactiveIngredient">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="Connections">
+    <xsd:annotation>
+      <xsd:documentation>The standardized connections provided on the item.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="connection">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="LensType">
+    <xsd:annotation>
+      <xsd:documentation>Whether the lens is single, multifocal, or tinted</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="lensTypeValue">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="FrameMaterial">
+    <xsd:annotation>
+      <xsd:documentation>The material used in the item's frame if different than its main material makeup, which is described using the &quot;Material&quot; attribute.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="frameMaterialValue">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ActiveIngredients">
+    <xsd:annotation>
+      <xsd:documentation>The list of active ingredients in order of potency, as shown on the item label.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="activeIngredient" type="wm:activeIngredient"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="activeIngredient">
+    <xsd:all>
+      <xsd:element maxOccurs="1" minOccurs="1" name="activeIngredientName">
+        <xsd:annotation>
+          <xsd:documentation>Ingredient name.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Required"/>
+            <wm:displayName>Active Ingredient Name</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="activeIngredientPercentage">
+        <xsd:annotation>
+          <xsd:documentation>The percent of the active ingredient in the item.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Active Ingredient Percentage</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:decimal">
+            <xsd:totalDigits value="16"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="MemoryCardFormat">
+    <xsd:annotation>
+      <xsd:documentation>The memory card format applicable to the product.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="memoryCardTypeValue">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="CompatibleConduitSizes">
+    <xsd:annotation>
+      <xsd:documentation>The sizes of conduit that this product is compatible with, or fits. Typically used for conduit fittings based on diameter.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="compatibleConduitSize" type="wm:LengthUnit"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ProductIdentifiers">
+    <xsd:annotation>
+      <xsd:documentation>Specify at least one Product ID and its ID Type.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="productIdentifier" type="wm:productIdentifier"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="productIdentifier">
+    <xsd:all>
+      <xsd:element maxOccurs="1" minOccurs="1" name="productIdType">
+        <xsd:annotation>
+          <xsd:documentation>UPC: GTIN-12, the 12-digit number including check-digit. If less than 12-digits, such as UPC-E which is 8-digits, add leading zeros up to 12-digits.; GTIN: GTIN-14, the 14-digit number including check-digit. If less than 14-digits add leading zeros up to 14-digits. ISBN: International Standard Book Number, the 10 or 13-digit number including check-digit.; EAN: GTIN-13, the 13-digit number including check-digit. If less than 13-digits add leading zeros up to 13-digits.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Required"/>
+            <wm:displayName>Product ID Type</wm:displayName>
+            <wm:group>Basic</wm:group>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="UPC"/>
+            <xsd:enumeration value="GTIN"/>
+            <xsd:enumeration value="ISBN"/>
+            <xsd:enumeration value="EAN"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="1" name="productId">
+        <xsd:annotation>
+          <xsd:documentation>Alphanumeric ID that uniquely identifies the product. Used in conjunction with &quot;Product ID Type&quot;. NOTE: For GTIN-14 or UPC, include the check digit.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Required"/>
+            <wm:displayName>Product ID</wm:displayName>
+            <wm:group>Basic</wm:group>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="14"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="AwardsWon">
+    <xsd:annotation>
+      <xsd:documentation>Use this attribute if the item has won any awards in its particular product category. </xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="awardsWonValue">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="AdditionalFeatures">
+    <xsd:annotation>
+      <xsd:documentation>List notable features of the item.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="feature">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="KeyFeatures">
+    <xsd:annotation>
+      <xsd:documentation>Key features will appear as bulleted text on the item page and in search results. Key features help the user understand the benefits of the product with a simple and clean format. We highly recommended using three or more key features.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="keyFeaturesValue">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="500"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="AudioFeatures">
+    <xsd:annotation>
+      <xsd:documentation>Features intended to increase sound quality or fidelity. </xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="audioFeature">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="FabricCareInstructions">
+    <xsd:annotation>
+      <xsd:documentation>Describes how the fabric should be cleaned. Enter details of the fabric care label found on the item. (For garments, typically located inside on the top of the back or the lower left side.)</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="fabricCareInstruction">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="HairLength">
+    <xsd:annotation>
+      <xsd:documentation>The length of hair that grooming product is intended for.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="hairLengthValue">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ProcessorType">
+    <xsd:annotation>
+      <xsd:documentation>Commonly used retail name for the central processing unit.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="processorTypeValue">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="Nutrients">
+    <xsd:annotation>
+      <xsd:documentation>Additional nutrients, not including total fat or total carbohydrates, which should be entered in &quot;Total Fat&quot; and &quot;Total Carbohydrate&quot; respectively.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="nutrient" type="wm:nutrient"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="nutrient">
+    <xsd:all>
+      <xsd:element maxOccurs="1" minOccurs="1" name="nutrientName">
+        <xsd:annotation>
+          <xsd:documentation>Name of additional nutrient. This attribute is used in conjunction with Nutrient Amount and Nutrient Percentage Daily Value.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Required"/>
+            <wm:displayName>Nutrient Name</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="1" name="nutrientAmount">
+        <xsd:annotation>
+          <xsd:documentation>Amount of the nutrient present in one serving. This attribute is used in conjunction with Nutrient Name and Nutrient Percentage Daily Value. </xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Required"/>
+            <wm:displayName>Nutrient Amount</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="400"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="1" name="nutrientPercentageDailyValue">
+        <xsd:annotation>
+          <xsd:documentation>Percent daily value of the nutrient present in one serving. This attribute is used in conjunction with Nutrient Name and Nutrient Amount.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Required"/>
+            <wm:displayName>Nutrient Percentage Daily Value</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="20"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="nutrientFootnote">
+        <xsd:annotation>
+          <xsd:documentation>Additional footnote text referenced from the Percentage Daily Value in the nutrition or supplement facts.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Nutrient Footnote</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="BallCoreMaterial">
+    <xsd:annotation>
+      <xsd:documentation>The primary medium that composes the central core of a ball, affecting its weight and bounce.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="ballCoreMaterialValue">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="FocusType">
+    <xsd:annotation>
+      <xsd:documentation>Terms that describe modes, mechanisms, or control arrangements that adjust optical focus on the device. For example, if item is a pair of binoculars, focus type would describe weather the lenses on binoculars can be adjusted independently of one another.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="focusTypeValue">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="MotherboardFormFactor">
+    <xsd:annotation>
+      <xsd:documentation>The standardized form factor with which the motherboard complies.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="motherboardFormFactorValue">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="RecordableMediaFormats">
+    <xsd:annotation>
+      <xsd:documentation>The recording technologies compatible with the item.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="recordableMediaFormat">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="WirelessTechnologies">
+    <xsd:annotation>
+      <xsd:documentation>Any wireless communications standard used within or by the item.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="wirelessTechnology">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="HealthConcerns">
+    <xsd:annotation>
+      <xsd:documentation>Type of medical condition/illness/well being/life stage that the item is intended to address.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="healthConcern">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="FabricContent">
+    <xsd:annotation>
+      <xsd:documentation>Material makeup of the item.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="fabricContentValue" type="wm:fabricContentValue"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="fabricContentValue">
+    <xsd:all>
+      <xsd:element maxOccurs="1" minOccurs="1" name="materialName">
+        <xsd:annotation>
+          <xsd:documentation>A list of every major constituent fiber by percentage using its generic name, as is legally required for yarns, fabrics, clothing and other household items. Non-fibrous materials (e.g. metal zippers) need not be listed. Name all fibers that comprise 5% or more by weight; fibers of less than 5% should be disclosed as other fiber or “other fibers” unless the fiber is wool or has a particular function (e.g. spandex). For further information on these requirements, refer to the labeling requirements of the Textile Act.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Required"/>
+            <wm:displayName>Fabric Material Name</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="materialPercentage">
+        <xsd:annotation>
+          <xsd:documentation>The percentage of each fiber within the garment. Fibers (except wool) of less than 5% may be disclosed as &quot;other fiber&quot; or &quot;other fibers&quot; and not by their generic name or fiber trademark. If the fiber serves a particular function, such as spandex which adds stretch, it may be included even when it comprises less than 5% of the garment.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Fabric Material Percentage</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:decimal">
+            <xsd:totalDigits value="16"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="MetalStamp">
+    <xsd:annotation>
+      <xsd:documentation>Most jewelry items made of precious metal are stamped with information about the purity level of the metal content. Generally the stamp is placed in an inconspicuous place on the item so it does not detract from the design. Stamps will usually be located on the inside of the band on a ring, on the post or basket setting on a pair of earrings, on the bail (the part that the chain slides through) on a pendant, and on the connecting ring or the clasp on a necklace or bracelet. All jewelry stamps adhere to strict guidelines set by the Federal Trade Commission.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="metalStampValue">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="CertificateNumber">
+    <xsd:annotation>
+      <xsd:documentation>If the item has a certificate, enter the certificate number here. Separate multiple values by semicolons.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="certificateNumberValue">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="100"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="DigitalAudioFileFormat">
+    <xsd:annotation>
+      <xsd:documentation>The file format of the digital audio file.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="digitalAudioFileFormatValue">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="400"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="FoodStorageTips">
+    <xsd:annotation>
+      <xsd:documentation>Helpful information related to food storage.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="foodStorageTipsValue">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="FoodPreparationTips">
+    <xsd:annotation>
+      <xsd:documentation>Helpful information related to food preparation.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="foodPreparationTipsValue">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="BabyCarrierPosition">
+    <xsd:annotation>
+      <xsd:documentation>Applies to wearable baby carriers. Describes the part of the body against which the child is placed along with the direction the child faces (where applicable) while in the wearable baby carrier.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="babyCarrierPositionValue">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="400"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="PearlLustre">
+    <xsd:annotation>
+      <xsd:documentation>Measure of the quality and quantity of light that reflects off a pearl.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="pearlLustreValue">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="JewelrySetting">
+    <xsd:annotation>
+      <xsd:documentation>Method or style in which stones are attached to a piece of jewelry.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="jewelrySettingValue">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ChainPattern">
+    <xsd:annotation>
+      <xsd:documentation>If pertinent, choose a pattern from the example values; if your value does not exist, then enter one of your own. </xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="chainPatternValue">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="BabyCarrierStyle">
+    <xsd:annotation>
+      <xsd:documentation>Prominent wearable baby carrier styles.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="babyCarrierStyleValue">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="400"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="AdditionalProductAttributes">
+    <xsd:annotation>
+      <xsd:documentation>Use this name value appear to add attributes to your product that do not appear in this template. Walmart may provide direction to leverage these fields for special optimizations.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="additionalProductAttribute" type="wm:additionalProductAttribute"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="additionalProductAttribute">
+    <xsd:sequence>
+      <xsd:element maxOccurs="1" minOccurs="0" name="productAttributeName">
+        <xsd:annotation>
+          <xsd:documentation>&quot;Additional Product Attribute Name&quot; and &quot;Additional Product Attribute Value&quot; allow you to create your own descriptor that is not already in the taxonomy. Use camelCase for the name.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Conditionally Required"/>
+            <wm:conditionalAttributes>
+              <wm:conditionalAttributeGroup>
+                <wm:conditionalAttribute name="productAttributeValue" value="ANY"/>
+              </wm:conditionalAttributeGroup>
+            </wm:conditionalAttributes>
+            <wm:displayName>Additional Product Attribute Name</wm:displayName>
+            <wm:group>Nice to Have</wm:group>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="100"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="productAttributeValue">
+        <xsd:annotation>
+          <xsd:documentation>Write your &quot;Additional Product Attribute Value&quot; to give a description or answer for your &quot;Additional Product Attribute Name.&quot; Together, these allow you to create your own descriptor that is not already in the taxonomy.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Conditionally Required"/>
+            <wm:conditionalAttributes>
+              <wm:conditionalAttributeGroup>
+                <wm:conditionalAttribute name="productAttributeName" value="ANY"/>
+              </wm:conditionalAttributeGroup>
+            </wm:conditionalAttributes>
+            <wm:displayName>Additional Product Attribute Value</wm:displayName>
+            <wm:group>Nice to Have</wm:group>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="HandleMaterial">
+    <xsd:annotation>
+      <xsd:documentation>Material of the handle, if different from the rest of the item.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="handleMaterialValue">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="CompatibleBrands">
+    <xsd:annotation>
+      <xsd:documentation>A list of the brands most commonly compatible with the item.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="compatibleBrand">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="TrackListings">
+    <xsd:annotation>
+      <xsd:documentation>List each track on the album with track name, number, and duration.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="trackListing" type="wm:trackListing"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="trackListing">
+    <xsd:all>
+      <xsd:element maxOccurs="1" minOccurs="0" name="trackNumber">
+        <xsd:annotation>
+          <xsd:documentation>The number of the individual track on an album.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Track Number</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:integer">
+            <xsd:totalDigits value="7"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="trackName">
+        <xsd:annotation>
+          <xsd:documentation>The name of the individual track on an album.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Track Name</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="trackDuration">
+        <xsd:annotation>
+          <xsd:documentation>The duration of the individual track on an album.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Track Duration</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="400"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="RecommendedUses">
+    <xsd:annotation>
+      <xsd:documentation>Further clarification of what the item may be used for. This improves searchability when customers search for general terms like &quot;birthday party&quot; that do not include the names of specific items.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="recommendedUse">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="RecycledMaterialContent">
+    <xsd:annotation>
+      <xsd:documentation>If item contains reused/recycled material, the percentage of all recycled material used to produce the item. This can also include specific material composition; cushions made from 30% recycled cotton fabric. Used to highlight sustainability to the customer.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="recycledMaterialContentValue" type="wm:recycledMaterialContentValue"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="recycledMaterialContentValue">
+    <xsd:all>
+      <xsd:element maxOccurs="1" minOccurs="1" name="recycledMaterial">
+        <xsd:annotation>
+          <xsd:documentation>Type of recycled material used to create the item.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Required"/>
+            <wm:displayName>Recycled Material</wm:displayName>
+            <wm:group>Nice to Have</wm:group>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="percentageOfRecycledMaterial">
+        <xsd:annotation>
+          <xsd:documentation>Corresponding percentage of the recycled material used to create the item. Used in conjunction with Recycled Material attribute.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Percentage of Recycled Material</wm:displayName>
+            <wm:group>Nice to Have</wm:group>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:decimal">
+            <xsd:totalDigits value="16"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="WigStyles">
+    <xsd:annotation>
+      <xsd:documentation>Descriptive terms for wig styles.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="wigStyle">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="400"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ClaspType">
+    <xsd:annotation>
+      <xsd:documentation>If your item has a clasp, then choose a clasp type from the example values. If your value does not exist, enter one of your own. </xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="claspTypeValue">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ContainerType">
+    <xsd:annotation>
+      <xsd:documentation>The kind of physical package or receptacle that contains the product as presented to the consumer. Also used to describe storage items. Consumers may select different products based on their container preferences. For example, a parent may select juice packaged in boxes rather than bottles for use in childrens' lunch boxes.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="containerTypeValue">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="Cuisine">
+    <xsd:annotation>
+      <xsd:documentation>Indicates the cooking style, especially regional or cultural cuisines, you might use the food to prepare.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="cuisineValue">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="BrandLicense">
+    <xsd:annotation>
+      <xsd:documentation>A brand name that is not owned by the product brand, but is licensed for the particular product. (Often character and media tie-ins and promotions.)</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="globalBrandLicenseValue">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="BisacSubjectCode">
+    <xsd:annotation>
+      <xsd:documentation>A standardized code from the Book Industry Study Group used to assign a genre and classify a book based on its topical content.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="bisacSubjectCode">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="BedPillowSize">
+    <xsd:annotation>
+      <xsd:documentation>General size label describing the size of a bed pillow or pillow cover.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="bedPillowSizeValue">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="EarringFeature">
+    <xsd:annotation>
+      <xsd:documentation>Features distinct to earring jewelry.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="earringFeatureValue">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="400"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="EyewearLensFeature">
+    <xsd:annotation>
+      <xsd:documentation>Features specific to eyewear lenses, including lens treatments and modular lens features.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="eyewearLensFeatureValue">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="400"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="BabyFormulaStage">
+    <xsd:annotation>
+      <xsd:documentation>If the baby formula states that it is for a particular life stage, enter it here. </xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="babyFormulaStageValue">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="100"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="BabyFoodStage">
+    <xsd:annotation>
+      <xsd:documentation>Attribute designed to capture the generalized age grouping (commonly referred to as &quot;stage&quot;) of a given baby food, as specified by manufacturer. Specific description of each stage varies with baby food producer. Example descriptions: Stage 1 -  Foods have a single ingredient and are pureed and generally contain about 2.5 oz  of fruits, veggies or meats. Stage 2 – Foods are strained instead of pureed and have a combination of fruits or veggies instead of single ingredients, contain larger portions. Stage 3 – Foods are mashed and have more texture than the pureed foods and may have bits and chunks of meats or veggies.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="babyFoodStageValue">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="100"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="HPPrinterCartridgeNumber">
+    <xsd:annotation>
+      <xsd:documentation>For HP ink and toner cartridges made after 2007.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="hpprintercartridgeNumberValue">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="40"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="RugStyle">
+    <xsd:annotation>
+      <xsd:documentation>Style of rug expressed in fashion or form. Use the example values; if your style does not appear, you may enter it.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="rugStyleValue">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ProductSecondaryImageURL">
+    <xsd:annotation>
+      <xsd:documentation>Secondary images of the item. Image URL must end in the file name. Image URL must be static and have no redirections. Preferred file type: JPEG Accepted file types: JPG, PNG, GIF, BMP Recommended image resolution: 3000 x 3000 pixels at 300 ppi. Minimum image size requirements: Zoom capability: 2000 x 2000 pixels at 300 ppi. Non-zoom minimum: 500 x 500 pixels at 72 ppi. Maximum file size: 2 MB.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="productSecondaryImageURLValue">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:anyURI"/>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="PearlSurfaceBlemishes">
+    <xsd:annotation>
+      <xsd:documentation>Evaluation of pearls based on the blemishes or irregularities in the pearl’s surface, based on size, number, nature, location, visibility and type of surface characteristics. Values range from Clean to Heavily Spotted.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="pearlSurfaceBlemishesValue">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="PearlType">
+    <xsd:annotation>
+      <xsd:documentation>Describes the method for growing pearls and information about the origin of the pearl.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="pearlTypeValue">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="PearlUniformity">
+    <xsd:annotation>
+      <xsd:documentation>Describes how well the individual pearls have been matched within a piece of pearl jewelry. Selection factor for quality and appearance, typically applied to pearl-strand necklaces. Values range from Excellent to Poor, depending on the degree of noticeable variations.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="pearlUniformityValue">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="PersonalRelationship">
+    <xsd:annotation>
+      <xsd:documentation>Descriptive terms for the roles people have in each other's lives, commonly centered on family or romance.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="personalRelationshipValue">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="400"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="PersonalizationType">
+    <xsd:annotation>
+      <xsd:documentation>Describes the type of customization a customer can request on an item. For example, the personalization can be Engraved, Embroidered, 3D, etc.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="personalizationTypeValue">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="PearlBodyColor">
+    <xsd:annotation>
+      <xsd:documentation>The color of the pearl's body, vs. the overtone.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="pearlBodyColorValue">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ParentalAdvisoryLabelURL">
+    <xsd:annotation>
+      <xsd:documentation>If Has Parental Advisory Label=Y, pdf or image of label must be provided. URL of image. Provide the final destination image URL (no-redirects) that is publicly accessible (no username/password required) and ends in a proper image extension. Recommended file type: JPEG Accepted file types: JPG, PNG, GIF, BMP Maximum file size: 2GB. (Please enter text with 2000 character max.)</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="parentalAdvisoryLabelURLValue">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="WatchFeatures">
+    <xsd:annotation>
+      <xsd:documentation>Features specific to watches.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="watchFeaturesValue">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="400"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="PearlShape">
+    <xsd:annotation>
+      <xsd:documentation>The shape of the pearl, defined in part by how regular and smooth the surface of the pearl is.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="pearlShapeValue">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="PearlStringingMethod">
+    <xsd:annotation>
+      <xsd:documentation>Describes the knotting method and material used in constructing the string of pearls.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="pearlStringingMethodValue">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="OperatingSystem">
+    <xsd:annotation>
+      <xsd:documentation>The operating system loaded on the device or upon which the software is designed to operate.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="operatingSystemValue">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="SystemRequirements">
+    <xsd:annotation>
+      <xsd:documentation>The basic requirements necessary of any system in order to satisfactorily run the software.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="systemRequirement">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="AgeRange">
+    <xsd:annotation>
+      <xsd:documentation>Minimum and Maximum Ages for a product. Note: Both Min. and Max. attributes will be the same Unit of Measure: Months, or Years. </xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element maxOccurs="1" minOccurs="0" name="RangeMinimum">
+        <xsd:annotation>
+          <xsd:documentation>The minimum age someone should be to use the product - in months or years.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Conditionally Required"/>
+            <wm:conditionalAttributes>
+              <wm:conditionalAttributeGroup>
+                <wm:conditionalAttribute name="RangeMaximum" value="ANY"/>
+              </wm:conditionalAttributeGroup>
+            </wm:conditionalAttributes>
+            <wm:displayName>Range Minimum</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:integer">
+            <xsd:totalDigits value="3"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="RangeMaximum">
+        <xsd:annotation>
+          <xsd:documentation>The maximum age someone can be to use the product, on average - in months or years.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Conditionally Required"/>
+            <wm:conditionalAttributes>
+              <wm:conditionalAttributeGroup>
+                <wm:conditionalAttribute name="RangeMinimum" value="ANY"/>
+              </wm:conditionalAttributeGroup>
+            </wm:conditionalAttributes>
+            <wm:displayName>Range Maximum</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:integer">
+            <xsd:totalDigits value="3"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="1" name="unit">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="months"/>
+            <xsd:enumeration value="years"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="TelevisionType">
+    <xsd:annotation>
+      <xsd:documentation>The type of TV with reference to its technology and capabilities.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="televisionTypeValue">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="StrollerType">
+    <xsd:annotation>
+      <xsd:documentation>Prominent stroller styles.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="strollerTypeValue">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="SoftwareCategory">
+    <xsd:annotation>
+      <xsd:documentation>The general category of software to which the item is most closely associated.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="softwareCategoryValue">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="AdditionalVariantAttributeNames">
+    <xsd:annotation>
+      <xsd:documentation>Holder for migrating legacy items with variant xml names, that are not part of V3 variant attributes</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="additionalVariantAttributeName">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="50"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="HeadphoneFeatures">
+    <xsd:annotation>
+      <xsd:documentation>List of features specific to headphones including the aspects of the design that consumers would look for because they affect the comfort, portability, compatibility, and quality of sound.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="headphoneFeature">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="RecommendedLocations">
+    <xsd:annotation>
+      <xsd:documentation>The primary location recommended for the item's use.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="recommendedLocation">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="CountryofOriginComponents">
+    <xsd:annotation>
+      <xsd:documentation>Select the country in which the item components or raw materials were sourced.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="countryOfOriginComponentsValue">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="AX">
+              <xsd:annotation>
+                <xsd:documentation>Åland Islands</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="CS">
+              <xsd:annotation>
+                <xsd:documentation>Serbia and Montenegro</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="IM">
+              <xsd:annotation>
+                <xsd:documentation>Isle of Man</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="JE">
+              <xsd:annotation>
+                <xsd:documentation>Jersey</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="TL">
+              <xsd:annotation>
+                <xsd:documentation>Timor-Leste</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="AD">
+              <xsd:annotation>
+                <xsd:documentation>Andorra</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="AE">
+              <xsd:annotation>
+                <xsd:documentation>United Arab Emirates</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="AF">
+              <xsd:annotation>
+                <xsd:documentation>Afghanistan</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="AG">
+              <xsd:annotation>
+                <xsd:documentation>Antigua and Barbuda</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="AI">
+              <xsd:annotation>
+                <xsd:documentation>Anguilla</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="AL">
+              <xsd:annotation>
+                <xsd:documentation>Albania</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="AM">
+              <xsd:annotation>
+                <xsd:documentation>Armenia</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="AN">
+              <xsd:annotation>
+                <xsd:documentation>Netherlands Antilles</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="AO">
+              <xsd:annotation>
+                <xsd:documentation>Angola</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="AQ">
+              <xsd:annotation>
+                <xsd:documentation>Antarctica</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="AR">
+              <xsd:annotation>
+                <xsd:documentation>Argentina</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="AS">
+              <xsd:annotation>
+                <xsd:documentation>American Samoa</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="AT">
+              <xsd:annotation>
+                <xsd:documentation>Austria</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="AU">
+              <xsd:annotation>
+                <xsd:documentation>Australia</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="AW">
+              <xsd:annotation>
+                <xsd:documentation>Aruba</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="AZ">
+              <xsd:annotation>
+                <xsd:documentation>Azerbaijan</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="BA">
+              <xsd:annotation>
+                <xsd:documentation>Bosnia and Herzegovina</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="BB">
+              <xsd:annotation>
+                <xsd:documentation>Barbados</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="BD">
+              <xsd:annotation>
+                <xsd:documentation>Bangladesh</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="BE">
+              <xsd:annotation>
+                <xsd:documentation>Belgium</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="BF">
+              <xsd:annotation>
+                <xsd:documentation>Burkina Faso</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="BG">
+              <xsd:annotation>
+                <xsd:documentation>Bulgaria</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="BH">
+              <xsd:annotation>
+                <xsd:documentation>Bahrain</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="BI">
+              <xsd:annotation>
+                <xsd:documentation>Burundi</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="BJ">
+              <xsd:annotation>
+                <xsd:documentation>Benin</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="BM">
+              <xsd:annotation>
+                <xsd:documentation>Bermuda</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="BN">
+              <xsd:annotation>
+                <xsd:documentation>Brunei Darussalam</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="BO">
+              <xsd:annotation>
+                <xsd:documentation>Bolivia</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="BR">
+              <xsd:annotation>
+                <xsd:documentation>Brazil</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="BS">
+              <xsd:annotation>
+                <xsd:documentation>Bahamas</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="BT">
+              <xsd:annotation>
+                <xsd:documentation>Bhutan</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="BV">
+              <xsd:annotation>
+                <xsd:documentation>Bouvet Island</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="BW">
+              <xsd:annotation>
+                <xsd:documentation>Botswana</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="BY">
+              <xsd:annotation>
+                <xsd:documentation>Belarus</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="BZ">
+              <xsd:annotation>
+                <xsd:documentation>Belize</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="CA">
+              <xsd:annotation>
+                <xsd:documentation>Canada</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="CC">
+              <xsd:annotation>
+                <xsd:documentation>Cocos (Keeling) Islands</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="CD">
+              <xsd:annotation>
+                <xsd:documentation>Republic of Congo</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="CF">
+              <xsd:annotation>
+                <xsd:documentation>Central African Republic</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="CG">
+              <xsd:annotation>
+                <xsd:documentation>Congo</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="CH">
+              <xsd:annotation>
+                <xsd:documentation>Switzerland</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="CI">
+              <xsd:annotation>
+                <xsd:documentation>Cote d Ivoire</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="CK">
+              <xsd:annotation>
+                <xsd:documentation>Cook Islands</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="CL">
+              <xsd:annotation>
+                <xsd:documentation>Chile</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="CM">
+              <xsd:annotation>
+                <xsd:documentation>Cameroon</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="CN">
+              <xsd:annotation>
+                <xsd:documentation>China</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="CO">
+              <xsd:annotation>
+                <xsd:documentation>Colombia</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="CR">
+              <xsd:annotation>
+                <xsd:documentation>Costa Rica</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="CU">
+              <xsd:annotation>
+                <xsd:documentation>Cuba</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="CV">
+              <xsd:annotation>
+                <xsd:documentation>Cape Verde</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="CX">
+              <xsd:annotation>
+                <xsd:documentation>Christmas Island</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="CY">
+              <xsd:annotation>
+                <xsd:documentation>Cyprus</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="CZ">
+              <xsd:annotation>
+                <xsd:documentation>Czech Republic</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="DE">
+              <xsd:annotation>
+                <xsd:documentation>Germany</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="DJ">
+              <xsd:annotation>
+                <xsd:documentation>Djibouti</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="DK">
+              <xsd:annotation>
+                <xsd:documentation>Denmark</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="DM">
+              <xsd:annotation>
+                <xsd:documentation>Dominica</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="DO">
+              <xsd:annotation>
+                <xsd:documentation>Dominican Republic</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="DZ">
+              <xsd:annotation>
+                <xsd:documentation>Algeria</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="EC">
+              <xsd:annotation>
+                <xsd:documentation>Ecuador</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="EE">
+              <xsd:annotation>
+                <xsd:documentation>Estonia</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="EG">
+              <xsd:annotation>
+                <xsd:documentation>Egypt</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="EH">
+              <xsd:annotation>
+                <xsd:documentation>Western Sahara</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ER">
+              <xsd:annotation>
+                <xsd:documentation>Eritrea</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ES">
+              <xsd:annotation>
+                <xsd:documentation>Spain</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ET">
+              <xsd:annotation>
+                <xsd:documentation>Ethiopia</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="FI">
+              <xsd:annotation>
+                <xsd:documentation>Finland</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="FJ">
+              <xsd:annotation>
+                <xsd:documentation>Fiji</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="FK">
+              <xsd:annotation>
+                <xsd:documentation>Falkland Islands (Malvinas)</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="FM">
+              <xsd:annotation>
+                <xsd:documentation>Micronesia</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="FO">
+              <xsd:annotation>
+                <xsd:documentation>Faroe Islands</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="FR">
+              <xsd:annotation>
+                <xsd:documentation>France</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="FX">
+              <xsd:annotation>
+                <xsd:documentation>France, Metropolitan</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="GA">
+              <xsd:annotation>
+                <xsd:documentation>Gabon</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="GB">
+              <xsd:annotation>
+                <xsd:documentation>United Kingdom</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="GD">
+              <xsd:annotation>
+                <xsd:documentation>Grenada</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="GE">
+              <xsd:annotation>
+                <xsd:documentation>Georgia</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="GF">
+              <xsd:annotation>
+                <xsd:documentation>French Guiana</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="GH">
+              <xsd:annotation>
+                <xsd:documentation>Ghana</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="GI">
+              <xsd:annotation>
+                <xsd:documentation>Gibraltar</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="GL">
+              <xsd:annotation>
+                <xsd:documentation>Greenland</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="GM">
+              <xsd:annotation>
+                <xsd:documentation>Gambia</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="GN">
+              <xsd:annotation>
+                <xsd:documentation>Guinea</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="GP">
+              <xsd:annotation>
+                <xsd:documentation>Guadeloupe</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="GQ">
+              <xsd:annotation>
+                <xsd:documentation>Equatorial Guinea</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="GR">
+              <xsd:annotation>
+                <xsd:documentation>Greece</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="GS">
+              <xsd:annotation>
+                <xsd:documentation>South Georgia/So Sandwich Isl</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="GT">
+              <xsd:annotation>
+                <xsd:documentation>Guatemala</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="GU">
+              <xsd:annotation>
+                <xsd:documentation>Guam</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="GW">
+              <xsd:annotation>
+                <xsd:documentation>Guinea-Bissau</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="GY">
+              <xsd:annotation>
+                <xsd:documentation>Guyana</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="HK">
+              <xsd:annotation>
+                <xsd:documentation>Hong Kong</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="HM">
+              <xsd:annotation>
+                <xsd:documentation>Heard Island &amp; McDonald Isl</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="HN">
+              <xsd:annotation>
+                <xsd:documentation>Honduras</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="HR">
+              <xsd:annotation>
+                <xsd:documentation>Croatia</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="HT">
+              <xsd:annotation>
+                <xsd:documentation>Haiti</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="HU">
+              <xsd:annotation>
+                <xsd:documentation>Hungary</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ID">
+              <xsd:annotation>
+                <xsd:documentation>Indonesia</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="IE">
+              <xsd:annotation>
+                <xsd:documentation>Ireland</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="IL">
+              <xsd:annotation>
+                <xsd:documentation>Israel</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="IN">
+              <xsd:annotation>
+                <xsd:documentation>India</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="IO">
+              <xsd:annotation>
+                <xsd:documentation>British Indian Ocean Territory</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="IQ">
+              <xsd:annotation>
+                <xsd:documentation>Iraq</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="IR">
+              <xsd:annotation>
+                <xsd:documentation>Iran</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="IS">
+              <xsd:annotation>
+                <xsd:documentation>Iceland</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="IT">
+              <xsd:annotation>
+                <xsd:documentation>Italy</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="JM">
+              <xsd:annotation>
+                <xsd:documentation>Jamaica</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="JO">
+              <xsd:annotation>
+                <xsd:documentation>Jordan</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="JP">
+              <xsd:annotation>
+                <xsd:documentation>Japan</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="KE">
+              <xsd:annotation>
+                <xsd:documentation>Kenya</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="KG">
+              <xsd:annotation>
+                <xsd:documentation>Kyrgyzstan</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="KH">
+              <xsd:annotation>
+                <xsd:documentation>Cambodia</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="KI">
+              <xsd:annotation>
+                <xsd:documentation>Kiribati</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="KM">
+              <xsd:annotation>
+                <xsd:documentation>Comoros</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="KN">
+              <xsd:annotation>
+                <xsd:documentation>Saint Kitts And Nevis</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="KP">
+              <xsd:annotation>
+                <xsd:documentation>Korea, North</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="KR">
+              <xsd:annotation>
+                <xsd:documentation>Korea, South</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="KW">
+              <xsd:annotation>
+                <xsd:documentation>Kuwait</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="KY">
+              <xsd:annotation>
+                <xsd:documentation>Cayman Islands</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="KZ">
+              <xsd:annotation>
+                <xsd:documentation>Kazakhstan</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="LA">
+              <xsd:annotation>
+                <xsd:documentation>Lao People's Democratic Republic</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="LB">
+              <xsd:annotation>
+                <xsd:documentation>Lebanon</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="LC">
+              <xsd:annotation>
+                <xsd:documentation>Saint Lucia</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="LI">
+              <xsd:annotation>
+                <xsd:documentation>Liechtenstein</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="LK">
+              <xsd:annotation>
+                <xsd:documentation>Sri Lanka</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="LR">
+              <xsd:annotation>
+                <xsd:documentation>Liberia</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="LS">
+              <xsd:annotation>
+                <xsd:documentation>Lesotho</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="LT">
+              <xsd:annotation>
+                <xsd:documentation>Lithuania</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="LU">
+              <xsd:annotation>
+                <xsd:documentation>Luxembourg</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="LV">
+              <xsd:annotation>
+                <xsd:documentation>Latvia</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="LY">
+              <xsd:annotation>
+                <xsd:documentation>Libyan Arab Jamahiriya</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="MA">
+              <xsd:annotation>
+                <xsd:documentation>Morocco</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="MC">
+              <xsd:annotation>
+                <xsd:documentation>Monaco</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="MD">
+              <xsd:annotation>
+                <xsd:documentation>Republic of Moldova</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="MG">
+              <xsd:annotation>
+                <xsd:documentation>Madagascar</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="MH">
+              <xsd:annotation>
+                <xsd:documentation>Marshall Islands</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="MK">
+              <xsd:annotation>
+                <xsd:documentation>Macedonia</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ML">
+              <xsd:annotation>
+                <xsd:documentation>Mali</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="MM">
+              <xsd:annotation>
+                <xsd:documentation>Myanmar</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="MN">
+              <xsd:annotation>
+                <xsd:documentation>Mongolia</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="MO">
+              <xsd:annotation>
+                <xsd:documentation>Macao Special Administrative Region of the People's Republic of China</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="MP">
+              <xsd:annotation>
+                <xsd:documentation>Northern Mariana Islands</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="MQ">
+              <xsd:annotation>
+                <xsd:documentation>Martinique</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="MR">
+              <xsd:annotation>
+                <xsd:documentation>Mauritania</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="MS">
+              <xsd:annotation>
+                <xsd:documentation>Montserrat</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="MT">
+              <xsd:annotation>
+                <xsd:documentation>Malta</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="MU">
+              <xsd:annotation>
+                <xsd:documentation>Mauritius</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="MV">
+              <xsd:annotation>
+                <xsd:documentation>Maldives</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="MW">
+              <xsd:annotation>
+                <xsd:documentation>Malawi</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="MX">
+              <xsd:annotation>
+                <xsd:documentation>Mexico</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="MY">
+              <xsd:annotation>
+                <xsd:documentation>Malaysia</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="MZ">
+              <xsd:annotation>
+                <xsd:documentation>Mozambique</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="NA">
+              <xsd:annotation>
+                <xsd:documentation>Namibia</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="NC">
+              <xsd:annotation>
+                <xsd:documentation>New Caledonia</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="NE">
+              <xsd:annotation>
+                <xsd:documentation>Niger</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="NF">
+              <xsd:annotation>
+                <xsd:documentation>Norfolk Island</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="NG">
+              <xsd:annotation>
+                <xsd:documentation>Nigeria</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="NI">
+              <xsd:annotation>
+                <xsd:documentation>Nicaragua</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="NL">
+              <xsd:annotation>
+                <xsd:documentation>Netherlands</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="NO">
+              <xsd:annotation>
+                <xsd:documentation>Norway</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="NP">
+              <xsd:annotation>
+                <xsd:documentation>Nepal</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="NR">
+              <xsd:annotation>
+                <xsd:documentation>Nauru</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="NU">
+              <xsd:annotation>
+                <xsd:documentation>Niue</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="NZ">
+              <xsd:annotation>
+                <xsd:documentation>New Zealand</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="OM">
+              <xsd:annotation>
+                <xsd:documentation>Oman</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="PA">
+              <xsd:annotation>
+                <xsd:documentation>Panama</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="PE">
+              <xsd:annotation>
+                <xsd:documentation>Peru</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="PF">
+              <xsd:annotation>
+                <xsd:documentation>French Polynesia</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="PG">
+              <xsd:annotation>
+                <xsd:documentation>Papua New Guinea</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="PH">
+              <xsd:annotation>
+                <xsd:documentation>Philippines</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="PK">
+              <xsd:annotation>
+                <xsd:documentation>Pakistan</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="PL">
+              <xsd:annotation>
+                <xsd:documentation>Poland</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="PM">
+              <xsd:annotation>
+                <xsd:documentation>Saint Pierre And Miquelon</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="PN">
+              <xsd:annotation>
+                <xsd:documentation>Pitcairn</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="PR">
+              <xsd:annotation>
+                <xsd:documentation>Puerto Rico</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="PS">
+              <xsd:annotation>
+                <xsd:documentation>State of Palestine</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="PT">
+              <xsd:annotation>
+                <xsd:documentation>Portugal</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="PW">
+              <xsd:annotation>
+                <xsd:documentation>Palau</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="PY">
+              <xsd:annotation>
+                <xsd:documentation>Paraguay</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="QA">
+              <xsd:annotation>
+                <xsd:documentation>Qatar</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="RE">
+              <xsd:annotation>
+                <xsd:documentation>Reunion</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="RO">
+              <xsd:annotation>
+                <xsd:documentation>Romania</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="RU">
+              <xsd:annotation>
+                <xsd:documentation>Russian Federation</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="RW">
+              <xsd:annotation>
+                <xsd:documentation>Rwanda</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="SA">
+              <xsd:annotation>
+                <xsd:documentation>Saudi Arabia</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="SB">
+              <xsd:annotation>
+                <xsd:documentation>Solomon Islands</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="SC">
+              <xsd:annotation>
+                <xsd:documentation>Seychelles</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="SD">
+              <xsd:annotation>
+                <xsd:documentation>Sudan</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="SE">
+              <xsd:annotation>
+                <xsd:documentation>Sweden</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="SG">
+              <xsd:annotation>
+                <xsd:documentation>Singapore</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="SH">
+              <xsd:annotation>
+                <xsd:documentation>Saint Helena</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="SI">
+              <xsd:annotation>
+                <xsd:documentation>Slovenia</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="SJ">
+              <xsd:annotation>
+                <xsd:documentation>Svalbard and Jan Mayen</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="SK">
+              <xsd:annotation>
+                <xsd:documentation>Slovakia</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="SL">
+              <xsd:annotation>
+                <xsd:documentation>Sierra Leone</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="SM">
+              <xsd:annotation>
+                <xsd:documentation>San Marino</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="SN">
+              <xsd:annotation>
+                <xsd:documentation>Senegal</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="SO">
+              <xsd:annotation>
+                <xsd:documentation>Somalia</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="SR">
+              <xsd:annotation>
+                <xsd:documentation>Suriname</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ST">
+              <xsd:annotation>
+                <xsd:documentation>Sao Tome and Principe</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="SV">
+              <xsd:annotation>
+                <xsd:documentation>El Salvador</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="SY">
+              <xsd:annotation>
+                <xsd:documentation>Syrian Arab Republic</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="SZ">
+              <xsd:annotation>
+                <xsd:documentation>Swaziland</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="TC">
+              <xsd:annotation>
+                <xsd:documentation>Turks and Caicos Islands</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="TD">
+              <xsd:annotation>
+                <xsd:documentation>Chad</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="TF">
+              <xsd:annotation>
+                <xsd:documentation>French Southern Territories</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="TG">
+              <xsd:annotation>
+                <xsd:documentation>Togo</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="TH">
+              <xsd:annotation>
+                <xsd:documentation>Thailand</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="TJ">
+              <xsd:annotation>
+                <xsd:documentation>Tajikistan</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="TK">
+              <xsd:annotation>
+                <xsd:documentation>Tokelau</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="TM">
+              <xsd:annotation>
+                <xsd:documentation>Turkmenistan</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="TN">
+              <xsd:annotation>
+                <xsd:documentation>Tunisia</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="TO">
+              <xsd:annotation>
+                <xsd:documentation>Tonga</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="TP">
+              <xsd:annotation>
+                <xsd:documentation>East Timor</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="TR">
+              <xsd:annotation>
+                <xsd:documentation>Turkey</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="TT">
+              <xsd:annotation>
+                <xsd:documentation>Trinidad and Tobago</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="TV">
+              <xsd:annotation>
+                <xsd:documentation>Tuvalu</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="TW">
+              <xsd:annotation>
+                <xsd:documentation>Taiwan</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="TZ">
+              <xsd:annotation>
+                <xsd:documentation>Tanzania</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="UA">
+              <xsd:annotation>
+                <xsd:documentation>Ukraine</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="UG">
+              <xsd:annotation>
+                <xsd:documentation>Uganda</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="UM">
+              <xsd:annotation>
+                <xsd:documentation>US Minor Outlying Islands</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="US">
+              <xsd:annotation>
+                <xsd:documentation>United States</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="UY">
+              <xsd:annotation>
+                <xsd:documentation>Uruguay</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="UZ">
+              <xsd:annotation>
+                <xsd:documentation>Uzbekistan</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="VA">
+              <xsd:annotation>
+                <xsd:documentation>Holy See</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="VC">
+              <xsd:annotation>
+                <xsd:documentation>Saint Vincent &amp; the Grenadines</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="VE">
+              <xsd:annotation>
+                <xsd:documentation>Venezuela</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="VG">
+              <xsd:annotation>
+                <xsd:documentation>Virgin Islands (British)</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="VI">
+              <xsd:annotation>
+                <xsd:documentation>Virgin Islands (U.S.)</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="VN">
+              <xsd:annotation>
+                <xsd:documentation>Viet Nam</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="VU">
+              <xsd:annotation>
+                <xsd:documentation>Vanuatu</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="WF">
+              <xsd:annotation>
+                <xsd:documentation>Wallis and Futuna Islands</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="WS">
+              <xsd:annotation>
+                <xsd:documentation>Samoa</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="YE">
+              <xsd:annotation>
+                <xsd:documentation>Yemen</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="YT">
+              <xsd:annotation>
+                <xsd:documentation>Mayotte</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="YU">
+              <xsd:annotation>
+                <xsd:documentation>Yugoslavia</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ZA">
+              <xsd:annotation>
+                <xsd:documentation>South Africa</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ZM">
+              <xsd:annotation>
+                <xsd:documentation>Zambia</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ZR">
+              <xsd:annotation>
+                <xsd:documentation>Zaire</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ZW">
+              <xsd:annotation>
+                <xsd:documentation>Zimbabwe</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="FactoryId">
+    <xsd:annotation>
+      <xsd:documentation>For items requiring factory disclosure to Walmart, enter the Walmart Factory ID of the factory where this item will be manufactured. Factory ID’s can be obtained by disclosing factory information in Supplier Profile on Retail Link.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="factoryIdValue">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="10"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="SpecialItemCode">
+    <xsd:annotation>
+      <xsd:documentation>This element identifies specific items for promotional or special tracking purposes. A collateral item is a trade item delivered from a manufacturer to the retail selling floor that is not considered inventory and has no retail value. A Gift with Purchase (GWP) is a trade item given to a consumer as part of a promotional event, contingent on the consumer making a purchase of another item or items. A Gift with Purchase is considered inventory and has no retail value. A Purchase with Purchase (PWP) is a trade item sold to a consumer at a special price as part of a promotional event, contingent on the consumer purchasing another item or items. A Purchase with Purchase is considered inventory and has a retail value. A Dynamic Assortment is when the quantity of the case remains fixed, however the mix of the lower level GTINs may vary from case to case. If Next Lower Level Trade Item Information is specified the actual quantity of each child item may be different from pack to pack. The pack may even contain only one of the child items, however the pack will always contain the number of items specified in the Qty of Next Level Item(s). For example Dynamic Assortment: Chia Pets are sold individually to the consumer and each different Chia Pet is marked with a unique GTIN. The items are ordered by the case, which has its own unique GTIN. The case will contain a random assortment of Chia Pets. There is no guarantee that the same ratio of child items will be in a case from order to order but the total quantity [Qty of Next Level Item(s)] of items in the case will remain the same</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="specialItemCodeValue">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="10"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="AdditionalLogisticAttributes">
+    <xsd:annotation>
+      <xsd:documentation>If there is other information that is not in the Spec, you can create one using a name-value pair. </xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="additionalLogisticsAttribute" type="wm:additionalLogisticsAttribute"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="additionalLogisticsAttribute">
+    <xsd:sequence>
+      <xsd:element maxOccurs="1" minOccurs="0" name="additionalLogisticsAttributeName">
+        <xsd:annotation>
+          <xsd:documentation>Additional Logistics Attribute Name&quot; and &quot;Additional Logistics Attribute Value&quot; allow you to create your own descriptor that is not already in the taxonomy. Use camelCase for the name.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Conditionally Required"/>
+            <wm:conditionalAttributes>
+              <wm:conditionalAttributeGroup>
+                <wm:conditionalAttribute name="logisticsAttributeValue" value="ANY"/>
+              </wm:conditionalAttributeGroup>
+            </wm:conditionalAttributes>
+            <wm:displayName>Additional Logistics Attribute Name</wm:displayName>
+            <wm:group>Nice to Have</wm:group>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="100"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="additionalLogisticsAttributeValue">
+        <xsd:annotation>
+          <xsd:documentation>Additional Logistics Attribute Name&quot; and &quot;Additional Logistics Attribute Value&quot; allow you to create your own descriptor that is not already in the taxonomy. Use camelCase for the name.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Conditionally Required"/>
+            <wm:conditionalAttributes>
+              <wm:conditionalAttributeGroup>
+                <wm:conditionalAttribute name="logisticsAttributeName" value="ANY"/>
+              </wm:conditionalAttributeGroup>
+            </wm:conditionalAttributes>
+            <wm:displayName>Additional Logistics Attribute Value</wm:displayName>
+            <wm:group>Nice to Have</wm:group>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="100"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="FixtureType">
+    <xsd:annotation>
+      <xsd:documentation>In-store items only: Defines how the product is merchandised to the customer</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="fixtureTypeValue">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="AdditionalOfferAttributes">
+    <xsd:annotation>
+      <xsd:documentation> If there is other information that is not in the Spec, you can create one using a name-value pair.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="additionalOfferAttribute" type="wm:additionalOfferAttribute"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="additionalOfferAttribute">
+    <xsd:sequence>
+      <xsd:element maxOccurs="1" minOccurs="0" name="additionalOfferAttributeName">
+        <xsd:annotation>
+          <xsd:documentation>Additional Offer Attribute Name&quot; and &quot;Additional Offer Attribute Value&quot; allow you to create your own descriptor that is not already in the taxonomy. Use camelCase for the name.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Conditionally Required"/>
+            <wm:conditionalAttributes>
+              <wm:conditionalAttributeGroup>
+                <wm:conditionalAttribute name="offerAttributeValue" value="ANY"/>
+              </wm:conditionalAttributeGroup>
+            </wm:conditionalAttributes>
+            <wm:displayName>Additional Offer Attribute Name</wm:displayName>
+            <wm:group>Nice to Have</wm:group>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="100"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="additionalOfferAttributeValue">
+        <xsd:annotation>
+          <xsd:documentation>Additional Offer Attribute Name&quot; and &quot;Additional Offer Attribute Value&quot; allow you to create your own descriptor that is not already in the taxonomy. Use camelCase for the name.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Conditionally Required"/>
+            <wm:conditionalAttributes>
+              <wm:conditionalAttributeGroup>
+                <wm:conditionalAttribute name="offerAttributeName" value="ANY"/>
+              </wm:conditionalAttributeGroup>
+            </wm:conditionalAttributes>
+            <wm:displayName>Additional Offer Attribute Value</wm:displayName>
+            <wm:group>Nice to Have</wm:group>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="100"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ShippingOverrides">
+    <xsd:annotation>
+      <xsd:documentation>Collection of all Shipping Overrides for this item.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="1" minOccurs="0" name="ShippingOverrideAction">
+        <xsd:annotation/>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="DELETE_ALL"/>
+            <xsd:enumeration value="REPLACE_ALL"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="shippingOverride" type="wm:shippingOverride"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="shippingOverride">
+    <xsd:all>
+      <xsd:element maxOccurs="1" minOccurs="1" name="ShippingOverrideIsShippingAllowed">
+        <xsd:annotation>
+          <xsd:documentation>Shipping may not apply to some items. Please select a value from the drop-down below.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Required"/>
+            <wm:displayName>Shipping Override - isShippingAllowed</wm:displayName>
+            <wm:group>Offer</wm:group>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Yes"/>
+            <xsd:enumeration value="No"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="1" name="ShippingOverrideShipMethod">
+        <xsd:annotation>
+          <xsd:documentation>Specifies the ship method for the corresponding region to be overridden. Please select a value from the drop-down below.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Required"/>
+            <wm:displayName>Shipping Override - Ship Method MP</wm:displayName>
+            <wm:group>Offer</wm:group>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="VALUE"/>
+            <xsd:enumeration value="STANDARD"/>
+            <xsd:enumeration value="EXPEDITED"/>
+            <xsd:enumeration value="FREIGHT"/>
+            <xsd:enumeration value="ONE_DAY"/>
+            <xsd:enumeration value="FREIGHT_WITH_WHITE_GLOVE"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="1" name="ShippingOverrideShipRegion">
+        <xsd:annotation>
+          <xsd:documentation>Select the region where you are willing to ship your product.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Required"/>
+            <wm:displayName>Shipping Override - Ship Region</wm:displayName>
+            <wm:group>Offer</wm:group>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="STREET_48_STATES"/>
+            <xsd:enumeration value="PO_BOX_48_STATES"/>
+            <xsd:enumeration value="STREET_AK_AND_HI"/>
+            <xsd:enumeration value="PO_BOX_AK_AND_HI"/>
+            <xsd:enumeration value="STREET_US_PROTECTORATES"/>
+            <xsd:enumeration value="PO_BOX_US_PROTECTORATES"/>
+            <xsd:enumeration value="APO_FPO"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="1" name="ShippingOverrideshipPrice">
+        <xsd:annotation>
+          <xsd:documentation>The flat rate shipping charge amount for the corresponding item and region and shipping method (item/region/method) in USD.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Required"/>
+            <wm:displayName>Shipping Override-Ship Price</wm:displayName>
+            <wm:group>Offer</wm:group>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:decimal">
+            <xsd:totalDigits value="16"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="ShippingProgramOverrides">
+    <xsd:annotation/>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="shippingProgramOverride" type="wm:shippingProgramOverride"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="shippingProgramOverride">
+    <xsd:all>
+      <xsd:element maxOccurs="1" minOccurs="0" name="twoDayShippingOverride">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Two Day Shipping Override</wm:displayName>
+            <wm:group>Offer</wm:group>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Yes"/>
+            <xsd:enumeration value="No"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="twoDayShippingRegion">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Two Day Shipping Region</wm:displayName>
+            <wm:group>Offer</wm:group>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="STREET_48_STATES"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="twoDayShippingNortheastRegionStates">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Two Day Shipping Northeast Region States</wm:displayName>
+            <wm:group>Offer</wm:group>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="400"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="twoDayShippingMidwestRegionStates">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Two Day Shipping Midwest Region States</wm:displayName>
+            <wm:group>Offer</wm:group>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="400"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="twoDayShippingWestRegionStates">
+            <xsd:annotation>
+                <xsd:appinfo>
+                    <wm:requiredLevel value="Optional"/>
+                    <wm:displayName>Two Day Shipping West Region States</wm:displayName>
+                    <wm:group>Offer</wm:group>
+                </xsd:appinfo>
+            </xsd:annotation>
+            <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                    <xsd:maxLength value="400"/>
+                    <xsd:minLength value="1"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="twoDayShippingSouthRegionStates">
+            <xsd:annotation>
+                <xsd:appinfo>
+                    <wm:requiredLevel value="Optional"/>
+                    <wm:displayName>Two Day Shipping South Region States</wm:displayName>
+                    <wm:group>Offer</wm:group>
+                </xsd:appinfo>
+            </xsd:annotation>
+            <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                    <xsd:maxLength value="400"/>
+                    <xsd:minLength value="1"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="AngleUnit">
+    <xsd:all>
+      <xsd:element maxOccurs="1" minOccurs="1" name="measure">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:decimal"/>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="1" name="unit">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Degree"/>
+            <xsd:enumeration value="Radian"/>
+            <xsd:enumeration value="Steradian"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="AreaUnit">
+    <xsd:all>
+      <xsd:element maxOccurs="1" minOccurs="1" name="measure">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:decimal"/>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="1" name="unit">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Square Inches"/>
+            <xsd:enumeration value="Square Centimeters"/>
+            <xsd:enumeration value="Square Millimeters"/>
+            <xsd:enumeration value="Square Feet"/>
+            <xsd:enumeration value="Square Meters"/>
+            <xsd:enumeration value="Square Yards"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="BrightnessUnit">
+    <xsd:all>
+      <xsd:element maxOccurs="1" minOccurs="1" name="measure">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:decimal"/>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="1" name="unit">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Lux Seconds"/>
+            <xsd:enumeration value="Lumens"/>
+            <xsd:enumeration value="Candelas"/>
+            <xsd:enumeration value="Lumen Seconds"/>
+            <xsd:enumeration value="Candelas Per Square Meter"/>
+            <xsd:enumeration value="Lumens Per Watt"/>
+            <xsd:enumeration value="Lumen Seconds Per Meter"/>
+            <xsd:enumeration value="Lux"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="ConcentrationUnit">
+    <xsd:all>
+      <xsd:element maxOccurs="1" minOccurs="1" name="measure">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:decimal"/>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="1" name="unit">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Moles Per Cubic Meter"/>
+            <xsd:enumeration value="Picomolars"/>
+            <xsd:enumeration value="Nanomolars"/>
+            <xsd:enumeration value="Micromolars"/>
+            <xsd:enumeration value="Millimolars"/>
+            <xsd:enumeration value="Moles"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="CurrencyUnit">
+    <xsd:all>
+      <xsd:element maxOccurs="1" minOccurs="1" name="measure">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:decimal"/>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="1" name="unit">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="USD"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="DataRateUnit">
+    <xsd:all>
+      <xsd:element maxOccurs="1" minOccurs="1" name="measure">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:decimal"/>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="1" name="unit">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Tebibits Per Second"/>
+            <xsd:enumeration value="Megabits Per Second"/>
+            <xsd:enumeration value="Gigabits Per Second"/>
+            <xsd:enumeration value="Bits Per Second"/>
+            <xsd:enumeration value="Kilobits Per Second"/>
+            <xsd:enumeration value="Mebibits Per Second"/>
+            <xsd:enumeration value="Gibibits Per Second"/>
+            <xsd:enumeration value="Terabits Per Second"/>
+            <xsd:enumeration value="Kibibits Per Second"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="DigitalCapacityUnit">
+    <xsd:all>
+      <xsd:element maxOccurs="1" minOccurs="1" name="measure">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:decimal"/>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="1" name="unit">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Terabytes"/>
+            <xsd:enumeration value="Kibibytes"/>
+            <xsd:enumeration value="Mebibytes"/>
+            <xsd:enumeration value="Gibibytes"/>
+            <xsd:enumeration value="Kilobytes"/>
+            <xsd:enumeration value="Gigabytes"/>
+            <xsd:enumeration value="Tebibytes"/>
+            <xsd:enumeration value="Megabyte"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="ElectricalMeasurementUnit">
+    <xsd:all>
+      <xsd:element maxOccurs="1" minOccurs="1" name="measure">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:decimal"/>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="1" name="unit">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Volts"/>
+            <xsd:enumeration value="Amps"/>
+            <xsd:enumeration value="Coulombs"/>
+            <xsd:enumeration value="Ohms"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="FrequencyUnit">
+    <xsd:all>
+      <xsd:element maxOccurs="1" minOccurs="1" name="measure">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:decimal"/>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="1" name="unit">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Kilohertz"/>
+            <xsd:enumeration value="Gigahertz"/>
+            <xsd:enumeration value="Megahertz"/>
+            <xsd:enumeration value="Hertz"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="LengthUnit">
+    <xsd:all>
+      <xsd:element maxOccurs="1" minOccurs="1" name="measure">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:decimal"/>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="1" name="unit">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Inches"/>
+            <xsd:enumeration value="Feet"/>
+            <xsd:enumeration value="Yards"/>
+            <xsd:enumeration value="Meters"/>
+            <xsd:enumeration value="Millimeters"/>
+            <xsd:enumeration value="Mil"/>
+            <xsd:enumeration value="Centimeters"/>
+            <xsd:enumeration value="Micrometers"/>
+            <xsd:enumeration value="French"/>
+            <xsd:enumeration value="Gauge"/>
+            <xsd:enumeration value="Miles"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="PercentageUnit">
+    <xsd:all>
+      <xsd:element maxOccurs="1" minOccurs="1" name="measure">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:decimal"/>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="1" name="unit">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Percentage"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="PowerUnit">
+    <xsd:all>
+      <xsd:element maxOccurs="1" minOccurs="1" name="measure">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:decimal"/>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="1" name="unit">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Horsepower"/>
+            <xsd:enumeration value="BTUs"/>
+            <xsd:enumeration value="Decibels"/>
+            <xsd:enumeration value="Joules"/>
+            <xsd:enumeration value="Watts"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="PressureUnit">
+    <xsd:all>
+      <xsd:element maxOccurs="1" minOccurs="1" name="measure">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:decimal"/>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="1" name="unit">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Psig/Bar"/>
+            <xsd:enumeration value="Bar"/>
+            <xsd:enumeration value="Torr"/>
+            <xsd:enumeration value="Pounds Per Square Inch"/>
+            <xsd:enumeration value="Barye"/>
+            <xsd:enumeration value="Pieze"/>
+            <xsd:enumeration value="Pascal"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="ResolutionUnit">
+    <xsd:all>
+      <xsd:element maxOccurs="1" minOccurs="1" name="measure">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:decimal"/>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="1" name="unit">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Dots Per Square Inch"/>
+            <xsd:enumeration value="Pixels Per Inch"/>
+            <xsd:enumeration value="Megapixels"/>
+            <xsd:enumeration value="Volumetric Pixels"/>
+            <xsd:enumeration value="Pixels"/>
+            <xsd:enumeration value="Dots Per Inch"/>
+            <xsd:enumeration value="Texels"/>
+            <xsd:enumeration value="Resolution Element"/>
+            <xsd:enumeration value="Surface Element"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="SpeedUnit">
+    <xsd:all>
+      <xsd:element maxOccurs="1" minOccurs="1" name="measure">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:decimal"/>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="1" name="unit">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Meters Per Second"/>
+            <xsd:enumeration value="Meters Per Second Squared"/>
+            <xsd:enumeration value="Kilometers Per Hour"/>
+            <xsd:enumeration value="Feet Per Minute"/>
+            <xsd:enumeration value="Radian Per Second"/>
+            <xsd:enumeration value="Revolutions Per Minute"/>
+            <xsd:enumeration value="Miles Per Hour"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="TemperatureUnit">
+    <xsd:all>
+      <xsd:element maxOccurs="1" minOccurs="1" name="measure">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:decimal"/>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="1" name="unit">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Degrees Centigrade"/>
+            <xsd:enumeration value="Degrees Celsius"/>
+            <xsd:enumeration value="Degrees Fahrenheit"/>
+            <xsd:enumeration value="Kelvin"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="TimeUnit">
+    <xsd:all>
+      <xsd:element maxOccurs="1" minOccurs="1" name="measure">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:decimal"/>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="1" name="unit">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Minutes"/>
+            <xsd:enumeration value="Hours"/>
+            <xsd:enumeration value="Seconds"/>
+            <xsd:enumeration value="Milliseconds"/>
+            <xsd:enumeration value="Months"/>
+            <xsd:enumeration value="Days"/>
+            <xsd:enumeration value="Years"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="VolumeUnit">
+    <xsd:all>
+      <xsd:element maxOccurs="1" minOccurs="1" name="measure">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:decimal"/>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="1" name="unit">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Milliliters"/>
+            <xsd:enumeration value="Cubic Yards"/>
+            <xsd:enumeration value="Cubic Feet"/>
+            <xsd:enumeration value="Quarts"/>
+            <xsd:enumeration value="Fluid Ounces"/>
+            <xsd:enumeration value="US Gallons"/>
+            <xsd:enumeration value="Imperial (UK) Gallons"/>
+            <xsd:enumeration value="Cubic Inches"/>
+            <xsd:enumeration value="Liters"/>
+            <xsd:enumeration value="Cubic Meters"/>
+            <xsd:enumeration value="Cubic Centimeters"/>
+            <xsd:enumeration value="Pints"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="VolumetricFlowRateUnit">
+    <xsd:all>
+      <xsd:element maxOccurs="1" minOccurs="1" name="measure">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:decimal"/>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="1" name="unit">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="liters per minute"/>
+            <xsd:enumeration value="gallons per minute"/>
+            <xsd:enumeration value="liters per second"/>
+            <xsd:enumeration value="cubic meters per second"/>
+            <xsd:enumeration value="cubic feet per second"/>
+            <xsd:enumeration value="cubic meters per minute"/>
+            <xsd:enumeration value="gallons per second"/>
+            <xsd:enumeration value="cubic feet per minute"/>
+            <xsd:enumeration value="gallons per day"/>
+            <xsd:enumeration value="pints per day"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="WeightUnit">
+    <xsd:all>
+      <xsd:element maxOccurs="1" minOccurs="1" name="measure">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:decimal"/>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="1" name="unit">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Kilograms Per Meter"/>
+            <xsd:enumeration value="Kilograms"/>
+            <xsd:enumeration value="Milligrams"/>
+            <xsd:enumeration value="Ounces"/>
+            <xsd:enumeration value="Grams"/>
+            <xsd:enumeration value="Pounds"/>
+            <xsd:enumeration value="Carats"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="PrintSpeedUnit">
+    <xsd:all>
+      <xsd:element maxOccurs="1" minOccurs="1" name="measure">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:decimal"/>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="1" name="unit">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Pages Per Minute"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="UltravioletRadiationUnit">
+    <xsd:all>
+      <xsd:element maxOccurs="1" minOccurs="1" name="measure">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:decimal"/>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="1" name="unit">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Nanometer"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="TorqueUnit">
+    <xsd:all>
+      <xsd:element maxOccurs="1" minOccurs="1" name="measure">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:decimal"/>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="1" name="unit">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Newton Metres"/>
+            <xsd:enumeration value="Pound Feet"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="PPUUnit">
+    <xsd:all>
+      <xsd:element maxOccurs="1" minOccurs="1" name="measure">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:decimal"/>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="1" name="unit">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Each"/>
+            <xsd:enumeration value="Ounce"/>
+            <xsd:enumeration value="Centimeter"/>
+            <xsd:enumeration value="Per 100 Sheet"/>
+            <xsd:enumeration value="Pound"/>
+            <xsd:enumeration value="Square Foot"/>
+            <xsd:enumeration value="Foot"/>
+            <xsd:enumeration value="Gram"/>
+            <xsd:enumeration value="Milliliter"/>
+            <xsd:enumeration value="Per 100 Count"/>
+            <xsd:enumeration value="Quart"/>
+            <xsd:enumeration value="Cubic Foot"/>
+            <xsd:enumeration value="Fluid Ounce"/>
+            <xsd:enumeration value="Gallon"/>
+            <xsd:enumeration value="Liter"/>
+            <xsd:enumeration value="Pint"/>
+            <xsd:enumeration value="Yard"/>
+            <xsd:enumeration value="Inch"/>
+            <xsd:enumeration value="Kilogram"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="MetalPurityUnit">
+    <xsd:all>
+      <xsd:element maxOccurs="1" minOccurs="1" name="measure">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:decimal"/>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="1" name="unit">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Karats"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="FoodEnergyUnit">
+    <xsd:all>
+      <xsd:element maxOccurs="1" minOccurs="1" name="measure">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:decimal"/>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="1" name="unit">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Calories"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="FuelEconomyUnit">
+    <xsd:all>
+      <xsd:element maxOccurs="1" minOccurs="1" name="measure">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:decimal"/>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="1" name="unit">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Miles Per Gallon"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+</xsd:schema>

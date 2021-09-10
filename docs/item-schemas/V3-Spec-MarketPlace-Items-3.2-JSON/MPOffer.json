@@ -1,0 +1,245 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "type": "object",
+    "properties": {
+        "price": {
+            "type": "number",
+            "title": "Price",
+            "minimum": 0,
+            "maximum": 1000000,
+            "exclusiveMaximum": false,
+            "multipleOf": 0.01
+        },
+        "MinimumAdvertisedPrice": {
+            "type": "number",
+            "title": "Minimum Advertised Price",
+            "minimum": 0,
+            "maximum": 1000000,
+            "exclusiveMaximum": false,
+            "multipleOf": 0.01
+        },
+        "StartDate": {
+            "type": "string",
+            "title": "Site Start Date",
+            "format": "date-time"
+        },
+        "EndDate": {
+            "type": "string",
+            "title": "Site End Date",
+            "format": "date-time"
+        },
+        "MustShipAlone": {
+            "type": "string",
+            "title": "Must Ship Alone",
+            "enum": [
+                "Yes",
+                "No"
+            ]
+        },
+        "ShippingWeight": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "title": "Shipping Weight",
+            "properties": {
+                "unit": {
+                    "type": "string",
+                    "enum": [
+                        "lb"
+                    ]
+                },
+                "measure": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1000000,
+                    "exclusiveMaximum": false,
+                    "multipleOf": 0.001
+                }
+            },
+            "required": [
+                "unit",
+                "measure"
+            ],
+            "additionalProperties": false
+        },
+        "ProductTaxCode": {
+            "type": "integer",
+            "title": "Product Tax Code",
+            "minimum": 0,
+            "maximum": 1000000,
+            "exclusiveMaximum": false
+        },
+        "shipsInOriginalPackaging": {
+            "type": "string",
+            "title": "Ships in Original Packaging",
+            "enum": [
+                "Yes",
+                "No"
+            ]
+        },
+        "additionalOfferAttributes": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "array",
+            "title": "Additional Offer Attributes",
+            "items": {
+                "$schema": "http://json-schema.org/draft-04/schema#",
+                "type": "object",
+                "properties": {
+                    "additionalOfferAttributeName": {
+                        "$schema": "http://json-schema.org/draft-04/schema#",
+                        "type": "array",
+                        "title": "Additional Offer Attribute Name",
+                        "items": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 100
+                        },
+                        "minItems": 1
+                    },
+                    "additionalOfferAttributeValue": {
+                        "$schema": "http://json-schema.org/draft-04/schema#",
+                        "type": "array",
+                        "title": "Additional Offer Attribute Value",
+                        "items": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 100
+                        },
+                        "minItems": 1
+                    }
+                },
+                "additionalProperties": false
+            },
+            "minItems": 1
+        },
+      "ShippingOverrides": {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type": "object",
+        "properties": {
+          "ShippingOverrideAction": {
+            "type": "string",
+            "enum": [
+              "DELETE_ALL",
+              "REPLACE_ALL"
+            ]
+          },
+          "shippingOverride": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "array",
+            "title": "Shipping Overrides",
+            "items": {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "properties": {
+                "ShippingOverrideIsShippingAllowed": {
+                  "type": "string",
+                  "title": "Shipping Override - isShippingAllowed",
+                  "enum": [
+                    "Yes",
+                    "No"
+                  ]
+                },
+                "ShippingOverrideShipMethod": {
+                  "type": "string",
+                  "title": "Shipping Override - Ship Method MP",
+                  "enum": [
+                    "FREIGHT_WITH_WHITE_GLOVE",
+                    "ONE_DAY",
+                    "VALUE",
+                    "EXPEDITED",
+                    "FREIGHT",
+                    "STANDARD"
+                  ]
+                },
+                "ShippingOverrideShipRegion": {
+                  "type": "string",
+                  "title": "Shipping Override - Ship Region",
+                  "enum": [
+                    "STREET_AK_AND_HI",
+                    "APO_FPO",
+                    "PO_BOX_AK_AND_HI",
+                    "PO_BOX_48_STATES",
+                    "PO_BOX_US_PROTECTORATES",
+                    "STREET_48_STATES",
+                    "STREET_US_PROTECTORATES"
+                  ]
+                },
+                "ShippingOverrideshipPrice": {
+                  "type": "number",
+                  "title": "Shipping Override-Ship Price",
+                  "minimum": 0,
+                  "maximum": 1000000,
+                  "exclusiveMaximum": false,
+                  "multipleOf": 0.01
+                }
+              },
+              "required": [
+                "ShippingOverrideShipMethod",
+                "ShippingOverrideIsShippingAllowed",
+                "ShippingOverrideShipRegion",
+                "ShippingOverrideshipPrice"
+              ],
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      "ShippingProgramOverrides": {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+          "type": "array",
+          "title": "ShippingProgramOverrides",
+          "items": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "twoDayShippingOverride": {
+                "type": "string",
+                "title": "Two Day Shipping Override",
+                "enum": [
+                  "Yes",
+                  "No"
+                ]
+              },
+              "twoDayShippingRegion": {
+                "type": "string",
+                "title": "Two Day Shipping Region",
+                "enum": [
+                  "STREET_48_STATES"
+                ]
+              },
+              "twoDayShippingNortheastRegionStates": {
+                "type": "string",
+                "title": "Two Day Shipping Northeast Region States",
+                "minLength": 1,
+                "maxLength": 400
+              },
+              "twoDayShippingMidwestRegionStates": {
+                "type": "string",
+                "title": "Two Day Shipping Midwest Region States",
+                "minLength": 1,
+                "maxLength": 400
+              },
+              "twoDayShippingWestRegionStates": {
+                "type": "string",
+                "title": "Two Day Shipping West Region States",
+                "minLength": 1,
+                "maxLength": 400
+              },
+              "twoDayShippingSouthRegionStates": {
+                "type": "string",
+                "title": "Two Day Shipping South Region States",
+                "minLength": 1,
+                "maxLength": 400
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+      "fulfillmentLagTime": {
+        "type": "number",
+        "title": "Fulfillment Lag Time",
+        "minLength": 1,
+        "maxLength": 1
+      }
+    },
+    "additionalProperties": false
+}

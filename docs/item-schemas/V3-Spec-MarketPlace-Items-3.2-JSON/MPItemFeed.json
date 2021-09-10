@@ -1,0 +1,24 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#", 
+    "type": "object", 
+    "title": "MPItemFeed", 
+    "properties": {
+        "MPItemFeedHeader": {
+            "$ref": "MPItemFeedHeader.json"
+        }, 
+        "MPItem": {
+            "$schema": "http://json-schema.org/draft-04/schema#", 
+            "type": "array", 
+            "items": {
+                "$ref": "MPItem.json"
+            }, 
+            "minItems": 1, 
+            "maxItems": 10000
+        }
+    }, 
+    "required": [
+        "MPItem", 
+        "MPItemFeedHeader"
+    ], 
+    "additionalProperties": false
+}

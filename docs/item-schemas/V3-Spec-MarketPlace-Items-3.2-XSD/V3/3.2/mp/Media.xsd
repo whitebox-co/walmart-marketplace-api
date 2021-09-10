@@ -1,0 +1,3345 @@
+<?xml version="1.0" ?>
+<xsd:schema elementFormDefault="qualified" targetNamespace="http://walmart.com/" version="3.2" xmlns:wm="http://walmart.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="MPCommons.xsd"/>
+  <xsd:complexType name="Media">
+    <xsd:choice maxOccurs="1" minOccurs="0">
+      <xsd:element name="Movies" type="wm:Movies"/>
+      <xsd:element name="TVShows" type="wm:TVShows"/>
+      <xsd:element name="Music" type="wm:Music"/>
+      <xsd:element name="BooksAndMagazines" type="wm:BooksAndMagazines"/>
+    </xsd:choice>
+  </xsd:complexType>
+  <xsd:complexType name="Movies">
+    <xsd:all>
+      <xsd:element maxOccurs="1" minOccurs="1" name="shortDescription">
+        <xsd:annotation>
+          <xsd:documentation>Overview of the key selling points of the item, marketing content, and highlights in paragraph form. For SEO purposes, repeat the product name and relevant keywords here.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Required"/>
+            <wm:displayName>Description</wm:displayName>
+            <wm:group>Basic</wm:group>
+            <wm:rank>8000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="keyFeatures" type="wm:KeyFeatures">
+        <xsd:annotation>
+          <xsd:documentation>Key features will appear as bulleted text on the item page and in search results. Key features help the user understand the benefits of the product with a simple and clean format. We highly recommended using three or more key features.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Key Features</wm:displayName>
+            <wm:group>Basic</wm:group>
+            <wm:rank>9000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="synopsis">
+        <xsd:annotation>
+          <xsd:documentation>A summary of narrative content. </xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Synopsis</wm:displayName>
+            <wm:group>Basic</wm:group>
+            <wm:rank>12000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="multipackQuantity">
+        <xsd:annotation>
+          <xsd:documentation>The number of identical, individually packaged-for-sale items. If an item does not contain other items, does not contain identical items, or if the items contained within cannot be sold individually, the value for this attribute should be &quot;1.&quot; Examples: (1) A single bottle of 50 pills has a &quot;Multipack Quantity&quot; of &quot;1.&quot; (2) A package containing two identical bottles of 50 pills has a &quot;Multipack Quantity&quot; of 2. (3) A 6-pack of soda labelled for individual sale connected by plastic rings has a &quot;Multipack Quantity&quot; of &quot;6.&quot; (4) A 6-pack of soda in a box whose cans are not marked for individual sale has a &quot;Multipack Quantity&quot; of &quot;1.&quot; (5) A gift basket of 5 different items has a &quot;Multipack Quantity&quot; of &quot;1.&quot;</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Multipack Quantity</wm:displayName>
+            <wm:group>Basic</wm:group>
+            <wm:rank>13000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:integer">
+            <xsd:totalDigits value="4"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="countPerPack">
+        <xsd:annotation>
+          <xsd:documentation>The number of identical items inside each individual pack given by the &quot;Multipack Quantity&quot; attribute. Examples: (1) A single bottle of 50 pills has a &quot;Count Per Pack&quot; of &quot;50.&quot; (2) A package containing two identical bottles of 50 pills has a &quot;Count Per Pack&quot; of 50. (3) A 6-pack of soda labelled for individual sale connected by plastic rings has a &quot;Count Per Pack&quot; of &quot;1.&quot; (4) A 6-pack of soda in a box whose cans are not marked for individual sale has a &quot;Count Per Pack&quot; of &quot;6.&quot; (5) A gift basket of 5 different items has a &quot;Count Per Pack&quot; of &quot;1.&quot;</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Count Per Pack</wm:displayName>
+            <wm:group>Basic</wm:group>
+            <wm:rank>13500</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:integer">
+            <xsd:totalDigits value="4"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="count">
+        <xsd:annotation>
+          <xsd:documentation>The total number of identical items in the package or box; a result of the multiplication of Multipack Quantity by Count Per Pack. Examples: (1) A single bottle of 50 pills has a &quot;Total Count&quot; of 50. (2) A package containing two identical bottles of 50 pills has a &quot;Total Count&quot; of 100. (3) A gift basket of 5 different items has a &quot;Total Count&quot; of 1.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Total Count</wm:displayName>
+            <wm:group>Basic</wm:group>
+            <wm:rank>13550</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="7"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="1" name="mainImageUrl">
+        <xsd:annotation>
+          <xsd:documentation>Main image of the item. Image URL must end in the file name. Image URL must be static and have no redirections. Preferred file type: JPEG Accepted file types: JPG, PNG, GIF, BMP Recommended image resolution: 3000 x 3000 pixels at 300 ppi. Minimum image size requirements: Zoom capability: 2000 x 2000 pixels at 300 ppi. Non-zoom minimum: 500 x 500 pixels at 72 ppi. Maximum file size: 2 MB.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Required"/>
+            <wm:displayName>Main Image URL</wm:displayName>
+            <wm:group>Images</wm:group>
+            <wm:rank>14000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:anyURI"/>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="productSecondaryImageURL" type="wm:ProductSecondaryImageURL">
+        <xsd:annotation>
+          <xsd:documentation>Secondary images of the item. Image URL must end in the file name. Image URL must be static and have no redirections. Preferred file type: JPEG Accepted file types: JPG, PNG, GIF, BMP Recommended image resolution: 3000 x 3000 pixels at 300 ppi. Minimum image size requirements: Zoom capability: 2000 x 2000 pixels at 300 ppi. Non-zoom minimum: 500 x 500 pixels at 72 ppi. Maximum file size: 2 MB.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Additional Image URL</wm:displayName>
+            <wm:group>Images</wm:group>
+            <wm:rank>15000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="title">
+        <xsd:annotation>
+          <xsd:documentation>The name given to the work. Does not include any marketing adjectives outside of the given name.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Title</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>16000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="physicalMediaFormat">
+        <xsd:annotation>
+          <xsd:documentation>The physical form in which the customer receives the product. For digital file formats use &quot;Digital Audio File Format&quot; (for mp3, aiff, etc), &quot;Digital Video File Format&quot; (for mp4, mov, etc), or &quot;Digital File Format&quot; (for exe, pdf, zip, etc).</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Physical Media Format</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>17000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="printed media"/>
+            <xsd:enumeration value="USB stick"/>
+            <xsd:enumeration value="DVD"/>
+            <xsd:enumeration value="Blu-Ray"/>
+            <xsd:enumeration value="CD"/>
+            <xsd:enumeration value="LP"/>
+            <xsd:enumeration value="VHS Tape"/>
+            <xsd:enumeration value="miniDV Tape"/>
+            <xsd:enumeration value="8-Track Tape"/>
+            <xsd:enumeration value="Cassette Tape"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="1" name="mpaaRating">
+        <xsd:annotation>
+          <xsd:documentation>The rating provided by the Motion Picture Association of America as a guide to the appropriate age group for a piece of media.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Required"/>
+            <wm:displayName>MPAA Rating</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>18000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="G"/>
+            <xsd:enumeration value="PG"/>
+            <xsd:enumeration value="PG-13"/>
+            <xsd:enumeration value="R"/>
+            <xsd:enumeration value="NC-17"/>
+            <xsd:enumeration value="Not Rated"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="ratingReason">
+        <xsd:annotation>
+          <xsd:documentation>The reason for the rating of an entertainment product, such as a TV show, Movie, or Musical Album. Reasons for suggesting that content is not appropriate for a general audience include Profanity, Drug Use, Violence, Nudity, and Sexual Content. </xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Rating Reason</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>18937</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="movieGenre">
+        <xsd:annotation>
+          <xsd:documentation>General film category.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Movie Genre</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>19000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="movieSubgenre">
+        <xsd:annotation>
+          <xsd:documentation>More specific film subcategory.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Movie Subgenre</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>20000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="seriesTitle">
+        <xsd:annotation>
+          <xsd:documentation>If the work is one of multiple works in a series, the title of the series or collection.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Series Title</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>21000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="numberInSeries">
+        <xsd:annotation>
+          <xsd:documentation>The number in the series, if the work is one of multiple works in a series.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Number in Series</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>22000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:integer">
+            <xsd:totalDigits value="7"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="director">
+        <xsd:annotation>
+          <xsd:documentation>Person who receives &quot;Directed by&quot; billing on a film or television show.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Director</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>23000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="actors" type="wm:Actors">
+        <xsd:annotation>
+          <xsd:documentation>Actors who receive top billing in a movie or television show.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Actors</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>24000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="screenwriter">
+        <xsd:annotation>
+          <xsd:documentation>Person who is credited or billed as the primary writer on a film or television project.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Screenwriter</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>25000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="studioProductionCompany">
+        <xsd:annotation>
+          <xsd:documentation>Company that is credited with creation of a film or television show.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Studio &amp; Production Company</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>26000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="targetAudience" type="wm:TargetAudience">
+        <xsd:annotation>
+          <xsd:documentation>The demographic for which the item is targeted.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Target Audience</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>27000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="awardsWon" type="wm:AwardsWon">
+        <xsd:annotation>
+          <xsd:documentation>Use this attribute if the item has won any awards in its particular product category. </xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Awards Won</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>28000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="character">
+        <xsd:annotation>
+          <xsd:documentation>A person or entity portrayed in print or visual media. A character might be a fictional personality or an actual living person.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Character</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>29000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="variantGroupId">
+        <xsd:annotation>
+          <xsd:documentation>Required if item is a variant. Make up a number and/or letter code for “Variant Group ID” and add this to all variations of the same product. Partners must ensure uniqueness of their Variant Group IDs.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Conditionally Required"/>
+            <wm:conditionalAttributes>
+              <wm:conditionalAttributeGroup>
+                <wm:conditionalAttribute name="variantAttributeNames" value="ANY"/>
+              </wm:conditionalAttributeGroup>
+            </wm:conditionalAttributes>
+            <wm:displayName>Variant Group ID</wm:displayName>
+            <wm:group>Item Variants</wm:group>
+            <wm:rank>31000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="300"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="variantAttributeNames">
+        <xsd:annotation>
+          <xsd:documentation>Designate all attributes by which the item is varying. Variant attributes are limited to those designated for each category. </xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Conditionally Required"/>
+            <wm:conditionalAttributes>
+              <wm:conditionalAttributeGroup>
+                <wm:conditionalAttribute name="variantGroupId" value="ANY"/>
+              </wm:conditionalAttributeGroup>
+            </wm:conditionalAttributes>
+            <wm:displayName>Variant Attribute Names</wm:displayName>
+            <wm:group>Item Variants</wm:group>
+            <wm:rank>32000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" name="variantAttributeName">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:enumeration value="bookFormat"/>
+                  <xsd:enumeration value="physicalMediaFormat"/>
+                  <xsd:enumeration value="edition"/>
+                  <xsd:enumeration value="sportsTeam"/>
+                  <xsd:enumeration value="countPerPack"/>
+                  <xsd:enumeration value="count"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="isPrimaryVariant">
+        <xsd:annotation>
+          <xsd:documentation>Note whether item is intended as the main variant in a variant grouping. The primary variant will appear as the image when customers search and the first image displayed on the item page. This should be set as &quot;Yes&quot; for only one item in a group of variants.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Is Primary Variant</wm:displayName>
+            <wm:group>Item Variants</wm:group>
+            <wm:rank>33000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Yes"/>
+            <xsd:enumeration value="No"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="duration">
+        <xsd:annotation>
+          <xsd:documentation>Viewing or listening time.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Duration</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>44000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element maxOccurs="1" minOccurs="1" name="measure">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:decimal">
+                  <xsd:totalDigits value="16"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element maxOccurs="1" minOccurs="1" name="unit">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:enumeration value="min"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="theatricalReleaseDate">
+        <xsd:annotation>
+          <xsd:documentation>Date that a film was originally released in theaters, in the format YYYY-MM-DD.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Theatrical Release Date</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>45000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:date"/>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="isDubbed">
+        <xsd:annotation>
+          <xsd:documentation>A film or television show is dubbed if there is an audio track that replaces the voices of the original actors with a different language</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Is Dubbed</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>46000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Yes"/>
+            <xsd:enumeration value="No"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="dubbedLanguages" type="wm:DubbedLanguages">
+        <xsd:annotation>
+          <xsd:documentation>Language(s) that a film has been dubbed with</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Conditionally Required"/>
+            <wm:conditionalAttributes>
+              <wm:conditionalAttributeGroup>
+                <wm:conditionalAttribute name="isDubbed" value="Yes"/>
+              </wm:conditionalAttributeGroup>
+            </wm:conditionalAttributes>
+            <wm:displayName>Dubbed Languages</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>47000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="hasSubtitles">
+        <xsd:annotation>
+          <xsd:documentation>A film or television show has subtitles if there is a transcript or screenplay of the dialog or commentary displayed on the screen.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Has Subtitles</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>48000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Yes"/>
+            <xsd:enumeration value="No"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="subtitledLanguages" type="wm:SubtitledLanguages">
+        <xsd:annotation>
+          <xsd:documentation>Language(s) that a film's subtitles have been written in</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Conditionally Required"/>
+            <wm:conditionalAttributes>
+              <wm:conditionalAttributeGroup>
+                <wm:conditionalAttribute name="hasSubtitles" value="Yes"/>
+              </wm:conditionalAttributeGroup>
+            </wm:conditionalAttributes>
+            <wm:displayName>Subtitled Languages</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>49000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="audioTrackCodec">
+        <xsd:annotation>
+          <xsd:documentation>The compression format or codec for the audio track.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Audio Track Codec</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>50000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="aspectRatio">
+        <xsd:annotation>
+          <xsd:documentation>The proportional relationship between the display's width and its height. Commonly expressed as two numbers separated by a colon.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Aspect Ratio</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>51000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="isAdultProduct">
+        <xsd:annotation>
+          <xsd:documentation>Indicates if item is adult in nature and should not appear in results for children's products.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Is Adult Product</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>52000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Yes"/>
+            <xsd:enumeration value="No"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="originalLanguages" type="wm:OriginalLanguages">
+        <xsd:annotation>
+          <xsd:documentation>The original language of the work. Usually this will be one language, but occasionally more than one is appropriate. For example, if a movie is dubbed in English but the original language is Chinese, enter &quot;Chinese.&quot;</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Original Languages</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>53000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="edition">
+        <xsd:annotation>
+          <xsd:documentation>The specific edition of the item.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Edition</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>54000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="numberOfDiscs">
+        <xsd:annotation>
+          <xsd:documentation>Number of discs included in the item.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Number of Discs</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>56000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:integer">
+            <xsd:totalDigits value="7"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="sportsLeague">
+        <xsd:annotation>
+          <xsd:documentation>If your item has any association with a specific sports league, enter the league name. Abbreviations are fine. NOTE: This attribute flags an item for inclusion in the online fan shop.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Sports League</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>57000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="sportsTeam">
+        <xsd:annotation>
+          <xsd:documentation>If your item has any association with a specific sports team, enter the team name. NOTE: This attribute flags an item for inclusion in the online fan shop.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Sports Team</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>58000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="athlete">
+        <xsd:annotation>
+          <xsd:documentation>A well-known athlete associated with a product, if applicable. This is used to group items in Fan Shop, not to describe a line of clothing.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Athlete</wm:displayName>
+            <wm:group>Nice to Have</wm:group>
+            <wm:rank>59000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="autographedBy">
+        <xsd:annotation>
+          <xsd:documentation>The full name of the person who has autographed this copy.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Autographed by</wm:displayName>
+            <wm:group>Nice to Have</wm:group>
+            <wm:rank>60000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="features" type="wm:AdditionalFeatures">
+        <xsd:annotation>
+          <xsd:documentation>List notable features of the item.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Additional Features</wm:displayName>
+            <wm:group>Nice to Have</wm:group>
+            <wm:rank>65000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="keywords">
+        <xsd:annotation>
+          <xsd:documentation>Words that people would use to search for this item. Keywords can include synonyms and related terms.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Keywords</wm:displayName>
+            <wm:group>Nice to Have</wm:group>
+            <wm:rank>66000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="swatchImages">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Enter the swatch image location in &quot;Swatch Image URL&quot; and its corresponding variant attribute name in &quot;Swatch Variant Attribute&quot;. Required for products with visual variations, like color or pattern. List the swatches in the order you recommend they appear on the site.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" name="swatchImage">
+              <xsd:complexType>
+                <xsd:all>
+                  <xsd:element maxOccurs="1" minOccurs="1" name="swatchVariantAttribute">
+                    <xsd:annotation>
+                      <xsd:documentation>Attribute name corresponding to the swatch.</xsd:documentation>
+                      <xsd:appinfo>
+                        <wm:requiredLevel value="Conditionally Required"/>
+                        <wm:conditionalAttributes>
+                          <wm:conditionalAttributeGroup>
+                            <wm:conditionalAttribute name="swatchImageUrl" value="ANY"/>
+                          </wm:conditionalAttributeGroup>
+                        </wm:conditionalAttributes>
+                        <wm:displayName>Swatch Variant Attribute</wm:displayName>
+                        <wm:group>Item Variants</wm:group>
+                      </xsd:appinfo>
+                    </xsd:annotation>
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:enumeration value="bookFormat"/>
+                        <xsd:enumeration value="physicalMediaFormat"/>
+                        <xsd:enumeration value="edition"/>
+                        <xsd:enumeration value="sportsTeam"/>
+                        <xsd:enumeration value="countPerPack"/>
+                        <xsd:enumeration value="count"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element maxOccurs="1" minOccurs="1" name="swatchImageUrl">
+                    <xsd:annotation>
+                      <xsd:documentation>URL of the color or pattern swatch image. This is required for products with visual variations and will be shown as a small square on the item page. Recommended resolution is 100 x 100 pixels. Provide the final destination image URL (no-redirects) that is publicly accessible (no username/password required) and ends in a proper image extension such as, .jpg, .png or .gif.</xsd:documentation>
+                      <xsd:appinfo>
+                        <wm:requiredLevel value="Conditionally Required"/>
+                        <wm:conditionalAttributes>
+                          <wm:conditionalAttributeGroup>
+                            <wm:conditionalAttribute name="swatchVariantAttribute" value="ANY"/>
+                          </wm:conditionalAttributeGroup>
+                        </wm:conditionalAttributes>
+                        <wm:displayName>Swatch Image URL</wm:displayName>
+                        <wm:group>Item Variants</wm:group>
+                      </xsd:appinfo>
+                    </xsd:annotation>
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:anyURI"/>
+                    </xsd:simpleType>
+                  </xsd:element>
+                </xsd:all>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="TVShows">
+    <xsd:all>
+      <xsd:element maxOccurs="1" minOccurs="1" name="shortDescription">
+        <xsd:annotation>
+          <xsd:documentation>Overview of the key selling points of the item, marketing content, and highlights in paragraph form. For SEO purposes, repeat the product name and relevant keywords here.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Required"/>
+            <wm:displayName>Description</wm:displayName>
+            <wm:group>Basic</wm:group>
+            <wm:rank>8000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="keyFeatures" type="wm:KeyFeatures">
+        <xsd:annotation>
+          <xsd:documentation>Key features will appear as bulleted text on the item page and in search results. Key features help the user understand the benefits of the product with a simple and clean format. We highly recommended using three or more key features.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Key Features</wm:displayName>
+            <wm:group>Basic</wm:group>
+            <wm:rank>9000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="synopsis">
+        <xsd:annotation>
+          <xsd:documentation>A summary of narrative content. </xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Synopsis</wm:displayName>
+            <wm:group>Basic</wm:group>
+            <wm:rank>12000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="countPerPack">
+        <xsd:annotation>
+          <xsd:documentation>The number of identical items inside each individual pack given by the &quot;Multipack Quantity&quot; attribute. Examples: (1) A single bottle of 50 pills has a &quot;Count Per Pack&quot; of &quot;50.&quot; (2) A package containing two identical bottles of 50 pills has a &quot;Count Per Pack&quot; of 50. (3) A 6-pack of soda labelled for individual sale connected by plastic rings has a &quot;Count Per Pack&quot; of &quot;1.&quot; (4) A 6-pack of soda in a box whose cans are not marked for individual sale has a &quot;Count Per Pack&quot; of &quot;6.&quot; (5) A gift basket of 5 different items has a &quot;Count Per Pack&quot; of &quot;1.&quot;</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Count Per Pack</wm:displayName>
+            <wm:group>Basic</wm:group>
+            <wm:rank>12500</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:integer">
+            <xsd:totalDigits value="4"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="multipackQuantity">
+        <xsd:annotation>
+          <xsd:documentation>The number of identical, individually packaged-for-sale items. If an item does not contain other items, does not contain identical items, or if the items contained within cannot be sold individually, the value for this attribute should be &quot;1.&quot; Examples: (1) A single bottle of 50 pills has a &quot;Multipack Quantity&quot; of &quot;1.&quot; (2) A package containing two identical bottles of 50 pills has a &quot;Multipack Quantity&quot; of 2. (3) A 6-pack of soda labelled for individual sale connected by plastic rings has a &quot;Multipack Quantity&quot; of &quot;6.&quot; (4) A 6-pack of soda in a box whose cans are not marked for individual sale has a &quot;Multipack Quantity&quot; of &quot;1.&quot; (5) A gift basket of 5 different items has a &quot;Multipack Quantity&quot; of &quot;1.&quot;</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Multipack Quantity</wm:displayName>
+            <wm:group>Basic</wm:group>
+            <wm:rank>12625</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:integer">
+            <xsd:totalDigits value="4"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="count">
+        <xsd:annotation>
+          <xsd:documentation>The total number of identical items in the package or box; a result of the multiplication of Multipack Quantity by Count Per Pack. Examples: (1) A single bottle of 50 pills has a &quot;Total Count&quot; of 50. (2) A package containing two identical bottles of 50 pills has a &quot;Total Count&quot; of 100. (3) A gift basket of 5 different items has a &quot;Total Count&quot; of 1.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Total Count</wm:displayName>
+            <wm:group>Basic</wm:group>
+            <wm:rank>12750</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="7"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="1" name="mainImageUrl">
+        <xsd:annotation>
+          <xsd:documentation>Main image of the item. Image URL must end in the file name. Image URL must be static and have no redirections. Preferred file type: JPEG Accepted file types: JPG, PNG, GIF, BMP Recommended image resolution: 3000 x 3000 pixels at 300 ppi. Minimum image size requirements: Zoom capability: 2000 x 2000 pixels at 300 ppi. Non-zoom minimum: 500 x 500 pixels at 72 ppi. Maximum file size: 2 MB.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Required"/>
+            <wm:displayName>Main Image URL</wm:displayName>
+            <wm:group>Images</wm:group>
+            <wm:rank>14000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:anyURI"/>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="productSecondaryImageURL" type="wm:ProductSecondaryImageURL">
+        <xsd:annotation>
+          <xsd:documentation>Secondary images of the item. Image URL must end in the file name. Image URL must be static and have no redirections. Preferred file type: JPEG Accepted file types: JPG, PNG, GIF, BMP Recommended image resolution: 3000 x 3000 pixels at 300 ppi. Minimum image size requirements: Zoom capability: 2000 x 2000 pixels at 300 ppi. Non-zoom minimum: 500 x 500 pixels at 72 ppi. Maximum file size: 2 MB.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Additional Image URL</wm:displayName>
+            <wm:group>Images</wm:group>
+            <wm:rank>15000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="title">
+        <xsd:annotation>
+          <xsd:documentation>The name given to the work. Does not include any marketing adjectives outside of the given name.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Title</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>16000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="physicalMediaFormat">
+        <xsd:annotation>
+          <xsd:documentation>The physical form in which the customer receives the product. For digital file formats use &quot;Digital Audio File Format&quot; (for mp3, aiff, etc), &quot;Digital Video File Format&quot; (for mp4, mov, etc), or &quot;Digital File Format&quot; (for exe, pdf, zip, etc).</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Physical Media Format</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>17000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="printed media"/>
+            <xsd:enumeration value="USB stick"/>
+            <xsd:enumeration value="DVD"/>
+            <xsd:enumeration value="Blu-Ray"/>
+            <xsd:enumeration value="CD"/>
+            <xsd:enumeration value="LP"/>
+            <xsd:enumeration value="VHS Tape"/>
+            <xsd:enumeration value="miniDV Tape"/>
+            <xsd:enumeration value="8-Track Tape"/>
+            <xsd:enumeration value="Cassette Tape"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="1" name="tvRating">
+        <xsd:annotation>
+          <xsd:documentation>TV Parental Guidelines Rating, as required by the FCC for televisions shows airing in the US.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Required"/>
+            <wm:displayName>TV Rating</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>18000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="ratingReason">
+        <xsd:annotation>
+          <xsd:documentation>The reason for the rating of an entertainment product, such as a TV show, Movie, or Musical Album. Reasons for suggesting that content is not appropriate for a general audience include Profanity, Drug Use, Violence, Nudity, and Sexual Content. </xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Rating Reason</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>18500</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="tvShowGenre">
+        <xsd:annotation>
+          <xsd:documentation>The general category for the television show.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>TV Show Genre</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>19000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="tvShowSubgenre">
+        <xsd:annotation>
+          <xsd:documentation>The more specific subcategory for the television show.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>TV Show Subgenre</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>20000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="tvNetwork">
+        <xsd:annotation>
+          <xsd:documentation>The broadcast, cable or online network which distributes the television program.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>TV Network</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>21000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="seriesTitle">
+        <xsd:annotation>
+          <xsd:documentation>If the work is one of multiple works in a series, the title of the series or collection.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Series Title</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>22000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="numberInSeries">
+        <xsd:annotation>
+          <xsd:documentation>The number in the series, if the work is one of multiple works in a series.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Number in Series</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>23000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:integer">
+            <xsd:totalDigits value="7"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="tvShowSeason">
+        <xsd:annotation>
+          <xsd:documentation>The set of television episodes recorded for the season of the calendar year, usually airing from September until May.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>TV Show Season</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>24000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="character">
+        <xsd:annotation>
+          <xsd:documentation>A person or entity portrayed in print or visual media. A character might be a fictional personality or an actual living person.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Character</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>25000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="numberOfEpisodes">
+        <xsd:annotation>
+          <xsd:documentation>The number of television episodes contained in the item.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Number of Episodes</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>26000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:integer">
+            <xsd:totalDigits value="7"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="episode">
+        <xsd:annotation>
+          <xsd:documentation>If the item is only one episode, the number of the episode.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Episode</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>27000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:integer">
+            <xsd:totalDigits value="7"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="director">
+        <xsd:annotation>
+          <xsd:documentation>Person who receives &quot;Directed by&quot; billing on a film or television show.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Director</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>28000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="actors" type="wm:Actors">
+        <xsd:annotation>
+          <xsd:documentation>Actors who receive top billing in a movie or television show.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Actors</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>29000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="screenwriter">
+        <xsd:annotation>
+          <xsd:documentation>Person who is credited or billed as the primary writer on a film or television project.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Screenwriter</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>30000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="studioProductionCompany">
+        <xsd:annotation>
+          <xsd:documentation>Company that is credited with creation of a film or television show.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Studio &amp; Production Company</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>31000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="targetAudience" type="wm:TargetAudience">
+        <xsd:annotation>
+          <xsd:documentation>The demographic for which the item is targeted.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Target Audience</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>32000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="awardsWon" type="wm:AwardsWon">
+        <xsd:annotation>
+          <xsd:documentation>Use this attribute if the item has won any awards in its particular product category. </xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Awards Won</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>33000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="variantGroupId">
+        <xsd:annotation>
+          <xsd:documentation>Required if item is a variant. Make up a number and/or letter code for “Variant Group ID” and add this to all variations of the same product. Partners must ensure uniqueness of their Variant Group IDs.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Conditionally Required"/>
+            <wm:conditionalAttributes>
+              <wm:conditionalAttributeGroup>
+                <wm:conditionalAttribute name="variantAttributeNames" value="ANY"/>
+              </wm:conditionalAttributeGroup>
+            </wm:conditionalAttributes>
+            <wm:displayName>Variant Group ID</wm:displayName>
+            <wm:group>Item Variants</wm:group>
+            <wm:rank>35000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="300"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="variantAttributeNames">
+        <xsd:annotation>
+          <xsd:documentation>Designate all attributes by which the item is varying. Variant attributes are limited to those designated for each category. </xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Conditionally Required"/>
+            <wm:conditionalAttributes>
+              <wm:conditionalAttributeGroup>
+                <wm:conditionalAttribute name="variantGroupId" value="ANY"/>
+              </wm:conditionalAttributeGroup>
+            </wm:conditionalAttributes>
+            <wm:displayName>Variant Attribute Names</wm:displayName>
+            <wm:group>Item Variants</wm:group>
+            <wm:rank>36000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" name="variantAttributeName">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:enumeration value="bookFormat"/>
+                  <xsd:enumeration value="physicalMediaFormat"/>
+                  <xsd:enumeration value="edition"/>
+                  <xsd:enumeration value="sportsTeam"/>
+                  <xsd:enumeration value="countPerPack"/>
+                  <xsd:enumeration value="count"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="isPrimaryVariant">
+        <xsd:annotation>
+          <xsd:documentation>Note whether item is intended as the main variant in a variant grouping. The primary variant will appear as the image when customers search and the first image displayed on the item page. This should be set as &quot;Yes&quot; for only one item in a group of variants.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Is Primary Variant</wm:displayName>
+            <wm:group>Item Variants</wm:group>
+            <wm:rank>37000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Yes"/>
+            <xsd:enumeration value="No"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="isAdultProduct">
+        <xsd:annotation>
+          <xsd:documentation>Indicates if item is adult in nature and should not appear in results for children's products.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Is Adult Product</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>48000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Yes"/>
+            <xsd:enumeration value="No"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="numberOfDiscs">
+        <xsd:annotation>
+          <xsd:documentation>Number of discs included in the item.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Number of Discs</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>49000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:integer">
+            <xsd:totalDigits value="7"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="originalLanguages" type="wm:OriginalLanguages">
+        <xsd:annotation>
+          <xsd:documentation>The original language of the work. Usually this will be one language, but occasionally more than one is appropriate. For example, if a movie is dubbed in English but the original language is Chinese, enter &quot;Chinese.&quot;</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Original Languages</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>50000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="edition">
+        <xsd:annotation>
+          <xsd:documentation>The specific edition of the item.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Edition</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>51000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="releaseDate">
+        <xsd:annotation>
+          <xsd:documentation>Indicates the release date of a product from the manufacturer, in the format yyyy-mm-dd. This will be the date on which distribution of the product will be initiated.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Release Date</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>52000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:date"/>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="duration">
+        <xsd:annotation>
+          <xsd:documentation>Viewing or listening time.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Duration</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>53000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element maxOccurs="1" minOccurs="1" name="measure">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:decimal">
+                  <xsd:totalDigits value="16"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element maxOccurs="1" minOccurs="1" name="unit">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:enumeration value="min"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="hasSubtitles">
+        <xsd:annotation>
+          <xsd:documentation>A film or television show has subtitles if there is a transcript or screenplay of the dialog or commentary displayed on the screen.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Has Subtitles</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>54000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Yes"/>
+            <xsd:enumeration value="No"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="subtitledLanguages" type="wm:SubtitledLanguages">
+        <xsd:annotation>
+          <xsd:documentation>Language(s) that a film's subtitles have been written in</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Conditionally Required"/>
+            <wm:conditionalAttributes>
+              <wm:conditionalAttributeGroup>
+                <wm:conditionalAttribute name="hasSubtitles" value="Yes"/>
+              </wm:conditionalAttributeGroup>
+            </wm:conditionalAttributes>
+            <wm:displayName>Subtitled Languages</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>55000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="isDubbed">
+        <xsd:annotation>
+          <xsd:documentation>A film or television show is dubbed if there is an audio track that replaces the voices of the original actors with a different language</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Is Dubbed</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>56000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Yes"/>
+            <xsd:enumeration value="No"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="dubbedLanguages" type="wm:DubbedLanguages">
+        <xsd:annotation>
+          <xsd:documentation>Language(s) that a film has been dubbed with</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Conditionally Required"/>
+            <wm:conditionalAttributes>
+              <wm:conditionalAttributeGroup>
+                <wm:conditionalAttribute name="isDubbed" value="Yes"/>
+              </wm:conditionalAttributeGroup>
+            </wm:conditionalAttributes>
+            <wm:displayName>Dubbed Languages</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>57000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="audioTrackCodec">
+        <xsd:annotation>
+          <xsd:documentation>The compression format or codec for the audio track.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Audio Track Codec</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>58000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="aspectRatio">
+        <xsd:annotation>
+          <xsd:documentation>The proportional relationship between the display's width and its height. Commonly expressed as two numbers separated by a colon.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Aspect Ratio</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>59000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="sportsLeague">
+        <xsd:annotation>
+          <xsd:documentation>If your item has any association with a specific sports league, enter the league name. Abbreviations are fine. NOTE: This attribute flags an item for inclusion in the online fan shop.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Sports League</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>60000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="sportsTeam">
+        <xsd:annotation>
+          <xsd:documentation>If your item has any association with a specific sports team, enter the team name. NOTE: This attribute flags an item for inclusion in the online fan shop.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Sports Team</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>61000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="athlete">
+        <xsd:annotation>
+          <xsd:documentation>A well-known athlete associated with a product, if applicable. This is used to group items in Fan Shop, not to describe a line of clothing.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Athlete</wm:displayName>
+            <wm:group>Nice to Have</wm:group>
+            <wm:rank>62000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="features" type="wm:AdditionalFeatures">
+        <xsd:annotation>
+          <xsd:documentation>List notable features of the item.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Additional Features</wm:displayName>
+            <wm:group>Nice to Have</wm:group>
+            <wm:rank>68000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="keywords">
+        <xsd:annotation>
+          <xsd:documentation>Words that people would use to search for this item. Keywords can include synonyms and related terms.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Keywords</wm:displayName>
+            <wm:group>Nice to Have</wm:group>
+            <wm:rank>69000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="dvdReleaseDate">
+        <xsd:annotation>
+          <xsd:documentation>Date that the film or TV show was released on DVD, given in the format YYYY-MM-DD.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>DVD Release Date</wm:displayName>
+            <wm:group>Nice to Have</wm:group>
+            <wm:rank>70000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:date"/>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="swatchImages">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Enter the swatch image location in &quot;Swatch Image URL&quot; and its corresponding variant attribute name in &quot;Swatch Variant Attribute&quot;. Required for products with visual variations, like color or pattern. List the swatches in the order you recommend they appear on the site.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" name="swatchImage">
+              <xsd:complexType>
+                <xsd:all>
+                  <xsd:element maxOccurs="1" minOccurs="1" name="swatchVariantAttribute">
+                    <xsd:annotation>
+                      <xsd:documentation>Attribute name corresponding to the swatch.</xsd:documentation>
+                      <xsd:appinfo>
+                        <wm:requiredLevel value="Conditionally Required"/>
+                        <wm:conditionalAttributes>
+                          <wm:conditionalAttributeGroup>
+                            <wm:conditionalAttribute name="swatchImageUrl" value="ANY"/>
+                          </wm:conditionalAttributeGroup>
+                        </wm:conditionalAttributes>
+                        <wm:displayName>Swatch Variant Attribute</wm:displayName>
+                        <wm:group>Item Variants</wm:group>
+                      </xsd:appinfo>
+                    </xsd:annotation>
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:enumeration value="bookFormat"/>
+                        <xsd:enumeration value="physicalMediaFormat"/>
+                        <xsd:enumeration value="edition"/>
+                        <xsd:enumeration value="sportsTeam"/>
+                        <xsd:enumeration value="countPerPack"/>
+                        <xsd:enumeration value="count"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element maxOccurs="1" minOccurs="1" name="swatchImageUrl">
+                    <xsd:annotation>
+                      <xsd:documentation>URL of the color or pattern swatch image. This is required for products with visual variations and will be shown as a small square on the item page. Recommended resolution is 100 x 100 pixels. Provide the final destination image URL (no-redirects) that is publicly accessible (no username/password required) and ends in a proper image extension such as, .jpg, .png or .gif.</xsd:documentation>
+                      <xsd:appinfo>
+                        <wm:requiredLevel value="Conditionally Required"/>
+                        <wm:conditionalAttributes>
+                          <wm:conditionalAttributeGroup>
+                            <wm:conditionalAttribute name="swatchVariantAttribute" value="ANY"/>
+                          </wm:conditionalAttributeGroup>
+                        </wm:conditionalAttributes>
+                        <wm:displayName>Swatch Image URL</wm:displayName>
+                        <wm:group>Item Variants</wm:group>
+                      </xsd:appinfo>
+                    </xsd:annotation>
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:anyURI"/>
+                    </xsd:simpleType>
+                  </xsd:element>
+                </xsd:all>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="Music">
+    <xsd:all>
+      <xsd:element maxOccurs="1" minOccurs="1" name="shortDescription">
+        <xsd:annotation>
+          <xsd:documentation>Overview of the key selling points of the item, marketing content, and highlights in paragraph form. For SEO purposes, repeat the product name and relevant keywords here.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Required"/>
+            <wm:displayName>Description</wm:displayName>
+            <wm:group>Basic</wm:group>
+            <wm:rank>8000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="keyFeatures" type="wm:KeyFeatures">
+        <xsd:annotation>
+          <xsd:documentation>Key features will appear as bulleted text on the item page and in search results. Key features help the user understand the benefits of the product with a simple and clean format. We highly recommended using three or more key features.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Key Features</wm:displayName>
+            <wm:group>Basic</wm:group>
+            <wm:rank>9000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="synopsis">
+        <xsd:annotation>
+          <xsd:documentation>A summary of narrative content. </xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Synopsis</wm:displayName>
+            <wm:group>Basic</wm:group>
+            <wm:rank>12000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="multipackQuantity">
+        <xsd:annotation>
+          <xsd:documentation>The number of identical, individually packaged-for-sale items. If an item does not contain other items, does not contain identical items, or if the items contained within cannot be sold individually, the value for this attribute should be &quot;1.&quot; Examples: (1) A single bottle of 50 pills has a &quot;Multipack Quantity&quot; of &quot;1.&quot; (2) A package containing two identical bottles of 50 pills has a &quot;Multipack Quantity&quot; of 2. (3) A 6-pack of soda labelled for individual sale connected by plastic rings has a &quot;Multipack Quantity&quot; of &quot;6.&quot; (4) A 6-pack of soda in a box whose cans are not marked for individual sale has a &quot;Multipack Quantity&quot; of &quot;1.&quot; (5) A gift basket of 5 different items has a &quot;Multipack Quantity&quot; of &quot;1.&quot;</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Multipack Quantity</wm:displayName>
+            <wm:group>Basic</wm:group>
+            <wm:rank>13000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:integer">
+            <xsd:totalDigits value="4"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="countPerPack">
+        <xsd:annotation>
+          <xsd:documentation>The number of identical items inside each individual pack given by the &quot;Multipack Quantity&quot; attribute. Examples: (1) A single bottle of 50 pills has a &quot;Count Per Pack&quot; of &quot;50.&quot; (2) A package containing two identical bottles of 50 pills has a &quot;Count Per Pack&quot; of 50. (3) A 6-pack of soda labelled for individual sale connected by plastic rings has a &quot;Count Per Pack&quot; of &quot;1.&quot; (4) A 6-pack of soda in a box whose cans are not marked for individual sale has a &quot;Count Per Pack&quot; of &quot;6.&quot; (5) A gift basket of 5 different items has a &quot;Count Per Pack&quot; of &quot;1.&quot;</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Count Per Pack</wm:displayName>
+            <wm:group>Basic</wm:group>
+            <wm:rank>13500</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:integer">
+            <xsd:totalDigits value="4"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="count">
+        <xsd:annotation>
+          <xsd:documentation>The total number of identical items in the package or box; a result of the multiplication of Multipack Quantity by Count Per Pack. Examples: (1) A single bottle of 50 pills has a &quot;Total Count&quot; of 50. (2) A package containing two identical bottles of 50 pills has a &quot;Total Count&quot; of 100. (3) A gift basket of 5 different items has a &quot;Total Count&quot; of 1.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Total Count</wm:displayName>
+            <wm:group>Basic</wm:group>
+            <wm:rank>13550</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="7"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="1" name="mainImageUrl">
+        <xsd:annotation>
+          <xsd:documentation>Main image of the item. Image URL must end in the file name. Image URL must be static and have no redirections. Preferred file type: JPEG Accepted file types: JPG, PNG, GIF, BMP Recommended image resolution: 3000 x 3000 pixels at 300 ppi. Minimum image size requirements: Zoom capability: 2000 x 2000 pixels at 300 ppi. Non-zoom minimum: 500 x 500 pixels at 72 ppi. Maximum file size: 2 MB.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Required"/>
+            <wm:displayName>Main Image URL</wm:displayName>
+            <wm:group>Images</wm:group>
+            <wm:rank>14000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:anyURI"/>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="productSecondaryImageURL" type="wm:ProductSecondaryImageURL">
+        <xsd:annotation>
+          <xsd:documentation>Secondary images of the item. Image URL must end in the file name. Image URL must be static and have no redirections. Preferred file type: JPEG Accepted file types: JPG, PNG, GIF, BMP Recommended image resolution: 3000 x 3000 pixels at 300 ppi. Minimum image size requirements: Zoom capability: 2000 x 2000 pixels at 300 ppi. Non-zoom minimum: 500 x 500 pixels at 72 ppi. Maximum file size: 2 MB.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Additional Image URL</wm:displayName>
+            <wm:group>Images</wm:group>
+            <wm:rank>15000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="title">
+        <xsd:annotation>
+          <xsd:documentation>The name given to the work. Does not include any marketing adjectives outside of the given name.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Title</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>16000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="physicalMediaFormat">
+        <xsd:annotation>
+          <xsd:documentation>The physical form in which the customer receives the product. For digital file formats use &quot;Digital Audio File Format&quot; (for mp3, aiff, etc), &quot;Digital Video File Format&quot; (for mp4, mov, etc), or &quot;Digital File Format&quot; (for exe, pdf, zip, etc).</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Physical Media Format</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>17000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="printed media"/>
+            <xsd:enumeration value="USB stick"/>
+            <xsd:enumeration value="DVD"/>
+            <xsd:enumeration value="Blu-Ray"/>
+            <xsd:enumeration value="CD"/>
+            <xsd:enumeration value="LP"/>
+            <xsd:enumeration value="VHS Tape"/>
+            <xsd:enumeration value="miniDV Tape"/>
+            <xsd:enumeration value="8-Track Tape"/>
+            <xsd:enumeration value="Cassette Tape"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="performer" type="wm:Performer">
+        <xsd:annotation>
+          <xsd:documentation>The performer/s or name of group on the album or single.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Performer</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>18000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="songwriter">
+        <xsd:annotation>
+          <xsd:documentation>A person credited with authorship of tracks on a music product.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Songwriter</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>19000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="musicGenre">
+        <xsd:annotation>
+          <xsd:documentation>General music category.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Music Genre</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>20000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="musicSubGenre">
+        <xsd:annotation>
+          <xsd:documentation>Specific music category.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Music Subgenre</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>21000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="targetAudience" type="wm:TargetAudience">
+        <xsd:annotation>
+          <xsd:documentation>The demographic for which the item is targeted.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Target Audience</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>22000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="awardsWon" type="wm:AwardsWon">
+        <xsd:annotation>
+          <xsd:documentation>Use this attribute if the item has won any awards in its particular product category. </xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Awards Won</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>23000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="character">
+        <xsd:annotation>
+          <xsd:documentation>A person or entity portrayed in print or visual media. A character might be a fictional personality or an actual living person.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Character</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>24000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="variantGroupId">
+        <xsd:annotation>
+          <xsd:documentation>Required if item is a variant. Make up a number and/or letter code for “Variant Group ID” and add this to all variations of the same product. Partners must ensure uniqueness of their Variant Group IDs.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Conditionally Required"/>
+            <wm:conditionalAttributes>
+              <wm:conditionalAttributeGroup>
+                <wm:conditionalAttribute name="variantAttributeNames" value="ANY"/>
+              </wm:conditionalAttributeGroup>
+            </wm:conditionalAttributes>
+            <wm:displayName>Variant Group ID</wm:displayName>
+            <wm:group>Item Variants</wm:group>
+            <wm:rank>26000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="300"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="variantAttributeNames">
+        <xsd:annotation>
+          <xsd:documentation>Designate all attributes by which the item is varying. Variant attributes are limited to those designated for each category. </xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Conditionally Required"/>
+            <wm:conditionalAttributes>
+              <wm:conditionalAttributeGroup>
+                <wm:conditionalAttribute name="variantGroupId" value="ANY"/>
+              </wm:conditionalAttributeGroup>
+            </wm:conditionalAttributes>
+            <wm:displayName>Variant Attribute Names</wm:displayName>
+            <wm:group>Item Variants</wm:group>
+            <wm:rank>27000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" name="variantAttributeName">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:enumeration value="bookFormat"/>
+                  <xsd:enumeration value="physicalMediaFormat"/>
+                  <xsd:enumeration value="edition"/>
+                  <xsd:enumeration value="sportsTeam"/>
+                  <xsd:enumeration value="countPerPack"/>
+                  <xsd:enumeration value="count"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="isPrimaryVariant">
+        <xsd:annotation>
+          <xsd:documentation>Note whether item is intended as the main variant in a variant grouping. The primary variant will appear as the image when customers search and the first image displayed on the item page. This should be set as &quot;Yes&quot; for only one item in a group of variants.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Is Primary Variant</wm:displayName>
+            <wm:group>Item Variants</wm:group>
+            <wm:rank>28000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Yes"/>
+            <xsd:enumeration value="No"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="digitalAudioFileFormat" type="wm:DigitalAudioFileFormat">
+        <xsd:annotation>
+          <xsd:documentation>The file format of the digital audio file.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Digital Audio File Format</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>36500</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="recordLabel">
+        <xsd:annotation>
+          <xsd:documentation>The brand or publishing company associated with the item.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Record Label</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>39000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="releaseDate">
+        <xsd:annotation>
+          <xsd:documentation>Indicates the release date of a product from the manufacturer, in the format yyyy-mm-dd. This will be the date on which distribution of the product will be initiated.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Release Date</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>40000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:date"/>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="musicReleaseType">
+        <xsd:annotation>
+          <xsd:documentation>A distinguishing feature of the release, such as number of tracks or type of performance.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Music Release</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>41000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="400"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="trackListings" type="wm:TrackListings">
+        <xsd:annotation>
+          <xsd:documentation>List each track on the album with track name, number, and duration.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Track Listings</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>42000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="numberOfTracks">
+        <xsd:annotation>
+          <xsd:documentation>Number of tracks included in the item.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Number of Tracks</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>43000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:integer">
+            <xsd:totalDigits value="7"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="musicProducer">
+        <xsd:annotation>
+          <xsd:documentation>Person or entity credited with producing the album or single.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Music Producer</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>44000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="seriesTitle">
+        <xsd:annotation>
+          <xsd:documentation>If the work is one of multiple works in a series, the title of the series or collection.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Series Title</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>45000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="numberInSeries">
+        <xsd:annotation>
+          <xsd:documentation>The number in the series, if the work is one of multiple works in a series.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Number in Series</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>46000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:integer">
+            <xsd:totalDigits value="7"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="isEdited">
+        <xsd:annotation>
+          <xsd:documentation>Y indicates the content has been altered as compared to its original release. For example, a song that has been edited to delete explicate language or to reduce the length of play.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Is Edited</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>47000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Yes"/>
+            <xsd:enumeration value="No"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="isEnhanced">
+        <xsd:annotation>
+          <xsd:documentation>Y indicates the content has undergone a specific process to improve a quality, or add a feature as compared to its original form. For example, a music CD that has tracks added to enable consumers to view details about the song’s title and performer on their TV screen. </xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Is Enhanced</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>48000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Yes"/>
+            <xsd:enumeration value="No"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="edition">
+        <xsd:annotation>
+          <xsd:documentation>The specific edition of the item.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Edition</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>49000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="hasParentalAdvisoryLabel">
+        <xsd:annotation>
+          <xsd:documentation>Indicates whether a music album has been labeled with a Parental Advisory label by the Recording Industry Association of America.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Has Parental Advisory Label</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>51000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Yes"/>
+            <xsd:enumeration value="No"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="ratingReason">
+        <xsd:annotation>
+          <xsd:documentation>The reason for the rating of an entertainment product, such as a TV show, Movie, or Musical Album. Reasons for suggesting that content is not appropriate for a general audience include Profanity, Drug Use, Violence, Nudity, and Sexual Content. </xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Rating Reason</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>51500</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="parentalAdvisoryLabelURL" type="wm:ParentalAdvisoryLabelURL">
+        <xsd:annotation>
+          <xsd:documentation>If Has Parental Advisory Label=Y, pdf or image of label must be provided. URL of image. Provide the final destination image URL (no-redirects) that is publicly accessible (no username/password required) and ends in a proper image extension. Recommended file type: JPEG Accepted file types: JPG, PNG, GIF, BMP Maximum file size: 2GB. (Please enter text with 2000 character max.)</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Parental Advisory Label URL</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>52000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="numberOfDiscs">
+        <xsd:annotation>
+          <xsd:documentation>Number of discs included in the item.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Number of Discs</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>53000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:integer">
+            <xsd:totalDigits value="7"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="isAdultProduct">
+        <xsd:annotation>
+          <xsd:documentation>Indicates if item is adult in nature and should not appear in results for children's products.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Is Adult Product</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>54000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Yes"/>
+            <xsd:enumeration value="No"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="originalLanguages" type="wm:OriginalLanguages">
+        <xsd:annotation>
+          <xsd:documentation>The original language of the work. Usually this will be one language, but occasionally more than one is appropriate. For example, if a movie is dubbed in English but the original language is Chinese, enter &quot;Chinese.&quot;</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Original Languages</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>55000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="autographedBy">
+        <xsd:annotation>
+          <xsd:documentation>The full name of the person who has autographed this copy.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Autographed by</wm:displayName>
+            <wm:group>Nice to Have</wm:group>
+            <wm:rank>56000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="features" type="wm:AdditionalFeatures">
+        <xsd:annotation>
+          <xsd:documentation>List notable features of the item.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Additional Features</wm:displayName>
+            <wm:group>Nice to Have</wm:group>
+            <wm:rank>61000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="keywords">
+        <xsd:annotation>
+          <xsd:documentation>Words that people would use to search for this item. Keywords can include synonyms and related terms.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Keywords</wm:displayName>
+            <wm:group>Nice to Have</wm:group>
+            <wm:rank>62000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="swatchImages">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Enter the swatch image location in &quot;Swatch Image URL&quot; and its corresponding variant attribute name in &quot;Swatch Variant Attribute&quot;. Required for products with visual variations, like color or pattern. List the swatches in the order you recommend they appear on the site.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" name="swatchImage">
+              <xsd:complexType>
+                <xsd:all>
+                  <xsd:element maxOccurs="1" minOccurs="1" name="swatchVariantAttribute">
+                    <xsd:annotation>
+                      <xsd:documentation>Attribute name corresponding to the swatch.</xsd:documentation>
+                      <xsd:appinfo>
+                        <wm:requiredLevel value="Conditionally Required"/>
+                        <wm:conditionalAttributes>
+                          <wm:conditionalAttributeGroup>
+                            <wm:conditionalAttribute name="swatchImageUrl" value="ANY"/>
+                          </wm:conditionalAttributeGroup>
+                        </wm:conditionalAttributes>
+                        <wm:displayName>Swatch Variant Attribute</wm:displayName>
+                        <wm:group>Item Variants</wm:group>
+                      </xsd:appinfo>
+                    </xsd:annotation>
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:enumeration value="bookFormat"/>
+                        <xsd:enumeration value="physicalMediaFormat"/>
+                        <xsd:enumeration value="edition"/>
+                        <xsd:enumeration value="sportsTeam"/>
+                        <xsd:enumeration value="countPerPack"/>
+                        <xsd:enumeration value="count"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element maxOccurs="1" minOccurs="1" name="swatchImageUrl">
+                    <xsd:annotation>
+                      <xsd:documentation>URL of the color or pattern swatch image. This is required for products with visual variations and will be shown as a small square on the item page. Recommended resolution is 100 x 100 pixels. Provide the final destination image URL (no-redirects) that is publicly accessible (no username/password required) and ends in a proper image extension such as, .jpg, .png or .gif.</xsd:documentation>
+                      <xsd:appinfo>
+                        <wm:requiredLevel value="Conditionally Required"/>
+                        <wm:conditionalAttributes>
+                          <wm:conditionalAttributeGroup>
+                            <wm:conditionalAttribute name="swatchVariantAttribute" value="ANY"/>
+                          </wm:conditionalAttributeGroup>
+                        </wm:conditionalAttributes>
+                        <wm:displayName>Swatch Image URL</wm:displayName>
+                        <wm:group>Item Variants</wm:group>
+                      </xsd:appinfo>
+                    </xsd:annotation>
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:anyURI"/>
+                    </xsd:simpleType>
+                  </xsd:element>
+                </xsd:all>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="BooksAndMagazines">
+    <xsd:all>
+      <xsd:element maxOccurs="1" minOccurs="1" name="shortDescription">
+        <xsd:annotation>
+          <xsd:documentation>Overview of the key selling points of the item, marketing content, and highlights in paragraph form. For SEO purposes, repeat the product name and relevant keywords here.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Required"/>
+            <wm:displayName>Description</wm:displayName>
+            <wm:group>Basic</wm:group>
+            <wm:rank>8000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="keyFeatures" type="wm:KeyFeatures">
+        <xsd:annotation>
+          <xsd:documentation>Key features will appear as bulleted text on the item page and in search results. Key features help the user understand the benefits of the product with a simple and clean format. We highly recommended using three or more key features.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Key Features</wm:displayName>
+            <wm:group>Basic</wm:group>
+            <wm:rank>9000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="synopsis">
+        <xsd:annotation>
+          <xsd:documentation>A summary of narrative content. </xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Synopsis</wm:displayName>
+            <wm:group>Basic</wm:group>
+            <wm:rank>12000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="multipackQuantity">
+        <xsd:annotation>
+          <xsd:documentation>The number of identical, individually packaged-for-sale items. If an item does not contain other items, does not contain identical items, or if the items contained within cannot be sold individually, the value for this attribute should be &quot;1.&quot; Examples: (1) A single bottle of 50 pills has a &quot;Multipack Quantity&quot; of &quot;1.&quot; (2) A package containing two identical bottles of 50 pills has a &quot;Multipack Quantity&quot; of 2. (3) A 6-pack of soda labelled for individual sale connected by plastic rings has a &quot;Multipack Quantity&quot; of &quot;6.&quot; (4) A 6-pack of soda in a box whose cans are not marked for individual sale has a &quot;Multipack Quantity&quot; of &quot;1.&quot; (5) A gift basket of 5 different items has a &quot;Multipack Quantity&quot; of &quot;1.&quot;</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Multipack Quantity</wm:displayName>
+            <wm:group>Basic</wm:group>
+            <wm:rank>13000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:integer">
+            <xsd:totalDigits value="4"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="countPerPack">
+        <xsd:annotation>
+          <xsd:documentation>The number of identical items inside each individual pack given by the &quot;Multipack Quantity&quot; attribute. Examples: (1) A single bottle of 50 pills has a &quot;Count Per Pack&quot; of &quot;50.&quot; (2) A package containing two identical bottles of 50 pills has a &quot;Count Per Pack&quot; of 50. (3) A 6-pack of soda labelled for individual sale connected by plastic rings has a &quot;Count Per Pack&quot; of &quot;1.&quot; (4) A 6-pack of soda in a box whose cans are not marked for individual sale has a &quot;Count Per Pack&quot; of &quot;6.&quot; (5) A gift basket of 5 different items has a &quot;Count Per Pack&quot; of &quot;1.&quot;</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Count Per Pack</wm:displayName>
+            <wm:group>Basic</wm:group>
+            <wm:rank>13500</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:integer">
+            <xsd:totalDigits value="4"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="count">
+        <xsd:annotation>
+          <xsd:documentation>The total number of identical items in the package or box; a result of the multiplication of Multipack Quantity by Count Per Pack. Examples: (1) A single bottle of 50 pills has a &quot;Total Count&quot; of 50. (2) A package containing two identical bottles of 50 pills has a &quot;Total Count&quot; of 100. (3) A gift basket of 5 different items has a &quot;Total Count&quot; of 1.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Total Count</wm:displayName>
+            <wm:group>Basic</wm:group>
+            <wm:rank>13550</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="7"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="1" name="mainImageUrl">
+        <xsd:annotation>
+          <xsd:documentation>Main image of the item. Image URL must end in the file name. Image URL must be static and have no redirections. Preferred file type: JPEG Accepted file types: JPG, PNG, GIF, BMP Recommended image resolution: 3000 x 3000 pixels at 300 ppi. Minimum image size requirements: Zoom capability: 2000 x 2000 pixels at 300 ppi. Non-zoom minimum: 500 x 500 pixels at 72 ppi. Maximum file size: 2 MB.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Required"/>
+            <wm:displayName>Main Image URL</wm:displayName>
+            <wm:group>Images</wm:group>
+            <wm:rank>14000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:anyURI"/>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="productSecondaryImageURL" type="wm:ProductSecondaryImageURL">
+        <xsd:annotation>
+          <xsd:documentation>Secondary images of the item. Image URL must end in the file name. Image URL must be static and have no redirections. Preferred file type: JPEG Accepted file types: JPG, PNG, GIF, BMP Recommended image resolution: 3000 x 3000 pixels at 300 ppi. Minimum image size requirements: Zoom capability: 2000 x 2000 pixels at 300 ppi. Non-zoom minimum: 500 x 500 pixels at 72 ppi. Maximum file size: 2 MB.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Additional Image URL</wm:displayName>
+            <wm:group>Images</wm:group>
+            <wm:rank>15000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="title">
+        <xsd:annotation>
+          <xsd:documentation>The name given to the work. Does not include any marketing adjectives outside of the given name.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Title</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>16000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="bookFormat">
+        <xsd:annotation>
+          <xsd:documentation>Formats specific to books. If the book format is &quot;eBook,&quot; also use the Digital File Format attribute to capture file type (exe, pdf, zip, etc). If the book format is &quot;Audiobook,&quot; also use &quot;Digital Audio File Format&quot; (for mp3, aiff, etc). If your audio or eBook will not be delivered online (perhaps it will come on an audio CD, USB stick, etc.), fill in the Physical Media Format attribute to capture that information.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Book Format</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>17000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Paperback"/>
+            <xsd:enumeration value="Hardcover"/>
+            <xsd:enumeration value="eBook"/>
+            <xsd:enumeration value="Audiobook"/>
+            <xsd:enumeration value="Board Book"/>
+            <xsd:enumeration value="Library Binding"/>
+            <xsd:enumeration value="Other"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="author" type="wm:Author">
+        <xsd:annotation>
+          <xsd:documentation>The name (or pseudonym) of the person who wrote a book, as written on the cover and/or title page.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Author</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>18000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="publisher">
+        <xsd:annotation>
+          <xsd:documentation>Publishing company as printed or displayed on the cover or title page.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Publisher</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>19000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="publicationDate">
+        <xsd:annotation>
+          <xsd:documentation>Date of publication for the current edition, in the format yyyy-mm-dd.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Publication Date</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>20000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:date"/>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="originalPublicationDate">
+        <xsd:annotation>
+          <xsd:documentation>Date that a printed work was first published in the format yyyy-mm-dd, if different from the publication date of the current edition. If current edition is the original publication, leave this blank.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Original Publication Date</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>21000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:date"/>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="targetAudience" type="wm:TargetAudience">
+        <xsd:annotation>
+          <xsd:documentation>The demographic for which the item is targeted.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Target Audience</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>22000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="awardsWon" type="wm:AwardsWon">
+        <xsd:annotation>
+          <xsd:documentation>Use this attribute if the item has won any awards in its particular product category. </xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Awards Won</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>23000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="character">
+        <xsd:annotation>
+          <xsd:documentation>A person or entity portrayed in print or visual media. A character might be a fictional personality or an actual living person.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Character</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>24000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="fictionNonfiction">
+        <xsd:annotation>
+          <xsd:documentation>Basic category of literature, typically in the form of books. For example, fiction books are stories created by an author’s imagination and types of fiction include mystery, science fiction, romance. Non-fiction books present real events, people, and places and include reference books, cookbooks, and biographies.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Fiction/Nonfiction</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>25000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Fiction"/>
+            <xsd:enumeration value="Non-Fiction"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="genre">
+        <xsd:annotation>
+          <xsd:documentation>The general book or magazine category.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Genre</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>26000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="subgenre">
+        <xsd:annotation>
+          <xsd:documentation>The more specific book or magazine subcategory.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Subgenre</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>27000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="subject">
+        <xsd:annotation>
+          <xsd:documentation>The &quot;aboutness&quot; of an item, distinct from the genre. It may be the subject of a documentary, nonfiction book, or art print.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Subject</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>28000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="seriesTitle">
+        <xsd:annotation>
+          <xsd:documentation>If the work is one of multiple works in a series, the title of the series or collection.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Series Title</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>29000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="numberInSeries">
+        <xsd:annotation>
+          <xsd:documentation>The number in the series, if the work is one of multiple works in a series.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Number in Series</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>30000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:integer">
+            <xsd:totalDigits value="7"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="issue">
+        <xsd:annotation>
+          <xsd:documentation>For an ongoing serial publication, the specific issue, as named by the publication, usually either month and year, or issue and volume number.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Issue</wm:displayName>
+            <wm:group>Discoverability</wm:group>
+            <wm:rank>31000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="assembledProductLength">
+        <xsd:annotation>
+          <xsd:documentation>The length of the fully assembled product. NOTE: This information is shown on the item page.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Assembled Product Length</wm:displayName>
+            <wm:group>Dimensions</wm:group>
+            <wm:rank>33000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element maxOccurs="1" minOccurs="1" name="measure">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:decimal">
+                  <xsd:totalDigits value="16"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element maxOccurs="1" minOccurs="1" name="unit">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:enumeration value="in"/>
+                  <xsd:enumeration value="ft"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="assembledProductWidth">
+        <xsd:annotation>
+          <xsd:documentation>The width of the fully assembled product. NOTE: This information is shown on the item page.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Assembled Product Width</wm:displayName>
+            <wm:group>Dimensions</wm:group>
+            <wm:rank>34000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element maxOccurs="1" minOccurs="1" name="measure">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:decimal">
+                  <xsd:totalDigits value="16"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element maxOccurs="1" minOccurs="1" name="unit">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:enumeration value="in"/>
+                  <xsd:enumeration value="ft"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="assembledProductHeight">
+        <xsd:annotation>
+          <xsd:documentation>The height of the fully assembled product. NOTE: This information is shown on the item page.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Assembled Product Height</wm:displayName>
+            <wm:group>Dimensions</wm:group>
+            <wm:rank>35000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element maxOccurs="1" minOccurs="1" name="measure">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:decimal">
+                  <xsd:totalDigits value="16"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element maxOccurs="1" minOccurs="1" name="unit">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:enumeration value="in"/>
+                  <xsd:enumeration value="ft"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="assembledProductWeight">
+        <xsd:annotation>
+          <xsd:documentation>The weight of the fully assembled product. NOTE: This information is shown on the item page.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Assembled Product Weight</wm:displayName>
+            <wm:group>Dimensions</wm:group>
+            <wm:rank>36000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element maxOccurs="1" minOccurs="1" name="measure">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:decimal">
+                  <xsd:totalDigits value="16"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element maxOccurs="1" minOccurs="1" name="unit">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:enumeration value="oz"/>
+                  <xsd:enumeration value="lb"/>
+                  <xsd:enumeration value="g"/>
+                  <xsd:enumeration value="kg"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="variantGroupId">
+        <xsd:annotation>
+          <xsd:documentation>Required if item is a variant. Make up a number and/or letter code for “Variant Group ID” and add this to all variations of the same product. Partners must ensure uniqueness of their Variant Group IDs.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Conditionally Required"/>
+            <wm:conditionalAttributes>
+              <wm:conditionalAttributeGroup>
+                <wm:conditionalAttribute name="variantAttributeNames" value="ANY"/>
+              </wm:conditionalAttributeGroup>
+            </wm:conditionalAttributes>
+            <wm:displayName>Variant Group ID</wm:displayName>
+            <wm:group>Item Variants</wm:group>
+            <wm:rank>38000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="300"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="variantAttributeNames">
+        <xsd:annotation>
+          <xsd:documentation>Designate all attributes by which the item is varying. Variant attributes are limited to those designated for each category. </xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Conditionally Required"/>
+            <wm:conditionalAttributes>
+              <wm:conditionalAttributeGroup>
+                <wm:conditionalAttribute name="variantGroupId" value="ANY"/>
+              </wm:conditionalAttributeGroup>
+            </wm:conditionalAttributes>
+            <wm:displayName>Variant Attribute Names</wm:displayName>
+            <wm:group>Item Variants</wm:group>
+            <wm:rank>39000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" name="variantAttributeName">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:enumeration value="bookFormat"/>
+                  <xsd:enumeration value="physicalMediaFormat"/>
+                  <xsd:enumeration value="edition"/>
+                  <xsd:enumeration value="sportsTeam"/>
+                  <xsd:enumeration value="countPerPack"/>
+                  <xsd:enumeration value="count"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="isPrimaryVariant">
+        <xsd:annotation>
+          <xsd:documentation>Note whether item is intended as the main variant in a variant grouping. The primary variant will appear as the image when customers search and the first image displayed on the item page. This should be set as &quot;Yes&quot; for only one item in a group of variants.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Is Primary Variant</wm:displayName>
+            <wm:group>Item Variants</wm:group>
+            <wm:rank>40000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Yes"/>
+            <xsd:enumeration value="No"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="smallPartsWarnings">
+        <xsd:annotation>
+          <xsd:documentation>To determine if any choking warnings are applicable, check current product packaging for choking warning message(s). Please indicate the warning number (0-6). 0 - No warning applicable; 1 - Choking hazard is a small ball; 2 - Choking hazard contains small ball; 3 - Choking hazard contains small parts; 4 - Choking hazard balloon; 5 - Choking hazard is a marble; 6 - Choking hazard contains a marble.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Small Parts Warning Code</wm:displayName>
+            <wm:group>Compliance</wm:group>
+            <wm:rank>44000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" name="smallPartsWarning">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:integer">
+                  <xsd:totalDigits value="1"/>
+                  <xsd:enumeration value="0"/>
+                  <xsd:enumeration value="1"/>
+                  <xsd:enumeration value="2"/>
+                  <xsd:enumeration value="3"/>
+                  <xsd:enumeration value="4"/>
+                  <xsd:enumeration value="5"/>
+                  <xsd:enumeration value="6"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="isAdultProduct">
+        <xsd:annotation>
+          <xsd:documentation>Indicates if item is adult in nature and should not appear in results for children's products.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Is Adult Product</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>51000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Yes"/>
+            <xsd:enumeration value="No"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="edition">
+        <xsd:annotation>
+          <xsd:documentation>The specific edition of the item.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Edition</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>52000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="numberOfDiscs">
+        <xsd:annotation>
+          <xsd:documentation>Number of discs included in the item.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Number of Discs</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>53000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:integer">
+            <xsd:totalDigits value="7"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="originalLanguages" type="wm:OriginalLanguages">
+        <xsd:annotation>
+          <xsd:documentation>The original language of the work. Usually this will be one language, but occasionally more than one is appropriate. For example, if a movie is dubbed in English but the original language is Chinese, enter &quot;Chinese.&quot;</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Original Languages</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>54000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="numberOfPages">
+        <xsd:annotation>
+          <xsd:documentation>Number of pages within a work. May refer to numbered pages, for a pre-printed book,  or blank pages, as in a notebook or journal. </xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Number of Pages</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>55000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:integer">
+            <xsd:totalDigits value="7"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="isUnabridged">
+        <xsd:annotation>
+          <xsd:documentation>Indicates that the item is the complete original work with no omissions.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Is Unabridged</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>56000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Yes"/>
+            <xsd:enumeration value="No"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="isLargePrint">
+        <xsd:annotation>
+          <xsd:documentation>Indicates that the item has been especially printed in a large font to accommodate those with special eyesight needs. </xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Is Large Print</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>57000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Yes"/>
+            <xsd:enumeration value="No"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="readingLevel">
+        <xsd:annotation>
+          <xsd:documentation>The intended age or grade-level for a published work.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Recommended"/>
+            <wm:displayName>Reading Level</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>58000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="editor">
+        <xsd:annotation>
+          <xsd:documentation>The person or entity responsible for choosing the collection of stories or articles in a book or magazine, as printed on the title page, or a magazine masthead</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Editor</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>59000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="translator">
+        <xsd:annotation>
+          <xsd:documentation>The person credited with translating the book from the original language into the language of the current edition.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Translator</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>60000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="translatedFrom">
+        <xsd:annotation>
+          <xsd:documentation>The original language that a work was translated from.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Translated From</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>61000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="illustrator">
+        <xsd:annotation>
+          <xsd:documentation>The person credited with drawing illustrations within a printed work</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Illustrator</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>62000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="bisacSubjectCodes" type="wm:BisacSubjectCode">
+        <xsd:annotation>
+          <xsd:documentation>A standardized code from the Book Industry Study Group used to assign a genre and classify a book based on its topical content.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>BISAC Subject Code</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>62500</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="sportsLeague">
+        <xsd:annotation>
+          <xsd:documentation>If your item has any association with a specific sports league, enter the league name. Abbreviations are fine. NOTE: This attribute flags an item for inclusion in the online fan shop.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Sports League</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>63000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="sportsTeam">
+        <xsd:annotation>
+          <xsd:documentation>If your item has any association with a specific sports team, enter the team name. NOTE: This attribute flags an item for inclusion in the online fan shop.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Sports Team</wm:displayName>
+            <wm:group>Additional Category Attributes</wm:group>
+            <wm:rank>64000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="athlete">
+        <xsd:annotation>
+          <xsd:documentation>A well-known athlete associated with a product, if applicable. This is used to group items in Fan Shop, not to describe a line of clothing.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Athlete</wm:displayName>
+            <wm:group>Nice to Have</wm:group>
+            <wm:rank>65000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="autographedBy">
+        <xsd:annotation>
+          <xsd:documentation>The full name of the person who has autographed this copy.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Autographed by</wm:displayName>
+            <wm:group>Nice to Have</wm:group>
+            <wm:rank>66000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="features" type="wm:AdditionalFeatures">
+        <xsd:annotation>
+          <xsd:documentation>List notable features of the item.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Additional Features</wm:displayName>
+            <wm:group>Nice to Have</wm:group>
+            <wm:rank>71000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="keywords">
+        <xsd:annotation>
+          <xsd:documentation>Words that people would use to search for this item. Keywords can include synonyms and related terms.</xsd:documentation>
+          <xsd:appinfo>
+            <wm:requiredLevel value="Optional"/>
+            <wm:displayName>Keywords</wm:displayName>
+            <wm:group>Nice to Have</wm:group>
+            <wm:rank>72000</wm:rank>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="swatchImages">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Enter the swatch image location in &quot;Swatch Image URL&quot; and its corresponding variant attribute name in &quot;Swatch Variant Attribute&quot;. Required for products with visual variations, like color or pattern. List the swatches in the order you recommend they appear on the site.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" name="swatchImage">
+              <xsd:complexType>
+                <xsd:all>
+                  <xsd:element maxOccurs="1" minOccurs="1" name="swatchVariantAttribute">
+                    <xsd:annotation>
+                      <xsd:documentation>Attribute name corresponding to the swatch.</xsd:documentation>
+                      <xsd:appinfo>
+                        <wm:requiredLevel value="Conditionally Required"/>
+                        <wm:conditionalAttributes>
+                          <wm:conditionalAttributeGroup>
+                            <wm:conditionalAttribute name="swatchImageUrl" value="ANY"/>
+                          </wm:conditionalAttributeGroup>
+                        </wm:conditionalAttributes>
+                        <wm:displayName>Swatch Variant Attribute</wm:displayName>
+                        <wm:group>Item Variants</wm:group>
+                      </xsd:appinfo>
+                    </xsd:annotation>
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:enumeration value="bookFormat"/>
+                        <xsd:enumeration value="physicalMediaFormat"/>
+                        <xsd:enumeration value="edition"/>
+                        <xsd:enumeration value="sportsTeam"/>
+                        <xsd:enumeration value="countPerPack"/>
+                        <xsd:enumeration value="count"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element maxOccurs="1" minOccurs="1" name="swatchImageUrl">
+                    <xsd:annotation>
+                      <xsd:documentation>URL of the color or pattern swatch image. This is required for products with visual variations and will be shown as a small square on the item page. Recommended resolution is 100 x 100 pixels. Provide the final destination image URL (no-redirects) that is publicly accessible (no username/password required) and ends in a proper image extension such as, .jpg, .png or .gif.</xsd:documentation>
+                      <xsd:appinfo>
+                        <wm:requiredLevel value="Conditionally Required"/>
+                        <wm:conditionalAttributes>
+                          <wm:conditionalAttributeGroup>
+                            <wm:conditionalAttribute name="swatchVariantAttribute" value="ANY"/>
+                          </wm:conditionalAttributeGroup>
+                        </wm:conditionalAttributes>
+                        <wm:displayName>Swatch Image URL</wm:displayName>
+                        <wm:group>Item Variants</wm:group>
+                      </xsd:appinfo>
+                    </xsd:annotation>
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:anyURI"/>
+                    </xsd:simpleType>
+                  </xsd:element>
+                </xsd:all>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+</xsd:schema>

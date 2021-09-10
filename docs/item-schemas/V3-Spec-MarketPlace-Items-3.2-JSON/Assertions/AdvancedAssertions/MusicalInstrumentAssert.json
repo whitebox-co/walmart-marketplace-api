@@ -1,0 +1,144 @@
+{"assertions":{
+  "MusicalInstrument":{
+    "variantGroupId":{
+      "variantAttributeNames":"OR DEPENDENCY",
+      "additionalVariantAttributeNames":"OR DEPENDENCY",
+      "message":"variantAttributeNames is required when variantGroupId is present and additionalVariantAttributeNames is missing"
+    },
+    "variantAttributeNames":{
+      "variantGroupId":"DEPENDENCY",
+      "message":"variantGroupId is required when variantAttributeNames is present"
+    },
+    "hasBatteries":[
+      {
+        "hasBatteries":"Yes OR Oui"
+      },
+      { "batteryTechnologyType":"MUST",
+        "message":"batteryTechnologyType is required when hasBatteries = Yes"
+      }
+    ],
+    "hasIngredientList":[
+      {"hasIngredientList":"Yes OR Oui"},
+      {"ingredientListImage":"NOT |ingredients",
+        "message":"ingredientListImage is required when hasIngredientList = Yes and ingredients is missing"},
+      {"ingredients":"NOT |ingredientListImage",
+        "message":"ingredients is required when hasIngredientList = Yes and ingredientListImage is missing"}
+    ],
+    "hasStateRestrictions":[
+      {"hasStateRestrictions":"Yes OR Oui"},
+      {"stateRestrictions":"MUST",
+        "message":"stateRestrictions is required when hasStateRestrictions = Yes"}
+    ]
+  },
+  "MusicCasesAndBags":{
+    "variantAttributeNames":{
+      "variantGroupId":"DEPENDENCY",
+      "message":"variantGroupId is required when variantAttributeNames is present"
+    },
+    "variantGroupId":{
+      "variantAttributeNames":"DEPENDENCY",
+      "additionalVariantAttributeNames":"DEPENDENCY",
+      "message":"variantAttributeNames is required when variantGroupId is present"
+    },
+    "hasWarranty":[
+      {"hasWarranty":"Yes OR Oui"},
+      {"warrantyURL":"NOT |warrantyText",
+        "message":"warrantyURL is required when warrantyText is missing and hasWarranty = Yes"
+      },
+      {"warrantyText":"NOT |warrantyURL",
+        "message":"warrantyText is required when warrantyURL is missing and hasWarranty = Yes"
+      }
+    ]
+  },
+  "SoundAndRecording":{
+    "variantAttributeNames":{
+      "variantGroupId":"DEPENDENCY",
+      "message":"variantGroupId is required when variantAttributeNames is present"
+    },
+    "variantGroupId":{
+      "variantAttributeNames":"DEPENDENCY",
+      "message":"variantAttributeNames is required when variantGroupId is present"
+    },
+    "hasBatteries":[
+      {
+        "hasBatteries":"Yes OR Oui"
+      },
+      { "batteryTechnologyType":"MUST",
+        "message":"batteryTechnologyType is required when hasBatteries = Yes"
+      }
+    ],
+    "hasWarranty":[
+      {"hasWarranty":"Yes OR Oui"},
+      {"warrantyURL":"NOT |warrantyText",
+        "message":"warrantyURL is required when warrantyText is missing and hasWarranty = Yes"
+      },
+      {"warrantyText":"NOT |warrantyURL",
+        "message":"warrantyText is required when warrantyURL is missing and hasWarranty = Yes"
+      }
+    ]
+  },
+  "MusicalInstruments":{
+    "variantAttributeNames":{
+      "variantGroupId":"DEPENDENCY",
+      "message":"variantGroupId is required when variantAttributeNames is present"
+    },
+    "variantGroupId":{
+      "variantAttributeNames":"DEPENDENCY",
+      "additionalVariantAttributeNames":"DEPENDENCY",
+      "message":"variantAttributeNames is required when variantGroupId is present"
+    },
+    "hasBatteries":[
+      {
+        "hasBatteries":"Yes OR Oui"
+      },
+      { "batteryTechnologyType":"MUST",
+        "message":"batteryTechnologyType is required when hasBatteries = Yes"
+      }
+    ],
+    "hasWarranty":[
+      {"hasWarranty":"Yes OR Oui"},
+      {"warrantyURL":"NOT |warrantyText",
+        "message":"warrantyURL is required when warrantyText is missing and hasWarranty = Yes"
+      },
+      {"warrantyText":"NOT |warrantyURL",
+        "message":"warrantyText is required when warrantyURL is missing and hasWarranty = Yes"
+      }
+    ]
+  },
+  "InstrumentAccessories":{
+    "variantAttributeNames":{
+      "variantGroupId":"DEPENDENCY",
+      "message":"variantGroupId is required when variantAttributeNames is present"
+    },
+    "variantGroupId":{
+      "variantAttributeNames":"OR DEPENDENCY",
+      "additionalVariantAttributeNames":"OR DEPENDENCY",
+      "message":"variantAttributeNames is required when variantGroupId is present and additionalVariantAttributeNames is missing"
+    },
+    "hasBatteries":[
+      {
+        "hasBatteries":"Yes OR Oui"
+      },
+      { "batteryTechnologyType":"MUST",
+        "message":"batteryTechnologyType is required when hasBatteries = Yes"
+      }
+    ],
+    "hasWarranty":[
+      {"hasWarranty":"Yes OR Oui"},
+      {"warrantyURL":"NOT |warrantyText",
+        "message":"warrantyURL is required when warrantyText is missing and hasWarranty = Yes"
+      },
+      {"warrantyText":"NOT |warrantyURL",
+        "message":"warrantyText is required when warrantyURL is missing and hasWarranty = Yes"
+      }
+    ],
+    "hasIngredientList":[
+      {"hasIngredientList":"Yes OR Oui"},
+      {"ingredientListImage":"NOT |ingredients",
+        "message":"ingredientListImage is required when hasIngredientList = Yes and ingredients is missing"},
+      {"ingredients":"NOT |ingredientListImage",
+        "message":"ingredients is required when hasIngredientList = Yes and ingredientListImage is missing"}
+    ]
+  }
+}
+}

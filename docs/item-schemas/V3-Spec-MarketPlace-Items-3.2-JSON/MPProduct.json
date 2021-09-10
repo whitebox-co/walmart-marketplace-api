@@ -1,0 +1,274 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#", 
+    "type": "object", 
+    "title": "MPProduct", 
+    "properties": {
+        "productName": {
+            "type": "string", 
+            "title": "Product Name", 
+            "minLength": 1, 
+            "maxLength": 200
+        }, 
+        "msrp": {
+            "type": "number", 
+            "title": "MSRP", 
+            "minimum": 0, 
+            "maximum": 1000000, 
+            "exclusiveMaximum": false, 
+            "multipleOf": 0.01
+        }, 
+        "SkuUpdate": {
+            "type": "string", 
+            "title": "SKU Update", 
+            "enum": [
+                "Yes", 
+                "No"
+            ]
+        }, 
+        "ProductIdUpdate": {
+            "type": "string", 
+            "title": "Product Id Update", 
+            "enum": [
+                "Yes", 
+                "No"
+            ]
+        }, 
+        "additionalProductAttributes": {
+            "$schema": "http://json-schema.org/draft-04/schema#", 
+            "type": "array", 
+            "title": "Additional Product Attributes", 
+            "items": {
+                "$schema": "http://json-schema.org/draft-04/schema#", 
+                "type": "object", 
+                "properties": {
+                    "productAttributeName": {
+                        "type": "string", 
+                        "title": "Additional Product Attribute Name", 
+                        "minLength": 1, 
+                        "maxLength": 100
+                    }, 
+                    "productAttributeValue": {
+                        "$schema": "http://json-schema.org/draft-04/schema#", 
+                        "type": "array", 
+                        "title": "Additional Product Attribute Value", 
+                        "items": {
+                            "type": "string", 
+                            "minLength": 1, 
+                            "maxLength": 4000
+                        }, 
+                        "minItems": 1
+                    }
+                }, 
+                "additionalProperties": false
+            }, 
+            "minItems": 1
+        }, 
+        "category": {
+            "$schema": "http://json-schema.org/draft-04/schema#", 
+            "type": "object", 
+            "title": "Category", 
+            "properties": {
+                "HealthAndBeauty": {
+                    "$ref": "HealthAndBeauty.json"
+                }, 
+                "FurnitureCategory": {
+                    "$ref": "FurnitureCategory.json"
+                }, 
+                "Home": {
+                    "$ref": "Home.json"
+                }, 
+                "ArtAndCraftCategory": {
+                    "$ref": "ArtAndCraftCategory.json"
+                }, 
+                "FoodAndBeverageCategory": {
+                    "$ref": "FoodAndBeverageCategory.json"
+                }, 
+                "GardenAndPatioCategory": {
+                    "$ref": "GardenAndPatioCategory.json"
+                }, 
+                "OccasionAndSeasonal": {
+                    "$ref": "OccasionAndSeasonal.json"
+                }, 
+                "Photography": {
+                    "$ref": "Photography.json"
+                }, 
+                "SportAndRecreation": {
+                    "$ref": "SportAndRecreation.json"
+                }, 
+                "Animal": {
+                    "$ref": "Animal.json"
+                }, 
+                "FootwearCategory": {
+                    "$ref": "FootwearCategory.json"
+                }, 
+                "ToolsAndHardware": {
+                    "$ref": "ToolsAndHardware.json"
+                }, 
+                "ToysCategory": {
+                    "$ref": "ToysCategory.json"
+                }, 
+                "CarriersAndAccessoriesCategory": {
+                    "$ref": "CarriersAndAccessoriesCategory.json"
+                }, 
+                "Media": {
+                    "$ref": "Media.json"
+                }, 
+                "OtherCategory": {
+                    "$ref": "OtherCategory.json"
+                }, 
+                "OfficeCategory": {
+                    "$ref": "OfficeCategory.json"
+                }, 
+                "MusicalInstrument": {
+                    "$ref": "MusicalInstrument.json"
+                }, 
+                "Baby": {
+                    "$ref": "Baby.json"
+                }, 
+                "WatchesCategory": {
+                    "$ref": "WatchesCategory.json"
+                }, 
+                "Vehicle": {
+                    "$ref": "Vehicle.json"
+                }, 
+                "ClothingCategory": {
+                    "$ref": "ClothingCategory.json"
+                }, 
+                "JewelryCategory": {
+                    "$ref": "JewelryCategory.json"
+                }, 
+                "Electronics": {
+                    "$ref": "Electronics.json"
+                }
+            }, 
+            "oneOf": [
+                {
+                    "required": [
+                        "HealthAndBeauty"
+                    ]
+                }, 
+                {
+                    "required": [
+                        "FurnitureCategory"
+                    ]
+                }, 
+                {
+                    "required": [
+                        "Home"
+                    ]
+                }, 
+                {
+                    "required": [
+                        "ArtAndCraftCategory"
+                    ]
+                }, 
+                {
+                    "required": [
+                        "FoodAndBeverageCategory"
+                    ]
+                }, 
+                {
+                    "required": [
+                        "GardenAndPatioCategory"
+                    ]
+                }, 
+                {
+                    "required": [
+                        "OccasionAndSeasonal"
+                    ]
+                }, 
+                {
+                    "required": [
+                        "Photography"
+                    ]
+                }, 
+                {
+                    "required": [
+                        "SportAndRecreation"
+                    ]
+                }, 
+                {
+                    "required": [
+                        "Animal"
+                    ]
+                }, 
+                {
+                    "required": [
+                        "FootwearCategory"
+                    ]
+                }, 
+                {
+                    "required": [
+                        "ToolsAndHardware"
+                    ]
+                }, 
+                {
+                    "required": [
+                        "ToysCategory"
+                    ]
+                }, 
+                {
+                    "required": [
+                        "CarriersAndAccessoriesCategory"
+                    ]
+                }, 
+                {
+                    "required": [
+                        "Media"
+                    ]
+                }, 
+                {
+                    "required": [
+                        "OtherCategory"
+                    ]
+                }, 
+                {
+                    "required": [
+                        "OfficeCategory"
+                    ]
+                }, 
+                {
+                    "required": [
+                        "MusicalInstrument"
+                    ]
+                }, 
+                {
+                    "required": [
+                        "Baby"
+                    ]
+                }, 
+                {
+                    "required": [
+                        "WatchesCategory"
+                    ]
+                }, 
+                {
+                    "required": [
+                        "Vehicle"
+                    ]
+                }, 
+                {
+                    "required": [
+                        "ClothingCategory"
+                    ]
+                }, 
+                {
+                    "required": [
+                        "JewelryCategory"
+                    ]
+                }, 
+                {
+                    "required": [
+                        "Electronics"
+                    ]
+                }
+            ], 
+            "additionalProperties": false
+        }
+    }, 
+    "required": [
+        "category", 
+        "productName"
+    ], 
+    "additionalProperties": false
+}
