@@ -199,6 +199,28 @@ npm run generate-apis
 Which will start the generation and processing of all of the schemas and eventually finish with all api's created in
 the `src/apis` directory.
 
+## Item Model Generation
+
+Item Models
+[(MP_ITEM_MATCH, MP_ITEM, MP_MAINTENANCE, MP_WFS_ITEM)](https://developer.walmart.com/doc/us/us-mp/us-mp-items/#1232)
+are saved to the [docs/item-schemas](docs/items-schemas) directory.
+
+These schemas are generated manually into the models found in the [src/models] directory using [quicktype](https://github.com/quicktype/quicktype).
+
+If you wish to generate these for some reason, install `quicktype` globally and issue the following commands:
+
+```sh
+quicktype -l ts ./docs/item-schemas/MP_ITEM_MATCH_v4.json -o ./src/models/v4/mpItemMatch.ts
+quicktype -l ts ./docs/item-schemas/MP_ITEM_SPEC_4.3.json -o ./src/models/v4/mpItem4.3.ts
+quicktype -l ts ./docs/item-schemas/MP_MAINTENANCE_SPEC_4.3.json -o ./src/models/v4/mpMaintenance4.3.ts
+quicktype -l ts ./docs/item-schemas/MP_WFS_ITEM_SPEC_4.2.json -o ./src/models/v4/mpWfsItem4.2.ts
+
+quicktype -l ts ./docs/item-schemas/V3-Spec-Marketplace-Items-3.2-JSON/ -o ./src/models/v3/mpItems3.2.ts
+```
+
+[MP_MAINTENANCE_SPEC_4.3.json](./docs/item-schemas/MP_MAINTENANENCE_SPEC_4.3.json) will fail to generate as
+is not a complete schema. It is missing at the end of the file. Complain to walmart!
+
 ## Token Authorization and Caching
 
 Tokens are retrieved from walmart during the authorization process and then get cached until they expire. When they
@@ -219,6 +241,12 @@ These need to be moved over to github issues.
 -   Generation is only including the first schema response example. In some cases that is the xml response only.
 -   There are some differences in received responses vs expected response. These are documented as TODO in the code.
 -   There is currently no internal throttle controller and Walmart does have different throttling limits per api.
+-   Walmart provides [Item specs](https://developer.walmart.com/doc/us/us-mp/us-mp-items/#1232) in the form of JSON
+    Schemas on their Developer Site. Unfortunately, these item schemas are in RTF format. We had to convert them to
+    plaintext and back to JSON in order to get typescript generation working.
+-   [MP_MAINTENANCE_SPEC_4.3.json](./docs/item-schemas/MP_MAINTENANENCE_SPEC_4.3.json) provided from walmart
+    is not a complete schema. Upon downloading this file you will notice that a bunch of json is missing at the end of
+    the file. For this reason we were not able to generate types for this spec.
 
 ## Contributing
 

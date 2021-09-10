@@ -63,6 +63,7 @@
 		"MSVCNAME",
 		"prebuild",
 		"markdownlint",
-		"TLDR"
+		"TLDR",
+		"quicktype"
 	]
 }
