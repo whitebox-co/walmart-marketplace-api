@@ -1,6 +1,9 @@
 # Change Log
 
-# 1.0.0 (2021-09-11)
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## 1.0.0 (2021-09-11)
 
 ### Bug Fixes
 
@@ -10,6 +13,3 @@
 ### Features
 
 -   adding generated item models which is the last change necessary for 1.0.0 ([0f7d5a7](https://github.com/whitebox-co/walmart-marketplace-api/commit/0f7d5a7bdd90dc6f8a76acdac98e3f2ac65c37ac))
-
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.

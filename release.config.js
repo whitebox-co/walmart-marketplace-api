@@ -10,7 +10,11 @@ const configuration = {
 		[
 			'@semantic-release/changelog',
 			{
-				changelogTitle: '# Change Log',
+				changelogTitle: `# Change Log
+
+				All notable changes to this project will be documented in this file.
+				See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+				`.trim(),
 				changelogFile: 'CHANGELOG.md',
 			},
 		],
@@ -32,7 +36,7 @@ const configuration = {
 		[
 			'@semantic-release/git',
 			{
-				assets: ['CHANGELOG.md'],
+				assets: ['CHANGELOG.md', 'package.json', 'package-lock.json'],
 				message: 'chore(release): ${nextRelease.version} [skip ci]',
 			},
 		],
