@@ -39,7 +39,7 @@ jobs:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                   NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                   NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-              run: npm run semantic-release`
+              run: npm run semantic-release
 
     npm-publish:
         needs: [gh-npm-publish]
