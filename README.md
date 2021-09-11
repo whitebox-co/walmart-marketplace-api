@@ -4,7 +4,7 @@
 ![GitHub](https://img.shields.io/github/package-json/v/whitebox-co/walmart-marketplace-api)
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/whitebox-co/walmart-marketplace-api/Release?label=main)
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/whitebox-co/walmart-marketplace-api/Develop?label=develop)
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/whitebox-co/walmart-marketplace-api/Release?label=api-generator)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/whitebox-co/walmart-marketplace-api/Generate%20API?label=api-generator)
 ![GitHub Workflow Status](https://img.shields.io/snyk/vulnerabilities/github/whitebox-co/walmart-marketplace-api?label=snyk%20vulnerbilities)
 ![GitHub Workflow Status](https://img.shields.io/maintenance/yes/2021)
 
