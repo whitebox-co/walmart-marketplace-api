@@ -16,8 +16,8 @@ on:
             - '[0-9]+.[0-9]+.x' # N.N.x
 
 jobs:
-    npm-publish:
-        name: npm publish
+    gh-npm-publish:
+        name: github npm publish
 
         runs-on: ubuntu-latest
 
@@ -39,4 +39,38 @@ jobs:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                   NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                   NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-              run: npm run semantic-release
+              run: npm run semantic-release`
+
+    npm-publish:
+        name: npm publish
+
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2
+
+            - name: Setup Node
+              uses: actions/setup-node@v2
+              with:
+                  registry-url: 'https://registry.npmjs.org'
+
+            - name: Update .npmrc
+              run: echo "//npm.pkg.github.com/:_authToken={{secrets.NPM_TOKEN}}" > .npmrc
+              env:
+                  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+                  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+            - name: Update publishConfig in package.json
+
+            - name: Install
+              uses: bahmutov/npm-install@v1
+
+            - name: Buildx
+              run: npm run build
+
+            - name: Publish
+              run: npm publish
+              env:
+                  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+                  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

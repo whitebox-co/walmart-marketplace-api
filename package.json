@@ -1,6 +1,6 @@
 {
   "name": "@whitebox-co/walmart-marketplace-api",
-  "version": "0.0.0-development",
+  "version": "1.0.0",
   "description": "A fully typed TypeScript and Node.js API library for the Walmart Marketplace API",
   "license": "MIT",
   "author": {
@@ -115,7 +115,6 @@
     "walmart marketplace api"
   ],
   "publishConfig": {
-    "@whitebox-co:registry": "https://npm.pkg.github.com",
     "access": "public"
   },
   "lint-staged": {
