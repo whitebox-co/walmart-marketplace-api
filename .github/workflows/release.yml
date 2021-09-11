@@ -34,8 +34,7 @@ jobs:
             - name: Semantic Release Github
               if: success()
               env:
-                  GIT_AUTHOR_NAME: Whitebox Bot
-                  GIT_AUTHOR_EMAIL: whitebox-bot@whitebox.com
+                  GH_TOKEN: ${{ secrets.GH_TOKEN }}
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                   NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                   NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
