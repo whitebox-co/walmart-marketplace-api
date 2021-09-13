@@ -23,6 +23,7 @@ TLDR: It did not exist and we really needed it!
 -   They do not provide a [Typescript library](https://github.com/orgs/walmartlabs/repositories?q=&type=&language=typescript&sort=)
     to access their endpoints
 -   Their [javascript library](https://github.com/walmartlabs/walmart-api) is deprecated.
+-   Existing implementations did not include full walmart REST implementation and did not meet our needs.
 
 ## How it works
 
@@ -32,7 +33,7 @@ TLDR: It did not exist and we really needed it!
     against each schema.
 -   Integration Test stubs are auto generated for every generated api class and function.
 -   Documentation is auto generated and updated based on the latest openapi schemas changes.
--   Existing implementations did not include full walmart REST implementation and did not meet our needs.
+
 
 ## Installation
 
