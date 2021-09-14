@@ -116,16 +116,5 @@
   ],
   "publishConfig": {
     "access": "public"
-  },
-  "lint-staged": {
-    "*.(js|ts)": [
-      "eslint --cache --fix"
-    ],
-    "*.md": [
-      "prettier --write"
-    ],
-    "package.json": [
-      "prettier-package-json --write --expand-users"
-    ]
   }
 }

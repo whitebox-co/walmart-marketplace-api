@@ -1,4 +1,5 @@
 {
-	"**/!(dist)/*.js": "eslint --fix",
-	"**/**/*.ts": "eslint --fix"
+	"*.(js|ts)": ["markdownlint --ignore ./node_modules --ignore ./CHANGELOG.md ./", "eslint --cache --fix"],
+	"*.md": ["prettier --write"],
+	"package.json": ["prettier-package-json --write --expand-users"]
 }
