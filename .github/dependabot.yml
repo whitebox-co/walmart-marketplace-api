@@ -1,0 +1,13 @@
+version: 2
+updates:
+    # Keep npm dependencies up to date
+    - package-ecosystem: 'npm'
+      directory: '/'
+      schedule:
+          interval: 'daily'
+      labels:
+          - 'npm dependencies'
+      commit-message:
+          prefix: fix
+          prefix-development: chore
+          include: scope
