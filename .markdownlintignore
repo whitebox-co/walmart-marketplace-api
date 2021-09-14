@@ -1,0 +1,5 @@
+# Ignore Markdown files in the test directory
+.github/*.md
+CHANGELOG.md
+node_modules
+release.config.js
