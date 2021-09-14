@@ -1,18 +1,13 @@
 # Change Log
 
-    			All notable changes to this project will be documented in this file.
-    			See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 ## [1.0.1](https://github.com/whitebox-co/walmart-marketplace-api/compare/v1.0.0...v1.0.1) (2021-09-11)
 
 ### Bug Fixes
 
 -   package.json had incorrect "main" entry causing failed module resolution ([8791874](https://github.com/whitebox-co/walmart-marketplace-api/commit/879187416c8dd47ff8c10c126e1e5b8833ff4500))
-
-# Change Log
-
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 ## 1.0.0 (2021-09-11)
 
