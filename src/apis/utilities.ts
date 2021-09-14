@@ -12,30 +12,24 @@
  * Do not edit the class manually.
  */
 
-import { Configuration } from "./configuration";
-import globalAxios, { AxiosPromise, AxiosInstance } from "axios";
+import { Configuration } from './configuration';
+import globalAxios, { AxiosPromise, AxiosInstance } from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import {
-  DUMMY_BASE_URL,
-  assertParamExists,
-  setApiKeyToObject,
-  setBasicAuthToObject,
-  setBearerAuthToObject,
-  setOAuthToObject,
-  setSearchParams,
-  serializeDataIfNeeded,
-  toPathString,
-  createRequestFunction,
-} from "./common";
+	DUMMY_BASE_URL,
+	assertParamExists,
+	setApiKeyToObject,
+	setBasicAuthToObject,
+	setBearerAuthToObject,
+	setOAuthToObject,
+	setSearchParams,
+	serializeDataIfNeeded,
+	toPathString,
+	createRequestFunction,
+} from './common';
 // @ts-ignore
-import {
-  BASE_PATH,
-  COLLECTION_FORMATS,
-  RequestArgs,
-  BaseAPI,
-  RequiredError,
-} from "./base";
+import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from './base';
 
 /**
  *
@@ -43,18 +37,18 @@ import {
  * @interface Category
  */
 export interface Category {
-  /**
-   * The category name for which the top trending items have to be fetched
-   * @type {string}
-   * @memberof Category
-   */
-  categoryName?: string;
-  /**
-   * The category id for which the top trending items have to be fetched
-   * @type {string}
-   * @memberof Category
-   */
-  categoryId?: string;
+	/**
+	 * The category name for which the top trending items have to be fetched
+	 * @type {string}
+	 * @memberof Category
+	 */
+	categoryName?: string;
+	/**
+	 * The category id for which the top trending items have to be fetched
+	 * @type {string}
+	 * @memberof Category
+	 */
+	categoryId?: string;
 }
 /**
  *
@@ -62,18 +56,18 @@ export interface Category {
  * @interface CategoryPayload
  */
 export interface CategoryPayload {
-  /**
-   * Type of item
-   * @type {string}
-   * @memberof CategoryPayload
-   */
-  category?: string;
-  /**
-   * Specific kind of category
-   * @type {Array<InlineResponse2002Subcategory>}
-   * @memberof CategoryPayload
-   */
-  subcategory?: Array<InlineResponse2002Subcategory>;
+	/**
+	 * Type of item
+	 * @type {string}
+	 * @memberof CategoryPayload
+	 */
+	category?: string;
+	/**
+	 * Specific kind of category
+	 * @type {Array<InlineResponse2002Subcategory>}
+	 * @memberof CategoryPayload
+	 */
+	subcategory?: Array<InlineResponse2002Subcategory>;
 }
 /**
  *
@@ -81,18 +75,18 @@ export interface CategoryPayload {
  * @interface Department
  */
 export interface Department {
-  /**
-   * The department name for which the categories have to be fetched
-   * @type {string}
-   * @memberof Department
-   */
-  departmentName?: string;
-  /**
-   * The department id for which the categories have to be fetched
-   * @type {string}
-   * @memberof Department
-   */
-  departmentId?: string;
+	/**
+	 * The department name for which the categories have to be fetched
+	 * @type {string}
+	 * @memberof Department
+	 */
+	departmentName?: string;
+	/**
+	 * The department id for which the categories have to be fetched
+	 * @type {string}
+	 * @memberof Department
+	 */
+	departmentId?: string;
 }
 /**
  *
@@ -100,18 +94,18 @@ export interface Department {
  * @interface GetCategories
  */
 export interface GetCategories {
-  /**
-   *
-   * @type {string}
-   * @memberof GetCategories
-   */
-  status?: string;
-  /**
-   *
-   * @type {InlineResponse2001Response}
-   * @memberof GetCategories
-   */
-  response?: InlineResponse2001Response;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof GetCategories
+	 */
+	status?: string;
+	/**
+	 *
+	 * @type {InlineResponse2001Response}
+	 * @memberof GetCategories
+	 */
+	response?: InlineResponse2001Response;
 }
 /**
  *
@@ -119,18 +113,18 @@ export interface GetCategories {
  * @interface GetDepartmentList
  */
 export interface GetDepartmentList {
-  /**
-   *
-   * @type {string}
-   * @memberof GetDepartmentList
-   */
-  status?: string;
-  /**
-   *
-   * @type {Array<InlineResponse200Payload>}
-   * @memberof GetDepartmentList
-   */
-  payload?: Array<InlineResponse200Payload>;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof GetDepartmentList
+	 */
+	status?: string;
+	/**
+	 *
+	 * @type {Array<InlineResponse200Payload>}
+	 * @memberof GetDepartmentList
+	 */
+	payload?: Array<InlineResponse200Payload>;
 }
 /**
  *
@@ -138,18 +132,18 @@ export interface GetDepartmentList {
  * @interface InlineResponse200
  */
 export interface InlineResponse200 {
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse200
-   */
-  status?: string;
-  /**
-   *
-   * @type {Array<InlineResponse200Payload>}
-   * @memberof InlineResponse200
-   */
-  payload?: Array<InlineResponse200Payload>;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineResponse200
+	 */
+	status?: string;
+	/**
+	 *
+	 * @type {Array<InlineResponse200Payload>}
+	 * @memberof InlineResponse200
+	 */
+	payload?: Array<InlineResponse200Payload>;
 }
 /**
  *
@@ -157,18 +151,18 @@ export interface InlineResponse200 {
  * @interface InlineResponse2001
  */
 export interface InlineResponse2001 {
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse2001
-   */
-  status?: string;
-  /**
-   *
-   * @type {InlineResponse2001Response}
-   * @memberof InlineResponse2001
-   */
-  response?: InlineResponse2001Response;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineResponse2001
+	 */
+	status?: string;
+	/**
+	 *
+	 * @type {InlineResponse2001Response}
+	 * @memberof InlineResponse2001
+	 */
+	response?: InlineResponse2001Response;
 }
 /**
  *
@@ -176,24 +170,24 @@ export interface InlineResponse2001 {
  * @interface InlineResponse2001Response
  */
 export interface InlineResponse2001Response {
-  /**
-   * The department name for which the categories have to be fetched
-   * @type {string}
-   * @memberof InlineResponse2001Response
-   */
-  departmentName?: string;
-  /**
-   * The department id for which the categories have to be fetched
-   * @type {string}
-   * @memberof InlineResponse2001Response
-   */
-  departmentId?: string;
-  /**
-   *
-   * @type {Array<InlineResponse2001ResponseCategory>}
-   * @memberof InlineResponse2001Response
-   */
-  category?: Array<InlineResponse2001ResponseCategory>;
+	/**
+	 * The department name for which the categories have to be fetched
+	 * @type {string}
+	 * @memberof InlineResponse2001Response
+	 */
+	departmentName?: string;
+	/**
+	 * The department id for which the categories have to be fetched
+	 * @type {string}
+	 * @memberof InlineResponse2001Response
+	 */
+	departmentId?: string;
+	/**
+	 *
+	 * @type {Array<InlineResponse2001ResponseCategory>}
+	 * @memberof InlineResponse2001Response
+	 */
+	category?: Array<InlineResponse2001ResponseCategory>;
 }
 /**
  *
@@ -201,18 +195,18 @@ export interface InlineResponse2001Response {
  * @interface InlineResponse2001ResponseCategory
  */
 export interface InlineResponse2001ResponseCategory {
-  /**
-   * The category name for which the top trending items have to be fetched
-   * @type {string}
-   * @memberof InlineResponse2001ResponseCategory
-   */
-  categoryName?: string;
-  /**
-   * The category id for which the top trending items have to be fetched
-   * @type {string}
-   * @memberof InlineResponse2001ResponseCategory
-   */
-  categoryId?: string;
+	/**
+	 * The category name for which the top trending items have to be fetched
+	 * @type {string}
+	 * @memberof InlineResponse2001ResponseCategory
+	 */
+	categoryName?: string;
+	/**
+	 * The category id for which the top trending items have to be fetched
+	 * @type {string}
+	 * @memberof InlineResponse2001ResponseCategory
+	 */
+	categoryId?: string;
 }
 /**
  *
@@ -220,18 +214,18 @@ export interface InlineResponse2001ResponseCategory {
  * @interface InlineResponse2002
  */
 export interface InlineResponse2002 {
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse2002
-   */
-  status?: string;
-  /**
-   *
-   * @type {Array<InlineResponse2002Payload>}
-   * @memberof InlineResponse2002
-   */
-  payload?: Array<InlineResponse2002Payload>;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineResponse2002
+	 */
+	status?: string;
+	/**
+	 *
+	 * @type {Array<InlineResponse2002Payload>}
+	 * @memberof InlineResponse2002
+	 */
+	payload?: Array<InlineResponse2002Payload>;
 }
 /**
  *
@@ -239,18 +233,18 @@ export interface InlineResponse2002 {
  * @interface InlineResponse2002Payload
  */
 export interface InlineResponse2002Payload {
-  /**
-   * Type of item
-   * @type {string}
-   * @memberof InlineResponse2002Payload
-   */
-  category?: string;
-  /**
-   * Specific kind of category
-   * @type {Array<InlineResponse2002Subcategory>}
-   * @memberof InlineResponse2002Payload
-   */
-  subcategory?: Array<InlineResponse2002Subcategory>;
+	/**
+	 * Type of item
+	 * @type {string}
+	 * @memberof InlineResponse2002Payload
+	 */
+	category?: string;
+	/**
+	 * Specific kind of category
+	 * @type {Array<InlineResponse2002Subcategory>}
+	 * @memberof InlineResponse2002Payload
+	 */
+	subcategory?: Array<InlineResponse2002Subcategory>;
 }
 /**
  * Specific kind of category
@@ -258,18 +252,18 @@ export interface InlineResponse2002Payload {
  * @interface InlineResponse2002Subcategory
  */
 export interface InlineResponse2002Subcategory {
-  /**
-   * Name of specific kind of category
-   * @type {string}
-   * @memberof InlineResponse2002Subcategory
-   */
-  subCategoryName?: string;
-  /**
-   * ID of specific kind of category
-   * @type {string}
-   * @memberof InlineResponse2002Subcategory
-   */
-  subCategoryId?: string;
+	/**
+	 * Name of specific kind of category
+	 * @type {string}
+	 * @memberof InlineResponse2002Subcategory
+	 */
+	subCategoryName?: string;
+	/**
+	 * ID of specific kind of category
+	 * @type {string}
+	 * @memberof InlineResponse2002Subcategory
+	 */
+	subCategoryId?: string;
 }
 /**
  *
@@ -277,18 +271,18 @@ export interface InlineResponse2002Subcategory {
  * @interface InlineResponse200Departments
  */
 export interface InlineResponse200Departments {
-  /**
-   * The department name for which the categories have to be fetched
-   * @type {string}
-   * @memberof InlineResponse200Departments
-   */
-  departmentName?: string;
-  /**
-   * The department id for which the categories have to be fetched
-   * @type {string}
-   * @memberof InlineResponse200Departments
-   */
-  departmentId?: string;
+	/**
+	 * The department name for which the categories have to be fetched
+	 * @type {string}
+	 * @memberof InlineResponse200Departments
+	 */
+	departmentName?: string;
+	/**
+	 * The department id for which the categories have to be fetched
+	 * @type {string}
+	 * @memberof InlineResponse200Departments
+	 */
+	departmentId?: string;
 }
 /**
  *
@@ -296,24 +290,24 @@ export interface InlineResponse200Departments {
  * @interface InlineResponse200Payload
  */
 export interface InlineResponse200Payload {
-  /**
-   * The super-department name for which the department have to be fetched
-   * @type {string}
-   * @memberof InlineResponse200Payload
-   */
-  superDepartment?: string;
-  /**
-   * The super-department id for which the department have to be fetched
-   * @type {string}
-   * @memberof InlineResponse200Payload
-   */
-  superDepartmentId?: string;
-  /**
-   *
-   * @type {Array<InlineResponse200Departments>}
-   * @memberof InlineResponse200Payload
-   */
-  departments?: Array<InlineResponse200Departments>;
+	/**
+	 * The super-department name for which the department have to be fetched
+	 * @type {string}
+	 * @memberof InlineResponse200Payload
+	 */
+	superDepartment?: string;
+	/**
+	 * The super-department id for which the department have to be fetched
+	 * @type {string}
+	 * @memberof InlineResponse200Payload
+	 */
+	superDepartmentId?: string;
+	/**
+	 *
+	 * @type {Array<InlineResponse200Departments>}
+	 * @memberof InlineResponse200Payload
+	 */
+	departments?: Array<InlineResponse200Departments>;
 }
 /**
  *
@@ -321,24 +315,24 @@ export interface InlineResponse200Payload {
  * @interface Payload
  */
 export interface Payload {
-  /**
-   * The super-department name for which the department have to be fetched
-   * @type {string}
-   * @memberof Payload
-   */
-  superDepartment?: string;
-  /**
-   * The super-department id for which the department have to be fetched
-   * @type {string}
-   * @memberof Payload
-   */
-  superDepartmentId?: string;
-  /**
-   *
-   * @type {Array<InlineResponse200Departments>}
-   * @memberof Payload
-   */
-  departments?: Array<InlineResponse200Departments>;
+	/**
+	 * The super-department name for which the department have to be fetched
+	 * @type {string}
+	 * @memberof Payload
+	 */
+	superDepartment?: string;
+	/**
+	 * The super-department id for which the department have to be fetched
+	 * @type {string}
+	 * @memberof Payload
+	 */
+	superDepartmentId?: string;
+	/**
+	 *
+	 * @type {Array<InlineResponse200Departments>}
+	 * @memberof Payload
+	 */
+	departments?: Array<InlineResponse200Departments>;
 }
 /**
  *
@@ -346,24 +340,24 @@ export interface Payload {
  * @interface Response
  */
 export interface Response {
-  /**
-   * The department name for which the categories have to be fetched
-   * @type {string}
-   * @memberof Response
-   */
-  departmentName?: string;
-  /**
-   * The department id for which the categories have to be fetched
-   * @type {string}
-   * @memberof Response
-   */
-  departmentId?: string;
-  /**
-   *
-   * @type {Array<InlineResponse2001ResponseCategory>}
-   * @memberof Response
-   */
-  category?: Array<InlineResponse2001ResponseCategory>;
+	/**
+	 * The department name for which the categories have to be fetched
+	 * @type {string}
+	 * @memberof Response
+	 */
+	departmentName?: string;
+	/**
+	 * The department id for which the categories have to be fetched
+	 * @type {string}
+	 * @memberof Response
+	 */
+	departmentId?: string;
+	/**
+	 *
+	 * @type {Array<InlineResponse2001ResponseCategory>}
+	 * @memberof Response
+	 */
+	category?: Array<InlineResponse2001ResponseCategory>;
 }
 /**
  * Specific kind of category
@@ -371,18 +365,18 @@ export interface Response {
  * @interface SubCategory
  */
 export interface SubCategory {
-  /**
-   * Name of specific kind of category
-   * @type {string}
-   * @memberof SubCategory
-   */
-  subCategoryName?: string;
-  /**
-   * ID of specific kind of category
-   * @type {string}
-   * @memberof SubCategory
-   */
-  subCategoryId?: string;
+	/**
+	 * Name of specific kind of category
+	 * @type {string}
+	 * @memberof SubCategory
+	 */
+	subCategoryName?: string;
+	/**
+	 * ID of specific kind of category
+	 * @type {string}
+	 * @memberof SubCategory
+	 */
+	subCategoryId?: string;
 }
 /**
  *
@@ -390,333 +384,274 @@ export interface SubCategory {
  * @interface TaxonomyResponseDTO
  */
 export interface TaxonomyResponseDTO {
-  /**
-   *
-   * @type {string}
-   * @memberof TaxonomyResponseDTO
-   */
-  status?: string;
-  /**
-   *
-   * @type {Array<InlineResponse2002Payload>}
-   * @memberof TaxonomyResponseDTO
-   */
-  payload?: Array<InlineResponse2002Payload>;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof TaxonomyResponseDTO
+	 */
+	status?: string;
+	/**
+	 *
+	 * @type {Array<InlineResponse2002Payload>}
+	 * @memberof TaxonomyResponseDTO
+	 */
+	payload?: Array<InlineResponse2002Payload>;
 }
 
 /**
  * UtilitiesApi - axios parameter creator
  * @export
  */
-export const UtilitiesApiAxiosParamCreator = function (
-  configuration?: Configuration
-) {
-  return {
-    /**
-     * Get list of categories for a specific department
-     * @summary All Categories
-     * @param {string} departmentId departmentId
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getCategories: async (
-      departmentId: string,
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      wMCONSUMERCHANNELTYPE?: string,
-      options: any = {}
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'departmentId' is not null or undefined
-      assertParamExists("getCategories", "departmentId", departmentId);
-      // verify required parameter 'authorization' is not null or undefined
-      assertParamExists("getCategories", "authorization", authorization);
-      // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
-      assertParamExists("getCategories", "wMSECACCESSTOKEN", wMSECACCESSTOKEN);
-      // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
-      assertParamExists(
-        "getCategories",
-        "wMQOSCORRELATIONID",
-        wMQOSCORRELATIONID
-      );
-      // verify required parameter 'wMSVCNAME' is not null or undefined
-      assertParamExists("getCategories", "wMSVCNAME", wMSVCNAME);
-      const localVarPath =
-        `/v3/utilities/taxonomy/departments/{departmentId}`.replace(
-          `{${"departmentId"}}`,
-          encodeURIComponent(String(departmentId))
-        );
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+export const UtilitiesApiAxiosParamCreator = function (configuration?: Configuration) {
+	return {
+		/**
+		 * Get list of categories for a specific department
+		 * @summary All Categories
+		 * @param {string} departmentId departmentId
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		getCategories: async (
+			departmentId: string,
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			wMCONSUMERCHANNELTYPE?: string,
+			options: any = {}
+		): Promise<RequestArgs> => {
+			// verify required parameter 'departmentId' is not null or undefined
+			assertParamExists('getCategories', 'departmentId', departmentId);
+			// verify required parameter 'authorization' is not null or undefined
+			assertParamExists('getCategories', 'authorization', authorization);
+			// verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
+			assertParamExists('getCategories', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN);
+			// verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
+			assertParamExists('getCategories', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID);
+			// verify required parameter 'wMSVCNAME' is not null or undefined
+			assertParamExists('getCategories', 'wMSVCNAME', wMSVCNAME);
+			const localVarPath = `/v3/utilities/taxonomy/departments/{departmentId}`.replace(
+				`{${'departmentId'}}`,
+				encodeURIComponent(String(departmentId))
+			);
+			// use dummy base URL string because the URL constructor only accepts absolute URLs.
+			const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+			let baseOptions;
+			if (configuration) {
+				baseOptions = configuration.baseOptions;
+			}
 
-      const localVarRequestOptions = {
-        method: "GET",
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+			const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+			const localVarHeaderParameter = {} as any;
+			const localVarQueryParameter = {} as any;
 
-      // authentication basicScheme required
-      // http basic authentication required
-      setBasicAuthToObject(localVarRequestOptions, configuration);
+			// authentication basicScheme required
+			// http basic authentication required
+			setBasicAuthToObject(localVarRequestOptions, configuration);
 
-      if (authorization !== undefined && authorization !== null) {
-        localVarHeaderParameter["Authorization"] = String(authorization);
-      }
+			if (authorization !== undefined && authorization !== null) {
+				localVarHeaderParameter['Authorization'] = String(authorization);
+			}
 
-      if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
-        localVarHeaderParameter["WM_SEC.ACCESS_TOKEN"] =
-          String(wMSECACCESSTOKEN);
-      }
+			if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
+				localVarHeaderParameter['WM_SEC.ACCESS_TOKEN'] = String(wMSECACCESSTOKEN);
+			}
 
-      if (
-        wMCONSUMERCHANNELTYPE !== undefined &&
-        wMCONSUMERCHANNELTYPE !== null
-      ) {
-        localVarHeaderParameter["WM_CONSUMER.CHANNEL.TYPE"] = String(
-          wMCONSUMERCHANNELTYPE
-        );
-      }
+			if (wMCONSUMERCHANNELTYPE !== undefined && wMCONSUMERCHANNELTYPE !== null) {
+				localVarHeaderParameter['WM_CONSUMER.CHANNEL.TYPE'] = String(wMCONSUMERCHANNELTYPE);
+			}
 
-      if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
-        localVarHeaderParameter["WM_QOS.CORRELATION_ID"] =
-          String(wMQOSCORRELATIONID);
-      }
+			if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
+				localVarHeaderParameter['WM_QOS.CORRELATION_ID'] = String(wMQOSCORRELATIONID);
+			}
 
-      if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
-        localVarHeaderParameter["WM_SVC.NAME"] = String(wMSVCNAME);
-      }
+			if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
+				localVarHeaderParameter['WM_SVC.NAME'] = String(wMSVCNAME);
+			}
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
+			setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+			let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+			localVarRequestOptions.headers = {
+				...localVarHeaderParameter,
+				...headersFromBaseOptions,
+				...options.headers,
+			};
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * Get list of departments
-     * @summary All Departments
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getDepartmentList: async (
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      wMCONSUMERCHANNELTYPE?: string,
-      options: any = {}
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'authorization' is not null or undefined
-      assertParamExists("getDepartmentList", "authorization", authorization);
-      // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
-      assertParamExists(
-        "getDepartmentList",
-        "wMSECACCESSTOKEN",
-        wMSECACCESSTOKEN
-      );
-      // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
-      assertParamExists(
-        "getDepartmentList",
-        "wMQOSCORRELATIONID",
-        wMQOSCORRELATIONID
-      );
-      // verify required parameter 'wMSVCNAME' is not null or undefined
-      assertParamExists("getDepartmentList", "wMSVCNAME", wMSVCNAME);
-      const localVarPath = `/v3/utilities/taxonomy/departments`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+			return {
+				url: toPathString(localVarUrlObj),
+				options: localVarRequestOptions,
+			};
+		},
+		/**
+		 * Get list of departments
+		 * @summary All Departments
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		getDepartmentList: async (
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			wMCONSUMERCHANNELTYPE?: string,
+			options: any = {}
+		): Promise<RequestArgs> => {
+			// verify required parameter 'authorization' is not null or undefined
+			assertParamExists('getDepartmentList', 'authorization', authorization);
+			// verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
+			assertParamExists('getDepartmentList', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN);
+			// verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
+			assertParamExists('getDepartmentList', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID);
+			// verify required parameter 'wMSVCNAME' is not null or undefined
+			assertParamExists('getDepartmentList', 'wMSVCNAME', wMSVCNAME);
+			const localVarPath = `/v3/utilities/taxonomy/departments`;
+			// use dummy base URL string because the URL constructor only accepts absolute URLs.
+			const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+			let baseOptions;
+			if (configuration) {
+				baseOptions = configuration.baseOptions;
+			}
 
-      const localVarRequestOptions = {
-        method: "GET",
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+			const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+			const localVarHeaderParameter = {} as any;
+			const localVarQueryParameter = {} as any;
 
-      // authentication basicScheme required
-      // http basic authentication required
-      setBasicAuthToObject(localVarRequestOptions, configuration);
+			// authentication basicScheme required
+			// http basic authentication required
+			setBasicAuthToObject(localVarRequestOptions, configuration);
 
-      if (authorization !== undefined && authorization !== null) {
-        localVarHeaderParameter["Authorization"] = String(authorization);
-      }
+			if (authorization !== undefined && authorization !== null) {
+				localVarHeaderParameter['Authorization'] = String(authorization);
+			}
 
-      if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
-        localVarHeaderParameter["WM_SEC.ACCESS_TOKEN"] =
-          String(wMSECACCESSTOKEN);
-      }
+			if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
+				localVarHeaderParameter['WM_SEC.ACCESS_TOKEN'] = String(wMSECACCESSTOKEN);
+			}
 
-      if (
-        wMCONSUMERCHANNELTYPE !== undefined &&
-        wMCONSUMERCHANNELTYPE !== null
-      ) {
-        localVarHeaderParameter["WM_CONSUMER.CHANNEL.TYPE"] = String(
-          wMCONSUMERCHANNELTYPE
-        );
-      }
+			if (wMCONSUMERCHANNELTYPE !== undefined && wMCONSUMERCHANNELTYPE !== null) {
+				localVarHeaderParameter['WM_CONSUMER.CHANNEL.TYPE'] = String(wMCONSUMERCHANNELTYPE);
+			}
 
-      if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
-        localVarHeaderParameter["WM_QOS.CORRELATION_ID"] =
-          String(wMQOSCORRELATIONID);
-      }
+			if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
+				localVarHeaderParameter['WM_QOS.CORRELATION_ID'] = String(wMQOSCORRELATIONID);
+			}
 
-      if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
-        localVarHeaderParameter["WM_SVC.NAME"] = String(wMSVCNAME);
-      }
+			if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
+				localVarHeaderParameter['WM_SVC.NAME'] = String(wMSVCNAME);
+			}
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
+			setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+			let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+			localVarRequestOptions.headers = {
+				...localVarHeaderParameter,
+				...headersFromBaseOptions,
+				...options.headers,
+			};
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * The Taxonomy by Item spec API exposes the category taxonomy that Walmart.com uses to categorize items for each Item spec version. It returns a list of all Categories and Sub-categories that are available on Walmart.com for the Item spec version you specify. You can specify the feedType and version for these available Item specs. Make sure to specify the corresponding version that is available for that feed type: *   Item spec 3.2 feed type: item *   Item spec 4.0 feed types: MP_ITEM, MP_WFS_ITEM, or MP_MAINTENANCE *   Item spec 4.1 feed types: MP_WFS_ITEM, or MP_MAINTENANCE *   Item spec 4.2 feed type: MP_ITEM or MP_WFS_ITEM *   Item spec 4.3 feed type: MP_ITEM or MP_MAINTENANCE
-     * @summary Taxonomy by spec
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {'item' | 'MP_ITEM' | 'MP_WFS_ITEM' | 'MP_MAINTENANCE'} [feedType] Specifies the Feed Type
-     * @param {'3.2' | '4.0' | '4.1' | '4.2'} [version] Specifies the version for the Feed Type
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getTaxonomyResponse: async (
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      feedType?: "item" | "MP_ITEM" | "MP_WFS_ITEM" | "MP_MAINTENANCE",
-      version?: "3.2" | "4.0" | "4.1" | "4.2",
-      wMCONSUMERCHANNELTYPE?: string,
-      options: any = {}
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'authorization' is not null or undefined
-      assertParamExists("getTaxonomyResponse", "authorization", authorization);
-      // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
-      assertParamExists(
-        "getTaxonomyResponse",
-        "wMSECACCESSTOKEN",
-        wMSECACCESSTOKEN
-      );
-      // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
-      assertParamExists(
-        "getTaxonomyResponse",
-        "wMQOSCORRELATIONID",
-        wMQOSCORRELATIONID
-      );
-      // verify required parameter 'wMSVCNAME' is not null or undefined
-      assertParamExists("getTaxonomyResponse", "wMSVCNAME", wMSVCNAME);
-      const localVarPath = `/v3/utilities/taxonomy`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+			return {
+				url: toPathString(localVarUrlObj),
+				options: localVarRequestOptions,
+			};
+		},
+		/**
+		 * The Taxonomy by Item spec API exposes the category taxonomy that Walmart.com uses to categorize items for each Item spec version. It returns a list of all Categories and Sub-categories that are available on Walmart.com for the Item spec version you specify. You can specify the feedType and version for these available Item specs. Make sure to specify the corresponding version that is available for that feed type: *   Item spec 3.2 feed type: item *   Item spec 4.0 feed types: MP_ITEM, MP_WFS_ITEM, or MP_MAINTENANCE *   Item spec 4.1 feed types: MP_WFS_ITEM, or MP_MAINTENANCE *   Item spec 4.2 feed type: MP_ITEM or MP_WFS_ITEM *   Item spec 4.3 feed type: MP_ITEM or MP_MAINTENANCE
+		 * @summary Taxonomy by spec
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {'item' | 'MP_ITEM' | 'MP_WFS_ITEM' | 'MP_MAINTENANCE'} [feedType] Specifies the Feed Type
+		 * @param {'3.2' | '4.0' | '4.1' | '4.2'} [version] Specifies the version for the Feed Type
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		getTaxonomyResponse: async (
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			feedType?: 'item' | 'MP_ITEM' | 'MP_WFS_ITEM' | 'MP_MAINTENANCE',
+			version?: '3.2' | '4.0' | '4.1' | '4.2',
+			wMCONSUMERCHANNELTYPE?: string,
+			options: any = {}
+		): Promise<RequestArgs> => {
+			// verify required parameter 'authorization' is not null or undefined
+			assertParamExists('getTaxonomyResponse', 'authorization', authorization);
+			// verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
+			assertParamExists('getTaxonomyResponse', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN);
+			// verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
+			assertParamExists('getTaxonomyResponse', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID);
+			// verify required parameter 'wMSVCNAME' is not null or undefined
+			assertParamExists('getTaxonomyResponse', 'wMSVCNAME', wMSVCNAME);
+			const localVarPath = `/v3/utilities/taxonomy`;
+			// use dummy base URL string because the URL constructor only accepts absolute URLs.
+			const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+			let baseOptions;
+			if (configuration) {
+				baseOptions = configuration.baseOptions;
+			}
 
-      const localVarRequestOptions = {
-        method: "GET",
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+			const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+			const localVarHeaderParameter = {} as any;
+			const localVarQueryParameter = {} as any;
 
-      // authentication basicScheme required
-      // http basic authentication required
-      setBasicAuthToObject(localVarRequestOptions, configuration);
+			// authentication basicScheme required
+			// http basic authentication required
+			setBasicAuthToObject(localVarRequestOptions, configuration);
 
-      if (feedType !== undefined) {
-        localVarQueryParameter["feedType"] = feedType;
-      }
+			if (feedType !== undefined) {
+				localVarQueryParameter['feedType'] = feedType;
+			}
 
-      if (version !== undefined) {
-        localVarQueryParameter["version"] = version;
-      }
+			if (version !== undefined) {
+				localVarQueryParameter['version'] = version;
+			}
 
-      if (authorization !== undefined && authorization !== null) {
-        localVarHeaderParameter["Authorization"] = String(authorization);
-      }
+			if (authorization !== undefined && authorization !== null) {
+				localVarHeaderParameter['Authorization'] = String(authorization);
+			}
 
-      if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
-        localVarHeaderParameter["WM_SEC.ACCESS_TOKEN"] =
-          String(wMSECACCESSTOKEN);
-      }
+			if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
+				localVarHeaderParameter['WM_SEC.ACCESS_TOKEN'] = String(wMSECACCESSTOKEN);
+			}
 
-      if (
-        wMCONSUMERCHANNELTYPE !== undefined &&
-        wMCONSUMERCHANNELTYPE !== null
-      ) {
-        localVarHeaderParameter["WM_CONSUMER.CHANNEL.TYPE"] = String(
-          wMCONSUMERCHANNELTYPE
-        );
-      }
+			if (wMCONSUMERCHANNELTYPE !== undefined && wMCONSUMERCHANNELTYPE !== null) {
+				localVarHeaderParameter['WM_CONSUMER.CHANNEL.TYPE'] = String(wMCONSUMERCHANNELTYPE);
+			}
 
-      if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
-        localVarHeaderParameter["WM_QOS.CORRELATION_ID"] =
-          String(wMQOSCORRELATIONID);
-      }
+			if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
+				localVarHeaderParameter['WM_QOS.CORRELATION_ID'] = String(wMQOSCORRELATIONID);
+			}
 
-      if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
-        localVarHeaderParameter["WM_SVC.NAME"] = String(wMSVCNAME);
-      }
+			if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
+				localVarHeaderParameter['WM_SVC.NAME'] = String(wMSVCNAME);
+			}
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
+			setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+			let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+			localVarRequestOptions.headers = {
+				...localVarHeaderParameter,
+				...headersFromBaseOptions,
+				...options.headers,
+			};
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-  };
+			return {
+				url: toPathString(localVarUrlObj),
+				options: localVarRequestOptions,
+			};
+		},
+	};
 };
 
 /**
@@ -724,251 +659,214 @@ export const UtilitiesApiAxiosParamCreator = function (
  * @export
  */
 export const UtilitiesApiFp = function (configuration?: Configuration) {
-  const localVarAxiosParamCreator =
-    UtilitiesApiAxiosParamCreator(configuration);
-  return {
-    /**
-     * Get list of categories for a specific department
-     * @summary All Categories
-     * @param {string} departmentId departmentId
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async getCategories(
-      departmentId: string,
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      wMCONSUMERCHANNELTYPE?: string,
-      options?: any
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<InlineResponse2001>
-    > {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.getCategories(
-        departmentId,
-        authorization,
-        wMSECACCESSTOKEN,
-        wMQOSCORRELATIONID,
-        wMSVCNAME,
-        wMCONSUMERCHANNELTYPE,
-        options
-      );
-      return createRequestFunction(
-        localVarAxiosArgs,
-        globalAxios,
-        BASE_PATH,
-        configuration
-      );
-    },
-    /**
-     * Get list of departments
-     * @summary All Departments
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async getDepartmentList(
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      wMCONSUMERCHANNELTYPE?: string,
-      options?: any
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<InlineResponse200>
-    > {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getDepartmentList(
-          authorization,
-          wMSECACCESSTOKEN,
-          wMQOSCORRELATIONID,
-          wMSVCNAME,
-          wMCONSUMERCHANNELTYPE,
-          options
-        );
-      return createRequestFunction(
-        localVarAxiosArgs,
-        globalAxios,
-        BASE_PATH,
-        configuration
-      );
-    },
-    /**
-     * The Taxonomy by Item spec API exposes the category taxonomy that Walmart.com uses to categorize items for each Item spec version. It returns a list of all Categories and Sub-categories that are available on Walmart.com for the Item spec version you specify. You can specify the feedType and version for these available Item specs. Make sure to specify the corresponding version that is available for that feed type: *   Item spec 3.2 feed type: item *   Item spec 4.0 feed types: MP_ITEM, MP_WFS_ITEM, or MP_MAINTENANCE *   Item spec 4.1 feed types: MP_WFS_ITEM, or MP_MAINTENANCE *   Item spec 4.2 feed type: MP_ITEM or MP_WFS_ITEM *   Item spec 4.3 feed type: MP_ITEM or MP_MAINTENANCE
-     * @summary Taxonomy by spec
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {'item' | 'MP_ITEM' | 'MP_WFS_ITEM' | 'MP_MAINTENANCE'} [feedType] Specifies the Feed Type
-     * @param {'3.2' | '4.0' | '4.1' | '4.2'} [version] Specifies the version for the Feed Type
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async getTaxonomyResponse(
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      feedType?: "item" | "MP_ITEM" | "MP_WFS_ITEM" | "MP_MAINTENANCE",
-      version?: "3.2" | "4.0" | "4.1" | "4.2",
-      wMCONSUMERCHANNELTYPE?: string,
-      options?: any
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<InlineResponse2002>
-    > {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getTaxonomyResponse(
-          authorization,
-          wMSECACCESSTOKEN,
-          wMQOSCORRELATIONID,
-          wMSVCNAME,
-          feedType,
-          version,
-          wMCONSUMERCHANNELTYPE,
-          options
-        );
-      return createRequestFunction(
-        localVarAxiosArgs,
-        globalAxios,
-        BASE_PATH,
-        configuration
-      );
-    },
-  };
+	const localVarAxiosParamCreator = UtilitiesApiAxiosParamCreator(configuration);
+	return {
+		/**
+		 * Get list of categories for a specific department
+		 * @summary All Categories
+		 * @param {string} departmentId departmentId
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		async getCategories(
+			departmentId: string,
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			wMCONSUMERCHANNELTYPE?: string,
+			options?: any
+		): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
+			const localVarAxiosArgs = await localVarAxiosParamCreator.getCategories(
+				departmentId,
+				authorization,
+				wMSECACCESSTOKEN,
+				wMQOSCORRELATIONID,
+				wMSVCNAME,
+				wMCONSUMERCHANNELTYPE,
+				options
+			);
+			return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+		},
+		/**
+		 * Get list of departments
+		 * @summary All Departments
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		async getDepartmentList(
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			wMCONSUMERCHANNELTYPE?: string,
+			options?: any
+		): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
+			const localVarAxiosArgs = await localVarAxiosParamCreator.getDepartmentList(
+				authorization,
+				wMSECACCESSTOKEN,
+				wMQOSCORRELATIONID,
+				wMSVCNAME,
+				wMCONSUMERCHANNELTYPE,
+				options
+			);
+			return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+		},
+		/**
+		 * The Taxonomy by Item spec API exposes the category taxonomy that Walmart.com uses to categorize items for each Item spec version. It returns a list of all Categories and Sub-categories that are available on Walmart.com for the Item spec version you specify. You can specify the feedType and version for these available Item specs. Make sure to specify the corresponding version that is available for that feed type: *   Item spec 3.2 feed type: item *   Item spec 4.0 feed types: MP_ITEM, MP_WFS_ITEM, or MP_MAINTENANCE *   Item spec 4.1 feed types: MP_WFS_ITEM, or MP_MAINTENANCE *   Item spec 4.2 feed type: MP_ITEM or MP_WFS_ITEM *   Item spec 4.3 feed type: MP_ITEM or MP_MAINTENANCE
+		 * @summary Taxonomy by spec
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {'item' | 'MP_ITEM' | 'MP_WFS_ITEM' | 'MP_MAINTENANCE'} [feedType] Specifies the Feed Type
+		 * @param {'3.2' | '4.0' | '4.1' | '4.2'} [version] Specifies the version for the Feed Type
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		async getTaxonomyResponse(
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			feedType?: 'item' | 'MP_ITEM' | 'MP_WFS_ITEM' | 'MP_MAINTENANCE',
+			version?: '3.2' | '4.0' | '4.1' | '4.2',
+			wMCONSUMERCHANNELTYPE?: string,
+			options?: any
+		): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2002>> {
+			const localVarAxiosArgs = await localVarAxiosParamCreator.getTaxonomyResponse(
+				authorization,
+				wMSECACCESSTOKEN,
+				wMQOSCORRELATIONID,
+				wMSVCNAME,
+				feedType,
+				version,
+				wMCONSUMERCHANNELTYPE,
+				options
+			);
+			return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+		},
+	};
 };
 
 /**
  * UtilitiesApi - factory interface
  * @export
  */
-export const UtilitiesApiFactory = function (
-  configuration?: Configuration,
-  basePath?: string,
-  axios?: AxiosInstance
-) {
-  const localVarFp = UtilitiesApiFp(configuration);
-  return {
-    /**
-     * Get list of categories for a specific department
-     * @summary All Categories
-     * @param {string} departmentId departmentId
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getCategories(
-      departmentId: string,
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      wMCONSUMERCHANNELTYPE?: string,
-      options?: any
-    ): AxiosPromise<InlineResponse2001> {
-      return localVarFp
-        .getCategories(
-          departmentId,
-          authorization,
-          wMSECACCESSTOKEN,
-          wMQOSCORRELATIONID,
-          wMSVCNAME,
-          wMCONSUMERCHANNELTYPE,
-          options
-        )
-        .then((request) => request(axios, basePath));
-    },
-    /**
-     * Get list of departments
-     * @summary All Departments
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getDepartmentList(
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      wMCONSUMERCHANNELTYPE?: string,
-      options?: any
-    ): AxiosPromise<InlineResponse200> {
-      return localVarFp
-        .getDepartmentList(
-          authorization,
-          wMSECACCESSTOKEN,
-          wMQOSCORRELATIONID,
-          wMSVCNAME,
-          wMCONSUMERCHANNELTYPE,
-          options
-        )
-        .then((request) => request(axios, basePath));
-    },
-    /**
-     * The Taxonomy by Item spec API exposes the category taxonomy that Walmart.com uses to categorize items for each Item spec version. It returns a list of all Categories and Sub-categories that are available on Walmart.com for the Item spec version you specify. You can specify the feedType and version for these available Item specs. Make sure to specify the corresponding version that is available for that feed type: *   Item spec 3.2 feed type: item *   Item spec 4.0 feed types: MP_ITEM, MP_WFS_ITEM, or MP_MAINTENANCE *   Item spec 4.1 feed types: MP_WFS_ITEM, or MP_MAINTENANCE *   Item spec 4.2 feed type: MP_ITEM or MP_WFS_ITEM *   Item spec 4.3 feed type: MP_ITEM or MP_MAINTENANCE
-     * @summary Taxonomy by spec
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {'item' | 'MP_ITEM' | 'MP_WFS_ITEM' | 'MP_MAINTENANCE'} [feedType] Specifies the Feed Type
-     * @param {'3.2' | '4.0' | '4.1' | '4.2'} [version] Specifies the version for the Feed Type
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getTaxonomyResponse(
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      feedType?: "item" | "MP_ITEM" | "MP_WFS_ITEM" | "MP_MAINTENANCE",
-      version?: "3.2" | "4.0" | "4.1" | "4.2",
-      wMCONSUMERCHANNELTYPE?: string,
-      options?: any
-    ): AxiosPromise<InlineResponse2002> {
-      return localVarFp
-        .getTaxonomyResponse(
-          authorization,
-          wMSECACCESSTOKEN,
-          wMQOSCORRELATIONID,
-          wMSVCNAME,
-          feedType,
-          version,
-          wMCONSUMERCHANNELTYPE,
-          options
-        )
-        .then((request) => request(axios, basePath));
-    },
-  };
+export const UtilitiesApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+	const localVarFp = UtilitiesApiFp(configuration);
+	return {
+		/**
+		 * Get list of categories for a specific department
+		 * @summary All Categories
+		 * @param {string} departmentId departmentId
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		getCategories(
+			departmentId: string,
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			wMCONSUMERCHANNELTYPE?: string,
+			options?: any
+		): AxiosPromise<InlineResponse2001> {
+			return localVarFp
+				.getCategories(
+					departmentId,
+					authorization,
+					wMSECACCESSTOKEN,
+					wMQOSCORRELATIONID,
+					wMSVCNAME,
+					wMCONSUMERCHANNELTYPE,
+					options
+				)
+				.then((request) => request(axios, basePath));
+		},
+		/**
+		 * Get list of departments
+		 * @summary All Departments
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		getDepartmentList(
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			wMCONSUMERCHANNELTYPE?: string,
+			options?: any
+		): AxiosPromise<InlineResponse200> {
+			return localVarFp
+				.getDepartmentList(
+					authorization,
+					wMSECACCESSTOKEN,
+					wMQOSCORRELATIONID,
+					wMSVCNAME,
+					wMCONSUMERCHANNELTYPE,
+					options
+				)
+				.then((request) => request(axios, basePath));
+		},
+		/**
+		 * The Taxonomy by Item spec API exposes the category taxonomy that Walmart.com uses to categorize items for each Item spec version. It returns a list of all Categories and Sub-categories that are available on Walmart.com for the Item spec version you specify. You can specify the feedType and version for these available Item specs. Make sure to specify the corresponding version that is available for that feed type: *   Item spec 3.2 feed type: item *   Item spec 4.0 feed types: MP_ITEM, MP_WFS_ITEM, or MP_MAINTENANCE *   Item spec 4.1 feed types: MP_WFS_ITEM, or MP_MAINTENANCE *   Item spec 4.2 feed type: MP_ITEM or MP_WFS_ITEM *   Item spec 4.3 feed type: MP_ITEM or MP_MAINTENANCE
+		 * @summary Taxonomy by spec
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {'item' | 'MP_ITEM' | 'MP_WFS_ITEM' | 'MP_MAINTENANCE'} [feedType] Specifies the Feed Type
+		 * @param {'3.2' | '4.0' | '4.1' | '4.2'} [version] Specifies the version for the Feed Type
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		getTaxonomyResponse(
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			feedType?: 'item' | 'MP_ITEM' | 'MP_WFS_ITEM' | 'MP_MAINTENANCE',
+			version?: '3.2' | '4.0' | '4.1' | '4.2',
+			wMCONSUMERCHANNELTYPE?: string,
+			options?: any
+		): AxiosPromise<InlineResponse2002> {
+			return localVarFp
+				.getTaxonomyResponse(
+					authorization,
+					wMSECACCESSTOKEN,
+					wMQOSCORRELATIONID,
+					wMSVCNAME,
+					feedType,
+					version,
+					wMCONSUMERCHANNELTYPE,
+					options
+				)
+				.then((request) => request(axios, basePath));
+		},
+	};
 };
 
 /**
@@ -977,47 +875,47 @@ export const UtilitiesApiFactory = function (
  * @interface UtilitiesApiGetCategoriesRequest
  */
 export interface UtilitiesApiGetCategoriesRequest {
-  /**
-   * departmentId
-   * @type {string}
-   * @memberof UtilitiesApiGetCategories
-   */
-  readonly departmentId: string;
+	/**
+	 * departmentId
+	 * @type {string}
+	 * @memberof UtilitiesApiGetCategories
+	 */
+	readonly departmentId: string;
 
-  /**
-   * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-   * @type {string}
-   * @memberof UtilitiesApiGetCategories
-   */
-  readonly authorization: string;
+	/**
+	 * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+	 * @type {string}
+	 * @memberof UtilitiesApiGetCategories
+	 */
+	readonly authorization: string;
 
-  /**
-   * The access token retrieved in the Token API call
-   * @type {string}
-   * @memberof UtilitiesApiGetCategories
-   */
-  readonly wMSECACCESSTOKEN: string;
+	/**
+	 * The access token retrieved in the Token API call
+	 * @type {string}
+	 * @memberof UtilitiesApiGetCategories
+	 */
+	readonly wMSECACCESSTOKEN: string;
 
-  /**
-   * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-   * @type {string}
-   * @memberof UtilitiesApiGetCategories
-   */
-  readonly wMQOSCORRELATIONID: string;
+	/**
+	 * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+	 * @type {string}
+	 * @memberof UtilitiesApiGetCategories
+	 */
+	readonly wMQOSCORRELATIONID: string;
 
-  /**
-   * Walmart Service Name
-   * @type {string}
-   * @memberof UtilitiesApiGetCategories
-   */
-  readonly wMSVCNAME: string;
+	/**
+	 * Walmart Service Name
+	 * @type {string}
+	 * @memberof UtilitiesApiGetCategories
+	 */
+	readonly wMSVCNAME: string;
 
-  /**
-   * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-   * @type {string}
-   * @memberof UtilitiesApiGetCategories
-   */
-  readonly wMCONSUMERCHANNELTYPE?: string;
+	/**
+	 * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+	 * @type {string}
+	 * @memberof UtilitiesApiGetCategories
+	 */
+	readonly wMCONSUMERCHANNELTYPE?: string;
 }
 
 /**
@@ -1026,40 +924,40 @@ export interface UtilitiesApiGetCategoriesRequest {
  * @interface UtilitiesApiGetDepartmentListRequest
  */
 export interface UtilitiesApiGetDepartmentListRequest {
-  /**
-   * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-   * @type {string}
-   * @memberof UtilitiesApiGetDepartmentList
-   */
-  readonly authorization: string;
+	/**
+	 * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+	 * @type {string}
+	 * @memberof UtilitiesApiGetDepartmentList
+	 */
+	readonly authorization: string;
 
-  /**
-   * The access token retrieved in the Token API call
-   * @type {string}
-   * @memberof UtilitiesApiGetDepartmentList
-   */
-  readonly wMSECACCESSTOKEN: string;
+	/**
+	 * The access token retrieved in the Token API call
+	 * @type {string}
+	 * @memberof UtilitiesApiGetDepartmentList
+	 */
+	readonly wMSECACCESSTOKEN: string;
 
-  /**
-   * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-   * @type {string}
-   * @memberof UtilitiesApiGetDepartmentList
-   */
-  readonly wMQOSCORRELATIONID: string;
+	/**
+	 * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+	 * @type {string}
+	 * @memberof UtilitiesApiGetDepartmentList
+	 */
+	readonly wMQOSCORRELATIONID: string;
 
-  /**
-   * Walmart Service Name
-   * @type {string}
-   * @memberof UtilitiesApiGetDepartmentList
-   */
-  readonly wMSVCNAME: string;
+	/**
+	 * Walmart Service Name
+	 * @type {string}
+	 * @memberof UtilitiesApiGetDepartmentList
+	 */
+	readonly wMSVCNAME: string;
 
-  /**
-   * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-   * @type {string}
-   * @memberof UtilitiesApiGetDepartmentList
-   */
-  readonly wMCONSUMERCHANNELTYPE?: string;
+	/**
+	 * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+	 * @type {string}
+	 * @memberof UtilitiesApiGetDepartmentList
+	 */
+	readonly wMCONSUMERCHANNELTYPE?: string;
 }
 
 /**
@@ -1068,54 +966,54 @@ export interface UtilitiesApiGetDepartmentListRequest {
  * @interface UtilitiesApiGetTaxonomyResponseRequest
  */
 export interface UtilitiesApiGetTaxonomyResponseRequest {
-  /**
-   * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-   * @type {string}
-   * @memberof UtilitiesApiGetTaxonomyResponse
-   */
-  readonly authorization: string;
+	/**
+	 * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+	 * @type {string}
+	 * @memberof UtilitiesApiGetTaxonomyResponse
+	 */
+	readonly authorization: string;
 
-  /**
-   * The access token retrieved in the Token API call
-   * @type {string}
-   * @memberof UtilitiesApiGetTaxonomyResponse
-   */
-  readonly wMSECACCESSTOKEN: string;
+	/**
+	 * The access token retrieved in the Token API call
+	 * @type {string}
+	 * @memberof UtilitiesApiGetTaxonomyResponse
+	 */
+	readonly wMSECACCESSTOKEN: string;
 
-  /**
-   * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-   * @type {string}
-   * @memberof UtilitiesApiGetTaxonomyResponse
-   */
-  readonly wMQOSCORRELATIONID: string;
+	/**
+	 * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+	 * @type {string}
+	 * @memberof UtilitiesApiGetTaxonomyResponse
+	 */
+	readonly wMQOSCORRELATIONID: string;
 
-  /**
-   * Walmart Service Name
-   * @type {string}
-   * @memberof UtilitiesApiGetTaxonomyResponse
-   */
-  readonly wMSVCNAME: string;
+	/**
+	 * Walmart Service Name
+	 * @type {string}
+	 * @memberof UtilitiesApiGetTaxonomyResponse
+	 */
+	readonly wMSVCNAME: string;
 
-  /**
-   * Specifies the Feed Type
-   * @type {'item' | 'MP_ITEM' | 'MP_WFS_ITEM' | 'MP_MAINTENANCE'}
-   * @memberof UtilitiesApiGetTaxonomyResponse
-   */
-  readonly feedType?: "item" | "MP_ITEM" | "MP_WFS_ITEM" | "MP_MAINTENANCE";
+	/**
+	 * Specifies the Feed Type
+	 * @type {'item' | 'MP_ITEM' | 'MP_WFS_ITEM' | 'MP_MAINTENANCE'}
+	 * @memberof UtilitiesApiGetTaxonomyResponse
+	 */
+	readonly feedType?: 'item' | 'MP_ITEM' | 'MP_WFS_ITEM' | 'MP_MAINTENANCE';
 
-  /**
-   * Specifies the version for the Feed Type
-   * @type {'3.2' | '4.0' | '4.1' | '4.2'}
-   * @memberof UtilitiesApiGetTaxonomyResponse
-   */
-  readonly version?: "3.2" | "4.0" | "4.1" | "4.2";
+	/**
+	 * Specifies the version for the Feed Type
+	 * @type {'3.2' | '4.0' | '4.1' | '4.2'}
+	 * @memberof UtilitiesApiGetTaxonomyResponse
+	 */
+	readonly version?: '3.2' | '4.0' | '4.1' | '4.2';
 
-  /**
-   * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-   * @type {string}
-   * @memberof UtilitiesApiGetTaxonomyResponse
-   */
-  readonly wMCONSUMERCHANNELTYPE?: string;
+	/**
+	 * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+	 * @type {string}
+	 * @memberof UtilitiesApiGetTaxonomyResponse
+	 */
+	readonly wMCONSUMERCHANNELTYPE?: string;
 }
 
 /**
@@ -1125,78 +1023,69 @@ export interface UtilitiesApiGetTaxonomyResponseRequest {
  * @extends {BaseAPI}
  */
 export class UtilitiesApi extends BaseAPI {
-  /**
-   * Get list of categories for a specific department
-   * @summary All Categories
-   * @param {UtilitiesApiGetCategoriesRequest} requestParameters Request parameters.
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof UtilitiesApi
-   */
-  public getCategories(
-    requestParameters: UtilitiesApiGetCategoriesRequest,
-    options?: any
-  ) {
-    return UtilitiesApiFp(this.configuration)
-      .getCategories(
-        requestParameters.departmentId,
-        requestParameters.authorization,
-        requestParameters.wMSECACCESSTOKEN,
-        requestParameters.wMQOSCORRELATIONID,
-        requestParameters.wMSVCNAME,
-        requestParameters.wMCONSUMERCHANNELTYPE,
-        options
-      )
-      .then((request) => request(this.axios, this.basePath));
-  }
+	/**
+	 * Get list of categories for a specific department
+	 * @summary All Categories
+	 * @param {UtilitiesApiGetCategoriesRequest} requestParameters Request parameters.
+	 * @param {*} [options] Override http request option.
+	 * @throws {RequiredError}
+	 * @memberof UtilitiesApi
+	 */
+	public getCategories(requestParameters: UtilitiesApiGetCategoriesRequest, options?: any) {
+		return UtilitiesApiFp(this.configuration)
+			.getCategories(
+				requestParameters.departmentId,
+				requestParameters.authorization,
+				requestParameters.wMSECACCESSTOKEN,
+				requestParameters.wMQOSCORRELATIONID,
+				requestParameters.wMSVCNAME,
+				requestParameters.wMCONSUMERCHANNELTYPE,
+				options
+			)
+			.then((request) => request(this.axios, this.basePath));
+	}
 
-  /**
-   * Get list of departments
-   * @summary All Departments
-   * @param {UtilitiesApiGetDepartmentListRequest} requestParameters Request parameters.
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof UtilitiesApi
-   */
-  public getDepartmentList(
-    requestParameters: UtilitiesApiGetDepartmentListRequest,
-    options?: any
-  ) {
-    return UtilitiesApiFp(this.configuration)
-      .getDepartmentList(
-        requestParameters.authorization,
-        requestParameters.wMSECACCESSTOKEN,
-        requestParameters.wMQOSCORRELATIONID,
-        requestParameters.wMSVCNAME,
-        requestParameters.wMCONSUMERCHANNELTYPE,
-        options
-      )
-      .then((request) => request(this.axios, this.basePath));
-  }
+	/**
+	 * Get list of departments
+	 * @summary All Departments
+	 * @param {UtilitiesApiGetDepartmentListRequest} requestParameters Request parameters.
+	 * @param {*} [options] Override http request option.
+	 * @throws {RequiredError}
+	 * @memberof UtilitiesApi
+	 */
+	public getDepartmentList(requestParameters: UtilitiesApiGetDepartmentListRequest, options?: any) {
+		return UtilitiesApiFp(this.configuration)
+			.getDepartmentList(
+				requestParameters.authorization,
+				requestParameters.wMSECACCESSTOKEN,
+				requestParameters.wMQOSCORRELATIONID,
+				requestParameters.wMSVCNAME,
+				requestParameters.wMCONSUMERCHANNELTYPE,
+				options
+			)
+			.then((request) => request(this.axios, this.basePath));
+	}
 
-  /**
-   * The Taxonomy by Item spec API exposes the category taxonomy that Walmart.com uses to categorize items for each Item spec version. It returns a list of all Categories and Sub-categories that are available on Walmart.com for the Item spec version you specify. You can specify the feedType and version for these available Item specs. Make sure to specify the corresponding version that is available for that feed type: *   Item spec 3.2 feed type: item *   Item spec 4.0 feed types: MP_ITEM, MP_WFS_ITEM, or MP_MAINTENANCE *   Item spec 4.1 feed types: MP_WFS_ITEM, or MP_MAINTENANCE *   Item spec 4.2 feed type: MP_ITEM or MP_WFS_ITEM *   Item spec 4.3 feed type: MP_ITEM or MP_MAINTENANCE
-   * @summary Taxonomy by spec
-   * @param {UtilitiesApiGetTaxonomyResponseRequest} requestParameters Request parameters.
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof UtilitiesApi
-   */
-  public getTaxonomyResponse(
-    requestParameters: UtilitiesApiGetTaxonomyResponseRequest,
-    options?: any
-  ) {
-    return UtilitiesApiFp(this.configuration)
-      .getTaxonomyResponse(
-        requestParameters.authorization,
-        requestParameters.wMSECACCESSTOKEN,
-        requestParameters.wMQOSCORRELATIONID,
-        requestParameters.wMSVCNAME,
-        requestParameters.feedType,
-        requestParameters.version,
-        requestParameters.wMCONSUMERCHANNELTYPE,
-        options
-      )
-      .then((request) => request(this.axios, this.basePath));
-  }
+	/**
+	 * The Taxonomy by Item spec API exposes the category taxonomy that Walmart.com uses to categorize items for each Item spec version. It returns a list of all Categories and Sub-categories that are available on Walmart.com for the Item spec version you specify. You can specify the feedType and version for these available Item specs. Make sure to specify the corresponding version that is available for that feed type: *   Item spec 3.2 feed type: item *   Item spec 4.0 feed types: MP_ITEM, MP_WFS_ITEM, or MP_MAINTENANCE *   Item spec 4.1 feed types: MP_WFS_ITEM, or MP_MAINTENANCE *   Item spec 4.2 feed type: MP_ITEM or MP_WFS_ITEM *   Item spec 4.3 feed type: MP_ITEM or MP_MAINTENANCE
+	 * @summary Taxonomy by spec
+	 * @param {UtilitiesApiGetTaxonomyResponseRequest} requestParameters Request parameters.
+	 * @param {*} [options] Override http request option.
+	 * @throws {RequiredError}
+	 * @memberof UtilitiesApi
+	 */
+	public getTaxonomyResponse(requestParameters: UtilitiesApiGetTaxonomyResponseRequest, options?: any) {
+		return UtilitiesApiFp(this.configuration)
+			.getTaxonomyResponse(
+				requestParameters.authorization,
+				requestParameters.wMSECACCESSTOKEN,
+				requestParameters.wMQOSCORRELATIONID,
+				requestParameters.wMSVCNAME,
+				requestParameters.feedType,
+				requestParameters.version,
+				requestParameters.wMCONSUMERCHANNELTYPE,
+				options
+			)
+			.then((request) => request(this.axios, this.basePath));
+	}
 }

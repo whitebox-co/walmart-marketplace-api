@@ -12,30 +12,24 @@
  * Do not edit the class manually.
  */
 
-import { Configuration } from "./configuration";
-import globalAxios, { AxiosPromise, AxiosInstance } from "axios";
+import { Configuration } from './configuration';
+import globalAxios, { AxiosPromise, AxiosInstance } from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import {
-  DUMMY_BASE_URL,
-  assertParamExists,
-  setApiKeyToObject,
-  setBasicAuthToObject,
-  setBearerAuthToObject,
-  setOAuthToObject,
-  setSearchParams,
-  serializeDataIfNeeded,
-  toPathString,
-  createRequestFunction,
-} from "./common";
+	DUMMY_BASE_URL,
+	assertParamExists,
+	setApiKeyToObject,
+	setBasicAuthToObject,
+	setBearerAuthToObject,
+	setOAuthToObject,
+	setSearchParams,
+	serializeDataIfNeeded,
+	toPathString,
+	createRequestFunction,
+} from './common';
 // @ts-ignore
-import {
-  BASE_PATH,
-  COLLECTION_FORMATS,
-  RequestArgs,
-  BaseAPI,
-  RequiredError,
-} from "./base";
+import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from './base';
 
 /**
  *
@@ -43,30 +37,30 @@ import {
  * @interface Cause
  */
 export interface Cause {
-  /**
-   *
-   * @type {string}
-   * @memberof Cause
-   */
-  code?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof Cause
-   */
-  field?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof Cause
-   */
-  type?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof Cause
-   */
-  description?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof Cause
+	 */
+	code?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof Cause
+	 */
+	field?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof Cause
+	 */
+	type?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof Cause
+	 */
+	description?: string;
 }
 /**
  *
@@ -74,12 +68,12 @@ export interface Cause {
  * @interface Elements
  */
 export interface Elements {
-  /**
-   *
-   * @type {Array<InlineResponse2002ElementsInventories>}
-   * @memberof Elements
-   */
-  inventories?: Array<InlineResponse2002ElementsInventories>;
+	/**
+	 *
+	 * @type {Array<InlineResponse2001ElementsInventories>}
+	 * @memberof Elements
+	 */
+	inventories?: Array<InlineResponse2001ElementsInventories>;
 }
 /**
  *
@@ -87,24 +81,24 @@ export interface Elements {
  * @interface FeedId
  */
 export interface FeedId {
-  /**
-   * A unique ID, returned from the Bulk Upload API, used for tracking the feed file
-   * @type {string}
-   * @memberof FeedId
-   */
-  feedId?: string;
-  /**
-   *
-   * @type {object}
-   * @memberof FeedId
-   */
-  additionalAttributes?: object | null;
-  /**
-   *
-   * @type {object}
-   * @memberof FeedId
-   */
-  errors?: object | null;
+	/**
+	 * A unique ID, returned from the Bulk Upload API, used for tracking the feed file
+	 * @type {string}
+	 * @memberof FeedId
+	 */
+	feedId?: string;
+	/**
+	 *
+	 * @type {object}
+	 * @memberof FeedId
+	 */
+	additionalAttributes?: object | null;
+	/**
+	 *
+	 * @type {object}
+	 * @memberof FeedId
+	 */
+	errors?: object | null;
 }
 /**
  *
@@ -112,18 +106,18 @@ export interface FeedId {
  * @interface GetAllInventoriesDTO
  */
 export interface GetAllInventoriesDTO {
-  /**
-   * An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item.
-   * @type {string}
-   * @memberof GetAllInventoriesDTO
-   */
-  sku?: string;
-  /**
-   *
-   * @type {Array<InlineResponse2002ElementsNodes>}
-   * @memberof GetAllInventoriesDTO
-   */
-  nodes?: Array<InlineResponse2002ElementsNodes>;
+	/**
+	 * An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item.
+	 * @type {string}
+	 * @memberof GetAllInventoriesDTO
+	 */
+	sku?: string;
+	/**
+	 *
+	 * @type {Array<InlineResponse2001ElementsNodes>}
+	 * @memberof GetAllInventoriesDTO
+	 */
+	nodes?: Array<InlineResponse2001ElementsNodes>;
 }
 /**
  *
@@ -131,24 +125,24 @@ export interface GetAllInventoriesDTO {
  * @interface GetAllInventoriesNodeDTO
  */
 export interface GetAllInventoriesNodeDTO {
-  /**
-   * ShipNode Id of the ship node for which the inventory is requested
-   * @type {string}
-   * @memberof GetAllInventoriesNodeDTO
-   */
-  shipNode?: string;
-  /**
-   *
-   * @type {InlineResponse200Quantity}
-   * @memberof GetAllInventoriesNodeDTO
-   */
-  inputQty?: InlineResponse200Quantity;
-  /**
-   *
-   * @type {InlineResponse200Quantity}
-   * @memberof GetAllInventoriesNodeDTO
-   */
-  availToSellQty?: InlineResponse200Quantity;
+	/**
+	 * ShipNode Id of the ship node for which the inventory is requested
+	 * @type {string}
+	 * @memberof GetAllInventoriesNodeDTO
+	 */
+	shipNode?: string;
+	/**
+	 *
+	 * @type {InlineResponse200Quantity}
+	 * @memberof GetAllInventoriesNodeDTO
+	 */
+	inputQty?: InlineResponse200Quantity;
+	/**
+	 *
+	 * @type {InlineResponse200Quantity}
+	 * @memberof GetAllInventoriesNodeDTO
+	 */
+	availToSellQty?: InlineResponse200Quantity;
 }
 /**
  *
@@ -156,24 +150,24 @@ export interface GetAllInventoriesNodeDTO {
  * @interface Headers
  */
 export interface Headers {
-  /**
-   * Total number of results for query.
-   * @type {number}
-   * @memberof Headers
-   */
-  totalCount?: number;
-  /**
-   * Information about the quantity in inventory
-   * @type {number}
-   * @memberof Headers
-   */
-  limit?: number;
-  /**
-   * Offset is the number of records you wish to skip before selecting results.
-   * @type {number}
-   * @memberof Headers
-   */
-  offset?: number;
+	/**
+	 * Total number of results for query.
+	 * @type {number}
+	 * @memberof Headers
+	 */
+	totalCount?: number;
+	/**
+	 * Information about the quantity in inventory
+	 * @type {number}
+	 * @memberof Headers
+	 */
+	limit?: number;
+	/**
+	 * Offset is the number of records you wish to skip before selecting results.
+	 * @type {number}
+	 * @memberof Headers
+	 */
+	offset?: number;
 }
 /**
  *
@@ -181,18 +175,18 @@ export interface Headers {
  * @interface InlineObject
  */
 export interface InlineObject {
-  /**
-   * A seller-provided Product ID. Response will have decoded value.
-   * @type {string}
-   * @memberof InlineObject
-   */
-  sku: string;
-  /**
-   *
-   * @type {InlineResponse200Quantity}
-   * @memberof InlineObject
-   */
-  quantity: InlineResponse200Quantity;
+	/**
+	 * A seller-provided Product ID. Response will have decoded value.
+	 * @type {string}
+	 * @memberof InlineObject
+	 */
+	sku: string;
+	/**
+	 *
+	 * @type {InlineResponse200Quantity}
+	 * @memberof InlineObject
+	 */
+	quantity: InlineResponse200Quantity;
 }
 /**
  *
@@ -200,12 +194,12 @@ export interface InlineObject {
  * @interface InlineObject1
  */
 export interface InlineObject1 {
-  /**
-   *
-   * @type {V3InventoriesSkuInventories}
-   * @memberof InlineObject1
-   */
-  inventories: V3InventoriesSkuInventories;
+	/**
+	 *
+	 * @type {V3InventoriesSkuInventories}
+	 * @memberof InlineObject1
+	 */
+	inventories: V3InventoriesSkuInventories;
 }
 /**
  *
@@ -213,18 +207,18 @@ export interface InlineObject1 {
  * @interface InlineResponse200
  */
 export interface InlineResponse200 {
-  /**
-   * A seller-provided Product ID. Response will have decoded value.
-   * @type {string}
-   * @memberof InlineResponse200
-   */
-  sku: string;
-  /**
-   *
-   * @type {InlineResponse200Quantity}
-   * @memberof InlineResponse200
-   */
-  quantity: InlineResponse200Quantity;
+	/**
+	 * A seller-provided Product ID. Response will have decoded value.
+	 * @type {string}
+	 * @memberof InlineResponse200
+	 */
+	sku: string;
+	/**
+	 *
+	 * @type {InlineResponse200Quantity}
+	 * @memberof InlineResponse200
+	 */
+	quantity: InlineResponse200Quantity;
 }
 /**
  *
@@ -232,106 +226,94 @@ export interface InlineResponse200 {
  * @interface InlineResponse2001
  */
 export interface InlineResponse2001 {
-  /**
-   *
-   * @type {InlineResponse2001Headers}
-   * @memberof InlineResponse2001
-   */
-  headers?: InlineResponse2001Headers;
-  /**
-   *
-   * @type {InlineResponse2001Payload}
-   * @memberof InlineResponse2001
-   */
-  payload?: InlineResponse2001Payload;
+	/**
+	 *
+	 * @type {InlineResponse2001Meta}
+	 * @memberof InlineResponse2001
+	 */
+	meta?: InlineResponse2001Meta;
+	/**
+	 *
+	 * @type {InlineResponse2001Elements}
+	 * @memberof InlineResponse2001
+	 */
+	elements?: InlineResponse2001Elements;
 }
 /**
  *
  * @export
- * @interface InlineResponse2001Headers
+ * @interface InlineResponse2001Elements
  */
-export interface InlineResponse2001Headers {
-  /**
-   * Total number of results for query.
-   * @type {number}
-   * @memberof InlineResponse2001Headers
-   */
-  totalCount?: number;
-  /**
-   * Information about the quantity in inventory
-   * @type {number}
-   * @memberof InlineResponse2001Headers
-   */
-  limit?: number;
-  /**
-   * Offset is the number of records you wish to skip before selecting results.
-   * @type {number}
-   * @memberof InlineResponse2001Headers
-   */
-  offset?: number;
+export interface InlineResponse2001Elements {
+	/**
+	 *
+	 * @type {Array<InlineResponse2001ElementsInventories>}
+	 * @memberof InlineResponse2001Elements
+	 */
+	inventories?: Array<InlineResponse2001ElementsInventories>;
 }
 /**
  *
  * @export
- * @interface InlineResponse2001Payload
+ * @interface InlineResponse2001ElementsInventories
  */
-export interface InlineResponse2001Payload {
-  /**
-   *
-   * @type {Array<InlineResponse2001PayloadInventory>}
-   * @memberof InlineResponse2001Payload
-   */
-  inventory?: Array<InlineResponse2001PayloadInventory>;
+export interface InlineResponse2001ElementsInventories {
+	/**
+	 * An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item.
+	 * @type {string}
+	 * @memberof InlineResponse2001ElementsInventories
+	 */
+	sku?: string;
+	/**
+	 *
+	 * @type {Array<InlineResponse2001ElementsNodes>}
+	 * @memberof InlineResponse2001ElementsInventories
+	 */
+	nodes?: Array<InlineResponse2001ElementsNodes>;
 }
 /**
  *
  * @export
- * @interface InlineResponse2001PayloadInventory
+ * @interface InlineResponse2001ElementsNodes
  */
-export interface InlineResponse2001PayloadInventory {
-  /**
-   * An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item.
-   * @type {string}
-   * @memberof InlineResponse2001PayloadInventory
-   */
-  sku?: string;
-  /**
-   *
-   * @type {Array<InlineResponse2001PayloadShipNodes>}
-   * @memberof InlineResponse2001PayloadInventory
-   */
-  shipNodes?: Array<InlineResponse2001PayloadShipNodes>;
+export interface InlineResponse2001ElementsNodes {
+	/**
+	 * ShipNode Id of the ship node for which the inventory is requested
+	 * @type {string}
+	 * @memberof InlineResponse2001ElementsNodes
+	 */
+	shipNode?: string;
+	/**
+	 *
+	 * @type {InlineResponse200Quantity}
+	 * @memberof InlineResponse2001ElementsNodes
+	 */
+	inputQty?: InlineResponse200Quantity;
+	/**
+	 *
+	 * @type {InlineResponse200Quantity}
+	 * @memberof InlineResponse2001ElementsNodes
+	 */
+	availToSellQty?: InlineResponse200Quantity;
 }
 /**
  *
  * @export
- * @interface InlineResponse2001PayloadShipNodes
+ * @interface InlineResponse2001Meta
  */
-export interface InlineResponse2001PayloadShipNodes {
-  /**
-   * Last changes date for the item.
-   * @type {string}
-   * @memberof InlineResponse2001PayloadShipNodes
-   */
-  modifiedDate?: string;
-  /**
-   * The available quantity is the quantity of an item that is available to be allocated to orders.
-   * @type {number}
-   * @memberof InlineResponse2001PayloadShipNodes
-   */
-  availToSellQty?: number;
-  /**
-   * The on-hand balance is the quantity of active inventory stored at the warehouse.Active inventory is defined as the usable amount of an item that is in the warehouse.Inventory is active if it is not damaged, expired or being inspected.
-   * @type {number}
-   * @memberof InlineResponse2001PayloadShipNodes
-   */
-  onHandQty?: number;
-  /**
-   * Identifies fulfillment aspect of invetory. Walmart, seller or 3PL fulfilled. Possible value is \'WFSFulfilled\'. In later phase we will also add seller fulfilled inventory.
-   * @type {string}
-   * @memberof InlineResponse2001PayloadShipNodes
-   */
-  shipNodeType?: string;
+export interface InlineResponse2001Meta {
+	/**
+	 * Total number of Skus of the Seller. Example: \'235\'
+	 * @type {number}
+	 * @memberof InlineResponse2001Meta
+	 */
+	totalCount?: number;
+	/**
+	 * Used for pagination to fetch the next set of items.
+	 * @type {string}
+	 * @memberof InlineResponse2001Meta
+	 */
+	nextCursor?: string;
 }
 /**
  *
@@ -339,94 +321,156 @@ export interface InlineResponse2001PayloadShipNodes {
  * @interface InlineResponse2002
  */
 export interface InlineResponse2002 {
-  /**
-   *
-   * @type {InlineResponse2002Meta}
-   * @memberof InlineResponse2002
-   */
-  meta?: InlineResponse2002Meta;
-  /**
-   *
-   * @type {InlineResponse2002Elements}
-   * @memberof InlineResponse2002
-   */
-  elements?: InlineResponse2002Elements;
+	/**
+	 * An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item.
+	 * @type {string}
+	 * @memberof InlineResponse2002
+	 */
+	sku?: string;
+	/**
+	 *
+	 * @type {Array<InlineResponse2002Nodes>}
+	 * @memberof InlineResponse2002
+	 */
+	nodes?: Array<InlineResponse2002Nodes>;
 }
 /**
  *
  * @export
- * @interface InlineResponse2002Elements
+ * @interface InlineResponse2002Causes
  */
-export interface InlineResponse2002Elements {
-  /**
-   *
-   * @type {Array<InlineResponse2002ElementsInventories>}
-   * @memberof InlineResponse2002Elements
-   */
-  inventories?: Array<InlineResponse2002ElementsInventories>;
+export interface InlineResponse2002Causes {
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineResponse2002Causes
+	 */
+	code?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineResponse2002Causes
+	 */
+	field?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineResponse2002Causes
+	 */
+	type?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineResponse2002Causes
+	 */
+	description?: string;
 }
+/**
+ * Node Update Error description.
+ * @export
+ * @interface InlineResponse2002Errors
+ */
+export interface InlineResponse2002Errors {
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineResponse2002Errors
+	 */
+	code: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineResponse2002Errors
+	 */
+	field?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineResponse2002Errors
+	 */
+	description?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineResponse2002Errors
+	 */
+	info?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineResponse2002Errors
+	 */
+	severity?: InlineResponse2002ErrorsSeverityEnum;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineResponse2002Errors
+	 */
+	category?: InlineResponse2002ErrorsCategoryEnum;
+	/**
+	 *
+	 * @type {Array<InlineResponse2002Causes>}
+	 * @memberof InlineResponse2002Errors
+	 */
+	causes?: Array<InlineResponse2002Causes>;
+	/**
+	 *
+	 * @type {{ [key: string]: object; }}
+	 * @memberof InlineResponse2002Errors
+	 */
+	errorIdentifiers?: { [key: string]: object };
+}
+
+/**
+ * @export
+ * @enum {string}
+ */
+export enum InlineResponse2002ErrorsSeverityEnum {
+	Info = 'INFO',
+	Warn = 'WARN',
+	Error = 'ERROR',
+}
+/**
+ * @export
+ * @enum {string}
+ */
+export enum InlineResponse2002ErrorsCategoryEnum {
+	Application = 'APPLICATION',
+	System = 'SYSTEM',
+	Request = 'REQUEST',
+	Data = 'DATA',
+}
+
 /**
  *
  * @export
- * @interface InlineResponse2002ElementsInventories
+ * @interface InlineResponse2002Nodes
  */
-export interface InlineResponse2002ElementsInventories {
-  /**
-   * An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item.
-   * @type {string}
-   * @memberof InlineResponse2002ElementsInventories
-   */
-  sku?: string;
-  /**
-   *
-   * @type {Array<InlineResponse2002ElementsNodes>}
-   * @memberof InlineResponse2002ElementsInventories
-   */
-  nodes?: Array<InlineResponse2002ElementsNodes>;
-}
-/**
- *
- * @export
- * @interface InlineResponse2002ElementsNodes
- */
-export interface InlineResponse2002ElementsNodes {
-  /**
-   * ShipNode Id of the ship node for which the inventory is requested
-   * @type {string}
-   * @memberof InlineResponse2002ElementsNodes
-   */
-  shipNode?: string;
-  /**
-   *
-   * @type {InlineResponse200Quantity}
-   * @memberof InlineResponse2002ElementsNodes
-   */
-  inputQty?: InlineResponse200Quantity;
-  /**
-   *
-   * @type {InlineResponse200Quantity}
-   * @memberof InlineResponse2002ElementsNodes
-   */
-  availToSellQty?: InlineResponse200Quantity;
-}
-/**
- *
- * @export
- * @interface InlineResponse2002Meta
- */
-export interface InlineResponse2002Meta {
-  /**
-   * Total number of Skus of the Seller. Example: \'235\'
-   * @type {number}
-   * @memberof InlineResponse2002Meta
-   */
-  totalCount?: number;
-  /**
-   * Used for pagination to fetch the next set of items.
-   * @type {string}
-   * @memberof InlineResponse2002Meta
-   */
-  nextCursor?: string;
+export interface InlineResponse2002Nodes {
+	/**
+	 * ShipNode Id of the ship node for which the inventory is requested
+	 * @type {string}
+	 * @memberof InlineResponse2002Nodes
+	 */
+	shipNode?: string;
+	/**
+	 *
+	 * @type {InlineResponse200Quantity}
+	 * @memberof InlineResponse2002Nodes
+	 */
+	inputQty?: InlineResponse200Quantity;
+	/**
+	 *
+	 * @type {InlineResponse200Quantity}
+	 * @memberof InlineResponse2002Nodes
+	 */
+	availToSellQty?: InlineResponse200Quantity;
+	/**
+	 *
+	 * @type {Array<InlineResponse2002Errors>}
+	 * @memberof InlineResponse2002Nodes
+	 */
+	errors?: Array<InlineResponse2002Errors>;
 }
 /**
  *
@@ -434,156 +478,43 @@ export interface InlineResponse2002Meta {
  * @interface InlineResponse2003
  */
 export interface InlineResponse2003 {
-  /**
-   * An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item.
-   * @type {string}
-   * @memberof InlineResponse2003
-   */
-  sku?: string;
-  /**
-   *
-   * @type {Array<InlineResponse2003Nodes>}
-   * @memberof InlineResponse2003
-   */
-  nodes?: Array<InlineResponse2003Nodes>;
+	/**
+	 * An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item.
+	 * @type {string}
+	 * @memberof InlineResponse2003
+	 */
+	sku?: string;
+	/**
+	 *
+	 * @type {Array<InlineResponse2003Nodes>}
+	 * @memberof InlineResponse2003
+	 */
+	nodes?: Array<InlineResponse2003Nodes>;
 }
-/**
- *
- * @export
- * @interface InlineResponse2003Causes
- */
-export interface InlineResponse2003Causes {
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse2003Causes
-   */
-  code?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse2003Causes
-   */
-  field?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse2003Causes
-   */
-  type?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse2003Causes
-   */
-  description?: string;
-}
-/**
- * Node Update Error description.
- * @export
- * @interface InlineResponse2003Errors
- */
-export interface InlineResponse2003Errors {
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse2003Errors
-   */
-  code: string;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse2003Errors
-   */
-  field?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse2003Errors
-   */
-  description?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse2003Errors
-   */
-  info?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse2003Errors
-   */
-  severity?: InlineResponse2003ErrorsSeverityEnum;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse2003Errors
-   */
-  category?: InlineResponse2003ErrorsCategoryEnum;
-  /**
-   *
-   * @type {Array<InlineResponse2003Causes>}
-   * @memberof InlineResponse2003Errors
-   */
-  causes?: Array<InlineResponse2003Causes>;
-  /**
-   *
-   * @type {{ [key: string]: object; }}
-   * @memberof InlineResponse2003Errors
-   */
-  errorIdentifiers?: { [key: string]: object };
-}
-
-/**
- * @export
- * @enum {string}
- */
-export enum InlineResponse2003ErrorsSeverityEnum {
-  Info = "INFO",
-  Warn = "WARN",
-  Error = "ERROR",
-}
-/**
- * @export
- * @enum {string}
- */
-export enum InlineResponse2003ErrorsCategoryEnum {
-  Application = "APPLICATION",
-  System = "SYSTEM",
-  Request = "REQUEST",
-  Data = "DATA",
-}
-
 /**
  *
  * @export
  * @interface InlineResponse2003Nodes
  */
 export interface InlineResponse2003Nodes {
-  /**
-   * ShipNode Id of the ship node for which the inventory is requested
-   * @type {string}
-   * @memberof InlineResponse2003Nodes
-   */
-  shipNode?: string;
-  /**
-   *
-   * @type {InlineResponse200Quantity}
-   * @memberof InlineResponse2003Nodes
-   */
-  inputQty?: InlineResponse200Quantity;
-  /**
-   *
-   * @type {InlineResponse200Quantity}
-   * @memberof InlineResponse2003Nodes
-   */
-  availToSellQty?: InlineResponse200Quantity;
-  /**
-   *
-   * @type {Array<InlineResponse2003Errors>}
-   * @memberof InlineResponse2003Nodes
-   */
-  errors?: Array<InlineResponse2003Errors>;
+	/**
+	 * ShipNode Id of the ship node for which the inventory is requested
+	 * @type {string}
+	 * @memberof InlineResponse2003Nodes
+	 */
+	shipNode?: string;
+	/**
+	 * Node Update status. Example: \'Success\'
+	 * @type {string}
+	 * @memberof InlineResponse2003Nodes
+	 */
+	status?: string;
+	/**
+	 * Node Update Error description.
+	 * @type {Array<InlineResponse2002Errors>}
+	 * @memberof InlineResponse2003Nodes
+	 */
+	errors?: Array<InlineResponse2002Errors>;
 }
 /**
  *
@@ -591,43 +522,106 @@ export interface InlineResponse2003Nodes {
  * @interface InlineResponse2004
  */
 export interface InlineResponse2004 {
-  /**
-   * An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item.
-   * @type {string}
-   * @memberof InlineResponse2004
-   */
-  sku?: string;
-  /**
-   *
-   * @type {Array<InlineResponse2004Nodes>}
-   * @memberof InlineResponse2004
-   */
-  nodes?: Array<InlineResponse2004Nodes>;
+	/**
+	 *
+	 * @type {InlineResponse2004Headers}
+	 * @memberof InlineResponse2004
+	 */
+	headers?: InlineResponse2004Headers;
+	/**
+	 *
+	 * @type {InlineResponse2004Payload}
+	 * @memberof InlineResponse2004
+	 */
+	payload?: InlineResponse2004Payload;
 }
 /**
  *
  * @export
- * @interface InlineResponse2004Nodes
+ * @interface InlineResponse2004Headers
  */
-export interface InlineResponse2004Nodes {
-  /**
-   * ShipNode Id of the ship node for which the inventory is requested
-   * @type {string}
-   * @memberof InlineResponse2004Nodes
-   */
-  shipNode?: string;
-  /**
-   * Node Update status. Example: \'Success\'
-   * @type {string}
-   * @memberof InlineResponse2004Nodes
-   */
-  status?: string;
-  /**
-   * Node Update Error description.
-   * @type {Array<InlineResponse2003Errors>}
-   * @memberof InlineResponse2004Nodes
-   */
-  errors?: Array<InlineResponse2003Errors>;
+export interface InlineResponse2004Headers {
+	/**
+	 * Total number of results for query.
+	 * @type {number}
+	 * @memberof InlineResponse2004Headers
+	 */
+	totalCount?: number;
+	/**
+	 * Information about the quantity in inventory
+	 * @type {number}
+	 * @memberof InlineResponse2004Headers
+	 */
+	limit?: number;
+	/**
+	 * Offset is the number of records you wish to skip before selecting results.
+	 * @type {number}
+	 * @memberof InlineResponse2004Headers
+	 */
+	offset?: number;
+}
+/**
+ *
+ * @export
+ * @interface InlineResponse2004Payload
+ */
+export interface InlineResponse2004Payload {
+	/**
+	 *
+	 * @type {Array<InlineResponse2004PayloadInventory>}
+	 * @memberof InlineResponse2004Payload
+	 */
+	inventory?: Array<InlineResponse2004PayloadInventory>;
+}
+/**
+ *
+ * @export
+ * @interface InlineResponse2004PayloadInventory
+ */
+export interface InlineResponse2004PayloadInventory {
+	/**
+	 * An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item.
+	 * @type {string}
+	 * @memberof InlineResponse2004PayloadInventory
+	 */
+	sku?: string;
+	/**
+	 *
+	 * @type {Array<InlineResponse2004PayloadShipNodes>}
+	 * @memberof InlineResponse2004PayloadInventory
+	 */
+	shipNodes?: Array<InlineResponse2004PayloadShipNodes>;
+}
+/**
+ *
+ * @export
+ * @interface InlineResponse2004PayloadShipNodes
+ */
+export interface InlineResponse2004PayloadShipNodes {
+	/**
+	 * Last changes date for the item.
+	 * @type {string}
+	 * @memberof InlineResponse2004PayloadShipNodes
+	 */
+	modifiedDate?: string;
+	/**
+	 * The available quantity is the quantity of an item that is available to be allocated to orders.
+	 * @type {number}
+	 * @memberof InlineResponse2004PayloadShipNodes
+	 */
+	availToSellQty?: number;
+	/**
+	 * The on-hand balance is the quantity of active inventory stored at the warehouse.Active inventory is defined as the usable amount of an item that is in the warehouse.Inventory is active if it is not damaged, expired or being inspected.
+	 * @type {number}
+	 * @memberof InlineResponse2004PayloadShipNodes
+	 */
+	onHandQty?: number;
+	/**
+	 * Identifies fulfillment aspect of invetory. Walmart, seller or 3PL fulfilled. Possible value is \'WFSFulfilled\'. In later phase we will also add seller fulfilled inventory.
+	 * @type {string}
+	 * @memberof InlineResponse2004PayloadShipNodes
+	 */
+	shipNodeType?: string;
 }
 /**
  *
@@ -635,24 +629,24 @@ export interface InlineResponse2004Nodes {
  * @interface InlineResponse2005
  */
 export interface InlineResponse2005 {
-  /**
-   * A unique ID, returned from the Bulk Upload API, used for tracking the feed file
-   * @type {string}
-   * @memberof InlineResponse2005
-   */
-  feedId?: string;
-  /**
-   *
-   * @type {object}
-   * @memberof InlineResponse2005
-   */
-  additionalAttributes?: object | null;
-  /**
-   *
-   * @type {object}
-   * @memberof InlineResponse2005
-   */
-  errors?: object | null;
+	/**
+	 * A unique ID, returned from the Bulk Upload API, used for tracking the feed file
+	 * @type {string}
+	 * @memberof InlineResponse2005
+	 */
+	feedId?: string;
+	/**
+	 *
+	 * @type {object}
+	 * @memberof InlineResponse2005
+	 */
+	additionalAttributes?: object | null;
+	/**
+	 *
+	 * @type {object}
+	 * @memberof InlineResponse2005
+	 */
+	errors?: object | null;
 }
 /**
  *
@@ -660,18 +654,18 @@ export interface InlineResponse2005 {
  * @interface InlineResponse200Quantity
  */
 export interface InlineResponse200Quantity {
-  /**
-   * The unit of measurement. Example: \'EACH\'
-   * @type {string}
-   * @memberof InlineResponse200Quantity
-   */
-  unit: InlineResponse200QuantityUnitEnum;
-  /**
-   * The number available in the inventory
-   * @type {number}
-   * @memberof InlineResponse200Quantity
-   */
-  amount: number;
+	/**
+	 * The unit of measurement. Example: \'EACH\'
+	 * @type {string}
+	 * @memberof InlineResponse200Quantity
+	 */
+	unit: InlineResponse200QuantityUnitEnum;
+	/**
+	 * The number available in the inventory
+	 * @type {number}
+	 * @memberof InlineResponse200Quantity
+	 */
+	amount: number;
 }
 
 /**
@@ -679,7 +673,7 @@ export interface InlineResponse200Quantity {
  * @enum {string}
  */
 export enum InlineResponse200QuantityUnitEnum {
-  Each = "EACH",
+	Each = 'EACH',
 }
 
 /**
@@ -688,18 +682,18 @@ export enum InlineResponse200QuantityUnitEnum {
  * @interface InventoriesDTO
  */
 export interface InventoriesDTO {
-  /**
-   * An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item.
-   * @type {string}
-   * @memberof InventoriesDTO
-   */
-  sku?: string;
-  /**
-   *
-   * @type {Array<InlineResponse2003Nodes>}
-   * @memberof InventoriesDTO
-   */
-  nodes?: Array<InlineResponse2003Nodes>;
+	/**
+	 * An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item.
+	 * @type {string}
+	 * @memberof InventoriesDTO
+	 */
+	sku?: string;
+	/**
+	 *
+	 * @type {Array<InlineResponse2002Nodes>}
+	 * @memberof InventoriesDTO
+	 */
+	nodes?: Array<InlineResponse2002Nodes>;
 }
 /**
  *
@@ -707,18 +701,18 @@ export interface InventoriesDTO {
  * @interface Inventory
  */
 export interface Inventory {
-  /**
-   * A seller-provided Product ID. Response will have decoded value.
-   * @type {string}
-   * @memberof Inventory
-   */
-  sku: string;
-  /**
-   *
-   * @type {InlineResponse200Quantity}
-   * @memberof Inventory
-   */
-  quantity: InlineResponse200Quantity;
+	/**
+	 * A seller-provided Product ID. Response will have decoded value.
+	 * @type {string}
+	 * @memberof Inventory
+	 */
+	sku: string;
+	/**
+	 *
+	 * @type {InlineResponse200Quantity}
+	 * @memberof Inventory
+	 */
+	quantity: InlineResponse200Quantity;
 }
 /**
  *
@@ -726,18 +720,18 @@ export interface Inventory {
  * @interface InventoryWFS
  */
 export interface InventoryWFS {
-  /**
-   * An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item.
-   * @type {string}
-   * @memberof InventoryWFS
-   */
-  sku?: string;
-  /**
-   *
-   * @type {Array<InlineResponse2001PayloadShipNodes>}
-   * @memberof InventoryWFS
-   */
-  shipNodes?: Array<InlineResponse2001PayloadShipNodes>;
+	/**
+	 * An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item.
+	 * @type {string}
+	 * @memberof InventoryWFS
+	 */
+	sku?: string;
+	/**
+	 *
+	 * @type {Array<InlineResponse2004PayloadShipNodes>}
+	 * @memberof InventoryWFS
+	 */
+	shipNodes?: Array<InlineResponse2004PayloadShipNodes>;
 }
 /**
  *
@@ -745,18 +739,18 @@ export interface InventoryWFS {
  * @interface Meta
  */
 export interface Meta {
-  /**
-   * Total number of Skus of the Seller. Example: \'235\'
-   * @type {number}
-   * @memberof Meta
-   */
-  totalCount?: number;
-  /**
-   * Used for pagination to fetch the next set of items.
-   * @type {string}
-   * @memberof Meta
-   */
-  nextCursor?: string;
+	/**
+	 * Total number of Skus of the Seller. Example: \'235\'
+	 * @type {number}
+	 * @memberof Meta
+	 */
+	totalCount?: number;
+	/**
+	 * Used for pagination to fetch the next set of items.
+	 * @type {string}
+	 * @memberof Meta
+	 */
+	nextCursor?: string;
 }
 /**
  * Node Update Error description.
@@ -764,54 +758,54 @@ export interface Meta {
  * @interface ModelError
  */
 export interface ModelError {
-  /**
-   *
-   * @type {string}
-   * @memberof ModelError
-   */
-  code: string;
-  /**
-   *
-   * @type {string}
-   * @memberof ModelError
-   */
-  field?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof ModelError
-   */
-  description?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof ModelError
-   */
-  info?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof ModelError
-   */
-  severity?: ModelErrorSeverityEnum;
-  /**
-   *
-   * @type {string}
-   * @memberof ModelError
-   */
-  category?: ModelErrorCategoryEnum;
-  /**
-   *
-   * @type {Array<InlineResponse2003Causes>}
-   * @memberof ModelError
-   */
-  causes?: Array<InlineResponse2003Causes>;
-  /**
-   *
-   * @type {{ [key: string]: object; }}
-   * @memberof ModelError
-   */
-  errorIdentifiers?: { [key: string]: object };
+	/**
+	 *
+	 * @type {string}
+	 * @memberof ModelError
+	 */
+	code: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof ModelError
+	 */
+	field?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof ModelError
+	 */
+	description?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof ModelError
+	 */
+	info?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof ModelError
+	 */
+	severity?: ModelErrorSeverityEnum;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof ModelError
+	 */
+	category?: ModelErrorCategoryEnum;
+	/**
+	 *
+	 * @type {Array<InlineResponse2002Causes>}
+	 * @memberof ModelError
+	 */
+	causes?: Array<InlineResponse2002Causes>;
+	/**
+	 *
+	 * @type {{ [key: string]: object; }}
+	 * @memberof ModelError
+	 */
+	errorIdentifiers?: { [key: string]: object };
 }
 
 /**
@@ -819,19 +813,19 @@ export interface ModelError {
  * @enum {string}
  */
 export enum ModelErrorSeverityEnum {
-  Info = "INFO",
-  Warn = "WARN",
-  Error = "ERROR",
+	Info = 'INFO',
+	Warn = 'WARN',
+	Error = 'ERROR',
 }
 /**
  * @export
  * @enum {string}
  */
 export enum ModelErrorCategoryEnum {
-  Application = "APPLICATION",
-  System = "SYSTEM",
-  Request = "REQUEST",
-  Data = "DATA",
+	Application = 'APPLICATION',
+	System = 'SYSTEM',
+	Request = 'REQUEST',
+	Data = 'DATA',
 }
 
 /**
@@ -840,18 +834,18 @@ export enum ModelErrorCategoryEnum {
  * @interface MultiNodeInventoryFetchResponseDTO
  */
 export interface MultiNodeInventoryFetchResponseDTO {
-  /**
-   *
-   * @type {InlineResponse2002Meta}
-   * @memberof MultiNodeInventoryFetchResponseDTO
-   */
-  meta?: InlineResponse2002Meta;
-  /**
-   *
-   * @type {InlineResponse2002Elements}
-   * @memberof MultiNodeInventoryFetchResponseDTO
-   */
-  elements?: InlineResponse2002Elements;
+	/**
+	 *
+	 * @type {InlineResponse2001Meta}
+	 * @memberof MultiNodeInventoryFetchResponseDTO
+	 */
+	meta?: InlineResponse2001Meta;
+	/**
+	 *
+	 * @type {InlineResponse2001Elements}
+	 * @memberof MultiNodeInventoryFetchResponseDTO
+	 */
+	elements?: InlineResponse2001Elements;
 }
 /**
  *
@@ -859,12 +853,12 @@ export interface MultiNodeInventoryFetchResponseDTO {
  * @interface MultiNodeInventoryUpdateRequestDTO
  */
 export interface MultiNodeInventoryUpdateRequestDTO {
-  /**
-   *
-   * @type {V3InventoriesSkuInventories}
-   * @memberof MultiNodeInventoryUpdateRequestDTO
-   */
-  inventories: V3InventoriesSkuInventories;
+	/**
+	 *
+	 * @type {V3InventoriesSkuInventories}
+	 * @memberof MultiNodeInventoryUpdateRequestDTO
+	 */
+	inventories: V3InventoriesSkuInventories;
 }
 /**
  *
@@ -872,18 +866,18 @@ export interface MultiNodeInventoryUpdateRequestDTO {
  * @interface MultiNodeInventoryUpdateResponseDTO
  */
 export interface MultiNodeInventoryUpdateResponseDTO {
-  /**
-   * An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item.
-   * @type {string}
-   * @memberof MultiNodeInventoryUpdateResponseDTO
-   */
-  sku?: string;
-  /**
-   *
-   * @type {Array<InlineResponse2004Nodes>}
-   * @memberof MultiNodeInventoryUpdateResponseDTO
-   */
-  nodes?: Array<InlineResponse2004Nodes>;
+	/**
+	 * An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item.
+	 * @type {string}
+	 * @memberof MultiNodeInventoryUpdateResponseDTO
+	 */
+	sku?: string;
+	/**
+	 *
+	 * @type {Array<InlineResponse2003Nodes>}
+	 * @memberof MultiNodeInventoryUpdateResponseDTO
+	 */
+	nodes?: Array<InlineResponse2003Nodes>;
 }
 /**
  *
@@ -891,30 +885,30 @@ export interface MultiNodeInventoryUpdateResponseDTO {
  * @interface NodeDTO
  */
 export interface NodeDTO {
-  /**
-   * ShipNode Id of the ship node for which the inventory is requested
-   * @type {string}
-   * @memberof NodeDTO
-   */
-  shipNode?: string;
-  /**
-   *
-   * @type {InlineResponse200Quantity}
-   * @memberof NodeDTO
-   */
-  inputQty?: InlineResponse200Quantity;
-  /**
-   *
-   * @type {InlineResponse200Quantity}
-   * @memberof NodeDTO
-   */
-  availToSellQty?: InlineResponse200Quantity;
-  /**
-   *
-   * @type {Array<InlineResponse2003Errors>}
-   * @memberof NodeDTO
-   */
-  errors?: Array<InlineResponse2003Errors>;
+	/**
+	 * ShipNode Id of the ship node for which the inventory is requested
+	 * @type {string}
+	 * @memberof NodeDTO
+	 */
+	shipNode?: string;
+	/**
+	 *
+	 * @type {InlineResponse200Quantity}
+	 * @memberof NodeDTO
+	 */
+	inputQty?: InlineResponse200Quantity;
+	/**
+	 *
+	 * @type {InlineResponse200Quantity}
+	 * @memberof NodeDTO
+	 */
+	availToSellQty?: InlineResponse200Quantity;
+	/**
+	 *
+	 * @type {Array<InlineResponse2002Errors>}
+	 * @memberof NodeDTO
+	 */
+	errors?: Array<InlineResponse2002Errors>;
 }
 /**
  *
@@ -922,12 +916,12 @@ export interface NodeDTO {
  * @interface Payload
  */
 export interface Payload {
-  /**
-   *
-   * @type {Array<InlineResponse2001PayloadInventory>}
-   * @memberof Payload
-   */
-  inventory?: Array<InlineResponse2001PayloadInventory>;
+	/**
+	 *
+	 * @type {Array<InlineResponse2004PayloadInventory>}
+	 * @memberof Payload
+	 */
+	inventory?: Array<InlineResponse2004PayloadInventory>;
 }
 /**
  *
@@ -935,30 +929,30 @@ export interface Payload {
  * @interface ShipNodes
  */
 export interface ShipNodes {
-  /**
-   * Last changes date for the item.
-   * @type {string}
-   * @memberof ShipNodes
-   */
-  modifiedDate?: string;
-  /**
-   * The available quantity is the quantity of an item that is available to be allocated to orders.
-   * @type {number}
-   * @memberof ShipNodes
-   */
-  availToSellQty?: number;
-  /**
-   * The on-hand balance is the quantity of active inventory stored at the warehouse.Active inventory is defined as the usable amount of an item that is in the warehouse.Inventory is active if it is not damaged, expired or being inspected.
-   * @type {number}
-   * @memberof ShipNodes
-   */
-  onHandQty?: number;
-  /**
-   * Identifies fulfillment aspect of invetory. Walmart, seller or 3PL fulfilled. Possible value is \'WFSFulfilled\'. In later phase we will also add seller fulfilled inventory.
-   * @type {string}
-   * @memberof ShipNodes
-   */
-  shipNodeType?: string;
+	/**
+	 * Last changes date for the item.
+	 * @type {string}
+	 * @memberof ShipNodes
+	 */
+	modifiedDate?: string;
+	/**
+	 * The available quantity is the quantity of an item that is available to be allocated to orders.
+	 * @type {number}
+	 * @memberof ShipNodes
+	 */
+	availToSellQty?: number;
+	/**
+	 * The on-hand balance is the quantity of active inventory stored at the warehouse.Active inventory is defined as the usable amount of an item that is in the warehouse.Inventory is active if it is not damaged, expired or being inspected.
+	 * @type {number}
+	 * @memberof ShipNodes
+	 */
+	onHandQty?: number;
+	/**
+	 * Identifies fulfillment aspect of invetory. Walmart, seller or 3PL fulfilled. Possible value is \'WFSFulfilled\'. In later phase we will also add seller fulfilled inventory.
+	 * @type {string}
+	 * @memberof ShipNodes
+	 */
+	shipNodeType?: string;
 }
 /**
  *
@@ -966,18 +960,18 @@ export interface ShipNodes {
  * @interface SupplyQuantity
  */
 export interface SupplyQuantity {
-  /**
-   * The unit of measurement. Example: \'EACH\'
-   * @type {string}
-   * @memberof SupplyQuantity
-   */
-  unit: SupplyQuantityUnitEnum;
-  /**
-   * The number available in the inventory
-   * @type {number}
-   * @memberof SupplyQuantity
-   */
-  amount: number;
+	/**
+	 * The unit of measurement. Example: \'EACH\'
+	 * @type {string}
+	 * @memberof SupplyQuantity
+	 */
+	unit: SupplyQuantityUnitEnum;
+	/**
+	 * The number available in the inventory
+	 * @type {number}
+	 * @memberof SupplyQuantity
+	 */
+	amount: number;
 }
 
 /**
@@ -985,7 +979,7 @@ export interface SupplyQuantity {
  * @enum {string}
  */
 export enum SupplyQuantityUnitEnum {
-  Each = "EACH",
+	Each = 'EACH',
 }
 
 /**
@@ -994,12 +988,12 @@ export enum SupplyQuantityUnitEnum {
  * @interface UpdateInventoriesRequestDTO
  */
 export interface UpdateInventoriesRequestDTO {
-  /**
-   *
-   * @type {Array<V3InventoriesSkuInventoriesNodes>}
-   * @memberof UpdateInventoriesRequestDTO
-   */
-  nodes: Array<V3InventoriesSkuInventoriesNodes>;
+	/**
+	 *
+	 * @type {Array<V3InventoriesSkuInventoriesNodes>}
+	 * @memberof UpdateInventoriesRequestDTO
+	 */
+	nodes: Array<V3InventoriesSkuInventoriesNodes>;
 }
 /**
  *
@@ -1007,18 +1001,18 @@ export interface UpdateInventoriesRequestDTO {
  * @interface UpdateInventoriesRequestNodeDTO
  */
 export interface UpdateInventoriesRequestNodeDTO {
-  /**
-   * ShipNode Id of the ship node for which the inventory is requested
-   * @type {string}
-   * @memberof UpdateInventoriesRequestNodeDTO
-   */
-  shipNode: string;
-  /**
-   *
-   * @type {InlineResponse200Quantity}
-   * @memberof UpdateInventoriesRequestNodeDTO
-   */
-  inputQty: InlineResponse200Quantity;
+	/**
+	 * ShipNode Id of the ship node for which the inventory is requested
+	 * @type {string}
+	 * @memberof UpdateInventoriesRequestNodeDTO
+	 */
+	shipNode: string;
+	/**
+	 *
+	 * @type {InlineResponse200Quantity}
+	 * @memberof UpdateInventoriesRequestNodeDTO
+	 */
+	inputQty: InlineResponse200Quantity;
 }
 /**
  *
@@ -1026,24 +1020,24 @@ export interface UpdateInventoriesRequestNodeDTO {
  * @interface UpdateInventoriesResponseNodeDTO
  */
 export interface UpdateInventoriesResponseNodeDTO {
-  /**
-   * ShipNode Id of the ship node for which the inventory is requested
-   * @type {string}
-   * @memberof UpdateInventoriesResponseNodeDTO
-   */
-  shipNode?: string;
-  /**
-   * Node Update status. Example: \'Success\'
-   * @type {string}
-   * @memberof UpdateInventoriesResponseNodeDTO
-   */
-  status?: string;
-  /**
-   * Node Update Error description.
-   * @type {Array<InlineResponse2003Errors>}
-   * @memberof UpdateInventoriesResponseNodeDTO
-   */
-  errors?: Array<InlineResponse2003Errors>;
+	/**
+	 * ShipNode Id of the ship node for which the inventory is requested
+	 * @type {string}
+	 * @memberof UpdateInventoriesResponseNodeDTO
+	 */
+	shipNode?: string;
+	/**
+	 * Node Update status. Example: \'Success\'
+	 * @type {string}
+	 * @memberof UpdateInventoriesResponseNodeDTO
+	 */
+	status?: string;
+	/**
+	 * Node Update Error description.
+	 * @type {Array<InlineResponse2002Errors>}
+	 * @memberof UpdateInventoriesResponseNodeDTO
+	 */
+	errors?: Array<InlineResponse2002Errors>;
 }
 /**
  *
@@ -1051,12 +1045,12 @@ export interface UpdateInventoriesResponseNodeDTO {
  * @interface V3InventoriesSkuInventories
  */
 export interface V3InventoriesSkuInventories {
-  /**
-   *
-   * @type {Array<V3InventoriesSkuInventoriesNodes>}
-   * @memberof V3InventoriesSkuInventories
-   */
-  nodes: Array<V3InventoriesSkuInventoriesNodes>;
+	/**
+	 *
+	 * @type {Array<V3InventoriesSkuInventoriesNodes>}
+	 * @memberof V3InventoriesSkuInventories
+	 */
+	nodes: Array<V3InventoriesSkuInventoriesNodes>;
 }
 /**
  *
@@ -1064,18 +1058,18 @@ export interface V3InventoriesSkuInventories {
  * @interface V3InventoriesSkuInventoriesNodes
  */
 export interface V3InventoriesSkuInventoriesNodes {
-  /**
-   * ShipNode Id of the ship node for which the inventory is requested
-   * @type {string}
-   * @memberof V3InventoriesSkuInventoriesNodes
-   */
-  shipNode: string;
-  /**
-   *
-   * @type {InlineResponse200Quantity}
-   * @memberof V3InventoriesSkuInventoriesNodes
-   */
-  inputQty: InlineResponse200Quantity;
+	/**
+	 * ShipNode Id of the ship node for which the inventory is requested
+	 * @type {string}
+	 * @memberof V3InventoriesSkuInventoriesNodes
+	 */
+	shipNode: string;
+	/**
+	 *
+	 * @type {InlineResponse200Quantity}
+	 * @memberof V3InventoriesSkuInventoriesNodes
+	 */
+	inputQty: InlineResponse200Quantity;
 }
 /**
  *
@@ -1083,913 +1077,707 @@ export interface V3InventoriesSkuInventoriesNodes {
  * @interface WfsInventoryDTO
  */
 export interface WfsInventoryDTO {
-  /**
-   *
-   * @type {InlineResponse2001Headers}
-   * @memberof WfsInventoryDTO
-   */
-  headers?: InlineResponse2001Headers;
-  /**
-   *
-   * @type {InlineResponse2001Payload}
-   * @memberof WfsInventoryDTO
-   */
-  payload?: InlineResponse2001Payload;
+	/**
+	 *
+	 * @type {InlineResponse2004Headers}
+	 * @memberof WfsInventoryDTO
+	 */
+	headers?: InlineResponse2004Headers;
+	/**
+	 *
+	 * @type {InlineResponse2004Payload}
+	 * @memberof WfsInventoryDTO
+	 */
+	payload?: InlineResponse2004Payload;
 }
 
 /**
  * InventoryApi - axios parameter creator
  * @export
  */
-export const InventoryApiAxiosParamCreator = function (
-  configuration?: Configuration
-) {
-  return {
-    /**
-     * You can use this API to get the inventory for a given item.
-     * @summary Inventory
-     * @param {string} sku An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: \&#39;:\&#39;, \&#39;/\&#39;, \&#39;?\&#39;, \&#39;#\&#39;, \&#39;[\&#39;, \&#39;]\&#39;, \&#39;@\&#39;, \&#39;!\&#39;, \&#39;$\&#39;, \&#39;&amp;\&#39;, \&quot;\&#39;\&quot;, \&#39;(\&#39;, \&#39;)\&#39;, \&#39;*\&#39;, \&#39;+\&#39;, \&#39;,\&#39;, \&#39;;\&#39;, \&#39;&#x3D;\&#39;, ‘ ’, \&#39;{\&#39;, \&#39;}\&#39; as well as \&#39;%\&#39; itself if it\&#39;s a part of sku. Make sure to encode space with %20. Other characters don\&#39;t need to be encoded.
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMCONSUMERCHANNELTYPE A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {string} [shipNode] The shipNode for which the inventory is requested
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getInventory: async (
-      sku: string,
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMCONSUMERCHANNELTYPE: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      shipNode?: string,
-      options: any = {}
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'sku' is not null or undefined
-      assertParamExists("getInventory", "sku", sku);
-      // verify required parameter 'authorization' is not null or undefined
-      assertParamExists("getInventory", "authorization", authorization);
-      // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
-      assertParamExists("getInventory", "wMSECACCESSTOKEN", wMSECACCESSTOKEN);
-      // verify required parameter 'wMCONSUMERCHANNELTYPE' is not null or undefined
-      assertParamExists(
-        "getInventory",
-        "wMCONSUMERCHANNELTYPE",
-        wMCONSUMERCHANNELTYPE
-      );
-      // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
-      assertParamExists(
-        "getInventory",
-        "wMQOSCORRELATIONID",
-        wMQOSCORRELATIONID
-      );
-      // verify required parameter 'wMSVCNAME' is not null or undefined
-      assertParamExists("getInventory", "wMSVCNAME", wMSVCNAME);
-      const localVarPath = `/v3/inventory`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
-
-      const localVarRequestOptions = {
-        method: "GET",
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
-
-      // authentication basicScheme required
-      // http basic authentication required
-      setBasicAuthToObject(localVarRequestOptions, configuration);
-
-      if (sku !== undefined) {
-        localVarQueryParameter["sku"] = sku;
-      }
-
-      if (shipNode !== undefined) {
-        localVarQueryParameter["shipNode"] = shipNode;
-      }
-
-      if (authorization !== undefined && authorization !== null) {
-        localVarHeaderParameter["Authorization"] = String(authorization);
-      }
-
-      if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
-        localVarHeaderParameter["WM_SEC.ACCESS_TOKEN"] =
-          String(wMSECACCESSTOKEN);
-      }
-
-      if (
-        wMCONSUMERCHANNELTYPE !== undefined &&
-        wMCONSUMERCHANNELTYPE !== null
-      ) {
-        localVarHeaderParameter["WM_CONSUMER.CHANNEL.TYPE"] = String(
-          wMCONSUMERCHANNELTYPE
-        );
-      }
-
-      if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
-        localVarHeaderParameter["WM_QOS.CORRELATION_ID"] =
-          String(wMQOSCORRELATIONID);
-      }
-
-      if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
-        localVarHeaderParameter["WM_SVC.NAME"] = String(wMSVCNAME);
-      }
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * This API will retrieve the inventory count for all of a seller\'s items across all ship nodes by item to ship node mapping. Inventory can be zero or non-zero.
-     * @summary Multiple Item Inventory for All Ship Nodes
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMCONSUMERCHANNELTYPE A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {string} [limit] The number of items returned. Cannot be more than 50.
-     * @param {string} [nextCursor] String returned from initial API call to indicate pagination. Specify nextCursor value to retrieve the next 50 items.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getMultiNodeInventoryForAllSkuAndAllShipNodes: async (
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMCONSUMERCHANNELTYPE: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      limit?: string,
-      nextCursor?: string,
-      options: any = {}
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'authorization' is not null or undefined
-      assertParamExists(
-        "getMultiNodeInventoryForAllSkuAndAllShipNodes",
-        "authorization",
-        authorization
-      );
-      // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
-      assertParamExists(
-        "getMultiNodeInventoryForAllSkuAndAllShipNodes",
-        "wMSECACCESSTOKEN",
-        wMSECACCESSTOKEN
-      );
-      // verify required parameter 'wMCONSUMERCHANNELTYPE' is not null or undefined
-      assertParamExists(
-        "getMultiNodeInventoryForAllSkuAndAllShipNodes",
-        "wMCONSUMERCHANNELTYPE",
-        wMCONSUMERCHANNELTYPE
-      );
-      // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
-      assertParamExists(
-        "getMultiNodeInventoryForAllSkuAndAllShipNodes",
-        "wMQOSCORRELATIONID",
-        wMQOSCORRELATIONID
-      );
-      // verify required parameter 'wMSVCNAME' is not null or undefined
-      assertParamExists(
-        "getMultiNodeInventoryForAllSkuAndAllShipNodes",
-        "wMSVCNAME",
-        wMSVCNAME
-      );
-      const localVarPath = `/v3/inventories`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
-
-      const localVarRequestOptions = {
-        method: "GET",
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
-
-      // authentication basicScheme required
-      // http basic authentication required
-      setBasicAuthToObject(localVarRequestOptions, configuration);
-
-      if (limit !== undefined) {
-        localVarQueryParameter["limit"] = limit;
-      }
-
-      if (nextCursor !== undefined) {
-        localVarQueryParameter["nextCursor"] = nextCursor;
-      }
-
-      if (authorization !== undefined && authorization !== null) {
-        localVarHeaderParameter["Authorization"] = String(authorization);
-      }
-
-      if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
-        localVarHeaderParameter["WM_SEC.ACCESS_TOKEN"] =
-          String(wMSECACCESSTOKEN);
-      }
-
-      if (
-        wMCONSUMERCHANNELTYPE !== undefined &&
-        wMCONSUMERCHANNELTYPE !== null
-      ) {
-        localVarHeaderParameter["WM_CONSUMER.CHANNEL.TYPE"] = String(
-          wMCONSUMERCHANNELTYPE
-        );
-      }
-
-      if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
-        localVarHeaderParameter["WM_QOS.CORRELATION_ID"] =
-          String(wMQOSCORRELATIONID);
-      }
-
-      if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
-        localVarHeaderParameter["WM_SVC.NAME"] = String(wMSVCNAME);
-      }
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * This API will retrieve the inventory count for an item across all ship nodes or one specific ship node. You can specify the ship node for which you want to fetch the inventory
-     * @summary Single Item Inventory by Ship Node
-     * @param {string} sku An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: \&#39;:\&#39;, \&#39;/\&#39;, \&#39;?\&#39;, \&#39;#\&#39;, \&#39;[\&#39;, \&#39;]\&#39;, \&#39;@\&#39;, \&#39;!\&#39;, \&#39;$\&#39;, \&#39;&amp;\&#39;, \&quot;\&#39;\&quot;, \&#39;(\&#39;, \&#39;)\&#39;, \&#39;*\&#39;, \&#39;+\&#39;, \&#39;,\&#39;, \&#39;;\&#39;, \&#39;&#x3D;\&#39;, ‘ ’ as well as \&#39;%\&#39; itself if it\&#39;s a part of sku. Make sure to encode space with %20. Other characters don\&#39;t need to be encoded.
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMCONSUMERCHANNELTYPE A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {string} [shipNode] ShipNode Id of the ship node for which the inventory is requested
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getMultiNodeInventoryForSkuAndAllShipnodes: async (
-      sku: string,
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMCONSUMERCHANNELTYPE: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      shipNode?: string,
-      options: any = {}
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'sku' is not null or undefined
-      assertParamExists(
-        "getMultiNodeInventoryForSkuAndAllShipnodes",
-        "sku",
-        sku
-      );
-      // verify required parameter 'authorization' is not null or undefined
-      assertParamExists(
-        "getMultiNodeInventoryForSkuAndAllShipnodes",
-        "authorization",
-        authorization
-      );
-      // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
-      assertParamExists(
-        "getMultiNodeInventoryForSkuAndAllShipnodes",
-        "wMSECACCESSTOKEN",
-        wMSECACCESSTOKEN
-      );
-      // verify required parameter 'wMCONSUMERCHANNELTYPE' is not null or undefined
-      assertParamExists(
-        "getMultiNodeInventoryForSkuAndAllShipnodes",
-        "wMCONSUMERCHANNELTYPE",
-        wMCONSUMERCHANNELTYPE
-      );
-      // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
-      assertParamExists(
-        "getMultiNodeInventoryForSkuAndAllShipnodes",
-        "wMQOSCORRELATIONID",
-        wMQOSCORRELATIONID
-      );
-      // verify required parameter 'wMSVCNAME' is not null or undefined
-      assertParamExists(
-        "getMultiNodeInventoryForSkuAndAllShipnodes",
-        "wMSVCNAME",
-        wMSVCNAME
-      );
-      const localVarPath = `/v3/inventories/{sku}`.replace(
-        `{${"sku"}}`,
-        encodeURIComponent(String(sku))
-      );
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
-
-      const localVarRequestOptions = {
-        method: "GET",
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
-
-      // authentication basicScheme required
-      // http basic authentication required
-      setBasicAuthToObject(localVarRequestOptions, configuration);
-
-      if (shipNode !== undefined) {
-        localVarQueryParameter["shipNode"] = shipNode;
-      }
-
-      if (authorization !== undefined && authorization !== null) {
-        localVarHeaderParameter["Authorization"] = String(authorization);
-      }
-
-      if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
-        localVarHeaderParameter["WM_SEC.ACCESS_TOKEN"] =
-          String(wMSECACCESSTOKEN);
-      }
-
-      if (
-        wMCONSUMERCHANNELTYPE !== undefined &&
-        wMCONSUMERCHANNELTYPE !== null
-      ) {
-        localVarHeaderParameter["WM_CONSUMER.CHANNEL.TYPE"] = String(
-          wMCONSUMERCHANNELTYPE
-        );
-      }
-
-      if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
-        localVarHeaderParameter["WM_QOS.CORRELATION_ID"] =
-          String(wMQOSCORRELATIONID);
-      }
-
-      if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
-        localVarHeaderParameter["WM_SVC.NAME"] = String(wMSVCNAME);
-      }
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * You can use this API to get the current Available to Sell inventory quantities for all WFS items in your catalog. You can also query specific SKUs or filter to only items updated after a specific date in order to reduce the response size.
-     * @summary WFS Inventory
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMCONSUMERCHANNELTYPE A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {string} [sku] An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: \&#39;:\&#39;, \&#39;/\&#39;, \&#39;?\&#39;, \&#39;#\&#39;, \&#39;[\&#39;, \&#39;]\&#39;, \&#39;@\&#39;, \&#39;!\&#39;, \&#39;$\&#39;, \&#39;&amp;\&#39;, \&quot;\&#39;\&quot;, \&#39;(\&#39;, \&#39;)\&#39;, \&#39;*\&#39;, \&#39;+\&#39;, \&#39;,\&#39;, \&#39;;\&#39;, \&#39;&#x3D;\&#39;, ‘ ’ as well as \&#39;%\&#39; itself if it\&#39;s a part of sku. Make sure to encode space with %20. Other characters don\&#39;t need to be encoded.
-     * @param {string} [fromModifiedDate] last inventory modified date - starting range.
-     * @param {string} [toModifiedDate] last inventory modified date - starting range.
-     * @param {string} [limit] Number of Sku to be returned. Cannot be larger than 300.
-     * @param {string} [offset] Offset is the number of records you wish to skip before selecting records.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getWFSInventory: async (
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMCONSUMERCHANNELTYPE: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      sku?: string,
-      fromModifiedDate?: string,
-      toModifiedDate?: string,
-      limit?: string,
-      offset?: string,
-      options: any = {}
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'authorization' is not null or undefined
-      assertParamExists("getWFSInventory", "authorization", authorization);
-      // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
-      assertParamExists(
-        "getWFSInventory",
-        "wMSECACCESSTOKEN",
-        wMSECACCESSTOKEN
-      );
-      // verify required parameter 'wMCONSUMERCHANNELTYPE' is not null or undefined
-      assertParamExists(
-        "getWFSInventory",
-        "wMCONSUMERCHANNELTYPE",
-        wMCONSUMERCHANNELTYPE
-      );
-      // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
-      assertParamExists(
-        "getWFSInventory",
-        "wMQOSCORRELATIONID",
-        wMQOSCORRELATIONID
-      );
-      // verify required parameter 'wMSVCNAME' is not null or undefined
-      assertParamExists("getWFSInventory", "wMSVCNAME", wMSVCNAME);
-      const localVarPath = `/v3/fulfillment/inventory`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
-
-      const localVarRequestOptions = {
-        method: "GET",
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
-
-      // authentication basicScheme required
-      // http basic authentication required
-      setBasicAuthToObject(localVarRequestOptions, configuration);
-
-      if (sku !== undefined) {
-        localVarQueryParameter["sku"] = sku;
-      }
-
-      if (fromModifiedDate !== undefined) {
-        localVarQueryParameter["fromModifiedDate"] = fromModifiedDate;
-      }
-
-      if (toModifiedDate !== undefined) {
-        localVarQueryParameter["toModifiedDate"] = toModifiedDate;
-      }
-
-      if (limit !== undefined) {
-        localVarQueryParameter["limit"] = limit;
-      }
-
-      if (offset !== undefined) {
-        localVarQueryParameter["offset"] = offset;
-      }
-
-      if (authorization !== undefined && authorization !== null) {
-        localVarHeaderParameter["Authorization"] = String(authorization);
-      }
-
-      if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
-        localVarHeaderParameter["WM_SEC.ACCESS_TOKEN"] =
-          String(wMSECACCESSTOKEN);
-      }
-
-      if (
-        wMCONSUMERCHANNELTYPE !== undefined &&
-        wMCONSUMERCHANNELTYPE !== null
-      ) {
-        localVarHeaderParameter["WM_CONSUMER.CHANNEL.TYPE"] = String(
-          wMCONSUMERCHANNELTYPE
-        );
-      }
-
-      if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
-        localVarHeaderParameter["WM_QOS.CORRELATION_ID"] =
-          String(wMQOSCORRELATIONID);
-      }
-
-      if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
-        localVarHeaderParameter["WM_SVC.NAME"] = String(wMSVCNAME);
-      }
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * Updates inventory for items in bulk. Refer to the throttling limits before uploading the Feed files.
-     * @summary Bulk Item Inventory Update
-     * @param {string} feedType Includes details of each entity in the feed. Do not set this parameter to true.
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMCONSUMERCHANNELTYPE A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {string} [shipNode] The shipNode for which the inventory is to be updated.
-     * @param {any} [file]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateBulkInventory: async (
-      feedType: string,
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMCONSUMERCHANNELTYPE: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      shipNode?: string,
-      file?: any,
-      options: any = {}
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'feedType' is not null or undefined
-      assertParamExists("updateBulkInventory", "feedType", feedType);
-      // verify required parameter 'authorization' is not null or undefined
-      assertParamExists("updateBulkInventory", "authorization", authorization);
-      // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
-      assertParamExists(
-        "updateBulkInventory",
-        "wMSECACCESSTOKEN",
-        wMSECACCESSTOKEN
-      );
-      // verify required parameter 'wMCONSUMERCHANNELTYPE' is not null or undefined
-      assertParamExists(
-        "updateBulkInventory",
-        "wMCONSUMERCHANNELTYPE",
-        wMCONSUMERCHANNELTYPE
-      );
-      // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
-      assertParamExists(
-        "updateBulkInventory",
-        "wMQOSCORRELATIONID",
-        wMQOSCORRELATIONID
-      );
-      // verify required parameter 'wMSVCNAME' is not null or undefined
-      assertParamExists("updateBulkInventory", "wMSVCNAME", wMSVCNAME);
-      const localVarPath = `/v3/feeds`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
-
-      const localVarRequestOptions = {
-        method: "POST",
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
-      const localVarFormParams = new ((configuration &&
-        configuration.formDataCtor) ||
-        FormData)();
-
-      // authentication basicScheme required
-      // http basic authentication required
-      setBasicAuthToObject(localVarRequestOptions, configuration);
-
-      if (feedType !== undefined) {
-        localVarQueryParameter["feedType"] = feedType;
-      }
-
-      if (shipNode !== undefined) {
-        localVarQueryParameter["shipNode"] = shipNode;
-      }
-
-      if (authorization !== undefined && authorization !== null) {
-        localVarHeaderParameter["Authorization"] = String(authorization);
-      }
-
-      if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
-        localVarHeaderParameter["WM_SEC.ACCESS_TOKEN"] =
-          String(wMSECACCESSTOKEN);
-      }
-
-      if (
-        wMCONSUMERCHANNELTYPE !== undefined &&
-        wMCONSUMERCHANNELTYPE !== null
-      ) {
-        localVarHeaderParameter["WM_CONSUMER.CHANNEL.TYPE"] = String(
-          wMCONSUMERCHANNELTYPE
-        );
-      }
-
-      if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
-        localVarHeaderParameter["WM_QOS.CORRELATION_ID"] =
-          String(wMQOSCORRELATIONID);
-      }
-
-      if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
-        localVarHeaderParameter["WM_SVC.NAME"] = String(wMSVCNAME);
-      }
-
-      if (file !== undefined) {
-        localVarFormParams.append("file", file as any);
-      }
-
-      localVarHeaderParameter["Content-Type"] = "multipart/form-data";
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
-      localVarRequestOptions.data = localVarFormParams;
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * Updates the inventory for a given item.
-     * @summary Update inventory
-     * @param {string} sku An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: \&#39;:\&#39;, \&#39;/\&#39;, \&#39;?\&#39;, \&#39;#\&#39;, \&#39;[\&#39;, \&#39;]\&#39;, \&#39;@\&#39;, \&#39;!\&#39;, \&#39;$\&#39;, \&#39;&amp;\&#39;, \&quot;\&#39;\&quot;, \&#39;(\&#39;, \&#39;)\&#39;, \&#39;*\&#39;, \&#39;+\&#39;, \&#39;,\&#39;, \&#39;;\&#39;, \&#39;&#x3D;\&#39;, ‘ ’, \&#39;{\&#39;, \&#39;}\&#39; as well as \&#39;%\&#39; itself if it\&#39;s a part of sku. Make sure to encode space with %20. Other characters don\&#39;t need to be encoded.
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMCONSUMERCHANNELTYPE A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {InlineObject} inlineObject
-     * @param {string} [shipNode] The shipNode for which the inventory is to be updated.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateInventoryForAnItem: async (
-      sku: string,
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMCONSUMERCHANNELTYPE: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      inlineObject: InlineObject,
-      shipNode?: string,
-      options: any = {}
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'sku' is not null or undefined
-      assertParamExists("updateInventoryForAnItem", "sku", sku);
-      // verify required parameter 'authorization' is not null or undefined
-      assertParamExists(
-        "updateInventoryForAnItem",
-        "authorization",
-        authorization
-      );
-      // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
-      assertParamExists(
-        "updateInventoryForAnItem",
-        "wMSECACCESSTOKEN",
-        wMSECACCESSTOKEN
-      );
-      // verify required parameter 'wMCONSUMERCHANNELTYPE' is not null or undefined
-      assertParamExists(
-        "updateInventoryForAnItem",
-        "wMCONSUMERCHANNELTYPE",
-        wMCONSUMERCHANNELTYPE
-      );
-      // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
-      assertParamExists(
-        "updateInventoryForAnItem",
-        "wMQOSCORRELATIONID",
-        wMQOSCORRELATIONID
-      );
-      // verify required parameter 'wMSVCNAME' is not null or undefined
-      assertParamExists("updateInventoryForAnItem", "wMSVCNAME", wMSVCNAME);
-      // verify required parameter 'inlineObject' is not null or undefined
-      assertParamExists(
-        "updateInventoryForAnItem",
-        "inlineObject",
-        inlineObject
-      );
-      const localVarPath = `/v3/inventory`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
-
-      const localVarRequestOptions = {
-        method: "PUT",
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
-
-      // authentication basicScheme required
-      // http basic authentication required
-      setBasicAuthToObject(localVarRequestOptions, configuration);
-
-      if (sku !== undefined) {
-        localVarQueryParameter["sku"] = sku;
-      }
-
-      if (shipNode !== undefined) {
-        localVarQueryParameter["shipNode"] = shipNode;
-      }
-
-      if (authorization !== undefined && authorization !== null) {
-        localVarHeaderParameter["Authorization"] = String(authorization);
-      }
-
-      if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
-        localVarHeaderParameter["WM_SEC.ACCESS_TOKEN"] =
-          String(wMSECACCESSTOKEN);
-      }
-
-      if (
-        wMCONSUMERCHANNELTYPE !== undefined &&
-        wMCONSUMERCHANNELTYPE !== null
-      ) {
-        localVarHeaderParameter["WM_CONSUMER.CHANNEL.TYPE"] = String(
-          wMCONSUMERCHANNELTYPE
-        );
-      }
-
-      if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
-        localVarHeaderParameter["WM_QOS.CORRELATION_ID"] =
-          String(wMQOSCORRELATIONID);
-      }
-
-      if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
-        localVarHeaderParameter["WM_SVC.NAME"] = String(wMSVCNAME);
-      }
-
-      localVarHeaderParameter["Content-Type"] = "application/xml";
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
-      localVarRequestOptions.data = serializeDataIfNeeded(
-        inlineObject,
-        localVarRequestOptions,
-        configuration
-      );
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * This API will update the inventory for an item across one or more fulfillment centers, known as ship nodes.
-     * @summary Update Item Inventory per Ship Node
-     * @param {string} sku An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: \&#39;:\&#39;, \&#39;/\&#39;, \&#39;?\&#39;, \&#39;#\&#39;, \&#39;[\&#39;, \&#39;]\&#39;, \&#39;@\&#39;, \&#39;!\&#39;, \&#39;$\&#39;, \&#39;&amp;\&#39;, \&quot;\&#39;\&quot;, \&#39;(\&#39;, \&#39;)\&#39;, \&#39;*\&#39;, \&#39;+\&#39;, \&#39;,\&#39;, \&#39;;\&#39;, \&#39;&#x3D;\&#39;, ‘ ’ as well as \&#39;%\&#39; itself if it\&#39;s a part of sku. Make sure to encode space with %20. Other characters don\&#39;t need to be encoded.
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMCONSUMERCHANNELTYPE A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {InlineObject1} inlineObject1
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateMultiNodeInventory: async (
-      sku: string,
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMCONSUMERCHANNELTYPE: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      inlineObject1: InlineObject1,
-      options: any = {}
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'sku' is not null or undefined
-      assertParamExists("updateMultiNodeInventory", "sku", sku);
-      // verify required parameter 'authorization' is not null or undefined
-      assertParamExists(
-        "updateMultiNodeInventory",
-        "authorization",
-        authorization
-      );
-      // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
-      assertParamExists(
-        "updateMultiNodeInventory",
-        "wMSECACCESSTOKEN",
-        wMSECACCESSTOKEN
-      );
-      // verify required parameter 'wMCONSUMERCHANNELTYPE' is not null or undefined
-      assertParamExists(
-        "updateMultiNodeInventory",
-        "wMCONSUMERCHANNELTYPE",
-        wMCONSUMERCHANNELTYPE
-      );
-      // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
-      assertParamExists(
-        "updateMultiNodeInventory",
-        "wMQOSCORRELATIONID",
-        wMQOSCORRELATIONID
-      );
-      // verify required parameter 'wMSVCNAME' is not null or undefined
-      assertParamExists("updateMultiNodeInventory", "wMSVCNAME", wMSVCNAME);
-      // verify required parameter 'inlineObject1' is not null or undefined
-      assertParamExists(
-        "updateMultiNodeInventory",
-        "inlineObject1",
-        inlineObject1
-      );
-      const localVarPath = `/v3/inventories/{sku}`.replace(
-        `{${"sku"}}`,
-        encodeURIComponent(String(sku))
-      );
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
-
-      const localVarRequestOptions = {
-        method: "PUT",
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
-
-      // authentication basicScheme required
-      // http basic authentication required
-      setBasicAuthToObject(localVarRequestOptions, configuration);
-
-      if (authorization !== undefined && authorization !== null) {
-        localVarHeaderParameter["Authorization"] = String(authorization);
-      }
-
-      if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
-        localVarHeaderParameter["WM_SEC.ACCESS_TOKEN"] =
-          String(wMSECACCESSTOKEN);
-      }
-
-      if (
-        wMCONSUMERCHANNELTYPE !== undefined &&
-        wMCONSUMERCHANNELTYPE !== null
-      ) {
-        localVarHeaderParameter["WM_CONSUMER.CHANNEL.TYPE"] = String(
-          wMCONSUMERCHANNELTYPE
-        );
-      }
-
-      if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
-        localVarHeaderParameter["WM_QOS.CORRELATION_ID"] =
-          String(wMQOSCORRELATIONID);
-      }
-
-      if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
-        localVarHeaderParameter["WM_SVC.NAME"] = String(wMSVCNAME);
-      }
-
-      localVarHeaderParameter["Content-Type"] = "application/json";
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
-      localVarRequestOptions.data = serializeDataIfNeeded(
-        inlineObject1,
-        localVarRequestOptions,
-        configuration
-      );
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-  };
+export const InventoryApiAxiosParamCreator = function (configuration?: Configuration) {
+	return {
+		/**
+		 * You can use this API to get the inventory for a given item.
+		 * @summary Inventory
+		 * @param {string} sku An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: \&#39;:\&#39;, \&#39;/\&#39;, \&#39;?\&#39;, \&#39;#\&#39;, \&#39;[\&#39;, \&#39;]\&#39;, \&#39;@\&#39;, \&#39;!\&#39;, \&#39;$\&#39;, \&#39;&amp;\&#39;, \&quot;\&#39;\&quot;, \&#39;(\&#39;, \&#39;)\&#39;, \&#39;*\&#39;, \&#39;+\&#39;, \&#39;,\&#39;, \&#39;;\&#39;, \&#39;&#x3D;\&#39;, ‘ ’, \&#39;{\&#39;, \&#39;}\&#39; as well as \&#39;%\&#39; itself if it\&#39;s a part of sku. Make sure to encode space with %20. Other characters don\&#39;t need to be encoded.
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMCONSUMERCHANNELTYPE A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {string} [shipNode] The shipNode for which the inventory is requested
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		getInventory: async (
+			sku: string,
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMCONSUMERCHANNELTYPE: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			shipNode?: string,
+			options: any = {}
+		): Promise<RequestArgs> => {
+			// verify required parameter 'sku' is not null or undefined
+			assertParamExists('getInventory', 'sku', sku);
+			// verify required parameter 'authorization' is not null or undefined
+			assertParamExists('getInventory', 'authorization', authorization);
+			// verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
+			assertParamExists('getInventory', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN);
+			// verify required parameter 'wMCONSUMERCHANNELTYPE' is not null or undefined
+			assertParamExists('getInventory', 'wMCONSUMERCHANNELTYPE', wMCONSUMERCHANNELTYPE);
+			// verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
+			assertParamExists('getInventory', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID);
+			// verify required parameter 'wMSVCNAME' is not null or undefined
+			assertParamExists('getInventory', 'wMSVCNAME', wMSVCNAME);
+			const localVarPath = `/v3/inventory`;
+			// use dummy base URL string because the URL constructor only accepts absolute URLs.
+			const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+			let baseOptions;
+			if (configuration) {
+				baseOptions = configuration.baseOptions;
+			}
+
+			const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+			const localVarHeaderParameter = {} as any;
+			const localVarQueryParameter = {} as any;
+
+			// authentication basicScheme required
+			// http basic authentication required
+			setBasicAuthToObject(localVarRequestOptions, configuration);
+
+			if (sku !== undefined) {
+				localVarQueryParameter['sku'] = sku;
+			}
+
+			if (shipNode !== undefined) {
+				localVarQueryParameter['shipNode'] = shipNode;
+			}
+
+			if (authorization !== undefined && authorization !== null) {
+				localVarHeaderParameter['Authorization'] = String(authorization);
+			}
+
+			if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
+				localVarHeaderParameter['WM_SEC.ACCESS_TOKEN'] = String(wMSECACCESSTOKEN);
+			}
+
+			if (wMCONSUMERCHANNELTYPE !== undefined && wMCONSUMERCHANNELTYPE !== null) {
+				localVarHeaderParameter['WM_CONSUMER.CHANNEL.TYPE'] = String(wMCONSUMERCHANNELTYPE);
+			}
+
+			if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
+				localVarHeaderParameter['WM_QOS.CORRELATION_ID'] = String(wMQOSCORRELATIONID);
+			}
+
+			if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
+				localVarHeaderParameter['WM_SVC.NAME'] = String(wMSVCNAME);
+			}
+
+			setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+			let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+			localVarRequestOptions.headers = {
+				...localVarHeaderParameter,
+				...headersFromBaseOptions,
+				...options.headers,
+			};
+
+			return {
+				url: toPathString(localVarUrlObj),
+				options: localVarRequestOptions,
+			};
+		},
+		/**
+		 * This API will retrieve the inventory count for all of a seller\'s items across all ship nodes by item to ship node mapping. Inventory can be zero or non-zero.
+		 * @summary Multiple Item Inventory for All Ship Nodes
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMCONSUMERCHANNELTYPE A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {string} [limit] The number of items returned. Cannot be more than 50.
+		 * @param {string} [nextCursor] String returned from initial API call to indicate pagination. Specify nextCursor value to retrieve the next 50 items.
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		getMultiNodeInventoryForAllSkuAndAllShipNodes: async (
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMCONSUMERCHANNELTYPE: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			limit?: string,
+			nextCursor?: string,
+			options: any = {}
+		): Promise<RequestArgs> => {
+			// verify required parameter 'authorization' is not null or undefined
+			assertParamExists('getMultiNodeInventoryForAllSkuAndAllShipNodes', 'authorization', authorization);
+			// verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
+			assertParamExists('getMultiNodeInventoryForAllSkuAndAllShipNodes', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN);
+			// verify required parameter 'wMCONSUMERCHANNELTYPE' is not null or undefined
+			assertParamExists(
+				'getMultiNodeInventoryForAllSkuAndAllShipNodes',
+				'wMCONSUMERCHANNELTYPE',
+				wMCONSUMERCHANNELTYPE
+			);
+			// verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
+			assertParamExists(
+				'getMultiNodeInventoryForAllSkuAndAllShipNodes',
+				'wMQOSCORRELATIONID',
+				wMQOSCORRELATIONID
+			);
+			// verify required parameter 'wMSVCNAME' is not null or undefined
+			assertParamExists('getMultiNodeInventoryForAllSkuAndAllShipNodes', 'wMSVCNAME', wMSVCNAME);
+			const localVarPath = `/v3/inventories`;
+			// use dummy base URL string because the URL constructor only accepts absolute URLs.
+			const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+			let baseOptions;
+			if (configuration) {
+				baseOptions = configuration.baseOptions;
+			}
+
+			const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+			const localVarHeaderParameter = {} as any;
+			const localVarQueryParameter = {} as any;
+
+			// authentication basicScheme required
+			// http basic authentication required
+			setBasicAuthToObject(localVarRequestOptions, configuration);
+
+			if (limit !== undefined) {
+				localVarQueryParameter['limit'] = limit;
+			}
+
+			if (nextCursor !== undefined) {
+				localVarQueryParameter['nextCursor'] = nextCursor;
+			}
+
+			if (authorization !== undefined && authorization !== null) {
+				localVarHeaderParameter['Authorization'] = String(authorization);
+			}
+
+			if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
+				localVarHeaderParameter['WM_SEC.ACCESS_TOKEN'] = String(wMSECACCESSTOKEN);
+			}
+
+			if (wMCONSUMERCHANNELTYPE !== undefined && wMCONSUMERCHANNELTYPE !== null) {
+				localVarHeaderParameter['WM_CONSUMER.CHANNEL.TYPE'] = String(wMCONSUMERCHANNELTYPE);
+			}
+
+			if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
+				localVarHeaderParameter['WM_QOS.CORRELATION_ID'] = String(wMQOSCORRELATIONID);
+			}
+
+			if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
+				localVarHeaderParameter['WM_SVC.NAME'] = String(wMSVCNAME);
+			}
+
+			setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+			let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+			localVarRequestOptions.headers = {
+				...localVarHeaderParameter,
+				...headersFromBaseOptions,
+				...options.headers,
+			};
+
+			return {
+				url: toPathString(localVarUrlObj),
+				options: localVarRequestOptions,
+			};
+		},
+		/**
+		 * This API will retrieve the inventory count for an item across all ship nodes or one specific ship node. You can specify the ship node for which you want to fetch the inventory
+		 * @summary Single Item Inventory by Ship Node
+		 * @param {string} sku An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: \&#39;:\&#39;, \&#39;/\&#39;, \&#39;?\&#39;, \&#39;#\&#39;, \&#39;[\&#39;, \&#39;]\&#39;, \&#39;@\&#39;, \&#39;!\&#39;, \&#39;$\&#39;, \&#39;&amp;\&#39;, \&quot;\&#39;\&quot;, \&#39;(\&#39;, \&#39;)\&#39;, \&#39;*\&#39;, \&#39;+\&#39;, \&#39;,\&#39;, \&#39;;\&#39;, \&#39;&#x3D;\&#39;, ‘ ’ as well as \&#39;%\&#39; itself if it\&#39;s a part of sku. Make sure to encode space with %20. Other characters don\&#39;t need to be encoded.
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMCONSUMERCHANNELTYPE A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {string} [shipNode] ShipNode Id of the ship node for which the inventory is requested
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		getMultiNodeInventoryForSkuAndAllShipnodes: async (
+			sku: string,
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMCONSUMERCHANNELTYPE: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			shipNode?: string,
+			options: any = {}
+		): Promise<RequestArgs> => {
+			// verify required parameter 'sku' is not null or undefined
+			assertParamExists('getMultiNodeInventoryForSkuAndAllShipnodes', 'sku', sku);
+			// verify required parameter 'authorization' is not null or undefined
+			assertParamExists('getMultiNodeInventoryForSkuAndAllShipnodes', 'authorization', authorization);
+			// verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
+			assertParamExists('getMultiNodeInventoryForSkuAndAllShipnodes', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN);
+			// verify required parameter 'wMCONSUMERCHANNELTYPE' is not null or undefined
+			assertParamExists(
+				'getMultiNodeInventoryForSkuAndAllShipnodes',
+				'wMCONSUMERCHANNELTYPE',
+				wMCONSUMERCHANNELTYPE
+			);
+			// verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
+			assertParamExists('getMultiNodeInventoryForSkuAndAllShipnodes', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID);
+			// verify required parameter 'wMSVCNAME' is not null or undefined
+			assertParamExists('getMultiNodeInventoryForSkuAndAllShipnodes', 'wMSVCNAME', wMSVCNAME);
+			const localVarPath = `/v3/inventories/{sku}`.replace(`{${'sku'}}`, encodeURIComponent(String(sku)));
+			// use dummy base URL string because the URL constructor only accepts absolute URLs.
+			const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+			let baseOptions;
+			if (configuration) {
+				baseOptions = configuration.baseOptions;
+			}
+
+			const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+			const localVarHeaderParameter = {} as any;
+			const localVarQueryParameter = {} as any;
+
+			// authentication basicScheme required
+			// http basic authentication required
+			setBasicAuthToObject(localVarRequestOptions, configuration);
+
+			if (shipNode !== undefined) {
+				localVarQueryParameter['shipNode'] = shipNode;
+			}
+
+			if (authorization !== undefined && authorization !== null) {
+				localVarHeaderParameter['Authorization'] = String(authorization);
+			}
+
+			if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
+				localVarHeaderParameter['WM_SEC.ACCESS_TOKEN'] = String(wMSECACCESSTOKEN);
+			}
+
+			if (wMCONSUMERCHANNELTYPE !== undefined && wMCONSUMERCHANNELTYPE !== null) {
+				localVarHeaderParameter['WM_CONSUMER.CHANNEL.TYPE'] = String(wMCONSUMERCHANNELTYPE);
+			}
+
+			if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
+				localVarHeaderParameter['WM_QOS.CORRELATION_ID'] = String(wMQOSCORRELATIONID);
+			}
+
+			if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
+				localVarHeaderParameter['WM_SVC.NAME'] = String(wMSVCNAME);
+			}
+
+			setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+			let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+			localVarRequestOptions.headers = {
+				...localVarHeaderParameter,
+				...headersFromBaseOptions,
+				...options.headers,
+			};
+
+			return {
+				url: toPathString(localVarUrlObj),
+				options: localVarRequestOptions,
+			};
+		},
+		/**
+		 * You can use this API to get the current Available to Sell inventory quantities for all WFS items in your catalog. You can also query specific SKUs or filter to only items updated after a specific date in order to reduce the response size.
+		 * @summary WFS Inventory
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMCONSUMERCHANNELTYPE A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {string} [sku] An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: \&#39;:\&#39;, \&#39;/\&#39;, \&#39;?\&#39;, \&#39;#\&#39;, \&#39;[\&#39;, \&#39;]\&#39;, \&#39;@\&#39;, \&#39;!\&#39;, \&#39;$\&#39;, \&#39;&amp;\&#39;, \&quot;\&#39;\&quot;, \&#39;(\&#39;, \&#39;)\&#39;, \&#39;*\&#39;, \&#39;+\&#39;, \&#39;,\&#39;, \&#39;;\&#39;, \&#39;&#x3D;\&#39;, ‘ ’ as well as \&#39;%\&#39; itself if it\&#39;s a part of sku. Make sure to encode space with %20. Other characters don\&#39;t need to be encoded.
+		 * @param {string} [fromModifiedDate] last inventory modified date - starting range.
+		 * @param {string} [toModifiedDate] last inventory modified date - starting range.
+		 * @param {string} [limit] Number of Sku to be returned. Cannot be larger than 300.
+		 * @param {string} [offset] Offset is the number of records you wish to skip before selecting records.
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		getWFSInventory: async (
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMCONSUMERCHANNELTYPE: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			sku?: string,
+			fromModifiedDate?: string,
+			toModifiedDate?: string,
+			limit?: string,
+			offset?: string,
+			options: any = {}
+		): Promise<RequestArgs> => {
+			// verify required parameter 'authorization' is not null or undefined
+			assertParamExists('getWFSInventory', 'authorization', authorization);
+			// verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
+			assertParamExists('getWFSInventory', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN);
+			// verify required parameter 'wMCONSUMERCHANNELTYPE' is not null or undefined
+			assertParamExists('getWFSInventory', 'wMCONSUMERCHANNELTYPE', wMCONSUMERCHANNELTYPE);
+			// verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
+			assertParamExists('getWFSInventory', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID);
+			// verify required parameter 'wMSVCNAME' is not null or undefined
+			assertParamExists('getWFSInventory', 'wMSVCNAME', wMSVCNAME);
+			const localVarPath = `/v3/fulfillment/inventory`;
+			// use dummy base URL string because the URL constructor only accepts absolute URLs.
+			const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+			let baseOptions;
+			if (configuration) {
+				baseOptions = configuration.baseOptions;
+			}
+
+			const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+			const localVarHeaderParameter = {} as any;
+			const localVarQueryParameter = {} as any;
+
+			// authentication basicScheme required
+			// http basic authentication required
+			setBasicAuthToObject(localVarRequestOptions, configuration);
+
+			if (sku !== undefined) {
+				localVarQueryParameter['sku'] = sku;
+			}
+
+			if (fromModifiedDate !== undefined) {
+				localVarQueryParameter['fromModifiedDate'] = fromModifiedDate;
+			}
+
+			if (toModifiedDate !== undefined) {
+				localVarQueryParameter['toModifiedDate'] = toModifiedDate;
+			}
+
+			if (limit !== undefined) {
+				localVarQueryParameter['limit'] = limit;
+			}
+
+			if (offset !== undefined) {
+				localVarQueryParameter['offset'] = offset;
+			}
+
+			if (authorization !== undefined && authorization !== null) {
+				localVarHeaderParameter['Authorization'] = String(authorization);
+			}
+
+			if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
+				localVarHeaderParameter['WM_SEC.ACCESS_TOKEN'] = String(wMSECACCESSTOKEN);
+			}
+
+			if (wMCONSUMERCHANNELTYPE !== undefined && wMCONSUMERCHANNELTYPE !== null) {
+				localVarHeaderParameter['WM_CONSUMER.CHANNEL.TYPE'] = String(wMCONSUMERCHANNELTYPE);
+			}
+
+			if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
+				localVarHeaderParameter['WM_QOS.CORRELATION_ID'] = String(wMQOSCORRELATIONID);
+			}
+
+			if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
+				localVarHeaderParameter['WM_SVC.NAME'] = String(wMSVCNAME);
+			}
+
+			setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+			let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+			localVarRequestOptions.headers = {
+				...localVarHeaderParameter,
+				...headersFromBaseOptions,
+				...options.headers,
+			};
+
+			return {
+				url: toPathString(localVarUrlObj),
+				options: localVarRequestOptions,
+			};
+		},
+		/**
+		 * Updates inventory for items in bulk. Refer to the throttling limits before uploading the Feed files.
+		 * @summary Bulk Item Inventory Update
+		 * @param {string} feedType Includes details of each entity in the feed. Do not set this parameter to true.
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMCONSUMERCHANNELTYPE A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {string} [shipNode] The shipNode for which the inventory is to be updated.
+		 * @param {any} [file]
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		updateBulkInventory: async (
+			feedType: string,
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMCONSUMERCHANNELTYPE: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			shipNode?: string,
+			file?: any,
+			options: any = {}
+		): Promise<RequestArgs> => {
+			// verify required parameter 'feedType' is not null or undefined
+			assertParamExists('updateBulkInventory', 'feedType', feedType);
+			// verify required parameter 'authorization' is not null or undefined
+			assertParamExists('updateBulkInventory', 'authorization', authorization);
+			// verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
+			assertParamExists('updateBulkInventory', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN);
+			// verify required parameter 'wMCONSUMERCHANNELTYPE' is not null or undefined
+			assertParamExists('updateBulkInventory', 'wMCONSUMERCHANNELTYPE', wMCONSUMERCHANNELTYPE);
+			// verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
+			assertParamExists('updateBulkInventory', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID);
+			// verify required parameter 'wMSVCNAME' is not null or undefined
+			assertParamExists('updateBulkInventory', 'wMSVCNAME', wMSVCNAME);
+			const localVarPath = `/v3/feeds`;
+			// use dummy base URL string because the URL constructor only accepts absolute URLs.
+			const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+			let baseOptions;
+			if (configuration) {
+				baseOptions = configuration.baseOptions;
+			}
+
+			const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
+			const localVarHeaderParameter = {} as any;
+			const localVarQueryParameter = {} as any;
+			const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)();
+
+			// authentication basicScheme required
+			// http basic authentication required
+			setBasicAuthToObject(localVarRequestOptions, configuration);
+
+			if (feedType !== undefined) {
+				localVarQueryParameter['feedType'] = feedType;
+			}
+
+			if (shipNode !== undefined) {
+				localVarQueryParameter['shipNode'] = shipNode;
+			}
+
+			if (authorization !== undefined && authorization !== null) {
+				localVarHeaderParameter['Authorization'] = String(authorization);
+			}
+
+			if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
+				localVarHeaderParameter['WM_SEC.ACCESS_TOKEN'] = String(wMSECACCESSTOKEN);
+			}
+
+			if (wMCONSUMERCHANNELTYPE !== undefined && wMCONSUMERCHANNELTYPE !== null) {
+				localVarHeaderParameter['WM_CONSUMER.CHANNEL.TYPE'] = String(wMCONSUMERCHANNELTYPE);
+			}
+
+			if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
+				localVarHeaderParameter['WM_QOS.CORRELATION_ID'] = String(wMQOSCORRELATIONID);
+			}
+
+			if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
+				localVarHeaderParameter['WM_SVC.NAME'] = String(wMSVCNAME);
+			}
+
+			if (file !== undefined) {
+				localVarFormParams.append('file', file as any);
+			}
+
+			localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
+
+			setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+			let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+			localVarRequestOptions.headers = {
+				...localVarHeaderParameter,
+				...headersFromBaseOptions,
+				...options.headers,
+			};
+			localVarRequestOptions.data = localVarFormParams;
+
+			return {
+				url: toPathString(localVarUrlObj),
+				options: localVarRequestOptions,
+			};
+		},
+		/**
+		 * Updates the inventory for a given item.
+		 * @summary Update inventory
+		 * @param {string} sku An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: \&#39;:\&#39;, \&#39;/\&#39;, \&#39;?\&#39;, \&#39;#\&#39;, \&#39;[\&#39;, \&#39;]\&#39;, \&#39;@\&#39;, \&#39;!\&#39;, \&#39;$\&#39;, \&#39;&amp;\&#39;, \&quot;\&#39;\&quot;, \&#39;(\&#39;, \&#39;)\&#39;, \&#39;*\&#39;, \&#39;+\&#39;, \&#39;,\&#39;, \&#39;;\&#39;, \&#39;&#x3D;\&#39;, ‘ ’, \&#39;{\&#39;, \&#39;}\&#39; as well as \&#39;%\&#39; itself if it\&#39;s a part of sku. Make sure to encode space with %20. Other characters don\&#39;t need to be encoded.
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMCONSUMERCHANNELTYPE A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {InlineObject} inlineObject
+		 * @param {string} [shipNode] The shipNode for which the inventory is to be updated.
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		updateInventoryForAnItem: async (
+			sku: string,
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMCONSUMERCHANNELTYPE: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			inlineObject: InlineObject,
+			shipNode?: string,
+			options: any = {}
+		): Promise<RequestArgs> => {
+			// verify required parameter 'sku' is not null or undefined
+			assertParamExists('updateInventoryForAnItem', 'sku', sku);
+			// verify required parameter 'authorization' is not null or undefined
+			assertParamExists('updateInventoryForAnItem', 'authorization', authorization);
+			// verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
+			assertParamExists('updateInventoryForAnItem', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN);
+			// verify required parameter 'wMCONSUMERCHANNELTYPE' is not null or undefined
+			assertParamExists('updateInventoryForAnItem', 'wMCONSUMERCHANNELTYPE', wMCONSUMERCHANNELTYPE);
+			// verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
+			assertParamExists('updateInventoryForAnItem', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID);
+			// verify required parameter 'wMSVCNAME' is not null or undefined
+			assertParamExists('updateInventoryForAnItem', 'wMSVCNAME', wMSVCNAME);
+			// verify required parameter 'inlineObject' is not null or undefined
+			assertParamExists('updateInventoryForAnItem', 'inlineObject', inlineObject);
+			const localVarPath = `/v3/inventory`;
+			// use dummy base URL string because the URL constructor only accepts absolute URLs.
+			const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+			let baseOptions;
+			if (configuration) {
+				baseOptions = configuration.baseOptions;
+			}
+
+			const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options };
+			const localVarHeaderParameter = {} as any;
+			const localVarQueryParameter = {} as any;
+
+			// authentication basicScheme required
+			// http basic authentication required
+			setBasicAuthToObject(localVarRequestOptions, configuration);
+
+			if (sku !== undefined) {
+				localVarQueryParameter['sku'] = sku;
+			}
+
+			if (shipNode !== undefined) {
+				localVarQueryParameter['shipNode'] = shipNode;
+			}
+
+			if (authorization !== undefined && authorization !== null) {
+				localVarHeaderParameter['Authorization'] = String(authorization);
+			}
+
+			if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
+				localVarHeaderParameter['WM_SEC.ACCESS_TOKEN'] = String(wMSECACCESSTOKEN);
+			}
+
+			if (wMCONSUMERCHANNELTYPE !== undefined && wMCONSUMERCHANNELTYPE !== null) {
+				localVarHeaderParameter['WM_CONSUMER.CHANNEL.TYPE'] = String(wMCONSUMERCHANNELTYPE);
+			}
+
+			if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
+				localVarHeaderParameter['WM_QOS.CORRELATION_ID'] = String(wMQOSCORRELATIONID);
+			}
+
+			if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
+				localVarHeaderParameter['WM_SVC.NAME'] = String(wMSVCNAME);
+			}
+
+			localVarHeaderParameter['Content-Type'] = 'application/xml';
+
+			setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+			let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+			localVarRequestOptions.headers = {
+				...localVarHeaderParameter,
+				...headersFromBaseOptions,
+				...options.headers,
+			};
+			localVarRequestOptions.data = serializeDataIfNeeded(inlineObject, localVarRequestOptions, configuration);
+
+			return {
+				url: toPathString(localVarUrlObj),
+				options: localVarRequestOptions,
+			};
+		},
+		/**
+		 * This API will update the inventory for an item across one or more fulfillment centers, known as ship nodes.
+		 * @summary Update Item Inventory per Ship Node
+		 * @param {string} sku An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: \&#39;:\&#39;, \&#39;/\&#39;, \&#39;?\&#39;, \&#39;#\&#39;, \&#39;[\&#39;, \&#39;]\&#39;, \&#39;@\&#39;, \&#39;!\&#39;, \&#39;$\&#39;, \&#39;&amp;\&#39;, \&quot;\&#39;\&quot;, \&#39;(\&#39;, \&#39;)\&#39;, \&#39;*\&#39;, \&#39;+\&#39;, \&#39;,\&#39;, \&#39;;\&#39;, \&#39;&#x3D;\&#39;, ‘ ’ as well as \&#39;%\&#39; itself if it\&#39;s a part of sku. Make sure to encode space with %20. Other characters don\&#39;t need to be encoded.
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMCONSUMERCHANNELTYPE A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {InlineObject1} inlineObject1
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		updateMultiNodeInventory: async (
+			sku: string,
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMCONSUMERCHANNELTYPE: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			inlineObject1: InlineObject1,
+			options: any = {}
+		): Promise<RequestArgs> => {
+			// verify required parameter 'sku' is not null or undefined
+			assertParamExists('updateMultiNodeInventory', 'sku', sku);
+			// verify required parameter 'authorization' is not null or undefined
+			assertParamExists('updateMultiNodeInventory', 'authorization', authorization);
+			// verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
+			assertParamExists('updateMultiNodeInventory', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN);
+			// verify required parameter 'wMCONSUMERCHANNELTYPE' is not null or undefined
+			assertParamExists('updateMultiNodeInventory', 'wMCONSUMERCHANNELTYPE', wMCONSUMERCHANNELTYPE);
+			// verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
+			assertParamExists('updateMultiNodeInventory', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID);
+			// verify required parameter 'wMSVCNAME' is not null or undefined
+			assertParamExists('updateMultiNodeInventory', 'wMSVCNAME', wMSVCNAME);
+			// verify required parameter 'inlineObject1' is not null or undefined
+			assertParamExists('updateMultiNodeInventory', 'inlineObject1', inlineObject1);
+			const localVarPath = `/v3/inventories/{sku}`.replace(`{${'sku'}}`, encodeURIComponent(String(sku)));
+			// use dummy base URL string because the URL constructor only accepts absolute URLs.
+			const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+			let baseOptions;
+			if (configuration) {
+				baseOptions = configuration.baseOptions;
+			}
+
+			const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options };
+			const localVarHeaderParameter = {} as any;
+			const localVarQueryParameter = {} as any;
+
+			// authentication basicScheme required
+			// http basic authentication required
+			setBasicAuthToObject(localVarRequestOptions, configuration);
+
+			if (authorization !== undefined && authorization !== null) {
+				localVarHeaderParameter['Authorization'] = String(authorization);
+			}
+
+			if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
+				localVarHeaderParameter['WM_SEC.ACCESS_TOKEN'] = String(wMSECACCESSTOKEN);
+			}
+
+			if (wMCONSUMERCHANNELTYPE !== undefined && wMCONSUMERCHANNELTYPE !== null) {
+				localVarHeaderParameter['WM_CONSUMER.CHANNEL.TYPE'] = String(wMCONSUMERCHANNELTYPE);
+			}
+
+			if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
+				localVarHeaderParameter['WM_QOS.CORRELATION_ID'] = String(wMQOSCORRELATIONID);
+			}
+
+			if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
+				localVarHeaderParameter['WM_SVC.NAME'] = String(wMSVCNAME);
+			}
+
+			localVarHeaderParameter['Content-Type'] = 'application/json';
+
+			setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+			let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+			localVarRequestOptions.headers = {
+				...localVarHeaderParameter,
+				...headersFromBaseOptions,
+				...options.headers,
+			};
+			localVarRequestOptions.data = serializeDataIfNeeded(inlineObject1, localVarRequestOptions, configuration);
+
+			return {
+				url: toPathString(localVarUrlObj),
+				options: localVarRequestOptions,
+			};
+		},
+	};
 };
 
 /**
@@ -1997,623 +1785,546 @@ export const InventoryApiAxiosParamCreator = function (
  * @export
  */
 export const InventoryApiFp = function (configuration?: Configuration) {
-  const localVarAxiosParamCreator =
-    InventoryApiAxiosParamCreator(configuration);
-  return {
-    /**
-     * You can use this API to get the inventory for a given item.
-     * @summary Inventory
-     * @param {string} sku An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: \&#39;:\&#39;, \&#39;/\&#39;, \&#39;?\&#39;, \&#39;#\&#39;, \&#39;[\&#39;, \&#39;]\&#39;, \&#39;@\&#39;, \&#39;!\&#39;, \&#39;$\&#39;, \&#39;&amp;\&#39;, \&quot;\&#39;\&quot;, \&#39;(\&#39;, \&#39;)\&#39;, \&#39;*\&#39;, \&#39;+\&#39;, \&#39;,\&#39;, \&#39;;\&#39;, \&#39;&#x3D;\&#39;, ‘ ’, \&#39;{\&#39;, \&#39;}\&#39; as well as \&#39;%\&#39; itself if it\&#39;s a part of sku. Make sure to encode space with %20. Other characters don\&#39;t need to be encoded.
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMCONSUMERCHANNELTYPE A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {string} [shipNode] The shipNode for which the inventory is requested
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async getInventory(
-      sku: string,
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMCONSUMERCHANNELTYPE: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      shipNode?: string,
-      options?: any
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<InlineResponse200>
-    > {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.getInventory(
-        sku,
-        authorization,
-        wMSECACCESSTOKEN,
-        wMCONSUMERCHANNELTYPE,
-        wMQOSCORRELATIONID,
-        wMSVCNAME,
-        shipNode,
-        options
-      );
-      return createRequestFunction(
-        localVarAxiosArgs,
-        globalAxios,
-        BASE_PATH,
-        configuration
-      );
-    },
-    /**
-     * This API will retrieve the inventory count for all of a seller\'s items across all ship nodes by item to ship node mapping. Inventory can be zero or non-zero.
-     * @summary Multiple Item Inventory for All Ship Nodes
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMCONSUMERCHANNELTYPE A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {string} [limit] The number of items returned. Cannot be more than 50.
-     * @param {string} [nextCursor] String returned from initial API call to indicate pagination. Specify nextCursor value to retrieve the next 50 items.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async getMultiNodeInventoryForAllSkuAndAllShipNodes(
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMCONSUMERCHANNELTYPE: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      limit?: string,
-      nextCursor?: string,
-      options?: any
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<InlineResponse2002>
-    > {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getMultiNodeInventoryForAllSkuAndAllShipNodes(
-          authorization,
-          wMSECACCESSTOKEN,
-          wMCONSUMERCHANNELTYPE,
-          wMQOSCORRELATIONID,
-          wMSVCNAME,
-          limit,
-          nextCursor,
-          options
-        );
-      return createRequestFunction(
-        localVarAxiosArgs,
-        globalAxios,
-        BASE_PATH,
-        configuration
-      );
-    },
-    /**
-     * This API will retrieve the inventory count for an item across all ship nodes or one specific ship node. You can specify the ship node for which you want to fetch the inventory
-     * @summary Single Item Inventory by Ship Node
-     * @param {string} sku An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: \&#39;:\&#39;, \&#39;/\&#39;, \&#39;?\&#39;, \&#39;#\&#39;, \&#39;[\&#39;, \&#39;]\&#39;, \&#39;@\&#39;, \&#39;!\&#39;, \&#39;$\&#39;, \&#39;&amp;\&#39;, \&quot;\&#39;\&quot;, \&#39;(\&#39;, \&#39;)\&#39;, \&#39;*\&#39;, \&#39;+\&#39;, \&#39;,\&#39;, \&#39;;\&#39;, \&#39;&#x3D;\&#39;, ‘ ’ as well as \&#39;%\&#39; itself if it\&#39;s a part of sku. Make sure to encode space with %20. Other characters don\&#39;t need to be encoded.
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMCONSUMERCHANNELTYPE A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {string} [shipNode] ShipNode Id of the ship node for which the inventory is requested
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async getMultiNodeInventoryForSkuAndAllShipnodes(
-      sku: string,
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMCONSUMERCHANNELTYPE: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      shipNode?: string,
-      options?: any
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<InlineResponse2003>
-    > {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getMultiNodeInventoryForSkuAndAllShipnodes(
-          sku,
-          authorization,
-          wMSECACCESSTOKEN,
-          wMCONSUMERCHANNELTYPE,
-          wMQOSCORRELATIONID,
-          wMSVCNAME,
-          shipNode,
-          options
-        );
-      return createRequestFunction(
-        localVarAxiosArgs,
-        globalAxios,
-        BASE_PATH,
-        configuration
-      );
-    },
-    /**
-     * You can use this API to get the current Available to Sell inventory quantities for all WFS items in your catalog. You can also query specific SKUs or filter to only items updated after a specific date in order to reduce the response size.
-     * @summary WFS Inventory
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMCONSUMERCHANNELTYPE A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {string} [sku] An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: \&#39;:\&#39;, \&#39;/\&#39;, \&#39;?\&#39;, \&#39;#\&#39;, \&#39;[\&#39;, \&#39;]\&#39;, \&#39;@\&#39;, \&#39;!\&#39;, \&#39;$\&#39;, \&#39;&amp;\&#39;, \&quot;\&#39;\&quot;, \&#39;(\&#39;, \&#39;)\&#39;, \&#39;*\&#39;, \&#39;+\&#39;, \&#39;,\&#39;, \&#39;;\&#39;, \&#39;&#x3D;\&#39;, ‘ ’ as well as \&#39;%\&#39; itself if it\&#39;s a part of sku. Make sure to encode space with %20. Other characters don\&#39;t need to be encoded.
-     * @param {string} [fromModifiedDate] last inventory modified date - starting range.
-     * @param {string} [toModifiedDate] last inventory modified date - starting range.
-     * @param {string} [limit] Number of Sku to be returned. Cannot be larger than 300.
-     * @param {string} [offset] Offset is the number of records you wish to skip before selecting records.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async getWFSInventory(
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMCONSUMERCHANNELTYPE: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      sku?: string,
-      fromModifiedDate?: string,
-      toModifiedDate?: string,
-      limit?: string,
-      offset?: string,
-      options?: any
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<InlineResponse2001>
-    > {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.getWFSInventory(
-        authorization,
-        wMSECACCESSTOKEN,
-        wMCONSUMERCHANNELTYPE,
-        wMQOSCORRELATIONID,
-        wMSVCNAME,
-        sku,
-        fromModifiedDate,
-        toModifiedDate,
-        limit,
-        offset,
-        options
-      );
-      return createRequestFunction(
-        localVarAxiosArgs,
-        globalAxios,
-        BASE_PATH,
-        configuration
-      );
-    },
-    /**
-     * Updates inventory for items in bulk. Refer to the throttling limits before uploading the Feed files.
-     * @summary Bulk Item Inventory Update
-     * @param {string} feedType Includes details of each entity in the feed. Do not set this parameter to true.
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMCONSUMERCHANNELTYPE A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {string} [shipNode] The shipNode for which the inventory is to be updated.
-     * @param {any} [file]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async updateBulkInventory(
-      feedType: string,
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMCONSUMERCHANNELTYPE: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      shipNode?: string,
-      file?: any,
-      options?: any
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<InlineResponse2005>
-    > {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.updateBulkInventory(
-          feedType,
-          authorization,
-          wMSECACCESSTOKEN,
-          wMCONSUMERCHANNELTYPE,
-          wMQOSCORRELATIONID,
-          wMSVCNAME,
-          shipNode,
-          file,
-          options
-        );
-      return createRequestFunction(
-        localVarAxiosArgs,
-        globalAxios,
-        BASE_PATH,
-        configuration
-      );
-    },
-    /**
-     * Updates the inventory for a given item.
-     * @summary Update inventory
-     * @param {string} sku An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: \&#39;:\&#39;, \&#39;/\&#39;, \&#39;?\&#39;, \&#39;#\&#39;, \&#39;[\&#39;, \&#39;]\&#39;, \&#39;@\&#39;, \&#39;!\&#39;, \&#39;$\&#39;, \&#39;&amp;\&#39;, \&quot;\&#39;\&quot;, \&#39;(\&#39;, \&#39;)\&#39;, \&#39;*\&#39;, \&#39;+\&#39;, \&#39;,\&#39;, \&#39;;\&#39;, \&#39;&#x3D;\&#39;, ‘ ’, \&#39;{\&#39;, \&#39;}\&#39; as well as \&#39;%\&#39; itself if it\&#39;s a part of sku. Make sure to encode space with %20. Other characters don\&#39;t need to be encoded.
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMCONSUMERCHANNELTYPE A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {InlineObject} inlineObject
-     * @param {string} [shipNode] The shipNode for which the inventory is to be updated.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async updateInventoryForAnItem(
-      sku: string,
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMCONSUMERCHANNELTYPE: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      inlineObject: InlineObject,
-      shipNode?: string,
-      options?: any
-    ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineObject>
-    > {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.updateInventoryForAnItem(
-          sku,
-          authorization,
-          wMSECACCESSTOKEN,
-          wMCONSUMERCHANNELTYPE,
-          wMQOSCORRELATIONID,
-          wMSVCNAME,
-          inlineObject,
-          shipNode,
-          options
-        );
-      return createRequestFunction(
-        localVarAxiosArgs,
-        globalAxios,
-        BASE_PATH,
-        configuration
-      );
-    },
-    /**
-     * This API will update the inventory for an item across one or more fulfillment centers, known as ship nodes.
-     * @summary Update Item Inventory per Ship Node
-     * @param {string} sku An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: \&#39;:\&#39;, \&#39;/\&#39;, \&#39;?\&#39;, \&#39;#\&#39;, \&#39;[\&#39;, \&#39;]\&#39;, \&#39;@\&#39;, \&#39;!\&#39;, \&#39;$\&#39;, \&#39;&amp;\&#39;, \&quot;\&#39;\&quot;, \&#39;(\&#39;, \&#39;)\&#39;, \&#39;*\&#39;, \&#39;+\&#39;, \&#39;,\&#39;, \&#39;;\&#39;, \&#39;&#x3D;\&#39;, ‘ ’ as well as \&#39;%\&#39; itself if it\&#39;s a part of sku. Make sure to encode space with %20. Other characters don\&#39;t need to be encoded.
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMCONSUMERCHANNELTYPE A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {InlineObject1} inlineObject1
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async updateMultiNodeInventory(
-      sku: string,
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMCONSUMERCHANNELTYPE: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      inlineObject1: InlineObject1,
-      options?: any
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<InlineResponse2004>
-    > {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.updateMultiNodeInventory(
-          sku,
-          authorization,
-          wMSECACCESSTOKEN,
-          wMCONSUMERCHANNELTYPE,
-          wMQOSCORRELATIONID,
-          wMSVCNAME,
-          inlineObject1,
-          options
-        );
-      return createRequestFunction(
-        localVarAxiosArgs,
-        globalAxios,
-        BASE_PATH,
-        configuration
-      );
-    },
-  };
+	const localVarAxiosParamCreator = InventoryApiAxiosParamCreator(configuration);
+	return {
+		/**
+		 * You can use this API to get the inventory for a given item.
+		 * @summary Inventory
+		 * @param {string} sku An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: \&#39;:\&#39;, \&#39;/\&#39;, \&#39;?\&#39;, \&#39;#\&#39;, \&#39;[\&#39;, \&#39;]\&#39;, \&#39;@\&#39;, \&#39;!\&#39;, \&#39;$\&#39;, \&#39;&amp;\&#39;, \&quot;\&#39;\&quot;, \&#39;(\&#39;, \&#39;)\&#39;, \&#39;*\&#39;, \&#39;+\&#39;, \&#39;,\&#39;, \&#39;;\&#39;, \&#39;&#x3D;\&#39;, ‘ ’, \&#39;{\&#39;, \&#39;}\&#39; as well as \&#39;%\&#39; itself if it\&#39;s a part of sku. Make sure to encode space with %20. Other characters don\&#39;t need to be encoded.
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMCONSUMERCHANNELTYPE A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {string} [shipNode] The shipNode for which the inventory is requested
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		async getInventory(
+			sku: string,
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMCONSUMERCHANNELTYPE: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			shipNode?: string,
+			options?: any
+		): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
+			const localVarAxiosArgs = await localVarAxiosParamCreator.getInventory(
+				sku,
+				authorization,
+				wMSECACCESSTOKEN,
+				wMCONSUMERCHANNELTYPE,
+				wMQOSCORRELATIONID,
+				wMSVCNAME,
+				shipNode,
+				options
+			);
+			return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+		},
+		/**
+		 * This API will retrieve the inventory count for all of a seller\'s items across all ship nodes by item to ship node mapping. Inventory can be zero or non-zero.
+		 * @summary Multiple Item Inventory for All Ship Nodes
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMCONSUMERCHANNELTYPE A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {string} [limit] The number of items returned. Cannot be more than 50.
+		 * @param {string} [nextCursor] String returned from initial API call to indicate pagination. Specify nextCursor value to retrieve the next 50 items.
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		async getMultiNodeInventoryForAllSkuAndAllShipNodes(
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMCONSUMERCHANNELTYPE: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			limit?: string,
+			nextCursor?: string,
+			options?: any
+		): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
+			const localVarAxiosArgs = await localVarAxiosParamCreator.getMultiNodeInventoryForAllSkuAndAllShipNodes(
+				authorization,
+				wMSECACCESSTOKEN,
+				wMCONSUMERCHANNELTYPE,
+				wMQOSCORRELATIONID,
+				wMSVCNAME,
+				limit,
+				nextCursor,
+				options
+			);
+			return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+		},
+		/**
+		 * This API will retrieve the inventory count for an item across all ship nodes or one specific ship node. You can specify the ship node for which you want to fetch the inventory
+		 * @summary Single Item Inventory by Ship Node
+		 * @param {string} sku An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: \&#39;:\&#39;, \&#39;/\&#39;, \&#39;?\&#39;, \&#39;#\&#39;, \&#39;[\&#39;, \&#39;]\&#39;, \&#39;@\&#39;, \&#39;!\&#39;, \&#39;$\&#39;, \&#39;&amp;\&#39;, \&quot;\&#39;\&quot;, \&#39;(\&#39;, \&#39;)\&#39;, \&#39;*\&#39;, \&#39;+\&#39;, \&#39;,\&#39;, \&#39;;\&#39;, \&#39;&#x3D;\&#39;, ‘ ’ as well as \&#39;%\&#39; itself if it\&#39;s a part of sku. Make sure to encode space with %20. Other characters don\&#39;t need to be encoded.
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMCONSUMERCHANNELTYPE A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {string} [shipNode] ShipNode Id of the ship node for which the inventory is requested
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		async getMultiNodeInventoryForSkuAndAllShipnodes(
+			sku: string,
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMCONSUMERCHANNELTYPE: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			shipNode?: string,
+			options?: any
+		): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2002>> {
+			const localVarAxiosArgs = await localVarAxiosParamCreator.getMultiNodeInventoryForSkuAndAllShipnodes(
+				sku,
+				authorization,
+				wMSECACCESSTOKEN,
+				wMCONSUMERCHANNELTYPE,
+				wMQOSCORRELATIONID,
+				wMSVCNAME,
+				shipNode,
+				options
+			);
+			return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+		},
+		/**
+		 * You can use this API to get the current Available to Sell inventory quantities for all WFS items in your catalog. You can also query specific SKUs or filter to only items updated after a specific date in order to reduce the response size.
+		 * @summary WFS Inventory
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMCONSUMERCHANNELTYPE A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {string} [sku] An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: \&#39;:\&#39;, \&#39;/\&#39;, \&#39;?\&#39;, \&#39;#\&#39;, \&#39;[\&#39;, \&#39;]\&#39;, \&#39;@\&#39;, \&#39;!\&#39;, \&#39;$\&#39;, \&#39;&amp;\&#39;, \&quot;\&#39;\&quot;, \&#39;(\&#39;, \&#39;)\&#39;, \&#39;*\&#39;, \&#39;+\&#39;, \&#39;,\&#39;, \&#39;;\&#39;, \&#39;&#x3D;\&#39;, ‘ ’ as well as \&#39;%\&#39; itself if it\&#39;s a part of sku. Make sure to encode space with %20. Other characters don\&#39;t need to be encoded.
+		 * @param {string} [fromModifiedDate] last inventory modified date - starting range.
+		 * @param {string} [toModifiedDate] last inventory modified date - starting range.
+		 * @param {string} [limit] Number of Sku to be returned. Cannot be larger than 300.
+		 * @param {string} [offset] Offset is the number of records you wish to skip before selecting records.
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		async getWFSInventory(
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMCONSUMERCHANNELTYPE: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			sku?: string,
+			fromModifiedDate?: string,
+			toModifiedDate?: string,
+			limit?: string,
+			offset?: string,
+			options?: any
+		): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2004>> {
+			const localVarAxiosArgs = await localVarAxiosParamCreator.getWFSInventory(
+				authorization,
+				wMSECACCESSTOKEN,
+				wMCONSUMERCHANNELTYPE,
+				wMQOSCORRELATIONID,
+				wMSVCNAME,
+				sku,
+				fromModifiedDate,
+				toModifiedDate,
+				limit,
+				offset,
+				options
+			);
+			return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+		},
+		/**
+		 * Updates inventory for items in bulk. Refer to the throttling limits before uploading the Feed files.
+		 * @summary Bulk Item Inventory Update
+		 * @param {string} feedType Includes details of each entity in the feed. Do not set this parameter to true.
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMCONSUMERCHANNELTYPE A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {string} [shipNode] The shipNode for which the inventory is to be updated.
+		 * @param {any} [file]
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		async updateBulkInventory(
+			feedType: string,
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMCONSUMERCHANNELTYPE: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			shipNode?: string,
+			file?: any,
+			options?: any
+		): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2005>> {
+			const localVarAxiosArgs = await localVarAxiosParamCreator.updateBulkInventory(
+				feedType,
+				authorization,
+				wMSECACCESSTOKEN,
+				wMCONSUMERCHANNELTYPE,
+				wMQOSCORRELATIONID,
+				wMSVCNAME,
+				shipNode,
+				file,
+				options
+			);
+			return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+		},
+		/**
+		 * Updates the inventory for a given item.
+		 * @summary Update inventory
+		 * @param {string} sku An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: \&#39;:\&#39;, \&#39;/\&#39;, \&#39;?\&#39;, \&#39;#\&#39;, \&#39;[\&#39;, \&#39;]\&#39;, \&#39;@\&#39;, \&#39;!\&#39;, \&#39;$\&#39;, \&#39;&amp;\&#39;, \&quot;\&#39;\&quot;, \&#39;(\&#39;, \&#39;)\&#39;, \&#39;*\&#39;, \&#39;+\&#39;, \&#39;,\&#39;, \&#39;;\&#39;, \&#39;&#x3D;\&#39;, ‘ ’, \&#39;{\&#39;, \&#39;}\&#39; as well as \&#39;%\&#39; itself if it\&#39;s a part of sku. Make sure to encode space with %20. Other characters don\&#39;t need to be encoded.
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMCONSUMERCHANNELTYPE A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {InlineObject} inlineObject
+		 * @param {string} [shipNode] The shipNode for which the inventory is to be updated.
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		async updateInventoryForAnItem(
+			sku: string,
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMCONSUMERCHANNELTYPE: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			inlineObject: InlineObject,
+			shipNode?: string,
+			options?: any
+		): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineObject>> {
+			const localVarAxiosArgs = await localVarAxiosParamCreator.updateInventoryForAnItem(
+				sku,
+				authorization,
+				wMSECACCESSTOKEN,
+				wMCONSUMERCHANNELTYPE,
+				wMQOSCORRELATIONID,
+				wMSVCNAME,
+				inlineObject,
+				shipNode,
+				options
+			);
+			return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+		},
+		/**
+		 * This API will update the inventory for an item across one or more fulfillment centers, known as ship nodes.
+		 * @summary Update Item Inventory per Ship Node
+		 * @param {string} sku An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: \&#39;:\&#39;, \&#39;/\&#39;, \&#39;?\&#39;, \&#39;#\&#39;, \&#39;[\&#39;, \&#39;]\&#39;, \&#39;@\&#39;, \&#39;!\&#39;, \&#39;$\&#39;, \&#39;&amp;\&#39;, \&quot;\&#39;\&quot;, \&#39;(\&#39;, \&#39;)\&#39;, \&#39;*\&#39;, \&#39;+\&#39;, \&#39;,\&#39;, \&#39;;\&#39;, \&#39;&#x3D;\&#39;, ‘ ’ as well as \&#39;%\&#39; itself if it\&#39;s a part of sku. Make sure to encode space with %20. Other characters don\&#39;t need to be encoded.
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMCONSUMERCHANNELTYPE A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {InlineObject1} inlineObject1
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		async updateMultiNodeInventory(
+			sku: string,
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMCONSUMERCHANNELTYPE: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			inlineObject1: InlineObject1,
+			options?: any
+		): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2003>> {
+			const localVarAxiosArgs = await localVarAxiosParamCreator.updateMultiNodeInventory(
+				sku,
+				authorization,
+				wMSECACCESSTOKEN,
+				wMCONSUMERCHANNELTYPE,
+				wMQOSCORRELATIONID,
+				wMSVCNAME,
+				inlineObject1,
+				options
+			);
+			return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+		},
+	};
 };
 
 /**
  * InventoryApi - factory interface
  * @export
  */
-export const InventoryApiFactory = function (
-  configuration?: Configuration,
-  basePath?: string,
-  axios?: AxiosInstance
-) {
-  const localVarFp = InventoryApiFp(configuration);
-  return {
-    /**
-     * You can use this API to get the inventory for a given item.
-     * @summary Inventory
-     * @param {string} sku An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: \&#39;:\&#39;, \&#39;/\&#39;, \&#39;?\&#39;, \&#39;#\&#39;, \&#39;[\&#39;, \&#39;]\&#39;, \&#39;@\&#39;, \&#39;!\&#39;, \&#39;$\&#39;, \&#39;&amp;\&#39;, \&quot;\&#39;\&quot;, \&#39;(\&#39;, \&#39;)\&#39;, \&#39;*\&#39;, \&#39;+\&#39;, \&#39;,\&#39;, \&#39;;\&#39;, \&#39;&#x3D;\&#39;, ‘ ’, \&#39;{\&#39;, \&#39;}\&#39; as well as \&#39;%\&#39; itself if it\&#39;s a part of sku. Make sure to encode space with %20. Other characters don\&#39;t need to be encoded.
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMCONSUMERCHANNELTYPE A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {string} [shipNode] The shipNode for which the inventory is requested
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getInventory(
-      sku: string,
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMCONSUMERCHANNELTYPE: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      shipNode?: string,
-      options?: any
-    ): AxiosPromise<InlineResponse200> {
-      return localVarFp
-        .getInventory(
-          sku,
-          authorization,
-          wMSECACCESSTOKEN,
-          wMCONSUMERCHANNELTYPE,
-          wMQOSCORRELATIONID,
-          wMSVCNAME,
-          shipNode,
-          options
-        )
-        .then((request) => request(axios, basePath));
-    },
-    /**
-     * This API will retrieve the inventory count for all of a seller\'s items across all ship nodes by item to ship node mapping. Inventory can be zero or non-zero.
-     * @summary Multiple Item Inventory for All Ship Nodes
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMCONSUMERCHANNELTYPE A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {string} [limit] The number of items returned. Cannot be more than 50.
-     * @param {string} [nextCursor] String returned from initial API call to indicate pagination. Specify nextCursor value to retrieve the next 50 items.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getMultiNodeInventoryForAllSkuAndAllShipNodes(
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMCONSUMERCHANNELTYPE: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      limit?: string,
-      nextCursor?: string,
-      options?: any
-    ): AxiosPromise<InlineResponse2002> {
-      return localVarFp
-        .getMultiNodeInventoryForAllSkuAndAllShipNodes(
-          authorization,
-          wMSECACCESSTOKEN,
-          wMCONSUMERCHANNELTYPE,
-          wMQOSCORRELATIONID,
-          wMSVCNAME,
-          limit,
-          nextCursor,
-          options
-        )
-        .then((request) => request(axios, basePath));
-    },
-    /**
-     * This API will retrieve the inventory count for an item across all ship nodes or one specific ship node. You can specify the ship node for which you want to fetch the inventory
-     * @summary Single Item Inventory by Ship Node
-     * @param {string} sku An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: \&#39;:\&#39;, \&#39;/\&#39;, \&#39;?\&#39;, \&#39;#\&#39;, \&#39;[\&#39;, \&#39;]\&#39;, \&#39;@\&#39;, \&#39;!\&#39;, \&#39;$\&#39;, \&#39;&amp;\&#39;, \&quot;\&#39;\&quot;, \&#39;(\&#39;, \&#39;)\&#39;, \&#39;*\&#39;, \&#39;+\&#39;, \&#39;,\&#39;, \&#39;;\&#39;, \&#39;&#x3D;\&#39;, ‘ ’ as well as \&#39;%\&#39; itself if it\&#39;s a part of sku. Make sure to encode space with %20. Other characters don\&#39;t need to be encoded.
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMCONSUMERCHANNELTYPE A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {string} [shipNode] ShipNode Id of the ship node for which the inventory is requested
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getMultiNodeInventoryForSkuAndAllShipnodes(
-      sku: string,
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMCONSUMERCHANNELTYPE: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      shipNode?: string,
-      options?: any
-    ): AxiosPromise<InlineResponse2003> {
-      return localVarFp
-        .getMultiNodeInventoryForSkuAndAllShipnodes(
-          sku,
-          authorization,
-          wMSECACCESSTOKEN,
-          wMCONSUMERCHANNELTYPE,
-          wMQOSCORRELATIONID,
-          wMSVCNAME,
-          shipNode,
-          options
-        )
-        .then((request) => request(axios, basePath));
-    },
-    /**
-     * You can use this API to get the current Available to Sell inventory quantities for all WFS items in your catalog. You can also query specific SKUs or filter to only items updated after a specific date in order to reduce the response size.
-     * @summary WFS Inventory
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMCONSUMERCHANNELTYPE A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {string} [sku] An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: \&#39;:\&#39;, \&#39;/\&#39;, \&#39;?\&#39;, \&#39;#\&#39;, \&#39;[\&#39;, \&#39;]\&#39;, \&#39;@\&#39;, \&#39;!\&#39;, \&#39;$\&#39;, \&#39;&amp;\&#39;, \&quot;\&#39;\&quot;, \&#39;(\&#39;, \&#39;)\&#39;, \&#39;*\&#39;, \&#39;+\&#39;, \&#39;,\&#39;, \&#39;;\&#39;, \&#39;&#x3D;\&#39;, ‘ ’ as well as \&#39;%\&#39; itself if it\&#39;s a part of sku. Make sure to encode space with %20. Other characters don\&#39;t need to be encoded.
-     * @param {string} [fromModifiedDate] last inventory modified date - starting range.
-     * @param {string} [toModifiedDate] last inventory modified date - starting range.
-     * @param {string} [limit] Number of Sku to be returned. Cannot be larger than 300.
-     * @param {string} [offset] Offset is the number of records you wish to skip before selecting records.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getWFSInventory(
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMCONSUMERCHANNELTYPE: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      sku?: string,
-      fromModifiedDate?: string,
-      toModifiedDate?: string,
-      limit?: string,
-      offset?: string,
-      options?: any
-    ): AxiosPromise<InlineResponse2001> {
-      return localVarFp
-        .getWFSInventory(
-          authorization,
-          wMSECACCESSTOKEN,
-          wMCONSUMERCHANNELTYPE,
-          wMQOSCORRELATIONID,
-          wMSVCNAME,
-          sku,
-          fromModifiedDate,
-          toModifiedDate,
-          limit,
-          offset,
-          options
-        )
-        .then((request) => request(axios, basePath));
-    },
-    /**
-     * Updates inventory for items in bulk. Refer to the throttling limits before uploading the Feed files.
-     * @summary Bulk Item Inventory Update
-     * @param {string} feedType Includes details of each entity in the feed. Do not set this parameter to true.
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMCONSUMERCHANNELTYPE A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {string} [shipNode] The shipNode for which the inventory is to be updated.
-     * @param {any} [file]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateBulkInventory(
-      feedType: string,
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMCONSUMERCHANNELTYPE: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      shipNode?: string,
-      file?: any,
-      options?: any
-    ): AxiosPromise<InlineResponse2005> {
-      return localVarFp
-        .updateBulkInventory(
-          feedType,
-          authorization,
-          wMSECACCESSTOKEN,
-          wMCONSUMERCHANNELTYPE,
-          wMQOSCORRELATIONID,
-          wMSVCNAME,
-          shipNode,
-          file,
-          options
-        )
-        .then((request) => request(axios, basePath));
-    },
-    /**
-     * Updates the inventory for a given item.
-     * @summary Update inventory
-     * @param {string} sku An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: \&#39;:\&#39;, \&#39;/\&#39;, \&#39;?\&#39;, \&#39;#\&#39;, \&#39;[\&#39;, \&#39;]\&#39;, \&#39;@\&#39;, \&#39;!\&#39;, \&#39;$\&#39;, \&#39;&amp;\&#39;, \&quot;\&#39;\&quot;, \&#39;(\&#39;, \&#39;)\&#39;, \&#39;*\&#39;, \&#39;+\&#39;, \&#39;,\&#39;, \&#39;;\&#39;, \&#39;&#x3D;\&#39;, ‘ ’, \&#39;{\&#39;, \&#39;}\&#39; as well as \&#39;%\&#39; itself if it\&#39;s a part of sku. Make sure to encode space with %20. Other characters don\&#39;t need to be encoded.
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMCONSUMERCHANNELTYPE A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {InlineObject} inlineObject
-     * @param {string} [shipNode] The shipNode for which the inventory is to be updated.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateInventoryForAnItem(
-      sku: string,
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMCONSUMERCHANNELTYPE: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      inlineObject: InlineObject,
-      shipNode?: string,
-      options?: any
-    ): AxiosPromise<InlineObject> {
-      return localVarFp
-        .updateInventoryForAnItem(
-          sku,
-          authorization,
-          wMSECACCESSTOKEN,
-          wMCONSUMERCHANNELTYPE,
-          wMQOSCORRELATIONID,
-          wMSVCNAME,
-          inlineObject,
-          shipNode,
-          options
-        )
-        .then((request) => request(axios, basePath));
-    },
-    /**
-     * This API will update the inventory for an item across one or more fulfillment centers, known as ship nodes.
-     * @summary Update Item Inventory per Ship Node
-     * @param {string} sku An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: \&#39;:\&#39;, \&#39;/\&#39;, \&#39;?\&#39;, \&#39;#\&#39;, \&#39;[\&#39;, \&#39;]\&#39;, \&#39;@\&#39;, \&#39;!\&#39;, \&#39;$\&#39;, \&#39;&amp;\&#39;, \&quot;\&#39;\&quot;, \&#39;(\&#39;, \&#39;)\&#39;, \&#39;*\&#39;, \&#39;+\&#39;, \&#39;,\&#39;, \&#39;;\&#39;, \&#39;&#x3D;\&#39;, ‘ ’ as well as \&#39;%\&#39; itself if it\&#39;s a part of sku. Make sure to encode space with %20. Other characters don\&#39;t need to be encoded.
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMCONSUMERCHANNELTYPE A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {InlineObject1} inlineObject1
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateMultiNodeInventory(
-      sku: string,
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMCONSUMERCHANNELTYPE: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      inlineObject1: InlineObject1,
-      options?: any
-    ): AxiosPromise<InlineResponse2004> {
-      return localVarFp
-        .updateMultiNodeInventory(
-          sku,
-          authorization,
-          wMSECACCESSTOKEN,
-          wMCONSUMERCHANNELTYPE,
-          wMQOSCORRELATIONID,
-          wMSVCNAME,
-          inlineObject1,
-          options
-        )
-        .then((request) => request(axios, basePath));
-    },
-  };
+export const InventoryApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+	const localVarFp = InventoryApiFp(configuration);
+	return {
+		/**
+		 * You can use this API to get the inventory for a given item.
+		 * @summary Inventory
+		 * @param {string} sku An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: \&#39;:\&#39;, \&#39;/\&#39;, \&#39;?\&#39;, \&#39;#\&#39;, \&#39;[\&#39;, \&#39;]\&#39;, \&#39;@\&#39;, \&#39;!\&#39;, \&#39;$\&#39;, \&#39;&amp;\&#39;, \&quot;\&#39;\&quot;, \&#39;(\&#39;, \&#39;)\&#39;, \&#39;*\&#39;, \&#39;+\&#39;, \&#39;,\&#39;, \&#39;;\&#39;, \&#39;&#x3D;\&#39;, ‘ ’, \&#39;{\&#39;, \&#39;}\&#39; as well as \&#39;%\&#39; itself if it\&#39;s a part of sku. Make sure to encode space with %20. Other characters don\&#39;t need to be encoded.
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMCONSUMERCHANNELTYPE A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {string} [shipNode] The shipNode for which the inventory is requested
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		getInventory(
+			sku: string,
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMCONSUMERCHANNELTYPE: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			shipNode?: string,
+			options?: any
+		): AxiosPromise<InlineResponse200> {
+			return localVarFp
+				.getInventory(
+					sku,
+					authorization,
+					wMSECACCESSTOKEN,
+					wMCONSUMERCHANNELTYPE,
+					wMQOSCORRELATIONID,
+					wMSVCNAME,
+					shipNode,
+					options
+				)
+				.then((request) => request(axios, basePath));
+		},
+		/**
+		 * This API will retrieve the inventory count for all of a seller\'s items across all ship nodes by item to ship node mapping. Inventory can be zero or non-zero.
+		 * @summary Multiple Item Inventory for All Ship Nodes
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMCONSUMERCHANNELTYPE A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {string} [limit] The number of items returned. Cannot be more than 50.
+		 * @param {string} [nextCursor] String returned from initial API call to indicate pagination. Specify nextCursor value to retrieve the next 50 items.
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		getMultiNodeInventoryForAllSkuAndAllShipNodes(
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMCONSUMERCHANNELTYPE: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			limit?: string,
+			nextCursor?: string,
+			options?: any
+		): AxiosPromise<InlineResponse2001> {
+			return localVarFp
+				.getMultiNodeInventoryForAllSkuAndAllShipNodes(
+					authorization,
+					wMSECACCESSTOKEN,
+					wMCONSUMERCHANNELTYPE,
+					wMQOSCORRELATIONID,
+					wMSVCNAME,
+					limit,
+					nextCursor,
+					options
+				)
+				.then((request) => request(axios, basePath));
+		},
+		/**
+		 * This API will retrieve the inventory count for an item across all ship nodes or one specific ship node. You can specify the ship node for which you want to fetch the inventory
+		 * @summary Single Item Inventory by Ship Node
+		 * @param {string} sku An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: \&#39;:\&#39;, \&#39;/\&#39;, \&#39;?\&#39;, \&#39;#\&#39;, \&#39;[\&#39;, \&#39;]\&#39;, \&#39;@\&#39;, \&#39;!\&#39;, \&#39;$\&#39;, \&#39;&amp;\&#39;, \&quot;\&#39;\&quot;, \&#39;(\&#39;, \&#39;)\&#39;, \&#39;*\&#39;, \&#39;+\&#39;, \&#39;,\&#39;, \&#39;;\&#39;, \&#39;&#x3D;\&#39;, ‘ ’ as well as \&#39;%\&#39; itself if it\&#39;s a part of sku. Make sure to encode space with %20. Other characters don\&#39;t need to be encoded.
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMCONSUMERCHANNELTYPE A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {string} [shipNode] ShipNode Id of the ship node for which the inventory is requested
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		getMultiNodeInventoryForSkuAndAllShipnodes(
+			sku: string,
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMCONSUMERCHANNELTYPE: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			shipNode?: string,
+			options?: any
+		): AxiosPromise<InlineResponse2002> {
+			return localVarFp
+				.getMultiNodeInventoryForSkuAndAllShipnodes(
+					sku,
+					authorization,
+					wMSECACCESSTOKEN,
+					wMCONSUMERCHANNELTYPE,
+					wMQOSCORRELATIONID,
+					wMSVCNAME,
+					shipNode,
+					options
+				)
+				.then((request) => request(axios, basePath));
+		},
+		/**
+		 * You can use this API to get the current Available to Sell inventory quantities for all WFS items in your catalog. You can also query specific SKUs or filter to only items updated after a specific date in order to reduce the response size.
+		 * @summary WFS Inventory
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMCONSUMERCHANNELTYPE A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {string} [sku] An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: \&#39;:\&#39;, \&#39;/\&#39;, \&#39;?\&#39;, \&#39;#\&#39;, \&#39;[\&#39;, \&#39;]\&#39;, \&#39;@\&#39;, \&#39;!\&#39;, \&#39;$\&#39;, \&#39;&amp;\&#39;, \&quot;\&#39;\&quot;, \&#39;(\&#39;, \&#39;)\&#39;, \&#39;*\&#39;, \&#39;+\&#39;, \&#39;,\&#39;, \&#39;;\&#39;, \&#39;&#x3D;\&#39;, ‘ ’ as well as \&#39;%\&#39; itself if it\&#39;s a part of sku. Make sure to encode space with %20. Other characters don\&#39;t need to be encoded.
+		 * @param {string} [fromModifiedDate] last inventory modified date - starting range.
+		 * @param {string} [toModifiedDate] last inventory modified date - starting range.
+		 * @param {string} [limit] Number of Sku to be returned. Cannot be larger than 300.
+		 * @param {string} [offset] Offset is the number of records you wish to skip before selecting records.
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		getWFSInventory(
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMCONSUMERCHANNELTYPE: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			sku?: string,
+			fromModifiedDate?: string,
+			toModifiedDate?: string,
+			limit?: string,
+			offset?: string,
+			options?: any
+		): AxiosPromise<InlineResponse2004> {
+			return localVarFp
+				.getWFSInventory(
+					authorization,
+					wMSECACCESSTOKEN,
+					wMCONSUMERCHANNELTYPE,
+					wMQOSCORRELATIONID,
+					wMSVCNAME,
+					sku,
+					fromModifiedDate,
+					toModifiedDate,
+					limit,
+					offset,
+					options
+				)
+				.then((request) => request(axios, basePath));
+		},
+		/**
+		 * Updates inventory for items in bulk. Refer to the throttling limits before uploading the Feed files.
+		 * @summary Bulk Item Inventory Update
+		 * @param {string} feedType Includes details of each entity in the feed. Do not set this parameter to true.
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMCONSUMERCHANNELTYPE A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {string} [shipNode] The shipNode for which the inventory is to be updated.
+		 * @param {any} [file]
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		updateBulkInventory(
+			feedType: string,
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMCONSUMERCHANNELTYPE: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			shipNode?: string,
+			file?: any,
+			options?: any
+		): AxiosPromise<InlineResponse2005> {
+			return localVarFp
+				.updateBulkInventory(
+					feedType,
+					authorization,
+					wMSECACCESSTOKEN,
+					wMCONSUMERCHANNELTYPE,
+					wMQOSCORRELATIONID,
+					wMSVCNAME,
+					shipNode,
+					file,
+					options
+				)
+				.then((request) => request(axios, basePath));
+		},
+		/**
+		 * Updates the inventory for a given item.
+		 * @summary Update inventory
+		 * @param {string} sku An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: \&#39;:\&#39;, \&#39;/\&#39;, \&#39;?\&#39;, \&#39;#\&#39;, \&#39;[\&#39;, \&#39;]\&#39;, \&#39;@\&#39;, \&#39;!\&#39;, \&#39;$\&#39;, \&#39;&amp;\&#39;, \&quot;\&#39;\&quot;, \&#39;(\&#39;, \&#39;)\&#39;, \&#39;*\&#39;, \&#39;+\&#39;, \&#39;,\&#39;, \&#39;;\&#39;, \&#39;&#x3D;\&#39;, ‘ ’, \&#39;{\&#39;, \&#39;}\&#39; as well as \&#39;%\&#39; itself if it\&#39;s a part of sku. Make sure to encode space with %20. Other characters don\&#39;t need to be encoded.
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMCONSUMERCHANNELTYPE A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {InlineObject} inlineObject
+		 * @param {string} [shipNode] The shipNode for which the inventory is to be updated.
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		updateInventoryForAnItem(
+			sku: string,
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMCONSUMERCHANNELTYPE: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			inlineObject: InlineObject,
+			shipNode?: string,
+			options?: any
+		): AxiosPromise<InlineObject> {
+			return localVarFp
+				.updateInventoryForAnItem(
+					sku,
+					authorization,
+					wMSECACCESSTOKEN,
+					wMCONSUMERCHANNELTYPE,
+					wMQOSCORRELATIONID,
+					wMSVCNAME,
+					inlineObject,
+					shipNode,
+					options
+				)
+				.then((request) => request(axios, basePath));
+		},
+		/**
+		 * This API will update the inventory for an item across one or more fulfillment centers, known as ship nodes.
+		 * @summary Update Item Inventory per Ship Node
+		 * @param {string} sku An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: \&#39;:\&#39;, \&#39;/\&#39;, \&#39;?\&#39;, \&#39;#\&#39;, \&#39;[\&#39;, \&#39;]\&#39;, \&#39;@\&#39;, \&#39;!\&#39;, \&#39;$\&#39;, \&#39;&amp;\&#39;, \&quot;\&#39;\&quot;, \&#39;(\&#39;, \&#39;)\&#39;, \&#39;*\&#39;, \&#39;+\&#39;, \&#39;,\&#39;, \&#39;;\&#39;, \&#39;&#x3D;\&#39;, ‘ ’ as well as \&#39;%\&#39; itself if it\&#39;s a part of sku. Make sure to encode space with %20. Other characters don\&#39;t need to be encoded.
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMCONSUMERCHANNELTYPE A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {InlineObject1} inlineObject1
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		updateMultiNodeInventory(
+			sku: string,
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMCONSUMERCHANNELTYPE: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			inlineObject1: InlineObject1,
+			options?: any
+		): AxiosPromise<InlineResponse2003> {
+			return localVarFp
+				.updateMultiNodeInventory(
+					sku,
+					authorization,
+					wMSECACCESSTOKEN,
+					wMCONSUMERCHANNELTYPE,
+					wMQOSCORRELATIONID,
+					wMSVCNAME,
+					inlineObject1,
+					options
+				)
+				.then((request) => request(axios, basePath));
+		},
+	};
 };
 
 /**
@@ -2622,54 +2333,54 @@ export const InventoryApiFactory = function (
  * @interface InventoryApiGetInventoryRequest
  */
 export interface InventoryApiGetInventoryRequest {
-  /**
-   * An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: \&#39;:\&#39;, \&#39;/\&#39;, \&#39;?\&#39;, \&#39;#\&#39;, \&#39;[\&#39;, \&#39;]\&#39;, \&#39;@\&#39;, \&#39;!\&#39;, \&#39;$\&#39;, \&#39;&amp;\&#39;, \&quot;\&#39;\&quot;, \&#39;(\&#39;, \&#39;)\&#39;, \&#39;*\&#39;, \&#39;+\&#39;, \&#39;,\&#39;, \&#39;;\&#39;, \&#39;&#x3D;\&#39;, ‘ ’, \&#39;{\&#39;, \&#39;}\&#39; as well as \&#39;%\&#39; itself if it\&#39;s a part of sku. Make sure to encode space with %20. Other characters don\&#39;t need to be encoded.
-   * @type {string}
-   * @memberof InventoryApiGetInventory
-   */
-  readonly sku: string;
+	/**
+	 * An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: \&#39;:\&#39;, \&#39;/\&#39;, \&#39;?\&#39;, \&#39;#\&#39;, \&#39;[\&#39;, \&#39;]\&#39;, \&#39;@\&#39;, \&#39;!\&#39;, \&#39;$\&#39;, \&#39;&amp;\&#39;, \&quot;\&#39;\&quot;, \&#39;(\&#39;, \&#39;)\&#39;, \&#39;*\&#39;, \&#39;+\&#39;, \&#39;,\&#39;, \&#39;;\&#39;, \&#39;&#x3D;\&#39;, ‘ ’, \&#39;{\&#39;, \&#39;}\&#39; as well as \&#39;%\&#39; itself if it\&#39;s a part of sku. Make sure to encode space with %20. Other characters don\&#39;t need to be encoded.
+	 * @type {string}
+	 * @memberof InventoryApiGetInventory
+	 */
+	readonly sku: string;
 
-  /**
-   * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-   * @type {string}
-   * @memberof InventoryApiGetInventory
-   */
-  readonly authorization: string;
+	/**
+	 * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+	 * @type {string}
+	 * @memberof InventoryApiGetInventory
+	 */
+	readonly authorization: string;
 
-  /**
-   * The access token retrieved in the Token API call
-   * @type {string}
-   * @memberof InventoryApiGetInventory
-   */
-  readonly wMSECACCESSTOKEN: string;
+	/**
+	 * The access token retrieved in the Token API call
+	 * @type {string}
+	 * @memberof InventoryApiGetInventory
+	 */
+	readonly wMSECACCESSTOKEN: string;
 
-  /**
-   * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-   * @type {string}
-   * @memberof InventoryApiGetInventory
-   */
-  readonly wMCONSUMERCHANNELTYPE: string;
+	/**
+	 * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+	 * @type {string}
+	 * @memberof InventoryApiGetInventory
+	 */
+	readonly wMCONSUMERCHANNELTYPE: string;
 
-  /**
-   * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-   * @type {string}
-   * @memberof InventoryApiGetInventory
-   */
-  readonly wMQOSCORRELATIONID: string;
+	/**
+	 * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+	 * @type {string}
+	 * @memberof InventoryApiGetInventory
+	 */
+	readonly wMQOSCORRELATIONID: string;
 
-  /**
-   * Walmart Service Name
-   * @type {string}
-   * @memberof InventoryApiGetInventory
-   */
-  readonly wMSVCNAME: string;
+	/**
+	 * Walmart Service Name
+	 * @type {string}
+	 * @memberof InventoryApiGetInventory
+	 */
+	readonly wMSVCNAME: string;
 
-  /**
-   * The shipNode for which the inventory is requested
-   * @type {string}
-   * @memberof InventoryApiGetInventory
-   */
-  readonly shipNode?: string;
+	/**
+	 * The shipNode for which the inventory is requested
+	 * @type {string}
+	 * @memberof InventoryApiGetInventory
+	 */
+	readonly shipNode?: string;
 }
 
 /**
@@ -2678,54 +2389,54 @@ export interface InventoryApiGetInventoryRequest {
  * @interface InventoryApiGetMultiNodeInventoryForAllSkuAndAllShipNodesRequest
  */
 export interface InventoryApiGetMultiNodeInventoryForAllSkuAndAllShipNodesRequest {
-  /**
-   * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-   * @type {string}
-   * @memberof InventoryApiGetMultiNodeInventoryForAllSkuAndAllShipNodes
-   */
-  readonly authorization: string;
+	/**
+	 * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+	 * @type {string}
+	 * @memberof InventoryApiGetMultiNodeInventoryForAllSkuAndAllShipNodes
+	 */
+	readonly authorization: string;
 
-  /**
-   * The access token retrieved in the Token API call
-   * @type {string}
-   * @memberof InventoryApiGetMultiNodeInventoryForAllSkuAndAllShipNodes
-   */
-  readonly wMSECACCESSTOKEN: string;
+	/**
+	 * The access token retrieved in the Token API call
+	 * @type {string}
+	 * @memberof InventoryApiGetMultiNodeInventoryForAllSkuAndAllShipNodes
+	 */
+	readonly wMSECACCESSTOKEN: string;
 
-  /**
-   * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-   * @type {string}
-   * @memberof InventoryApiGetMultiNodeInventoryForAllSkuAndAllShipNodes
-   */
-  readonly wMCONSUMERCHANNELTYPE: string;
+	/**
+	 * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+	 * @type {string}
+	 * @memberof InventoryApiGetMultiNodeInventoryForAllSkuAndAllShipNodes
+	 */
+	readonly wMCONSUMERCHANNELTYPE: string;
 
-  /**
-   * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-   * @type {string}
-   * @memberof InventoryApiGetMultiNodeInventoryForAllSkuAndAllShipNodes
-   */
-  readonly wMQOSCORRELATIONID: string;
+	/**
+	 * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+	 * @type {string}
+	 * @memberof InventoryApiGetMultiNodeInventoryForAllSkuAndAllShipNodes
+	 */
+	readonly wMQOSCORRELATIONID: string;
 
-  /**
-   * Walmart Service Name
-   * @type {string}
-   * @memberof InventoryApiGetMultiNodeInventoryForAllSkuAndAllShipNodes
-   */
-  readonly wMSVCNAME: string;
+	/**
+	 * Walmart Service Name
+	 * @type {string}
+	 * @memberof InventoryApiGetMultiNodeInventoryForAllSkuAndAllShipNodes
+	 */
+	readonly wMSVCNAME: string;
 
-  /**
-   * The number of items returned. Cannot be more than 50.
-   * @type {string}
-   * @memberof InventoryApiGetMultiNodeInventoryForAllSkuAndAllShipNodes
-   */
-  readonly limit?: string;
+	/**
+	 * The number of items returned. Cannot be more than 50.
+	 * @type {string}
+	 * @memberof InventoryApiGetMultiNodeInventoryForAllSkuAndAllShipNodes
+	 */
+	readonly limit?: string;
 
-  /**
-   * String returned from initial API call to indicate pagination. Specify nextCursor value to retrieve the next 50 items.
-   * @type {string}
-   * @memberof InventoryApiGetMultiNodeInventoryForAllSkuAndAllShipNodes
-   */
-  readonly nextCursor?: string;
+	/**
+	 * String returned from initial API call to indicate pagination. Specify nextCursor value to retrieve the next 50 items.
+	 * @type {string}
+	 * @memberof InventoryApiGetMultiNodeInventoryForAllSkuAndAllShipNodes
+	 */
+	readonly nextCursor?: string;
 }
 
 /**
@@ -2734,54 +2445,54 @@ export interface InventoryApiGetMultiNodeInventoryForAllSkuAndAllShipNodesReques
  * @interface InventoryApiGetMultiNodeInventoryForSkuAndAllShipnodesRequest
  */
 export interface InventoryApiGetMultiNodeInventoryForSkuAndAllShipnodesRequest {
-  /**
-   * An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: \&#39;:\&#39;, \&#39;/\&#39;, \&#39;?\&#39;, \&#39;#\&#39;, \&#39;[\&#39;, \&#39;]\&#39;, \&#39;@\&#39;, \&#39;!\&#39;, \&#39;$\&#39;, \&#39;&amp;\&#39;, \&quot;\&#39;\&quot;, \&#39;(\&#39;, \&#39;)\&#39;, \&#39;*\&#39;, \&#39;+\&#39;, \&#39;,\&#39;, \&#39;;\&#39;, \&#39;&#x3D;\&#39;, ‘ ’ as well as \&#39;%\&#39; itself if it\&#39;s a part of sku. Make sure to encode space with %20. Other characters don\&#39;t need to be encoded.
-   * @type {string}
-   * @memberof InventoryApiGetMultiNodeInventoryForSkuAndAllShipnodes
-   */
-  readonly sku: string;
+	/**
+	 * An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: \&#39;:\&#39;, \&#39;/\&#39;, \&#39;?\&#39;, \&#39;#\&#39;, \&#39;[\&#39;, \&#39;]\&#39;, \&#39;@\&#39;, \&#39;!\&#39;, \&#39;$\&#39;, \&#39;&amp;\&#39;, \&quot;\&#39;\&quot;, \&#39;(\&#39;, \&#39;)\&#39;, \&#39;*\&#39;, \&#39;+\&#39;, \&#39;,\&#39;, \&#39;;\&#39;, \&#39;&#x3D;\&#39;, ‘ ’ as well as \&#39;%\&#39; itself if it\&#39;s a part of sku. Make sure to encode space with %20. Other characters don\&#39;t need to be encoded.
+	 * @type {string}
+	 * @memberof InventoryApiGetMultiNodeInventoryForSkuAndAllShipnodes
+	 */
+	readonly sku: string;
 
-  /**
-   * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-   * @type {string}
-   * @memberof InventoryApiGetMultiNodeInventoryForSkuAndAllShipnodes
-   */
-  readonly authorization: string;
+	/**
+	 * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+	 * @type {string}
+	 * @memberof InventoryApiGetMultiNodeInventoryForSkuAndAllShipnodes
+	 */
+	readonly authorization: string;
 
-  /**
-   * The access token retrieved in the Token API call
-   * @type {string}
-   * @memberof InventoryApiGetMultiNodeInventoryForSkuAndAllShipnodes
-   */
-  readonly wMSECACCESSTOKEN: string;
+	/**
+	 * The access token retrieved in the Token API call
+	 * @type {string}
+	 * @memberof InventoryApiGetMultiNodeInventoryForSkuAndAllShipnodes
+	 */
+	readonly wMSECACCESSTOKEN: string;
 
-  /**
-   * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-   * @type {string}
-   * @memberof InventoryApiGetMultiNodeInventoryForSkuAndAllShipnodes
-   */
-  readonly wMCONSUMERCHANNELTYPE: string;
+	/**
+	 * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+	 * @type {string}
+	 * @memberof InventoryApiGetMultiNodeInventoryForSkuAndAllShipnodes
+	 */
+	readonly wMCONSUMERCHANNELTYPE: string;
 
-  /**
-   * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-   * @type {string}
-   * @memberof InventoryApiGetMultiNodeInventoryForSkuAndAllShipnodes
-   */
-  readonly wMQOSCORRELATIONID: string;
+	/**
+	 * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+	 * @type {string}
+	 * @memberof InventoryApiGetMultiNodeInventoryForSkuAndAllShipnodes
+	 */
+	readonly wMQOSCORRELATIONID: string;
 
-  /**
-   * Walmart Service Name
-   * @type {string}
-   * @memberof InventoryApiGetMultiNodeInventoryForSkuAndAllShipnodes
-   */
-  readonly wMSVCNAME: string;
+	/**
+	 * Walmart Service Name
+	 * @type {string}
+	 * @memberof InventoryApiGetMultiNodeInventoryForSkuAndAllShipnodes
+	 */
+	readonly wMSVCNAME: string;
 
-  /**
-   * ShipNode Id of the ship node for which the inventory is requested
-   * @type {string}
-   * @memberof InventoryApiGetMultiNodeInventoryForSkuAndAllShipnodes
-   */
-  readonly shipNode?: string;
+	/**
+	 * ShipNode Id of the ship node for which the inventory is requested
+	 * @type {string}
+	 * @memberof InventoryApiGetMultiNodeInventoryForSkuAndAllShipnodes
+	 */
+	readonly shipNode?: string;
 }
 
 /**
@@ -2790,75 +2501,75 @@ export interface InventoryApiGetMultiNodeInventoryForSkuAndAllShipnodesRequest {
  * @interface InventoryApiGetWFSInventoryRequest
  */
 export interface InventoryApiGetWFSInventoryRequest {
-  /**
-   * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-   * @type {string}
-   * @memberof InventoryApiGetWFSInventory
-   */
-  readonly authorization: string;
+	/**
+	 * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+	 * @type {string}
+	 * @memberof InventoryApiGetWFSInventory
+	 */
+	readonly authorization: string;
 
-  /**
-   * The access token retrieved in the Token API call
-   * @type {string}
-   * @memberof InventoryApiGetWFSInventory
-   */
-  readonly wMSECACCESSTOKEN: string;
+	/**
+	 * The access token retrieved in the Token API call
+	 * @type {string}
+	 * @memberof InventoryApiGetWFSInventory
+	 */
+	readonly wMSECACCESSTOKEN: string;
 
-  /**
-   * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-   * @type {string}
-   * @memberof InventoryApiGetWFSInventory
-   */
-  readonly wMCONSUMERCHANNELTYPE: string;
+	/**
+	 * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+	 * @type {string}
+	 * @memberof InventoryApiGetWFSInventory
+	 */
+	readonly wMCONSUMERCHANNELTYPE: string;
 
-  /**
-   * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-   * @type {string}
-   * @memberof InventoryApiGetWFSInventory
-   */
-  readonly wMQOSCORRELATIONID: string;
+	/**
+	 * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+	 * @type {string}
+	 * @memberof InventoryApiGetWFSInventory
+	 */
+	readonly wMQOSCORRELATIONID: string;
 
-  /**
-   * Walmart Service Name
-   * @type {string}
-   * @memberof InventoryApiGetWFSInventory
-   */
-  readonly wMSVCNAME: string;
+	/**
+	 * Walmart Service Name
+	 * @type {string}
+	 * @memberof InventoryApiGetWFSInventory
+	 */
+	readonly wMSVCNAME: string;
 
-  /**
-   * An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: \&#39;:\&#39;, \&#39;/\&#39;, \&#39;?\&#39;, \&#39;#\&#39;, \&#39;[\&#39;, \&#39;]\&#39;, \&#39;@\&#39;, \&#39;!\&#39;, \&#39;$\&#39;, \&#39;&amp;\&#39;, \&quot;\&#39;\&quot;, \&#39;(\&#39;, \&#39;)\&#39;, \&#39;*\&#39;, \&#39;+\&#39;, \&#39;,\&#39;, \&#39;;\&#39;, \&#39;&#x3D;\&#39;, ‘ ’ as well as \&#39;%\&#39; itself if it\&#39;s a part of sku. Make sure to encode space with %20. Other characters don\&#39;t need to be encoded.
-   * @type {string}
-   * @memberof InventoryApiGetWFSInventory
-   */
-  readonly sku?: string;
+	/**
+	 * An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: \&#39;:\&#39;, \&#39;/\&#39;, \&#39;?\&#39;, \&#39;#\&#39;, \&#39;[\&#39;, \&#39;]\&#39;, \&#39;@\&#39;, \&#39;!\&#39;, \&#39;$\&#39;, \&#39;&amp;\&#39;, \&quot;\&#39;\&quot;, \&#39;(\&#39;, \&#39;)\&#39;, \&#39;*\&#39;, \&#39;+\&#39;, \&#39;,\&#39;, \&#39;;\&#39;, \&#39;&#x3D;\&#39;, ‘ ’ as well as \&#39;%\&#39; itself if it\&#39;s a part of sku. Make sure to encode space with %20. Other characters don\&#39;t need to be encoded.
+	 * @type {string}
+	 * @memberof InventoryApiGetWFSInventory
+	 */
+	readonly sku?: string;
 
-  /**
-   * last inventory modified date - starting range.
-   * @type {string}
-   * @memberof InventoryApiGetWFSInventory
-   */
-  readonly fromModifiedDate?: string;
+	/**
+	 * last inventory modified date - starting range.
+	 * @type {string}
+	 * @memberof InventoryApiGetWFSInventory
+	 */
+	readonly fromModifiedDate?: string;
 
-  /**
-   * last inventory modified date - starting range.
-   * @type {string}
-   * @memberof InventoryApiGetWFSInventory
-   */
-  readonly toModifiedDate?: string;
+	/**
+	 * last inventory modified date - starting range.
+	 * @type {string}
+	 * @memberof InventoryApiGetWFSInventory
+	 */
+	readonly toModifiedDate?: string;
 
-  /**
-   * Number of Sku to be returned. Cannot be larger than 300.
-   * @type {string}
-   * @memberof InventoryApiGetWFSInventory
-   */
-  readonly limit?: string;
+	/**
+	 * Number of Sku to be returned. Cannot be larger than 300.
+	 * @type {string}
+	 * @memberof InventoryApiGetWFSInventory
+	 */
+	readonly limit?: string;
 
-  /**
-   * Offset is the number of records you wish to skip before selecting records.
-   * @type {string}
-   * @memberof InventoryApiGetWFSInventory
-   */
-  readonly offset?: string;
+	/**
+	 * Offset is the number of records you wish to skip before selecting records.
+	 * @type {string}
+	 * @memberof InventoryApiGetWFSInventory
+	 */
+	readonly offset?: string;
 }
 
 /**
@@ -2867,61 +2578,61 @@ export interface InventoryApiGetWFSInventoryRequest {
  * @interface InventoryApiUpdateBulkInventoryRequest
  */
 export interface InventoryApiUpdateBulkInventoryRequest {
-  /**
-   * Includes details of each entity in the feed. Do not set this parameter to true.
-   * @type {string}
-   * @memberof InventoryApiUpdateBulkInventory
-   */
-  readonly feedType: string;
+	/**
+	 * Includes details of each entity in the feed. Do not set this parameter to true.
+	 * @type {string}
+	 * @memberof InventoryApiUpdateBulkInventory
+	 */
+	readonly feedType: string;
 
-  /**
-   * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-   * @type {string}
-   * @memberof InventoryApiUpdateBulkInventory
-   */
-  readonly authorization: string;
+	/**
+	 * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+	 * @type {string}
+	 * @memberof InventoryApiUpdateBulkInventory
+	 */
+	readonly authorization: string;
 
-  /**
-   * The access token retrieved in the Token API call
-   * @type {string}
-   * @memberof InventoryApiUpdateBulkInventory
-   */
-  readonly wMSECACCESSTOKEN: string;
+	/**
+	 * The access token retrieved in the Token API call
+	 * @type {string}
+	 * @memberof InventoryApiUpdateBulkInventory
+	 */
+	readonly wMSECACCESSTOKEN: string;
 
-  /**
-   * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-   * @type {string}
-   * @memberof InventoryApiUpdateBulkInventory
-   */
-  readonly wMCONSUMERCHANNELTYPE: string;
+	/**
+	 * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+	 * @type {string}
+	 * @memberof InventoryApiUpdateBulkInventory
+	 */
+	readonly wMCONSUMERCHANNELTYPE: string;
 
-  /**
-   * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-   * @type {string}
-   * @memberof InventoryApiUpdateBulkInventory
-   */
-  readonly wMQOSCORRELATIONID: string;
+	/**
+	 * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+	 * @type {string}
+	 * @memberof InventoryApiUpdateBulkInventory
+	 */
+	readonly wMQOSCORRELATIONID: string;
 
-  /**
-   * Walmart Service Name
-   * @type {string}
-   * @memberof InventoryApiUpdateBulkInventory
-   */
-  readonly wMSVCNAME: string;
+	/**
+	 * Walmart Service Name
+	 * @type {string}
+	 * @memberof InventoryApiUpdateBulkInventory
+	 */
+	readonly wMSVCNAME: string;
 
-  /**
-   * The shipNode for which the inventory is to be updated.
-   * @type {string}
-   * @memberof InventoryApiUpdateBulkInventory
-   */
-  readonly shipNode?: string;
+	/**
+	 * The shipNode for which the inventory is to be updated.
+	 * @type {string}
+	 * @memberof InventoryApiUpdateBulkInventory
+	 */
+	readonly shipNode?: string;
 
-  /**
-   *
-   * @type {any}
-   * @memberof InventoryApiUpdateBulkInventory
-   */
-  readonly file?: any;
+	/**
+	 *
+	 * @type {any}
+	 * @memberof InventoryApiUpdateBulkInventory
+	 */
+	readonly file?: any;
 }
 
 /**
@@ -2930,61 +2641,61 @@ export interface InventoryApiUpdateBulkInventoryRequest {
  * @interface InventoryApiUpdateInventoryForAnItemRequest
  */
 export interface InventoryApiUpdateInventoryForAnItemRequest {
-  /**
-   * An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: \&#39;:\&#39;, \&#39;/\&#39;, \&#39;?\&#39;, \&#39;#\&#39;, \&#39;[\&#39;, \&#39;]\&#39;, \&#39;@\&#39;, \&#39;!\&#39;, \&#39;$\&#39;, \&#39;&amp;\&#39;, \&quot;\&#39;\&quot;, \&#39;(\&#39;, \&#39;)\&#39;, \&#39;*\&#39;, \&#39;+\&#39;, \&#39;,\&#39;, \&#39;;\&#39;, \&#39;&#x3D;\&#39;, ‘ ’, \&#39;{\&#39;, \&#39;}\&#39; as well as \&#39;%\&#39; itself if it\&#39;s a part of sku. Make sure to encode space with %20. Other characters don\&#39;t need to be encoded.
-   * @type {string}
-   * @memberof InventoryApiUpdateInventoryForAnItem
-   */
-  readonly sku: string;
+	/**
+	 * An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: \&#39;:\&#39;, \&#39;/\&#39;, \&#39;?\&#39;, \&#39;#\&#39;, \&#39;[\&#39;, \&#39;]\&#39;, \&#39;@\&#39;, \&#39;!\&#39;, \&#39;$\&#39;, \&#39;&amp;\&#39;, \&quot;\&#39;\&quot;, \&#39;(\&#39;, \&#39;)\&#39;, \&#39;*\&#39;, \&#39;+\&#39;, \&#39;,\&#39;, \&#39;;\&#39;, \&#39;&#x3D;\&#39;, ‘ ’, \&#39;{\&#39;, \&#39;}\&#39; as well as \&#39;%\&#39; itself if it\&#39;s a part of sku. Make sure to encode space with %20. Other characters don\&#39;t need to be encoded.
+	 * @type {string}
+	 * @memberof InventoryApiUpdateInventoryForAnItem
+	 */
+	readonly sku: string;
 
-  /**
-   * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-   * @type {string}
-   * @memberof InventoryApiUpdateInventoryForAnItem
-   */
-  readonly authorization: string;
+	/**
+	 * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+	 * @type {string}
+	 * @memberof InventoryApiUpdateInventoryForAnItem
+	 */
+	readonly authorization: string;
 
-  /**
-   * The access token retrieved in the Token API call
-   * @type {string}
-   * @memberof InventoryApiUpdateInventoryForAnItem
-   */
-  readonly wMSECACCESSTOKEN: string;
+	/**
+	 * The access token retrieved in the Token API call
+	 * @type {string}
+	 * @memberof InventoryApiUpdateInventoryForAnItem
+	 */
+	readonly wMSECACCESSTOKEN: string;
 
-  /**
-   * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-   * @type {string}
-   * @memberof InventoryApiUpdateInventoryForAnItem
-   */
-  readonly wMCONSUMERCHANNELTYPE: string;
+	/**
+	 * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+	 * @type {string}
+	 * @memberof InventoryApiUpdateInventoryForAnItem
+	 */
+	readonly wMCONSUMERCHANNELTYPE: string;
 
-  /**
-   * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-   * @type {string}
-   * @memberof InventoryApiUpdateInventoryForAnItem
-   */
-  readonly wMQOSCORRELATIONID: string;
+	/**
+	 * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+	 * @type {string}
+	 * @memberof InventoryApiUpdateInventoryForAnItem
+	 */
+	readonly wMQOSCORRELATIONID: string;
 
-  /**
-   * Walmart Service Name
-   * @type {string}
-   * @memberof InventoryApiUpdateInventoryForAnItem
-   */
-  readonly wMSVCNAME: string;
+	/**
+	 * Walmart Service Name
+	 * @type {string}
+	 * @memberof InventoryApiUpdateInventoryForAnItem
+	 */
+	readonly wMSVCNAME: string;
 
-  /**
-   *
-   * @type {InlineObject}
-   * @memberof InventoryApiUpdateInventoryForAnItem
-   */
-  readonly inlineObject: InlineObject;
+	/**
+	 *
+	 * @type {InlineObject}
+	 * @memberof InventoryApiUpdateInventoryForAnItem
+	 */
+	readonly inlineObject: InlineObject;
 
-  /**
-   * The shipNode for which the inventory is to be updated.
-   * @type {string}
-   * @memberof InventoryApiUpdateInventoryForAnItem
-   */
-  readonly shipNode?: string;
+	/**
+	 * The shipNode for which the inventory is to be updated.
+	 * @type {string}
+	 * @memberof InventoryApiUpdateInventoryForAnItem
+	 */
+	readonly shipNode?: string;
 }
 
 /**
@@ -2993,54 +2704,54 @@ export interface InventoryApiUpdateInventoryForAnItemRequest {
  * @interface InventoryApiUpdateMultiNodeInventoryRequest
  */
 export interface InventoryApiUpdateMultiNodeInventoryRequest {
-  /**
-   * An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: \&#39;:\&#39;, \&#39;/\&#39;, \&#39;?\&#39;, \&#39;#\&#39;, \&#39;[\&#39;, \&#39;]\&#39;, \&#39;@\&#39;, \&#39;!\&#39;, \&#39;$\&#39;, \&#39;&amp;\&#39;, \&quot;\&#39;\&quot;, \&#39;(\&#39;, \&#39;)\&#39;, \&#39;*\&#39;, \&#39;+\&#39;, \&#39;,\&#39;, \&#39;;\&#39;, \&#39;&#x3D;\&#39;, ‘ ’ as well as \&#39;%\&#39; itself if it\&#39;s a part of sku. Make sure to encode space with %20. Other characters don\&#39;t need to be encoded.
-   * @type {string}
-   * @memberof InventoryApiUpdateMultiNodeInventory
-   */
-  readonly sku: string;
+	/**
+	 * An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: \&#39;:\&#39;, \&#39;/\&#39;, \&#39;?\&#39;, \&#39;#\&#39;, \&#39;[\&#39;, \&#39;]\&#39;, \&#39;@\&#39;, \&#39;!\&#39;, \&#39;$\&#39;, \&#39;&amp;\&#39;, \&quot;\&#39;\&quot;, \&#39;(\&#39;, \&#39;)\&#39;, \&#39;*\&#39;, \&#39;+\&#39;, \&#39;,\&#39;, \&#39;;\&#39;, \&#39;&#x3D;\&#39;, ‘ ’ as well as \&#39;%\&#39; itself if it\&#39;s a part of sku. Make sure to encode space with %20. Other characters don\&#39;t need to be encoded.
+	 * @type {string}
+	 * @memberof InventoryApiUpdateMultiNodeInventory
+	 */
+	readonly sku: string;
 
-  /**
-   * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-   * @type {string}
-   * @memberof InventoryApiUpdateMultiNodeInventory
-   */
-  readonly authorization: string;
+	/**
+	 * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+	 * @type {string}
+	 * @memberof InventoryApiUpdateMultiNodeInventory
+	 */
+	readonly authorization: string;
 
-  /**
-   * The access token retrieved in the Token API call
-   * @type {string}
-   * @memberof InventoryApiUpdateMultiNodeInventory
-   */
-  readonly wMSECACCESSTOKEN: string;
+	/**
+	 * The access token retrieved in the Token API call
+	 * @type {string}
+	 * @memberof InventoryApiUpdateMultiNodeInventory
+	 */
+	readonly wMSECACCESSTOKEN: string;
 
-  /**
-   * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-   * @type {string}
-   * @memberof InventoryApiUpdateMultiNodeInventory
-   */
-  readonly wMCONSUMERCHANNELTYPE: string;
+	/**
+	 * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+	 * @type {string}
+	 * @memberof InventoryApiUpdateMultiNodeInventory
+	 */
+	readonly wMCONSUMERCHANNELTYPE: string;
 
-  /**
-   * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-   * @type {string}
-   * @memberof InventoryApiUpdateMultiNodeInventory
-   */
-  readonly wMQOSCORRELATIONID: string;
+	/**
+	 * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+	 * @type {string}
+	 * @memberof InventoryApiUpdateMultiNodeInventory
+	 */
+	readonly wMQOSCORRELATIONID: string;
 
-  /**
-   * Walmart Service Name
-   * @type {string}
-   * @memberof InventoryApiUpdateMultiNodeInventory
-   */
-  readonly wMSVCNAME: string;
+	/**
+	 * Walmart Service Name
+	 * @type {string}
+	 * @memberof InventoryApiUpdateMultiNodeInventory
+	 */
+	readonly wMSVCNAME: string;
 
-  /**
-   *
-   * @type {InlineObject1}
-   * @memberof InventoryApiUpdateMultiNodeInventory
-   */
-  readonly inlineObject1: InlineObject1;
+	/**
+	 *
+	 * @type {InlineObject1}
+	 * @memberof InventoryApiUpdateMultiNodeInventory
+	 */
+	readonly inlineObject1: InlineObject1;
 }
 
 /**
@@ -3050,190 +2761,175 @@ export interface InventoryApiUpdateMultiNodeInventoryRequest {
  * @extends {BaseAPI}
  */
 export class InventoryApi extends BaseAPI {
-  /**
-   * You can use this API to get the inventory for a given item.
-   * @summary Inventory
-   * @param {InventoryApiGetInventoryRequest} requestParameters Request parameters.
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof InventoryApi
-   */
-  public getInventory(
-    requestParameters: InventoryApiGetInventoryRequest,
-    options?: any
-  ) {
-    return InventoryApiFp(this.configuration)
-      .getInventory(
-        requestParameters.sku,
-        requestParameters.authorization,
-        requestParameters.wMSECACCESSTOKEN,
-        requestParameters.wMCONSUMERCHANNELTYPE,
-        requestParameters.wMQOSCORRELATIONID,
-        requestParameters.wMSVCNAME,
-        requestParameters.shipNode,
-        options
-      )
-      .then((request) => request(this.axios, this.basePath));
-  }
+	/**
+	 * You can use this API to get the inventory for a given item.
+	 * @summary Inventory
+	 * @param {InventoryApiGetInventoryRequest} requestParameters Request parameters.
+	 * @param {*} [options] Override http request option.
+	 * @throws {RequiredError}
+	 * @memberof InventoryApi
+	 */
+	public getInventory(requestParameters: InventoryApiGetInventoryRequest, options?: any) {
+		return InventoryApiFp(this.configuration)
+			.getInventory(
+				requestParameters.sku,
+				requestParameters.authorization,
+				requestParameters.wMSECACCESSTOKEN,
+				requestParameters.wMCONSUMERCHANNELTYPE,
+				requestParameters.wMQOSCORRELATIONID,
+				requestParameters.wMSVCNAME,
+				requestParameters.shipNode,
+				options
+			)
+			.then((request) => request(this.axios, this.basePath));
+	}
 
-  /**
-   * This API will retrieve the inventory count for all of a seller\'s items across all ship nodes by item to ship node mapping. Inventory can be zero or non-zero.
-   * @summary Multiple Item Inventory for All Ship Nodes
-   * @param {InventoryApiGetMultiNodeInventoryForAllSkuAndAllShipNodesRequest} requestParameters Request parameters.
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof InventoryApi
-   */
-  public getMultiNodeInventoryForAllSkuAndAllShipNodes(
-    requestParameters: InventoryApiGetMultiNodeInventoryForAllSkuAndAllShipNodesRequest,
-    options?: any
-  ) {
-    return InventoryApiFp(this.configuration)
-      .getMultiNodeInventoryForAllSkuAndAllShipNodes(
-        requestParameters.authorization,
-        requestParameters.wMSECACCESSTOKEN,
-        requestParameters.wMCONSUMERCHANNELTYPE,
-        requestParameters.wMQOSCORRELATIONID,
-        requestParameters.wMSVCNAME,
-        requestParameters.limit,
-        requestParameters.nextCursor,
-        options
-      )
-      .then((request) => request(this.axios, this.basePath));
-  }
+	/**
+	 * This API will retrieve the inventory count for all of a seller\'s items across all ship nodes by item to ship node mapping. Inventory can be zero or non-zero.
+	 * @summary Multiple Item Inventory for All Ship Nodes
+	 * @param {InventoryApiGetMultiNodeInventoryForAllSkuAndAllShipNodesRequest} requestParameters Request parameters.
+	 * @param {*} [options] Override http request option.
+	 * @throws {RequiredError}
+	 * @memberof InventoryApi
+	 */
+	public getMultiNodeInventoryForAllSkuAndAllShipNodes(
+		requestParameters: InventoryApiGetMultiNodeInventoryForAllSkuAndAllShipNodesRequest,
+		options?: any
+	) {
+		return InventoryApiFp(this.configuration)
+			.getMultiNodeInventoryForAllSkuAndAllShipNodes(
+				requestParameters.authorization,
+				requestParameters.wMSECACCESSTOKEN,
+				requestParameters.wMCONSUMERCHANNELTYPE,
+				requestParameters.wMQOSCORRELATIONID,
+				requestParameters.wMSVCNAME,
+				requestParameters.limit,
+				requestParameters.nextCursor,
+				options
+			)
+			.then((request) => request(this.axios, this.basePath));
+	}
 
-  /**
-   * This API will retrieve the inventory count for an item across all ship nodes or one specific ship node. You can specify the ship node for which you want to fetch the inventory
-   * @summary Single Item Inventory by Ship Node
-   * @param {InventoryApiGetMultiNodeInventoryForSkuAndAllShipnodesRequest} requestParameters Request parameters.
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof InventoryApi
-   */
-  public getMultiNodeInventoryForSkuAndAllShipnodes(
-    requestParameters: InventoryApiGetMultiNodeInventoryForSkuAndAllShipnodesRequest,
-    options?: any
-  ) {
-    return InventoryApiFp(this.configuration)
-      .getMultiNodeInventoryForSkuAndAllShipnodes(
-        requestParameters.sku,
-        requestParameters.authorization,
-        requestParameters.wMSECACCESSTOKEN,
-        requestParameters.wMCONSUMERCHANNELTYPE,
-        requestParameters.wMQOSCORRELATIONID,
-        requestParameters.wMSVCNAME,
-        requestParameters.shipNode,
-        options
-      )
-      .then((request) => request(this.axios, this.basePath));
-  }
+	/**
+	 * This API will retrieve the inventory count for an item across all ship nodes or one specific ship node. You can specify the ship node for which you want to fetch the inventory
+	 * @summary Single Item Inventory by Ship Node
+	 * @param {InventoryApiGetMultiNodeInventoryForSkuAndAllShipnodesRequest} requestParameters Request parameters.
+	 * @param {*} [options] Override http request option.
+	 * @throws {RequiredError}
+	 * @memberof InventoryApi
+	 */
+	public getMultiNodeInventoryForSkuAndAllShipnodes(
+		requestParameters: InventoryApiGetMultiNodeInventoryForSkuAndAllShipnodesRequest,
+		options?: any
+	) {
+		return InventoryApiFp(this.configuration)
+			.getMultiNodeInventoryForSkuAndAllShipnodes(
+				requestParameters.sku,
+				requestParameters.authorization,
+				requestParameters.wMSECACCESSTOKEN,
+				requestParameters.wMCONSUMERCHANNELTYPE,
+				requestParameters.wMQOSCORRELATIONID,
+				requestParameters.wMSVCNAME,
+				requestParameters.shipNode,
+				options
+			)
+			.then((request) => request(this.axios, this.basePath));
+	}
 
-  /**
-   * You can use this API to get the current Available to Sell inventory quantities for all WFS items in your catalog. You can also query specific SKUs or filter to only items updated after a specific date in order to reduce the response size.
-   * @summary WFS Inventory
-   * @param {InventoryApiGetWFSInventoryRequest} requestParameters Request parameters.
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof InventoryApi
-   */
-  public getWFSInventory(
-    requestParameters: InventoryApiGetWFSInventoryRequest,
-    options?: any
-  ) {
-    return InventoryApiFp(this.configuration)
-      .getWFSInventory(
-        requestParameters.authorization,
-        requestParameters.wMSECACCESSTOKEN,
-        requestParameters.wMCONSUMERCHANNELTYPE,
-        requestParameters.wMQOSCORRELATIONID,
-        requestParameters.wMSVCNAME,
-        requestParameters.sku,
-        requestParameters.fromModifiedDate,
-        requestParameters.toModifiedDate,
-        requestParameters.limit,
-        requestParameters.offset,
-        options
-      )
-      .then((request) => request(this.axios, this.basePath));
-  }
+	/**
+	 * You can use this API to get the current Available to Sell inventory quantities for all WFS items in your catalog. You can also query specific SKUs or filter to only items updated after a specific date in order to reduce the response size.
+	 * @summary WFS Inventory
+	 * @param {InventoryApiGetWFSInventoryRequest} requestParameters Request parameters.
+	 * @param {*} [options] Override http request option.
+	 * @throws {RequiredError}
+	 * @memberof InventoryApi
+	 */
+	public getWFSInventory(requestParameters: InventoryApiGetWFSInventoryRequest, options?: any) {
+		return InventoryApiFp(this.configuration)
+			.getWFSInventory(
+				requestParameters.authorization,
+				requestParameters.wMSECACCESSTOKEN,
+				requestParameters.wMCONSUMERCHANNELTYPE,
+				requestParameters.wMQOSCORRELATIONID,
+				requestParameters.wMSVCNAME,
+				requestParameters.sku,
+				requestParameters.fromModifiedDate,
+				requestParameters.toModifiedDate,
+				requestParameters.limit,
+				requestParameters.offset,
+				options
+			)
+			.then((request) => request(this.axios, this.basePath));
+	}
 
-  /**
-   * Updates inventory for items in bulk. Refer to the throttling limits before uploading the Feed files.
-   * @summary Bulk Item Inventory Update
-   * @param {InventoryApiUpdateBulkInventoryRequest} requestParameters Request parameters.
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof InventoryApi
-   */
-  public updateBulkInventory(
-    requestParameters: InventoryApiUpdateBulkInventoryRequest,
-    options?: any
-  ) {
-    return InventoryApiFp(this.configuration)
-      .updateBulkInventory(
-        requestParameters.feedType,
-        requestParameters.authorization,
-        requestParameters.wMSECACCESSTOKEN,
-        requestParameters.wMCONSUMERCHANNELTYPE,
-        requestParameters.wMQOSCORRELATIONID,
-        requestParameters.wMSVCNAME,
-        requestParameters.shipNode,
-        requestParameters.file,
-        options
-      )
-      .then((request) => request(this.axios, this.basePath));
-  }
+	/**
+	 * Updates inventory for items in bulk. Refer to the throttling limits before uploading the Feed files.
+	 * @summary Bulk Item Inventory Update
+	 * @param {InventoryApiUpdateBulkInventoryRequest} requestParameters Request parameters.
+	 * @param {*} [options] Override http request option.
+	 * @throws {RequiredError}
+	 * @memberof InventoryApi
+	 */
+	public updateBulkInventory(requestParameters: InventoryApiUpdateBulkInventoryRequest, options?: any) {
+		return InventoryApiFp(this.configuration)
+			.updateBulkInventory(
+				requestParameters.feedType,
+				requestParameters.authorization,
+				requestParameters.wMSECACCESSTOKEN,
+				requestParameters.wMCONSUMERCHANNELTYPE,
+				requestParameters.wMQOSCORRELATIONID,
+				requestParameters.wMSVCNAME,
+				requestParameters.shipNode,
+				requestParameters.file,
+				options
+			)
+			.then((request) => request(this.axios, this.basePath));
+	}
 
-  /**
-   * Updates the inventory for a given item.
-   * @summary Update inventory
-   * @param {InventoryApiUpdateInventoryForAnItemRequest} requestParameters Request parameters.
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof InventoryApi
-   */
-  public updateInventoryForAnItem(
-    requestParameters: InventoryApiUpdateInventoryForAnItemRequest,
-    options?: any
-  ) {
-    return InventoryApiFp(this.configuration)
-      .updateInventoryForAnItem(
-        requestParameters.sku,
-        requestParameters.authorization,
-        requestParameters.wMSECACCESSTOKEN,
-        requestParameters.wMCONSUMERCHANNELTYPE,
-        requestParameters.wMQOSCORRELATIONID,
-        requestParameters.wMSVCNAME,
-        requestParameters.inlineObject,
-        requestParameters.shipNode,
-        options
-      )
-      .then((request) => request(this.axios, this.basePath));
-  }
+	/**
+	 * Updates the inventory for a given item.
+	 * @summary Update inventory
+	 * @param {InventoryApiUpdateInventoryForAnItemRequest} requestParameters Request parameters.
+	 * @param {*} [options] Override http request option.
+	 * @throws {RequiredError}
+	 * @memberof InventoryApi
+	 */
+	public updateInventoryForAnItem(requestParameters: InventoryApiUpdateInventoryForAnItemRequest, options?: any) {
+		return InventoryApiFp(this.configuration)
+			.updateInventoryForAnItem(
+				requestParameters.sku,
+				requestParameters.authorization,
+				requestParameters.wMSECACCESSTOKEN,
+				requestParameters.wMCONSUMERCHANNELTYPE,
+				requestParameters.wMQOSCORRELATIONID,
+				requestParameters.wMSVCNAME,
+				requestParameters.inlineObject,
+				requestParameters.shipNode,
+				options
+			)
+			.then((request) => request(this.axios, this.basePath));
+	}
 
-  /**
-   * This API will update the inventory for an item across one or more fulfillment centers, known as ship nodes.
-   * @summary Update Item Inventory per Ship Node
-   * @param {InventoryApiUpdateMultiNodeInventoryRequest} requestParameters Request parameters.
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof InventoryApi
-   */
-  public updateMultiNodeInventory(
-    requestParameters: InventoryApiUpdateMultiNodeInventoryRequest,
-    options?: any
-  ) {
-    return InventoryApiFp(this.configuration)
-      .updateMultiNodeInventory(
-        requestParameters.sku,
-        requestParameters.authorization,
-        requestParameters.wMSECACCESSTOKEN,
-        requestParameters.wMCONSUMERCHANNELTYPE,
-        requestParameters.wMQOSCORRELATIONID,
-        requestParameters.wMSVCNAME,
-        requestParameters.inlineObject1,
-        options
-      )
-      .then((request) => request(this.axios, this.basePath));
-  }
+	/**
+	 * This API will update the inventory for an item across one or more fulfillment centers, known as ship nodes.
+	 * @summary Update Item Inventory per Ship Node
+	 * @param {InventoryApiUpdateMultiNodeInventoryRequest} requestParameters Request parameters.
+	 * @param {*} [options] Override http request option.
+	 * @throws {RequiredError}
+	 * @memberof InventoryApi
+	 */
+	public updateMultiNodeInventory(requestParameters: InventoryApiUpdateMultiNodeInventoryRequest, options?: any) {
+		return InventoryApiFp(this.configuration)
+			.updateMultiNodeInventory(
+				requestParameters.sku,
+				requestParameters.authorization,
+				requestParameters.wMSECACCESSTOKEN,
+				requestParameters.wMCONSUMERCHANNELTYPE,
+				requestParameters.wMQOSCORRELATIONID,
+				requestParameters.wMSVCNAME,
+				requestParameters.inlineObject1,
+				options
+			)
+			.then((request) => request(this.axios, this.basePath));
+	}
 }

@@ -12,30 +12,24 @@
  * Do not edit the class manually.
  */
 
-import { Configuration } from "./configuration";
-import globalAxios, { AxiosPromise, AxiosInstance } from "axios";
+import { Configuration } from './configuration';
+import globalAxios, { AxiosPromise, AxiosInstance } from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import {
-  DUMMY_BASE_URL,
-  assertParamExists,
-  setApiKeyToObject,
-  setBasicAuthToObject,
-  setBearerAuthToObject,
-  setOAuthToObject,
-  setSearchParams,
-  serializeDataIfNeeded,
-  toPathString,
-  createRequestFunction,
-} from "./common";
+	DUMMY_BASE_URL,
+	assertParamExists,
+	setApiKeyToObject,
+	setBasicAuthToObject,
+	setBearerAuthToObject,
+	setOAuthToObject,
+	setSearchParams,
+	serializeDataIfNeeded,
+	toPathString,
+	createRequestFunction,
+} from './common';
 // @ts-ignore
-import {
-  BASE_PATH,
-  COLLECTION_FORMATS,
-  RequestArgs,
-  BaseAPI,
-  RequiredError,
-} from "./base";
+import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from './base';
 
 /**
  * Carrier information for the return
@@ -43,30 +37,30 @@ import {
  * @interface CarrierInfoList
  */
 export interface CarrierInfoList {
-  /**
-   * ID of the carrier used for the return
-   * @type {string}
-   * @memberof CarrierInfoList
-   */
-  carrierId?: string;
-  /**
-   * Name of the carrier used
-   * @type {string}
-   * @memberof CarrierInfoList
-   */
-  carrierName?: string;
-  /**
-   * the type of service used
-   * @type {string}
-   * @memberof CarrierInfoList
-   */
-  serviceType?: string;
-  /**
-   * Tracking number of the order
-   * @type {string}
-   * @memberof CarrierInfoList
-   */
-  trackingNo?: string;
+	/**
+	 * ID of the carrier used for the return
+	 * @type {string}
+	 * @memberof CarrierInfoList
+	 */
+	carrierId?: string;
+	/**
+	 * Name of the carrier used
+	 * @type {string}
+	 * @memberof CarrierInfoList
+	 */
+	carrierName?: string;
+	/**
+	 * the type of service used
+	 * @type {string}
+	 * @memberof CarrierInfoList
+	 */
+	serviceType?: string;
+	/**
+	 * Tracking number of the order
+	 * @type {string}
+	 * @memberof CarrierInfoList
+	 */
+	trackingNo?: string;
 }
 /**
  * Information relating to the charge for the orderLine
@@ -74,54 +68,54 @@ export interface CarrierInfoList {
  * @interface Charge
  */
 export interface Charge {
-  /**
-   * The category type. (e.g., \'PRODUCT\' or \'FEE\')
-   * @type {string}
-   * @memberof Charge
-   */
-  chargeCategory?: string;
-  /**
-   * If chargeType is PRODUCT, chargeName is Item Price. If chargeType is SHIPPING, chargeName is Shipping
-   * @type {string}
-   * @memberof Charge
-   */
-  chargeName?: string;
-  /**
-   *
-   * @type {InlineResponse2001TotalRefundAmount}
-   * @memberof Charge
-   */
-  chargePerUnit?: InlineResponse2001TotalRefundAmount;
-  /**
-   * Is this charge a discount, which then needs to be subtracted from the refund
-   * @type {boolean}
-   * @memberof Charge
-   */
-  isDiscount?: boolean;
-  /**
-   * Should this charge be included in the refund computation
-   * @type {boolean}
-   * @memberof Charge
-   */
-  isBillable?: boolean;
-  /**
-   * Taxes for each charge
-   * @type {Array<InlineResponse2001Tax>}
-   * @memberof Charge
-   */
-  tax?: Array<InlineResponse2001Tax>;
-  /**
-   *
-   * @type {InlineResponse2001TotalRefundAmount}
-   * @memberof Charge
-   */
-  excessCharge?: InlineResponse2001TotalRefundAmount;
-  /**
-   * Used only for OG
-   * @type {Array<InlineResponse2001References>}
-   * @memberof Charge
-   */
-  references?: Array<InlineResponse2001References>;
+	/**
+	 * The category type. (e.g., \'PRODUCT\' or \'FEE\')
+	 * @type {string}
+	 * @memberof Charge
+	 */
+	chargeCategory?: string;
+	/**
+	 * If chargeType is PRODUCT, chargeName is Item Price. If chargeType is SHIPPING, chargeName is Shipping
+	 * @type {string}
+	 * @memberof Charge
+	 */
+	chargeName?: string;
+	/**
+	 *
+	 * @type {InlineResponse2001TotalRefundAmount}
+	 * @memberof Charge
+	 */
+	chargePerUnit?: InlineResponse2001TotalRefundAmount;
+	/**
+	 * Is this charge a discount, which then needs to be subtracted from the refund
+	 * @type {boolean}
+	 * @memberof Charge
+	 */
+	isDiscount?: boolean;
+	/**
+	 * Should this charge be included in the refund computation
+	 * @type {boolean}
+	 * @memberof Charge
+	 */
+	isBillable?: boolean;
+	/**
+	 * Taxes for each charge
+	 * @type {Array<InlineResponse2001Tax>}
+	 * @memberof Charge
+	 */
+	tax?: Array<InlineResponse2001Tax>;
+	/**
+	 *
+	 * @type {InlineResponse2001TotalRefundAmount}
+	 * @memberof Charge
+	 */
+	excessCharge?: InlineResponse2001TotalRefundAmount;
+	/**
+	 * Used only for OG
+	 * @type {Array<InlineResponse2001References>}
+	 * @memberof Charge
+	 */
+	references?: Array<InlineResponse2001References>;
 }
 /**
  * Contains name value pairs of calculated charges for the line. Eg: if order line has 3 Qty, this will have a shipping charge = 3 * shipping charge per unit (This is present in the line level charges).
@@ -129,18 +123,18 @@ export interface Charge {
  * @interface ChargeTotal
  */
 export interface ChargeTotal {
-  /**
-   * Charge Names: lineUnitPrice, lineProductTaxes, lineTotalTaxes, lineRestockingFee, lineShippingFee, lineSubTotal, lineTotal.
-   * @type {string}
-   * @memberof ChargeTotal
-   */
-  name: string;
-  /**
-   *
-   * @type {InlineResponse2001TotalRefundAmount}
-   * @memberof ChargeTotal
-   */
-  value: InlineResponse2001TotalRefundAmount;
+	/**
+	 * Charge Names: lineUnitPrice, lineProductTaxes, lineTotalTaxes, lineRestockingFee, lineShippingFee, lineSubTotal, lineTotal.
+	 * @type {string}
+	 * @memberof ChargeTotal
+	 */
+	name: string;
+	/**
+	 *
+	 * @type {InlineResponse2001TotalRefundAmount}
+	 * @memberof ChargeTotal
+	 */
+	value: InlineResponse2001TotalRefundAmount;
 }
 /**
  * Customer information
@@ -148,18 +142,18 @@ export interface ChargeTotal {
  * @interface CustomerName
  */
 export interface CustomerName {
-  /**
-   * Customer first name
-   * @type {string}
-   * @memberof CustomerName
-   */
-  firstName?: string;
-  /**
-   * Customer last name
-   * @type {string}
-   * @memberof CustomerName
-   */
-  lastName?: string;
+	/**
+	 * Customer first name
+	 * @type {string}
+	 * @memberof CustomerName
+	 */
+	firstName?: string;
+	/**
+	 * Customer last name
+	 * @type {string}
+	 * @memberof CustomerName
+	 */
+	lastName?: string;
 }
 /**
  *
@@ -167,12 +161,12 @@ export interface CustomerName {
  * @interface FeedId
  */
 export interface FeedId {
-  /**
-   * A unique ID, returned from the Bulk Upload API, used for tracking the Feed File.
-   * @type {string}
-   * @memberof FeedId
-   */
-  feedId?: string;
+	/**
+	 * A unique ID, returned from the Bulk Upload API, used for tracking the Feed File.
+	 * @type {string}
+	 * @memberof FeedId
+	 */
+	feedId?: string;
 }
 /**
  *
@@ -180,18 +174,18 @@ export interface FeedId {
  * @interface GetReturnOrdersResponse
  */
 export interface GetReturnOrdersResponse {
-  /**
-   *
-   * @type {InlineResponse2001Meta}
-   * @memberof GetReturnOrdersResponse
-   */
-  meta: InlineResponse2001Meta;
-  /**
-   * List of returns for the seller.
-   * @type {Array<InlineResponse2001ReturnOrders>}
-   * @memberof GetReturnOrdersResponse
-   */
-  returnOrders: Array<InlineResponse2001ReturnOrders>;
+	/**
+	 *
+	 * @type {InlineResponse2001Meta}
+	 * @memberof GetReturnOrdersResponse
+	 */
+	meta: InlineResponse2001Meta;
+	/**
+	 * List of returns for the seller.
+	 * @type {Array<InlineResponse2001ReturnOrders>}
+	 * @memberof GetReturnOrdersResponse
+	 */
+	returnOrders: Array<InlineResponse2001ReturnOrders>;
 }
 /**
  *
@@ -199,18 +193,18 @@ export interface GetReturnOrdersResponse {
  * @interface InlineObject
  */
 export interface InlineObject {
-  /**
-   * A unique ID associated with the sales order for specified customer
-   * @type {string}
-   * @memberof InlineObject
-   */
-  customerOrderId: string;
-  /**
-   * Array of refund lines.
-   * @type {Array<V3ReturnsReturnOrderIdRefundRefundLines>}
-   * @memberof InlineObject
-   */
-  refundLines: Array<V3ReturnsReturnOrderIdRefundRefundLines>;
+	/**
+	 * A unique ID associated with the sales order for specified customer
+	 * @type {string}
+	 * @memberof InlineObject
+	 */
+	customerOrderId: string;
+	/**
+	 * Array of refund lines.
+	 * @type {Array<V3ReturnsReturnOrderIdRefundRefundLines>}
+	 * @memberof InlineObject
+	 */
+	refundLines: Array<V3ReturnsReturnOrderIdRefundRefundLines>;
 }
 /**
  *
@@ -218,24 +212,24 @@ export interface InlineObject {
  * @interface InlineResponse200
  */
 export interface InlineResponse200 {
-  /**
-   * The return order id
-   * @type {string}
-   * @memberof InlineResponse200
-   */
-  returnOrderId?: string;
-  /**
-   * A unique ID associated with the sales order for specified customer
-   * @type {string}
-   * @memberof InlineResponse200
-   */
-  customerOrderId?: string;
-  /**
-   * Array of refund lines
-   * @type {Array<V3ReturnsReturnOrderIdRefundRefundLines>}
-   * @memberof InlineResponse200
-   */
-  refundLines?: Array<V3ReturnsReturnOrderIdRefundRefundLines>;
+	/**
+	 * The return order id
+	 * @type {string}
+	 * @memberof InlineResponse200
+	 */
+	returnOrderId?: string;
+	/**
+	 * A unique ID associated with the sales order for specified customer
+	 * @type {string}
+	 * @memberof InlineResponse200
+	 */
+	customerOrderId?: string;
+	/**
+	 * Array of refund lines
+	 * @type {Array<V3ReturnsReturnOrderIdRefundRefundLines>}
+	 * @memberof InlineResponse200
+	 */
+	refundLines?: Array<V3ReturnsReturnOrderIdRefundRefundLines>;
 }
 /**
  *
@@ -243,18 +237,18 @@ export interface InlineResponse200 {
  * @interface InlineResponse2001
  */
 export interface InlineResponse2001 {
-  /**
-   *
-   * @type {InlineResponse2001Meta}
-   * @memberof InlineResponse2001
-   */
-  meta: InlineResponse2001Meta;
-  /**
-   * List of returns for the seller.
-   * @type {Array<InlineResponse2001ReturnOrders>}
-   * @memberof InlineResponse2001
-   */
-  returnOrders: Array<InlineResponse2001ReturnOrders>;
+	/**
+	 *
+	 * @type {InlineResponse2001Meta}
+	 * @memberof InlineResponse2001
+	 */
+	meta: InlineResponse2001Meta;
+	/**
+	 * List of returns for the seller.
+	 * @type {Array<InlineResponse2001ReturnOrders>}
+	 * @memberof InlineResponse2001
+	 */
+	returnOrders: Array<InlineResponse2001ReturnOrders>;
 }
 /**
  * Carrier information for the return
@@ -262,30 +256,30 @@ export interface InlineResponse2001 {
  * @interface InlineResponse2001CarrierInfoList
  */
 export interface InlineResponse2001CarrierInfoList {
-  /**
-   * ID of the carrier used for the return
-   * @type {string}
-   * @memberof InlineResponse2001CarrierInfoList
-   */
-  carrierId?: string;
-  /**
-   * Name of the carrier used
-   * @type {string}
-   * @memberof InlineResponse2001CarrierInfoList
-   */
-  carrierName?: string;
-  /**
-   * the type of service used
-   * @type {string}
-   * @memberof InlineResponse2001CarrierInfoList
-   */
-  serviceType?: string;
-  /**
-   * Tracking number of the order
-   * @type {string}
-   * @memberof InlineResponse2001CarrierInfoList
-   */
-  trackingNo?: string;
+	/**
+	 * ID of the carrier used for the return
+	 * @type {string}
+	 * @memberof InlineResponse2001CarrierInfoList
+	 */
+	carrierId?: string;
+	/**
+	 * Name of the carrier used
+	 * @type {string}
+	 * @memberof InlineResponse2001CarrierInfoList
+	 */
+	carrierName?: string;
+	/**
+	 * the type of service used
+	 * @type {string}
+	 * @memberof InlineResponse2001CarrierInfoList
+	 */
+	serviceType?: string;
+	/**
+	 * Tracking number of the order
+	 * @type {string}
+	 * @memberof InlineResponse2001CarrierInfoList
+	 */
+	trackingNo?: string;
 }
 /**
  * Contains name value pairs of calculated charges for the line. Eg: if order line has 3 Qty, this will have a shipping charge = 3 * shipping charge per unit (This is present in the line level charges).
@@ -293,18 +287,18 @@ export interface InlineResponse2001CarrierInfoList {
  * @interface InlineResponse2001ChargeTotals
  */
 export interface InlineResponse2001ChargeTotals {
-  /**
-   * Charge Names: lineUnitPrice, lineProductTaxes, lineTotalTaxes, lineRestockingFee, lineShippingFee, lineSubTotal, lineTotal.
-   * @type {string}
-   * @memberof InlineResponse2001ChargeTotals
-   */
-  name: string;
-  /**
-   *
-   * @type {InlineResponse2001TotalRefundAmount}
-   * @memberof InlineResponse2001ChargeTotals
-   */
-  value: InlineResponse2001TotalRefundAmount;
+	/**
+	 * Charge Names: lineUnitPrice, lineProductTaxes, lineTotalTaxes, lineRestockingFee, lineShippingFee, lineSubTotal, lineTotal.
+	 * @type {string}
+	 * @memberof InlineResponse2001ChargeTotals
+	 */
+	name: string;
+	/**
+	 *
+	 * @type {InlineResponse2001TotalRefundAmount}
+	 * @memberof InlineResponse2001ChargeTotals
+	 */
+	value: InlineResponse2001TotalRefundAmount;
 }
 /**
  * Information relating to the charge for the orderLine
@@ -312,54 +306,54 @@ export interface InlineResponse2001ChargeTotals {
  * @interface InlineResponse2001Charges
  */
 export interface InlineResponse2001Charges {
-  /**
-   * The category type. (e.g., \'PRODUCT\' or \'FEE\')
-   * @type {string}
-   * @memberof InlineResponse2001Charges
-   */
-  chargeCategory?: string;
-  /**
-   * If chargeType is PRODUCT, chargeName is Item Price. If chargeType is SHIPPING, chargeName is Shipping
-   * @type {string}
-   * @memberof InlineResponse2001Charges
-   */
-  chargeName?: string;
-  /**
-   *
-   * @type {InlineResponse2001TotalRefundAmount}
-   * @memberof InlineResponse2001Charges
-   */
-  chargePerUnit?: InlineResponse2001TotalRefundAmount;
-  /**
-   * Is this charge a discount, which then needs to be subtracted from the refund
-   * @type {boolean}
-   * @memberof InlineResponse2001Charges
-   */
-  isDiscount?: boolean;
-  /**
-   * Should this charge be included in the refund computation
-   * @type {boolean}
-   * @memberof InlineResponse2001Charges
-   */
-  isBillable?: boolean;
-  /**
-   * Taxes for each charge
-   * @type {Array<InlineResponse2001Tax>}
-   * @memberof InlineResponse2001Charges
-   */
-  tax?: Array<InlineResponse2001Tax>;
-  /**
-   *
-   * @type {InlineResponse2001TotalRefundAmount}
-   * @memberof InlineResponse2001Charges
-   */
-  excessCharge?: InlineResponse2001TotalRefundAmount;
-  /**
-   * Used only for OG
-   * @type {Array<InlineResponse2001References>}
-   * @memberof InlineResponse2001Charges
-   */
-  references?: Array<InlineResponse2001References>;
+	/**
+	 * The category type. (e.g., \'PRODUCT\' or \'FEE\')
+	 * @type {string}
+	 * @memberof InlineResponse2001Charges
+	 */
+	chargeCategory?: string;
+	/**
+	 * If chargeType is PRODUCT, chargeName is Item Price. If chargeType is SHIPPING, chargeName is Shipping
+	 * @type {string}
+	 * @memberof InlineResponse2001Charges
+	 */
+	chargeName?: string;
+	/**
+	 *
+	 * @type {InlineResponse2001TotalRefundAmount}
+	 * @memberof InlineResponse2001Charges
+	 */
+	chargePerUnit?: InlineResponse2001TotalRefundAmount;
+	/**
+	 * Is this charge a discount, which then needs to be subtracted from the refund
+	 * @type {boolean}
+	 * @memberof InlineResponse2001Charges
+	 */
+	isDiscount?: boolean;
+	/**
+	 * Should this charge be included in the refund computation
+	 * @type {boolean}
+	 * @memberof InlineResponse2001Charges
+	 */
+	isBillable?: boolean;
+	/**
+	 * Taxes for each charge
+	 * @type {Array<InlineResponse2001Tax>}
+	 * @memberof InlineResponse2001Charges
+	 */
+	tax?: Array<InlineResponse2001Tax>;
+	/**
+	 *
+	 * @type {InlineResponse2001TotalRefundAmount}
+	 * @memberof InlineResponse2001Charges
+	 */
+	excessCharge?: InlineResponse2001TotalRefundAmount;
+	/**
+	 * Used only for OG
+	 * @type {Array<InlineResponse2001References>}
+	 * @memberof InlineResponse2001Charges
+	 */
+	references?: Array<InlineResponse2001References>;
 }
 /**
  * Customer information
@@ -367,18 +361,18 @@ export interface InlineResponse2001Charges {
  * @interface InlineResponse2001CustomerName
  */
 export interface InlineResponse2001CustomerName {
-  /**
-   * Customer first name
-   * @type {string}
-   * @memberof InlineResponse2001CustomerName
-   */
-  firstName?: string;
-  /**
-   * Customer last name
-   * @type {string}
-   * @memberof InlineResponse2001CustomerName
-   */
-  lastName?: string;
+	/**
+	 * Customer first name
+	 * @type {string}
+	 * @memberof InlineResponse2001CustomerName
+	 */
+	firstName?: string;
+	/**
+	 * Customer last name
+	 * @type {string}
+	 * @memberof InlineResponse2001CustomerName
+	 */
+	lastName?: string;
 }
 /**
  * Details of the item to be returned
@@ -386,24 +380,24 @@ export interface InlineResponse2001CustomerName {
  * @interface InlineResponse2001Item
  */
 export interface InlineResponse2001Item {
-  /**
-   * An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item.
-   * @type {string}
-   * @memberof InlineResponse2001Item
-   */
-  sku?: string;
-  /**
-   * The name of the product associated with the line item. Example: \'Kenmore CF1\' or \'2086883 Canister Secondary Filter Generic 2 Pack\'
-   * @type {string}
-   * @memberof InlineResponse2001Item
-   */
-  productName?: string;
-  /**
-   *
-   * @type {InlineResponse2001ItemItemWeight}
-   * @memberof InlineResponse2001Item
-   */
-  itemWeight?: InlineResponse2001ItemItemWeight;
+	/**
+	 * An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item.
+	 * @type {string}
+	 * @memberof InlineResponse2001Item
+	 */
+	sku?: string;
+	/**
+	 * The name of the product associated with the line item. Example: \'Kenmore CF1\' or \'2086883 Canister Secondary Filter Generic 2 Pack\'
+	 * @type {string}
+	 * @memberof InlineResponse2001Item
+	 */
+	productName?: string;
+	/**
+	 *
+	 * @type {InlineResponse2001ItemItemWeight}
+	 * @memberof InlineResponse2001Item
+	 */
+	itemWeight?: InlineResponse2001ItemItemWeight;
 }
 /**
  * Total quantity returned in this return line
@@ -411,18 +405,18 @@ export interface InlineResponse2001Item {
  * @interface InlineResponse2001ItemItemWeight
  */
 export interface InlineResponse2001ItemItemWeight {
-  /**
-   * The unit of measure in the item\'s weight (e.g., \'POUND\' or \'OUNCE\')
-   * @type {string}
-   * @memberof InlineResponse2001ItemItemWeight
-   */
-  unitOfMeasure: string;
-  /**
-   * The quantity of the unit of measure for the item
-   * @type {number}
-   * @memberof InlineResponse2001ItemItemWeight
-   */
-  measurementValue: number;
+	/**
+	 * The unit of measure in the item\'s weight (e.g., \'POUND\' or \'OUNCE\')
+	 * @type {string}
+	 * @memberof InlineResponse2001ItemItemWeight
+	 */
+	unitOfMeasure: string;
+	/**
+	 * The quantity of the unit of measure for the item
+	 * @type {number}
+	 * @memberof InlineResponse2001ItemItemWeight
+	 */
+	measurementValue: number;
 }
 /**
  * Array of labels
@@ -430,18 +424,18 @@ export interface InlineResponse2001ItemItemWeight {
  * @interface InlineResponse2001Labels
  */
 export interface InlineResponse2001Labels {
-  /**
-   * Url to get the return label
-   * @type {string}
-   * @memberof InlineResponse2001Labels
-   */
-  labelImageURL?: string;
-  /**
-   * Carrier information for the return
-   * @type {Array<InlineResponse2001CarrierInfoList>}
-   * @memberof InlineResponse2001Labels
-   */
-  carrierInfoList?: Array<InlineResponse2001CarrierInfoList>;
+	/**
+	 * Url to get the return label
+	 * @type {string}
+	 * @memberof InlineResponse2001Labels
+	 */
+	labelImageURL?: string;
+	/**
+	 * Carrier information for the return
+	 * @type {Array<InlineResponse2001CarrierInfoList>}
+	 * @memberof InlineResponse2001Labels
+	 */
+	carrierInfoList?: Array<InlineResponse2001CarrierInfoList>;
 }
 /**
  *
@@ -449,24 +443,24 @@ export interface InlineResponse2001Labels {
  * @interface InlineResponse2001Meta
  */
 export interface InlineResponse2001Meta {
-  /**
-   *
-   * @type {number}
-   * @memberof InlineResponse2001Meta
-   */
-  totalCount: number;
-  /**
-   *
-   * @type {number}
-   * @memberof InlineResponse2001Meta
-   */
-  limit: number;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse2001Meta
-   */
-  nextCursor: string;
+	/**
+	 *
+	 * @type {number}
+	 * @memberof InlineResponse2001Meta
+	 */
+	totalCount: number;
+	/**
+	 *
+	 * @type {number}
+	 * @memberof InlineResponse2001Meta
+	 */
+	limit: number;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineResponse2001Meta
+	 */
+	nextCursor: string;
 }
 /**
  * Used only for 1P
@@ -474,18 +468,18 @@ export interface InlineResponse2001Meta {
  * @interface InlineResponse2001References
  */
 export interface InlineResponse2001References {
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse2001References
-   */
-  name: string;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse2001References
-   */
-  value: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineResponse2001References
+	 */
+	name: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineResponse2001References
+	 */
+	value: string;
 }
 /**
  * The channel via order return got initiated
@@ -493,12 +487,12 @@ export interface InlineResponse2001References {
  * @interface InlineResponse2001ReturnChannel
  */
 export interface InlineResponse2001ReturnChannel {
-  /**
-   * Valid values are: ONLINE, IN_STORE, and CUSTOMER_CARE
-   * @type {string}
-   * @memberof InlineResponse2001ReturnChannel
-   */
-  channelName?: string;
+	/**
+	 * Valid values are: ONLINE, IN_STORE, and CUSTOMER_CARE
+	 * @type {string}
+	 * @memberof InlineResponse2001ReturnChannel
+	 */
+	channelName?: string;
 }
 /**
  * These groups are created per label or type of carrier service required. (e.g., If order has some lines that can be clubbed and mailed together as a smart post then they belong to one return group. If a line is bulky and needs a different type of carrier service, then that line will be part of different group. Customer gets multiple labels depending on how many groups are created for the entire order.)
@@ -506,30 +500,30 @@ export interface InlineResponse2001ReturnChannel {
  * @interface InlineResponse2001ReturnLineGroups
  */
 export interface InlineResponse2001ReturnLineGroups {
-  /**
-   * Sequence of group numbers where each returnLineGroups will represent one or more return lines
-   * @type {number}
-   * @memberof InlineResponse2001ReturnLineGroups
-   */
-  groupNo?: number;
-  /**
-   * Array of return lines
-   * @type {Array<InlineResponse2001ReturnLines>}
-   * @memberof InlineResponse2001ReturnLineGroups
-   */
-  returnLines?: Array<InlineResponse2001ReturnLines>;
-  /**
-   * Array of labels
-   * @type {Array<InlineResponse2001Labels>}
-   * @memberof InlineResponse2001ReturnLineGroups
-   */
-  labels?: Array<InlineResponse2001Labels>;
-  /**
-   * Is customer required to send this item back to return center
-   * @type {boolean}
-   * @memberof InlineResponse2001ReturnLineGroups
-   */
-  returnExpectedFlag?: boolean;
+	/**
+	 * Sequence of group numbers where each returnLineGroups will represent one or more return lines
+	 * @type {number}
+	 * @memberof InlineResponse2001ReturnLineGroups
+	 */
+	groupNo?: number;
+	/**
+	 * Array of return lines
+	 * @type {Array<InlineResponse2001ReturnLines>}
+	 * @memberof InlineResponse2001ReturnLineGroups
+	 */
+	returnLines?: Array<InlineResponse2001ReturnLines>;
+	/**
+	 * Array of labels
+	 * @type {Array<InlineResponse2001Labels>}
+	 * @memberof InlineResponse2001ReturnLineGroups
+	 */
+	labels?: Array<InlineResponse2001Labels>;
+	/**
+	 * Is customer required to send this item back to return center
+	 * @type {boolean}
+	 * @memberof InlineResponse2001ReturnLineGroups
+	 */
+	returnExpectedFlag?: boolean;
 }
 /**
  * Array of return lines
@@ -537,12 +531,12 @@ export interface InlineResponse2001ReturnLineGroups {
  * @interface InlineResponse2001ReturnLines
  */
 export interface InlineResponse2001ReturnLines {
-  /**
-   * Identifier of the return label
-   * @type {number}
-   * @memberof InlineResponse2001ReturnLines
-   */
-  returnOrderLineNumber?: number;
+	/**
+	 * Identifier of the return label
+	 * @type {number}
+	 * @memberof InlineResponse2001ReturnLines
+	 */
+	returnOrderLineNumber?: number;
 }
 /**
  * A list of order lines in the return order
@@ -550,180 +544,180 @@ export interface InlineResponse2001ReturnLines {
  * @interface InlineResponse2001ReturnOrderLines
  */
 export interface InlineResponse2001ReturnOrderLines {
-  /**
-   * The returns order line number for that return
-   * @type {number}
-   * @memberof InlineResponse2001ReturnOrderLines
-   */
-  returnOrderLineNumber?: number;
-  /**
-   * The sales order line number for the return created
-   * @type {number}
-   * @memberof InlineResponse2001ReturnOrderLines
-   */
-  salesOrderLineNumber?: number;
-  /**
-   * A unique ID associated with the sales order for specified Seller; gives Sellers the ability to print their own custom order ID on the return label; limit of 30 characters
-   * @type {string}
-   * @memberof InlineResponse2001ReturnOrderLines
-   */
-  sellerOrderId?: string;
-  /**
-   * Gives the reason that was selected during the return creation. Reason codes are: ARRIVED_LATE, AUTO_RETURN, BOUGHT_ANOTHER_SIZE_OR_COLOR, BOUGHT_SOMEWHERE_ELSE, DAMAGED, DEFECTIVE, DUPLICATE_ITEM, INADEQUATE_QUALITY, INCORRECT_ITEM, LOST_AFTER_DELIVERY, LOST_IN_TRANSIT, LOWER_PRICE, MISSING_PARTS, NOT_AS_DESCRIBED, NO_LONGER_WANTED, RETURN_TO_SENDER, SHIPPING_BOX_DAMAGED, TRIED_TO_CANCEL and WRONG_SIZE/POOR_FIT
-   * @type {string}
-   * @memberof InlineResponse2001ReturnOrderLines
-   */
-  returnReason?: string;
-  /**
-   * The purchase order ID for the return created
-   * @type {string}
-   * @memberof InlineResponse2001ReturnOrderLines
-   */
-  purchaseOrderId?: string;
-  /**
-   * The purchase order line number for the return created
-   * @type {number}
-   * @memberof InlineResponse2001ReturnOrderLines
-   */
-  purchaseOrderLineNumber?: number;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse2001ReturnOrderLines
-   */
-  exceptionItemType?: string;
-  /**
-   *
-   * @type {boolean}
-   * @memberof InlineResponse2001ReturnOrderLines
-   */
-  isReturnForException?: boolean;
-  /**
-   * reason for recharging the customer for replacement
-   * @type {string}
-   * @memberof InlineResponse2001ReturnOrderLines
-   */
-  rechargeReason?: string;
-  /**
-   * reason for cancelling the return
-   * @type {string}
-   * @memberof InlineResponse2001ReturnOrderLines
-   */
-  returnCancellationReason?: string;
-  /**
-   *
-   * @type {InlineResponse2001Item}
-   * @memberof InlineResponse2001ReturnOrderLines
-   */
-  item?: InlineResponse2001Item;
-  /**
-   * Information relating to the charge for the orderLine
-   * @type {Array<InlineResponse2001Charges>}
-   * @memberof InlineResponse2001ReturnOrderLines
-   */
-  charges?: Array<InlineResponse2001Charges>;
-  /**
-   *
-   * @type {InlineResponse2001TotalRefundAmount}
-   * @memberof InlineResponse2001ReturnOrderLines
-   */
-  unitPrice?: InlineResponse2001TotalRefundAmount;
-  /**
-   * Contains name value pairs of calculated charges for the line. Eg: if order line has 3 Qty, this will have a shipping charge = 3 * shipping charge per unit (This is present in the line level charges).
-   * @type {Array<InlineResponse2001References>}
-   * @memberof InlineResponse2001ReturnOrderLines
-   */
-  itemReturnSettings?: Array<InlineResponse2001References>;
-  /**
-   * Contains name value pairs of calculated charges for the line. Eg: if order line has 3 Qty, this will have a shipping charge = 3 * shipping charge per unit (This is present in the line level charges).
-   * @type {Array<InlineResponse2001ChargeTotals>}
-   * @memberof InlineResponse2001ReturnOrderLines
-   */
-  chargeTotals?: Array<InlineResponse2001ChargeTotals>;
-  /**
-   * How much quantity of this order line can be cancelled
-   * @type {number}
-   * @memberof InlineResponse2001ReturnOrderLines
-   */
-  cancellableQty?: number;
-  /**
-   *
-   * @type {InlineResponse2001ItemItemWeight}
-   * @memberof InlineResponse2001ReturnOrderLines
-   */
-  quantity?: InlineResponse2001ItemItemWeight;
-  /**
-   * Is customer required to send this item back to return center.
-   * @type {boolean}
-   * @memberof InlineResponse2001ReturnOrderLines
-   */
-  returnExpectedFlag?: boolean;
-  /**
-   * Applicable only for 1P.
-   * @type {boolean}
-   * @memberof InlineResponse2001ReturnOrderLines
-   */
-  isFastReplacement?: boolean;
-  /**
-   * Is customer allowed to keep the product and not required to send it back to return center. This flag is determined by making a call to fraud system.
-   * @type {boolean}
-   * @memberof InlineResponse2001ReturnOrderLines
-   */
-  isKeepIt?: boolean;
-  /**
-   * This return is the last item on the sales order line and all other sales order line items are already returned. Helps in last penny calculations.
-   * @type {boolean}
-   * @memberof InlineResponse2001ReturnOrderLines
-   */
-  lastItem?: boolean;
-  /**
-   * The quantity for which customer was refunded
-   * @type {number}
-   * @memberof InlineResponse2001ReturnOrderLines
-   */
-  refundedQty?: number;
-  /**
-   * The quantity for which customer can be charged again for
-   * @type {number}
-   * @memberof InlineResponse2001ReturnOrderLines
-   */
-  rechargeableQty?: number;
-  /**
-   * Determines the mode of refund initiation. Valid values are: WALMART_SETTLED_REFUND, SELLER_AUTO_REFUND, SELLER_MANUAL_REFUND, SELLER_SYSTEM_REFUND, and WALMART_TRIGGERED_REFUND.
-   * @type {string}
-   * @memberof InlineResponse2001ReturnOrderLines
-   */
-  refundChannel?: string;
-  /**
-   * Informational blocks added as the return order completes its journey from return creation to received and refunded.
-   * @type {Array<InlineResponse2001ReturnTrackingDetail>}
-   * @memberof InlineResponse2001ReturnOrderLines
-   */
-  returnTrackingDetail?: Array<InlineResponse2001ReturnTrackingDetail>;
-  /**
-   * Current status of return. (e.g., \'INITIATED\')
-   * @type {string}
-   * @memberof InlineResponse2001ReturnOrderLines
-   */
-  status?: string;
-  /**
-   * Timestamp of listed status change
-   * @type {string}
-   * @memberof InlineResponse2001ReturnOrderLines
-   */
-  statusTime?: string;
-  /**
-   * Determines the current carrier tracking status of the return.
-   * @type {string}
-   * @memberof InlineResponse2001ReturnOrderLines
-   */
-  currentDeliveryStatus?: string;
-  /**
-   * Determines the current refund status of the return.
-   * @type {string}
-   * @memberof InlineResponse2001ReturnOrderLines
-   */
-  currentRefundStatus?: string;
+	/**
+	 * The returns order line number for that return
+	 * @type {number}
+	 * @memberof InlineResponse2001ReturnOrderLines
+	 */
+	returnOrderLineNumber?: number;
+	/**
+	 * The sales order line number for the return created
+	 * @type {number}
+	 * @memberof InlineResponse2001ReturnOrderLines
+	 */
+	salesOrderLineNumber?: number;
+	/**
+	 * A unique ID associated with the sales order for specified Seller; gives Sellers the ability to print their own custom order ID on the return label; limit of 30 characters
+	 * @type {string}
+	 * @memberof InlineResponse2001ReturnOrderLines
+	 */
+	sellerOrderId?: string;
+	/**
+	 * Gives the reason that was selected during the return creation. Reason codes are: ARRIVED_LATE, AUTO_RETURN, BOUGHT_ANOTHER_SIZE_OR_COLOR, BOUGHT_SOMEWHERE_ELSE, DAMAGED, DEFECTIVE, DUPLICATE_ITEM, INADEQUATE_QUALITY, INCORRECT_ITEM, LOST_AFTER_DELIVERY, LOST_IN_TRANSIT, LOWER_PRICE, MISSING_PARTS, NOT_AS_DESCRIBED, NO_LONGER_WANTED, RETURN_TO_SENDER, SHIPPING_BOX_DAMAGED, TRIED_TO_CANCEL and WRONG_SIZE/POOR_FIT
+	 * @type {string}
+	 * @memberof InlineResponse2001ReturnOrderLines
+	 */
+	returnReason?: string;
+	/**
+	 * The purchase order ID for the return created
+	 * @type {string}
+	 * @memberof InlineResponse2001ReturnOrderLines
+	 */
+	purchaseOrderId?: string;
+	/**
+	 * The purchase order line number for the return created
+	 * @type {number}
+	 * @memberof InlineResponse2001ReturnOrderLines
+	 */
+	purchaseOrderLineNumber?: number;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineResponse2001ReturnOrderLines
+	 */
+	exceptionItemType?: string;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof InlineResponse2001ReturnOrderLines
+	 */
+	isReturnForException?: boolean;
+	/**
+	 * reason for recharging the customer for replacement
+	 * @type {string}
+	 * @memberof InlineResponse2001ReturnOrderLines
+	 */
+	rechargeReason?: string;
+	/**
+	 * reason for cancelling the return
+	 * @type {string}
+	 * @memberof InlineResponse2001ReturnOrderLines
+	 */
+	returnCancellationReason?: string;
+	/**
+	 *
+	 * @type {InlineResponse2001Item}
+	 * @memberof InlineResponse2001ReturnOrderLines
+	 */
+	item?: InlineResponse2001Item;
+	/**
+	 * Information relating to the charge for the orderLine
+	 * @type {Array<InlineResponse2001Charges>}
+	 * @memberof InlineResponse2001ReturnOrderLines
+	 */
+	charges?: Array<InlineResponse2001Charges>;
+	/**
+	 *
+	 * @type {InlineResponse2001TotalRefundAmount}
+	 * @memberof InlineResponse2001ReturnOrderLines
+	 */
+	unitPrice?: InlineResponse2001TotalRefundAmount;
+	/**
+	 * Contains name value pairs of calculated charges for the line. Eg: if order line has 3 Qty, this will have a shipping charge = 3 * shipping charge per unit (This is present in the line level charges).
+	 * @type {Array<InlineResponse2001References>}
+	 * @memberof InlineResponse2001ReturnOrderLines
+	 */
+	itemReturnSettings?: Array<InlineResponse2001References>;
+	/**
+	 * Contains name value pairs of calculated charges for the line. Eg: if order line has 3 Qty, this will have a shipping charge = 3 * shipping charge per unit (This is present in the line level charges).
+	 * @type {Array<InlineResponse2001ChargeTotals>}
+	 * @memberof InlineResponse2001ReturnOrderLines
+	 */
+	chargeTotals?: Array<InlineResponse2001ChargeTotals>;
+	/**
+	 * How much quantity of this order line can be cancelled
+	 * @type {number}
+	 * @memberof InlineResponse2001ReturnOrderLines
+	 */
+	cancellableQty?: number;
+	/**
+	 *
+	 * @type {InlineResponse2001ItemItemWeight}
+	 * @memberof InlineResponse2001ReturnOrderLines
+	 */
+	quantity?: InlineResponse2001ItemItemWeight;
+	/**
+	 * Is customer required to send this item back to return center.
+	 * @type {boolean}
+	 * @memberof InlineResponse2001ReturnOrderLines
+	 */
+	returnExpectedFlag?: boolean;
+	/**
+	 * Applicable only for 1P.
+	 * @type {boolean}
+	 * @memberof InlineResponse2001ReturnOrderLines
+	 */
+	isFastReplacement?: boolean;
+	/**
+	 * Is customer allowed to keep the product and not required to send it back to return center. This flag is determined by making a call to fraud system.
+	 * @type {boolean}
+	 * @memberof InlineResponse2001ReturnOrderLines
+	 */
+	isKeepIt?: boolean;
+	/**
+	 * This return is the last item on the sales order line and all other sales order line items are already returned. Helps in last penny calculations.
+	 * @type {boolean}
+	 * @memberof InlineResponse2001ReturnOrderLines
+	 */
+	lastItem?: boolean;
+	/**
+	 * The quantity for which customer was refunded
+	 * @type {number}
+	 * @memberof InlineResponse2001ReturnOrderLines
+	 */
+	refundedQty?: number;
+	/**
+	 * The quantity for which customer can be charged again for
+	 * @type {number}
+	 * @memberof InlineResponse2001ReturnOrderLines
+	 */
+	rechargeableQty?: number;
+	/**
+	 * Determines the mode of refund initiation. Valid values are: WALMART_SETTLED_REFUND, SELLER_AUTO_REFUND, SELLER_MANUAL_REFUND, SELLER_SYSTEM_REFUND, and WALMART_TRIGGERED_REFUND.
+	 * @type {string}
+	 * @memberof InlineResponse2001ReturnOrderLines
+	 */
+	refundChannel?: string;
+	/**
+	 * Informational blocks added as the return order completes its journey from return creation to received and refunded.
+	 * @type {Array<InlineResponse2001ReturnTrackingDetail>}
+	 * @memberof InlineResponse2001ReturnOrderLines
+	 */
+	returnTrackingDetail?: Array<InlineResponse2001ReturnTrackingDetail>;
+	/**
+	 * Current status of return. (e.g., \'INITIATED\')
+	 * @type {string}
+	 * @memberof InlineResponse2001ReturnOrderLines
+	 */
+	status?: string;
+	/**
+	 * Timestamp of listed status change
+	 * @type {string}
+	 * @memberof InlineResponse2001ReturnOrderLines
+	 */
+	statusTime?: string;
+	/**
+	 * Determines the current carrier tracking status of the return.
+	 * @type {string}
+	 * @memberof InlineResponse2001ReturnOrderLines
+	 */
+	currentDeliveryStatus?: string;
+	/**
+	 * Determines the current refund status of the return.
+	 * @type {string}
+	 * @memberof InlineResponse2001ReturnOrderLines
+	 */
+	currentRefundStatus?: string;
 }
 /**
  * List of returns for the seller.
@@ -731,84 +725,84 @@ export interface InlineResponse2001ReturnOrderLines {
  * @interface InlineResponse2001ReturnOrders
  */
 export interface InlineResponse2001ReturnOrders {
-  /**
-   * Return order identifier of the return order. This is the same as RMA number.
-   * @type {string}
-   * @memberof InlineResponse2001ReturnOrders
-   */
-  returnOrderId?: string;
-  /**
-   * Customer email address
-   * @type {string}
-   * @memberof InlineResponse2001ReturnOrders
-   */
-  customerEmailId?: string;
-  /**
-   * Specifies if the return order is a replacement return or a regular (refund) return. Possible values are REPLACEMENT or REFUND.
-   * @type {string}
-   * @memberof InlineResponse2001ReturnOrders
-   */
-  returnType?: string;
-  /**
-   * customer order ID of the original return order on which the replacement is created.
-   * @type {string}
-   * @memberof InlineResponse2001ReturnOrders
-   */
-  replacementCustomerOrderId?: string;
-  /**
-   *
-   * @type {InlineResponse2001CustomerName}
-   * @memberof InlineResponse2001ReturnOrders
-   */
-  customerName?: InlineResponse2001CustomerName;
-  /**
-   * A unique ID associated with the sales order for specified customer
-   * @type {string}
-   * @memberof InlineResponse2001ReturnOrders
-   */
-  customerOrderId?: string;
-  /**
-   * Date format for return order date
-   * @type {string}
-   * @memberof InlineResponse2001ReturnOrders
-   */
-  returnOrderDate?: string;
-  /**
-   * Date format for return by order date
-   * @type {string}
-   * @memberof InlineResponse2001ReturnOrders
-   */
-  returnByDate?: string;
-  /**
-   * Determines when the refund was/will be issued to the customer
-   * @type {string}
-   * @memberof InlineResponse2001ReturnOrders
-   */
-  refundMode?: string;
-  /**
-   *
-   * @type {InlineResponse2001TotalRefundAmount}
-   * @memberof InlineResponse2001ReturnOrders
-   */
-  totalRefundAmount?: InlineResponse2001TotalRefundAmount;
-  /**
-   * These groups are created per label or type of carrier service required. (e.g., If order has some lines that can be clubbed and mailed together as a smart post then they belong to one return group. If a line is bulky and needs a different type of carrier service, then that line will be part of different group. Customer gets multiple labels depending on how many groups are created for the entire order.)
-   * @type {Array<InlineResponse2001ReturnLineGroups>}
-   * @memberof InlineResponse2001ReturnOrders
-   */
-  returnLineGroups?: Array<InlineResponse2001ReturnLineGroups>;
-  /**
-   * A list of order lines in the return order
-   * @type {Array<InlineResponse2001ReturnOrderLines>}
-   * @memberof InlineResponse2001ReturnOrders
-   */
-  returnOrderLines?: Array<InlineResponse2001ReturnOrderLines>;
-  /**
-   *
-   * @type {InlineResponse2001ReturnChannel}
-   * @memberof InlineResponse2001ReturnOrders
-   */
-  returnChannel?: InlineResponse2001ReturnChannel;
+	/**
+	 * Return order identifier of the return order. This is the same as RMA number.
+	 * @type {string}
+	 * @memberof InlineResponse2001ReturnOrders
+	 */
+	returnOrderId?: string;
+	/**
+	 * Customer email address
+	 * @type {string}
+	 * @memberof InlineResponse2001ReturnOrders
+	 */
+	customerEmailId?: string;
+	/**
+	 * Specifies if the return order is a replacement return or a regular (refund) return. Possible values are REPLACEMENT or REFUND.
+	 * @type {string}
+	 * @memberof InlineResponse2001ReturnOrders
+	 */
+	returnType?: string;
+	/**
+	 * customer order ID of the original return order on which the replacement is created.
+	 * @type {string}
+	 * @memberof InlineResponse2001ReturnOrders
+	 */
+	replacementCustomerOrderId?: string;
+	/**
+	 *
+	 * @type {InlineResponse2001CustomerName}
+	 * @memberof InlineResponse2001ReturnOrders
+	 */
+	customerName?: InlineResponse2001CustomerName;
+	/**
+	 * A unique ID associated with the sales order for specified customer
+	 * @type {string}
+	 * @memberof InlineResponse2001ReturnOrders
+	 */
+	customerOrderId?: string;
+	/**
+	 * Date format for return order date
+	 * @type {string}
+	 * @memberof InlineResponse2001ReturnOrders
+	 */
+	returnOrderDate?: string;
+	/**
+	 * Date format for return by order date
+	 * @type {string}
+	 * @memberof InlineResponse2001ReturnOrders
+	 */
+	returnByDate?: string;
+	/**
+	 * Determines when the refund was/will be issued to the customer
+	 * @type {string}
+	 * @memberof InlineResponse2001ReturnOrders
+	 */
+	refundMode?: string;
+	/**
+	 *
+	 * @type {InlineResponse2001TotalRefundAmount}
+	 * @memberof InlineResponse2001ReturnOrders
+	 */
+	totalRefundAmount?: InlineResponse2001TotalRefundAmount;
+	/**
+	 * These groups are created per label or type of carrier service required. (e.g., If order has some lines that can be clubbed and mailed together as a smart post then they belong to one return group. If a line is bulky and needs a different type of carrier service, then that line will be part of different group. Customer gets multiple labels depending on how many groups are created for the entire order.)
+	 * @type {Array<InlineResponse2001ReturnLineGroups>}
+	 * @memberof InlineResponse2001ReturnOrders
+	 */
+	returnLineGroups?: Array<InlineResponse2001ReturnLineGroups>;
+	/**
+	 * A list of order lines in the return order
+	 * @type {Array<InlineResponse2001ReturnOrderLines>}
+	 * @memberof InlineResponse2001ReturnOrders
+	 */
+	returnOrderLines?: Array<InlineResponse2001ReturnOrderLines>;
+	/**
+	 *
+	 * @type {InlineResponse2001ReturnChannel}
+	 * @memberof InlineResponse2001ReturnOrders
+	 */
+	returnChannel?: InlineResponse2001ReturnChannel;
 }
 /**
  * Informational blocks added as the return order completes its journey from return creation to received and refunded.
@@ -816,36 +810,36 @@ export interface InlineResponse2001ReturnOrders {
  * @interface InlineResponse2001ReturnTrackingDetail
  */
 export interface InlineResponse2001ReturnTrackingDetail {
-  /**
-   * The stage the return is in. (e.g., \'1\' is an initiated return)
-   * @type {number}
-   * @memberof InlineResponse2001ReturnTrackingDetail
-   */
-  sequenceNo?: number;
-  /**
-   * The last completed return event. (e.g., \'RETURN_IN_TRANSIT\')
-   * @type {string}
-   * @memberof InlineResponse2001ReturnTrackingDetail
-   */
-  eventTag?: string;
-  /**
-   * Description of current return status event. (e.g., \'A MARKET_PLACE Return in Transit\')
-   * @type {string}
-   * @memberof InlineResponse2001ReturnTrackingDetail
-   */
-  eventDescription?: string;
-  /**
-   * Timestamp of listed event
-   * @type {string}
-   * @memberof InlineResponse2001ReturnTrackingDetail
-   */
-  eventTime?: string;
-  /**
-   * Used only for 1P
-   * @type {Array<InlineResponse2001References>}
-   * @memberof InlineResponse2001ReturnTrackingDetail
-   */
-  references?: Array<InlineResponse2001References>;
+	/**
+	 * The stage the return is in. (e.g., \'1\' is an initiated return)
+	 * @type {number}
+	 * @memberof InlineResponse2001ReturnTrackingDetail
+	 */
+	sequenceNo?: number;
+	/**
+	 * The last completed return event. (e.g., \'RETURN_IN_TRANSIT\')
+	 * @type {string}
+	 * @memberof InlineResponse2001ReturnTrackingDetail
+	 */
+	eventTag?: string;
+	/**
+	 * Description of current return status event. (e.g., \'A MARKET_PLACE Return in Transit\')
+	 * @type {string}
+	 * @memberof InlineResponse2001ReturnTrackingDetail
+	 */
+	eventDescription?: string;
+	/**
+	 * Timestamp of listed event
+	 * @type {string}
+	 * @memberof InlineResponse2001ReturnTrackingDetail
+	 */
+	eventTime?: string;
+	/**
+	 * Used only for 1P
+	 * @type {Array<InlineResponse2001References>}
+	 * @memberof InlineResponse2001ReturnTrackingDetail
+	 */
+	references?: Array<InlineResponse2001References>;
 }
 /**
  * Taxes for each charge
@@ -853,24 +847,24 @@ export interface InlineResponse2001ReturnTrackingDetail {
  * @interface InlineResponse2001Tax
  */
 export interface InlineResponse2001Tax {
-  /**
-   * Name of the tax
-   * @type {string}
-   * @memberof InlineResponse2001Tax
-   */
-  taxName?: string;
-  /**
-   *
-   * @type {InlineResponse2001TotalRefundAmount}
-   * @memberof InlineResponse2001Tax
-   */
-  excessTax?: InlineResponse2001TotalRefundAmount;
-  /**
-   *
-   * @type {InlineResponse2001TotalRefundAmount}
-   * @memberof InlineResponse2001Tax
-   */
-  taxPerUnit?: InlineResponse2001TotalRefundAmount;
+	/**
+	 * Name of the tax
+	 * @type {string}
+	 * @memberof InlineResponse2001Tax
+	 */
+	taxName?: string;
+	/**
+	 *
+	 * @type {InlineResponse2001TotalRefundAmount}
+	 * @memberof InlineResponse2001Tax
+	 */
+	excessTax?: InlineResponse2001TotalRefundAmount;
+	/**
+	 *
+	 * @type {InlineResponse2001TotalRefundAmount}
+	 * @memberof InlineResponse2001Tax
+	 */
+	taxPerUnit?: InlineResponse2001TotalRefundAmount;
 }
 /**
  * Price of One unit of item, in this order line
@@ -878,18 +872,18 @@ export interface InlineResponse2001Tax {
  * @interface InlineResponse2001TotalRefundAmount
  */
 export interface InlineResponse2001TotalRefundAmount {
-  /**
-   * Amount to be refunded. It can be upto two decimal points.
-   * @type {number}
-   * @memberof InlineResponse2001TotalRefundAmount
-   */
-  currencyAmount: number;
-  /**
-   * Currency information
-   * @type {string}
-   * @memberof InlineResponse2001TotalRefundAmount
-   */
-  currencyUnit: string;
+	/**
+	 * Amount to be refunded. It can be upto two decimal points.
+	 * @type {number}
+	 * @memberof InlineResponse2001TotalRefundAmount
+	 */
+	currencyAmount: number;
+	/**
+	 * Currency information
+	 * @type {string}
+	 * @memberof InlineResponse2001TotalRefundAmount
+	 */
+	currencyUnit: string;
 }
 /**
  *
@@ -897,12 +891,12 @@ export interface InlineResponse2001TotalRefundAmount {
  * @interface InlineResponse2002
  */
 export interface InlineResponse2002 {
-  /**
-   * A unique ID, returned from the Bulk Upload API, used for tracking the Feed File.
-   * @type {string}
-   * @memberof InlineResponse2002
-   */
-  feedId?: string;
+	/**
+	 * A unique ID, returned from the Bulk Upload API, used for tracking the Feed File.
+	 * @type {string}
+	 * @memberof InlineResponse2002
+	 */
+	feedId?: string;
 }
 /**
  * Details of the item to be returned
@@ -910,24 +904,24 @@ export interface InlineResponse2002 {
  * @interface Item
  */
 export interface Item {
-  /**
-   * An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item.
-   * @type {string}
-   * @memberof Item
-   */
-  sku?: string;
-  /**
-   * The name of the product associated with the line item. Example: \'Kenmore CF1\' or \'2086883 Canister Secondary Filter Generic 2 Pack\'
-   * @type {string}
-   * @memberof Item
-   */
-  productName?: string;
-  /**
-   *
-   * @type {InlineResponse2001ItemItemWeight}
-   * @memberof Item
-   */
-  itemWeight?: InlineResponse2001ItemItemWeight;
+	/**
+	 * An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item.
+	 * @type {string}
+	 * @memberof Item
+	 */
+	sku?: string;
+	/**
+	 * The name of the product associated with the line item. Example: \'Kenmore CF1\' or \'2086883 Canister Secondary Filter Generic 2 Pack\'
+	 * @type {string}
+	 * @memberof Item
+	 */
+	productName?: string;
+	/**
+	 *
+	 * @type {InlineResponse2001ItemItemWeight}
+	 * @memberof Item
+	 */
+	itemWeight?: InlineResponse2001ItemItemWeight;
 }
 /**
  * Array of labels
@@ -935,18 +929,18 @@ export interface Item {
  * @interface Label
  */
 export interface Label {
-  /**
-   * Url to get the return label
-   * @type {string}
-   * @memberof Label
-   */
-  labelImageURL?: string;
-  /**
-   * Carrier information for the return
-   * @type {Array<InlineResponse2001CarrierInfoList>}
-   * @memberof Label
-   */
-  carrierInfoList?: Array<InlineResponse2001CarrierInfoList>;
+	/**
+	 * Url to get the return label
+	 * @type {string}
+	 * @memberof Label
+	 */
+	labelImageURL?: string;
+	/**
+	 * Carrier information for the return
+	 * @type {Array<InlineResponse2001CarrierInfoList>}
+	 * @memberof Label
+	 */
+	carrierInfoList?: Array<InlineResponse2001CarrierInfoList>;
 }
 /**
  *
@@ -954,24 +948,24 @@ export interface Label {
  * @interface Meta
  */
 export interface Meta {
-  /**
-   *
-   * @type {number}
-   * @memberof Meta
-   */
-  totalCount: number;
-  /**
-   *
-   * @type {number}
-   * @memberof Meta
-   */
-  limit: number;
-  /**
-   *
-   * @type {string}
-   * @memberof Meta
-   */
-  nextCursor: string;
+	/**
+	 *
+	 * @type {number}
+	 * @memberof Meta
+	 */
+	totalCount: number;
+	/**
+	 *
+	 * @type {number}
+	 * @memberof Meta
+	 */
+	limit: number;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof Meta
+	 */
+	nextCursor: string;
 }
 /**
  * Price of One unit of item, in this order line
@@ -979,18 +973,18 @@ export interface Meta {
  * @interface Money
  */
 export interface Money {
-  /**
-   * Amount to be refunded. It can be upto two decimal points.
-   * @type {number}
-   * @memberof Money
-   */
-  currencyAmount: number;
-  /**
-   * Currency information
-   * @type {string}
-   * @memberof Money
-   */
-  currencyUnit: string;
+	/**
+	 * Amount to be refunded. It can be upto two decimal points.
+	 * @type {number}
+	 * @memberof Money
+	 */
+	currencyAmount: number;
+	/**
+	 * Currency information
+	 * @type {string}
+	 * @memberof Money
+	 */
+	currencyUnit: string;
 }
 /**
  * Used only for 1P
@@ -998,18 +992,18 @@ export interface Money {
  * @interface NameValue
  */
 export interface NameValue {
-  /**
-   *
-   * @type {string}
-   * @memberof NameValue
-   */
-  name: string;
-  /**
-   *
-   * @type {string}
-   * @memberof NameValue
-   */
-  value: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof NameValue
+	 */
+	name: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof NameValue
+	 */
+	value: string;
 }
 /**
  * Total quantity returned in this return line
@@ -1017,18 +1011,18 @@ export interface NameValue {
  * @interface Quantity
  */
 export interface Quantity {
-  /**
-   * The unit of measure in the item\'s weight (e.g., \'POUND\' or \'OUNCE\')
-   * @type {string}
-   * @memberof Quantity
-   */
-  unitOfMeasure: string;
-  /**
-   * The quantity of the unit of measure for the item
-   * @type {number}
-   * @memberof Quantity
-   */
-  measurementValue: number;
+	/**
+	 * The unit of measure in the item\'s weight (e.g., \'POUND\' or \'OUNCE\')
+	 * @type {string}
+	 * @memberof Quantity
+	 */
+	unitOfMeasure: string;
+	/**
+	 * The quantity of the unit of measure for the item
+	 * @type {number}
+	 * @memberof Quantity
+	 */
+	measurementValue: number;
 }
 /**
  * Array of refund lines.
@@ -1036,12 +1030,12 @@ export interface Quantity {
  * @interface RefundLine
  */
 export interface RefundLine {
-  /**
-   * A line number associated with each individual line in the return order. If return order has only one return order line and it is not provided in the request, the only available return order line is auto-selected. If return order has multiple return order lines, the required return order line must be provided in the request. If not provided in the request, it will result in data-error.
-   * @type {number}
-   * @memberof RefundLine
-   */
-  returnOrderLineNumber: number;
+	/**
+	 * A line number associated with each individual line in the return order. If return order has only one return order line and it is not provided in the request, the only available return order line is auto-selected. If return order has multiple return order lines, the required return order line must be provided in the request. If not provided in the request, it will result in data-error.
+	 * @type {number}
+	 * @memberof RefundLine
+	 */
+	returnOrderLineNumber: number;
 }
 /**
  *
@@ -1049,18 +1043,18 @@ export interface RefundLine {
  * @interface RefundRequest
  */
 export interface RefundRequest {
-  /**
-   * A unique ID associated with the sales order for specified customer
-   * @type {string}
-   * @memberof RefundRequest
-   */
-  customerOrderId: string;
-  /**
-   * Array of refund lines.
-   * @type {Array<V3ReturnsReturnOrderIdRefundRefundLines>}
-   * @memberof RefundRequest
-   */
-  refundLines: Array<V3ReturnsReturnOrderIdRefundRefundLines>;
+	/**
+	 * A unique ID associated with the sales order for specified customer
+	 * @type {string}
+	 * @memberof RefundRequest
+	 */
+	customerOrderId: string;
+	/**
+	 * Array of refund lines.
+	 * @type {Array<V3ReturnsReturnOrderIdRefundRefundLines>}
+	 * @memberof RefundRequest
+	 */
+	refundLines: Array<V3ReturnsReturnOrderIdRefundRefundLines>;
 }
 /**
  *
@@ -1068,24 +1062,24 @@ export interface RefundRequest {
  * @interface RefundResponse
  */
 export interface RefundResponse {
-  /**
-   * The return order id
-   * @type {string}
-   * @memberof RefundResponse
-   */
-  returnOrderId?: string;
-  /**
-   * A unique ID associated with the sales order for specified customer
-   * @type {string}
-   * @memberof RefundResponse
-   */
-  customerOrderId?: string;
-  /**
-   * Array of refund lines
-   * @type {Array<V3ReturnsReturnOrderIdRefundRefundLines>}
-   * @memberof RefundResponse
-   */
-  refundLines?: Array<V3ReturnsReturnOrderIdRefundRefundLines>;
+	/**
+	 * The return order id
+	 * @type {string}
+	 * @memberof RefundResponse
+	 */
+	returnOrderId?: string;
+	/**
+	 * A unique ID associated with the sales order for specified customer
+	 * @type {string}
+	 * @memberof RefundResponse
+	 */
+	customerOrderId?: string;
+	/**
+	 * Array of refund lines
+	 * @type {Array<V3ReturnsReturnOrderIdRefundRefundLines>}
+	 * @memberof RefundResponse
+	 */
+	refundLines?: Array<V3ReturnsReturnOrderIdRefundRefundLines>;
 }
 /**
  * The channel via order return got initiated
@@ -1093,12 +1087,12 @@ export interface RefundResponse {
  * @interface ReturnChannel
  */
 export interface ReturnChannel {
-  /**
-   * Valid values are: ONLINE, IN_STORE, and CUSTOMER_CARE
-   * @type {string}
-   * @memberof ReturnChannel
-   */
-  channelName?: string;
+	/**
+	 * Valid values are: ONLINE, IN_STORE, and CUSTOMER_CARE
+	 * @type {string}
+	 * @memberof ReturnChannel
+	 */
+	channelName?: string;
 }
 /**
  * Array of return lines
@@ -1106,12 +1100,12 @@ export interface ReturnChannel {
  * @interface ReturnLine
  */
 export interface ReturnLine {
-  /**
-   * Identifier of the return label
-   * @type {number}
-   * @memberof ReturnLine
-   */
-  returnOrderLineNumber?: number;
+	/**
+	 * Identifier of the return label
+	 * @type {number}
+	 * @memberof ReturnLine
+	 */
+	returnOrderLineNumber?: number;
 }
 /**
  * These groups are created per label or type of carrier service required. (e.g., If order has some lines that can be clubbed and mailed together as a smart post then they belong to one return group. If a line is bulky and needs a different type of carrier service, then that line will be part of different group. Customer gets multiple labels depending on how many groups are created for the entire order.)
@@ -1119,30 +1113,30 @@ export interface ReturnLine {
  * @interface ReturnLineGroup
  */
 export interface ReturnLineGroup {
-  /**
-   * Sequence of group numbers where each returnLineGroups will represent one or more return lines
-   * @type {number}
-   * @memberof ReturnLineGroup
-   */
-  groupNo?: number;
-  /**
-   * Array of return lines
-   * @type {Array<InlineResponse2001ReturnLines>}
-   * @memberof ReturnLineGroup
-   */
-  returnLines?: Array<InlineResponse2001ReturnLines>;
-  /**
-   * Array of labels
-   * @type {Array<InlineResponse2001Labels>}
-   * @memberof ReturnLineGroup
-   */
-  labels?: Array<InlineResponse2001Labels>;
-  /**
-   * Is customer required to send this item back to return center
-   * @type {boolean}
-   * @memberof ReturnLineGroup
-   */
-  returnExpectedFlag?: boolean;
+	/**
+	 * Sequence of group numbers where each returnLineGroups will represent one or more return lines
+	 * @type {number}
+	 * @memberof ReturnLineGroup
+	 */
+	groupNo?: number;
+	/**
+	 * Array of return lines
+	 * @type {Array<InlineResponse2001ReturnLines>}
+	 * @memberof ReturnLineGroup
+	 */
+	returnLines?: Array<InlineResponse2001ReturnLines>;
+	/**
+	 * Array of labels
+	 * @type {Array<InlineResponse2001Labels>}
+	 * @memberof ReturnLineGroup
+	 */
+	labels?: Array<InlineResponse2001Labels>;
+	/**
+	 * Is customer required to send this item back to return center
+	 * @type {boolean}
+	 * @memberof ReturnLineGroup
+	 */
+	returnExpectedFlag?: boolean;
 }
 /**
  * List of returns for the seller.
@@ -1150,84 +1144,84 @@ export interface ReturnLineGroup {
  * @interface ReturnOrder
  */
 export interface ReturnOrder {
-  /**
-   * Return order identifier of the return order. This is the same as RMA number.
-   * @type {string}
-   * @memberof ReturnOrder
-   */
-  returnOrderId?: string;
-  /**
-   * Customer email address
-   * @type {string}
-   * @memberof ReturnOrder
-   */
-  customerEmailId?: string;
-  /**
-   * Specifies if the return order is a replacement return or a regular (refund) return. Possible values are REPLACEMENT or REFUND.
-   * @type {string}
-   * @memberof ReturnOrder
-   */
-  returnType?: string;
-  /**
-   * customer order ID of the original return order on which the replacement is created.
-   * @type {string}
-   * @memberof ReturnOrder
-   */
-  replacementCustomerOrderId?: string;
-  /**
-   *
-   * @type {InlineResponse2001CustomerName}
-   * @memberof ReturnOrder
-   */
-  customerName?: InlineResponse2001CustomerName;
-  /**
-   * A unique ID associated with the sales order for specified customer
-   * @type {string}
-   * @memberof ReturnOrder
-   */
-  customerOrderId?: string;
-  /**
-   * Date format for return order date
-   * @type {string}
-   * @memberof ReturnOrder
-   */
-  returnOrderDate?: string;
-  /**
-   * Date format for return by order date
-   * @type {string}
-   * @memberof ReturnOrder
-   */
-  returnByDate?: string;
-  /**
-   * Determines when the refund was/will be issued to the customer
-   * @type {string}
-   * @memberof ReturnOrder
-   */
-  refundMode?: string;
-  /**
-   *
-   * @type {InlineResponse2001TotalRefundAmount}
-   * @memberof ReturnOrder
-   */
-  totalRefundAmount?: InlineResponse2001TotalRefundAmount;
-  /**
-   * These groups are created per label or type of carrier service required. (e.g., If order has some lines that can be clubbed and mailed together as a smart post then they belong to one return group. If a line is bulky and needs a different type of carrier service, then that line will be part of different group. Customer gets multiple labels depending on how many groups are created for the entire order.)
-   * @type {Array<InlineResponse2001ReturnLineGroups>}
-   * @memberof ReturnOrder
-   */
-  returnLineGroups?: Array<InlineResponse2001ReturnLineGroups>;
-  /**
-   * A list of order lines in the return order
-   * @type {Array<InlineResponse2001ReturnOrderLines>}
-   * @memberof ReturnOrder
-   */
-  returnOrderLines?: Array<InlineResponse2001ReturnOrderLines>;
-  /**
-   *
-   * @type {InlineResponse2001ReturnChannel}
-   * @memberof ReturnOrder
-   */
-  returnChannel?: InlineResponse2001ReturnChannel;
+	/**
+	 * Return order identifier of the return order. This is the same as RMA number.
+	 * @type {string}
+	 * @memberof ReturnOrder
+	 */
+	returnOrderId?: string;
+	/**
+	 * Customer email address
+	 * @type {string}
+	 * @memberof ReturnOrder
+	 */
+	customerEmailId?: string;
+	/**
+	 * Specifies if the return order is a replacement return or a regular (refund) return. Possible values are REPLACEMENT or REFUND.
+	 * @type {string}
+	 * @memberof ReturnOrder
+	 */
+	returnType?: string;
+	/**
+	 * customer order ID of the original return order on which the replacement is created.
+	 * @type {string}
+	 * @memberof ReturnOrder
+	 */
+	replacementCustomerOrderId?: string;
+	/**
+	 *
+	 * @type {InlineResponse2001CustomerName}
+	 * @memberof ReturnOrder
+	 */
+	customerName?: InlineResponse2001CustomerName;
+	/**
+	 * A unique ID associated with the sales order for specified customer
+	 * @type {string}
+	 * @memberof ReturnOrder
+	 */
+	customerOrderId?: string;
+	/**
+	 * Date format for return order date
+	 * @type {string}
+	 * @memberof ReturnOrder
+	 */
+	returnOrderDate?: string;
+	/**
+	 * Date format for return by order date
+	 * @type {string}
+	 * @memberof ReturnOrder
+	 */
+	returnByDate?: string;
+	/**
+	 * Determines when the refund was/will be issued to the customer
+	 * @type {string}
+	 * @memberof ReturnOrder
+	 */
+	refundMode?: string;
+	/**
+	 *
+	 * @type {InlineResponse2001TotalRefundAmount}
+	 * @memberof ReturnOrder
+	 */
+	totalRefundAmount?: InlineResponse2001TotalRefundAmount;
+	/**
+	 * These groups are created per label or type of carrier service required. (e.g., If order has some lines that can be clubbed and mailed together as a smart post then they belong to one return group. If a line is bulky and needs a different type of carrier service, then that line will be part of different group. Customer gets multiple labels depending on how many groups are created for the entire order.)
+	 * @type {Array<InlineResponse2001ReturnLineGroups>}
+	 * @memberof ReturnOrder
+	 */
+	returnLineGroups?: Array<InlineResponse2001ReturnLineGroups>;
+	/**
+	 * A list of order lines in the return order
+	 * @type {Array<InlineResponse2001ReturnOrderLines>}
+	 * @memberof ReturnOrder
+	 */
+	returnOrderLines?: Array<InlineResponse2001ReturnOrderLines>;
+	/**
+	 *
+	 * @type {InlineResponse2001ReturnChannel}
+	 * @memberof ReturnOrder
+	 */
+	returnChannel?: InlineResponse2001ReturnChannel;
 }
 /**
  * A list of order lines in the return order
@@ -1235,180 +1229,180 @@ export interface ReturnOrder {
  * @interface ReturnOrderLine
  */
 export interface ReturnOrderLine {
-  /**
-   * The returns order line number for that return
-   * @type {number}
-   * @memberof ReturnOrderLine
-   */
-  returnOrderLineNumber?: number;
-  /**
-   * The sales order line number for the return created
-   * @type {number}
-   * @memberof ReturnOrderLine
-   */
-  salesOrderLineNumber?: number;
-  /**
-   * A unique ID associated with the sales order for specified Seller; gives Sellers the ability to print their own custom order ID on the return label; limit of 30 characters
-   * @type {string}
-   * @memberof ReturnOrderLine
-   */
-  sellerOrderId?: string;
-  /**
-   * Gives the reason that was selected during the return creation. Reason codes are: ARRIVED_LATE, AUTO_RETURN, BOUGHT_ANOTHER_SIZE_OR_COLOR, BOUGHT_SOMEWHERE_ELSE, DAMAGED, DEFECTIVE, DUPLICATE_ITEM, INADEQUATE_QUALITY, INCORRECT_ITEM, LOST_AFTER_DELIVERY, LOST_IN_TRANSIT, LOWER_PRICE, MISSING_PARTS, NOT_AS_DESCRIBED, NO_LONGER_WANTED, RETURN_TO_SENDER, SHIPPING_BOX_DAMAGED, TRIED_TO_CANCEL and WRONG_SIZE/POOR_FIT
-   * @type {string}
-   * @memberof ReturnOrderLine
-   */
-  returnReason?: string;
-  /**
-   * The purchase order ID for the return created
-   * @type {string}
-   * @memberof ReturnOrderLine
-   */
-  purchaseOrderId?: string;
-  /**
-   * The purchase order line number for the return created
-   * @type {number}
-   * @memberof ReturnOrderLine
-   */
-  purchaseOrderLineNumber?: number;
-  /**
-   *
-   * @type {string}
-   * @memberof ReturnOrderLine
-   */
-  exceptionItemType?: string;
-  /**
-   *
-   * @type {boolean}
-   * @memberof ReturnOrderLine
-   */
-  isReturnForException?: boolean;
-  /**
-   * reason for recharging the customer for replacement
-   * @type {string}
-   * @memberof ReturnOrderLine
-   */
-  rechargeReason?: string;
-  /**
-   * reason for cancelling the return
-   * @type {string}
-   * @memberof ReturnOrderLine
-   */
-  returnCancellationReason?: string;
-  /**
-   *
-   * @type {InlineResponse2001Item}
-   * @memberof ReturnOrderLine
-   */
-  item?: InlineResponse2001Item;
-  /**
-   * Information relating to the charge for the orderLine
-   * @type {Array<InlineResponse2001Charges>}
-   * @memberof ReturnOrderLine
-   */
-  charges?: Array<InlineResponse2001Charges>;
-  /**
-   *
-   * @type {InlineResponse2001TotalRefundAmount}
-   * @memberof ReturnOrderLine
-   */
-  unitPrice?: InlineResponse2001TotalRefundAmount;
-  /**
-   * Contains name value pairs of calculated charges for the line. Eg: if order line has 3 Qty, this will have a shipping charge = 3 * shipping charge per unit (This is present in the line level charges).
-   * @type {Array<InlineResponse2001References>}
-   * @memberof ReturnOrderLine
-   */
-  itemReturnSettings?: Array<InlineResponse2001References>;
-  /**
-   * Contains name value pairs of calculated charges for the line. Eg: if order line has 3 Qty, this will have a shipping charge = 3 * shipping charge per unit (This is present in the line level charges).
-   * @type {Array<InlineResponse2001ChargeTotals>}
-   * @memberof ReturnOrderLine
-   */
-  chargeTotals?: Array<InlineResponse2001ChargeTotals>;
-  /**
-   * How much quantity of this order line can be cancelled
-   * @type {number}
-   * @memberof ReturnOrderLine
-   */
-  cancellableQty?: number;
-  /**
-   *
-   * @type {InlineResponse2001ItemItemWeight}
-   * @memberof ReturnOrderLine
-   */
-  quantity?: InlineResponse2001ItemItemWeight;
-  /**
-   * Is customer required to send this item back to return center.
-   * @type {boolean}
-   * @memberof ReturnOrderLine
-   */
-  returnExpectedFlag?: boolean;
-  /**
-   * Applicable only for 1P.
-   * @type {boolean}
-   * @memberof ReturnOrderLine
-   */
-  isFastReplacement?: boolean;
-  /**
-   * Is customer allowed to keep the product and not required to send it back to return center. This flag is determined by making a call to fraud system.
-   * @type {boolean}
-   * @memberof ReturnOrderLine
-   */
-  isKeepIt?: boolean;
-  /**
-   * This return is the last item on the sales order line and all other sales order line items are already returned. Helps in last penny calculations.
-   * @type {boolean}
-   * @memberof ReturnOrderLine
-   */
-  lastItem?: boolean;
-  /**
-   * The quantity for which customer was refunded
-   * @type {number}
-   * @memberof ReturnOrderLine
-   */
-  refundedQty?: number;
-  /**
-   * The quantity for which customer can be charged again for
-   * @type {number}
-   * @memberof ReturnOrderLine
-   */
-  rechargeableQty?: number;
-  /**
-   * Determines the mode of refund initiation. Valid values are: WALMART_SETTLED_REFUND, SELLER_AUTO_REFUND, SELLER_MANUAL_REFUND, SELLER_SYSTEM_REFUND, and WALMART_TRIGGERED_REFUND.
-   * @type {string}
-   * @memberof ReturnOrderLine
-   */
-  refundChannel?: string;
-  /**
-   * Informational blocks added as the return order completes its journey from return creation to received and refunded.
-   * @type {Array<InlineResponse2001ReturnTrackingDetail>}
-   * @memberof ReturnOrderLine
-   */
-  returnTrackingDetail?: Array<InlineResponse2001ReturnTrackingDetail>;
-  /**
-   * Current status of return. (e.g., \'INITIATED\')
-   * @type {string}
-   * @memberof ReturnOrderLine
-   */
-  status?: string;
-  /**
-   * Timestamp of listed status change
-   * @type {string}
-   * @memberof ReturnOrderLine
-   */
-  statusTime?: string;
-  /**
-   * Determines the current carrier tracking status of the return.
-   * @type {string}
-   * @memberof ReturnOrderLine
-   */
-  currentDeliveryStatus?: string;
-  /**
-   * Determines the current refund status of the return.
-   * @type {string}
-   * @memberof ReturnOrderLine
-   */
-  currentRefundStatus?: string;
+	/**
+	 * The returns order line number for that return
+	 * @type {number}
+	 * @memberof ReturnOrderLine
+	 */
+	returnOrderLineNumber?: number;
+	/**
+	 * The sales order line number for the return created
+	 * @type {number}
+	 * @memberof ReturnOrderLine
+	 */
+	salesOrderLineNumber?: number;
+	/**
+	 * A unique ID associated with the sales order for specified Seller; gives Sellers the ability to print their own custom order ID on the return label; limit of 30 characters
+	 * @type {string}
+	 * @memberof ReturnOrderLine
+	 */
+	sellerOrderId?: string;
+	/**
+	 * Gives the reason that was selected during the return creation. Reason codes are: ARRIVED_LATE, AUTO_RETURN, BOUGHT_ANOTHER_SIZE_OR_COLOR, BOUGHT_SOMEWHERE_ELSE, DAMAGED, DEFECTIVE, DUPLICATE_ITEM, INADEQUATE_QUALITY, INCORRECT_ITEM, LOST_AFTER_DELIVERY, LOST_IN_TRANSIT, LOWER_PRICE, MISSING_PARTS, NOT_AS_DESCRIBED, NO_LONGER_WANTED, RETURN_TO_SENDER, SHIPPING_BOX_DAMAGED, TRIED_TO_CANCEL and WRONG_SIZE/POOR_FIT
+	 * @type {string}
+	 * @memberof ReturnOrderLine
+	 */
+	returnReason?: string;
+	/**
+	 * The purchase order ID for the return created
+	 * @type {string}
+	 * @memberof ReturnOrderLine
+	 */
+	purchaseOrderId?: string;
+	/**
+	 * The purchase order line number for the return created
+	 * @type {number}
+	 * @memberof ReturnOrderLine
+	 */
+	purchaseOrderLineNumber?: number;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof ReturnOrderLine
+	 */
+	exceptionItemType?: string;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof ReturnOrderLine
+	 */
+	isReturnForException?: boolean;
+	/**
+	 * reason for recharging the customer for replacement
+	 * @type {string}
+	 * @memberof ReturnOrderLine
+	 */
+	rechargeReason?: string;
+	/**
+	 * reason for cancelling the return
+	 * @type {string}
+	 * @memberof ReturnOrderLine
+	 */
+	returnCancellationReason?: string;
+	/**
+	 *
+	 * @type {InlineResponse2001Item}
+	 * @memberof ReturnOrderLine
+	 */
+	item?: InlineResponse2001Item;
+	/**
+	 * Information relating to the charge for the orderLine
+	 * @type {Array<InlineResponse2001Charges>}
+	 * @memberof ReturnOrderLine
+	 */
+	charges?: Array<InlineResponse2001Charges>;
+	/**
+	 *
+	 * @type {InlineResponse2001TotalRefundAmount}
+	 * @memberof ReturnOrderLine
+	 */
+	unitPrice?: InlineResponse2001TotalRefundAmount;
+	/**
+	 * Contains name value pairs of calculated charges for the line. Eg: if order line has 3 Qty, this will have a shipping charge = 3 * shipping charge per unit (This is present in the line level charges).
+	 * @type {Array<InlineResponse2001References>}
+	 * @memberof ReturnOrderLine
+	 */
+	itemReturnSettings?: Array<InlineResponse2001References>;
+	/**
+	 * Contains name value pairs of calculated charges for the line. Eg: if order line has 3 Qty, this will have a shipping charge = 3 * shipping charge per unit (This is present in the line level charges).
+	 * @type {Array<InlineResponse2001ChargeTotals>}
+	 * @memberof ReturnOrderLine
+	 */
+	chargeTotals?: Array<InlineResponse2001ChargeTotals>;
+	/**
+	 * How much quantity of this order line can be cancelled
+	 * @type {number}
+	 * @memberof ReturnOrderLine
+	 */
+	cancellableQty?: number;
+	/**
+	 *
+	 * @type {InlineResponse2001ItemItemWeight}
+	 * @memberof ReturnOrderLine
+	 */
+	quantity?: InlineResponse2001ItemItemWeight;
+	/**
+	 * Is customer required to send this item back to return center.
+	 * @type {boolean}
+	 * @memberof ReturnOrderLine
+	 */
+	returnExpectedFlag?: boolean;
+	/**
+	 * Applicable only for 1P.
+	 * @type {boolean}
+	 * @memberof ReturnOrderLine
+	 */
+	isFastReplacement?: boolean;
+	/**
+	 * Is customer allowed to keep the product and not required to send it back to return center. This flag is determined by making a call to fraud system.
+	 * @type {boolean}
+	 * @memberof ReturnOrderLine
+	 */
+	isKeepIt?: boolean;
+	/**
+	 * This return is the last item on the sales order line and all other sales order line items are already returned. Helps in last penny calculations.
+	 * @type {boolean}
+	 * @memberof ReturnOrderLine
+	 */
+	lastItem?: boolean;
+	/**
+	 * The quantity for which customer was refunded
+	 * @type {number}
+	 * @memberof ReturnOrderLine
+	 */
+	refundedQty?: number;
+	/**
+	 * The quantity for which customer can be charged again for
+	 * @type {number}
+	 * @memberof ReturnOrderLine
+	 */
+	rechargeableQty?: number;
+	/**
+	 * Determines the mode of refund initiation. Valid values are: WALMART_SETTLED_REFUND, SELLER_AUTO_REFUND, SELLER_MANUAL_REFUND, SELLER_SYSTEM_REFUND, and WALMART_TRIGGERED_REFUND.
+	 * @type {string}
+	 * @memberof ReturnOrderLine
+	 */
+	refundChannel?: string;
+	/**
+	 * Informational blocks added as the return order completes its journey from return creation to received and refunded.
+	 * @type {Array<InlineResponse2001ReturnTrackingDetail>}
+	 * @memberof ReturnOrderLine
+	 */
+	returnTrackingDetail?: Array<InlineResponse2001ReturnTrackingDetail>;
+	/**
+	 * Current status of return. (e.g., \'INITIATED\')
+	 * @type {string}
+	 * @memberof ReturnOrderLine
+	 */
+	status?: string;
+	/**
+	 * Timestamp of listed status change
+	 * @type {string}
+	 * @memberof ReturnOrderLine
+	 */
+	statusTime?: string;
+	/**
+	 * Determines the current carrier tracking status of the return.
+	 * @type {string}
+	 * @memberof ReturnOrderLine
+	 */
+	currentDeliveryStatus?: string;
+	/**
+	 * Determines the current refund status of the return.
+	 * @type {string}
+	 * @memberof ReturnOrderLine
+	 */
+	currentRefundStatus?: string;
 }
 /**
  * Informational blocks added as the return order completes its journey from return creation to received and refunded.
@@ -1416,36 +1410,36 @@ export interface ReturnOrderLine {
  * @interface ReturnTrackingDetail
  */
 export interface ReturnTrackingDetail {
-  /**
-   * The stage the return is in. (e.g., \'1\' is an initiated return)
-   * @type {number}
-   * @memberof ReturnTrackingDetail
-   */
-  sequenceNo?: number;
-  /**
-   * The last completed return event. (e.g., \'RETURN_IN_TRANSIT\')
-   * @type {string}
-   * @memberof ReturnTrackingDetail
-   */
-  eventTag?: string;
-  /**
-   * Description of current return status event. (e.g., \'A MARKET_PLACE Return in Transit\')
-   * @type {string}
-   * @memberof ReturnTrackingDetail
-   */
-  eventDescription?: string;
-  /**
-   * Timestamp of listed event
-   * @type {string}
-   * @memberof ReturnTrackingDetail
-   */
-  eventTime?: string;
-  /**
-   * Used only for 1P
-   * @type {Array<InlineResponse2001References>}
-   * @memberof ReturnTrackingDetail
-   */
-  references?: Array<InlineResponse2001References>;
+	/**
+	 * The stage the return is in. (e.g., \'1\' is an initiated return)
+	 * @type {number}
+	 * @memberof ReturnTrackingDetail
+	 */
+	sequenceNo?: number;
+	/**
+	 * The last completed return event. (e.g., \'RETURN_IN_TRANSIT\')
+	 * @type {string}
+	 * @memberof ReturnTrackingDetail
+	 */
+	eventTag?: string;
+	/**
+	 * Description of current return status event. (e.g., \'A MARKET_PLACE Return in Transit\')
+	 * @type {string}
+	 * @memberof ReturnTrackingDetail
+	 */
+	eventDescription?: string;
+	/**
+	 * Timestamp of listed event
+	 * @type {string}
+	 * @memberof ReturnTrackingDetail
+	 */
+	eventTime?: string;
+	/**
+	 * Used only for 1P
+	 * @type {Array<InlineResponse2001References>}
+	 * @memberof ReturnTrackingDetail
+	 */
+	references?: Array<InlineResponse2001References>;
 }
 /**
  * Taxes for each charge
@@ -1453,24 +1447,24 @@ export interface ReturnTrackingDetail {
  * @interface Tax
  */
 export interface Tax {
-  /**
-   * Name of the tax
-   * @type {string}
-   * @memberof Tax
-   */
-  taxName?: string;
-  /**
-   *
-   * @type {InlineResponse2001TotalRefundAmount}
-   * @memberof Tax
-   */
-  excessTax?: InlineResponse2001TotalRefundAmount;
-  /**
-   *
-   * @type {InlineResponse2001TotalRefundAmount}
-   * @memberof Tax
-   */
-  taxPerUnit?: InlineResponse2001TotalRefundAmount;
+	/**
+	 * Name of the tax
+	 * @type {string}
+	 * @memberof Tax
+	 */
+	taxName?: string;
+	/**
+	 *
+	 * @type {InlineResponse2001TotalRefundAmount}
+	 * @memberof Tax
+	 */
+	excessTax?: InlineResponse2001TotalRefundAmount;
+	/**
+	 *
+	 * @type {InlineResponse2001TotalRefundAmount}
+	 * @memberof Tax
+	 */
+	taxPerUnit?: InlineResponse2001TotalRefundAmount;
 }
 /**
  * Array of refund lines.
@@ -1478,409 +1472,353 @@ export interface Tax {
  * @interface V3ReturnsReturnOrderIdRefundRefundLines
  */
 export interface V3ReturnsReturnOrderIdRefundRefundLines {
-  /**
-   * A line number associated with each individual line in the return order. If return order has only one return order line and it is not provided in the request, the only available return order line is auto-selected. If return order has multiple return order lines, the required return order line must be provided in the request. If not provided in the request, it will result in data-error.
-   * @type {number}
-   * @memberof V3ReturnsReturnOrderIdRefundRefundLines
-   */
-  returnOrderLineNumber: number;
+	/**
+	 * A line number associated with each individual line in the return order. If return order has only one return order line and it is not provided in the request, the only available return order line is auto-selected. If return order has multiple return order lines, the required return order line must be provided in the request. If not provided in the request, it will result in data-error.
+	 * @type {number}
+	 * @memberof V3ReturnsReturnOrderIdRefundRefundLines
+	 */
+	returnOrderLineNumber: number;
 }
 
 /**
  * ReturnsRefundsApi - axios parameter creator
  * @export
  */
-export const ReturnsRefundsApiAxiosParamCreator = function (
-  configuration?: Configuration
-) {
-  return {
-    /**
-     * Sellers can specify global settings for returns in Seller Center, and they can override individual item level settings using this API.  Empty values for the settings will remove the existing overriden values and revert them to global settings.  For more details, see the announcement for [Bulk Return Rules](https://sellerhelp.walmart.com/s/guide?article=000008197).
-     * @summary Return Item Overrides
-     * @param {string} feedType Feed Type
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {any} [file]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    bulkItemOverrideFeed: async (
-      feedType: string,
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      wMCONSUMERCHANNELTYPE?: string,
-      file?: any,
-      options: any = {}
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'feedType' is not null or undefined
-      assertParamExists("bulkItemOverrideFeed", "feedType", feedType);
-      // verify required parameter 'authorization' is not null or undefined
-      assertParamExists("bulkItemOverrideFeed", "authorization", authorization);
-      // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
-      assertParamExists(
-        "bulkItemOverrideFeed",
-        "wMSECACCESSTOKEN",
-        wMSECACCESSTOKEN
-      );
-      // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
-      assertParamExists(
-        "bulkItemOverrideFeed",
-        "wMQOSCORRELATIONID",
-        wMQOSCORRELATIONID
-      );
-      // verify required parameter 'wMSVCNAME' is not null or undefined
-      assertParamExists("bulkItemOverrideFeed", "wMSVCNAME", wMSVCNAME);
-      const localVarPath = `/v3/feeds`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+export const ReturnsRefundsApiAxiosParamCreator = function (configuration?: Configuration) {
+	return {
+		/**
+		 * Sellers can specify global settings for returns in Seller Center, and they can override individual item level settings using this API.  Empty values for the settings will remove the existing overriden values and revert them to global settings.  For more details, see the announcement for [Bulk Return Rules](https://sellerhelp.walmart.com/s/guide?article=000008197).
+		 * @summary Return Item Overrides
+		 * @param {string} feedType Feed Type
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {any} [file]
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		bulkItemOverrideFeed: async (
+			feedType: string,
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			wMCONSUMERCHANNELTYPE?: string,
+			file?: any,
+			options: any = {}
+		): Promise<RequestArgs> => {
+			// verify required parameter 'feedType' is not null or undefined
+			assertParamExists('bulkItemOverrideFeed', 'feedType', feedType);
+			// verify required parameter 'authorization' is not null or undefined
+			assertParamExists('bulkItemOverrideFeed', 'authorization', authorization);
+			// verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
+			assertParamExists('bulkItemOverrideFeed', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN);
+			// verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
+			assertParamExists('bulkItemOverrideFeed', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID);
+			// verify required parameter 'wMSVCNAME' is not null or undefined
+			assertParamExists('bulkItemOverrideFeed', 'wMSVCNAME', wMSVCNAME);
+			const localVarPath = `/v3/feeds`;
+			// use dummy base URL string because the URL constructor only accepts absolute URLs.
+			const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+			let baseOptions;
+			if (configuration) {
+				baseOptions = configuration.baseOptions;
+			}
 
-      const localVarRequestOptions = {
-        method: "POST",
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
-      const localVarFormParams = new ((configuration &&
-        configuration.formDataCtor) ||
-        FormData)();
+			const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
+			const localVarHeaderParameter = {} as any;
+			const localVarQueryParameter = {} as any;
+			const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)();
 
-      // authentication basicScheme required
-      // http basic authentication required
-      setBasicAuthToObject(localVarRequestOptions, configuration);
+			// authentication basicScheme required
+			// http basic authentication required
+			setBasicAuthToObject(localVarRequestOptions, configuration);
 
-      if (feedType !== undefined) {
-        localVarQueryParameter["feedType"] = feedType;
-      }
+			if (feedType !== undefined) {
+				localVarQueryParameter['feedType'] = feedType;
+			}
 
-      if (authorization !== undefined && authorization !== null) {
-        localVarHeaderParameter["Authorization"] = String(authorization);
-      }
+			if (authorization !== undefined && authorization !== null) {
+				localVarHeaderParameter['Authorization'] = String(authorization);
+			}
 
-      if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
-        localVarHeaderParameter["WM_SEC.ACCESS_TOKEN"] =
-          String(wMSECACCESSTOKEN);
-      }
+			if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
+				localVarHeaderParameter['WM_SEC.ACCESS_TOKEN'] = String(wMSECACCESSTOKEN);
+			}
 
-      if (
-        wMCONSUMERCHANNELTYPE !== undefined &&
-        wMCONSUMERCHANNELTYPE !== null
-      ) {
-        localVarHeaderParameter["WM_CONSUMER.CHANNEL.TYPE"] = String(
-          wMCONSUMERCHANNELTYPE
-        );
-      }
+			if (wMCONSUMERCHANNELTYPE !== undefined && wMCONSUMERCHANNELTYPE !== null) {
+				localVarHeaderParameter['WM_CONSUMER.CHANNEL.TYPE'] = String(wMCONSUMERCHANNELTYPE);
+			}
 
-      if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
-        localVarHeaderParameter["WM_QOS.CORRELATION_ID"] =
-          String(wMQOSCORRELATIONID);
-      }
+			if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
+				localVarHeaderParameter['WM_QOS.CORRELATION_ID'] = String(wMQOSCORRELATIONID);
+			}
 
-      if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
-        localVarHeaderParameter["WM_SVC.NAME"] = String(wMSVCNAME);
-      }
+			if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
+				localVarHeaderParameter['WM_SVC.NAME'] = String(wMSVCNAME);
+			}
 
-      if (file !== undefined) {
-        localVarFormParams.append("file", file as any);
-      }
+			if (file !== undefined) {
+				localVarFormParams.append('file', file as any);
+			}
 
-      localVarHeaderParameter["Content-Type"] = "multipart/form-data";
+			localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
-      localVarRequestOptions.data = localVarFormParams;
+			setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+			let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+			localVarRequestOptions.headers = {
+				...localVarHeaderParameter,
+				...headersFromBaseOptions,
+				...options.headers,
+			};
+			localVarRequestOptions.data = localVarFormParams;
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * Retrieves the details of return orders for the specified filter criteria.
-     * @summary Returns
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {string} [returnOrderId] Return order identifier of the return order object as part of array. This is the same as RMA number.
-     * @param {string} [customerOrderId] A unique ID associated with the sales order for specified customer
-     * @param {string} [status] Status may be specified to query the returns with specific status.Valid statuses are: INITIATED, DELIVERED, COMPLETED
-     * @param {string} [replacementInfo] Provides additional attributes - replacementCustomerOrderID, returnType, rechargeReason, returnCancellationReason - related to Replacement return order, in response, if available. Allowed values are true or false.
-     * @param {string} [returnType] Specifies if the return order is a replacement return or a regular (refund) return. Possible values are REPLACEMENT or REFUND.
-     * @param {string} [returnCreationStartDate] Start Date for querying all return orders that were created after that date. Use one of the following formats, based on UTC, ISO 8601. Date example: \&#39;2013-08-16\&#39; Timestamp example: \&#39;2013-08-16T10:30:15Z\&#39;
-     * @param {string} [returnCreationEndDate] Limits the query to the return orders that were created before this returnCreationEndDate. Use one of the following formats, based on ISO 8601, are allowed: UTC date or timestamp. Examples: \&#39;2016-08-16T10:30:30.155Z\&#39; or \&#39;2016-08-16\&#39;
-     * @param {string} [returnLastModifiedStartDate] Start Date for querying all return orders that were modified after that date. Use one of the following formats, based on UTC, ISO 8601. Date example: \&#39;2013-08-16\&#39; Timestamp example: \&#39;2013-08-16T10:30:15Z\&#39;.In case of dates with timezone, use format \&#39;2020-04-17T10:42:41.000+0000\&#39; and follow encode \&#39;+\&#39; with %20
-     * @param {string} [returnLastModifiedEndDate] Limits the query to the return orders that were modified before this date. Use one of the following formats, based on UTC, ISO 8601. Date example: \&#39;2013-08-16\&#39; Timestamp example: \&#39;2013-08-18T10:30:15Z\&#39;.In case of dates with timezone, use format \&#39;2020-04-18T10:42:41.000+0000\&#39; and follow encode \&#39;+\&#39; with %20
-     * @param {string} [limit] The number of orders to be returned. Cannot be larger than 200
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getReturns: async (
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      returnOrderId?: string,
-      customerOrderId?: string,
-      status?: string,
-      replacementInfo?: string,
-      returnType?: string,
-      returnCreationStartDate?: string,
-      returnCreationEndDate?: string,
-      returnLastModifiedStartDate?: string,
-      returnLastModifiedEndDate?: string,
-      limit?: string,
-      wMCONSUMERCHANNELTYPE?: string,
-      options: any = {}
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'authorization' is not null or undefined
-      assertParamExists("getReturns", "authorization", authorization);
-      // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
-      assertParamExists("getReturns", "wMSECACCESSTOKEN", wMSECACCESSTOKEN);
-      // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
-      assertParamExists("getReturns", "wMQOSCORRELATIONID", wMQOSCORRELATIONID);
-      // verify required parameter 'wMSVCNAME' is not null or undefined
-      assertParamExists("getReturns", "wMSVCNAME", wMSVCNAME);
-      const localVarPath = `/v3/returns`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+			return {
+				url: toPathString(localVarUrlObj),
+				options: localVarRequestOptions,
+			};
+		},
+		/**
+		 * Retrieves the details of return orders for the specified filter criteria.
+		 * @summary Returns
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {string} [returnOrderId] Return order identifier of the return order object as part of array. This is the same as RMA number.
+		 * @param {string} [customerOrderId] A unique ID associated with the sales order for specified customer
+		 * @param {string} [status] Status may be specified to query the returns with specific status.Valid statuses are: INITIATED, DELIVERED, COMPLETED
+		 * @param {string} [replacementInfo] Provides additional attributes - replacementCustomerOrderID, returnType, rechargeReason, returnCancellationReason - related to Replacement return order, in response, if available. Allowed values are true or false.
+		 * @param {string} [returnType] Specifies if the return order is a replacement return or a regular (refund) return. Possible values are REPLACEMENT or REFUND.
+		 * @param {string} [returnCreationStartDate] Start Date for querying all return orders that were created after that date. Use one of the following formats, based on UTC, ISO 8601. Date example: \&#39;2013-08-16\&#39; Timestamp example: \&#39;2013-08-16T10:30:15Z\&#39;
+		 * @param {string} [returnCreationEndDate] Limits the query to the return orders that were created before this returnCreationEndDate. Use one of the following formats, based on ISO 8601, are allowed: UTC date or timestamp. Examples: \&#39;2016-08-16T10:30:30.155Z\&#39; or \&#39;2016-08-16\&#39;
+		 * @param {string} [returnLastModifiedStartDate] Start Date for querying all return orders that were modified after that date. Use one of the following formats, based on UTC, ISO 8601. Date example: \&#39;2013-08-16\&#39; Timestamp example: \&#39;2013-08-16T10:30:15Z\&#39;.In case of dates with timezone, use format \&#39;2020-04-17T10:42:41.000+0000\&#39; and follow encode \&#39;+\&#39; with %20
+		 * @param {string} [returnLastModifiedEndDate] Limits the query to the return orders that were modified before this date. Use one of the following formats, based on UTC, ISO 8601. Date example: \&#39;2013-08-16\&#39; Timestamp example: \&#39;2013-08-18T10:30:15Z\&#39;.In case of dates with timezone, use format \&#39;2020-04-18T10:42:41.000+0000\&#39; and follow encode \&#39;+\&#39; with %20
+		 * @param {string} [limit] The number of orders to be returned. Cannot be larger than 200
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		getReturns: async (
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			returnOrderId?: string,
+			customerOrderId?: string,
+			status?: string,
+			replacementInfo?: string,
+			returnType?: string,
+			returnCreationStartDate?: string,
+			returnCreationEndDate?: string,
+			returnLastModifiedStartDate?: string,
+			returnLastModifiedEndDate?: string,
+			limit?: string,
+			wMCONSUMERCHANNELTYPE?: string,
+			options: any = {}
+		): Promise<RequestArgs> => {
+			// verify required parameter 'authorization' is not null or undefined
+			assertParamExists('getReturns', 'authorization', authorization);
+			// verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
+			assertParamExists('getReturns', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN);
+			// verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
+			assertParamExists('getReturns', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID);
+			// verify required parameter 'wMSVCNAME' is not null or undefined
+			assertParamExists('getReturns', 'wMSVCNAME', wMSVCNAME);
+			const localVarPath = `/v3/returns`;
+			// use dummy base URL string because the URL constructor only accepts absolute URLs.
+			const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+			let baseOptions;
+			if (configuration) {
+				baseOptions = configuration.baseOptions;
+			}
 
-      const localVarRequestOptions = {
-        method: "GET",
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+			const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+			const localVarHeaderParameter = {} as any;
+			const localVarQueryParameter = {} as any;
 
-      // authentication basicScheme required
-      // http basic authentication required
-      setBasicAuthToObject(localVarRequestOptions, configuration);
+			// authentication basicScheme required
+			// http basic authentication required
+			setBasicAuthToObject(localVarRequestOptions, configuration);
 
-      if (returnOrderId !== undefined) {
-        localVarQueryParameter["returnOrderId"] = returnOrderId;
-      }
+			if (returnOrderId !== undefined) {
+				localVarQueryParameter['returnOrderId'] = returnOrderId;
+			}
 
-      if (customerOrderId !== undefined) {
-        localVarQueryParameter["customerOrderId"] = customerOrderId;
-      }
+			if (customerOrderId !== undefined) {
+				localVarQueryParameter['customerOrderId'] = customerOrderId;
+			}
 
-      if (status !== undefined) {
-        localVarQueryParameter["status"] = status;
-      }
+			if (status !== undefined) {
+				localVarQueryParameter['status'] = status;
+			}
 
-      if (replacementInfo !== undefined) {
-        localVarQueryParameter["replacementInfo"] = replacementInfo;
-      }
+			if (replacementInfo !== undefined) {
+				localVarQueryParameter['replacementInfo'] = replacementInfo;
+			}
 
-      if (returnType !== undefined) {
-        localVarQueryParameter["returnType"] = returnType;
-      }
+			if (returnType !== undefined) {
+				localVarQueryParameter['returnType'] = returnType;
+			}
 
-      if (returnCreationStartDate !== undefined) {
-        localVarQueryParameter["returnCreationStartDate"] =
-          (returnCreationStartDate as any) instanceof Date
-            ? (returnCreationStartDate as any).toISOString()
-            : returnCreationStartDate;
-      }
+			if (returnCreationStartDate !== undefined) {
+				localVarQueryParameter['returnCreationStartDate'] =
+					(returnCreationStartDate as any) instanceof Date
+						? (returnCreationStartDate as any).toISOString()
+						: returnCreationStartDate;
+			}
 
-      if (returnCreationEndDate !== undefined) {
-        localVarQueryParameter["returnCreationEndDate"] =
-          (returnCreationEndDate as any) instanceof Date
-            ? (returnCreationEndDate as any).toISOString()
-            : returnCreationEndDate;
-      }
+			if (returnCreationEndDate !== undefined) {
+				localVarQueryParameter['returnCreationEndDate'] =
+					(returnCreationEndDate as any) instanceof Date
+						? (returnCreationEndDate as any).toISOString()
+						: returnCreationEndDate;
+			}
 
-      if (returnLastModifiedStartDate !== undefined) {
-        localVarQueryParameter["returnLastModifiedStartDate"] =
-          (returnLastModifiedStartDate as any) instanceof Date
-            ? (returnLastModifiedStartDate as any).toISOString()
-            : returnLastModifiedStartDate;
-      }
+			if (returnLastModifiedStartDate !== undefined) {
+				localVarQueryParameter['returnLastModifiedStartDate'] =
+					(returnLastModifiedStartDate as any) instanceof Date
+						? (returnLastModifiedStartDate as any).toISOString()
+						: returnLastModifiedStartDate;
+			}
 
-      if (returnLastModifiedEndDate !== undefined) {
-        localVarQueryParameter["returnLastModifiedEndDate"] =
-          (returnLastModifiedEndDate as any) instanceof Date
-            ? (returnLastModifiedEndDate as any).toISOString()
-            : returnLastModifiedEndDate;
-      }
+			if (returnLastModifiedEndDate !== undefined) {
+				localVarQueryParameter['returnLastModifiedEndDate'] =
+					(returnLastModifiedEndDate as any) instanceof Date
+						? (returnLastModifiedEndDate as any).toISOString()
+						: returnLastModifiedEndDate;
+			}
 
-      if (limit !== undefined) {
-        localVarQueryParameter["limit"] = limit;
-      }
+			if (limit !== undefined) {
+				localVarQueryParameter['limit'] = limit;
+			}
 
-      if (authorization !== undefined && authorization !== null) {
-        localVarHeaderParameter["Authorization"] = String(authorization);
-      }
+			if (authorization !== undefined && authorization !== null) {
+				localVarHeaderParameter['Authorization'] = String(authorization);
+			}
 
-      if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
-        localVarHeaderParameter["WM_SEC.ACCESS_TOKEN"] =
-          String(wMSECACCESSTOKEN);
-      }
+			if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
+				localVarHeaderParameter['WM_SEC.ACCESS_TOKEN'] = String(wMSECACCESSTOKEN);
+			}
 
-      if (
-        wMCONSUMERCHANNELTYPE !== undefined &&
-        wMCONSUMERCHANNELTYPE !== null
-      ) {
-        localVarHeaderParameter["WM_CONSUMER.CHANNEL.TYPE"] = String(
-          wMCONSUMERCHANNELTYPE
-        );
-      }
+			if (wMCONSUMERCHANNELTYPE !== undefined && wMCONSUMERCHANNELTYPE !== null) {
+				localVarHeaderParameter['WM_CONSUMER.CHANNEL.TYPE'] = String(wMCONSUMERCHANNELTYPE);
+			}
 
-      if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
-        localVarHeaderParameter["WM_QOS.CORRELATION_ID"] =
-          String(wMQOSCORRELATIONID);
-      }
+			if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
+				localVarHeaderParameter['WM_QOS.CORRELATION_ID'] = String(wMQOSCORRELATIONID);
+			}
 
-      if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
-        localVarHeaderParameter["WM_SVC.NAME"] = String(wMSVCNAME);
-      }
+			if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
+				localVarHeaderParameter['WM_SVC.NAME'] = String(wMSVCNAME);
+			}
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
+			setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+			let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+			localVarRequestOptions.headers = {
+				...localVarHeaderParameter,
+				...headersFromBaseOptions,
+				...options.headers,
+			};
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * This API allows sellers to issue refund against a return order. Multiple return order lines can be refunded in one request.  Note: Sellers can use the Refund Order Lines API for all non-exception category items, including adjustments that seller needs to determine a partial refund amount. Especially for exception category items: HAZMAT, OTHER and FREIGHT that are not eligible for the Marketplace Returns Program.
-     * @summary Issue refund
-     * @param {string} returnOrderId The return order ID
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {InlineObject} inlineObject
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    issueRefund: async (
-      returnOrderId: string,
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      inlineObject: InlineObject,
-      wMCONSUMERCHANNELTYPE?: string,
-      options: any = {}
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'returnOrderId' is not null or undefined
-      assertParamExists("issueRefund", "returnOrderId", returnOrderId);
-      // verify required parameter 'authorization' is not null or undefined
-      assertParamExists("issueRefund", "authorization", authorization);
-      // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
-      assertParamExists("issueRefund", "wMSECACCESSTOKEN", wMSECACCESSTOKEN);
-      // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
-      assertParamExists(
-        "issueRefund",
-        "wMQOSCORRELATIONID",
-        wMQOSCORRELATIONID
-      );
-      // verify required parameter 'wMSVCNAME' is not null or undefined
-      assertParamExists("issueRefund", "wMSVCNAME", wMSVCNAME);
-      // verify required parameter 'inlineObject' is not null or undefined
-      assertParamExists("issueRefund", "inlineObject", inlineObject);
-      const localVarPath = `/v3/returns/{returnOrderId}/refund`.replace(
-        `{${"returnOrderId"}}`,
-        encodeURIComponent(String(returnOrderId))
-      );
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+			return {
+				url: toPathString(localVarUrlObj),
+				options: localVarRequestOptions,
+			};
+		},
+		/**
+		 * This API allows sellers to issue refund against a return order. Multiple return order lines can be refunded in one request.  Note: Sellers can use the Refund Order Lines API for all non-exception category items, including adjustments that seller needs to determine a partial refund amount. Especially for exception category items: HAZMAT, OTHER and FREIGHT that are not eligible for the Marketplace Returns Program.
+		 * @summary Issue refund
+		 * @param {string} returnOrderId The return order ID
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {InlineObject} inlineObject
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		issueRefund: async (
+			returnOrderId: string,
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			inlineObject: InlineObject,
+			wMCONSUMERCHANNELTYPE?: string,
+			options: any = {}
+		): Promise<RequestArgs> => {
+			// verify required parameter 'returnOrderId' is not null or undefined
+			assertParamExists('issueRefund', 'returnOrderId', returnOrderId);
+			// verify required parameter 'authorization' is not null or undefined
+			assertParamExists('issueRefund', 'authorization', authorization);
+			// verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
+			assertParamExists('issueRefund', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN);
+			// verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
+			assertParamExists('issueRefund', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID);
+			// verify required parameter 'wMSVCNAME' is not null or undefined
+			assertParamExists('issueRefund', 'wMSVCNAME', wMSVCNAME);
+			// verify required parameter 'inlineObject' is not null or undefined
+			assertParamExists('issueRefund', 'inlineObject', inlineObject);
+			const localVarPath = `/v3/returns/{returnOrderId}/refund`.replace(
+				`{${'returnOrderId'}}`,
+				encodeURIComponent(String(returnOrderId))
+			);
+			// use dummy base URL string because the URL constructor only accepts absolute URLs.
+			const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+			let baseOptions;
+			if (configuration) {
+				baseOptions = configuration.baseOptions;
+			}
 
-      const localVarRequestOptions = {
-        method: "POST",
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+			const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
+			const localVarHeaderParameter = {} as any;
+			const localVarQueryParameter = {} as any;
 
-      // authentication basicScheme required
-      // http basic authentication required
-      setBasicAuthToObject(localVarRequestOptions, configuration);
+			// authentication basicScheme required
+			// http basic authentication required
+			setBasicAuthToObject(localVarRequestOptions, configuration);
 
-      if (authorization !== undefined && authorization !== null) {
-        localVarHeaderParameter["Authorization"] = String(authorization);
-      }
+			if (authorization !== undefined && authorization !== null) {
+				localVarHeaderParameter['Authorization'] = String(authorization);
+			}
 
-      if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
-        localVarHeaderParameter["WM_SEC.ACCESS_TOKEN"] =
-          String(wMSECACCESSTOKEN);
-      }
+			if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
+				localVarHeaderParameter['WM_SEC.ACCESS_TOKEN'] = String(wMSECACCESSTOKEN);
+			}
 
-      if (
-        wMCONSUMERCHANNELTYPE !== undefined &&
-        wMCONSUMERCHANNELTYPE !== null
-      ) {
-        localVarHeaderParameter["WM_CONSUMER.CHANNEL.TYPE"] = String(
-          wMCONSUMERCHANNELTYPE
-        );
-      }
+			if (wMCONSUMERCHANNELTYPE !== undefined && wMCONSUMERCHANNELTYPE !== null) {
+				localVarHeaderParameter['WM_CONSUMER.CHANNEL.TYPE'] = String(wMCONSUMERCHANNELTYPE);
+			}
 
-      if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
-        localVarHeaderParameter["WM_QOS.CORRELATION_ID"] =
-          String(wMQOSCORRELATIONID);
-      }
+			if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
+				localVarHeaderParameter['WM_QOS.CORRELATION_ID'] = String(wMQOSCORRELATIONID);
+			}
 
-      if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
-        localVarHeaderParameter["WM_SVC.NAME"] = String(wMSVCNAME);
-      }
+			if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
+				localVarHeaderParameter['WM_SVC.NAME'] = String(wMSVCNAME);
+			}
 
-      localVarHeaderParameter["Content-Type"] = "application/json";
+			localVarHeaderParameter['Content-Type'] = 'application/json';
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
-      localVarRequestOptions.data = serializeDataIfNeeded(
-        inlineObject,
-        localVarRequestOptions,
-        configuration
-      );
+			setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+			let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+			localVarRequestOptions.headers = {
+				...localVarHeaderParameter,
+				...headersFromBaseOptions,
+				...options.headers,
+			};
+			localVarRequestOptions.data = serializeDataIfNeeded(inlineObject, localVarRequestOptions, configuration);
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-  };
+			return {
+				url: toPathString(localVarUrlObj),
+				options: localVarRequestOptions,
+			};
+		},
+	};
 };
 
 /**
@@ -1888,170 +1826,138 @@ export const ReturnsRefundsApiAxiosParamCreator = function (
  * @export
  */
 export const ReturnsRefundsApiFp = function (configuration?: Configuration) {
-  const localVarAxiosParamCreator =
-    ReturnsRefundsApiAxiosParamCreator(configuration);
-  return {
-    /**
-     * Sellers can specify global settings for returns in Seller Center, and they can override individual item level settings using this API.  Empty values for the settings will remove the existing overriden values and revert them to global settings.  For more details, see the announcement for [Bulk Return Rules](https://sellerhelp.walmart.com/s/guide?article=000008197).
-     * @summary Return Item Overrides
-     * @param {string} feedType Feed Type
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {any} [file]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async bulkItemOverrideFeed(
-      feedType: string,
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      wMCONSUMERCHANNELTYPE?: string,
-      file?: any,
-      options?: any
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<InlineResponse2002>
-    > {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.bulkItemOverrideFeed(
-          feedType,
-          authorization,
-          wMSECACCESSTOKEN,
-          wMQOSCORRELATIONID,
-          wMSVCNAME,
-          wMCONSUMERCHANNELTYPE,
-          file,
-          options
-        );
-      return createRequestFunction(
-        localVarAxiosArgs,
-        globalAxios,
-        BASE_PATH,
-        configuration
-      );
-    },
-    /**
-     * Retrieves the details of return orders for the specified filter criteria.
-     * @summary Returns
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {string} [returnOrderId] Return order identifier of the return order object as part of array. This is the same as RMA number.
-     * @param {string} [customerOrderId] A unique ID associated with the sales order for specified customer
-     * @param {string} [status] Status may be specified to query the returns with specific status.Valid statuses are: INITIATED, DELIVERED, COMPLETED
-     * @param {string} [replacementInfo] Provides additional attributes - replacementCustomerOrderID, returnType, rechargeReason, returnCancellationReason - related to Replacement return order, in response, if available. Allowed values are true or false.
-     * @param {string} [returnType] Specifies if the return order is a replacement return or a regular (refund) return. Possible values are REPLACEMENT or REFUND.
-     * @param {string} [returnCreationStartDate] Start Date for querying all return orders that were created after that date. Use one of the following formats, based on UTC, ISO 8601. Date example: \&#39;2013-08-16\&#39; Timestamp example: \&#39;2013-08-16T10:30:15Z\&#39;
-     * @param {string} [returnCreationEndDate] Limits the query to the return orders that were created before this returnCreationEndDate. Use one of the following formats, based on ISO 8601, are allowed: UTC date or timestamp. Examples: \&#39;2016-08-16T10:30:30.155Z\&#39; or \&#39;2016-08-16\&#39;
-     * @param {string} [returnLastModifiedStartDate] Start Date for querying all return orders that were modified after that date. Use one of the following formats, based on UTC, ISO 8601. Date example: \&#39;2013-08-16\&#39; Timestamp example: \&#39;2013-08-16T10:30:15Z\&#39;.In case of dates with timezone, use format \&#39;2020-04-17T10:42:41.000+0000\&#39; and follow encode \&#39;+\&#39; with %20
-     * @param {string} [returnLastModifiedEndDate] Limits the query to the return orders that were modified before this date. Use one of the following formats, based on UTC, ISO 8601. Date example: \&#39;2013-08-16\&#39; Timestamp example: \&#39;2013-08-18T10:30:15Z\&#39;.In case of dates with timezone, use format \&#39;2020-04-18T10:42:41.000+0000\&#39; and follow encode \&#39;+\&#39; with %20
-     * @param {string} [limit] The number of orders to be returned. Cannot be larger than 200
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async getReturns(
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      returnOrderId?: string,
-      customerOrderId?: string,
-      status?: string,
-      replacementInfo?: string,
-      returnType?: string,
-      returnCreationStartDate?: string,
-      returnCreationEndDate?: string,
-      returnLastModifiedStartDate?: string,
-      returnLastModifiedEndDate?: string,
-      limit?: string,
-      wMCONSUMERCHANNELTYPE?: string,
-      options?: any
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<InlineResponse2001>
-    > {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.getReturns(
-        authorization,
-        wMSECACCESSTOKEN,
-        wMQOSCORRELATIONID,
-        wMSVCNAME,
-        returnOrderId,
-        customerOrderId,
-        status,
-        replacementInfo,
-        returnType,
-        returnCreationStartDate,
-        returnCreationEndDate,
-        returnLastModifiedStartDate,
-        returnLastModifiedEndDate,
-        limit,
-        wMCONSUMERCHANNELTYPE,
-        options
-      );
-      return createRequestFunction(
-        localVarAxiosArgs,
-        globalAxios,
-        BASE_PATH,
-        configuration
-      );
-    },
-    /**
-     * This API allows sellers to issue refund against a return order. Multiple return order lines can be refunded in one request.  Note: Sellers can use the Refund Order Lines API for all non-exception category items, including adjustments that seller needs to determine a partial refund amount. Especially for exception category items: HAZMAT, OTHER and FREIGHT that are not eligible for the Marketplace Returns Program.
-     * @summary Issue refund
-     * @param {string} returnOrderId The return order ID
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {InlineObject} inlineObject
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async issueRefund(
-      returnOrderId: string,
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      inlineObject: InlineObject,
-      wMCONSUMERCHANNELTYPE?: string,
-      options?: any
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<InlineResponse200>
-    > {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.issueRefund(
-        returnOrderId,
-        authorization,
-        wMSECACCESSTOKEN,
-        wMQOSCORRELATIONID,
-        wMSVCNAME,
-        inlineObject,
-        wMCONSUMERCHANNELTYPE,
-        options
-      );
-      return createRequestFunction(
-        localVarAxiosArgs,
-        globalAxios,
-        BASE_PATH,
-        configuration
-      );
-    },
-  };
+	const localVarAxiosParamCreator = ReturnsRefundsApiAxiosParamCreator(configuration);
+	return {
+		/**
+		 * Sellers can specify global settings for returns in Seller Center, and they can override individual item level settings using this API.  Empty values for the settings will remove the existing overriden values and revert them to global settings.  For more details, see the announcement for [Bulk Return Rules](https://sellerhelp.walmart.com/s/guide?article=000008197).
+		 * @summary Return Item Overrides
+		 * @param {string} feedType Feed Type
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {any} [file]
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		async bulkItemOverrideFeed(
+			feedType: string,
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			wMCONSUMERCHANNELTYPE?: string,
+			file?: any,
+			options?: any
+		): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2002>> {
+			const localVarAxiosArgs = await localVarAxiosParamCreator.bulkItemOverrideFeed(
+				feedType,
+				authorization,
+				wMSECACCESSTOKEN,
+				wMQOSCORRELATIONID,
+				wMSVCNAME,
+				wMCONSUMERCHANNELTYPE,
+				file,
+				options
+			);
+			return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+		},
+		/**
+		 * Retrieves the details of return orders for the specified filter criteria.
+		 * @summary Returns
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {string} [returnOrderId] Return order identifier of the return order object as part of array. This is the same as RMA number.
+		 * @param {string} [customerOrderId] A unique ID associated with the sales order for specified customer
+		 * @param {string} [status] Status may be specified to query the returns with specific status.Valid statuses are: INITIATED, DELIVERED, COMPLETED
+		 * @param {string} [replacementInfo] Provides additional attributes - replacementCustomerOrderID, returnType, rechargeReason, returnCancellationReason - related to Replacement return order, in response, if available. Allowed values are true or false.
+		 * @param {string} [returnType] Specifies if the return order is a replacement return or a regular (refund) return. Possible values are REPLACEMENT or REFUND.
+		 * @param {string} [returnCreationStartDate] Start Date for querying all return orders that were created after that date. Use one of the following formats, based on UTC, ISO 8601. Date example: \&#39;2013-08-16\&#39; Timestamp example: \&#39;2013-08-16T10:30:15Z\&#39;
+		 * @param {string} [returnCreationEndDate] Limits the query to the return orders that were created before this returnCreationEndDate. Use one of the following formats, based on ISO 8601, are allowed: UTC date or timestamp. Examples: \&#39;2016-08-16T10:30:30.155Z\&#39; or \&#39;2016-08-16\&#39;
+		 * @param {string} [returnLastModifiedStartDate] Start Date for querying all return orders that were modified after that date. Use one of the following formats, based on UTC, ISO 8601. Date example: \&#39;2013-08-16\&#39; Timestamp example: \&#39;2013-08-16T10:30:15Z\&#39;.In case of dates with timezone, use format \&#39;2020-04-17T10:42:41.000+0000\&#39; and follow encode \&#39;+\&#39; with %20
+		 * @param {string} [returnLastModifiedEndDate] Limits the query to the return orders that were modified before this date. Use one of the following formats, based on UTC, ISO 8601. Date example: \&#39;2013-08-16\&#39; Timestamp example: \&#39;2013-08-18T10:30:15Z\&#39;.In case of dates with timezone, use format \&#39;2020-04-18T10:42:41.000+0000\&#39; and follow encode \&#39;+\&#39; with %20
+		 * @param {string} [limit] The number of orders to be returned. Cannot be larger than 200
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		async getReturns(
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			returnOrderId?: string,
+			customerOrderId?: string,
+			status?: string,
+			replacementInfo?: string,
+			returnType?: string,
+			returnCreationStartDate?: string,
+			returnCreationEndDate?: string,
+			returnLastModifiedStartDate?: string,
+			returnLastModifiedEndDate?: string,
+			limit?: string,
+			wMCONSUMERCHANNELTYPE?: string,
+			options?: any
+		): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
+			const localVarAxiosArgs = await localVarAxiosParamCreator.getReturns(
+				authorization,
+				wMSECACCESSTOKEN,
+				wMQOSCORRELATIONID,
+				wMSVCNAME,
+				returnOrderId,
+				customerOrderId,
+				status,
+				replacementInfo,
+				returnType,
+				returnCreationStartDate,
+				returnCreationEndDate,
+				returnLastModifiedStartDate,
+				returnLastModifiedEndDate,
+				limit,
+				wMCONSUMERCHANNELTYPE,
+				options
+			);
+			return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+		},
+		/**
+		 * This API allows sellers to issue refund against a return order. Multiple return order lines can be refunded in one request.  Note: Sellers can use the Refund Order Lines API for all non-exception category items, including adjustments that seller needs to determine a partial refund amount. Especially for exception category items: HAZMAT, OTHER and FREIGHT that are not eligible for the Marketplace Returns Program.
+		 * @summary Issue refund
+		 * @param {string} returnOrderId The return order ID
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {InlineObject} inlineObject
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		async issueRefund(
+			returnOrderId: string,
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			inlineObject: InlineObject,
+			wMCONSUMERCHANNELTYPE?: string,
+			options?: any
+		): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
+			const localVarAxiosArgs = await localVarAxiosParamCreator.issueRefund(
+				returnOrderId,
+				authorization,
+				wMSECACCESSTOKEN,
+				wMQOSCORRELATIONID,
+				wMSVCNAME,
+				inlineObject,
+				wMCONSUMERCHANNELTYPE,
+				options
+			);
+			return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+		},
+	};
 };
 
 /**
@@ -2059,145 +1965,145 @@ export const ReturnsRefundsApiFp = function (configuration?: Configuration) {
  * @export
  */
 export const ReturnsRefundsApiFactory = function (
-  configuration?: Configuration,
-  basePath?: string,
-  axios?: AxiosInstance
+	configuration?: Configuration,
+	basePath?: string,
+	axios?: AxiosInstance
 ) {
-  const localVarFp = ReturnsRefundsApiFp(configuration);
-  return {
-    /**
-     * Sellers can specify global settings for returns in Seller Center, and they can override individual item level settings using this API.  Empty values for the settings will remove the existing overriden values and revert them to global settings.  For more details, see the announcement for [Bulk Return Rules](https://sellerhelp.walmart.com/s/guide?article=000008197).
-     * @summary Return Item Overrides
-     * @param {string} feedType Feed Type
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {any} [file]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    bulkItemOverrideFeed(
-      feedType: string,
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      wMCONSUMERCHANNELTYPE?: string,
-      file?: any,
-      options?: any
-    ): AxiosPromise<InlineResponse2002> {
-      return localVarFp
-        .bulkItemOverrideFeed(
-          feedType,
-          authorization,
-          wMSECACCESSTOKEN,
-          wMQOSCORRELATIONID,
-          wMSVCNAME,
-          wMCONSUMERCHANNELTYPE,
-          file,
-          options
-        )
-        .then((request) => request(axios, basePath));
-    },
-    /**
-     * Retrieves the details of return orders for the specified filter criteria.
-     * @summary Returns
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {string} [returnOrderId] Return order identifier of the return order object as part of array. This is the same as RMA number.
-     * @param {string} [customerOrderId] A unique ID associated with the sales order for specified customer
-     * @param {string} [status] Status may be specified to query the returns with specific status.Valid statuses are: INITIATED, DELIVERED, COMPLETED
-     * @param {string} [replacementInfo] Provides additional attributes - replacementCustomerOrderID, returnType, rechargeReason, returnCancellationReason - related to Replacement return order, in response, if available. Allowed values are true or false.
-     * @param {string} [returnType] Specifies if the return order is a replacement return or a regular (refund) return. Possible values are REPLACEMENT or REFUND.
-     * @param {string} [returnCreationStartDate] Start Date for querying all return orders that were created after that date. Use one of the following formats, based on UTC, ISO 8601. Date example: \&#39;2013-08-16\&#39; Timestamp example: \&#39;2013-08-16T10:30:15Z\&#39;
-     * @param {string} [returnCreationEndDate] Limits the query to the return orders that were created before this returnCreationEndDate. Use one of the following formats, based on ISO 8601, are allowed: UTC date or timestamp. Examples: \&#39;2016-08-16T10:30:30.155Z\&#39; or \&#39;2016-08-16\&#39;
-     * @param {string} [returnLastModifiedStartDate] Start Date for querying all return orders that were modified after that date. Use one of the following formats, based on UTC, ISO 8601. Date example: \&#39;2013-08-16\&#39; Timestamp example: \&#39;2013-08-16T10:30:15Z\&#39;.In case of dates with timezone, use format \&#39;2020-04-17T10:42:41.000+0000\&#39; and follow encode \&#39;+\&#39; with %20
-     * @param {string} [returnLastModifiedEndDate] Limits the query to the return orders that were modified before this date. Use one of the following formats, based on UTC, ISO 8601. Date example: \&#39;2013-08-16\&#39; Timestamp example: \&#39;2013-08-18T10:30:15Z\&#39;.In case of dates with timezone, use format \&#39;2020-04-18T10:42:41.000+0000\&#39; and follow encode \&#39;+\&#39; with %20
-     * @param {string} [limit] The number of orders to be returned. Cannot be larger than 200
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getReturns(
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      returnOrderId?: string,
-      customerOrderId?: string,
-      status?: string,
-      replacementInfo?: string,
-      returnType?: string,
-      returnCreationStartDate?: string,
-      returnCreationEndDate?: string,
-      returnLastModifiedStartDate?: string,
-      returnLastModifiedEndDate?: string,
-      limit?: string,
-      wMCONSUMERCHANNELTYPE?: string,
-      options?: any
-    ): AxiosPromise<InlineResponse2001> {
-      return localVarFp
-        .getReturns(
-          authorization,
-          wMSECACCESSTOKEN,
-          wMQOSCORRELATIONID,
-          wMSVCNAME,
-          returnOrderId,
-          customerOrderId,
-          status,
-          replacementInfo,
-          returnType,
-          returnCreationStartDate,
-          returnCreationEndDate,
-          returnLastModifiedStartDate,
-          returnLastModifiedEndDate,
-          limit,
-          wMCONSUMERCHANNELTYPE,
-          options
-        )
-        .then((request) => request(axios, basePath));
-    },
-    /**
-     * This API allows sellers to issue refund against a return order. Multiple return order lines can be refunded in one request.  Note: Sellers can use the Refund Order Lines API for all non-exception category items, including adjustments that seller needs to determine a partial refund amount. Especially for exception category items: HAZMAT, OTHER and FREIGHT that are not eligible for the Marketplace Returns Program.
-     * @summary Issue refund
-     * @param {string} returnOrderId The return order ID
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {InlineObject} inlineObject
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    issueRefund(
-      returnOrderId: string,
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      inlineObject: InlineObject,
-      wMCONSUMERCHANNELTYPE?: string,
-      options?: any
-    ): AxiosPromise<InlineResponse200> {
-      return localVarFp
-        .issueRefund(
-          returnOrderId,
-          authorization,
-          wMSECACCESSTOKEN,
-          wMQOSCORRELATIONID,
-          wMSVCNAME,
-          inlineObject,
-          wMCONSUMERCHANNELTYPE,
-          options
-        )
-        .then((request) => request(axios, basePath));
-    },
-  };
+	const localVarFp = ReturnsRefundsApiFp(configuration);
+	return {
+		/**
+		 * Sellers can specify global settings for returns in Seller Center, and they can override individual item level settings using this API.  Empty values for the settings will remove the existing overriden values and revert them to global settings.  For more details, see the announcement for [Bulk Return Rules](https://sellerhelp.walmart.com/s/guide?article=000008197).
+		 * @summary Return Item Overrides
+		 * @param {string} feedType Feed Type
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {any} [file]
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		bulkItemOverrideFeed(
+			feedType: string,
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			wMCONSUMERCHANNELTYPE?: string,
+			file?: any,
+			options?: any
+		): AxiosPromise<InlineResponse2002> {
+			return localVarFp
+				.bulkItemOverrideFeed(
+					feedType,
+					authorization,
+					wMSECACCESSTOKEN,
+					wMQOSCORRELATIONID,
+					wMSVCNAME,
+					wMCONSUMERCHANNELTYPE,
+					file,
+					options
+				)
+				.then((request) => request(axios, basePath));
+		},
+		/**
+		 * Retrieves the details of return orders for the specified filter criteria.
+		 * @summary Returns
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {string} [returnOrderId] Return order identifier of the return order object as part of array. This is the same as RMA number.
+		 * @param {string} [customerOrderId] A unique ID associated with the sales order for specified customer
+		 * @param {string} [status] Status may be specified to query the returns with specific status.Valid statuses are: INITIATED, DELIVERED, COMPLETED
+		 * @param {string} [replacementInfo] Provides additional attributes - replacementCustomerOrderID, returnType, rechargeReason, returnCancellationReason - related to Replacement return order, in response, if available. Allowed values are true or false.
+		 * @param {string} [returnType] Specifies if the return order is a replacement return or a regular (refund) return. Possible values are REPLACEMENT or REFUND.
+		 * @param {string} [returnCreationStartDate] Start Date for querying all return orders that were created after that date. Use one of the following formats, based on UTC, ISO 8601. Date example: \&#39;2013-08-16\&#39; Timestamp example: \&#39;2013-08-16T10:30:15Z\&#39;
+		 * @param {string} [returnCreationEndDate] Limits the query to the return orders that were created before this returnCreationEndDate. Use one of the following formats, based on ISO 8601, are allowed: UTC date or timestamp. Examples: \&#39;2016-08-16T10:30:30.155Z\&#39; or \&#39;2016-08-16\&#39;
+		 * @param {string} [returnLastModifiedStartDate] Start Date for querying all return orders that were modified after that date. Use one of the following formats, based on UTC, ISO 8601. Date example: \&#39;2013-08-16\&#39; Timestamp example: \&#39;2013-08-16T10:30:15Z\&#39;.In case of dates with timezone, use format \&#39;2020-04-17T10:42:41.000+0000\&#39; and follow encode \&#39;+\&#39; with %20
+		 * @param {string} [returnLastModifiedEndDate] Limits the query to the return orders that were modified before this date. Use one of the following formats, based on UTC, ISO 8601. Date example: \&#39;2013-08-16\&#39; Timestamp example: \&#39;2013-08-18T10:30:15Z\&#39;.In case of dates with timezone, use format \&#39;2020-04-18T10:42:41.000+0000\&#39; and follow encode \&#39;+\&#39; with %20
+		 * @param {string} [limit] The number of orders to be returned. Cannot be larger than 200
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		getReturns(
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			returnOrderId?: string,
+			customerOrderId?: string,
+			status?: string,
+			replacementInfo?: string,
+			returnType?: string,
+			returnCreationStartDate?: string,
+			returnCreationEndDate?: string,
+			returnLastModifiedStartDate?: string,
+			returnLastModifiedEndDate?: string,
+			limit?: string,
+			wMCONSUMERCHANNELTYPE?: string,
+			options?: any
+		): AxiosPromise<InlineResponse2001> {
+			return localVarFp
+				.getReturns(
+					authorization,
+					wMSECACCESSTOKEN,
+					wMQOSCORRELATIONID,
+					wMSVCNAME,
+					returnOrderId,
+					customerOrderId,
+					status,
+					replacementInfo,
+					returnType,
+					returnCreationStartDate,
+					returnCreationEndDate,
+					returnLastModifiedStartDate,
+					returnLastModifiedEndDate,
+					limit,
+					wMCONSUMERCHANNELTYPE,
+					options
+				)
+				.then((request) => request(axios, basePath));
+		},
+		/**
+		 * This API allows sellers to issue refund against a return order. Multiple return order lines can be refunded in one request.  Note: Sellers can use the Refund Order Lines API for all non-exception category items, including adjustments that seller needs to determine a partial refund amount. Especially for exception category items: HAZMAT, OTHER and FREIGHT that are not eligible for the Marketplace Returns Program.
+		 * @summary Issue refund
+		 * @param {string} returnOrderId The return order ID
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {InlineObject} inlineObject
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		issueRefund(
+			returnOrderId: string,
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			inlineObject: InlineObject,
+			wMCONSUMERCHANNELTYPE?: string,
+			options?: any
+		): AxiosPromise<InlineResponse200> {
+			return localVarFp
+				.issueRefund(
+					returnOrderId,
+					authorization,
+					wMSECACCESSTOKEN,
+					wMQOSCORRELATIONID,
+					wMSVCNAME,
+					inlineObject,
+					wMCONSUMERCHANNELTYPE,
+					options
+				)
+				.then((request) => request(axios, basePath));
+		},
+	};
 };
 
 /**
@@ -2206,54 +2112,54 @@ export const ReturnsRefundsApiFactory = function (
  * @interface ReturnsRefundsApiBulkItemOverrideFeedRequest
  */
 export interface ReturnsRefundsApiBulkItemOverrideFeedRequest {
-  /**
-   * Feed Type
-   * @type {string}
-   * @memberof ReturnsRefundsApiBulkItemOverrideFeed
-   */
-  readonly feedType: string;
+	/**
+	 * Feed Type
+	 * @type {string}
+	 * @memberof ReturnsRefundsApiBulkItemOverrideFeed
+	 */
+	readonly feedType: string;
 
-  /**
-   * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-   * @type {string}
-   * @memberof ReturnsRefundsApiBulkItemOverrideFeed
-   */
-  readonly authorization: string;
+	/**
+	 * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+	 * @type {string}
+	 * @memberof ReturnsRefundsApiBulkItemOverrideFeed
+	 */
+	readonly authorization: string;
 
-  /**
-   * The access token retrieved in the Token API call
-   * @type {string}
-   * @memberof ReturnsRefundsApiBulkItemOverrideFeed
-   */
-  readonly wMSECACCESSTOKEN: string;
+	/**
+	 * The access token retrieved in the Token API call
+	 * @type {string}
+	 * @memberof ReturnsRefundsApiBulkItemOverrideFeed
+	 */
+	readonly wMSECACCESSTOKEN: string;
 
-  /**
-   * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-   * @type {string}
-   * @memberof ReturnsRefundsApiBulkItemOverrideFeed
-   */
-  readonly wMQOSCORRELATIONID: string;
+	/**
+	 * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+	 * @type {string}
+	 * @memberof ReturnsRefundsApiBulkItemOverrideFeed
+	 */
+	readonly wMQOSCORRELATIONID: string;
 
-  /**
-   * Walmart Service Name
-   * @type {string}
-   * @memberof ReturnsRefundsApiBulkItemOverrideFeed
-   */
-  readonly wMSVCNAME: string;
+	/**
+	 * Walmart Service Name
+	 * @type {string}
+	 * @memberof ReturnsRefundsApiBulkItemOverrideFeed
+	 */
+	readonly wMSVCNAME: string;
 
-  /**
-   * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-   * @type {string}
-   * @memberof ReturnsRefundsApiBulkItemOverrideFeed
-   */
-  readonly wMCONSUMERCHANNELTYPE?: string;
+	/**
+	 * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+	 * @type {string}
+	 * @memberof ReturnsRefundsApiBulkItemOverrideFeed
+	 */
+	readonly wMCONSUMERCHANNELTYPE?: string;
 
-  /**
-   *
-   * @type {any}
-   * @memberof ReturnsRefundsApiBulkItemOverrideFeed
-   */
-  readonly file?: any;
+	/**
+	 *
+	 * @type {any}
+	 * @memberof ReturnsRefundsApiBulkItemOverrideFeed
+	 */
+	readonly file?: any;
 }
 
 /**
@@ -2262,110 +2168,110 @@ export interface ReturnsRefundsApiBulkItemOverrideFeedRequest {
  * @interface ReturnsRefundsApiGetReturnsRequest
  */
 export interface ReturnsRefundsApiGetReturnsRequest {
-  /**
-   * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-   * @type {string}
-   * @memberof ReturnsRefundsApiGetReturns
-   */
-  readonly authorization: string;
+	/**
+	 * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+	 * @type {string}
+	 * @memberof ReturnsRefundsApiGetReturns
+	 */
+	readonly authorization: string;
 
-  /**
-   * The access token retrieved in the Token API call
-   * @type {string}
-   * @memberof ReturnsRefundsApiGetReturns
-   */
-  readonly wMSECACCESSTOKEN: string;
+	/**
+	 * The access token retrieved in the Token API call
+	 * @type {string}
+	 * @memberof ReturnsRefundsApiGetReturns
+	 */
+	readonly wMSECACCESSTOKEN: string;
 
-  /**
-   * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-   * @type {string}
-   * @memberof ReturnsRefundsApiGetReturns
-   */
-  readonly wMQOSCORRELATIONID: string;
+	/**
+	 * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+	 * @type {string}
+	 * @memberof ReturnsRefundsApiGetReturns
+	 */
+	readonly wMQOSCORRELATIONID: string;
 
-  /**
-   * Walmart Service Name
-   * @type {string}
-   * @memberof ReturnsRefundsApiGetReturns
-   */
-  readonly wMSVCNAME: string;
+	/**
+	 * Walmart Service Name
+	 * @type {string}
+	 * @memberof ReturnsRefundsApiGetReturns
+	 */
+	readonly wMSVCNAME: string;
 
-  /**
-   * Return order identifier of the return order object as part of array. This is the same as RMA number.
-   * @type {string}
-   * @memberof ReturnsRefundsApiGetReturns
-   */
-  readonly returnOrderId?: string;
+	/**
+	 * Return order identifier of the return order object as part of array. This is the same as RMA number.
+	 * @type {string}
+	 * @memberof ReturnsRefundsApiGetReturns
+	 */
+	readonly returnOrderId?: string;
 
-  /**
-   * A unique ID associated with the sales order for specified customer
-   * @type {string}
-   * @memberof ReturnsRefundsApiGetReturns
-   */
-  readonly customerOrderId?: string;
+	/**
+	 * A unique ID associated with the sales order for specified customer
+	 * @type {string}
+	 * @memberof ReturnsRefundsApiGetReturns
+	 */
+	readonly customerOrderId?: string;
 
-  /**
-   * Status may be specified to query the returns with specific status.Valid statuses are: INITIATED, DELIVERED, COMPLETED
-   * @type {string}
-   * @memberof ReturnsRefundsApiGetReturns
-   */
-  readonly status?: string;
+	/**
+	 * Status may be specified to query the returns with specific status.Valid statuses are: INITIATED, DELIVERED, COMPLETED
+	 * @type {string}
+	 * @memberof ReturnsRefundsApiGetReturns
+	 */
+	readonly status?: string;
 
-  /**
-   * Provides additional attributes - replacementCustomerOrderID, returnType, rechargeReason, returnCancellationReason - related to Replacement return order, in response, if available. Allowed values are true or false.
-   * @type {string}
-   * @memberof ReturnsRefundsApiGetReturns
-   */
-  readonly replacementInfo?: string;
+	/**
+	 * Provides additional attributes - replacementCustomerOrderID, returnType, rechargeReason, returnCancellationReason - related to Replacement return order, in response, if available. Allowed values are true or false.
+	 * @type {string}
+	 * @memberof ReturnsRefundsApiGetReturns
+	 */
+	readonly replacementInfo?: string;
 
-  /**
-   * Specifies if the return order is a replacement return or a regular (refund) return. Possible values are REPLACEMENT or REFUND.
-   * @type {string}
-   * @memberof ReturnsRefundsApiGetReturns
-   */
-  readonly returnType?: string;
+	/**
+	 * Specifies if the return order is a replacement return or a regular (refund) return. Possible values are REPLACEMENT or REFUND.
+	 * @type {string}
+	 * @memberof ReturnsRefundsApiGetReturns
+	 */
+	readonly returnType?: string;
 
-  /**
-   * Start Date for querying all return orders that were created after that date. Use one of the following formats, based on UTC, ISO 8601. Date example: \&#39;2013-08-16\&#39; Timestamp example: \&#39;2013-08-16T10:30:15Z\&#39;
-   * @type {string}
-   * @memberof ReturnsRefundsApiGetReturns
-   */
-  readonly returnCreationStartDate?: string;
+	/**
+	 * Start Date for querying all return orders that were created after that date. Use one of the following formats, based on UTC, ISO 8601. Date example: \&#39;2013-08-16\&#39; Timestamp example: \&#39;2013-08-16T10:30:15Z\&#39;
+	 * @type {string}
+	 * @memberof ReturnsRefundsApiGetReturns
+	 */
+	readonly returnCreationStartDate?: string;
 
-  /**
-   * Limits the query to the return orders that were created before this returnCreationEndDate. Use one of the following formats, based on ISO 8601, are allowed: UTC date or timestamp. Examples: \&#39;2016-08-16T10:30:30.155Z\&#39; or \&#39;2016-08-16\&#39;
-   * @type {string}
-   * @memberof ReturnsRefundsApiGetReturns
-   */
-  readonly returnCreationEndDate?: string;
+	/**
+	 * Limits the query to the return orders that were created before this returnCreationEndDate. Use one of the following formats, based on ISO 8601, are allowed: UTC date or timestamp. Examples: \&#39;2016-08-16T10:30:30.155Z\&#39; or \&#39;2016-08-16\&#39;
+	 * @type {string}
+	 * @memberof ReturnsRefundsApiGetReturns
+	 */
+	readonly returnCreationEndDate?: string;
 
-  /**
-   * Start Date for querying all return orders that were modified after that date. Use one of the following formats, based on UTC, ISO 8601. Date example: \&#39;2013-08-16\&#39; Timestamp example: \&#39;2013-08-16T10:30:15Z\&#39;.In case of dates with timezone, use format \&#39;2020-04-17T10:42:41.000+0000\&#39; and follow encode \&#39;+\&#39; with %20
-   * @type {string}
-   * @memberof ReturnsRefundsApiGetReturns
-   */
-  readonly returnLastModifiedStartDate?: string;
+	/**
+	 * Start Date for querying all return orders that were modified after that date. Use one of the following formats, based on UTC, ISO 8601. Date example: \&#39;2013-08-16\&#39; Timestamp example: \&#39;2013-08-16T10:30:15Z\&#39;.In case of dates with timezone, use format \&#39;2020-04-17T10:42:41.000+0000\&#39; and follow encode \&#39;+\&#39; with %20
+	 * @type {string}
+	 * @memberof ReturnsRefundsApiGetReturns
+	 */
+	readonly returnLastModifiedStartDate?: string;
 
-  /**
-   * Limits the query to the return orders that were modified before this date. Use one of the following formats, based on UTC, ISO 8601. Date example: \&#39;2013-08-16\&#39; Timestamp example: \&#39;2013-08-18T10:30:15Z\&#39;.In case of dates with timezone, use format \&#39;2020-04-18T10:42:41.000+0000\&#39; and follow encode \&#39;+\&#39; with %20
-   * @type {string}
-   * @memberof ReturnsRefundsApiGetReturns
-   */
-  readonly returnLastModifiedEndDate?: string;
+	/**
+	 * Limits the query to the return orders that were modified before this date. Use one of the following formats, based on UTC, ISO 8601. Date example: \&#39;2013-08-16\&#39; Timestamp example: \&#39;2013-08-18T10:30:15Z\&#39;.In case of dates with timezone, use format \&#39;2020-04-18T10:42:41.000+0000\&#39; and follow encode \&#39;+\&#39; with %20
+	 * @type {string}
+	 * @memberof ReturnsRefundsApiGetReturns
+	 */
+	readonly returnLastModifiedEndDate?: string;
 
-  /**
-   * The number of orders to be returned. Cannot be larger than 200
-   * @type {string}
-   * @memberof ReturnsRefundsApiGetReturns
-   */
-  readonly limit?: string;
+	/**
+	 * The number of orders to be returned. Cannot be larger than 200
+	 * @type {string}
+	 * @memberof ReturnsRefundsApiGetReturns
+	 */
+	readonly limit?: string;
 
-  /**
-   * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-   * @type {string}
-   * @memberof ReturnsRefundsApiGetReturns
-   */
-  readonly wMCONSUMERCHANNELTYPE?: string;
+	/**
+	 * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+	 * @type {string}
+	 * @memberof ReturnsRefundsApiGetReturns
+	 */
+	readonly wMCONSUMERCHANNELTYPE?: string;
 }
 
 /**
@@ -2374,54 +2280,54 @@ export interface ReturnsRefundsApiGetReturnsRequest {
  * @interface ReturnsRefundsApiIssueRefundRequest
  */
 export interface ReturnsRefundsApiIssueRefundRequest {
-  /**
-   * The return order ID
-   * @type {string}
-   * @memberof ReturnsRefundsApiIssueRefund
-   */
-  readonly returnOrderId: string;
+	/**
+	 * The return order ID
+	 * @type {string}
+	 * @memberof ReturnsRefundsApiIssueRefund
+	 */
+	readonly returnOrderId: string;
 
-  /**
-   * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-   * @type {string}
-   * @memberof ReturnsRefundsApiIssueRefund
-   */
-  readonly authorization: string;
+	/**
+	 * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+	 * @type {string}
+	 * @memberof ReturnsRefundsApiIssueRefund
+	 */
+	readonly authorization: string;
 
-  /**
-   * The access token retrieved in the Token API call
-   * @type {string}
-   * @memberof ReturnsRefundsApiIssueRefund
-   */
-  readonly wMSECACCESSTOKEN: string;
+	/**
+	 * The access token retrieved in the Token API call
+	 * @type {string}
+	 * @memberof ReturnsRefundsApiIssueRefund
+	 */
+	readonly wMSECACCESSTOKEN: string;
 
-  /**
-   * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-   * @type {string}
-   * @memberof ReturnsRefundsApiIssueRefund
-   */
-  readonly wMQOSCORRELATIONID: string;
+	/**
+	 * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+	 * @type {string}
+	 * @memberof ReturnsRefundsApiIssueRefund
+	 */
+	readonly wMQOSCORRELATIONID: string;
 
-  /**
-   * Walmart Service Name
-   * @type {string}
-   * @memberof ReturnsRefundsApiIssueRefund
-   */
-  readonly wMSVCNAME: string;
+	/**
+	 * Walmart Service Name
+	 * @type {string}
+	 * @memberof ReturnsRefundsApiIssueRefund
+	 */
+	readonly wMSVCNAME: string;
 
-  /**
-   *
-   * @type {InlineObject}
-   * @memberof ReturnsRefundsApiIssueRefund
-   */
-  readonly inlineObject: InlineObject;
+	/**
+	 *
+	 * @type {InlineObject}
+	 * @memberof ReturnsRefundsApiIssueRefund
+	 */
+	readonly inlineObject: InlineObject;
 
-  /**
-   * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-   * @type {string}
-   * @memberof ReturnsRefundsApiIssueRefund
-   */
-  readonly wMCONSUMERCHANNELTYPE?: string;
+	/**
+	 * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+	 * @type {string}
+	 * @memberof ReturnsRefundsApiIssueRefund
+	 */
+	readonly wMCONSUMERCHANNELTYPE?: string;
 }
 
 /**
@@ -2431,89 +2337,80 @@ export interface ReturnsRefundsApiIssueRefundRequest {
  * @extends {BaseAPI}
  */
 export class ReturnsRefundsApi extends BaseAPI {
-  /**
-   * Sellers can specify global settings for returns in Seller Center, and they can override individual item level settings using this API.  Empty values for the settings will remove the existing overriden values and revert them to global settings.  For more details, see the announcement for [Bulk Return Rules](https://sellerhelp.walmart.com/s/guide?article=000008197).
-   * @summary Return Item Overrides
-   * @param {ReturnsRefundsApiBulkItemOverrideFeedRequest} requestParameters Request parameters.
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof ReturnsRefundsApi
-   */
-  public bulkItemOverrideFeed(
-    requestParameters: ReturnsRefundsApiBulkItemOverrideFeedRequest,
-    options?: any
-  ) {
-    return ReturnsRefundsApiFp(this.configuration)
-      .bulkItemOverrideFeed(
-        requestParameters.feedType,
-        requestParameters.authorization,
-        requestParameters.wMSECACCESSTOKEN,
-        requestParameters.wMQOSCORRELATIONID,
-        requestParameters.wMSVCNAME,
-        requestParameters.wMCONSUMERCHANNELTYPE,
-        requestParameters.file,
-        options
-      )
-      .then((request) => request(this.axios, this.basePath));
-  }
+	/**
+	 * Sellers can specify global settings for returns in Seller Center, and they can override individual item level settings using this API.  Empty values for the settings will remove the existing overriden values and revert them to global settings.  For more details, see the announcement for [Bulk Return Rules](https://sellerhelp.walmart.com/s/guide?article=000008197).
+	 * @summary Return Item Overrides
+	 * @param {ReturnsRefundsApiBulkItemOverrideFeedRequest} requestParameters Request parameters.
+	 * @param {*} [options] Override http request option.
+	 * @throws {RequiredError}
+	 * @memberof ReturnsRefundsApi
+	 */
+	public bulkItemOverrideFeed(requestParameters: ReturnsRefundsApiBulkItemOverrideFeedRequest, options?: any) {
+		return ReturnsRefundsApiFp(this.configuration)
+			.bulkItemOverrideFeed(
+				requestParameters.feedType,
+				requestParameters.authorization,
+				requestParameters.wMSECACCESSTOKEN,
+				requestParameters.wMQOSCORRELATIONID,
+				requestParameters.wMSVCNAME,
+				requestParameters.wMCONSUMERCHANNELTYPE,
+				requestParameters.file,
+				options
+			)
+			.then((request) => request(this.axios, this.basePath));
+	}
 
-  /**
-   * Retrieves the details of return orders for the specified filter criteria.
-   * @summary Returns
-   * @param {ReturnsRefundsApiGetReturnsRequest} requestParameters Request parameters.
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof ReturnsRefundsApi
-   */
-  public getReturns(
-    requestParameters: ReturnsRefundsApiGetReturnsRequest,
-    options?: any
-  ) {
-    return ReturnsRefundsApiFp(this.configuration)
-      .getReturns(
-        requestParameters.authorization,
-        requestParameters.wMSECACCESSTOKEN,
-        requestParameters.wMQOSCORRELATIONID,
-        requestParameters.wMSVCNAME,
-        requestParameters.returnOrderId,
-        requestParameters.customerOrderId,
-        requestParameters.status,
-        requestParameters.replacementInfo,
-        requestParameters.returnType,
-        requestParameters.returnCreationStartDate,
-        requestParameters.returnCreationEndDate,
-        requestParameters.returnLastModifiedStartDate,
-        requestParameters.returnLastModifiedEndDate,
-        requestParameters.limit,
-        requestParameters.wMCONSUMERCHANNELTYPE,
-        options
-      )
-      .then((request) => request(this.axios, this.basePath));
-  }
+	/**
+	 * Retrieves the details of return orders for the specified filter criteria.
+	 * @summary Returns
+	 * @param {ReturnsRefundsApiGetReturnsRequest} requestParameters Request parameters.
+	 * @param {*} [options] Override http request option.
+	 * @throws {RequiredError}
+	 * @memberof ReturnsRefundsApi
+	 */
+	public getReturns(requestParameters: ReturnsRefundsApiGetReturnsRequest, options?: any) {
+		return ReturnsRefundsApiFp(this.configuration)
+			.getReturns(
+				requestParameters.authorization,
+				requestParameters.wMSECACCESSTOKEN,
+				requestParameters.wMQOSCORRELATIONID,
+				requestParameters.wMSVCNAME,
+				requestParameters.returnOrderId,
+				requestParameters.customerOrderId,
+				requestParameters.status,
+				requestParameters.replacementInfo,
+				requestParameters.returnType,
+				requestParameters.returnCreationStartDate,
+				requestParameters.returnCreationEndDate,
+				requestParameters.returnLastModifiedStartDate,
+				requestParameters.returnLastModifiedEndDate,
+				requestParameters.limit,
+				requestParameters.wMCONSUMERCHANNELTYPE,
+				options
+			)
+			.then((request) => request(this.axios, this.basePath));
+	}
 
-  /**
-   * This API allows sellers to issue refund against a return order. Multiple return order lines can be refunded in one request.  Note: Sellers can use the Refund Order Lines API for all non-exception category items, including adjustments that seller needs to determine a partial refund amount. Especially for exception category items: HAZMAT, OTHER and FREIGHT that are not eligible for the Marketplace Returns Program.
-   * @summary Issue refund
-   * @param {ReturnsRefundsApiIssueRefundRequest} requestParameters Request parameters.
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof ReturnsRefundsApi
-   */
-  public issueRefund(
-    requestParameters: ReturnsRefundsApiIssueRefundRequest,
-    options?: any
-  ) {
-    return ReturnsRefundsApiFp(this.configuration)
-      .issueRefund(
-        requestParameters.returnOrderId,
-        requestParameters.authorization,
-        requestParameters.wMSECACCESSTOKEN,
-        requestParameters.wMQOSCORRELATIONID,
-        requestParameters.wMSVCNAME,
-        requestParameters.inlineObject,
-        requestParameters.wMCONSUMERCHANNELTYPE,
-        options
-      )
-      .then((request) => request(this.axios, this.basePath));
-  }
+	/**
+	 * This API allows sellers to issue refund against a return order. Multiple return order lines can be refunded in one request.  Note: Sellers can use the Refund Order Lines API for all non-exception category items, including adjustments that seller needs to determine a partial refund amount. Especially for exception category items: HAZMAT, OTHER and FREIGHT that are not eligible for the Marketplace Returns Program.
+	 * @summary Issue refund
+	 * @param {ReturnsRefundsApiIssueRefundRequest} requestParameters Request parameters.
+	 * @param {*} [options] Override http request option.
+	 * @throws {RequiredError}
+	 * @memberof ReturnsRefundsApi
+	 */
+	public issueRefund(requestParameters: ReturnsRefundsApiIssueRefundRequest, options?: any) {
+		return ReturnsRefundsApiFp(this.configuration)
+			.issueRefund(
+				requestParameters.returnOrderId,
+				requestParameters.authorization,
+				requestParameters.wMSECACCESSTOKEN,
+				requestParameters.wMQOSCORRELATIONID,
+				requestParameters.wMSVCNAME,
+				requestParameters.inlineObject,
+				requestParameters.wMCONSUMERCHANNELTYPE,
+				options
+			)
+			.then((request) => request(this.axios, this.basePath));
+	}
 }

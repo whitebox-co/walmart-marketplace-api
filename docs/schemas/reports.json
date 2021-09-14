@@ -20,26 +20,36 @@
     }
   ],
   "paths": {
-    "/v3/report/reconreport/reconFile": {
+    "/v3/getReport": {
       "get": {
         "tags": [
           "Reports"
         ],
-        "summary": "Recon report",
-        "description": "Seller can download the reconciliation report for a specific date using this API. Dates available to be downloaded can be found by using the Get available reconciliation report dates API.",
+        "summary": "Multiple Reports",
+        "description": "Returns all the information associated with Seller's items that are set up on Walmart’s platform.",
         "externalDocs": {
           "description": "View Guide",
-          "url": "/doc/us/mp/us-mp-reports/#3772"
+          "url": "/doc/us/mp/us-mp-reports/#2278"
         },
-        "operationId": "getReconReport",
+        "operationId": "getItemReport",
         "parameters": [
           {
-            "name": "reportDate",
+            "name": "type",
             "in": "query",
-            "description": "The date for which the reconcilation file is available",
+            "description": "Type of report to be requested",
             "required": true,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "enum": [
+                "item",
+                "buybox",
+                "cpa",
+                "shippingProgram",
+                "shippingConfiguration",
+                "itemPerformance",
+                "returnOverrides",
+                "promo"
+              ]
             }
           },
           {
@@ -96,6 +106,12 @@
           "200": {
             "description": "Successful Operation",
             "content": {
+              "application/xml": {
+                "schema": {
+                  "type": "string",
+                  "description": "The data will be streamed in a .CSV file in your folder.\nThe response to a successful call includes a header as an attachment called Content-Disposition.\nThe Content-Disposition header contains the name of the report. As an example, attachment: filename=10000000354_2016-01-15T23:09:54.438+0000.zip. The title includes your partner ID (in this case, 10000000354) and the timestamp when the file was generated.\nThe attachment contains the report in a compressed zip format.\nThe java code example demonstrates the use of the header and the body when processing the response\nThe report is regenerated periodically. We recommend that you not retrieve the report more frequently than once every two hours."
+                }
+              },
               "application/json": {
                 "schema": {
                   "type": "string",
@@ -214,36 +230,26 @@
         }
       }
     },
-    "/v3/getReport": {
+    "/v3/report/reconreport/reconFile": {
       "get": {
         "tags": [
           "Reports"
         ],
-        "summary": "Multiple Reports",
-        "description": "Returns all the information associated with Seller's items that are set up on Walmart’s platform.",
+        "summary": "Recon report",
+        "description": "Seller can download the reconciliation report for a specific date using this API. Dates available to be downloaded can be found by using the Get available reconciliation report dates API.",
         "externalDocs": {
           "description": "View Guide",
-          "url": "/doc/us/mp/us-mp-reports/#2278"
+          "url": "/doc/us/mp/us-mp-reports/#3772"
         },
-        "operationId": "getItemReport",
+        "operationId": "getReconReport",
         "parameters": [
           {
-            "name": "type",
+            "name": "reportDate",
             "in": "query",
-            "description": "Type of report to be requested",
+            "description": "The date for which the reconcilation file is available",
             "required": true,
             "schema": {
-              "type": "string",
-              "enum": [
-                "item",
-                "buybox",
-                "cpa",
-                "shippingProgram",
-                "shippingConfiguration",
-                "itemPerformance",
-                "returnOverrides",
-                "promo"
-              ]
+              "type": "string"
             }
           },
           {
@@ -300,12 +306,6 @@
           "200": {
             "description": "Successful Operation",
             "content": {
-              "application/xml": {
-                "schema": {
-                  "type": "string",
-                  "description": "The data will be streamed in a .CSV file in your folder.\nThe response to a successful call includes a header as an attachment called Content-Disposition.\nThe Content-Disposition header contains the name of the report. As an example, attachment: filename=10000000354_2016-01-15T23:09:54.438+0000.zip. The title includes your partner ID (in this case, 10000000354) and the timestamp when the file was generated.\nThe attachment contains the report in a compressed zip format.\nThe java code example demonstrates the use of the header and the body when processing the response\nThe report is regenerated periodically. We recommend that you not retrieve the report more frequently than once every two hours."
-                }
-              },
               "application/json": {
                 "schema": {
                   "type": "string",

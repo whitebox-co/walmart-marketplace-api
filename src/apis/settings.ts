@@ -12,30 +12,24 @@
  * Do not edit the class manually.
  */
 
-import { Configuration } from "./configuration";
-import globalAxios, { AxiosPromise, AxiosInstance } from "axios";
+import { Configuration } from './configuration';
+import globalAxios, { AxiosPromise, AxiosInstance } from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import {
-  DUMMY_BASE_URL,
-  assertParamExists,
-  setApiKeyToObject,
-  setBasicAuthToObject,
-  setBearerAuthToObject,
-  setOAuthToObject,
-  setSearchParams,
-  serializeDataIfNeeded,
-  toPathString,
-  createRequestFunction,
-} from "./common";
+	DUMMY_BASE_URL,
+	assertParamExists,
+	setApiKeyToObject,
+	setBasicAuthToObject,
+	setBearerAuthToObject,
+	setOAuthToObject,
+	setSearchParams,
+	serializeDataIfNeeded,
+	toPathString,
+	createRequestFunction,
+} from './common';
 // @ts-ignore
-import {
-  BASE_PATH,
-  COLLECTION_FORMATS,
-  RequestArgs,
-  BaseAPI,
-  RequiredError,
-} from "./base";
+import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from './base';
 
 /**
  *
@@ -43,18 +37,18 @@ import {
  * @interface AccountConfig
  */
 export interface AccountConfig {
-  /**
-   * Name of the configuration. Allowed value is ACCOUNT
-   * @type {string}
-   * @memberof AccountConfig
-   */
-  configurationName?: string;
-  /**
-   *
-   * @type {AccountConfigConfiguration}
-   * @memberof AccountConfig
-   */
-  configuration?: AccountConfigConfiguration;
+	/**
+	 * Name of the configuration. Allowed value is ACCOUNT
+	 * @type {string}
+	 * @memberof AccountConfig
+	 */
+	configurationName?: string;
+	/**
+	 *
+	 * @type {AccountConfigConfiguration}
+	 * @memberof AccountConfig
+	 */
+	configuration?: AccountConfigConfiguration;
 }
 /**
  *
@@ -62,12 +56,12 @@ export interface AccountConfig {
  * @interface AccountConfigConfiguration
  */
 export interface AccountConfigConfiguration {
-  /**
-   * Status of Seller Account
-   * @type {string}
-   * @memberof AccountConfigConfiguration
-   */
-  status?: AccountConfigConfigurationStatusEnum;
+	/**
+	 * Status of Seller Account
+	 * @type {string}
+	 * @memberof AccountConfigConfiguration
+	 */
+	status?: AccountConfigConfigurationStatusEnum;
 }
 
 /**
@@ -75,12 +69,12 @@ export interface AccountConfigConfiguration {
  * @enum {string}
  */
 export enum AccountConfigConfigurationStatusEnum {
-  Active = "ACTIVE",
-  OnboardingActive = "ONBOARDING_ACTIVE",
-  OnboardingInactive = "ONBOARDING_INACTIVE",
-  Suspended = "SUSPENDED",
-  TnsDeclined = "TNS_DECLINED",
-  Terminated = "TERMINATED",
+	Active = 'ACTIVE',
+	OnboardingActive = 'ONBOARDING_ACTIVE',
+	OnboardingInactive = 'ONBOARDING_INACTIVE',
+	Suspended = 'SUSPENDED',
+	TnsDeclined = 'TNS_DECLINED',
+	Terminated = 'TERMINATED',
 }
 
 /**
@@ -89,12 +83,12 @@ export enum AccountConfigConfigurationStatusEnum {
  * @interface AccountInfoDTO
  */
 export interface AccountInfoDTO {
-  /**
-   * Status of Seller Account
-   * @type {string}
-   * @memberof AccountInfoDTO
-   */
-  status?: AccountInfoDTOStatusEnum;
+	/**
+	 * Status of Seller Account
+	 * @type {string}
+	 * @memberof AccountInfoDTO
+	 */
+	status?: AccountInfoDTOStatusEnum;
 }
 
 /**
@@ -102,12 +96,12 @@ export interface AccountInfoDTO {
  * @enum {string}
  */
 export enum AccountInfoDTOStatusEnum {
-  Active = "ACTIVE",
-  OnboardingActive = "ONBOARDING_ACTIVE",
-  OnboardingInactive = "ONBOARDING_INACTIVE",
-  Suspended = "SUSPENDED",
-  TnsDeclined = "TNS_DECLINED",
-  Terminated = "TERMINATED",
+	Active = 'ACTIVE',
+	OnboardingActive = 'ONBOARDING_ACTIVE',
+	OnboardingInactive = 'ONBOARDING_INACTIVE',
+	Suspended = 'SUSPENDED',
+	TnsDeclined = 'TNS_DECLINED',
+	Terminated = 'TERMINATED',
 }
 
 /**
@@ -116,18 +110,18 @@ export enum AccountInfoDTOStatusEnum {
  * @interface CalendarDayConfiguration
  */
 export interface CalendarDayConfiguration {
-  /**
-   *
-   * @type {V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingSchedule}
-   * @memberof CalendarDayConfiguration
-   */
-  standardProcessingSchedule: V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingSchedule;
-  /**
-   * List of additional days on which the fulfillment center is closed. For example, if the fulfillment center is closed on New Year’s Day, then add the date in the list. If there are no additional off days, then this list will be empty. Use ISO 8601 format for date. For example: \'2021-07-16\'(yyyy-MM-dd)
-   * @type {Array<string>}
-   * @memberof CalendarDayConfiguration
-   */
-  additionalDaysOff: Array<string>;
+	/**
+	 *
+	 * @type {V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingSchedule}
+	 * @memberof CalendarDayConfiguration
+	 */
+	standardProcessingSchedule: V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingSchedule;
+	/**
+	 * List of additional days on which the fulfillment center is closed. For example, if the fulfillment center is closed on New Year’s Day, then add the date in the list. If there are no additional off days, then this list will be empty. Use ISO 8601 format for date. For example: \'2021-07-16\'(yyyy-MM-dd)
+	 * @type {Array<string>}
+	 * @memberof CalendarDayConfiguration
+	 */
+	additionalDaysOff: Array<string>;
 }
 /**
  * Calendar day promise details. For examples, please refer to \'Sample 2 - Calendar Day Configurations\' in request & response samples.
@@ -135,18 +129,18 @@ export interface CalendarDayConfiguration {
  * @interface CalendarDayConfigurationResponse
  */
 export interface CalendarDayConfigurationResponse {
-  /**
-   *
-   * @type {V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingSchedule}
-   * @memberof CalendarDayConfigurationResponse
-   */
-  standardProcessingSchedule?: V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingSchedule;
-  /**
-   * List of additional days on which the fulfillment center is closed. If there are no additional off days, then this list will be empty. Format for Date is ISO 8601. For example: \'2021-07-16\'(yyyy-MM-dd)
-   * @type {Array<string>}
-   * @memberof CalendarDayConfigurationResponse
-   */
-  additionalDaysOff?: Array<string>;
+	/**
+	 *
+	 * @type {V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingSchedule}
+	 * @memberof CalendarDayConfigurationResponse
+	 */
+	standardProcessingSchedule?: V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingSchedule;
+	/**
+	 * List of additional days on which the fulfillment center is closed. If there are no additional off days, then this list will be empty. Format for Date is ISO 8601. For example: \'2021-07-16\'(yyyy-MM-dd)
+	 * @type {Array<string>}
+	 * @memberof CalendarDayConfigurationResponse
+	 */
+	additionalDaysOff?: Array<string>;
 }
 /**
  *
@@ -154,18 +148,18 @@ export interface CalendarDayConfigurationResponse {
  * @interface CalendarDayShift
  */
 export interface CalendarDayShift {
-  /**
-   * Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false.
-   * @type {boolean}
-   * @memberof CalendarDayShift
-   */
-  isWorkingDay: boolean;
-  /**
-   * Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to \'14:00\'. Example: \'09:30\'(HH:mm)
-   * @type {string}
-   * @memberof CalendarDayShift
-   */
-  cutOffTime?: string;
+	/**
+	 * Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false.
+	 * @type {boolean}
+	 * @memberof CalendarDayShift
+	 */
+	isWorkingDay: boolean;
+	/**
+	 * Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to \'14:00\'. Example: \'09:30\'(HH:mm)
+	 * @type {string}
+	 * @memberof CalendarDayShift
+	 */
+	cutOffTime?: string;
 }
 /**
  *
@@ -173,18 +167,18 @@ export interface CalendarDayShift {
  * @interface CalendarDayShiftResponse
  */
 export interface CalendarDayShiftResponse {
-  /**
-   * Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false.
-   * @type {boolean}
-   * @memberof CalendarDayShiftResponse
-   */
-  isWorkingDay?: boolean;
-  /**
-   * Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. Example: \'09:30\'(HH:mm)
-   * @type {string}
-   * @memberof CalendarDayShiftResponse
-   */
-  cutOffTime?: string;
+	/**
+	 * Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false.
+	 * @type {boolean}
+	 * @memberof CalendarDayShiftResponse
+	 */
+	isWorkingDay?: boolean;
+	/**
+	 * Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. Example: \'09:30\'(HH:mm)
+	 * @type {string}
+	 * @memberof CalendarDayShiftResponse
+	 */
+	cutOffTime?: string;
 }
 /**
  * Shipping type provided.
@@ -192,18 +186,18 @@ export interface CalendarDayShiftResponse {
  * @interface CarrierDetail1
  */
 export interface CarrierDetail1 {
-  /**
-   * Name of the shipping carrier. Carrier names can be retrieved from the Get carrier methods API.
-   * @type {string}
-   * @memberof CarrierDetail1
-   */
-  carrierMethodName?: string;
-  /**
-   * Shipping method.
-   * @type {string}
-   * @memberof CarrierDetail1
-   */
-  carrierMethodType?: string;
+	/**
+	 * Name of the shipping carrier. Carrier names can be retrieved from the Get carrier methods API.
+	 * @type {string}
+	 * @memberof CarrierDetail1
+	 */
+	carrierMethodName?: string;
+	/**
+	 * Shipping method.
+	 * @type {string}
+	 * @memberof CarrierDetail1
+	 */
+	carrierMethodType?: string;
 }
 /**
  *
@@ -211,30 +205,30 @@ export interface CarrierDetail1 {
  * @interface CarrierDetail2
  */
 export interface CarrierDetail2 {
-  /**
-   * Carrier Id
-   * @type {string}
-   * @memberof CarrierDetail2
-   */
-  carrierMethodId?: string;
-  /**
-   * Carrier Name
-   * @type {string}
-   * @memberof CarrierDetail2
-   */
-  carrierMethodName?: string;
-  /**
-   * Shipping method. Allowed Value is GROUND.
-   * @type {string}
-   * @memberof CarrierDetail2
-   */
-  carrierMethodType?: string;
-  /**
-   * A description for the method carrier.
-   * @type {string}
-   * @memberof CarrierDetail2
-   */
-  carrierMethodDescription?: string;
+	/**
+	 * Carrier Id
+	 * @type {string}
+	 * @memberof CarrierDetail2
+	 */
+	carrierMethodId?: string;
+	/**
+	 * Carrier Name
+	 * @type {string}
+	 * @memberof CarrierDetail2
+	 */
+	carrierMethodName?: string;
+	/**
+	 * Shipping method. Allowed Value is GROUND.
+	 * @type {string}
+	 * @memberof CarrierDetail2
+	 */
+	carrierMethodType?: string;
+	/**
+	 * A description for the method carrier.
+	 * @type {string}
+	 * @memberof CarrierDetail2
+	 */
+	carrierMethodDescription?: string;
 }
 /**
  *
@@ -242,12 +236,12 @@ export interface CarrierDetail2 {
  * @interface CategoriesLagTimeDTO
  */
 export interface CategoriesLagTimeDTO {
-  /**
-   * List of item setup category level lag time exceptions configured for seller
-   * @type {Array<CategoriesLagTimeDTOCategories>}
-   * @memberof CategoriesLagTimeDTO
-   */
-  categories?: Array<CategoriesLagTimeDTOCategories>;
+	/**
+	 * List of item setup category level lag time exceptions configured for seller
+	 * @type {Array<CategoriesLagTimeDTOCategories>}
+	 * @memberof CategoriesLagTimeDTO
+	 */
+	categories?: Array<CategoriesLagTimeDTOCategories>;
 }
 /**
  * List of item setup category level lag time exceptions configured for seller
@@ -255,18 +249,18 @@ export interface CategoriesLagTimeDTO {
  * @interface CategoriesLagTimeDTOCategories
  */
 export interface CategoriesLagTimeDTOCategories {
-  /**
-   * Name of the item setup category which was used to request lag time exception
-   * @type {string}
-   * @memberof CategoriesLagTimeDTOCategories
-   */
-  name?: string;
-  /**
-   * Maximum lag time configured for the item setup category
-   * @type {number}
-   * @memberof CategoriesLagTimeDTOCategories
-   */
-  fulfillmentLagTime?: number;
+	/**
+	 * Name of the item setup category which was used to request lag time exception
+	 * @type {string}
+	 * @memberof CategoriesLagTimeDTOCategories
+	 */
+	name?: string;
+	/**
+	 * Maximum lag time configured for the item setup category
+	 * @type {number}
+	 * @memberof CategoriesLagTimeDTOCategories
+	 */
+	fulfillmentLagTime?: number;
 }
 /**
  * List of item setup category level lag time exceptions configured for seller
@@ -274,18 +268,18 @@ export interface CategoriesLagTimeDTOCategories {
  * @interface CategoryLagTimeDTO
  */
 export interface CategoryLagTimeDTO {
-  /**
-   * Name of the item setup category which was used to request lag time exception
-   * @type {string}
-   * @memberof CategoryLagTimeDTO
-   */
-  name?: string;
-  /**
-   * Maximum lag time configured for the item setup category
-   * @type {number}
-   * @memberof CategoryLagTimeDTO
-   */
-  fulfillmentLagTime?: number;
+	/**
+	 * Name of the item setup category which was used to request lag time exception
+	 * @type {string}
+	 * @memberof CategoryLagTimeDTO
+	 */
+	name?: string;
+	/**
+	 * Maximum lag time configured for the item setup category
+	 * @type {number}
+	 * @memberof CategoryLagTimeDTO
+	 */
+	fulfillmentLagTime?: number;
 }
 /**
  * Per Weight Charge
@@ -293,18 +287,18 @@ export interface CategoryLagTimeDTO {
  * @interface ChargePerItem
  */
 export interface ChargePerItem {
-  /**
-   * Charge Per Item, value USD
-   * @type {number}
-   * @memberof ChargePerItem
-   */
-  amount: number;
-  /**
-   * Currency, eg. USD
-   * @type {string}
-   * @memberof ChargePerItem
-   */
-  currency: string;
+	/**
+	 * Charge Per Item, value USD
+	 * @type {number}
+	 * @memberof ChargePerItem
+	 */
+	amount: number;
+	/**
+	 * Currency, eg. USD
+	 * @type {string}
+	 * @memberof ChargePerItem
+	 */
+	currency: string;
 }
 /**
  * Per Item Charge
@@ -312,18 +306,18 @@ export interface ChargePerItem {
  * @interface ChargePerWeight
  */
 export interface ChargePerWeight {
-  /**
-   * Charge Per weight, value USD
-   * @type {number}
-   * @memberof ChargePerWeight
-   */
-  amount: number;
-  /**
-   * Currency, eg. USD
-   * @type {string}
-   * @memberof ChargePerWeight
-   */
-  currency: string;
+	/**
+	 * Charge Per weight, value USD
+	 * @type {number}
+	 * @memberof ChargePerWeight
+	 */
+	amount: number;
+	/**
+	 * Currency, eg. USD
+	 * @type {string}
+	 * @memberof ChargePerWeight
+	 */
+	currency: string;
 }
 /**
  *
@@ -331,18 +325,18 @@ export interface ChargePerWeight {
  * @interface Create3PFulfillmentCenterRequest
  */
 export interface Create3PFulfillmentCenterRequest {
-  /**
-   *
-   * @type {V3SettingsShippingShipnodesShipNodeHeader}
-   * @memberof Create3PFulfillmentCenterRequest
-   */
-  shipNodeHeader?: V3SettingsShippingShipnodesShipNodeHeader;
-  /**
-   *
-   * @type {Array<V3SettingsShipping3plshipnodesShipNode>}
-   * @memberof Create3PFulfillmentCenterRequest
-   */
-  shipNode?: Array<V3SettingsShipping3plshipnodesShipNode>;
+	/**
+	 *
+	 * @type {V3SettingsShippingShipnodesShipNodeHeader}
+	 * @memberof Create3PFulfillmentCenterRequest
+	 */
+	shipNodeHeader?: V3SettingsShippingShipnodesShipNodeHeader;
+	/**
+	 *
+	 * @type {Array<V3SettingsShipping3plshipnodesShipNode>}
+	 * @memberof Create3PFulfillmentCenterRequest
+	 */
+	shipNode?: Array<V3SettingsShipping3plshipnodesShipNode>;
 }
 /**
  *
@@ -350,18 +344,18 @@ export interface Create3PFulfillmentCenterRequest {
  * @interface CreateFulfillmentCenterRequest
  */
 export interface CreateFulfillmentCenterRequest {
-  /**
-   *
-   * @type {V3SettingsShippingShipnodesShipNodeHeader}
-   * @memberof CreateFulfillmentCenterRequest
-   */
-  shipNodeHeader?: V3SettingsShippingShipnodesShipNodeHeader;
-  /**
-   *
-   * @type {Array<V3SettingsShippingShipnodesShipNode1>}
-   * @memberof CreateFulfillmentCenterRequest
-   */
-  shipNode?: Array<V3SettingsShippingShipnodesShipNode1>;
+	/**
+	 *
+	 * @type {V3SettingsShippingShipnodesShipNodeHeader}
+	 * @memberof CreateFulfillmentCenterRequest
+	 */
+	shipNodeHeader?: V3SettingsShippingShipnodesShipNodeHeader;
+	/**
+	 *
+	 * @type {Array<V3SettingsShippingShipnodesShipNode1>}
+	 * @memberof CreateFulfillmentCenterRequest
+	 */
+	shipNode?: Array<V3SettingsShippingShipnodesShipNode1>;
 }
 /**
  *
@@ -369,36 +363,36 @@ export interface CreateFulfillmentCenterRequest {
  * @interface CreateShippingTemplateRequest
  */
 export interface CreateShippingTemplateRequest {
-  /**
-   * Shipping Template Name
-   * @type {string}
-   * @memberof CreateShippingTemplateRequest
-   */
-  name?: string;
-  /**
-   * Shipping Template Type, should be CUSTOM or 3PL Specific
-   * @type {string}
-   * @memberof CreateShippingTemplateRequest
-   */
-  type?: string;
-  /**
-   * This is the shipping model type. TIERED_PRICING: This model means that you charge shipping based on the price of the item PER_SHIPMENT_PRICING: This model means that you charge shipping based on the weight of your items (per pound), or you charge shipping based on the number of items purchased in an order
-   * @type {string}
-   * @memberof CreateShippingTemplateRequest
-   */
-  rateModelType?: string;
-  /**
-   * Shipping Template Status, Can be ACTIVE or INACTIVE status
-   * @type {string}
-   * @memberof CreateShippingTemplateRequest
-   */
-  status?: string;
-  /**
-   * Array of different ship methods of a Shipping Template
-   * @type {Array<V3SettingsShippingTemplatesShippingMethods>}
-   * @memberof CreateShippingTemplateRequest
-   */
-  shippingMethods?: Array<V3SettingsShippingTemplatesShippingMethods>;
+	/**
+	 * Shipping Template Name
+	 * @type {string}
+	 * @memberof CreateShippingTemplateRequest
+	 */
+	name?: string;
+	/**
+	 * Shipping Template Type, should be CUSTOM or 3PL Specific
+	 * @type {string}
+	 * @memberof CreateShippingTemplateRequest
+	 */
+	type?: string;
+	/**
+	 * This is the shipping model type. TIERED_PRICING: This model means that you charge shipping based on the price of the item PER_SHIPMENT_PRICING: This model means that you charge shipping based on the weight of your items (per pound), or you charge shipping based on the number of items purchased in an order
+	 * @type {string}
+	 * @memberof CreateShippingTemplateRequest
+	 */
+	rateModelType?: string;
+	/**
+	 * Shipping Template Status, Can be ACTIVE or INACTIVE status
+	 * @type {string}
+	 * @memberof CreateShippingTemplateRequest
+	 */
+	status?: string;
+	/**
+	 * Array of different ship methods of a Shipping Template
+	 * @type {Array<V3SettingsShippingTemplatesShippingMethods>}
+	 * @memberof CreateShippingTemplateRequest
+	 */
+	shippingMethods?: Array<V3SettingsShippingTemplatesShippingMethods>;
 }
 /**
  *
@@ -406,18 +400,18 @@ export interface CreateShippingTemplateRequest {
  * @interface FeedConfig
  */
 export interface FeedConfig {
-  /**
-   * Name of the configuration. Allowed value is FEED
-   * @type {string}
-   * @memberof FeedConfig
-   */
-  configurationName?: string;
-  /**
-   *
-   * @type {FeedConfigConfiguration}
-   * @memberof FeedConfig
-   */
-  configuration?: FeedConfigConfiguration;
+	/**
+	 * Name of the configuration. Allowed value is FEED
+	 * @type {string}
+	 * @memberof FeedConfig
+	 */
+	configurationName?: string;
+	/**
+	 *
+	 * @type {FeedConfigConfiguration}
+	 * @memberof FeedConfig
+	 */
+	configuration?: FeedConfigConfiguration;
 }
 /**
  *
@@ -425,12 +419,12 @@ export interface FeedConfig {
  * @interface FeedConfigConfiguration
  */
 export interface FeedConfigConfiguration {
-  /**
-   * List of feed throttling configurations
-   * @type {Array<FeedConfigConfigurationValues>}
-   * @memberof FeedConfigConfiguration
-   */
-  values?: Array<FeedConfigConfigurationValues>;
+	/**
+	 * List of feed throttling configurations
+	 * @type {Array<FeedConfigConfigurationValues>}
+	 * @memberof FeedConfigConfiguration
+	 */
+	values?: Array<FeedConfigConfigurationValues>;
 }
 /**
  * The maximum allowed size of the feed file
@@ -438,18 +432,18 @@ export interface FeedConfigConfiguration {
  * @interface FeedConfigConfigurationFileSize
  */
 export interface FeedConfigConfigurationFileSize {
-  /**
-   * The number representing file size
-   * @type {number}
-   * @memberof FeedConfigConfigurationFileSize
-   */
-  value?: number;
-  /**
-   * The unit of measurement. Example: \'BYTES\'
-   * @type {string}
-   * @memberof FeedConfigConfigurationFileSize
-   */
-  unitOfMeasurement?: FeedConfigConfigurationFileSizeUnitOfMeasurementEnum;
+	/**
+	 * The number representing file size
+	 * @type {number}
+	 * @memberof FeedConfigConfigurationFileSize
+	 */
+	value?: number;
+	/**
+	 * The unit of measurement. Example: \'BYTES\'
+	 * @type {string}
+	 * @memberof FeedConfigConfigurationFileSize
+	 */
+	unitOfMeasurement?: FeedConfigConfigurationFileSizeUnitOfMeasurementEnum;
 }
 
 /**
@@ -457,7 +451,7 @@ export interface FeedConfigConfigurationFileSize {
  * @enum {string}
  */
 export enum FeedConfigConfigurationFileSizeUnitOfMeasurementEnum {
-  Bytes = "BYTES",
+	Bytes = 'BYTES',
 }
 
 /**
@@ -466,18 +460,18 @@ export enum FeedConfigConfigurationFileSizeUnitOfMeasurementEnum {
  * @interface FeedConfigConfigurationRate
  */
 export interface FeedConfigConfigurationRate {
-  /**
-   * Number of API calls that can be made in every replenish time window
-   * @type {number}
-   * @memberof FeedConfigConfigurationRate
-   */
-  count?: number;
-  /**
-   *
-   * @type {FeedConfigConfigurationRateReplenishTimeWindow}
-   * @memberof FeedConfigConfigurationRate
-   */
-  replenishTimeWindow?: FeedConfigConfigurationRateReplenishTimeWindow;
+	/**
+	 * Number of API calls that can be made in every replenish time window
+	 * @type {number}
+	 * @memberof FeedConfigConfigurationRate
+	 */
+	count?: number;
+	/**
+	 *
+	 * @type {FeedConfigConfigurationRateReplenishTimeWindow}
+	 * @memberof FeedConfigConfigurationRate
+	 */
+	replenishTimeWindow?: FeedConfigConfigurationRateReplenishTimeWindow;
 }
 /**
  * A time period set for throttling of number of API calls
@@ -485,18 +479,18 @@ export interface FeedConfigConfigurationRate {
  * @interface FeedConfigConfigurationRateReplenishTimeWindow
  */
 export interface FeedConfigConfigurationRateReplenishTimeWindow {
-  /**
-   * The number representing size of time window
-   * @type {number}
-   * @memberof FeedConfigConfigurationRateReplenishTimeWindow
-   */
-  value?: number;
-  /**
-   * The unit of measurement. Example: \'SECOND\'
-   * @type {string}
-   * @memberof FeedConfigConfigurationRateReplenishTimeWindow
-   */
-  unitOfMeasurement?: FeedConfigConfigurationRateReplenishTimeWindowUnitOfMeasurementEnum;
+	/**
+	 * The number representing size of time window
+	 * @type {number}
+	 * @memberof FeedConfigConfigurationRateReplenishTimeWindow
+	 */
+	value?: number;
+	/**
+	 * The unit of measurement. Example: \'SECOND\'
+	 * @type {string}
+	 * @memberof FeedConfigConfigurationRateReplenishTimeWindow
+	 */
+	unitOfMeasurement?: FeedConfigConfigurationRateReplenishTimeWindowUnitOfMeasurementEnum;
 }
 
 /**
@@ -504,7 +498,7 @@ export interface FeedConfigConfigurationRateReplenishTimeWindow {
  * @enum {string}
  */
 export enum FeedConfigConfigurationRateReplenishTimeWindowUnitOfMeasurementEnum {
-  Second = "SECOND",
+	Second = 'SECOND',
 }
 
 /**
@@ -513,24 +507,24 @@ export enum FeedConfigConfigurationRateReplenishTimeWindowUnitOfMeasurementEnum 
  * @interface FeedConfigConfigurationThrottleConfigurations
  */
 export interface FeedConfigConfigurationThrottleConfigurations {
-  /**
-   * Type of the throttling configuration. Example \'SELLER\' means throttling configurations at Seller level only.
-   * @type {string}
-   * @memberof FeedConfigConfigurationThrottleConfigurations
-   */
-  type?: FeedConfigConfigurationThrottleConfigurationsTypeEnum;
-  /**
-   *
-   * @type {FeedConfigConfigurationRate}
-   * @memberof FeedConfigConfigurationThrottleConfigurations
-   */
-  rate?: FeedConfigConfigurationRate;
-  /**
-   *
-   * @type {FeedConfigConfigurationFileSize}
-   * @memberof FeedConfigConfigurationThrottleConfigurations
-   */
-  fileSize?: FeedConfigConfigurationFileSize;
+	/**
+	 * Type of the throttling configuration. Example \'SELLER\' means throttling configurations at Seller level only.
+	 * @type {string}
+	 * @memberof FeedConfigConfigurationThrottleConfigurations
+	 */
+	type?: FeedConfigConfigurationThrottleConfigurationsTypeEnum;
+	/**
+	 *
+	 * @type {FeedConfigConfigurationRate}
+	 * @memberof FeedConfigConfigurationThrottleConfigurations
+	 */
+	rate?: FeedConfigConfigurationRate;
+	/**
+	 *
+	 * @type {FeedConfigConfigurationFileSize}
+	 * @memberof FeedConfigConfigurationThrottleConfigurations
+	 */
+	fileSize?: FeedConfigConfigurationFileSize;
 }
 
 /**
@@ -538,7 +532,7 @@ export interface FeedConfigConfigurationThrottleConfigurations {
  * @enum {string}
  */
 export enum FeedConfigConfigurationThrottleConfigurationsTypeEnum {
-  Seller = "SELLER",
+	Seller = 'SELLER',
 }
 
 /**
@@ -547,18 +541,18 @@ export enum FeedConfigConfigurationThrottleConfigurationsTypeEnum {
  * @interface FeedConfigConfigurationValues
  */
 export interface FeedConfigConfigurationValues {
-  /**
-   * The feed Type
-   * @type {string}
-   * @memberof FeedConfigConfigurationValues
-   */
-  feedType?: FeedConfigConfigurationValuesFeedTypeEnum;
-  /**
-   * Details of throttling configurations
-   * @type {Array<FeedConfigConfigurationThrottleConfigurations>}
-   * @memberof FeedConfigConfigurationValues
-   */
-  throttleConfigurations?: Array<FeedConfigConfigurationThrottleConfigurations>;
+	/**
+	 * The feed Type
+	 * @type {string}
+	 * @memberof FeedConfigConfigurationValues
+	 */
+	feedType?: FeedConfigConfigurationValuesFeedTypeEnum;
+	/**
+	 * Details of throttling configurations
+	 * @type {Array<FeedConfigConfigurationThrottleConfigurations>}
+	 * @memberof FeedConfigConfigurationValues
+	 */
+	throttleConfigurations?: Array<FeedConfigConfigurationThrottleConfigurations>;
 }
 
 /**
@@ -566,19 +560,19 @@ export interface FeedConfigConfigurationValues {
  * @enum {string}
  */
 export enum FeedConfigConfigurationValuesFeedTypeEnum {
-  Item = "item",
-  RetireItem = "RETIRE_ITEM",
-  MpItem = "MP_ITEM",
-  MpWfsItem = "MP_WFS_ITEM",
-  MpMaintenance = "MP_MAINTENANCE",
-  SkuTemplateMap = "SKU_TEMPLATE_MAP",
-  ShippingOverrides = "SHIPPING_OVERRIDES",
-  Price = "price",
-  CptSellerEligibility = "CPT_SELLER_ELIGIBILITY",
-  Promo = "promo",
-  ReturnsOverrides = "RETURNS_OVERRIDES",
-  Inventory = "inventory",
-  Lagtime = "lagtime",
+	Item = 'item',
+	RetireItem = 'RETIRE_ITEM',
+	MpItem = 'MP_ITEM',
+	MpWfsItem = 'MP_WFS_ITEM',
+	MpMaintenance = 'MP_MAINTENANCE',
+	SkuTemplateMap = 'SKU_TEMPLATE_MAP',
+	ShippingOverrides = 'SHIPPING_OVERRIDES',
+	Price = 'price',
+	CptSellerEligibility = 'CPT_SELLER_ELIGIBILITY',
+	Promo = 'promo',
+	ReturnsOverrides = 'RETURNS_OVERRIDES',
+	Inventory = 'inventory',
+	Lagtime = 'lagtime',
 }
 
 /**
@@ -587,12 +581,12 @@ export enum FeedConfigConfigurationValuesFeedTypeEnum {
  * @interface FeedThrottlingConfigValues
  */
 export interface FeedThrottlingConfigValues {
-  /**
-   * List of feed throttling configurations
-   * @type {Array<FeedConfigConfigurationValues>}
-   * @memberof FeedThrottlingConfigValues
-   */
-  values?: Array<FeedConfigConfigurationValues>;
+	/**
+	 * List of feed throttling configurations
+	 * @type {Array<FeedConfigConfigurationValues>}
+	 * @memberof FeedThrottlingConfigValues
+	 */
+	values?: Array<FeedConfigConfigurationValues>;
 }
 /**
  * List of feed throttling configurations
@@ -600,18 +594,18 @@ export interface FeedThrottlingConfigValues {
  * @interface FeedThrottlingDTO
  */
 export interface FeedThrottlingDTO {
-  /**
-   * The feed Type
-   * @type {string}
-   * @memberof FeedThrottlingDTO
-   */
-  feedType?: FeedThrottlingDTOFeedTypeEnum;
-  /**
-   * Details of throttling configurations
-   * @type {Array<FeedConfigConfigurationThrottleConfigurations>}
-   * @memberof FeedThrottlingDTO
-   */
-  throttleConfigurations?: Array<FeedConfigConfigurationThrottleConfigurations>;
+	/**
+	 * The feed Type
+	 * @type {string}
+	 * @memberof FeedThrottlingDTO
+	 */
+	feedType?: FeedThrottlingDTOFeedTypeEnum;
+	/**
+	 * Details of throttling configurations
+	 * @type {Array<FeedConfigConfigurationThrottleConfigurations>}
+	 * @memberof FeedThrottlingDTO
+	 */
+	throttleConfigurations?: Array<FeedConfigConfigurationThrottleConfigurations>;
 }
 
 /**
@@ -619,19 +613,19 @@ export interface FeedThrottlingDTO {
  * @enum {string}
  */
 export enum FeedThrottlingDTOFeedTypeEnum {
-  Item = "item",
-  RetireItem = "RETIRE_ITEM",
-  MpItem = "MP_ITEM",
-  MpWfsItem = "MP_WFS_ITEM",
-  MpMaintenance = "MP_MAINTENANCE",
-  SkuTemplateMap = "SKU_TEMPLATE_MAP",
-  ShippingOverrides = "SHIPPING_OVERRIDES",
-  Price = "price",
-  CptSellerEligibility = "CPT_SELLER_ELIGIBILITY",
-  Promo = "promo",
-  ReturnsOverrides = "RETURNS_OVERRIDES",
-  Inventory = "inventory",
-  Lagtime = "lagtime",
+	Item = 'item',
+	RetireItem = 'RETIRE_ITEM',
+	MpItem = 'MP_ITEM',
+	MpWfsItem = 'MP_WFS_ITEM',
+	MpMaintenance = 'MP_MAINTENANCE',
+	SkuTemplateMap = 'SKU_TEMPLATE_MAP',
+	ShippingOverrides = 'SHIPPING_OVERRIDES',
+	Price = 'price',
+	CptSellerEligibility = 'CPT_SELLER_ELIGIBILITY',
+	Promo = 'promo',
+	ReturnsOverrides = 'RETURNS_OVERRIDES',
+	Inventory = 'inventory',
+	Lagtime = 'lagtime',
 }
 
 /**
@@ -640,18 +634,18 @@ export enum FeedThrottlingDTOFeedTypeEnum {
  * @interface FileSize
  */
 export interface FileSize {
-  /**
-   * The number representing file size
-   * @type {number}
-   * @memberof FileSize
-   */
-  value?: number;
-  /**
-   * The unit of measurement. Example: \'BYTES\'
-   * @type {string}
-   * @memberof FileSize
-   */
-  unitOfMeasurement?: FileSizeUnitOfMeasurementEnum;
+	/**
+	 * The number representing file size
+	 * @type {number}
+	 * @memberof FileSize
+	 */
+	value?: number;
+	/**
+	 * The unit of measurement. Example: \'BYTES\'
+	 * @type {string}
+	 * @memberof FileSize
+	 */
+	unitOfMeasurement?: FileSizeUnitOfMeasurementEnum;
 }
 
 /**
@@ -659,7 +653,7 @@ export interface FileSize {
  * @enum {string}
  */
 export enum FileSizeUnitOfMeasurementEnum {
-  Bytes = "BYTES",
+	Bytes = 'BYTES',
 }
 
 /**
@@ -668,24 +662,24 @@ export enum FileSizeUnitOfMeasurementEnum {
  * @interface FulfillmentCenterCoverageDetail
  */
 export interface FulfillmentCenterCoverageDetail {
-  /**
-   * The fulfillment center or ship node Id which uniquely identifies each facility and is autogenerated during the creation of fulfillment center. Every time a facility is added, a new ship node id is generated.
-   * @type {string}
-   * @memberof FulfillmentCenterCoverageDetail
-   */
-  shipNode?: string;
-  /**
-   * Name of the fulfillment center.
-   * @type {string}
-   * @memberof FulfillmentCenterCoverageDetail
-   */
-  shipNodeName?: string;
-  /**
-   * Two day shipping regions defined by Walmart for sellers.
-   * @type {Array<string>}
-   * @memberof FulfillmentCenterCoverageDetail
-   */
-  coverageArea?: Array<string>;
+	/**
+	 * The fulfillment center or ship node Id which uniquely identifies each facility and is autogenerated during the creation of fulfillment center. Every time a facility is added, a new ship node id is generated.
+	 * @type {string}
+	 * @memberof FulfillmentCenterCoverageDetail
+	 */
+	shipNode?: string;
+	/**
+	 * Name of the fulfillment center.
+	 * @type {string}
+	 * @memberof FulfillmentCenterCoverageDetail
+	 */
+	shipNodeName?: string;
+	/**
+	 * Two day shipping regions defined by Walmart for sellers.
+	 * @type {Array<string>}
+	 * @memberof FulfillmentCenterCoverageDetail
+	 */
+	coverageArea?: Array<string>;
 }
 /**
  *
@@ -693,18 +687,18 @@ export interface FulfillmentCenterCoverageDetail {
  * @interface InlineObject
  */
 export interface InlineObject {
-  /**
-   *
-   * @type {V3SettingsShippingShipnodesShipNodeHeader}
-   * @memberof InlineObject
-   */
-  shipNodeHeader?: V3SettingsShippingShipnodesShipNodeHeader;
-  /**
-   *
-   * @type {V3SettingsShippingShipnodesShipNode}
-   * @memberof InlineObject
-   */
-  shipNode?: V3SettingsShippingShipnodesShipNode;
+	/**
+	 *
+	 * @type {V3SettingsShippingShipnodesShipNodeHeader}
+	 * @memberof InlineObject
+	 */
+	shipNodeHeader?: V3SettingsShippingShipnodesShipNodeHeader;
+	/**
+	 *
+	 * @type {V3SettingsShippingShipnodesShipNode}
+	 * @memberof InlineObject
+	 */
+	shipNode?: V3SettingsShippingShipnodesShipNode;
 }
 /**
  *
@@ -712,18 +706,18 @@ export interface InlineObject {
  * @interface InlineObject1
  */
 export interface InlineObject1 {
-  /**
-   *
-   * @type {V3SettingsShippingShipnodesShipNodeHeader}
-   * @memberof InlineObject1
-   */
-  shipNodeHeader?: V3SettingsShippingShipnodesShipNodeHeader;
-  /**
-   *
-   * @type {Array<V3SettingsShippingShipnodesShipNode1>}
-   * @memberof InlineObject1
-   */
-  shipNode?: Array<V3SettingsShippingShipnodesShipNode1>;
+	/**
+	 *
+	 * @type {V3SettingsShippingShipnodesShipNodeHeader}
+	 * @memberof InlineObject1
+	 */
+	shipNodeHeader?: V3SettingsShippingShipnodesShipNodeHeader;
+	/**
+	 *
+	 * @type {Array<V3SettingsShippingShipnodesShipNode1>}
+	 * @memberof InlineObject1
+	 */
+	shipNode?: Array<V3SettingsShippingShipnodesShipNode1>;
 }
 /**
  *
@@ -731,36 +725,36 @@ export interface InlineObject1 {
  * @interface InlineObject2
  */
 export interface InlineObject2 {
-  /**
-   * Shipping Template Name
-   * @type {string}
-   * @memberof InlineObject2
-   */
-  name?: string;
-  /**
-   * Shipping Template Type, should be CUSTOM or 3PL Specific
-   * @type {string}
-   * @memberof InlineObject2
-   */
-  type?: string;
-  /**
-   * This is the shipping model type. TIERED_PRICING: This model means that you charge shipping based on the price of the item PER_SHIPMENT_PRICING: This model means that you charge shipping based on the weight of your items (per pound), or you charge shipping based on the number of items purchased in an order
-   * @type {string}
-   * @memberof InlineObject2
-   */
-  rateModelType?: string;
-  /**
-   * Shipping Template Status, Can be ACTIVE or INACTIVE status
-   * @type {string}
-   * @memberof InlineObject2
-   */
-  status?: string;
-  /**
-   * Array of different ship methods of a Shipping Template
-   * @type {Array<V3SettingsShippingTemplatesShippingMethods>}
-   * @memberof InlineObject2
-   */
-  shippingMethods?: Array<V3SettingsShippingTemplatesShippingMethods>;
+	/**
+	 * Shipping Template Name
+	 * @type {string}
+	 * @memberof InlineObject2
+	 */
+	name?: string;
+	/**
+	 * Shipping Template Type, should be CUSTOM or 3PL Specific
+	 * @type {string}
+	 * @memberof InlineObject2
+	 */
+	type?: string;
+	/**
+	 * This is the shipping model type. TIERED_PRICING: This model means that you charge shipping based on the price of the item PER_SHIPMENT_PRICING: This model means that you charge shipping based on the weight of your items (per pound), or you charge shipping based on the number of items purchased in an order
+	 * @type {string}
+	 * @memberof InlineObject2
+	 */
+	rateModelType?: string;
+	/**
+	 * Shipping Template Status, Can be ACTIVE or INACTIVE status
+	 * @type {string}
+	 * @memberof InlineObject2
+	 */
+	status?: string;
+	/**
+	 * Array of different ship methods of a Shipping Template
+	 * @type {Array<V3SettingsShippingTemplatesShippingMethods>}
+	 * @memberof InlineObject2
+	 */
+	shippingMethods?: Array<V3SettingsShippingTemplatesShippingMethods>;
 }
 /**
  *
@@ -768,36 +762,36 @@ export interface InlineObject2 {
  * @interface InlineObject3
  */
 export interface InlineObject3 {
-  /**
-   * Shipping Template Name
-   * @type {string}
-   * @memberof InlineObject3
-   */
-  name: string;
-  /**
-   * Shipping Template Type, should be CUSTOM or 3PL Specific
-   * @type {string}
-   * @memberof InlineObject3
-   */
-  type: InlineObject3TypeEnum;
-  /**
-   * This is the shipping model type. TIERED_PRICING: This model means that you charge shipping based on the price of the item PER_SHIPMENT_PRICING: This model means that you charge shipping based on the weight of your items (per pound), or you charge shipping based on the number of items purchased in an order
-   * @type {string}
-   * @memberof InlineObject3
-   */
-  rateModelType: InlineObject3RateModelTypeEnum;
-  /**
-   * Shipping Template Status, Can be ACTIVE or INACTIVE status
-   * @type {string}
-   * @memberof InlineObject3
-   */
-  status: InlineObject3StatusEnum;
-  /**
-   * Array of different ship methods of a Shipping Template
-   * @type {Array<V3SettingsShippingTemplatesShippingMethods>}
-   * @memberof InlineObject3
-   */
-  shippingMethods: Array<V3SettingsShippingTemplatesShippingMethods>;
+	/**
+	 * Shipping Template Name
+	 * @type {string}
+	 * @memberof InlineObject3
+	 */
+	name: string;
+	/**
+	 * Shipping Template Type, should be CUSTOM or 3PL Specific
+	 * @type {string}
+	 * @memberof InlineObject3
+	 */
+	type: InlineObject3TypeEnum;
+	/**
+	 * This is the shipping model type. TIERED_PRICING: This model means that you charge shipping based on the price of the item PER_SHIPMENT_PRICING: This model means that you charge shipping based on the weight of your items (per pound), or you charge shipping based on the number of items purchased in an order
+	 * @type {string}
+	 * @memberof InlineObject3
+	 */
+	rateModelType: InlineObject3RateModelTypeEnum;
+	/**
+	 * Shipping Template Status, Can be ACTIVE or INACTIVE status
+	 * @type {string}
+	 * @memberof InlineObject3
+	 */
+	status: InlineObject3StatusEnum;
+	/**
+	 * Array of different ship methods of a Shipping Template
+	 * @type {Array<V3SettingsShippingTemplatesShippingMethods>}
+	 * @memberof InlineObject3
+	 */
+	shippingMethods: Array<V3SettingsShippingTemplatesShippingMethods>;
 }
 
 /**
@@ -805,25 +799,25 @@ export interface InlineObject3 {
  * @enum {string}
  */
 export enum InlineObject3TypeEnum {
-  Default = "DEFAULT",
-  Custom = "CUSTOM",
-  Deliverr = "DELIVERR",
+	Default = 'DEFAULT',
+	Custom = 'CUSTOM',
+	Deliverr = 'DELIVERR',
 }
 /**
  * @export
  * @enum {string}
  */
 export enum InlineObject3RateModelTypeEnum {
-  TieredPricing = "TIERED_PRICING",
-  PerShipmentPricing = "PER_SHIPMENT_PRICING",
+	TieredPricing = 'TIERED_PRICING',
+	PerShipmentPricing = 'PER_SHIPMENT_PRICING',
 }
 /**
  * @export
  * @enum {string}
  */
 export enum InlineObject3StatusEnum {
-  Active = "ACTIVE",
-  Inactive = "INACTIVE",
+	Active = 'ACTIVE',
+	Inactive = 'INACTIVE',
 }
 
 /**
@@ -832,18 +826,18 @@ export enum InlineObject3StatusEnum {
  * @interface InlineObject4
  */
 export interface InlineObject4 {
-  /**
-   *
-   * @type {V3SettingsShippingShipnodesShipNodeHeader}
-   * @memberof InlineObject4
-   */
-  shipNodeHeader?: V3SettingsShippingShipnodesShipNodeHeader;
-  /**
-   *
-   * @type {Array<V3SettingsShipping3plshipnodesShipNode>}
-   * @memberof InlineObject4
-   */
-  shipNode?: Array<V3SettingsShipping3plshipnodesShipNode>;
+	/**
+	 *
+	 * @type {V3SettingsShippingShipnodesShipNodeHeader}
+	 * @memberof InlineObject4
+	 */
+	shipNodeHeader?: V3SettingsShippingShipnodesShipNodeHeader;
+	/**
+	 *
+	 * @type {Array<V3SettingsShipping3plshipnodesShipNode>}
+	 * @memberof InlineObject4
+	 */
+	shipNode?: Array<V3SettingsShipping3plshipnodesShipNode>;
 }
 /**
  *
@@ -851,24 +845,66 @@ export interface InlineObject4 {
  * @interface InlineResponse200
  */
 export interface InlineResponse200 {
-  /**
-   * The fulfillment center or ship node Id which uniquely identifies each facility and is autogenerated during the creation of fulfillment center. Every time a facility is added, a new ship node id is generated.
-   * @type {string}
-   * @memberof InlineResponse200
-   */
-  shipNode?: string;
-  /**
-   * Name of the fulfillment center.
-   * @type {string}
-   * @memberof InlineResponse200
-   */
-  shipNodeName?: string;
-  /**
-   * Two day shipping regions defined by Walmart for sellers.
-   * @type {Array<string>}
-   * @memberof InlineResponse200
-   */
-  coverageArea?: Array<string>;
+	/**
+	 * The fulfillment center or ship node Id which uniquely identifies each facility and is autogenerated during the creation of fulfillment center. Every time a facility is added, a new ship node id is generated.
+	 * @type {string}
+	 * @memberof InlineResponse200
+	 */
+	shipNode?: string;
+	/**
+	 * Defines if the fulfillment center is virtual, seller owned or third party owned. Allowed values: PHYSICAL, VIRTUAL, 3PL.
+	 * @type {string}
+	 * @memberof InlineResponse200
+	 */
+	nodeType?: string;
+	/**
+	 * Name of the fulfillment center.
+	 * @type {string}
+	 * @memberof InlineResponse200
+	 */
+	shipNodeName?: string;
+	/**
+	 * Status of fulfillment center. Allowed values: ACTIVE, INACTIVE..
+	 * @type {string}
+	 * @memberof InlineResponse200
+	 */
+	status?: string;
+	/**
+	 * Time zone that the seller ships from.Allowed timezones are PST, EST, CST, MST.
+	 * @type {string}
+	 * @memberof InlineResponse200
+	 */
+	timeZone?: string;
+	/**
+	 * The services supported by the defined physical ship node . The allowed values: TWO_DAY_DELIVERY.
+	 * @type {Array<string>}
+	 * @memberof InlineResponse200
+	 */
+	distributorSupportedServices?: Array<string>;
+	/**
+	 * Custom node identifier provided by seller. Allowed values are alphanumeric | String
+	 * @type {string}
+	 * @memberof InlineResponse200
+	 */
+	customNodeId?: string;
+	/**
+	 *
+	 * @type {V3SettingsShippingShipnodesPostalAddress}
+	 * @memberof InlineResponse200
+	 */
+	postalAddress?: V3SettingsShippingShipnodesPostalAddress;
+	/**
+	 * Shipping Details.
+	 * @type {Array<V3SettingsShippingShipnodesShippingDetails>}
+	 * @memberof InlineResponse200
+	 */
+	shippingDetails?: Array<V3SettingsShippingShipnodesShippingDetails>;
+	/**
+	 *
+	 * @type {V3SettingsShippingShipnodesCalendarDayConfiguration}
+	 * @memberof InlineResponse200
+	 */
+	calendarDayConfiguration?: V3SettingsShippingShipnodesCalendarDayConfiguration;
 }
 /**
  *
@@ -876,66 +912,24 @@ export interface InlineResponse200 {
  * @interface InlineResponse2001
  */
 export interface InlineResponse2001 {
-  /**
-   * The fulfillment center or ship node Id which uniquely identifies each facility and is autogenerated during the creation of fulfillment center. Every time a facility is added, a new ship node id is generated.
-   * @type {string}
-   * @memberof InlineResponse2001
-   */
-  shipNode?: string;
-  /**
-   * Defines if the fulfillment center is virtual, seller owned or third party owned. Allowed values: PHYSICAL, VIRTUAL, 3PL.
-   * @type {string}
-   * @memberof InlineResponse2001
-   */
-  nodeType?: string;
-  /**
-   * Name of the fulfillment center.
-   * @type {string}
-   * @memberof InlineResponse2001
-   */
-  shipNodeName?: string;
-  /**
-   * Status of fulfillment center. Allowed values: ACTIVE, INACTIVE..
-   * @type {string}
-   * @memberof InlineResponse2001
-   */
-  status?: string;
-  /**
-   * Time zone that the seller ships from.Allowed timezones are PST, EST, CST, MST.
-   * @type {string}
-   * @memberof InlineResponse2001
-   */
-  timeZone?: string;
-  /**
-   * The services supported by the defined physical ship node . The allowed values: TWO_DAY_DELIVERY.
-   * @type {Array<string>}
-   * @memberof InlineResponse2001
-   */
-  distributorSupportedServices?: Array<string>;
-  /**
-   * Custom node identifier provided by seller. Allowed values are alphanumeric | String
-   * @type {string}
-   * @memberof InlineResponse2001
-   */
-  customNodeId?: string;
-  /**
-   *
-   * @type {V3SettingsShippingShipnodesPostalAddress}
-   * @memberof InlineResponse2001
-   */
-  postalAddress?: V3SettingsShippingShipnodesPostalAddress;
-  /**
-   * Shipping Details.
-   * @type {Array<V3SettingsShippingShipnodesShippingDetails>}
-   * @memberof InlineResponse2001
-   */
-  shippingDetails?: Array<V3SettingsShippingShipnodesShippingDetails>;
-  /**
-   *
-   * @type {V3SettingsShippingShipnodesCalendarDayConfiguration}
-   * @memberof InlineResponse2001
-   */
-  calendarDayConfiguration?: V3SettingsShippingShipnodesCalendarDayConfiguration;
+	/**
+	 * The fulfillment center or ship node Id which uniquely identifies each facility and is autogenerated during the creation of fulfillment center. Every time a facility is added, a new ship node id is generated.
+	 * @type {string}
+	 * @memberof InlineResponse2001
+	 */
+	shipNode?: string;
+	/**
+	 * Name of the fulfillment center.
+	 * @type {string}
+	 * @memberof InlineResponse2001
+	 */
+	shipNodeName?: string;
+	/**
+	 * Two day shipping regions defined by Walmart for sellers.
+	 * @type {Array<string>}
+	 * @memberof InlineResponse2001
+	 */
+	coverageArea?: Array<string>;
 }
 /**
  *
@@ -943,18 +937,18 @@ export interface InlineResponse2001 {
  * @interface InlineResponse2002
  */
 export interface InlineResponse2002 {
-  /**
-   * Array of Shipping Templates
-   * @type {Array<InlineResponse2002ShippingTemplates>}
-   * @memberof InlineResponse2002
-   */
-  shippingTemplates?: Array<InlineResponse2002ShippingTemplates>;
-  /**
-   * Total Number of records in the response of the API
-   * @type {number}
-   * @memberof InlineResponse2002
-   */
-  totalRecords?: number;
+	/**
+	 * Array of Shipping Templates
+	 * @type {Array<InlineResponse2002ShippingTemplates>}
+	 * @memberof InlineResponse2002
+	 */
+	shippingTemplates?: Array<InlineResponse2002ShippingTemplates>;
+	/**
+	 * Total Number of records in the response of the API
+	 * @type {number}
+	 * @memberof InlineResponse2002
+	 */
+	totalRecords?: number;
 }
 /**
  * Array of Shipping Templates
@@ -962,60 +956,60 @@ export interface InlineResponse2002 {
  * @interface InlineResponse2002ShippingTemplates
  */
 export interface InlineResponse2002ShippingTemplates {
-  /**
-   * Shipping Template ID
-   * @type {string}
-   * @memberof InlineResponse2002ShippingTemplates
-   */
-  id?: string;
-  /**
-   * Shipping Template Name
-   * @type {string}
-   * @memberof InlineResponse2002ShippingTemplates
-   */
-  name?: string;
-  /**
-   * Shipping Template Type
-   * @type {string}
-   * @memberof InlineResponse2002ShippingTemplates
-   */
-  type?: InlineResponse2002ShippingTemplatesTypeEnum;
-  /**
-   * Shipping Template/ Configurations active or inactive status
-   * @type {string}
-   * @memberof InlineResponse2002ShippingTemplates
-   */
-  status?: InlineResponse2002ShippingTemplatesStatusEnum;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse2002ShippingTemplates
-   */
-  rateModelType?: InlineResponse2002ShippingTemplatesRateModelTypeEnum;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse2002ShippingTemplates
-   */
-  createdBy?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse2002ShippingTemplates
-   */
-  modifiedBy?: string;
-  /**
-   * Template Creation Date
-   * @type {number}
-   * @memberof InlineResponse2002ShippingTemplates
-   */
-  createdDate?: number;
-  /**
-   * Template Modified Date
-   * @type {number}
-   * @memberof InlineResponse2002ShippingTemplates
-   */
-  modifiedDate?: number;
+	/**
+	 * Shipping Template ID
+	 * @type {string}
+	 * @memberof InlineResponse2002ShippingTemplates
+	 */
+	id?: string;
+	/**
+	 * Shipping Template Name
+	 * @type {string}
+	 * @memberof InlineResponse2002ShippingTemplates
+	 */
+	name?: string;
+	/**
+	 * Shipping Template Type
+	 * @type {string}
+	 * @memberof InlineResponse2002ShippingTemplates
+	 */
+	type?: InlineResponse2002ShippingTemplatesTypeEnum;
+	/**
+	 * Shipping Template/ Configurations active or inactive status
+	 * @type {string}
+	 * @memberof InlineResponse2002ShippingTemplates
+	 */
+	status?: InlineResponse2002ShippingTemplatesStatusEnum;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineResponse2002ShippingTemplates
+	 */
+	rateModelType?: InlineResponse2002ShippingTemplatesRateModelTypeEnum;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineResponse2002ShippingTemplates
+	 */
+	createdBy?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineResponse2002ShippingTemplates
+	 */
+	modifiedBy?: string;
+	/**
+	 * Template Creation Date
+	 * @type {number}
+	 * @memberof InlineResponse2002ShippingTemplates
+	 */
+	createdDate?: number;
+	/**
+	 * Template Modified Date
+	 * @type {number}
+	 * @memberof InlineResponse2002ShippingTemplates
+	 */
+	modifiedDate?: number;
 }
 
 /**
@@ -1023,25 +1017,25 @@ export interface InlineResponse2002ShippingTemplates {
  * @enum {string}
  */
 export enum InlineResponse2002ShippingTemplatesTypeEnum {
-  Default = "DEFAULT",
-  Custom = "CUSTOM",
-  Deliverr = "DELIVERR",
+	Default = 'DEFAULT',
+	Custom = 'CUSTOM',
+	Deliverr = 'DELIVERR',
 }
 /**
  * @export
  * @enum {string}
  */
 export enum InlineResponse2002ShippingTemplatesStatusEnum {
-  Active = "ACTIVE",
-  Inactive = "INACTIVE",
+	Active = 'ACTIVE',
+	Inactive = 'INACTIVE',
 }
 /**
  * @export
  * @enum {string}
  */
 export enum InlineResponse2002ShippingTemplatesRateModelTypeEnum {
-  TieredPricing = "TIERED_PRICING",
-  PerShipmentPricing = "PER_SHIPMENT_PRICING",
+	TieredPricing = 'TIERED_PRICING',
+	PerShipmentPricing = 'PER_SHIPMENT_PRICING',
 }
 
 /**
@@ -1050,66 +1044,66 @@ export enum InlineResponse2002ShippingTemplatesRateModelTypeEnum {
  * @interface InlineResponse2003
  */
 export interface InlineResponse2003 {
-  /**
-   * Shipping Template ID
-   * @type {string}
-   * @memberof InlineResponse2003
-   */
-  id?: string;
-  /**
-   * Shipping Template Name
-   * @type {string}
-   * @memberof InlineResponse2003
-   */
-  name: string;
-  /**
-   * Shipping Template Type, should be CUSTOM or 3PL Specific
-   * @type {string}
-   * @memberof InlineResponse2003
-   */
-  type: InlineResponse2003TypeEnum;
-  /**
-   * This is the shipping model type. TIERED_PRICING: This model means that you charge shipping based on the price of the item PER_SHIPMENT_PRICING: This model means that you charge shipping based on the weight of your items (per pound), or you charge shipping based on the number of items purchased in an order
-   * @type {string}
-   * @memberof InlineResponse2003
-   */
-  rateModelType: InlineResponse2003RateModelTypeEnum;
-  /**
-   * Shipping Template Status, Can be ACTIVE or INACTIVE status
-   * @type {string}
-   * @memberof InlineResponse2003
-   */
-  status: InlineResponse2003StatusEnum;
-  /**
-   * Array of different ship methods of a Shipping Template
-   * @type {Array<V3SettingsShippingTemplatesShippingMethods>}
-   * @memberof InlineResponse2003
-   */
-  shippingMethods: Array<V3SettingsShippingTemplatesShippingMethods>;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse2003
-   */
-  createdBy?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse2003
-   */
-  modifiedBy?: string;
-  /**
-   *
-   * @type {number}
-   * @memberof InlineResponse2003
-   */
-  createdDate?: number;
-  /**
-   *
-   * @type {number}
-   * @memberof InlineResponse2003
-   */
-  modifiedDate?: number;
+	/**
+	 * Shipping Template ID
+	 * @type {string}
+	 * @memberof InlineResponse2003
+	 */
+	id?: string;
+	/**
+	 * Shipping Template Name
+	 * @type {string}
+	 * @memberof InlineResponse2003
+	 */
+	name: string;
+	/**
+	 * Shipping Template Type, should be CUSTOM or 3PL Specific
+	 * @type {string}
+	 * @memberof InlineResponse2003
+	 */
+	type: InlineResponse2003TypeEnum;
+	/**
+	 * This is the shipping model type. TIERED_PRICING: This model means that you charge shipping based on the price of the item PER_SHIPMENT_PRICING: This model means that you charge shipping based on the weight of your items (per pound), or you charge shipping based on the number of items purchased in an order
+	 * @type {string}
+	 * @memberof InlineResponse2003
+	 */
+	rateModelType: InlineResponse2003RateModelTypeEnum;
+	/**
+	 * Shipping Template Status, Can be ACTIVE or INACTIVE status
+	 * @type {string}
+	 * @memberof InlineResponse2003
+	 */
+	status: InlineResponse2003StatusEnum;
+	/**
+	 * Array of different ship methods of a Shipping Template
+	 * @type {Array<V3SettingsShippingTemplatesShippingMethods>}
+	 * @memberof InlineResponse2003
+	 */
+	shippingMethods: Array<V3SettingsShippingTemplatesShippingMethods>;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineResponse2003
+	 */
+	createdBy?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineResponse2003
+	 */
+	modifiedBy?: string;
+	/**
+	 *
+	 * @type {number}
+	 * @memberof InlineResponse2003
+	 */
+	createdDate?: number;
+	/**
+	 *
+	 * @type {number}
+	 * @memberof InlineResponse2003
+	 */
+	modifiedDate?: number;
 }
 
 /**
@@ -1117,25 +1111,25 @@ export interface InlineResponse2003 {
  * @enum {string}
  */
 export enum InlineResponse2003TypeEnum {
-  Default = "DEFAULT",
-  Custom = "CUSTOM",
-  Deliverr = "DELIVERR",
+	Default = 'DEFAULT',
+	Custom = 'CUSTOM',
+	Deliverr = 'DELIVERR',
 }
 /**
  * @export
  * @enum {string}
  */
 export enum InlineResponse2003RateModelTypeEnum {
-  TieredPricing = "TIERED_PRICING",
-  PerShipmentPricing = "PER_SHIPMENT_PRICING",
+	TieredPricing = 'TIERED_PRICING',
+	PerShipmentPricing = 'PER_SHIPMENT_PRICING',
 }
 /**
  * @export
  * @enum {string}
  */
 export enum InlineResponse2003StatusEnum {
-  Active = "ACTIVE",
-  Inactive = "INACTIVE",
+	Active = 'ACTIVE',
+	Inactive = 'INACTIVE',
 }
 
 /**
@@ -1144,31 +1138,12 @@ export enum InlineResponse2003StatusEnum {
  * @interface InlineResponse2004
  */
 export interface InlineResponse2004 {
-  /**
-   *
-   * @type {InlineResponse2004Partner}
-   * @memberof InlineResponse2004
-   */
-  partner?: InlineResponse2004Partner;
-  /**
-   * List of seller configurations like Seller Account & feed throttling values
-   * @type {Array<object>}
-   * @memberof InlineResponse2004
-   */
-  configurations?: Array<object>;
-}
-/**
- * Details of partner
- * @export
- * @interface InlineResponse2004Partner
- */
-export interface InlineResponse2004Partner {
-  /**
-   * The seller ID
-   * @type {string}
-   * @memberof InlineResponse2004Partner
-   */
-  partnerId?: string;
+	/**
+	 * Shipping Template ID
+	 * @type {string}
+	 * @memberof InlineResponse2004
+	 */
+	id?: string;
 }
 /**
  *
@@ -1176,18 +1151,31 @@ export interface InlineResponse2004Partner {
  * @interface InlineResponse2005
  */
 export interface InlineResponse2005 {
-  /**
-   *
-   * @type {InlineResponse2004Partner}
-   * @memberof InlineResponse2005
-   */
-  partner?: InlineResponse2004Partner;
-  /**
-   * List of seller configurations like Lag Time
-   * @type {Array<object>}
-   * @memberof InlineResponse2005
-   */
-  configurations?: Array<object>;
+	/**
+	 *
+	 * @type {InlineResponse2005Partner}
+	 * @memberof InlineResponse2005
+	 */
+	partner?: InlineResponse2005Partner;
+	/**
+	 * List of seller configurations like Seller Account & feed throttling values
+	 * @type {Array<object>}
+	 * @memberof InlineResponse2005
+	 */
+	configurations?: Array<object>;
+}
+/**
+ * Details of partner
+ * @export
+ * @interface InlineResponse2005Partner
+ */
+export interface InlineResponse2005Partner {
+	/**
+	 * The seller ID
+	 * @type {string}
+	 * @memberof InlineResponse2005Partner
+	 */
+	partnerId?: string;
 }
 /**
  *
@@ -1195,18 +1183,18 @@ export interface InlineResponse2005 {
  * @interface InlineResponse2006
  */
 export interface InlineResponse2006 {
-  /**
-   * The fulfillment center or ship node Id which uniquely identifies each facility and is autogenerated during the creation of fulfillment center. Every time a facility is added, a new ship node id is generated.
-   * @type {string}
-   * @memberof InlineResponse2006
-   */
-  shipNode?: string;
-  /**
-   * Name of the fulfillment center.
-   * @type {string}
-   * @memberof InlineResponse2006
-   */
-  shipNodeName?: string;
+	/**
+	 *
+	 * @type {InlineResponse2005Partner}
+	 * @memberof InlineResponse2006
+	 */
+	partner?: InlineResponse2005Partner;
+	/**
+	 * List of seller configurations like Lag Time
+	 * @type {Array<object>}
+	 * @memberof InlineResponse2006
+	 */
+	configurations?: Array<object>;
 }
 /**
  *
@@ -1214,12 +1202,18 @@ export interface InlineResponse2006 {
  * @interface InlineResponse2007
  */
 export interface InlineResponse2007 {
-  /**
-   * Shipping Template ID
-   * @type {string}
-   * @memberof InlineResponse2007
-   */
-  id?: string;
+	/**
+	 * The fulfillment center or ship node Id which uniquely identifies each facility and is autogenerated during the creation of fulfillment center. Every time a facility is added, a new ship node id is generated.
+	 * @type {string}
+	 * @memberof InlineResponse2007
+	 */
+	shipNode?: string;
+	/**
+	 * Name of the fulfillment center.
+	 * @type {string}
+	 * @memberof InlineResponse2007
+	 */
+	shipNodeName?: string;
 }
 /**
  *
@@ -1227,30 +1221,30 @@ export interface InlineResponse2007 {
  * @interface InlineResponse2008
  */
 export interface InlineResponse2008 {
-  /**
-   * Carrier Id
-   * @type {string}
-   * @memberof InlineResponse2008
-   */
-  carrierMethodId?: string;
-  /**
-   * Carrier Name
-   * @type {string}
-   * @memberof InlineResponse2008
-   */
-  carrierMethodName?: string;
-  /**
-   * Shipping method. Allowed Value is GROUND.
-   * @type {string}
-   * @memberof InlineResponse2008
-   */
-  carrierMethodType?: string;
-  /**
-   * A description for the method carrier.
-   * @type {string}
-   * @memberof InlineResponse2008
-   */
-  carrierMethodDescription?: string;
+	/**
+	 * Carrier Id
+	 * @type {string}
+	 * @memberof InlineResponse2008
+	 */
+	carrierMethodId?: string;
+	/**
+	 * Carrier Name
+	 * @type {string}
+	 * @memberof InlineResponse2008
+	 */
+	carrierMethodName?: string;
+	/**
+	 * Shipping method. Allowed Value is GROUND.
+	 * @type {string}
+	 * @memberof InlineResponse2008
+	 */
+	carrierMethodType?: string;
+	/**
+	 * A description for the method carrier.
+	 * @type {string}
+	 * @memberof InlineResponse2008
+	 */
+	carrierMethodDescription?: string;
 }
 /**
  *
@@ -1258,24 +1252,24 @@ export interface InlineResponse2008 {
  * @interface InlineResponse2009
  */
 export interface InlineResponse2009 {
-  /**
-   * Shipping Template Activation Status, possible values can be NOT_ACTIVATED or ACTIVATED
-   * @type {string}
-   * @memberof InlineResponse2009
-   */
-  activationStatus?: string;
-  /**
-   * Activation Date
-   * @type {number}
-   * @memberof InlineResponse2009
-   */
-  createdDate?: number;
-  /**
-   * Activation Status Last Modified Date
-   * @type {number}
-   * @memberof InlineResponse2009
-   */
-  modifiedDate?: number;
+	/**
+	 * Shipping Template Activation Status, possible values can be NOT_ACTIVATED or ACTIVATED
+	 * @type {string}
+	 * @memberof InlineResponse2009
+	 */
+	activationStatus?: string;
+	/**
+	 * Activation Date
+	 * @type {number}
+	 * @memberof InlineResponse2009
+	 */
+	createdDate?: number;
+	/**
+	 * Activation Status Last Modified Date
+	 * @type {number}
+	 * @memberof InlineResponse2009
+	 */
+	modifiedDate?: number;
 }
 /**
  *
@@ -1283,18 +1277,18 @@ export interface InlineResponse2009 {
  * @interface LagTimeConfig
  */
 export interface LagTimeConfig {
-  /**
-   * Name of the configuration
-   * @type {string}
-   * @memberof LagTimeConfig
-   */
-  configurationName?: LagTimeConfigConfigurationNameEnum;
-  /**
-   *
-   * @type {LagTimeConfigConfiguration}
-   * @memberof LagTimeConfig
-   */
-  configuration?: LagTimeConfigConfiguration;
+	/**
+	 * Name of the configuration
+	 * @type {string}
+	 * @memberof LagTimeConfig
+	 */
+	configurationName?: LagTimeConfigConfigurationNameEnum;
+	/**
+	 *
+	 * @type {LagTimeConfigConfiguration}
+	 * @memberof LagTimeConfig
+	 */
+	configuration?: LagTimeConfigConfiguration;
 }
 
 /**
@@ -1302,7 +1296,7 @@ export interface LagTimeConfig {
  * @enum {string}
  */
 export enum LagTimeConfigConfigurationNameEnum {
-  LagTime = "LAG_TIME",
+	LagTime = 'LAG_TIME',
 }
 
 /**
@@ -1311,12 +1305,12 @@ export enum LagTimeConfigConfigurationNameEnum {
  * @interface LagTimeConfigConfiguration
  */
 export interface LagTimeConfigConfiguration {
-  /**
-   * List of item setup category level lag time exceptions configured for seller
-   * @type {Array<CategoriesLagTimeDTOCategories>}
-   * @memberof LagTimeConfigConfiguration
-   */
-  categories?: Array<CategoriesLagTimeDTOCategories>;
+	/**
+	 * List of item setup category level lag time exceptions configured for seller
+	 * @type {Array<CategoriesLagTimeDTOCategories>}
+	 * @memberof LagTimeConfigConfiguration
+	 */
+	categories?: Array<CategoriesLagTimeDTOCategories>;
 }
 /**
  * List of seller configurations like Seller Account & feed throttling values
@@ -1324,18 +1318,18 @@ export interface LagTimeConfigConfiguration {
  * @interface PartnerConfig
  */
 export interface PartnerConfig {
-  /**
-   * Name of the configuration. Allowed value is FEED
-   * @type {string}
-   * @memberof PartnerConfig
-   */
-  configurationName?: string;
-  /**
-   *
-   * @type {FeedConfigConfiguration}
-   * @memberof PartnerConfig
-   */
-  configuration?: FeedConfigConfiguration;
+	/**
+	 * Name of the configuration. Allowed value is FEED
+	 * @type {string}
+	 * @memberof PartnerConfig
+	 */
+	configurationName?: string;
+	/**
+	 *
+	 * @type {FeedConfigConfiguration}
+	 * @memberof PartnerConfig
+	 */
+	configuration?: FeedConfigConfiguration;
 }
 /**
  *
@@ -1343,18 +1337,18 @@ export interface PartnerConfig {
  * @interface PartnerConfigAnyOf
  */
 export interface PartnerConfigAnyOf {
-  /**
-   * Name of the configuration. Allowed value is ACCOUNT
-   * @type {string}
-   * @memberof PartnerConfigAnyOf
-   */
-  configurationName?: string;
-  /**
-   *
-   * @type {AccountConfigConfiguration}
-   * @memberof PartnerConfigAnyOf
-   */
-  configuration?: AccountConfigConfiguration;
+	/**
+	 * Name of the configuration. Allowed value is ACCOUNT
+	 * @type {string}
+	 * @memberof PartnerConfigAnyOf
+	 */
+	configurationName?: string;
+	/**
+	 *
+	 * @type {AccountConfigConfiguration}
+	 * @memberof PartnerConfigAnyOf
+	 */
+	configuration?: AccountConfigConfiguration;
 }
 /**
  *
@@ -1362,18 +1356,18 @@ export interface PartnerConfigAnyOf {
  * @interface PartnerConfigAnyOf1
  */
 export interface PartnerConfigAnyOf1 {
-  /**
-   * Name of the configuration. Allowed value is FEED
-   * @type {string}
-   * @memberof PartnerConfigAnyOf1
-   */
-  configurationName?: string;
-  /**
-   *
-   * @type {FeedConfigConfiguration}
-   * @memberof PartnerConfigAnyOf1
-   */
-  configuration?: FeedConfigConfiguration;
+	/**
+	 * Name of the configuration. Allowed value is FEED
+	 * @type {string}
+	 * @memberof PartnerConfigAnyOf1
+	 */
+	configurationName?: string;
+	/**
+	 *
+	 * @type {FeedConfigConfiguration}
+	 * @memberof PartnerConfigAnyOf1
+	 */
+	configuration?: FeedConfigConfiguration;
 }
 /**
  *
@@ -1381,18 +1375,18 @@ export interface PartnerConfigAnyOf1 {
  * @interface PartnerConfigsResponseDTO
  */
 export interface PartnerConfigsResponseDTO {
-  /**
-   *
-   * @type {InlineResponse2004Partner}
-   * @memberof PartnerConfigsResponseDTO
-   */
-  partner?: InlineResponse2004Partner;
-  /**
-   * List of seller configurations like Seller Account & feed throttling values
-   * @type {Array<object>}
-   * @memberof PartnerConfigsResponseDTO
-   */
-  configurations?: Array<object>;
+	/**
+	 *
+	 * @type {InlineResponse2005Partner}
+	 * @memberof PartnerConfigsResponseDTO
+	 */
+	partner?: InlineResponse2005Partner;
+	/**
+	 * List of seller configurations like Seller Account & feed throttling values
+	 * @type {Array<object>}
+	 * @memberof PartnerConfigsResponseDTO
+	 */
+	configurations?: Array<object>;
 }
 /**
  * Details of partner
@@ -1400,12 +1394,12 @@ export interface PartnerConfigsResponseDTO {
  * @interface PartnerInfoDTO
  */
 export interface PartnerInfoDTO {
-  /**
-   * The seller ID
-   * @type {string}
-   * @memberof PartnerInfoDTO
-   */
-  partnerId?: string;
+	/**
+	 * The seller ID
+	 * @type {string}
+	 * @memberof PartnerInfoDTO
+	 */
+	partnerId?: string;
 }
 /**
  * Charge per shipping
@@ -1413,30 +1407,30 @@ export interface PartnerInfoDTO {
  * @interface PerShippingCharge
  */
 export interface PerShippingCharge {
-  /**
-   * Unit of Measure eg. LB
-   * @type {string}
-   * @memberof PerShippingCharge
-   */
-  unitOfMeasure: string;
-  /**
-   *
-   * @type {V3SettingsShippingTemplatesPerShippingChargeShippingAndHandling}
-   * @memberof PerShippingCharge
-   */
-  shippingAndHandling?: V3SettingsShippingTemplatesPerShippingChargeShippingAndHandling;
-  /**
-   *
-   * @type {V3SettingsShippingTemplatesPerShippingChargeChargePerWeight}
-   * @memberof PerShippingCharge
-   */
-  chargePerWeight?: V3SettingsShippingTemplatesPerShippingChargeChargePerWeight;
-  /**
-   *
-   * @type {V3SettingsShippingTemplatesPerShippingChargeChargePerItem}
-   * @memberof PerShippingCharge
-   */
-  chargePerItem?: V3SettingsShippingTemplatesPerShippingChargeChargePerItem;
+	/**
+	 * Unit of Measure eg. LB
+	 * @type {string}
+	 * @memberof PerShippingCharge
+	 */
+	unitOfMeasure: string;
+	/**
+	 *
+	 * @type {V3SettingsShippingTemplatesPerShippingChargeShippingAndHandling}
+	 * @memberof PerShippingCharge
+	 */
+	shippingAndHandling?: V3SettingsShippingTemplatesPerShippingChargeShippingAndHandling;
+	/**
+	 *
+	 * @type {V3SettingsShippingTemplatesPerShippingChargeChargePerWeight}
+	 * @memberof PerShippingCharge
+	 */
+	chargePerWeight?: V3SettingsShippingTemplatesPerShippingChargeChargePerWeight;
+	/**
+	 *
+	 * @type {V3SettingsShippingTemplatesPerShippingChargeChargePerItem}
+	 * @memberof PerShippingCharge
+	 */
+	chargePerItem?: V3SettingsShippingTemplatesPerShippingChargeChargePerItem;
 }
 /**
  * Postal code of the fulfillment center.
@@ -1444,36 +1438,36 @@ export interface PerShippingCharge {
  * @interface PostalAddress
  */
 export interface PostalAddress {
-  /**
-   * Street address of the fulfillment center.
-   * @type {string}
-   * @memberof PostalAddress
-   */
-  addressLine1?: string;
-  /**
-   * City of the fulfillment center.
-   * @type {string}
-   * @memberof PostalAddress
-   */
-  city?: string;
-  /**
-   * State of the fulfillment center.
-   * @type {string}
-   * @memberof PostalAddress
-   */
-  state?: string;
-  /**
-   * Country of the fulfillment center.
-   * @type {string}
-   * @memberof PostalAddress
-   */
-  country?: string;
-  /**
-   * Postal code of the fulfillment center.
-   * @type {string}
-   * @memberof PostalAddress
-   */
-  postalCode?: string;
+	/**
+	 * Street address of the fulfillment center.
+	 * @type {string}
+	 * @memberof PostalAddress
+	 */
+	addressLine1?: string;
+	/**
+	 * City of the fulfillment center.
+	 * @type {string}
+	 * @memberof PostalAddress
+	 */
+	city?: string;
+	/**
+	 * State of the fulfillment center.
+	 * @type {string}
+	 * @memberof PostalAddress
+	 */
+	state?: string;
+	/**
+	 * Country of the fulfillment center.
+	 * @type {string}
+	 * @memberof PostalAddress
+	 */
+	country?: string;
+	/**
+	 * Postal code of the fulfillment center.
+	 * @type {string}
+	 * @memberof PostalAddress
+	 */
+	postalCode?: string;
 }
 /**
  * API call Rate
@@ -1481,18 +1475,18 @@ export interface PostalAddress {
  * @interface Rate
  */
 export interface Rate {
-  /**
-   * Number of API calls that can be made in every replenish time window
-   * @type {number}
-   * @memberof Rate
-   */
-  count?: number;
-  /**
-   *
-   * @type {FeedConfigConfigurationRateReplenishTimeWindow}
-   * @memberof Rate
-   */
-  replenishTimeWindow?: FeedConfigConfigurationRateReplenishTimeWindow;
+	/**
+	 * Number of API calls that can be made in every replenish time window
+	 * @type {number}
+	 * @memberof Rate
+	 */
+	count?: number;
+	/**
+	 *
+	 * @type {FeedConfigConfigurationRateReplenishTimeWindow}
+	 * @memberof Rate
+	 */
+	replenishTimeWindow?: FeedConfigConfigurationRateReplenishTimeWindow;
 }
 /**
  * Supported Regions includes 48 State Street, 48 State – Street Po Box/Street, AK and HI – Street etc
@@ -1500,24 +1494,24 @@ export interface Rate {
  * @interface Region
  */
 export interface Region {
-  /**
-   *
-   * @type {string}
-   * @memberof Region
-   */
-  regionCode: string;
-  /**
-   *
-   * @type {string}
-   * @memberof Region
-   */
-  regionName?: string;
-  /**
-   *
-   * @type {Array<V3SettingsShippingTemplatesSubRegions>}
-   * @memberof Region
-   */
-  subRegions?: Array<V3SettingsShippingTemplatesSubRegions>;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof Region
+	 */
+	regionCode: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof Region
+	 */
+	regionName?: string;
+	/**
+	 *
+	 * @type {Array<V3SettingsShippingTemplatesSubRegions>}
+	 * @memberof Region
+	 */
+	subRegions?: Array<V3SettingsShippingTemplatesSubRegions>;
 }
 /**
  * Details of Shipping Charge
@@ -1525,18 +1519,18 @@ export interface Region {
  * @interface ShipCharge
  */
 export interface ShipCharge {
-  /**
-   * Charge Per Item, value USD
-   * @type {number}
-   * @memberof ShipCharge
-   */
-  amount: number;
-  /**
-   * Currency, eg. USD
-   * @type {string}
-   * @memberof ShipCharge
-   */
-  currency: string;
+	/**
+	 * Charge Per Item, value USD
+	 * @type {number}
+	 * @memberof ShipCharge
+	 */
+	amount: number;
+	/**
+	 * Currency, eg. USD
+	 * @type {string}
+	 * @memberof ShipCharge
+	 */
+	currency: string;
 }
 /**
  *
@@ -1544,60 +1538,60 @@ export interface ShipCharge {
  * @interface ShipNode
  */
 export interface ShipNode {
-  /**
-   * The fulfillment center or ship node Id which uniquely identifies each facility and is autogenerated during the creation of fulfillment center. Every time a facility is added, a new ship node id is generated.
-   * @type {string}
-   * @memberof ShipNode
-   */
-  shipNode?: string;
-  /**
-   * Name of the fulfillment center.
-   * @type {string}
-   * @memberof ShipNode
-   */
-  shipNodeName?: string;
-  /**
-   * Status of fulfillment center. Allowed values: ACTIVE, INACTIVE..
-   * @type {string}
-   * @memberof ShipNode
-   */
-  status?: string;
-  /**
-   * Time zone that the seller ships from.Allowed timezones are PST, EST, CST, MST.
-   * @type {string}
-   * @memberof ShipNode
-   */
-  timeZone?: string;
-  /**
-   * The services supported by the defined physical ship node . The allowed values: TWO_DAY_DELIVERY.
-   * @type {Array<string>}
-   * @memberof ShipNode
-   */
-  distributorSupportedServices?: Array<string>;
-  /**
-   * Custom node identifier provided by seller. Allowed values are alphanumeric | String
-   * @type {string}
-   * @memberof ShipNode
-   */
-  customNodeId?: string;
-  /**
-   *
-   * @type {V3SettingsShippingShipnodesPostalAddress}
-   * @memberof ShipNode
-   */
-  postalAddress?: V3SettingsShippingShipnodesPostalAddress;
-  /**
-   * Shipping Details.
-   * @type {Array<V3SettingsShippingShipnodesShippingDetails>}
-   * @memberof ShipNode
-   */
-  shippingDetails?: Array<V3SettingsShippingShipnodesShippingDetails>;
-  /**
-   *
-   * @type {V3SettingsShippingShipnodesShipNodeCalendarDayConfiguration}
-   * @memberof ShipNode
-   */
-  calendarDayConfiguration?: V3SettingsShippingShipnodesShipNodeCalendarDayConfiguration;
+	/**
+	 * The fulfillment center or ship node Id which uniquely identifies each facility and is autogenerated during the creation of fulfillment center. Every time a facility is added, a new ship node id is generated.
+	 * @type {string}
+	 * @memberof ShipNode
+	 */
+	shipNode?: string;
+	/**
+	 * Name of the fulfillment center.
+	 * @type {string}
+	 * @memberof ShipNode
+	 */
+	shipNodeName?: string;
+	/**
+	 * Status of fulfillment center. Allowed values: ACTIVE, INACTIVE..
+	 * @type {string}
+	 * @memberof ShipNode
+	 */
+	status?: string;
+	/**
+	 * Time zone that the seller ships from.Allowed timezones are PST, EST, CST, MST.
+	 * @type {string}
+	 * @memberof ShipNode
+	 */
+	timeZone?: string;
+	/**
+	 * The services supported by the defined physical ship node . The allowed values: TWO_DAY_DELIVERY.
+	 * @type {Array<string>}
+	 * @memberof ShipNode
+	 */
+	distributorSupportedServices?: Array<string>;
+	/**
+	 * Custom node identifier provided by seller. Allowed values are alphanumeric | String
+	 * @type {string}
+	 * @memberof ShipNode
+	 */
+	customNodeId?: string;
+	/**
+	 *
+	 * @type {V3SettingsShippingShipnodesPostalAddress}
+	 * @memberof ShipNode
+	 */
+	postalAddress?: V3SettingsShippingShipnodesPostalAddress;
+	/**
+	 * Shipping Details.
+	 * @type {Array<V3SettingsShippingShipnodesShippingDetails>}
+	 * @memberof ShipNode
+	 */
+	shippingDetails?: Array<V3SettingsShippingShipnodesShippingDetails>;
+	/**
+	 *
+	 * @type {V3SettingsShippingShipnodesShipNodeCalendarDayConfiguration}
+	 * @memberof ShipNode
+	 */
+	calendarDayConfiguration?: V3SettingsShippingShipnodesShipNodeCalendarDayConfiguration;
 }
 /**
  *
@@ -1605,12 +1599,12 @@ export interface ShipNode {
  * @interface ShipNodeHeader
  */
 export interface ShipNodeHeader {
-  /**
-   *
-   * @type {string}
-   * @memberof ShipNodeHeader
-   */
-  version?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof ShipNodeHeader
+	 */
+	version?: string;
 }
 /**
  *
@@ -1618,54 +1612,54 @@ export interface ShipNodeHeader {
  * @interface ShipNodeRequest
  */
 export interface ShipNodeRequest {
-  /**
-   * Name of the fulfillment center.
-   * @type {string}
-   * @memberof ShipNodeRequest
-   */
-  shipNodeName?: string;
-  /**
-   * Status of fulfillment center. Allowed values: ACTIVE, INACTIVE..
-   * @type {string}
-   * @memberof ShipNodeRequest
-   */
-  status?: string;
-  /**
-   * Time zone that the seller ships from.Allowed timezones are PST, EST, CST, MST.
-   * @type {string}
-   * @memberof ShipNodeRequest
-   */
-  timeZone?: string;
-  /**
-   * The services supported by the defined physical ship node . The allowed values: TWO_DAY_DELIVERY.
-   * @type {Array<string>}
-   * @memberof ShipNodeRequest
-   */
-  distributorSupportedServices?: Array<string>;
-  /**
-   * Custom node identifier provided by seller. Allowed values are alphanumeric | String
-   * @type {string}
-   * @memberof ShipNodeRequest
-   */
-  customNodeId?: string;
-  /**
-   *
-   * @type {V3SettingsShippingShipnodesPostalAddress}
-   * @memberof ShipNodeRequest
-   */
-  postalAddress?: V3SettingsShippingShipnodesPostalAddress;
-  /**
-   * Shipping Details.
-   * @type {Array<V3SettingsShippingShipnodesShippingDetails>}
-   * @memberof ShipNodeRequest
-   */
-  shippingDetails?: Array<V3SettingsShippingShipnodesShippingDetails>;
-  /**
-   *
-   * @type {V3SettingsShippingShipnodesShipNodeCalendarDayConfiguration}
-   * @memberof ShipNodeRequest
-   */
-  calendarDayConfiguration?: V3SettingsShippingShipnodesShipNodeCalendarDayConfiguration;
+	/**
+	 * Name of the fulfillment center.
+	 * @type {string}
+	 * @memberof ShipNodeRequest
+	 */
+	shipNodeName?: string;
+	/**
+	 * Status of fulfillment center. Allowed values: ACTIVE, INACTIVE..
+	 * @type {string}
+	 * @memberof ShipNodeRequest
+	 */
+	status?: string;
+	/**
+	 * Time zone that the seller ships from.Allowed timezones are PST, EST, CST, MST.
+	 * @type {string}
+	 * @memberof ShipNodeRequest
+	 */
+	timeZone?: string;
+	/**
+	 * The services supported by the defined physical ship node . The allowed values: TWO_DAY_DELIVERY.
+	 * @type {Array<string>}
+	 * @memberof ShipNodeRequest
+	 */
+	distributorSupportedServices?: Array<string>;
+	/**
+	 * Custom node identifier provided by seller. Allowed values are alphanumeric | String
+	 * @type {string}
+	 * @memberof ShipNodeRequest
+	 */
+	customNodeId?: string;
+	/**
+	 *
+	 * @type {V3SettingsShippingShipnodesPostalAddress}
+	 * @memberof ShipNodeRequest
+	 */
+	postalAddress?: V3SettingsShippingShipnodesPostalAddress;
+	/**
+	 * Shipping Details.
+	 * @type {Array<V3SettingsShippingShipnodesShippingDetails>}
+	 * @memberof ShipNodeRequest
+	 */
+	shippingDetails?: Array<V3SettingsShippingShipnodesShippingDetails>;
+	/**
+	 *
+	 * @type {V3SettingsShippingShipnodesShipNodeCalendarDayConfiguration}
+	 * @memberof ShipNodeRequest
+	 */
+	calendarDayConfiguration?: V3SettingsShippingShipnodesShipNodeCalendarDayConfiguration;
 }
 /**
  *
@@ -1673,66 +1667,66 @@ export interface ShipNodeRequest {
  * @interface ShipNodeResponse
  */
 export interface ShipNodeResponse {
-  /**
-   * The fulfillment center or ship node Id which uniquely identifies each facility and is autogenerated during the creation of fulfillment center. Every time a facility is added, a new ship node id is generated.
-   * @type {string}
-   * @memberof ShipNodeResponse
-   */
-  shipNode?: string;
-  /**
-   * Defines if the fulfillment center is virtual, seller owned or third party owned. Allowed values: PHYSICAL, VIRTUAL, 3PL.
-   * @type {string}
-   * @memberof ShipNodeResponse
-   */
-  nodeType?: string;
-  /**
-   * Name of the fulfillment center.
-   * @type {string}
-   * @memberof ShipNodeResponse
-   */
-  shipNodeName?: string;
-  /**
-   * Status of fulfillment center. Allowed values: ACTIVE, INACTIVE..
-   * @type {string}
-   * @memberof ShipNodeResponse
-   */
-  status?: string;
-  /**
-   * Time zone that the seller ships from.Allowed timezones are PST, EST, CST, MST.
-   * @type {string}
-   * @memberof ShipNodeResponse
-   */
-  timeZone?: string;
-  /**
-   * The services supported by the defined physical ship node . The allowed values: TWO_DAY_DELIVERY.
-   * @type {Array<string>}
-   * @memberof ShipNodeResponse
-   */
-  distributorSupportedServices?: Array<string>;
-  /**
-   * Custom node identifier provided by seller. Allowed values are alphanumeric | String
-   * @type {string}
-   * @memberof ShipNodeResponse
-   */
-  customNodeId?: string;
-  /**
-   *
-   * @type {V3SettingsShippingShipnodesPostalAddress}
-   * @memberof ShipNodeResponse
-   */
-  postalAddress?: V3SettingsShippingShipnodesPostalAddress;
-  /**
-   * Shipping Details.
-   * @type {Array<V3SettingsShippingShipnodesShippingDetails>}
-   * @memberof ShipNodeResponse
-   */
-  shippingDetails?: Array<V3SettingsShippingShipnodesShippingDetails>;
-  /**
-   *
-   * @type {V3SettingsShippingShipnodesCalendarDayConfiguration}
-   * @memberof ShipNodeResponse
-   */
-  calendarDayConfiguration?: V3SettingsShippingShipnodesCalendarDayConfiguration;
+	/**
+	 * The fulfillment center or ship node Id which uniquely identifies each facility and is autogenerated during the creation of fulfillment center. Every time a facility is added, a new ship node id is generated.
+	 * @type {string}
+	 * @memberof ShipNodeResponse
+	 */
+	shipNode?: string;
+	/**
+	 * Defines if the fulfillment center is virtual, seller owned or third party owned. Allowed values: PHYSICAL, VIRTUAL, 3PL.
+	 * @type {string}
+	 * @memberof ShipNodeResponse
+	 */
+	nodeType?: string;
+	/**
+	 * Name of the fulfillment center.
+	 * @type {string}
+	 * @memberof ShipNodeResponse
+	 */
+	shipNodeName?: string;
+	/**
+	 * Status of fulfillment center. Allowed values: ACTIVE, INACTIVE..
+	 * @type {string}
+	 * @memberof ShipNodeResponse
+	 */
+	status?: string;
+	/**
+	 * Time zone that the seller ships from.Allowed timezones are PST, EST, CST, MST.
+	 * @type {string}
+	 * @memberof ShipNodeResponse
+	 */
+	timeZone?: string;
+	/**
+	 * The services supported by the defined physical ship node . The allowed values: TWO_DAY_DELIVERY.
+	 * @type {Array<string>}
+	 * @memberof ShipNodeResponse
+	 */
+	distributorSupportedServices?: Array<string>;
+	/**
+	 * Custom node identifier provided by seller. Allowed values are alphanumeric | String
+	 * @type {string}
+	 * @memberof ShipNodeResponse
+	 */
+	customNodeId?: string;
+	/**
+	 *
+	 * @type {V3SettingsShippingShipnodesPostalAddress}
+	 * @memberof ShipNodeResponse
+	 */
+	postalAddress?: V3SettingsShippingShipnodesPostalAddress;
+	/**
+	 * Shipping Details.
+	 * @type {Array<V3SettingsShippingShipnodesShippingDetails>}
+	 * @memberof ShipNodeResponse
+	 */
+	shippingDetails?: Array<V3SettingsShippingShipnodesShippingDetails>;
+	/**
+	 *
+	 * @type {V3SettingsShippingShipnodesCalendarDayConfiguration}
+	 * @memberof ShipNodeResponse
+	 */
+	calendarDayConfiguration?: V3SettingsShippingShipnodesCalendarDayConfiguration;
 }
 /**
  * Shipping and Handling Charge
@@ -1740,18 +1734,18 @@ export interface ShipNodeResponse {
  * @interface ShippingAndHandling
  */
 export interface ShippingAndHandling {
-  /**
-   * The numerical amount for that charge. Example: 9.99
-   * @type {number}
-   * @memberof ShippingAndHandling
-   */
-  amount: number;
-  /**
-   * The type of currency for the charge. Example: USD for US Dollars
-   * @type {string}
-   * @memberof ShippingAndHandling
-   */
-  currency: string;
+	/**
+	 * The numerical amount for that charge. Example: 9.99
+	 * @type {number}
+	 * @memberof ShippingAndHandling
+	 */
+	amount: number;
+	/**
+	 * The type of currency for the charge. Example: USD for US Dollars
+	 * @type {string}
+	 * @memberof ShippingAndHandling
+	 */
+	currency: string;
 }
 /**
  * List of seller configurations like Lag Time
@@ -1759,18 +1753,18 @@ export interface ShippingAndHandling {
  * @interface ShippingConfig
  */
 export interface ShippingConfig {
-  /**
-   * Name of the configuration
-   * @type {string}
-   * @memberof ShippingConfig
-   */
-  configurationName?: ShippingConfigConfigurationNameEnum;
-  /**
-   *
-   * @type {LagTimeConfigConfiguration}
-   * @memberof ShippingConfig
-   */
-  configuration?: LagTimeConfigConfiguration;
+	/**
+	 * Name of the configuration
+	 * @type {string}
+	 * @memberof ShippingConfig
+	 */
+	configurationName?: ShippingConfigConfigurationNameEnum;
+	/**
+	 *
+	 * @type {LagTimeConfigConfiguration}
+	 * @memberof ShippingConfig
+	 */
+	configuration?: LagTimeConfigConfiguration;
 }
 
 /**
@@ -1778,7 +1772,7 @@ export interface ShippingConfig {
  * @enum {string}
  */
 export enum ShippingConfigConfigurationNameEnum {
-  LagTime = "LAG_TIME",
+	LagTime = 'LAG_TIME',
 }
 
 /**
@@ -1787,18 +1781,18 @@ export enum ShippingConfigConfigurationNameEnum {
  * @interface ShippingConfigAnyOf
  */
 export interface ShippingConfigAnyOf {
-  /**
-   * Name of the configuration
-   * @type {string}
-   * @memberof ShippingConfigAnyOf
-   */
-  configurationName?: ShippingConfigAnyOfConfigurationNameEnum;
-  /**
-   *
-   * @type {LagTimeConfigConfiguration}
-   * @memberof ShippingConfigAnyOf
-   */
-  configuration?: LagTimeConfigConfiguration;
+	/**
+	 * Name of the configuration
+	 * @type {string}
+	 * @memberof ShippingConfigAnyOf
+	 */
+	configurationName?: ShippingConfigAnyOfConfigurationNameEnum;
+	/**
+	 *
+	 * @type {LagTimeConfigConfiguration}
+	 * @memberof ShippingConfigAnyOf
+	 */
+	configuration?: LagTimeConfigConfiguration;
 }
 
 /**
@@ -1806,7 +1800,7 @@ export interface ShippingConfigAnyOf {
  * @enum {string}
  */
 export enum ShippingConfigAnyOfConfigurationNameEnum {
-  LagTime = "LAG_TIME",
+	LagTime = 'LAG_TIME',
 }
 
 /**
@@ -1815,18 +1809,18 @@ export enum ShippingConfigAnyOfConfigurationNameEnum {
  * @interface ShippingConfigsResponseDTO
  */
 export interface ShippingConfigsResponseDTO {
-  /**
-   *
-   * @type {InlineResponse2004Partner}
-   * @memberof ShippingConfigsResponseDTO
-   */
-  partner?: InlineResponse2004Partner;
-  /**
-   * List of seller configurations like Lag Time
-   * @type {Array<object>}
-   * @memberof ShippingConfigsResponseDTO
-   */
-  configurations?: Array<object>;
+	/**
+	 *
+	 * @type {InlineResponse2005Partner}
+	 * @memberof ShippingConfigsResponseDTO
+	 */
+	partner?: InlineResponse2005Partner;
+	/**
+	 * List of seller configurations like Lag Time
+	 * @type {Array<object>}
+	 * @memberof ShippingConfigsResponseDTO
+	 */
+	configurations?: Array<object>;
 }
 /**
  * Shipping Details.
@@ -1834,12 +1828,12 @@ export interface ShippingConfigsResponseDTO {
  * @interface ShippingDetails
  */
 export interface ShippingDetails {
-  /**
-   * Shipping type provided.
-   * @type {Array<V3SettingsShippingShipnodesTwoDayShipping>}
-   * @memberof ShippingDetails
-   */
-  twoDayShipping?: Array<V3SettingsShippingShipnodesTwoDayShipping>;
+	/**
+	 * Shipping type provided.
+	 * @type {Array<V3SettingsShippingShipnodesTwoDayShipping>}
+	 * @memberof ShippingDetails
+	 */
+	twoDayShipping?: Array<V3SettingsShippingShipnodesTwoDayShipping>;
 }
 /**
  * Array of different ship methods of a Shipping Template
@@ -1847,24 +1841,24 @@ export interface ShippingDetails {
  * @interface ShippingMethod
  */
 export interface ShippingMethod {
-  /**
-   * VALUE: All Marketplace Sellers must offer Value shipping to Walmart.com customers for items that can\'t ship within expected transit times for standard shipping. STANDARD: You are required to offer standard shipping to Walmart.com customers. TWO_DAY: If approved for this option, you\'ll provide free 2-day shipping to customers and your items will be enabled with the TwoDay delivery tag. FREIGHT: Heavy items which takes 8,9,10 days.
-   * @type {string}
-   * @memberof ShippingMethod
-   */
-  shipMethod: ShippingMethodShipMethodEnum;
-  /**
-   * Shipping Method Status, Can be ACTIVE or INACTIVE status
-   * @type {string}
-   * @memberof ShippingMethod
-   */
-  status: ShippingMethodStatusEnum;
-  /**
-   * Contains an array of Regions, an array of Address Type, Transit Time and Per shipping charge or array of Tired Shipping Charge
-   * @type {Array<V3SettingsShippingTemplatesConfigurations>}
-   * @memberof ShippingMethod
-   */
-  configurations: Array<V3SettingsShippingTemplatesConfigurations>;
+	/**
+	 * VALUE: All Marketplace Sellers must offer Value shipping to Walmart.com customers for items that can\'t ship within expected transit times for standard shipping. STANDARD: You are required to offer standard shipping to Walmart.com customers. TWO_DAY: If approved for this option, you\'ll provide free 2-day shipping to customers and your items will be enabled with the TwoDay delivery tag. FREIGHT: Heavy items which takes 8,9,10 days.
+	 * @type {string}
+	 * @memberof ShippingMethod
+	 */
+	shipMethod: ShippingMethodShipMethodEnum;
+	/**
+	 * Shipping Method Status, Can be ACTIVE or INACTIVE status
+	 * @type {string}
+	 * @memberof ShippingMethod
+	 */
+	status: ShippingMethodStatusEnum;
+	/**
+	 * Contains an array of Regions, an array of Address Type, Transit Time and Per shipping charge or array of Tired Shipping Charge
+	 * @type {Array<V3SettingsShippingTemplatesConfigurations>}
+	 * @memberof ShippingMethod
+	 */
+	configurations: Array<V3SettingsShippingTemplatesConfigurations>;
 }
 
 /**
@@ -1872,19 +1866,19 @@ export interface ShippingMethod {
  * @enum {string}
  */
 export enum ShippingMethodShipMethodEnum {
-  Value = "VALUE",
-  Standard = "STANDARD",
-  ThreeDay = "THREE_DAY",
-  TwoDay = "TWO_DAY",
-  Freight = "FREIGHT",
+	Value = 'VALUE',
+	Standard = 'STANDARD',
+	ThreeDay = 'THREE_DAY',
+	TwoDay = 'TWO_DAY',
+	Freight = 'FREIGHT',
 }
 /**
  * @export
  * @enum {string}
  */
 export enum ShippingMethodStatusEnum {
-  Active = "ACTIVE",
-  Inactive = "INACTIVE",
+	Active = 'ACTIVE',
+	Inactive = 'INACTIVE',
 }
 
 /**
@@ -1893,66 +1887,66 @@ export enum ShippingMethodStatusEnum {
  * @interface ShippingTemplate
  */
 export interface ShippingTemplate {
-  /**
-   * Shipping Template ID
-   * @type {string}
-   * @memberof ShippingTemplate
-   */
-  id?: string;
-  /**
-   * Shipping Template Name
-   * @type {string}
-   * @memberof ShippingTemplate
-   */
-  name: string;
-  /**
-   * Shipping Template Type, should be CUSTOM or 3PL Specific
-   * @type {string}
-   * @memberof ShippingTemplate
-   */
-  type: ShippingTemplateTypeEnum;
-  /**
-   * This is the shipping model type. TIERED_PRICING: This model means that you charge shipping based on the price of the item PER_SHIPMENT_PRICING: This model means that you charge shipping based on the weight of your items (per pound), or you charge shipping based on the number of items purchased in an order
-   * @type {string}
-   * @memberof ShippingTemplate
-   */
-  rateModelType: ShippingTemplateRateModelTypeEnum;
-  /**
-   * Shipping Template Status, Can be ACTIVE or INACTIVE status
-   * @type {string}
-   * @memberof ShippingTemplate
-   */
-  status: ShippingTemplateStatusEnum;
-  /**
-   * Array of different ship methods of a Shipping Template
-   * @type {Array<V3SettingsShippingTemplatesShippingMethods>}
-   * @memberof ShippingTemplate
-   */
-  shippingMethods: Array<V3SettingsShippingTemplatesShippingMethods>;
-  /**
-   *
-   * @type {string}
-   * @memberof ShippingTemplate
-   */
-  createdBy?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof ShippingTemplate
-   */
-  modifiedBy?: string;
-  /**
-   *
-   * @type {number}
-   * @memberof ShippingTemplate
-   */
-  createdDate?: number;
-  /**
-   *
-   * @type {number}
-   * @memberof ShippingTemplate
-   */
-  modifiedDate?: number;
+	/**
+	 * Shipping Template ID
+	 * @type {string}
+	 * @memberof ShippingTemplate
+	 */
+	id?: string;
+	/**
+	 * Shipping Template Name
+	 * @type {string}
+	 * @memberof ShippingTemplate
+	 */
+	name: string;
+	/**
+	 * Shipping Template Type, should be CUSTOM or 3PL Specific
+	 * @type {string}
+	 * @memberof ShippingTemplate
+	 */
+	type: ShippingTemplateTypeEnum;
+	/**
+	 * This is the shipping model type. TIERED_PRICING: This model means that you charge shipping based on the price of the item PER_SHIPMENT_PRICING: This model means that you charge shipping based on the weight of your items (per pound), or you charge shipping based on the number of items purchased in an order
+	 * @type {string}
+	 * @memberof ShippingTemplate
+	 */
+	rateModelType: ShippingTemplateRateModelTypeEnum;
+	/**
+	 * Shipping Template Status, Can be ACTIVE or INACTIVE status
+	 * @type {string}
+	 * @memberof ShippingTemplate
+	 */
+	status: ShippingTemplateStatusEnum;
+	/**
+	 * Array of different ship methods of a Shipping Template
+	 * @type {Array<V3SettingsShippingTemplatesShippingMethods>}
+	 * @memberof ShippingTemplate
+	 */
+	shippingMethods: Array<V3SettingsShippingTemplatesShippingMethods>;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof ShippingTemplate
+	 */
+	createdBy?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof ShippingTemplate
+	 */
+	modifiedBy?: string;
+	/**
+	 *
+	 * @type {number}
+	 * @memberof ShippingTemplate
+	 */
+	createdDate?: number;
+	/**
+	 *
+	 * @type {number}
+	 * @memberof ShippingTemplate
+	 */
+	modifiedDate?: number;
 }
 
 /**
@@ -1960,25 +1954,25 @@ export interface ShippingTemplate {
  * @enum {string}
  */
 export enum ShippingTemplateTypeEnum {
-  Default = "DEFAULT",
-  Custom = "CUSTOM",
-  Deliverr = "DELIVERR",
+	Default = 'DEFAULT',
+	Custom = 'CUSTOM',
+	Deliverr = 'DELIVERR',
 }
 /**
  * @export
  * @enum {string}
  */
 export enum ShippingTemplateRateModelTypeEnum {
-  TieredPricing = "TIERED_PRICING",
-  PerShipmentPricing = "PER_SHIPMENT_PRICING",
+	TieredPricing = 'TIERED_PRICING',
+	PerShipmentPricing = 'PER_SHIPMENT_PRICING',
 }
 /**
  * @export
  * @enum {string}
  */
 export enum ShippingTemplateStatusEnum {
-  Active = "ACTIVE",
-  Inactive = "INACTIVE",
+	Active = 'ACTIVE',
+	Inactive = 'INACTIVE',
 }
 
 /**
@@ -1987,24 +1981,24 @@ export enum ShippingTemplateStatusEnum {
  * @interface ShippingTemplateActivationStatus
  */
 export interface ShippingTemplateActivationStatus {
-  /**
-   * Shipping Template Activation Status, possible values can be NOT_ACTIVATED or ACTIVATED
-   * @type {string}
-   * @memberof ShippingTemplateActivationStatus
-   */
-  activationStatus?: string;
-  /**
-   * Activation Date
-   * @type {number}
-   * @memberof ShippingTemplateActivationStatus
-   */
-  createdDate?: number;
-  /**
-   * Activation Status Last Modified Date
-   * @type {number}
-   * @memberof ShippingTemplateActivationStatus
-   */
-  modifiedDate?: number;
+	/**
+	 * Shipping Template Activation Status, possible values can be NOT_ACTIVATED or ACTIVATED
+	 * @type {string}
+	 * @memberof ShippingTemplateActivationStatus
+	 */
+	activationStatus?: string;
+	/**
+	 * Activation Date
+	 * @type {number}
+	 * @memberof ShippingTemplateActivationStatus
+	 */
+	createdDate?: number;
+	/**
+	 * Activation Status Last Modified Date
+	 * @type {number}
+	 * @memberof ShippingTemplateActivationStatus
+	 */
+	modifiedDate?: number;
 }
 /**
  *
@@ -2012,12 +2006,12 @@ export interface ShippingTemplateActivationStatus {
  * @interface ShippingTemplateId
  */
 export interface ShippingTemplateId {
-  /**
-   * Shipping Template ID
-   * @type {string}
-   * @memberof ShippingTemplateId
-   */
-  id?: string;
+	/**
+	 * Shipping Template ID
+	 * @type {string}
+	 * @memberof ShippingTemplateId
+	 */
+	id?: string;
 }
 /**
  * Array of Shipping Templates
@@ -2025,60 +2019,60 @@ export interface ShippingTemplateId {
  * @interface ShippingTemplateSummary
  */
 export interface ShippingTemplateSummary {
-  /**
-   * Shipping Template ID
-   * @type {string}
-   * @memberof ShippingTemplateSummary
-   */
-  id?: string;
-  /**
-   * Shipping Template Name
-   * @type {string}
-   * @memberof ShippingTemplateSummary
-   */
-  name?: string;
-  /**
-   * Shipping Template Type
-   * @type {string}
-   * @memberof ShippingTemplateSummary
-   */
-  type?: ShippingTemplateSummaryTypeEnum;
-  /**
-   * Shipping Template/ Configurations active or inactive status
-   * @type {string}
-   * @memberof ShippingTemplateSummary
-   */
-  status?: ShippingTemplateSummaryStatusEnum;
-  /**
-   *
-   * @type {string}
-   * @memberof ShippingTemplateSummary
-   */
-  rateModelType?: ShippingTemplateSummaryRateModelTypeEnum;
-  /**
-   *
-   * @type {string}
-   * @memberof ShippingTemplateSummary
-   */
-  createdBy?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof ShippingTemplateSummary
-   */
-  modifiedBy?: string;
-  /**
-   * Template Creation Date
-   * @type {number}
-   * @memberof ShippingTemplateSummary
-   */
-  createdDate?: number;
-  /**
-   * Template Modified Date
-   * @type {number}
-   * @memberof ShippingTemplateSummary
-   */
-  modifiedDate?: number;
+	/**
+	 * Shipping Template ID
+	 * @type {string}
+	 * @memberof ShippingTemplateSummary
+	 */
+	id?: string;
+	/**
+	 * Shipping Template Name
+	 * @type {string}
+	 * @memberof ShippingTemplateSummary
+	 */
+	name?: string;
+	/**
+	 * Shipping Template Type
+	 * @type {string}
+	 * @memberof ShippingTemplateSummary
+	 */
+	type?: ShippingTemplateSummaryTypeEnum;
+	/**
+	 * Shipping Template/ Configurations active or inactive status
+	 * @type {string}
+	 * @memberof ShippingTemplateSummary
+	 */
+	status?: ShippingTemplateSummaryStatusEnum;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof ShippingTemplateSummary
+	 */
+	rateModelType?: ShippingTemplateSummaryRateModelTypeEnum;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof ShippingTemplateSummary
+	 */
+	createdBy?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof ShippingTemplateSummary
+	 */
+	modifiedBy?: string;
+	/**
+	 * Template Creation Date
+	 * @type {number}
+	 * @memberof ShippingTemplateSummary
+	 */
+	createdDate?: number;
+	/**
+	 * Template Modified Date
+	 * @type {number}
+	 * @memberof ShippingTemplateSummary
+	 */
+	modifiedDate?: number;
 }
 
 /**
@@ -2086,25 +2080,25 @@ export interface ShippingTemplateSummary {
  * @enum {string}
  */
 export enum ShippingTemplateSummaryTypeEnum {
-  Default = "DEFAULT",
-  Custom = "CUSTOM",
-  Deliverr = "DELIVERR",
+	Default = 'DEFAULT',
+	Custom = 'CUSTOM',
+	Deliverr = 'DELIVERR',
 }
 /**
  * @export
  * @enum {string}
  */
 export enum ShippingTemplateSummaryStatusEnum {
-  Active = "ACTIVE",
-  Inactive = "INACTIVE",
+	Active = 'ACTIVE',
+	Inactive = 'INACTIVE',
 }
 /**
  * @export
  * @enum {string}
  */
 export enum ShippingTemplateSummaryRateModelTypeEnum {
-  TieredPricing = "TIERED_PRICING",
-  PerShipmentPricing = "PER_SHIPMENT_PRICING",
+	TieredPricing = 'TIERED_PRICING',
+	PerShipmentPricing = 'PER_SHIPMENT_PRICING',
 }
 
 /**
@@ -2113,18 +2107,18 @@ export enum ShippingTemplateSummaryRateModelTypeEnum {
  * @interface ShippingTemplatesSummary
  */
 export interface ShippingTemplatesSummary {
-  /**
-   * Array of Shipping Templates
-   * @type {Array<InlineResponse2002ShippingTemplates>}
-   * @memberof ShippingTemplatesSummary
-   */
-  shippingTemplates?: Array<InlineResponse2002ShippingTemplates>;
-  /**
-   * Total Number of records in the response of the API
-   * @type {number}
-   * @memberof ShippingTemplatesSummary
-   */
-  totalRecords?: number;
+	/**
+	 * Array of Shipping Templates
+	 * @type {Array<InlineResponse2002ShippingTemplates>}
+	 * @memberof ShippingTemplatesSummary
+	 */
+	shippingTemplates?: Array<InlineResponse2002ShippingTemplates>;
+	/**
+	 * Total Number of records in the response of the API
+	 * @type {number}
+	 * @memberof ShippingTemplatesSummary
+	 */
+	totalRecords?: number;
 }
 /**
  * Operating Schedule for the fulfillment center
@@ -2132,48 +2126,48 @@ export interface ShippingTemplatesSummary {
  * @interface StandardProcessingSchedule
  */
 export interface StandardProcessingSchedule {
-  /**
-   *
-   * @type {V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingScheduleSunday}
-   * @memberof StandardProcessingSchedule
-   */
-  sunday: V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingScheduleSunday;
-  /**
-   *
-   * @type {V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingScheduleSunday}
-   * @memberof StandardProcessingSchedule
-   */
-  monday: V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingScheduleSunday;
-  /**
-   *
-   * @type {V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingScheduleSunday}
-   * @memberof StandardProcessingSchedule
-   */
-  tuesday: V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingScheduleSunday;
-  /**
-   *
-   * @type {V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingScheduleSunday}
-   * @memberof StandardProcessingSchedule
-   */
-  wednesday: V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingScheduleSunday;
-  /**
-   *
-   * @type {V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingScheduleSunday}
-   * @memberof StandardProcessingSchedule
-   */
-  thursday: V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingScheduleSunday;
-  /**
-   *
-   * @type {V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingScheduleSunday}
-   * @memberof StandardProcessingSchedule
-   */
-  friday: V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingScheduleSunday;
-  /**
-   *
-   * @type {V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingScheduleSunday}
-   * @memberof StandardProcessingSchedule
-   */
-  saturday: V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingScheduleSunday;
+	/**
+	 *
+	 * @type {V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingScheduleSunday}
+	 * @memberof StandardProcessingSchedule
+	 */
+	sunday: V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingScheduleSunday;
+	/**
+	 *
+	 * @type {V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingScheduleSunday}
+	 * @memberof StandardProcessingSchedule
+	 */
+	monday: V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingScheduleSunday;
+	/**
+	 *
+	 * @type {V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingScheduleSunday}
+	 * @memberof StandardProcessingSchedule
+	 */
+	tuesday: V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingScheduleSunday;
+	/**
+	 *
+	 * @type {V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingScheduleSunday}
+	 * @memberof StandardProcessingSchedule
+	 */
+	wednesday: V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingScheduleSunday;
+	/**
+	 *
+	 * @type {V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingScheduleSunday}
+	 * @memberof StandardProcessingSchedule
+	 */
+	thursday: V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingScheduleSunday;
+	/**
+	 *
+	 * @type {V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingScheduleSunday}
+	 * @memberof StandardProcessingSchedule
+	 */
+	friday: V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingScheduleSunday;
+	/**
+	 *
+	 * @type {V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingScheduleSunday}
+	 * @memberof StandardProcessingSchedule
+	 */
+	saturday: V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingScheduleSunday;
 }
 /**
  * Operating Schedule for the fulfillment center
@@ -2181,48 +2175,48 @@ export interface StandardProcessingSchedule {
  * @interface StandardProcessingScheduleResponse
  */
 export interface StandardProcessingScheduleResponse {
-  /**
-   *
-   * @type {V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingScheduleSunday}
-   * @memberof StandardProcessingScheduleResponse
-   */
-  sunday?: V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingScheduleSunday;
-  /**
-   *
-   * @type {V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingScheduleSunday}
-   * @memberof StandardProcessingScheduleResponse
-   */
-  monday?: V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingScheduleSunday;
-  /**
-   *
-   * @type {V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingScheduleSunday}
-   * @memberof StandardProcessingScheduleResponse
-   */
-  tuesday?: V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingScheduleSunday;
-  /**
-   *
-   * @type {V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingScheduleSunday}
-   * @memberof StandardProcessingScheduleResponse
-   */
-  wednesday?: V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingScheduleSunday;
-  /**
-   *
-   * @type {V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingScheduleSunday}
-   * @memberof StandardProcessingScheduleResponse
-   */
-  thursday?: V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingScheduleSunday;
-  /**
-   *
-   * @type {V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingScheduleSunday}
-   * @memberof StandardProcessingScheduleResponse
-   */
-  friday?: V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingScheduleSunday;
-  /**
-   *
-   * @type {V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingScheduleSunday}
-   * @memberof StandardProcessingScheduleResponse
-   */
-  saturday?: V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingScheduleSunday;
+	/**
+	 *
+	 * @type {V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingScheduleSunday}
+	 * @memberof StandardProcessingScheduleResponse
+	 */
+	sunday?: V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingScheduleSunday;
+	/**
+	 *
+	 * @type {V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingScheduleSunday}
+	 * @memberof StandardProcessingScheduleResponse
+	 */
+	monday?: V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingScheduleSunday;
+	/**
+	 *
+	 * @type {V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingScheduleSunday}
+	 * @memberof StandardProcessingScheduleResponse
+	 */
+	tuesday?: V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingScheduleSunday;
+	/**
+	 *
+	 * @type {V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingScheduleSunday}
+	 * @memberof StandardProcessingScheduleResponse
+	 */
+	wednesday?: V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingScheduleSunday;
+	/**
+	 *
+	 * @type {V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingScheduleSunday}
+	 * @memberof StandardProcessingScheduleResponse
+	 */
+	thursday?: V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingScheduleSunday;
+	/**
+	 *
+	 * @type {V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingScheduleSunday}
+	 * @memberof StandardProcessingScheduleResponse
+	 */
+	friday?: V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingScheduleSunday;
+	/**
+	 *
+	 * @type {V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingScheduleSunday}
+	 * @memberof StandardProcessingScheduleResponse
+	 */
+	saturday?: V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingScheduleSunday;
 }
 /**
  *
@@ -2230,24 +2224,24 @@ export interface StandardProcessingScheduleResponse {
  * @interface State
  */
 export interface State {
-  /**
-   *
-   * @type {string}
-   * @memberof State
-   */
-  stateCode: string;
-  /**
-   *
-   * @type {string}
-   * @memberof State
-   */
-  stateName?: string;
-  /**
-   *
-   * @type {Array<V3SettingsShippingTemplatesStateSubregions>}
-   * @memberof State
-   */
-  stateSubregions?: Array<V3SettingsShippingTemplatesStateSubregions>;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof State
+	 */
+	stateCode: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof State
+	 */
+	stateName?: string;
+	/**
+	 *
+	 * @type {Array<V3SettingsShippingTemplatesStateSubregions>}
+	 * @memberof State
+	 */
+	stateSubregions?: Array<V3SettingsShippingTemplatesStateSubregions>;
 }
 /**
  *
@@ -2255,18 +2249,18 @@ export interface State {
  * @interface StateSubregion
  */
 export interface StateSubregion {
-  /**
-   *
-   * @type {string}
-   * @memberof StateSubregion
-   */
-  stateSubregionCode: string;
-  /**
-   *
-   * @type {string}
-   * @memberof StateSubregion
-   */
-  stateSubregionName?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof StateSubregion
+	 */
+	stateSubregionCode: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof StateSubregion
+	 */
+	stateSubregionName?: string;
 }
 /**
  *
@@ -2274,24 +2268,24 @@ export interface StateSubregion {
  * @interface SubRegion
  */
 export interface SubRegion {
-  /**
-   *
-   * @type {string}
-   * @memberof SubRegion
-   */
-  subRegionCode: string;
-  /**
-   *
-   * @type {string}
-   * @memberof SubRegion
-   */
-  subRegionName?: string;
-  /**
-   *
-   * @type {Array<V3SettingsShippingTemplatesStates>}
-   * @memberof SubRegion
-   */
-  states?: Array<V3SettingsShippingTemplatesStates>;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof SubRegion
+	 */
+	subRegionCode: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof SubRegion
+	 */
+	subRegionName?: string;
+	/**
+	 *
+	 * @type {Array<V3SettingsShippingTemplatesStates>}
+	 * @memberof SubRegion
+	 */
+	states?: Array<V3SettingsShippingTemplatesStates>;
 }
 /**
  *
@@ -2299,18 +2293,18 @@ export interface SubRegion {
  * @interface ThirdPartyShipNode1
  */
 export interface ThirdPartyShipNode1 {
-  /**
-   * The fulfillment center or ship node which uniquely identifies each facility and is retrieved from the Get all third party fulfillment providers API.
-   * @type {string}
-   * @memberof ThirdPartyShipNode1
-   */
-  shipNode?: string;
-  /**
-   * Status of fulfillment center. Allowed values: ACTIVE, INACTIVE.
-   * @type {string}
-   * @memberof ThirdPartyShipNode1
-   */
-  status?: string;
+	/**
+	 * The fulfillment center or ship node which uniquely identifies each facility and is retrieved from the Get all third party fulfillment providers API.
+	 * @type {string}
+	 * @memberof ThirdPartyShipNode1
+	 */
+	shipNode?: string;
+	/**
+	 * Status of fulfillment center. Allowed values: ACTIVE, INACTIVE.
+	 * @type {string}
+	 * @memberof ThirdPartyShipNode1
+	 */
+	status?: string;
 }
 /**
  *
@@ -2318,18 +2312,18 @@ export interface ThirdPartyShipNode1 {
  * @interface ThirdPartyShipNode2
  */
 export interface ThirdPartyShipNode2 {
-  /**
-   * The fulfillment center or ship node Id which uniquely identifies each facility and is autogenerated during the creation of fulfillment center. Every time a facility is added, a new ship node id is generated.
-   * @type {string}
-   * @memberof ThirdPartyShipNode2
-   */
-  shipNode?: string;
-  /**
-   * Name of the fulfillment center.
-   * @type {string}
-   * @memberof ThirdPartyShipNode2
-   */
-  shipNodeName?: string;
+	/**
+	 * The fulfillment center or ship node Id which uniquely identifies each facility and is autogenerated during the creation of fulfillment center. Every time a facility is added, a new ship node id is generated.
+	 * @type {string}
+	 * @memberof ThirdPartyShipNode2
+	 */
+	shipNode?: string;
+	/**
+	 * Name of the fulfillment center.
+	 * @type {string}
+	 * @memberof ThirdPartyShipNode2
+	 */
+	shipNodeName?: string;
 }
 /**
  * Details of throttling configurations
@@ -2337,24 +2331,24 @@ export interface ThirdPartyShipNode2 {
  * @interface ThrottlingConfigDTO
  */
 export interface ThrottlingConfigDTO {
-  /**
-   * Type of the throttling configuration. Example \'SELLER\' means throttling configurations at Seller level only.
-   * @type {string}
-   * @memberof ThrottlingConfigDTO
-   */
-  type?: ThrottlingConfigDTOTypeEnum;
-  /**
-   *
-   * @type {FeedConfigConfigurationRate}
-   * @memberof ThrottlingConfigDTO
-   */
-  rate?: FeedConfigConfigurationRate;
-  /**
-   *
-   * @type {FeedConfigConfigurationFileSize}
-   * @memberof ThrottlingConfigDTO
-   */
-  fileSize?: FeedConfigConfigurationFileSize;
+	/**
+	 * Type of the throttling configuration. Example \'SELLER\' means throttling configurations at Seller level only.
+	 * @type {string}
+	 * @memberof ThrottlingConfigDTO
+	 */
+	type?: ThrottlingConfigDTOTypeEnum;
+	/**
+	 *
+	 * @type {FeedConfigConfigurationRate}
+	 * @memberof ThrottlingConfigDTO
+	 */
+	rate?: FeedConfigConfigurationRate;
+	/**
+	 *
+	 * @type {FeedConfigConfigurationFileSize}
+	 * @memberof ThrottlingConfigDTO
+	 */
+	fileSize?: FeedConfigConfigurationFileSize;
 }
 
 /**
@@ -2362,7 +2356,7 @@ export interface ThrottlingConfigDTO {
  * @enum {string}
  */
 export enum ThrottlingConfigDTOTypeEnum {
-  Seller = "SELLER",
+	Seller = 'SELLER',
 }
 
 /**
@@ -2371,24 +2365,24 @@ export enum ThrottlingConfigDTOTypeEnum {
  * @interface TieredShippingCharge
  */
 export interface TieredShippingCharge {
-  /**
-   * Minimum Limit
-   * @type {number}
-   * @memberof TieredShippingCharge
-   */
-  minLimit: number;
-  /**
-   * Maximum Limit
-   * @type {number}
-   * @memberof TieredShippingCharge
-   */
-  maxLimit: number;
-  /**
-   *
-   * @type {V3SettingsShippingTemplatesShipCharge}
-   * @memberof TieredShippingCharge
-   */
-  shipCharge?: V3SettingsShippingTemplatesShipCharge;
+	/**
+	 * Minimum Limit
+	 * @type {number}
+	 * @memberof TieredShippingCharge
+	 */
+	minLimit: number;
+	/**
+	 * Maximum Limit
+	 * @type {number}
+	 * @memberof TieredShippingCharge
+	 */
+	maxLimit: number;
+	/**
+	 *
+	 * @type {V3SettingsShippingTemplatesShipCharge}
+	 * @memberof TieredShippingCharge
+	 */
+	shipCharge?: V3SettingsShippingTemplatesShipCharge;
 }
 /**
  * A time period set for throttling of number of API calls
@@ -2396,18 +2390,18 @@ export interface TieredShippingCharge {
  * @interface TimeWindow
  */
 export interface TimeWindow {
-  /**
-   * The number representing size of time window
-   * @type {number}
-   * @memberof TimeWindow
-   */
-  value?: number;
-  /**
-   * The unit of measurement. Example: \'SECOND\'
-   * @type {string}
-   * @memberof TimeWindow
-   */
-  unitOfMeasurement?: TimeWindowUnitOfMeasurementEnum;
+	/**
+	 * The number representing size of time window
+	 * @type {number}
+	 * @memberof TimeWindow
+	 */
+	value?: number;
+	/**
+	 * The unit of measurement. Example: \'SECOND\'
+	 * @type {string}
+	 * @memberof TimeWindow
+	 */
+	unitOfMeasurement?: TimeWindowUnitOfMeasurementEnum;
 }
 
 /**
@@ -2415,7 +2409,7 @@ export interface TimeWindow {
  * @enum {string}
  */
 export enum TimeWindowUnitOfMeasurementEnum {
-  Second = "SECOND",
+	Second = 'SECOND',
 }
 
 /**
@@ -2424,18 +2418,18 @@ export enum TimeWindowUnitOfMeasurementEnum {
  * @interface UpdateFulfillmentCenterRequest
  */
 export interface UpdateFulfillmentCenterRequest {
-  /**
-   *
-   * @type {V3SettingsShippingShipnodesShipNodeHeader}
-   * @memberof UpdateFulfillmentCenterRequest
-   */
-  shipNodeHeader?: V3SettingsShippingShipnodesShipNodeHeader;
-  /**
-   *
-   * @type {V3SettingsShippingShipnodesShipNode}
-   * @memberof UpdateFulfillmentCenterRequest
-   */
-  shipNode?: V3SettingsShippingShipnodesShipNode;
+	/**
+	 *
+	 * @type {V3SettingsShippingShipnodesShipNodeHeader}
+	 * @memberof UpdateFulfillmentCenterRequest
+	 */
+	shipNodeHeader?: V3SettingsShippingShipnodesShipNodeHeader;
+	/**
+	 *
+	 * @type {V3SettingsShippingShipnodesShipNode}
+	 * @memberof UpdateFulfillmentCenterRequest
+	 */
+	shipNode?: V3SettingsShippingShipnodesShipNode;
 }
 /**
  *
@@ -2443,36 +2437,36 @@ export interface UpdateFulfillmentCenterRequest {
  * @interface UpdateShippingTemplateRequest
  */
 export interface UpdateShippingTemplateRequest {
-  /**
-   * Shipping Template Name
-   * @type {string}
-   * @memberof UpdateShippingTemplateRequest
-   */
-  name: string;
-  /**
-   * Shipping Template Type, should be CUSTOM or 3PL Specific
-   * @type {string}
-   * @memberof UpdateShippingTemplateRequest
-   */
-  type: UpdateShippingTemplateRequestTypeEnum;
-  /**
-   * This is the shipping model type. TIERED_PRICING: This model means that you charge shipping based on the price of the item PER_SHIPMENT_PRICING: This model means that you charge shipping based on the weight of your items (per pound), or you charge shipping based on the number of items purchased in an order
-   * @type {string}
-   * @memberof UpdateShippingTemplateRequest
-   */
-  rateModelType: UpdateShippingTemplateRequestRateModelTypeEnum;
-  /**
-   * Shipping Template Status, Can be ACTIVE or INACTIVE status
-   * @type {string}
-   * @memberof UpdateShippingTemplateRequest
-   */
-  status: UpdateShippingTemplateRequestStatusEnum;
-  /**
-   * Array of different ship methods of a Shipping Template
-   * @type {Array<V3SettingsShippingTemplatesShippingMethods>}
-   * @memberof UpdateShippingTemplateRequest
-   */
-  shippingMethods: Array<V3SettingsShippingTemplatesShippingMethods>;
+	/**
+	 * Shipping Template Name
+	 * @type {string}
+	 * @memberof UpdateShippingTemplateRequest
+	 */
+	name: string;
+	/**
+	 * Shipping Template Type, should be CUSTOM or 3PL Specific
+	 * @type {string}
+	 * @memberof UpdateShippingTemplateRequest
+	 */
+	type: UpdateShippingTemplateRequestTypeEnum;
+	/**
+	 * This is the shipping model type. TIERED_PRICING: This model means that you charge shipping based on the price of the item PER_SHIPMENT_PRICING: This model means that you charge shipping based on the weight of your items (per pound), or you charge shipping based on the number of items purchased in an order
+	 * @type {string}
+	 * @memberof UpdateShippingTemplateRequest
+	 */
+	rateModelType: UpdateShippingTemplateRequestRateModelTypeEnum;
+	/**
+	 * Shipping Template Status, Can be ACTIVE or INACTIVE status
+	 * @type {string}
+	 * @memberof UpdateShippingTemplateRequest
+	 */
+	status: UpdateShippingTemplateRequestStatusEnum;
+	/**
+	 * Array of different ship methods of a Shipping Template
+	 * @type {Array<V3SettingsShippingTemplatesShippingMethods>}
+	 * @memberof UpdateShippingTemplateRequest
+	 */
+	shippingMethods: Array<V3SettingsShippingTemplatesShippingMethods>;
 }
 
 /**
@@ -2480,25 +2474,25 @@ export interface UpdateShippingTemplateRequest {
  * @enum {string}
  */
 export enum UpdateShippingTemplateRequestTypeEnum {
-  Default = "DEFAULT",
-  Custom = "CUSTOM",
-  Deliverr = "DELIVERR",
+	Default = 'DEFAULT',
+	Custom = 'CUSTOM',
+	Deliverr = 'DELIVERR',
 }
 /**
  * @export
  * @enum {string}
  */
 export enum UpdateShippingTemplateRequestRateModelTypeEnum {
-  TieredPricing = "TIERED_PRICING",
-  PerShipmentPricing = "PER_SHIPMENT_PRICING",
+	TieredPricing = 'TIERED_PRICING',
+	PerShipmentPricing = 'PER_SHIPMENT_PRICING',
 }
 /**
  * @export
  * @enum {string}
  */
 export enum UpdateShippingTemplateRequestStatusEnum {
-  Active = "ACTIVE",
-  Inactive = "INACTIVE",
+	Active = 'ACTIVE',
+	Inactive = 'INACTIVE',
 }
 
 /**
@@ -2507,18 +2501,18 @@ export enum UpdateShippingTemplateRequestStatusEnum {
  * @interface V3SettingsShipping3plshipnodesShipNode
  */
 export interface V3SettingsShipping3plshipnodesShipNode {
-  /**
-   * The fulfillment center or ship node which uniquely identifies each facility and is retrieved from the Get all third party fulfillment providers API.
-   * @type {string}
-   * @memberof V3SettingsShipping3plshipnodesShipNode
-   */
-  shipNode?: string;
-  /**
-   * Status of fulfillment center. Allowed values: ACTIVE, INACTIVE.
-   * @type {string}
-   * @memberof V3SettingsShipping3plshipnodesShipNode
-   */
-  status?: string;
+	/**
+	 * The fulfillment center or ship node which uniquely identifies each facility and is retrieved from the Get all third party fulfillment providers API.
+	 * @type {string}
+	 * @memberof V3SettingsShipping3plshipnodesShipNode
+	 */
+	shipNode?: string;
+	/**
+	 * Status of fulfillment center. Allowed values: ACTIVE, INACTIVE.
+	 * @type {string}
+	 * @memberof V3SettingsShipping3plshipnodesShipNode
+	 */
+	status?: string;
 }
 /**
  * Calendar day promise details. For examples, please refer to \'Sample 2 - Calendar Day Configurations\' in request & response samples.
@@ -2526,18 +2520,18 @@ export interface V3SettingsShipping3plshipnodesShipNode {
  * @interface V3SettingsShippingShipnodesCalendarDayConfiguration
  */
 export interface V3SettingsShippingShipnodesCalendarDayConfiguration {
-  /**
-   *
-   * @type {V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingSchedule}
-   * @memberof V3SettingsShippingShipnodesCalendarDayConfiguration
-   */
-  standardProcessingSchedule?: V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingSchedule;
-  /**
-   * List of additional days on which the fulfillment center is closed. If there are no additional off days, then this list will be empty. Format for Date is ISO 8601. For example: \'2021-07-16\'(yyyy-MM-dd)
-   * @type {Array<string>}
-   * @memberof V3SettingsShippingShipnodesCalendarDayConfiguration
-   */
-  additionalDaysOff?: Array<string>;
+	/**
+	 *
+	 * @type {V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingSchedule}
+	 * @memberof V3SettingsShippingShipnodesCalendarDayConfiguration
+	 */
+	standardProcessingSchedule?: V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingSchedule;
+	/**
+	 * List of additional days on which the fulfillment center is closed. If there are no additional off days, then this list will be empty. Format for Date is ISO 8601. For example: \'2021-07-16\'(yyyy-MM-dd)
+	 * @type {Array<string>}
+	 * @memberof V3SettingsShippingShipnodesCalendarDayConfiguration
+	 */
+	additionalDaysOff?: Array<string>;
 }
 /**
  * Operating Schedule for the fulfillment center
@@ -2545,48 +2539,48 @@ export interface V3SettingsShippingShipnodesCalendarDayConfiguration {
  * @interface V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingSchedule
  */
 export interface V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingSchedule {
-  /**
-   *
-   * @type {V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingScheduleSunday}
-   * @memberof V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingSchedule
-   */
-  sunday?: V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingScheduleSunday;
-  /**
-   *
-   * @type {V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingScheduleSunday}
-   * @memberof V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingSchedule
-   */
-  monday?: V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingScheduleSunday;
-  /**
-   *
-   * @type {V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingScheduleSunday}
-   * @memberof V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingSchedule
-   */
-  tuesday?: V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingScheduleSunday;
-  /**
-   *
-   * @type {V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingScheduleSunday}
-   * @memberof V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingSchedule
-   */
-  wednesday?: V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingScheduleSunday;
-  /**
-   *
-   * @type {V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingScheduleSunday}
-   * @memberof V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingSchedule
-   */
-  thursday?: V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingScheduleSunday;
-  /**
-   *
-   * @type {V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingScheduleSunday}
-   * @memberof V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingSchedule
-   */
-  friday?: V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingScheduleSunday;
-  /**
-   *
-   * @type {V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingScheduleSunday}
-   * @memberof V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingSchedule
-   */
-  saturday?: V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingScheduleSunday;
+	/**
+	 *
+	 * @type {V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingScheduleSunday}
+	 * @memberof V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingSchedule
+	 */
+	sunday?: V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingScheduleSunday;
+	/**
+	 *
+	 * @type {V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingScheduleSunday}
+	 * @memberof V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingSchedule
+	 */
+	monday?: V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingScheduleSunday;
+	/**
+	 *
+	 * @type {V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingScheduleSunday}
+	 * @memberof V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingSchedule
+	 */
+	tuesday?: V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingScheduleSunday;
+	/**
+	 *
+	 * @type {V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingScheduleSunday}
+	 * @memberof V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingSchedule
+	 */
+	wednesday?: V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingScheduleSunday;
+	/**
+	 *
+	 * @type {V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingScheduleSunday}
+	 * @memberof V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingSchedule
+	 */
+	thursday?: V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingScheduleSunday;
+	/**
+	 *
+	 * @type {V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingScheduleSunday}
+	 * @memberof V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingSchedule
+	 */
+	friday?: V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingScheduleSunday;
+	/**
+	 *
+	 * @type {V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingScheduleSunday}
+	 * @memberof V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingSchedule
+	 */
+	saturday?: V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingScheduleSunday;
 }
 /**
  *
@@ -2594,18 +2588,18 @@ export interface V3SettingsShippingShipnodesCalendarDayConfigurationStandardProc
  * @interface V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingScheduleSunday
  */
 export interface V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingScheduleSunday {
-  /**
-   * Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false.
-   * @type {boolean}
-   * @memberof V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingScheduleSunday
-   */
-  isWorkingDay?: boolean;
-  /**
-   * Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. Example: \'09:30\'(HH:mm)
-   * @type {string}
-   * @memberof V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingScheduleSunday
-   */
-  cutOffTime?: string;
+	/**
+	 * Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false.
+	 * @type {boolean}
+	 * @memberof V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingScheduleSunday
+	 */
+	isWorkingDay?: boolean;
+	/**
+	 * Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. Example: \'09:30\'(HH:mm)
+	 * @type {string}
+	 * @memberof V3SettingsShippingShipnodesCalendarDayConfigurationStandardProcessingScheduleSunday
+	 */
+	cutOffTime?: string;
 }
 /**
  * Postal code of the fulfillment center.
@@ -2613,36 +2607,36 @@ export interface V3SettingsShippingShipnodesCalendarDayConfigurationStandardProc
  * @interface V3SettingsShippingShipnodesPostalAddress
  */
 export interface V3SettingsShippingShipnodesPostalAddress {
-  /**
-   * Street address of the fulfillment center.
-   * @type {string}
-   * @memberof V3SettingsShippingShipnodesPostalAddress
-   */
-  addressLine1?: string;
-  /**
-   * City of the fulfillment center.
-   * @type {string}
-   * @memberof V3SettingsShippingShipnodesPostalAddress
-   */
-  city?: string;
-  /**
-   * State of the fulfillment center.
-   * @type {string}
-   * @memberof V3SettingsShippingShipnodesPostalAddress
-   */
-  state?: string;
-  /**
-   * Country of the fulfillment center.
-   * @type {string}
-   * @memberof V3SettingsShippingShipnodesPostalAddress
-   */
-  country?: string;
-  /**
-   * Postal code of the fulfillment center.
-   * @type {string}
-   * @memberof V3SettingsShippingShipnodesPostalAddress
-   */
-  postalCode?: string;
+	/**
+	 * Street address of the fulfillment center.
+	 * @type {string}
+	 * @memberof V3SettingsShippingShipnodesPostalAddress
+	 */
+	addressLine1?: string;
+	/**
+	 * City of the fulfillment center.
+	 * @type {string}
+	 * @memberof V3SettingsShippingShipnodesPostalAddress
+	 */
+	city?: string;
+	/**
+	 * State of the fulfillment center.
+	 * @type {string}
+	 * @memberof V3SettingsShippingShipnodesPostalAddress
+	 */
+	state?: string;
+	/**
+	 * Country of the fulfillment center.
+	 * @type {string}
+	 * @memberof V3SettingsShippingShipnodesPostalAddress
+	 */
+	country?: string;
+	/**
+	 * Postal code of the fulfillment center.
+	 * @type {string}
+	 * @memberof V3SettingsShippingShipnodesPostalAddress
+	 */
+	postalCode?: string;
 }
 /**
  *
@@ -2650,60 +2644,60 @@ export interface V3SettingsShippingShipnodesPostalAddress {
  * @interface V3SettingsShippingShipnodesShipNode
  */
 export interface V3SettingsShippingShipnodesShipNode {
-  /**
-   * The fulfillment center or ship node Id which uniquely identifies each facility and is autogenerated during the creation of fulfillment center. Every time a facility is added, a new ship node id is generated.
-   * @type {string}
-   * @memberof V3SettingsShippingShipnodesShipNode
-   */
-  shipNode?: string;
-  /**
-   * Name of the fulfillment center.
-   * @type {string}
-   * @memberof V3SettingsShippingShipnodesShipNode
-   */
-  shipNodeName?: string;
-  /**
-   * Status of fulfillment center. Allowed values: ACTIVE, INACTIVE..
-   * @type {string}
-   * @memberof V3SettingsShippingShipnodesShipNode
-   */
-  status?: string;
-  /**
-   * Time zone that the seller ships from.Allowed timezones are PST, EST, CST, MST.
-   * @type {string}
-   * @memberof V3SettingsShippingShipnodesShipNode
-   */
-  timeZone?: string;
-  /**
-   * The services supported by the defined physical ship node . The allowed values: TWO_DAY_DELIVERY.
-   * @type {Array<string>}
-   * @memberof V3SettingsShippingShipnodesShipNode
-   */
-  distributorSupportedServices?: Array<string>;
-  /**
-   * Custom node identifier provided by seller. Allowed values are alphanumeric | String
-   * @type {string}
-   * @memberof V3SettingsShippingShipnodesShipNode
-   */
-  customNodeId?: string;
-  /**
-   *
-   * @type {V3SettingsShippingShipnodesPostalAddress}
-   * @memberof V3SettingsShippingShipnodesShipNode
-   */
-  postalAddress?: V3SettingsShippingShipnodesPostalAddress;
-  /**
-   * Shipping Details.
-   * @type {Array<V3SettingsShippingShipnodesShippingDetails>}
-   * @memberof V3SettingsShippingShipnodesShipNode
-   */
-  shippingDetails?: Array<V3SettingsShippingShipnodesShippingDetails>;
-  /**
-   *
-   * @type {V3SettingsShippingShipnodesShipNodeCalendarDayConfiguration}
-   * @memberof V3SettingsShippingShipnodesShipNode
-   */
-  calendarDayConfiguration?: V3SettingsShippingShipnodesShipNodeCalendarDayConfiguration;
+	/**
+	 * The fulfillment center or ship node Id which uniquely identifies each facility and is autogenerated during the creation of fulfillment center. Every time a facility is added, a new ship node id is generated.
+	 * @type {string}
+	 * @memberof V3SettingsShippingShipnodesShipNode
+	 */
+	shipNode?: string;
+	/**
+	 * Name of the fulfillment center.
+	 * @type {string}
+	 * @memberof V3SettingsShippingShipnodesShipNode
+	 */
+	shipNodeName?: string;
+	/**
+	 * Status of fulfillment center. Allowed values: ACTIVE, INACTIVE..
+	 * @type {string}
+	 * @memberof V3SettingsShippingShipnodesShipNode
+	 */
+	status?: string;
+	/**
+	 * Time zone that the seller ships from.Allowed timezones are PST, EST, CST, MST.
+	 * @type {string}
+	 * @memberof V3SettingsShippingShipnodesShipNode
+	 */
+	timeZone?: string;
+	/**
+	 * The services supported by the defined physical ship node . The allowed values: TWO_DAY_DELIVERY.
+	 * @type {Array<string>}
+	 * @memberof V3SettingsShippingShipnodesShipNode
+	 */
+	distributorSupportedServices?: Array<string>;
+	/**
+	 * Custom node identifier provided by seller. Allowed values are alphanumeric | String
+	 * @type {string}
+	 * @memberof V3SettingsShippingShipnodesShipNode
+	 */
+	customNodeId?: string;
+	/**
+	 *
+	 * @type {V3SettingsShippingShipnodesPostalAddress}
+	 * @memberof V3SettingsShippingShipnodesShipNode
+	 */
+	postalAddress?: V3SettingsShippingShipnodesPostalAddress;
+	/**
+	 * Shipping Details.
+	 * @type {Array<V3SettingsShippingShipnodesShippingDetails>}
+	 * @memberof V3SettingsShippingShipnodesShipNode
+	 */
+	shippingDetails?: Array<V3SettingsShippingShipnodesShippingDetails>;
+	/**
+	 *
+	 * @type {V3SettingsShippingShipnodesShipNodeCalendarDayConfiguration}
+	 * @memberof V3SettingsShippingShipnodesShipNode
+	 */
+	calendarDayConfiguration?: V3SettingsShippingShipnodesShipNodeCalendarDayConfiguration;
 }
 /**
  *
@@ -2711,54 +2705,54 @@ export interface V3SettingsShippingShipnodesShipNode {
  * @interface V3SettingsShippingShipnodesShipNode1
  */
 export interface V3SettingsShippingShipnodesShipNode1 {
-  /**
-   * Name of the fulfillment center.
-   * @type {string}
-   * @memberof V3SettingsShippingShipnodesShipNode1
-   */
-  shipNodeName?: string;
-  /**
-   * Status of fulfillment center. Allowed values: ACTIVE, INACTIVE..
-   * @type {string}
-   * @memberof V3SettingsShippingShipnodesShipNode1
-   */
-  status?: string;
-  /**
-   * Time zone that the seller ships from.Allowed timezones are PST, EST, CST, MST.
-   * @type {string}
-   * @memberof V3SettingsShippingShipnodesShipNode1
-   */
-  timeZone?: string;
-  /**
-   * The services supported by the defined physical ship node . The allowed values: TWO_DAY_DELIVERY.
-   * @type {Array<string>}
-   * @memberof V3SettingsShippingShipnodesShipNode1
-   */
-  distributorSupportedServices?: Array<string>;
-  /**
-   * Custom node identifier provided by seller. Allowed values are alphanumeric | String
-   * @type {string}
-   * @memberof V3SettingsShippingShipnodesShipNode1
-   */
-  customNodeId?: string;
-  /**
-   *
-   * @type {V3SettingsShippingShipnodesPostalAddress}
-   * @memberof V3SettingsShippingShipnodesShipNode1
-   */
-  postalAddress?: V3SettingsShippingShipnodesPostalAddress;
-  /**
-   * Shipping Details.
-   * @type {Array<V3SettingsShippingShipnodesShippingDetails>}
-   * @memberof V3SettingsShippingShipnodesShipNode1
-   */
-  shippingDetails?: Array<V3SettingsShippingShipnodesShippingDetails>;
-  /**
-   *
-   * @type {V3SettingsShippingShipnodesShipNodeCalendarDayConfiguration}
-   * @memberof V3SettingsShippingShipnodesShipNode1
-   */
-  calendarDayConfiguration?: V3SettingsShippingShipnodesShipNodeCalendarDayConfiguration;
+	/**
+	 * Name of the fulfillment center.
+	 * @type {string}
+	 * @memberof V3SettingsShippingShipnodesShipNode1
+	 */
+	shipNodeName?: string;
+	/**
+	 * Status of fulfillment center. Allowed values: ACTIVE, INACTIVE..
+	 * @type {string}
+	 * @memberof V3SettingsShippingShipnodesShipNode1
+	 */
+	status?: string;
+	/**
+	 * Time zone that the seller ships from.Allowed timezones are PST, EST, CST, MST.
+	 * @type {string}
+	 * @memberof V3SettingsShippingShipnodesShipNode1
+	 */
+	timeZone?: string;
+	/**
+	 * The services supported by the defined physical ship node . The allowed values: TWO_DAY_DELIVERY.
+	 * @type {Array<string>}
+	 * @memberof V3SettingsShippingShipnodesShipNode1
+	 */
+	distributorSupportedServices?: Array<string>;
+	/**
+	 * Custom node identifier provided by seller. Allowed values are alphanumeric | String
+	 * @type {string}
+	 * @memberof V3SettingsShippingShipnodesShipNode1
+	 */
+	customNodeId?: string;
+	/**
+	 *
+	 * @type {V3SettingsShippingShipnodesPostalAddress}
+	 * @memberof V3SettingsShippingShipnodesShipNode1
+	 */
+	postalAddress?: V3SettingsShippingShipnodesPostalAddress;
+	/**
+	 * Shipping Details.
+	 * @type {Array<V3SettingsShippingShipnodesShippingDetails>}
+	 * @memberof V3SettingsShippingShipnodesShipNode1
+	 */
+	shippingDetails?: Array<V3SettingsShippingShipnodesShippingDetails>;
+	/**
+	 *
+	 * @type {V3SettingsShippingShipnodesShipNodeCalendarDayConfiguration}
+	 * @memberof V3SettingsShippingShipnodesShipNode1
+	 */
+	calendarDayConfiguration?: V3SettingsShippingShipnodesShipNodeCalendarDayConfiguration;
 }
 /**
  * Calendar day promise details. For examples, please refer to \'Sample 2 - Calendar Day Configurations\' in request & response samples.
@@ -2766,18 +2760,18 @@ export interface V3SettingsShippingShipnodesShipNode1 {
  * @interface V3SettingsShippingShipnodesShipNodeCalendarDayConfiguration
  */
 export interface V3SettingsShippingShipnodesShipNodeCalendarDayConfiguration {
-  /**
-   *
-   * @type {V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingSchedule}
-   * @memberof V3SettingsShippingShipnodesShipNodeCalendarDayConfiguration
-   */
-  standardProcessingSchedule: V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingSchedule;
-  /**
-   * List of additional days on which the fulfillment center is closed. For example, if the fulfillment center is closed on New Year’s Day, then add the date in the list. If there are no additional off days, then this list will be empty. Use ISO 8601 format for date. For example: \'2021-07-16\'(yyyy-MM-dd)
-   * @type {Array<string>}
-   * @memberof V3SettingsShippingShipnodesShipNodeCalendarDayConfiguration
-   */
-  additionalDaysOff: Array<string>;
+	/**
+	 *
+	 * @type {V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingSchedule}
+	 * @memberof V3SettingsShippingShipnodesShipNodeCalendarDayConfiguration
+	 */
+	standardProcessingSchedule: V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingSchedule;
+	/**
+	 * List of additional days on which the fulfillment center is closed. For example, if the fulfillment center is closed on New Year’s Day, then add the date in the list. If there are no additional off days, then this list will be empty. Use ISO 8601 format for date. For example: \'2021-07-16\'(yyyy-MM-dd)
+	 * @type {Array<string>}
+	 * @memberof V3SettingsShippingShipnodesShipNodeCalendarDayConfiguration
+	 */
+	additionalDaysOff: Array<string>;
 }
 /**
  * Operating Schedule for the fulfillment center
@@ -2785,48 +2779,48 @@ export interface V3SettingsShippingShipnodesShipNodeCalendarDayConfiguration {
  * @interface V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingSchedule
  */
 export interface V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingSchedule {
-  /**
-   *
-   * @type {V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingScheduleSunday}
-   * @memberof V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingSchedule
-   */
-  sunday: V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingScheduleSunday;
-  /**
-   *
-   * @type {V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingScheduleSunday}
-   * @memberof V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingSchedule
-   */
-  monday: V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingScheduleSunday;
-  /**
-   *
-   * @type {V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingScheduleSunday}
-   * @memberof V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingSchedule
-   */
-  tuesday: V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingScheduleSunday;
-  /**
-   *
-   * @type {V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingScheduleSunday}
-   * @memberof V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingSchedule
-   */
-  wednesday: V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingScheduleSunday;
-  /**
-   *
-   * @type {V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingScheduleSunday}
-   * @memberof V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingSchedule
-   */
-  thursday: V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingScheduleSunday;
-  /**
-   *
-   * @type {V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingScheduleSunday}
-   * @memberof V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingSchedule
-   */
-  friday: V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingScheduleSunday;
-  /**
-   *
-   * @type {V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingScheduleSunday}
-   * @memberof V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingSchedule
-   */
-  saturday: V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingScheduleSunday;
+	/**
+	 *
+	 * @type {V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingScheduleSunday}
+	 * @memberof V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingSchedule
+	 */
+	sunday: V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingScheduleSunday;
+	/**
+	 *
+	 * @type {V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingScheduleSunday}
+	 * @memberof V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingSchedule
+	 */
+	monday: V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingScheduleSunday;
+	/**
+	 *
+	 * @type {V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingScheduleSunday}
+	 * @memberof V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingSchedule
+	 */
+	tuesday: V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingScheduleSunday;
+	/**
+	 *
+	 * @type {V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingScheduleSunday}
+	 * @memberof V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingSchedule
+	 */
+	wednesday: V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingScheduleSunday;
+	/**
+	 *
+	 * @type {V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingScheduleSunday}
+	 * @memberof V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingSchedule
+	 */
+	thursday: V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingScheduleSunday;
+	/**
+	 *
+	 * @type {V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingScheduleSunday}
+	 * @memberof V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingSchedule
+	 */
+	friday: V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingScheduleSunday;
+	/**
+	 *
+	 * @type {V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingScheduleSunday}
+	 * @memberof V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingSchedule
+	 */
+	saturday: V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingScheduleSunday;
 }
 /**
  *
@@ -2834,18 +2828,18 @@ export interface V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStan
  * @interface V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingScheduleSunday
  */
 export interface V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingScheduleSunday {
-  /**
-   * Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false.
-   * @type {boolean}
-   * @memberof V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingScheduleSunday
-   */
-  isWorkingDay: boolean;
-  /**
-   * Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to \'14:00\'. Example: \'09:30\'(HH:mm)
-   * @type {string}
-   * @memberof V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingScheduleSunday
-   */
-  cutOffTime?: string;
+	/**
+	 * Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false.
+	 * @type {boolean}
+	 * @memberof V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingScheduleSunday
+	 */
+	isWorkingDay: boolean;
+	/**
+	 * Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to \'14:00\'. Example: \'09:30\'(HH:mm)
+	 * @type {string}
+	 * @memberof V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingScheduleSunday
+	 */
+	cutOffTime?: string;
 }
 /**
  *
@@ -2853,12 +2847,12 @@ export interface V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStan
  * @interface V3SettingsShippingShipnodesShipNodeHeader
  */
 export interface V3SettingsShippingShipnodesShipNodeHeader {
-  /**
-   *
-   * @type {string}
-   * @memberof V3SettingsShippingShipnodesShipNodeHeader
-   */
-  version?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof V3SettingsShippingShipnodesShipNodeHeader
+	 */
+	version?: string;
 }
 /**
  * Shipping Details.
@@ -2866,12 +2860,12 @@ export interface V3SettingsShippingShipnodesShipNodeHeader {
  * @interface V3SettingsShippingShipnodesShippingDetails
  */
 export interface V3SettingsShippingShipnodesShippingDetails {
-  /**
-   * Shipping type provided.
-   * @type {Array<V3SettingsShippingShipnodesTwoDayShipping>}
-   * @memberof V3SettingsShippingShipnodesShippingDetails
-   */
-  twoDayShipping?: Array<V3SettingsShippingShipnodesTwoDayShipping>;
+	/**
+	 * Shipping type provided.
+	 * @type {Array<V3SettingsShippingShipnodesTwoDayShipping>}
+	 * @memberof V3SettingsShippingShipnodesShippingDetails
+	 */
+	twoDayShipping?: Array<V3SettingsShippingShipnodesTwoDayShipping>;
 }
 /**
  * Shipping type provided.
@@ -2879,18 +2873,18 @@ export interface V3SettingsShippingShipnodesShippingDetails {
  * @interface V3SettingsShippingShipnodesTwoDayShipping
  */
 export interface V3SettingsShippingShipnodesTwoDayShipping {
-  /**
-   * Name of the shipping carrier. Carrier names can be retrieved from the Get carrier methods API.
-   * @type {string}
-   * @memberof V3SettingsShippingShipnodesTwoDayShipping
-   */
-  carrierMethodName?: string;
-  /**
-   * Shipping method.
-   * @type {string}
-   * @memberof V3SettingsShippingShipnodesTwoDayShipping
-   */
-  carrierMethodType?: string;
+	/**
+	 * Name of the shipping carrier. Carrier names can be retrieved from the Get carrier methods API.
+	 * @type {string}
+	 * @memberof V3SettingsShippingShipnodesTwoDayShipping
+	 */
+	carrierMethodName?: string;
+	/**
+	 * Shipping method.
+	 * @type {string}
+	 * @memberof V3SettingsShippingShipnodesTwoDayShipping
+	 */
+	carrierMethodType?: string;
 }
 /**
  * Contains an array of Regions, an array of Address Type, Transit Time and Per shipping charge or array of Tired Shipping Charge
@@ -2898,36 +2892,36 @@ export interface V3SettingsShippingShipnodesTwoDayShipping {
  * @interface V3SettingsShippingTemplatesConfigurations
  */
 export interface V3SettingsShippingTemplatesConfigurations {
-  /**
-   * Supported Regions includes 48 State Street, 48 State – Street Po Box/Street, AK and HI – Street etc
-   * @type {Array<V3SettingsShippingTemplatesRegions>}
-   * @memberof V3SettingsShippingTemplatesConfigurations
-   */
-  regions: Array<V3SettingsShippingTemplatesRegions>;
-  /**
-   * Supported address types like PO_BOX STREET MILITARY
-   * @type {Array<string>}
-   * @memberof V3SettingsShippingTemplatesConfigurations
-   */
-  addressTypes: Array<V3SettingsShippingTemplatesConfigurationsAddressTypesEnum>;
-  /**
-   * Time in transit
-   * @type {number}
-   * @memberof V3SettingsShippingTemplatesConfigurations
-   */
-  transitTime: number;
-  /**
-   *
-   * @type {V3SettingsShippingTemplatesPerShippingCharge}
-   * @memberof V3SettingsShippingTemplatesConfigurations
-   */
-  perShippingCharge?: V3SettingsShippingTemplatesPerShippingCharge;
-  /**
-   * Tiered Shipping Charges
-   * @type {Array<V3SettingsShippingTemplatesTieredShippingCharges>}
-   * @memberof V3SettingsShippingTemplatesConfigurations
-   */
-  tieredShippingCharges?: Array<V3SettingsShippingTemplatesTieredShippingCharges>;
+	/**
+	 * Supported Regions includes 48 State Street, 48 State – Street Po Box/Street, AK and HI – Street etc
+	 * @type {Array<V3SettingsShippingTemplatesRegions>}
+	 * @memberof V3SettingsShippingTemplatesConfigurations
+	 */
+	regions: Array<V3SettingsShippingTemplatesRegions>;
+	/**
+	 * Supported address types like PO_BOX STREET MILITARY
+	 * @type {Array<string>}
+	 * @memberof V3SettingsShippingTemplatesConfigurations
+	 */
+	addressTypes: Array<V3SettingsShippingTemplatesConfigurationsAddressTypesEnum>;
+	/**
+	 * Time in transit
+	 * @type {number}
+	 * @memberof V3SettingsShippingTemplatesConfigurations
+	 */
+	transitTime: number;
+	/**
+	 *
+	 * @type {V3SettingsShippingTemplatesPerShippingCharge}
+	 * @memberof V3SettingsShippingTemplatesConfigurations
+	 */
+	perShippingCharge?: V3SettingsShippingTemplatesPerShippingCharge;
+	/**
+	 * Tiered Shipping Charges
+	 * @type {Array<V3SettingsShippingTemplatesTieredShippingCharges>}
+	 * @memberof V3SettingsShippingTemplatesConfigurations
+	 */
+	tieredShippingCharges?: Array<V3SettingsShippingTemplatesTieredShippingCharges>;
 }
 
 /**
@@ -2935,9 +2929,9 @@ export interface V3SettingsShippingTemplatesConfigurations {
  * @enum {string}
  */
 export enum V3SettingsShippingTemplatesConfigurationsAddressTypesEnum {
-  PoBox = "PO_BOX",
-  Military = "MILITARY",
-  Street = "STREET",
+	PoBox = 'PO_BOX',
+	Military = 'MILITARY',
+	Street = 'STREET',
 }
 
 /**
@@ -2946,30 +2940,30 @@ export enum V3SettingsShippingTemplatesConfigurationsAddressTypesEnum {
  * @interface V3SettingsShippingTemplatesPerShippingCharge
  */
 export interface V3SettingsShippingTemplatesPerShippingCharge {
-  /**
-   * Unit of Measure eg. LB
-   * @type {string}
-   * @memberof V3SettingsShippingTemplatesPerShippingCharge
-   */
-  unitOfMeasure: string;
-  /**
-   *
-   * @type {V3SettingsShippingTemplatesPerShippingChargeShippingAndHandling}
-   * @memberof V3SettingsShippingTemplatesPerShippingCharge
-   */
-  shippingAndHandling?: V3SettingsShippingTemplatesPerShippingChargeShippingAndHandling;
-  /**
-   *
-   * @type {V3SettingsShippingTemplatesPerShippingChargeChargePerWeight}
-   * @memberof V3SettingsShippingTemplatesPerShippingCharge
-   */
-  chargePerWeight?: V3SettingsShippingTemplatesPerShippingChargeChargePerWeight;
-  /**
-   *
-   * @type {V3SettingsShippingTemplatesPerShippingChargeChargePerItem}
-   * @memberof V3SettingsShippingTemplatesPerShippingCharge
-   */
-  chargePerItem?: V3SettingsShippingTemplatesPerShippingChargeChargePerItem;
+	/**
+	 * Unit of Measure eg. LB
+	 * @type {string}
+	 * @memberof V3SettingsShippingTemplatesPerShippingCharge
+	 */
+	unitOfMeasure: string;
+	/**
+	 *
+	 * @type {V3SettingsShippingTemplatesPerShippingChargeShippingAndHandling}
+	 * @memberof V3SettingsShippingTemplatesPerShippingCharge
+	 */
+	shippingAndHandling?: V3SettingsShippingTemplatesPerShippingChargeShippingAndHandling;
+	/**
+	 *
+	 * @type {V3SettingsShippingTemplatesPerShippingChargeChargePerWeight}
+	 * @memberof V3SettingsShippingTemplatesPerShippingCharge
+	 */
+	chargePerWeight?: V3SettingsShippingTemplatesPerShippingChargeChargePerWeight;
+	/**
+	 *
+	 * @type {V3SettingsShippingTemplatesPerShippingChargeChargePerItem}
+	 * @memberof V3SettingsShippingTemplatesPerShippingCharge
+	 */
+	chargePerItem?: V3SettingsShippingTemplatesPerShippingChargeChargePerItem;
 }
 /**
  * Per Weight Charge
@@ -2977,18 +2971,18 @@ export interface V3SettingsShippingTemplatesPerShippingCharge {
  * @interface V3SettingsShippingTemplatesPerShippingChargeChargePerItem
  */
 export interface V3SettingsShippingTemplatesPerShippingChargeChargePerItem {
-  /**
-   * Charge Per Item, value USD
-   * @type {number}
-   * @memberof V3SettingsShippingTemplatesPerShippingChargeChargePerItem
-   */
-  amount: number;
-  /**
-   * Currency, eg. USD
-   * @type {string}
-   * @memberof V3SettingsShippingTemplatesPerShippingChargeChargePerItem
-   */
-  currency: string;
+	/**
+	 * Charge Per Item, value USD
+	 * @type {number}
+	 * @memberof V3SettingsShippingTemplatesPerShippingChargeChargePerItem
+	 */
+	amount: number;
+	/**
+	 * Currency, eg. USD
+	 * @type {string}
+	 * @memberof V3SettingsShippingTemplatesPerShippingChargeChargePerItem
+	 */
+	currency: string;
 }
 /**
  * Per Item Charge
@@ -2996,18 +2990,18 @@ export interface V3SettingsShippingTemplatesPerShippingChargeChargePerItem {
  * @interface V3SettingsShippingTemplatesPerShippingChargeChargePerWeight
  */
 export interface V3SettingsShippingTemplatesPerShippingChargeChargePerWeight {
-  /**
-   * Charge Per weight, value USD
-   * @type {number}
-   * @memberof V3SettingsShippingTemplatesPerShippingChargeChargePerWeight
-   */
-  amount: number;
-  /**
-   * Currency, eg. USD
-   * @type {string}
-   * @memberof V3SettingsShippingTemplatesPerShippingChargeChargePerWeight
-   */
-  currency: string;
+	/**
+	 * Charge Per weight, value USD
+	 * @type {number}
+	 * @memberof V3SettingsShippingTemplatesPerShippingChargeChargePerWeight
+	 */
+	amount: number;
+	/**
+	 * Currency, eg. USD
+	 * @type {string}
+	 * @memberof V3SettingsShippingTemplatesPerShippingChargeChargePerWeight
+	 */
+	currency: string;
 }
 /**
  * Shipping and Handling Charge
@@ -3015,18 +3009,18 @@ export interface V3SettingsShippingTemplatesPerShippingChargeChargePerWeight {
  * @interface V3SettingsShippingTemplatesPerShippingChargeShippingAndHandling
  */
 export interface V3SettingsShippingTemplatesPerShippingChargeShippingAndHandling {
-  /**
-   * The numerical amount for that charge. Example: 9.99
-   * @type {number}
-   * @memberof V3SettingsShippingTemplatesPerShippingChargeShippingAndHandling
-   */
-  amount: number;
-  /**
-   * The type of currency for the charge. Example: USD for US Dollars
-   * @type {string}
-   * @memberof V3SettingsShippingTemplatesPerShippingChargeShippingAndHandling
-   */
-  currency: string;
+	/**
+	 * The numerical amount for that charge. Example: 9.99
+	 * @type {number}
+	 * @memberof V3SettingsShippingTemplatesPerShippingChargeShippingAndHandling
+	 */
+	amount: number;
+	/**
+	 * The type of currency for the charge. Example: USD for US Dollars
+	 * @type {string}
+	 * @memberof V3SettingsShippingTemplatesPerShippingChargeShippingAndHandling
+	 */
+	currency: string;
 }
 /**
  * Supported Regions includes 48 State Street, 48 State – Street Po Box/Street, AK and HI – Street etc
@@ -3034,24 +3028,24 @@ export interface V3SettingsShippingTemplatesPerShippingChargeShippingAndHandling
  * @interface V3SettingsShippingTemplatesRegions
  */
 export interface V3SettingsShippingTemplatesRegions {
-  /**
-   *
-   * @type {string}
-   * @memberof V3SettingsShippingTemplatesRegions
-   */
-  regionCode: string;
-  /**
-   *
-   * @type {string}
-   * @memberof V3SettingsShippingTemplatesRegions
-   */
-  regionName?: string;
-  /**
-   *
-   * @type {Array<V3SettingsShippingTemplatesSubRegions>}
-   * @memberof V3SettingsShippingTemplatesRegions
-   */
-  subRegions?: Array<V3SettingsShippingTemplatesSubRegions>;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof V3SettingsShippingTemplatesRegions
+	 */
+	regionCode: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof V3SettingsShippingTemplatesRegions
+	 */
+	regionName?: string;
+	/**
+	 *
+	 * @type {Array<V3SettingsShippingTemplatesSubRegions>}
+	 * @memberof V3SettingsShippingTemplatesRegions
+	 */
+	subRegions?: Array<V3SettingsShippingTemplatesSubRegions>;
 }
 /**
  * Details of Shipping Charge
@@ -3059,18 +3053,18 @@ export interface V3SettingsShippingTemplatesRegions {
  * @interface V3SettingsShippingTemplatesShipCharge
  */
 export interface V3SettingsShippingTemplatesShipCharge {
-  /**
-   * Charge Per Item, value USD
-   * @type {number}
-   * @memberof V3SettingsShippingTemplatesShipCharge
-   */
-  amount: number;
-  /**
-   * Currency, eg. USD
-   * @type {string}
-   * @memberof V3SettingsShippingTemplatesShipCharge
-   */
-  currency: string;
+	/**
+	 * Charge Per Item, value USD
+	 * @type {number}
+	 * @memberof V3SettingsShippingTemplatesShipCharge
+	 */
+	amount: number;
+	/**
+	 * Currency, eg. USD
+	 * @type {string}
+	 * @memberof V3SettingsShippingTemplatesShipCharge
+	 */
+	currency: string;
 }
 /**
  * Array of different ship methods of a Shipping Template
@@ -3078,24 +3072,24 @@ export interface V3SettingsShippingTemplatesShipCharge {
  * @interface V3SettingsShippingTemplatesShippingMethods
  */
 export interface V3SettingsShippingTemplatesShippingMethods {
-  /**
-   * VALUE: All Marketplace Sellers must offer Value shipping to Walmart.com customers for items that can\'t ship within expected transit times for standard shipping. STANDARD: You are required to offer standard shipping to Walmart.com customers. TWO_DAY: If approved for this option, you\'ll provide free 2-day shipping to customers and your items will be enabled with the TwoDay delivery tag. FREIGHT: Heavy items which takes 8,9,10 days.
-   * @type {string}
-   * @memberof V3SettingsShippingTemplatesShippingMethods
-   */
-  shipMethod: V3SettingsShippingTemplatesShippingMethodsShipMethodEnum;
-  /**
-   * Shipping Method Status, Can be ACTIVE or INACTIVE status
-   * @type {string}
-   * @memberof V3SettingsShippingTemplatesShippingMethods
-   */
-  status: V3SettingsShippingTemplatesShippingMethodsStatusEnum;
-  /**
-   * Contains an array of Regions, an array of Address Type, Transit Time and Per shipping charge or array of Tired Shipping Charge
-   * @type {Array<V3SettingsShippingTemplatesConfigurations>}
-   * @memberof V3SettingsShippingTemplatesShippingMethods
-   */
-  configurations: Array<V3SettingsShippingTemplatesConfigurations>;
+	/**
+	 * VALUE: All Marketplace Sellers must offer Value shipping to Walmart.com customers for items that can\'t ship within expected transit times for standard shipping. STANDARD: You are required to offer standard shipping to Walmart.com customers. TWO_DAY: If approved for this option, you\'ll provide free 2-day shipping to customers and your items will be enabled with the TwoDay delivery tag. FREIGHT: Heavy items which takes 8,9,10 days.
+	 * @type {string}
+	 * @memberof V3SettingsShippingTemplatesShippingMethods
+	 */
+	shipMethod: V3SettingsShippingTemplatesShippingMethodsShipMethodEnum;
+	/**
+	 * Shipping Method Status, Can be ACTIVE or INACTIVE status
+	 * @type {string}
+	 * @memberof V3SettingsShippingTemplatesShippingMethods
+	 */
+	status: V3SettingsShippingTemplatesShippingMethodsStatusEnum;
+	/**
+	 * Contains an array of Regions, an array of Address Type, Transit Time and Per shipping charge or array of Tired Shipping Charge
+	 * @type {Array<V3SettingsShippingTemplatesConfigurations>}
+	 * @memberof V3SettingsShippingTemplatesShippingMethods
+	 */
+	configurations: Array<V3SettingsShippingTemplatesConfigurations>;
 }
 
 /**
@@ -3103,19 +3097,19 @@ export interface V3SettingsShippingTemplatesShippingMethods {
  * @enum {string}
  */
 export enum V3SettingsShippingTemplatesShippingMethodsShipMethodEnum {
-  Value = "VALUE",
-  Standard = "STANDARD",
-  ThreeDay = "THREE_DAY",
-  TwoDay = "TWO_DAY",
-  Freight = "FREIGHT",
+	Value = 'VALUE',
+	Standard = 'STANDARD',
+	ThreeDay = 'THREE_DAY',
+	TwoDay = 'TWO_DAY',
+	Freight = 'FREIGHT',
 }
 /**
  * @export
  * @enum {string}
  */
 export enum V3SettingsShippingTemplatesShippingMethodsStatusEnum {
-  Active = "ACTIVE",
-  Inactive = "INACTIVE",
+	Active = 'ACTIVE',
+	Inactive = 'INACTIVE',
 }
 
 /**
@@ -3124,18 +3118,18 @@ export enum V3SettingsShippingTemplatesShippingMethodsStatusEnum {
  * @interface V3SettingsShippingTemplatesStateSubregions
  */
 export interface V3SettingsShippingTemplatesStateSubregions {
-  /**
-   *
-   * @type {string}
-   * @memberof V3SettingsShippingTemplatesStateSubregions
-   */
-  stateSubregionCode: string;
-  /**
-   *
-   * @type {string}
-   * @memberof V3SettingsShippingTemplatesStateSubregions
-   */
-  stateSubregionName?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof V3SettingsShippingTemplatesStateSubregions
+	 */
+	stateSubregionCode: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof V3SettingsShippingTemplatesStateSubregions
+	 */
+	stateSubregionName?: string;
 }
 /**
  *
@@ -3143,24 +3137,24 @@ export interface V3SettingsShippingTemplatesStateSubregions {
  * @interface V3SettingsShippingTemplatesStates
  */
 export interface V3SettingsShippingTemplatesStates {
-  /**
-   *
-   * @type {string}
-   * @memberof V3SettingsShippingTemplatesStates
-   */
-  stateCode: string;
-  /**
-   *
-   * @type {string}
-   * @memberof V3SettingsShippingTemplatesStates
-   */
-  stateName?: string;
-  /**
-   *
-   * @type {Array<V3SettingsShippingTemplatesStateSubregions>}
-   * @memberof V3SettingsShippingTemplatesStates
-   */
-  stateSubregions?: Array<V3SettingsShippingTemplatesStateSubregions>;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof V3SettingsShippingTemplatesStates
+	 */
+	stateCode: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof V3SettingsShippingTemplatesStates
+	 */
+	stateName?: string;
+	/**
+	 *
+	 * @type {Array<V3SettingsShippingTemplatesStateSubregions>}
+	 * @memberof V3SettingsShippingTemplatesStates
+	 */
+	stateSubregions?: Array<V3SettingsShippingTemplatesStateSubregions>;
 }
 /**
  *
@@ -3168,24 +3162,24 @@ export interface V3SettingsShippingTemplatesStates {
  * @interface V3SettingsShippingTemplatesSubRegions
  */
 export interface V3SettingsShippingTemplatesSubRegions {
-  /**
-   *
-   * @type {string}
-   * @memberof V3SettingsShippingTemplatesSubRegions
-   */
-  subRegionCode: string;
-  /**
-   *
-   * @type {string}
-   * @memberof V3SettingsShippingTemplatesSubRegions
-   */
-  subRegionName?: string;
-  /**
-   *
-   * @type {Array<V3SettingsShippingTemplatesStates>}
-   * @memberof V3SettingsShippingTemplatesSubRegions
-   */
-  states?: Array<V3SettingsShippingTemplatesStates>;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof V3SettingsShippingTemplatesSubRegions
+	 */
+	subRegionCode: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof V3SettingsShippingTemplatesSubRegions
+	 */
+	subRegionName?: string;
+	/**
+	 *
+	 * @type {Array<V3SettingsShippingTemplatesStates>}
+	 * @memberof V3SettingsShippingTemplatesSubRegions
+	 */
+	states?: Array<V3SettingsShippingTemplatesStates>;
 }
 /**
  * Tiered Shipping Charges
@@ -3193,1653 +3187,1235 @@ export interface V3SettingsShippingTemplatesSubRegions {
  * @interface V3SettingsShippingTemplatesTieredShippingCharges
  */
 export interface V3SettingsShippingTemplatesTieredShippingCharges {
-  /**
-   * Minimum Limit
-   * @type {number}
-   * @memberof V3SettingsShippingTemplatesTieredShippingCharges
-   */
-  minLimit: number;
-  /**
-   * Maximum Limit
-   * @type {number}
-   * @memberof V3SettingsShippingTemplatesTieredShippingCharges
-   */
-  maxLimit: number;
-  /**
-   *
-   * @type {V3SettingsShippingTemplatesShipCharge}
-   * @memberof V3SettingsShippingTemplatesTieredShippingCharges
-   */
-  shipCharge?: V3SettingsShippingTemplatesShipCharge;
+	/**
+	 * Minimum Limit
+	 * @type {number}
+	 * @memberof V3SettingsShippingTemplatesTieredShippingCharges
+	 */
+	minLimit: number;
+	/**
+	 * Maximum Limit
+	 * @type {number}
+	 * @memberof V3SettingsShippingTemplatesTieredShippingCharges
+	 */
+	maxLimit: number;
+	/**
+	 *
+	 * @type {V3SettingsShippingTemplatesShipCharge}
+	 * @memberof V3SettingsShippingTemplatesTieredShippingCharges
+	 */
+	shipCharge?: V3SettingsShippingTemplatesShipCharge;
 }
 
 /**
  * SettingsApi - axios parameter creator
  * @export
  */
-export const SettingsApiAxiosParamCreator = function (
-  configuration?: Configuration
-) {
-  return {
-    /**
-     * This API creates a third party fulfillment center.
-     * @summary Create third party fulfillment center
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {InlineObject4} inlineObject4
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    create3PFulfillmentCenter: async (
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      inlineObject4: InlineObject4,
-      wMCONSUMERCHANNELTYPE?: string,
-      options: any = {}
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'authorization' is not null or undefined
-      assertParamExists(
-        "create3PFulfillmentCenter",
-        "authorization",
-        authorization
-      );
-      // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
-      assertParamExists(
-        "create3PFulfillmentCenter",
-        "wMSECACCESSTOKEN",
-        wMSECACCESSTOKEN
-      );
-      // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
-      assertParamExists(
-        "create3PFulfillmentCenter",
-        "wMQOSCORRELATIONID",
-        wMQOSCORRELATIONID
-      );
-      // verify required parameter 'wMSVCNAME' is not null or undefined
-      assertParamExists("create3PFulfillmentCenter", "wMSVCNAME", wMSVCNAME);
-      // verify required parameter 'inlineObject4' is not null or undefined
-      assertParamExists(
-        "create3PFulfillmentCenter",
-        "inlineObject4",
-        inlineObject4
-      );
-      const localVarPath = `/v3/settings/shipping/3plshipnodes`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
-
-      const localVarRequestOptions = {
-        method: "POST",
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
-
-      // authentication basicScheme required
-      // http basic authentication required
-      setBasicAuthToObject(localVarRequestOptions, configuration);
-
-      if (authorization !== undefined && authorization !== null) {
-        localVarHeaderParameter["Authorization"] = String(authorization);
-      }
-
-      if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
-        localVarHeaderParameter["WM_SEC.ACCESS_TOKEN"] =
-          String(wMSECACCESSTOKEN);
-      }
-
-      if (
-        wMCONSUMERCHANNELTYPE !== undefined &&
-        wMCONSUMERCHANNELTYPE !== null
-      ) {
-        localVarHeaderParameter["WM_CONSUMER.CHANNEL.TYPE"] = String(
-          wMCONSUMERCHANNELTYPE
-        );
-      }
-
-      if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
-        localVarHeaderParameter["WM_QOS.CORRELATION_ID"] =
-          String(wMQOSCORRELATIONID);
-      }
-
-      if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
-        localVarHeaderParameter["WM_SVC.NAME"] = String(wMSVCNAME);
-      }
-
-      localVarHeaderParameter["Content-Type"] = "application/json";
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
-      localVarRequestOptions.data = serializeDataIfNeeded(
-        inlineObject4,
-        localVarRequestOptions,
-        configuration
-      );
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * This API creates a fulfillment center.
-     * @summary Create fulfillment center
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {InlineObject1} inlineObject1
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    createFulfillmentCenter: async (
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      inlineObject1: InlineObject1,
-      wMCONSUMERCHANNELTYPE?: string,
-      options: any = {}
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'authorization' is not null or undefined
-      assertParamExists(
-        "createFulfillmentCenter",
-        "authorization",
-        authorization
-      );
-      // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
-      assertParamExists(
-        "createFulfillmentCenter",
-        "wMSECACCESSTOKEN",
-        wMSECACCESSTOKEN
-      );
-      // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
-      assertParamExists(
-        "createFulfillmentCenter",
-        "wMQOSCORRELATIONID",
-        wMQOSCORRELATIONID
-      );
-      // verify required parameter 'wMSVCNAME' is not null or undefined
-      assertParamExists("createFulfillmentCenter", "wMSVCNAME", wMSVCNAME);
-      // verify required parameter 'inlineObject1' is not null or undefined
-      assertParamExists(
-        "createFulfillmentCenter",
-        "inlineObject1",
-        inlineObject1
-      );
-      const localVarPath = `/v3/settings/shipping/shipnodes`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
-
-      const localVarRequestOptions = {
-        method: "POST",
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
-
-      // authentication basicScheme required
-      // http basic authentication required
-      setBasicAuthToObject(localVarRequestOptions, configuration);
-
-      if (authorization !== undefined && authorization !== null) {
-        localVarHeaderParameter["Authorization"] = String(authorization);
-      }
-
-      if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
-        localVarHeaderParameter["WM_SEC.ACCESS_TOKEN"] =
-          String(wMSECACCESSTOKEN);
-      }
-
-      if (
-        wMCONSUMERCHANNELTYPE !== undefined &&
-        wMCONSUMERCHANNELTYPE !== null
-      ) {
-        localVarHeaderParameter["WM_CONSUMER.CHANNEL.TYPE"] = String(
-          wMCONSUMERCHANNELTYPE
-        );
-      }
-
-      if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
-        localVarHeaderParameter["WM_QOS.CORRELATION_ID"] =
-          String(wMQOSCORRELATIONID);
-      }
-
-      if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
-        localVarHeaderParameter["WM_SVC.NAME"] = String(wMSVCNAME);
-      }
-
-      localVarHeaderParameter["Content-Type"] = "application/json";
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
-      localVarRequestOptions.data = serializeDataIfNeeded(
-        inlineObject1,
-        localVarRequestOptions,
-        configuration
-      );
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * Create a new shipping template
-     * @summary Create Shipping Templates
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {InlineObject2} inlineObject2
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    createShippingTemplates: async (
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      inlineObject2: InlineObject2,
-      wMCONSUMERCHANNELTYPE?: string,
-      options: any = {}
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'authorization' is not null or undefined
-      assertParamExists(
-        "createShippingTemplates",
-        "authorization",
-        authorization
-      );
-      // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
-      assertParamExists(
-        "createShippingTemplates",
-        "wMSECACCESSTOKEN",
-        wMSECACCESSTOKEN
-      );
-      // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
-      assertParamExists(
-        "createShippingTemplates",
-        "wMQOSCORRELATIONID",
-        wMQOSCORRELATIONID
-      );
-      // verify required parameter 'wMSVCNAME' is not null or undefined
-      assertParamExists("createShippingTemplates", "wMSVCNAME", wMSVCNAME);
-      // verify required parameter 'inlineObject2' is not null or undefined
-      assertParamExists(
-        "createShippingTemplates",
-        "inlineObject2",
-        inlineObject2
-      );
-      const localVarPath = `/v3/settings/shipping/templates`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
-
-      const localVarRequestOptions = {
-        method: "POST",
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
-
-      // authentication basicScheme required
-      // http basic authentication required
-      setBasicAuthToObject(localVarRequestOptions, configuration);
-
-      if (authorization !== undefined && authorization !== null) {
-        localVarHeaderParameter["Authorization"] = String(authorization);
-      }
-
-      if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
-        localVarHeaderParameter["WM_SEC.ACCESS_TOKEN"] =
-          String(wMSECACCESSTOKEN);
-      }
-
-      if (
-        wMCONSUMERCHANNELTYPE !== undefined &&
-        wMCONSUMERCHANNELTYPE !== null
-      ) {
-        localVarHeaderParameter["WM_CONSUMER.CHANNEL.TYPE"] = String(
-          wMCONSUMERCHANNELTYPE
-        );
-      }
-
-      if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
-        localVarHeaderParameter["WM_QOS.CORRELATION_ID"] =
-          String(wMQOSCORRELATIONID);
-      }
-
-      if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
-        localVarHeaderParameter["WM_SVC.NAME"] = String(wMSVCNAME);
-      }
-
-      localVarHeaderParameter["Content-Type"] = "application/json";
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
-      localVarRequestOptions.data = serializeDataIfNeeded(
-        inlineObject2,
-        localVarRequestOptions,
-        configuration
-      );
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * Delete Existing Shipping Template. DEFAULT templates cannot be deleted. 3PL partners cannot delete templates created by Sellers.
-     * @summary Delete Shipping Template
-     * @param {string} templateId Shipping Template ID of the template to be deleted
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    deleteShippingTemplateDetails: async (
-      templateId: string,
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      wMCONSUMERCHANNELTYPE?: string,
-      options: any = {}
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'templateId' is not null or undefined
-      assertParamExists(
-        "deleteShippingTemplateDetails",
-        "templateId",
-        templateId
-      );
-      // verify required parameter 'authorization' is not null or undefined
-      assertParamExists(
-        "deleteShippingTemplateDetails",
-        "authorization",
-        authorization
-      );
-      // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
-      assertParamExists(
-        "deleteShippingTemplateDetails",
-        "wMSECACCESSTOKEN",
-        wMSECACCESSTOKEN
-      );
-      // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
-      assertParamExists(
-        "deleteShippingTemplateDetails",
-        "wMQOSCORRELATIONID",
-        wMQOSCORRELATIONID
-      );
-      // verify required parameter 'wMSVCNAME' is not null or undefined
-      assertParamExists(
-        "deleteShippingTemplateDetails",
-        "wMSVCNAME",
-        wMSVCNAME
-      );
-      const localVarPath =
-        `/v3/settings/shipping/templates/{templateId}`.replace(
-          `{${"templateId"}}`,
-          encodeURIComponent(String(templateId))
-        );
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
-
-      const localVarRequestOptions = {
-        method: "DELETE",
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
-
-      // authentication basicScheme required
-      // http basic authentication required
-      setBasicAuthToObject(localVarRequestOptions, configuration);
-
-      if (authorization !== undefined && authorization !== null) {
-        localVarHeaderParameter["Authorization"] = String(authorization);
-      }
-
-      if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
-        localVarHeaderParameter["WM_SEC.ACCESS_TOKEN"] =
-          String(wMSECACCESSTOKEN);
-      }
-
-      if (
-        wMCONSUMERCHANNELTYPE !== undefined &&
-        wMCONSUMERCHANNELTYPE !== null
-      ) {
-        localVarHeaderParameter["WM_CONSUMER.CHANNEL.TYPE"] = String(
-          wMCONSUMERCHANNELTYPE
-        );
-      }
-
-      if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
-        localVarHeaderParameter["WM_QOS.CORRELATION_ID"] =
-          String(wMQOSCORRELATIONID);
-      }
-
-      if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
-        localVarHeaderParameter["WM_SVC.NAME"] = String(wMSVCNAME);
-      }
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * Get a list of all third party fulfillment providers.
-     * @summary Get all third party fulfillment providers
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    get3PFulfillmentProviders: async (
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      wMCONSUMERCHANNELTYPE?: string,
-      options: any = {}
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'authorization' is not null or undefined
-      assertParamExists(
-        "get3PFulfillmentProviders",
-        "authorization",
-        authorization
-      );
-      // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
-      assertParamExists(
-        "get3PFulfillmentProviders",
-        "wMSECACCESSTOKEN",
-        wMSECACCESSTOKEN
-      );
-      // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
-      assertParamExists(
-        "get3PFulfillmentProviders",
-        "wMQOSCORRELATIONID",
-        wMQOSCORRELATIONID
-      );
-      // verify required parameter 'wMSVCNAME' is not null or undefined
-      assertParamExists("get3PFulfillmentProviders", "wMSVCNAME", wMSVCNAME);
-      const localVarPath = `/v3/settings/shipping/3plproviders`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
-
-      const localVarRequestOptions = {
-        method: "GET",
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
-
-      // authentication basicScheme required
-      // http basic authentication required
-      setBasicAuthToObject(localVarRequestOptions, configuration);
-
-      if (authorization !== undefined && authorization !== null) {
-        localVarHeaderParameter["Authorization"] = String(authorization);
-      }
-
-      if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
-        localVarHeaderParameter["WM_SEC.ACCESS_TOKEN"] =
-          String(wMSECACCESSTOKEN);
-      }
-
-      if (
-        wMCONSUMERCHANNELTYPE !== undefined &&
-        wMCONSUMERCHANNELTYPE !== null
-      ) {
-        localVarHeaderParameter["WM_CONSUMER.CHANNEL.TYPE"] = String(
-          wMCONSUMERCHANNELTYPE
-        );
-      }
-
-      if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
-        localVarHeaderParameter["WM_QOS.CORRELATION_ID"] =
-          String(wMQOSCORRELATIONID);
-      }
-
-      if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
-        localVarHeaderParameter["WM_SVC.NAME"] = String(wMSVCNAME);
-      }
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * This API provides a list of all the fulfillment centers
-     * @summary Get all fulfillment centers
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {boolean} [includeCalendarDayConfiguration] Flag to specify if calendarDayConfiguration block will be included in the response. Allowed values are true or false.
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getAllFulfillmentCenters: async (
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      includeCalendarDayConfiguration?: boolean,
-      wMCONSUMERCHANNELTYPE?: string,
-      options: any = {}
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'authorization' is not null or undefined
-      assertParamExists(
-        "getAllFulfillmentCenters",
-        "authorization",
-        authorization
-      );
-      // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
-      assertParamExists(
-        "getAllFulfillmentCenters",
-        "wMSECACCESSTOKEN",
-        wMSECACCESSTOKEN
-      );
-      // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
-      assertParamExists(
-        "getAllFulfillmentCenters",
-        "wMQOSCORRELATIONID",
-        wMQOSCORRELATIONID
-      );
-      // verify required parameter 'wMSVCNAME' is not null or undefined
-      assertParamExists("getAllFulfillmentCenters", "wMSVCNAME", wMSVCNAME);
-      const localVarPath = `/v3/settings/shipping/shipnodes`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
-
-      const localVarRequestOptions = {
-        method: "GET",
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
-
-      // authentication basicScheme required
-      // http basic authentication required
-      setBasicAuthToObject(localVarRequestOptions, configuration);
-
-      if (includeCalendarDayConfiguration !== undefined) {
-        localVarQueryParameter["includeCalendarDayConfiguration"] =
-          includeCalendarDayConfiguration;
-      }
-
-      if (authorization !== undefined && authorization !== null) {
-        localVarHeaderParameter["Authorization"] = String(authorization);
-      }
-
-      if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
-        localVarHeaderParameter["WM_SEC.ACCESS_TOKEN"] =
-          String(wMSECACCESSTOKEN);
-      }
-
-      if (
-        wMCONSUMERCHANNELTYPE !== undefined &&
-        wMCONSUMERCHANNELTYPE !== null
-      ) {
-        localVarHeaderParameter["WM_CONSUMER.CHANNEL.TYPE"] = String(
-          wMCONSUMERCHANNELTYPE
-        );
-      }
-
-      if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
-        localVarHeaderParameter["WM_QOS.CORRELATION_ID"] =
-          String(wMQOSCORRELATIONID);
-      }
-
-      if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
-        localVarHeaderParameter["WM_SVC.NAME"] = String(wMSVCNAME);
-      }
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * Get all the shipping templates for a Seller. All template types viz. CUSTOM, DEFAULT and 3PL-specific (eg. DELIVERR) can be retrieved through this API.
-     * @summary Get All Shipping Templates
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getAllShippingTemplates: async (
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      wMCONSUMERCHANNELTYPE?: string,
-      options: any = {}
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'authorization' is not null or undefined
-      assertParamExists(
-        "getAllShippingTemplates",
-        "authorization",
-        authorization
-      );
-      // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
-      assertParamExists(
-        "getAllShippingTemplates",
-        "wMSECACCESSTOKEN",
-        wMSECACCESSTOKEN
-      );
-      // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
-      assertParamExists(
-        "getAllShippingTemplates",
-        "wMQOSCORRELATIONID",
-        wMQOSCORRELATIONID
-      );
-      // verify required parameter 'wMSVCNAME' is not null or undefined
-      assertParamExists("getAllShippingTemplates", "wMSVCNAME", wMSVCNAME);
-      const localVarPath = `/v3/settings/shipping/templates`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
-
-      const localVarRequestOptions = {
-        method: "GET",
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
-
-      // authentication basicScheme required
-      // http basic authentication required
-      setBasicAuthToObject(localVarRequestOptions, configuration);
-
-      if (authorization !== undefined && authorization !== null) {
-        localVarHeaderParameter["Authorization"] = String(authorization);
-      }
-
-      if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
-        localVarHeaderParameter["WM_SEC.ACCESS_TOKEN"] =
-          String(wMSECACCESSTOKEN);
-      }
-
-      if (
-        wMCONSUMERCHANNELTYPE !== undefined &&
-        wMCONSUMERCHANNELTYPE !== null
-      ) {
-        localVarHeaderParameter["WM_CONSUMER.CHANNEL.TYPE"] = String(
-          wMCONSUMERCHANNELTYPE
-        );
-      }
-
-      if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
-        localVarHeaderParameter["WM_QOS.CORRELATION_ID"] =
-          String(wMQOSCORRELATIONID);
-      }
-
-      if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
-        localVarHeaderParameter["WM_SVC.NAME"] = String(wMSVCNAME);
-      }
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * Gets the available carrier methods
-     * @summary Get carrier methods
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getCarrierMethods: async (
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      wMCONSUMERCHANNELTYPE?: string,
-      options: any = {}
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'authorization' is not null or undefined
-      assertParamExists("getCarrierMethods", "authorization", authorization);
-      // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
-      assertParamExists(
-        "getCarrierMethods",
-        "wMSECACCESSTOKEN",
-        wMSECACCESSTOKEN
-      );
-      // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
-      assertParamExists(
-        "getCarrierMethods",
-        "wMQOSCORRELATIONID",
-        wMQOSCORRELATIONID
-      );
-      // verify required parameter 'wMSVCNAME' is not null or undefined
-      assertParamExists("getCarrierMethods", "wMSVCNAME", wMSVCNAME);
-      const localVarPath = `/v3/settings/shipping/carriers`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
-
-      const localVarRequestOptions = {
-        method: "GET",
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
-
-      // authentication basicScheme required
-      // http basic authentication required
-      setBasicAuthToObject(localVarRequestOptions, configuration);
-
-      if (authorization !== undefined && authorization !== null) {
-        localVarHeaderParameter["Authorization"] = String(authorization);
-      }
-
-      if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
-        localVarHeaderParameter["WM_SEC.ACCESS_TOKEN"] =
-          String(wMSECACCESSTOKEN);
-      }
-
-      if (
-        wMCONSUMERCHANNELTYPE !== undefined &&
-        wMCONSUMERCHANNELTYPE !== null
-      ) {
-        localVarHeaderParameter["WM_CONSUMER.CHANNEL.TYPE"] = String(
-          wMCONSUMERCHANNELTYPE
-        );
-      }
-
-      if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
-        localVarHeaderParameter["WM_QOS.CORRELATION_ID"] =
-          String(wMQOSCORRELATIONID);
-      }
-
-      if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
-        localVarHeaderParameter["WM_SVC.NAME"] = String(wMSVCNAME);
-      }
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * This API provides the list of all fullfillment centers for the seller and their coverage areas defined by Walmart based on the address
-     * @summary Get coverage for fulfillment centers
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getCoverageForFulfillmentCenters: async (
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      wMCONSUMERCHANNELTYPE?: string,
-      options: any = {}
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'authorization' is not null or undefined
-      assertParamExists(
-        "getCoverageForFulfillmentCenters",
-        "authorization",
-        authorization
-      );
-      // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
-      assertParamExists(
-        "getCoverageForFulfillmentCenters",
-        "wMSECACCESSTOKEN",
-        wMSECACCESSTOKEN
-      );
-      // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
-      assertParamExists(
-        "getCoverageForFulfillmentCenters",
-        "wMQOSCORRELATIONID",
-        wMQOSCORRELATIONID
-      );
-      // verify required parameter 'wMSVCNAME' is not null or undefined
-      assertParamExists(
-        "getCoverageForFulfillmentCenters",
-        "wMSVCNAME",
-        wMSVCNAME
-      );
-      const localVarPath = `/v3/settings/shipping/shipnodes/coverage`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
-
-      const localVarRequestOptions = {
-        method: "GET",
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
-
-      // authentication basicScheme required
-      // http basic authentication required
-      setBasicAuthToObject(localVarRequestOptions, configuration);
-
-      if (authorization !== undefined && authorization !== null) {
-        localVarHeaderParameter["Authorization"] = String(authorization);
-      }
-
-      if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
-        localVarHeaderParameter["WM_SEC.ACCESS_TOKEN"] =
-          String(wMSECACCESSTOKEN);
-      }
-
-      if (
-        wMCONSUMERCHANNELTYPE !== undefined &&
-        wMCONSUMERCHANNELTYPE !== null
-      ) {
-        localVarHeaderParameter["WM_CONSUMER.CHANNEL.TYPE"] = String(
-          wMCONSUMERCHANNELTYPE
-        );
-      }
-
-      if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
-        localVarHeaderParameter["WM_QOS.CORRELATION_ID"] =
-          String(wMQOSCORRELATIONID);
-      }
-
-      if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
-        localVarHeaderParameter["WM_SVC.NAME"] = String(wMSVCNAME);
-      }
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * <p>This API can be used to retrieve partner configurations like Seller Account & feed throttling values configured for seller.</p><p>The Feed Configuration block in the response shows the seller specific throttling configuration based on the tier of seller. If a new Seller is not assigned any tier, the block will be empty.</p><p>Please note that the default throttling configuration across Walmart and the API Throttling Response Headers can be found <a href=\"/doc/us/mp/us-mp-throttling/\">here</a></p>
-     * @summary Get Partner Configurations
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getPartnerConfigurations: async (
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      wMCONSUMERCHANNELTYPE?: string,
-      options: any = {}
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'authorization' is not null or undefined
-      assertParamExists(
-        "getPartnerConfigurations",
-        "authorization",
-        authorization
-      );
-      // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
-      assertParamExists(
-        "getPartnerConfigurations",
-        "wMSECACCESSTOKEN",
-        wMSECACCESSTOKEN
-      );
-      // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
-      assertParamExists(
-        "getPartnerConfigurations",
-        "wMQOSCORRELATIONID",
-        wMQOSCORRELATIONID
-      );
-      // verify required parameter 'wMSVCNAME' is not null or undefined
-      assertParamExists("getPartnerConfigurations", "wMSVCNAME", wMSVCNAME);
-      const localVarPath = `/v3/settings/partnerprofile`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
-
-      const localVarRequestOptions = {
-        method: "GET",
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
-
-      // authentication basicScheme required
-      // http basic authentication required
-      setBasicAuthToObject(localVarRequestOptions, configuration);
-
-      if (authorization !== undefined && authorization !== null) {
-        localVarHeaderParameter["Authorization"] = String(authorization);
-      }
-
-      if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
-        localVarHeaderParameter["WM_SEC.ACCESS_TOKEN"] =
-          String(wMSECACCESSTOKEN);
-      }
-
-      if (
-        wMCONSUMERCHANNELTYPE !== undefined &&
-        wMCONSUMERCHANNELTYPE !== null
-      ) {
-        localVarHeaderParameter["WM_CONSUMER.CHANNEL.TYPE"] = String(
-          wMCONSUMERCHANNELTYPE
-        );
-      }
-
-      if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
-        localVarHeaderParameter["WM_QOS.CORRELATION_ID"] =
-          String(wMQOSCORRELATIONID);
-      }
-
-      if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
-        localVarHeaderParameter["WM_SVC.NAME"] = String(wMSVCNAME);
-      }
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * <p>This API can be used to retrieve shipping configurations like Lag Time configured for seller.It returns lag time for exception categories that were configured for the Seller through <a href=\"https://sellerhelp.walmart.com/s/guide?article=000005986\">Request Lag Time Exceptions</a> process.</p>
-     * @summary Get Shipping Configurations
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getShippingConfigurations: async (
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      wMCONSUMERCHANNELTYPE?: string,
-      options: any = {}
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'authorization' is not null or undefined
-      assertParamExists(
-        "getShippingConfigurations",
-        "authorization",
-        authorization
-      );
-      // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
-      assertParamExists(
-        "getShippingConfigurations",
-        "wMSECACCESSTOKEN",
-        wMSECACCESSTOKEN
-      );
-      // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
-      assertParamExists(
-        "getShippingConfigurations",
-        "wMQOSCORRELATIONID",
-        wMQOSCORRELATIONID
-      );
-      // verify required parameter 'wMSVCNAME' is not null or undefined
-      assertParamExists("getShippingConfigurations", "wMSVCNAME", wMSVCNAME);
-      const localVarPath = `/v3/settings/shippingprofile`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
-
-      const localVarRequestOptions = {
-        method: "GET",
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
-
-      // authentication basicScheme required
-      // http basic authentication required
-      setBasicAuthToObject(localVarRequestOptions, configuration);
-
-      if (authorization !== undefined && authorization !== null) {
-        localVarHeaderParameter["Authorization"] = String(authorization);
-      }
-
-      if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
-        localVarHeaderParameter["WM_SEC.ACCESS_TOKEN"] =
-          String(wMSECACCESSTOKEN);
-      }
-
-      if (
-        wMCONSUMERCHANNELTYPE !== undefined &&
-        wMCONSUMERCHANNELTYPE !== null
-      ) {
-        localVarHeaderParameter["WM_CONSUMER.CHANNEL.TYPE"] = String(
-          wMCONSUMERCHANNELTYPE
-        );
-      }
-
-      if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
-        localVarHeaderParameter["WM_QOS.CORRELATION_ID"] =
-          String(wMQOSCORRELATIONID);
-      }
-
-      if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
-        localVarHeaderParameter["WM_SVC.NAME"] = String(wMSVCNAME);
-      }
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * This api can be used to get the Activation Status of the Shipping Templates, which can be set through Walmart Seller Center. This activation status is not the same as the \"status:ACTIVE/INACTIVE\" of each shipping template.
-     * @summary Get Shipping Template Activation Status
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getShippingTemplateActivationStatus: async (
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      wMCONSUMERCHANNELTYPE?: string,
-      options: any = {}
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'authorization' is not null or undefined
-      assertParamExists(
-        "getShippingTemplateActivationStatus",
-        "authorization",
-        authorization
-      );
-      // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
-      assertParamExists(
-        "getShippingTemplateActivationStatus",
-        "wMSECACCESSTOKEN",
-        wMSECACCESSTOKEN
-      );
-      // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
-      assertParamExists(
-        "getShippingTemplateActivationStatus",
-        "wMQOSCORRELATIONID",
-        wMQOSCORRELATIONID
-      );
-      // verify required parameter 'wMSVCNAME' is not null or undefined
-      assertParamExists(
-        "getShippingTemplateActivationStatus",
-        "wMSVCNAME",
-        wMSVCNAME
-      );
-      const localVarPath = `/v3/settings/shipping/templates/activationStatus`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
-
-      const localVarRequestOptions = {
-        method: "GET",
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
-
-      // authentication basicScheme required
-      // http basic authentication required
-      setBasicAuthToObject(localVarRequestOptions, configuration);
-
-      if (authorization !== undefined && authorization !== null) {
-        localVarHeaderParameter["Authorization"] = String(authorization);
-      }
-
-      if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
-        localVarHeaderParameter["WM_SEC.ACCESS_TOKEN"] =
-          String(wMSECACCESSTOKEN);
-      }
-
-      if (
-        wMCONSUMERCHANNELTYPE !== undefined &&
-        wMCONSUMERCHANNELTYPE !== null
-      ) {
-        localVarHeaderParameter["WM_CONSUMER.CHANNEL.TYPE"] = String(
-          wMCONSUMERCHANNELTYPE
-        );
-      }
-
-      if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
-        localVarHeaderParameter["WM_QOS.CORRELATION_ID"] =
-          String(wMQOSCORRELATIONID);
-      }
-
-      if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
-        localVarHeaderParameter["WM_SVC.NAME"] = String(wMSVCNAME);
-      }
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * Get Shipping Template Details. Details of CUSTOM, DEFAULT and 3PL-specific (eg. DELIVERR) templates can be retrieved through this API. 3PL will be able to see details of only 3PL-specific templates.
-     * @summary Get Shipping Template Details
-     * @param {string} templateId templateId
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getShippingTemplateDetails: async (
-      templateId: string,
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      wMCONSUMERCHANNELTYPE?: string,
-      options: any = {}
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'templateId' is not null or undefined
-      assertParamExists("getShippingTemplateDetails", "templateId", templateId);
-      // verify required parameter 'authorization' is not null or undefined
-      assertParamExists(
-        "getShippingTemplateDetails",
-        "authorization",
-        authorization
-      );
-      // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
-      assertParamExists(
-        "getShippingTemplateDetails",
-        "wMSECACCESSTOKEN",
-        wMSECACCESSTOKEN
-      );
-      // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
-      assertParamExists(
-        "getShippingTemplateDetails",
-        "wMQOSCORRELATIONID",
-        wMQOSCORRELATIONID
-      );
-      // verify required parameter 'wMSVCNAME' is not null or undefined
-      assertParamExists("getShippingTemplateDetails", "wMSVCNAME", wMSVCNAME);
-      const localVarPath =
-        `/v3/settings/shipping/templates/{templateId}`.replace(
-          `{${"templateId"}}`,
-          encodeURIComponent(String(templateId))
-        );
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
-
-      const localVarRequestOptions = {
-        method: "GET",
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
-
-      // authentication basicScheme required
-      // http basic authentication required
-      setBasicAuthToObject(localVarRequestOptions, configuration);
-
-      if (authorization !== undefined && authorization !== null) {
-        localVarHeaderParameter["Authorization"] = String(authorization);
-      }
-
-      if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
-        localVarHeaderParameter["WM_SEC.ACCESS_TOKEN"] =
-          String(wMSECACCESSTOKEN);
-      }
-
-      if (
-        wMCONSUMERCHANNELTYPE !== undefined &&
-        wMCONSUMERCHANNELTYPE !== null
-      ) {
-        localVarHeaderParameter["WM_CONSUMER.CHANNEL.TYPE"] = String(
-          wMCONSUMERCHANNELTYPE
-        );
-      }
-
-      if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
-        localVarHeaderParameter["WM_QOS.CORRELATION_ID"] =
-          String(wMQOSCORRELATIONID);
-      }
-
-      if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
-        localVarHeaderParameter["WM_SVC.NAME"] = String(wMSVCNAME);
-      }
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * This API enables or disables a fulfillment center.
-     * @summary Update fulfillment center
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {InlineObject} inlineObject
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateFulfillmentCenter: async (
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      inlineObject: InlineObject,
-      wMCONSUMERCHANNELTYPE?: string,
-      options: any = {}
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'authorization' is not null or undefined
-      assertParamExists(
-        "updateFulfillmentCenter",
-        "authorization",
-        authorization
-      );
-      // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
-      assertParamExists(
-        "updateFulfillmentCenter",
-        "wMSECACCESSTOKEN",
-        wMSECACCESSTOKEN
-      );
-      // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
-      assertParamExists(
-        "updateFulfillmentCenter",
-        "wMQOSCORRELATIONID",
-        wMQOSCORRELATIONID
-      );
-      // verify required parameter 'wMSVCNAME' is not null or undefined
-      assertParamExists("updateFulfillmentCenter", "wMSVCNAME", wMSVCNAME);
-      // verify required parameter 'inlineObject' is not null or undefined
-      assertParamExists(
-        "updateFulfillmentCenter",
-        "inlineObject",
-        inlineObject
-      );
-      const localVarPath = `/v3/settings/shipping/shipnodes`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
-
-      const localVarRequestOptions = {
-        method: "PUT",
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
-
-      // authentication basicScheme required
-      // http basic authentication required
-      setBasicAuthToObject(localVarRequestOptions, configuration);
-
-      if (authorization !== undefined && authorization !== null) {
-        localVarHeaderParameter["Authorization"] = String(authorization);
-      }
-
-      if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
-        localVarHeaderParameter["WM_SEC.ACCESS_TOKEN"] =
-          String(wMSECACCESSTOKEN);
-      }
-
-      if (
-        wMCONSUMERCHANNELTYPE !== undefined &&
-        wMCONSUMERCHANNELTYPE !== null
-      ) {
-        localVarHeaderParameter["WM_CONSUMER.CHANNEL.TYPE"] = String(
-          wMCONSUMERCHANNELTYPE
-        );
-      }
-
-      if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
-        localVarHeaderParameter["WM_QOS.CORRELATION_ID"] =
-          String(wMQOSCORRELATIONID);
-      }
-
-      if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
-        localVarHeaderParameter["WM_SVC.NAME"] = String(wMSVCNAME);
-      }
-
-      localVarHeaderParameter["Content-Type"] = "application/json";
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
-      localVarRequestOptions.data = serializeDataIfNeeded(
-        inlineObject,
-        localVarRequestOptions,
-        configuration
-      );
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * Update existing Shipping Template.
-     * @summary Update Shipping Templates
-     * @param {string} templateId templateId
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {InlineObject3} inlineObject3
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateShippingTemplates: async (
-      templateId: string,
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      inlineObject3: InlineObject3,
-      wMCONSUMERCHANNELTYPE?: string,
-      options: any = {}
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'templateId' is not null or undefined
-      assertParamExists("updateShippingTemplates", "templateId", templateId);
-      // verify required parameter 'authorization' is not null or undefined
-      assertParamExists(
-        "updateShippingTemplates",
-        "authorization",
-        authorization
-      );
-      // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
-      assertParamExists(
-        "updateShippingTemplates",
-        "wMSECACCESSTOKEN",
-        wMSECACCESSTOKEN
-      );
-      // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
-      assertParamExists(
-        "updateShippingTemplates",
-        "wMQOSCORRELATIONID",
-        wMQOSCORRELATIONID
-      );
-      // verify required parameter 'wMSVCNAME' is not null or undefined
-      assertParamExists("updateShippingTemplates", "wMSVCNAME", wMSVCNAME);
-      // verify required parameter 'inlineObject3' is not null or undefined
-      assertParamExists(
-        "updateShippingTemplates",
-        "inlineObject3",
-        inlineObject3
-      );
-      const localVarPath =
-        `/v3/settings/shipping/templates/{templateId}`.replace(
-          `{${"templateId"}}`,
-          encodeURIComponent(String(templateId))
-        );
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
-
-      const localVarRequestOptions = {
-        method: "PUT",
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
-
-      // authentication basicScheme required
-      // http basic authentication required
-      setBasicAuthToObject(localVarRequestOptions, configuration);
-
-      if (authorization !== undefined && authorization !== null) {
-        localVarHeaderParameter["Authorization"] = String(authorization);
-      }
-
-      if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
-        localVarHeaderParameter["WM_SEC.ACCESS_TOKEN"] =
-          String(wMSECACCESSTOKEN);
-      }
-
-      if (
-        wMCONSUMERCHANNELTYPE !== undefined &&
-        wMCONSUMERCHANNELTYPE !== null
-      ) {
-        localVarHeaderParameter["WM_CONSUMER.CHANNEL.TYPE"] = String(
-          wMCONSUMERCHANNELTYPE
-        );
-      }
-
-      if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
-        localVarHeaderParameter["WM_QOS.CORRELATION_ID"] =
-          String(wMQOSCORRELATIONID);
-      }
-
-      if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
-        localVarHeaderParameter["WM_SVC.NAME"] = String(wMSVCNAME);
-      }
-
-      localVarHeaderParameter["Content-Type"] = "application/json";
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
-      localVarRequestOptions.data = serializeDataIfNeeded(
-        inlineObject3,
-        localVarRequestOptions,
-        configuration
-      );
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-  };
+export const SettingsApiAxiosParamCreator = function (configuration?: Configuration) {
+	return {
+		/**
+		 * This API creates a third party fulfillment center.
+		 * @summary Create third party fulfillment center
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {InlineObject4} inlineObject4
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		create3PFulfillmentCenter: async (
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			inlineObject4: InlineObject4,
+			wMCONSUMERCHANNELTYPE?: string,
+			options: any = {}
+		): Promise<RequestArgs> => {
+			// verify required parameter 'authorization' is not null or undefined
+			assertParamExists('create3PFulfillmentCenter', 'authorization', authorization);
+			// verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
+			assertParamExists('create3PFulfillmentCenter', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN);
+			// verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
+			assertParamExists('create3PFulfillmentCenter', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID);
+			// verify required parameter 'wMSVCNAME' is not null or undefined
+			assertParamExists('create3PFulfillmentCenter', 'wMSVCNAME', wMSVCNAME);
+			// verify required parameter 'inlineObject4' is not null or undefined
+			assertParamExists('create3PFulfillmentCenter', 'inlineObject4', inlineObject4);
+			const localVarPath = `/v3/settings/shipping/3plshipnodes`;
+			// use dummy base URL string because the URL constructor only accepts absolute URLs.
+			const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+			let baseOptions;
+			if (configuration) {
+				baseOptions = configuration.baseOptions;
+			}
+
+			const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
+			const localVarHeaderParameter = {} as any;
+			const localVarQueryParameter = {} as any;
+
+			// authentication basicScheme required
+			// http basic authentication required
+			setBasicAuthToObject(localVarRequestOptions, configuration);
+
+			if (authorization !== undefined && authorization !== null) {
+				localVarHeaderParameter['Authorization'] = String(authorization);
+			}
+
+			if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
+				localVarHeaderParameter['WM_SEC.ACCESS_TOKEN'] = String(wMSECACCESSTOKEN);
+			}
+
+			if (wMCONSUMERCHANNELTYPE !== undefined && wMCONSUMERCHANNELTYPE !== null) {
+				localVarHeaderParameter['WM_CONSUMER.CHANNEL.TYPE'] = String(wMCONSUMERCHANNELTYPE);
+			}
+
+			if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
+				localVarHeaderParameter['WM_QOS.CORRELATION_ID'] = String(wMQOSCORRELATIONID);
+			}
+
+			if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
+				localVarHeaderParameter['WM_SVC.NAME'] = String(wMSVCNAME);
+			}
+
+			localVarHeaderParameter['Content-Type'] = 'application/json';
+
+			setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+			let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+			localVarRequestOptions.headers = {
+				...localVarHeaderParameter,
+				...headersFromBaseOptions,
+				...options.headers,
+			};
+			localVarRequestOptions.data = serializeDataIfNeeded(inlineObject4, localVarRequestOptions, configuration);
+
+			return {
+				url: toPathString(localVarUrlObj),
+				options: localVarRequestOptions,
+			};
+		},
+		/**
+		 * This API creates a fulfillment center.
+		 * @summary Create fulfillment center
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {InlineObject1} inlineObject1
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		createFulfillmentCenter: async (
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			inlineObject1: InlineObject1,
+			wMCONSUMERCHANNELTYPE?: string,
+			options: any = {}
+		): Promise<RequestArgs> => {
+			// verify required parameter 'authorization' is not null or undefined
+			assertParamExists('createFulfillmentCenter', 'authorization', authorization);
+			// verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
+			assertParamExists('createFulfillmentCenter', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN);
+			// verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
+			assertParamExists('createFulfillmentCenter', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID);
+			// verify required parameter 'wMSVCNAME' is not null or undefined
+			assertParamExists('createFulfillmentCenter', 'wMSVCNAME', wMSVCNAME);
+			// verify required parameter 'inlineObject1' is not null or undefined
+			assertParamExists('createFulfillmentCenter', 'inlineObject1', inlineObject1);
+			const localVarPath = `/v3/settings/shipping/shipnodes`;
+			// use dummy base URL string because the URL constructor only accepts absolute URLs.
+			const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+			let baseOptions;
+			if (configuration) {
+				baseOptions = configuration.baseOptions;
+			}
+
+			const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
+			const localVarHeaderParameter = {} as any;
+			const localVarQueryParameter = {} as any;
+
+			// authentication basicScheme required
+			// http basic authentication required
+			setBasicAuthToObject(localVarRequestOptions, configuration);
+
+			if (authorization !== undefined && authorization !== null) {
+				localVarHeaderParameter['Authorization'] = String(authorization);
+			}
+
+			if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
+				localVarHeaderParameter['WM_SEC.ACCESS_TOKEN'] = String(wMSECACCESSTOKEN);
+			}
+
+			if (wMCONSUMERCHANNELTYPE !== undefined && wMCONSUMERCHANNELTYPE !== null) {
+				localVarHeaderParameter['WM_CONSUMER.CHANNEL.TYPE'] = String(wMCONSUMERCHANNELTYPE);
+			}
+
+			if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
+				localVarHeaderParameter['WM_QOS.CORRELATION_ID'] = String(wMQOSCORRELATIONID);
+			}
+
+			if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
+				localVarHeaderParameter['WM_SVC.NAME'] = String(wMSVCNAME);
+			}
+
+			localVarHeaderParameter['Content-Type'] = 'application/json';
+
+			setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+			let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+			localVarRequestOptions.headers = {
+				...localVarHeaderParameter,
+				...headersFromBaseOptions,
+				...options.headers,
+			};
+			localVarRequestOptions.data = serializeDataIfNeeded(inlineObject1, localVarRequestOptions, configuration);
+
+			return {
+				url: toPathString(localVarUrlObj),
+				options: localVarRequestOptions,
+			};
+		},
+		/**
+		 * Create a new shipping template
+		 * @summary Create Shipping Templates
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {InlineObject2} inlineObject2
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		createShippingTemplates: async (
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			inlineObject2: InlineObject2,
+			wMCONSUMERCHANNELTYPE?: string,
+			options: any = {}
+		): Promise<RequestArgs> => {
+			// verify required parameter 'authorization' is not null or undefined
+			assertParamExists('createShippingTemplates', 'authorization', authorization);
+			// verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
+			assertParamExists('createShippingTemplates', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN);
+			// verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
+			assertParamExists('createShippingTemplates', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID);
+			// verify required parameter 'wMSVCNAME' is not null or undefined
+			assertParamExists('createShippingTemplates', 'wMSVCNAME', wMSVCNAME);
+			// verify required parameter 'inlineObject2' is not null or undefined
+			assertParamExists('createShippingTemplates', 'inlineObject2', inlineObject2);
+			const localVarPath = `/v3/settings/shipping/templates`;
+			// use dummy base URL string because the URL constructor only accepts absolute URLs.
+			const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+			let baseOptions;
+			if (configuration) {
+				baseOptions = configuration.baseOptions;
+			}
+
+			const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
+			const localVarHeaderParameter = {} as any;
+			const localVarQueryParameter = {} as any;
+
+			// authentication basicScheme required
+			// http basic authentication required
+			setBasicAuthToObject(localVarRequestOptions, configuration);
+
+			if (authorization !== undefined && authorization !== null) {
+				localVarHeaderParameter['Authorization'] = String(authorization);
+			}
+
+			if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
+				localVarHeaderParameter['WM_SEC.ACCESS_TOKEN'] = String(wMSECACCESSTOKEN);
+			}
+
+			if (wMCONSUMERCHANNELTYPE !== undefined && wMCONSUMERCHANNELTYPE !== null) {
+				localVarHeaderParameter['WM_CONSUMER.CHANNEL.TYPE'] = String(wMCONSUMERCHANNELTYPE);
+			}
+
+			if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
+				localVarHeaderParameter['WM_QOS.CORRELATION_ID'] = String(wMQOSCORRELATIONID);
+			}
+
+			if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
+				localVarHeaderParameter['WM_SVC.NAME'] = String(wMSVCNAME);
+			}
+
+			localVarHeaderParameter['Content-Type'] = 'application/json';
+
+			setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+			let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+			localVarRequestOptions.headers = {
+				...localVarHeaderParameter,
+				...headersFromBaseOptions,
+				...options.headers,
+			};
+			localVarRequestOptions.data = serializeDataIfNeeded(inlineObject2, localVarRequestOptions, configuration);
+
+			return {
+				url: toPathString(localVarUrlObj),
+				options: localVarRequestOptions,
+			};
+		},
+		/**
+		 * Delete Existing Shipping Template. DEFAULT templates cannot be deleted. 3PL partners cannot delete templates created by Sellers.
+		 * @summary Delete Shipping Template
+		 * @param {string} templateId Shipping Template ID of the template to be deleted
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		deleteShippingTemplateDetails: async (
+			templateId: string,
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			wMCONSUMERCHANNELTYPE?: string,
+			options: any = {}
+		): Promise<RequestArgs> => {
+			// verify required parameter 'templateId' is not null or undefined
+			assertParamExists('deleteShippingTemplateDetails', 'templateId', templateId);
+			// verify required parameter 'authorization' is not null or undefined
+			assertParamExists('deleteShippingTemplateDetails', 'authorization', authorization);
+			// verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
+			assertParamExists('deleteShippingTemplateDetails', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN);
+			// verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
+			assertParamExists('deleteShippingTemplateDetails', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID);
+			// verify required parameter 'wMSVCNAME' is not null or undefined
+			assertParamExists('deleteShippingTemplateDetails', 'wMSVCNAME', wMSVCNAME);
+			const localVarPath = `/v3/settings/shipping/templates/{templateId}`.replace(
+				`{${'templateId'}}`,
+				encodeURIComponent(String(templateId))
+			);
+			// use dummy base URL string because the URL constructor only accepts absolute URLs.
+			const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+			let baseOptions;
+			if (configuration) {
+				baseOptions = configuration.baseOptions;
+			}
+
+			const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options };
+			const localVarHeaderParameter = {} as any;
+			const localVarQueryParameter = {} as any;
+
+			// authentication basicScheme required
+			// http basic authentication required
+			setBasicAuthToObject(localVarRequestOptions, configuration);
+
+			if (authorization !== undefined && authorization !== null) {
+				localVarHeaderParameter['Authorization'] = String(authorization);
+			}
+
+			if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
+				localVarHeaderParameter['WM_SEC.ACCESS_TOKEN'] = String(wMSECACCESSTOKEN);
+			}
+
+			if (wMCONSUMERCHANNELTYPE !== undefined && wMCONSUMERCHANNELTYPE !== null) {
+				localVarHeaderParameter['WM_CONSUMER.CHANNEL.TYPE'] = String(wMCONSUMERCHANNELTYPE);
+			}
+
+			if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
+				localVarHeaderParameter['WM_QOS.CORRELATION_ID'] = String(wMQOSCORRELATIONID);
+			}
+
+			if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
+				localVarHeaderParameter['WM_SVC.NAME'] = String(wMSVCNAME);
+			}
+
+			setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+			let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+			localVarRequestOptions.headers = {
+				...localVarHeaderParameter,
+				...headersFromBaseOptions,
+				...options.headers,
+			};
+
+			return {
+				url: toPathString(localVarUrlObj),
+				options: localVarRequestOptions,
+			};
+		},
+		/**
+		 * Get a list of all third party fulfillment providers.
+		 * @summary Get all third party fulfillment providers
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		get3PFulfillmentProviders: async (
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			wMCONSUMERCHANNELTYPE?: string,
+			options: any = {}
+		): Promise<RequestArgs> => {
+			// verify required parameter 'authorization' is not null or undefined
+			assertParamExists('get3PFulfillmentProviders', 'authorization', authorization);
+			// verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
+			assertParamExists('get3PFulfillmentProviders', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN);
+			// verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
+			assertParamExists('get3PFulfillmentProviders', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID);
+			// verify required parameter 'wMSVCNAME' is not null or undefined
+			assertParamExists('get3PFulfillmentProviders', 'wMSVCNAME', wMSVCNAME);
+			const localVarPath = `/v3/settings/shipping/3plproviders`;
+			// use dummy base URL string because the URL constructor only accepts absolute URLs.
+			const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+			let baseOptions;
+			if (configuration) {
+				baseOptions = configuration.baseOptions;
+			}
+
+			const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+			const localVarHeaderParameter = {} as any;
+			const localVarQueryParameter = {} as any;
+
+			// authentication basicScheme required
+			// http basic authentication required
+			setBasicAuthToObject(localVarRequestOptions, configuration);
+
+			if (authorization !== undefined && authorization !== null) {
+				localVarHeaderParameter['Authorization'] = String(authorization);
+			}
+
+			if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
+				localVarHeaderParameter['WM_SEC.ACCESS_TOKEN'] = String(wMSECACCESSTOKEN);
+			}
+
+			if (wMCONSUMERCHANNELTYPE !== undefined && wMCONSUMERCHANNELTYPE !== null) {
+				localVarHeaderParameter['WM_CONSUMER.CHANNEL.TYPE'] = String(wMCONSUMERCHANNELTYPE);
+			}
+
+			if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
+				localVarHeaderParameter['WM_QOS.CORRELATION_ID'] = String(wMQOSCORRELATIONID);
+			}
+
+			if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
+				localVarHeaderParameter['WM_SVC.NAME'] = String(wMSVCNAME);
+			}
+
+			setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+			let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+			localVarRequestOptions.headers = {
+				...localVarHeaderParameter,
+				...headersFromBaseOptions,
+				...options.headers,
+			};
+
+			return {
+				url: toPathString(localVarUrlObj),
+				options: localVarRequestOptions,
+			};
+		},
+		/**
+		 * This API provides a list of all the fulfillment centers
+		 * @summary Get all fulfillment centers
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {boolean} [includeCalendarDayConfiguration] Flag to specify if calendarDayConfiguration block will be included in the response. Allowed values are true or false.
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		getAllFulfillmentCenters: async (
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			includeCalendarDayConfiguration?: boolean,
+			wMCONSUMERCHANNELTYPE?: string,
+			options: any = {}
+		): Promise<RequestArgs> => {
+			// verify required parameter 'authorization' is not null or undefined
+			assertParamExists('getAllFulfillmentCenters', 'authorization', authorization);
+			// verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
+			assertParamExists('getAllFulfillmentCenters', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN);
+			// verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
+			assertParamExists('getAllFulfillmentCenters', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID);
+			// verify required parameter 'wMSVCNAME' is not null or undefined
+			assertParamExists('getAllFulfillmentCenters', 'wMSVCNAME', wMSVCNAME);
+			const localVarPath = `/v3/settings/shipping/shipnodes`;
+			// use dummy base URL string because the URL constructor only accepts absolute URLs.
+			const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+			let baseOptions;
+			if (configuration) {
+				baseOptions = configuration.baseOptions;
+			}
+
+			const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+			const localVarHeaderParameter = {} as any;
+			const localVarQueryParameter = {} as any;
+
+			// authentication basicScheme required
+			// http basic authentication required
+			setBasicAuthToObject(localVarRequestOptions, configuration);
+
+			if (includeCalendarDayConfiguration !== undefined) {
+				localVarQueryParameter['includeCalendarDayConfiguration'] = includeCalendarDayConfiguration;
+			}
+
+			if (authorization !== undefined && authorization !== null) {
+				localVarHeaderParameter['Authorization'] = String(authorization);
+			}
+
+			if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
+				localVarHeaderParameter['WM_SEC.ACCESS_TOKEN'] = String(wMSECACCESSTOKEN);
+			}
+
+			if (wMCONSUMERCHANNELTYPE !== undefined && wMCONSUMERCHANNELTYPE !== null) {
+				localVarHeaderParameter['WM_CONSUMER.CHANNEL.TYPE'] = String(wMCONSUMERCHANNELTYPE);
+			}
+
+			if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
+				localVarHeaderParameter['WM_QOS.CORRELATION_ID'] = String(wMQOSCORRELATIONID);
+			}
+
+			if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
+				localVarHeaderParameter['WM_SVC.NAME'] = String(wMSVCNAME);
+			}
+
+			setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+			let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+			localVarRequestOptions.headers = {
+				...localVarHeaderParameter,
+				...headersFromBaseOptions,
+				...options.headers,
+			};
+
+			return {
+				url: toPathString(localVarUrlObj),
+				options: localVarRequestOptions,
+			};
+		},
+		/**
+		 * Get all the shipping templates for a Seller. All template types viz. CUSTOM, DEFAULT and 3PL-specific (eg. DELIVERR) can be retrieved through this API.
+		 * @summary Get All Shipping Templates
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		getAllShippingTemplates: async (
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			wMCONSUMERCHANNELTYPE?: string,
+			options: any = {}
+		): Promise<RequestArgs> => {
+			// verify required parameter 'authorization' is not null or undefined
+			assertParamExists('getAllShippingTemplates', 'authorization', authorization);
+			// verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
+			assertParamExists('getAllShippingTemplates', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN);
+			// verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
+			assertParamExists('getAllShippingTemplates', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID);
+			// verify required parameter 'wMSVCNAME' is not null or undefined
+			assertParamExists('getAllShippingTemplates', 'wMSVCNAME', wMSVCNAME);
+			const localVarPath = `/v3/settings/shipping/templates`;
+			// use dummy base URL string because the URL constructor only accepts absolute URLs.
+			const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+			let baseOptions;
+			if (configuration) {
+				baseOptions = configuration.baseOptions;
+			}
+
+			const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+			const localVarHeaderParameter = {} as any;
+			const localVarQueryParameter = {} as any;
+
+			// authentication basicScheme required
+			// http basic authentication required
+			setBasicAuthToObject(localVarRequestOptions, configuration);
+
+			if (authorization !== undefined && authorization !== null) {
+				localVarHeaderParameter['Authorization'] = String(authorization);
+			}
+
+			if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
+				localVarHeaderParameter['WM_SEC.ACCESS_TOKEN'] = String(wMSECACCESSTOKEN);
+			}
+
+			if (wMCONSUMERCHANNELTYPE !== undefined && wMCONSUMERCHANNELTYPE !== null) {
+				localVarHeaderParameter['WM_CONSUMER.CHANNEL.TYPE'] = String(wMCONSUMERCHANNELTYPE);
+			}
+
+			if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
+				localVarHeaderParameter['WM_QOS.CORRELATION_ID'] = String(wMQOSCORRELATIONID);
+			}
+
+			if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
+				localVarHeaderParameter['WM_SVC.NAME'] = String(wMSVCNAME);
+			}
+
+			setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+			let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+			localVarRequestOptions.headers = {
+				...localVarHeaderParameter,
+				...headersFromBaseOptions,
+				...options.headers,
+			};
+
+			return {
+				url: toPathString(localVarUrlObj),
+				options: localVarRequestOptions,
+			};
+		},
+		/**
+		 * Gets the available carrier methods
+		 * @summary Get carrier methods
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		getCarrierMethods: async (
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			wMCONSUMERCHANNELTYPE?: string,
+			options: any = {}
+		): Promise<RequestArgs> => {
+			// verify required parameter 'authorization' is not null or undefined
+			assertParamExists('getCarrierMethods', 'authorization', authorization);
+			// verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
+			assertParamExists('getCarrierMethods', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN);
+			// verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
+			assertParamExists('getCarrierMethods', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID);
+			// verify required parameter 'wMSVCNAME' is not null or undefined
+			assertParamExists('getCarrierMethods', 'wMSVCNAME', wMSVCNAME);
+			const localVarPath = `/v3/settings/shipping/carriers`;
+			// use dummy base URL string because the URL constructor only accepts absolute URLs.
+			const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+			let baseOptions;
+			if (configuration) {
+				baseOptions = configuration.baseOptions;
+			}
+
+			const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+			const localVarHeaderParameter = {} as any;
+			const localVarQueryParameter = {} as any;
+
+			// authentication basicScheme required
+			// http basic authentication required
+			setBasicAuthToObject(localVarRequestOptions, configuration);
+
+			if (authorization !== undefined && authorization !== null) {
+				localVarHeaderParameter['Authorization'] = String(authorization);
+			}
+
+			if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
+				localVarHeaderParameter['WM_SEC.ACCESS_TOKEN'] = String(wMSECACCESSTOKEN);
+			}
+
+			if (wMCONSUMERCHANNELTYPE !== undefined && wMCONSUMERCHANNELTYPE !== null) {
+				localVarHeaderParameter['WM_CONSUMER.CHANNEL.TYPE'] = String(wMCONSUMERCHANNELTYPE);
+			}
+
+			if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
+				localVarHeaderParameter['WM_QOS.CORRELATION_ID'] = String(wMQOSCORRELATIONID);
+			}
+
+			if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
+				localVarHeaderParameter['WM_SVC.NAME'] = String(wMSVCNAME);
+			}
+
+			setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+			let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+			localVarRequestOptions.headers = {
+				...localVarHeaderParameter,
+				...headersFromBaseOptions,
+				...options.headers,
+			};
+
+			return {
+				url: toPathString(localVarUrlObj),
+				options: localVarRequestOptions,
+			};
+		},
+		/**
+		 * This API provides the list of all fullfillment centers for the seller and their coverage areas defined by Walmart based on the address
+		 * @summary Get coverage for fulfillment centers
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		getCoverageForFulfillmentCenters: async (
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			wMCONSUMERCHANNELTYPE?: string,
+			options: any = {}
+		): Promise<RequestArgs> => {
+			// verify required parameter 'authorization' is not null or undefined
+			assertParamExists('getCoverageForFulfillmentCenters', 'authorization', authorization);
+			// verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
+			assertParamExists('getCoverageForFulfillmentCenters', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN);
+			// verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
+			assertParamExists('getCoverageForFulfillmentCenters', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID);
+			// verify required parameter 'wMSVCNAME' is not null or undefined
+			assertParamExists('getCoverageForFulfillmentCenters', 'wMSVCNAME', wMSVCNAME);
+			const localVarPath = `/v3/settings/shipping/shipnodes/coverage`;
+			// use dummy base URL string because the URL constructor only accepts absolute URLs.
+			const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+			let baseOptions;
+			if (configuration) {
+				baseOptions = configuration.baseOptions;
+			}
+
+			const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+			const localVarHeaderParameter = {} as any;
+			const localVarQueryParameter = {} as any;
+
+			// authentication basicScheme required
+			// http basic authentication required
+			setBasicAuthToObject(localVarRequestOptions, configuration);
+
+			if (authorization !== undefined && authorization !== null) {
+				localVarHeaderParameter['Authorization'] = String(authorization);
+			}
+
+			if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
+				localVarHeaderParameter['WM_SEC.ACCESS_TOKEN'] = String(wMSECACCESSTOKEN);
+			}
+
+			if (wMCONSUMERCHANNELTYPE !== undefined && wMCONSUMERCHANNELTYPE !== null) {
+				localVarHeaderParameter['WM_CONSUMER.CHANNEL.TYPE'] = String(wMCONSUMERCHANNELTYPE);
+			}
+
+			if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
+				localVarHeaderParameter['WM_QOS.CORRELATION_ID'] = String(wMQOSCORRELATIONID);
+			}
+
+			if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
+				localVarHeaderParameter['WM_SVC.NAME'] = String(wMSVCNAME);
+			}
+
+			setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+			let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+			localVarRequestOptions.headers = {
+				...localVarHeaderParameter,
+				...headersFromBaseOptions,
+				...options.headers,
+			};
+
+			return {
+				url: toPathString(localVarUrlObj),
+				options: localVarRequestOptions,
+			};
+		},
+		/**
+		 * <p>This API can be used to retrieve partner configurations like Seller Account & feed throttling values configured for seller.</p><p>The Feed Configuration block in the response shows the seller specific throttling configuration based on the tier of seller. If a new Seller is not assigned any tier, the block will be empty.</p><p>Please note that the default throttling configuration across Walmart and the API Throttling Response Headers can be found <a href=\"/doc/us/mp/us-mp-throttling/\">here</a></p>
+		 * @summary Get Partner Configurations
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		getPartnerConfigurations: async (
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			wMCONSUMERCHANNELTYPE?: string,
+			options: any = {}
+		): Promise<RequestArgs> => {
+			// verify required parameter 'authorization' is not null or undefined
+			assertParamExists('getPartnerConfigurations', 'authorization', authorization);
+			// verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
+			assertParamExists('getPartnerConfigurations', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN);
+			// verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
+			assertParamExists('getPartnerConfigurations', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID);
+			// verify required parameter 'wMSVCNAME' is not null or undefined
+			assertParamExists('getPartnerConfigurations', 'wMSVCNAME', wMSVCNAME);
+			const localVarPath = `/v3/settings/partnerprofile`;
+			// use dummy base URL string because the URL constructor only accepts absolute URLs.
+			const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+			let baseOptions;
+			if (configuration) {
+				baseOptions = configuration.baseOptions;
+			}
+
+			const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+			const localVarHeaderParameter = {} as any;
+			const localVarQueryParameter = {} as any;
+
+			// authentication basicScheme required
+			// http basic authentication required
+			setBasicAuthToObject(localVarRequestOptions, configuration);
+
+			if (authorization !== undefined && authorization !== null) {
+				localVarHeaderParameter['Authorization'] = String(authorization);
+			}
+
+			if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
+				localVarHeaderParameter['WM_SEC.ACCESS_TOKEN'] = String(wMSECACCESSTOKEN);
+			}
+
+			if (wMCONSUMERCHANNELTYPE !== undefined && wMCONSUMERCHANNELTYPE !== null) {
+				localVarHeaderParameter['WM_CONSUMER.CHANNEL.TYPE'] = String(wMCONSUMERCHANNELTYPE);
+			}
+
+			if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
+				localVarHeaderParameter['WM_QOS.CORRELATION_ID'] = String(wMQOSCORRELATIONID);
+			}
+
+			if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
+				localVarHeaderParameter['WM_SVC.NAME'] = String(wMSVCNAME);
+			}
+
+			setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+			let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+			localVarRequestOptions.headers = {
+				...localVarHeaderParameter,
+				...headersFromBaseOptions,
+				...options.headers,
+			};
+
+			return {
+				url: toPathString(localVarUrlObj),
+				options: localVarRequestOptions,
+			};
+		},
+		/**
+		 * <p>This API can be used to retrieve shipping configurations like Lag Time configured for seller.It returns lag time for exception categories that were configured for the Seller through <a href=\"https://sellerhelp.walmart.com/s/guide?article=000005986\">Request Lag Time Exceptions</a> process.</p>
+		 * @summary Get Shipping Configurations
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		getShippingConfigurations: async (
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			wMCONSUMERCHANNELTYPE?: string,
+			options: any = {}
+		): Promise<RequestArgs> => {
+			// verify required parameter 'authorization' is not null or undefined
+			assertParamExists('getShippingConfigurations', 'authorization', authorization);
+			// verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
+			assertParamExists('getShippingConfigurations', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN);
+			// verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
+			assertParamExists('getShippingConfigurations', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID);
+			// verify required parameter 'wMSVCNAME' is not null or undefined
+			assertParamExists('getShippingConfigurations', 'wMSVCNAME', wMSVCNAME);
+			const localVarPath = `/v3/settings/shippingprofile`;
+			// use dummy base URL string because the URL constructor only accepts absolute URLs.
+			const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+			let baseOptions;
+			if (configuration) {
+				baseOptions = configuration.baseOptions;
+			}
+
+			const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+			const localVarHeaderParameter = {} as any;
+			const localVarQueryParameter = {} as any;
+
+			// authentication basicScheme required
+			// http basic authentication required
+			setBasicAuthToObject(localVarRequestOptions, configuration);
+
+			if (authorization !== undefined && authorization !== null) {
+				localVarHeaderParameter['Authorization'] = String(authorization);
+			}
+
+			if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
+				localVarHeaderParameter['WM_SEC.ACCESS_TOKEN'] = String(wMSECACCESSTOKEN);
+			}
+
+			if (wMCONSUMERCHANNELTYPE !== undefined && wMCONSUMERCHANNELTYPE !== null) {
+				localVarHeaderParameter['WM_CONSUMER.CHANNEL.TYPE'] = String(wMCONSUMERCHANNELTYPE);
+			}
+
+			if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
+				localVarHeaderParameter['WM_QOS.CORRELATION_ID'] = String(wMQOSCORRELATIONID);
+			}
+
+			if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
+				localVarHeaderParameter['WM_SVC.NAME'] = String(wMSVCNAME);
+			}
+
+			setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+			let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+			localVarRequestOptions.headers = {
+				...localVarHeaderParameter,
+				...headersFromBaseOptions,
+				...options.headers,
+			};
+
+			return {
+				url: toPathString(localVarUrlObj),
+				options: localVarRequestOptions,
+			};
+		},
+		/**
+		 * This api can be used to get the Activation Status of the Shipping Templates, which can be set through Walmart Seller Center. This activation status is not the same as the \"status:ACTIVE/INACTIVE\" of each shipping template.
+		 * @summary Get Shipping Template Activation Status
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		getShippingTemplateActivationStatus: async (
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			wMCONSUMERCHANNELTYPE?: string,
+			options: any = {}
+		): Promise<RequestArgs> => {
+			// verify required parameter 'authorization' is not null or undefined
+			assertParamExists('getShippingTemplateActivationStatus', 'authorization', authorization);
+			// verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
+			assertParamExists('getShippingTemplateActivationStatus', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN);
+			// verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
+			assertParamExists('getShippingTemplateActivationStatus', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID);
+			// verify required parameter 'wMSVCNAME' is not null or undefined
+			assertParamExists('getShippingTemplateActivationStatus', 'wMSVCNAME', wMSVCNAME);
+			const localVarPath = `/v3/settings/shipping/templates/activationStatus`;
+			// use dummy base URL string because the URL constructor only accepts absolute URLs.
+			const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+			let baseOptions;
+			if (configuration) {
+				baseOptions = configuration.baseOptions;
+			}
+
+			const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+			const localVarHeaderParameter = {} as any;
+			const localVarQueryParameter = {} as any;
+
+			// authentication basicScheme required
+			// http basic authentication required
+			setBasicAuthToObject(localVarRequestOptions, configuration);
+
+			if (authorization !== undefined && authorization !== null) {
+				localVarHeaderParameter['Authorization'] = String(authorization);
+			}
+
+			if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
+				localVarHeaderParameter['WM_SEC.ACCESS_TOKEN'] = String(wMSECACCESSTOKEN);
+			}
+
+			if (wMCONSUMERCHANNELTYPE !== undefined && wMCONSUMERCHANNELTYPE !== null) {
+				localVarHeaderParameter['WM_CONSUMER.CHANNEL.TYPE'] = String(wMCONSUMERCHANNELTYPE);
+			}
+
+			if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
+				localVarHeaderParameter['WM_QOS.CORRELATION_ID'] = String(wMQOSCORRELATIONID);
+			}
+
+			if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
+				localVarHeaderParameter['WM_SVC.NAME'] = String(wMSVCNAME);
+			}
+
+			setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+			let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+			localVarRequestOptions.headers = {
+				...localVarHeaderParameter,
+				...headersFromBaseOptions,
+				...options.headers,
+			};
+
+			return {
+				url: toPathString(localVarUrlObj),
+				options: localVarRequestOptions,
+			};
+		},
+		/**
+		 * Get Shipping Template Details. Details of CUSTOM, DEFAULT and 3PL-specific (eg. DELIVERR) templates can be retrieved through this API. 3PL will be able to see details of only 3PL-specific templates.
+		 * @summary Get Shipping Template Details
+		 * @param {string} templateId templateId
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		getShippingTemplateDetails: async (
+			templateId: string,
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			wMCONSUMERCHANNELTYPE?: string,
+			options: any = {}
+		): Promise<RequestArgs> => {
+			// verify required parameter 'templateId' is not null or undefined
+			assertParamExists('getShippingTemplateDetails', 'templateId', templateId);
+			// verify required parameter 'authorization' is not null or undefined
+			assertParamExists('getShippingTemplateDetails', 'authorization', authorization);
+			// verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
+			assertParamExists('getShippingTemplateDetails', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN);
+			// verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
+			assertParamExists('getShippingTemplateDetails', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID);
+			// verify required parameter 'wMSVCNAME' is not null or undefined
+			assertParamExists('getShippingTemplateDetails', 'wMSVCNAME', wMSVCNAME);
+			const localVarPath = `/v3/settings/shipping/templates/{templateId}`.replace(
+				`{${'templateId'}}`,
+				encodeURIComponent(String(templateId))
+			);
+			// use dummy base URL string because the URL constructor only accepts absolute URLs.
+			const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+			let baseOptions;
+			if (configuration) {
+				baseOptions = configuration.baseOptions;
+			}
+
+			const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+			const localVarHeaderParameter = {} as any;
+			const localVarQueryParameter = {} as any;
+
+			// authentication basicScheme required
+			// http basic authentication required
+			setBasicAuthToObject(localVarRequestOptions, configuration);
+
+			if (authorization !== undefined && authorization !== null) {
+				localVarHeaderParameter['Authorization'] = String(authorization);
+			}
+
+			if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
+				localVarHeaderParameter['WM_SEC.ACCESS_TOKEN'] = String(wMSECACCESSTOKEN);
+			}
+
+			if (wMCONSUMERCHANNELTYPE !== undefined && wMCONSUMERCHANNELTYPE !== null) {
+				localVarHeaderParameter['WM_CONSUMER.CHANNEL.TYPE'] = String(wMCONSUMERCHANNELTYPE);
+			}
+
+			if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
+				localVarHeaderParameter['WM_QOS.CORRELATION_ID'] = String(wMQOSCORRELATIONID);
+			}
+
+			if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
+				localVarHeaderParameter['WM_SVC.NAME'] = String(wMSVCNAME);
+			}
+
+			setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+			let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+			localVarRequestOptions.headers = {
+				...localVarHeaderParameter,
+				...headersFromBaseOptions,
+				...options.headers,
+			};
+
+			return {
+				url: toPathString(localVarUrlObj),
+				options: localVarRequestOptions,
+			};
+		},
+		/**
+		 * This API enables or disables a fulfillment center.
+		 * @summary Update fulfillment center
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {InlineObject} inlineObject
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		updateFulfillmentCenter: async (
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			inlineObject: InlineObject,
+			wMCONSUMERCHANNELTYPE?: string,
+			options: any = {}
+		): Promise<RequestArgs> => {
+			// verify required parameter 'authorization' is not null or undefined
+			assertParamExists('updateFulfillmentCenter', 'authorization', authorization);
+			// verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
+			assertParamExists('updateFulfillmentCenter', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN);
+			// verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
+			assertParamExists('updateFulfillmentCenter', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID);
+			// verify required parameter 'wMSVCNAME' is not null or undefined
+			assertParamExists('updateFulfillmentCenter', 'wMSVCNAME', wMSVCNAME);
+			// verify required parameter 'inlineObject' is not null or undefined
+			assertParamExists('updateFulfillmentCenter', 'inlineObject', inlineObject);
+			const localVarPath = `/v3/settings/shipping/shipnodes`;
+			// use dummy base URL string because the URL constructor only accepts absolute URLs.
+			const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+			let baseOptions;
+			if (configuration) {
+				baseOptions = configuration.baseOptions;
+			}
+
+			const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options };
+			const localVarHeaderParameter = {} as any;
+			const localVarQueryParameter = {} as any;
+
+			// authentication basicScheme required
+			// http basic authentication required
+			setBasicAuthToObject(localVarRequestOptions, configuration);
+
+			if (authorization !== undefined && authorization !== null) {
+				localVarHeaderParameter['Authorization'] = String(authorization);
+			}
+
+			if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
+				localVarHeaderParameter['WM_SEC.ACCESS_TOKEN'] = String(wMSECACCESSTOKEN);
+			}
+
+			if (wMCONSUMERCHANNELTYPE !== undefined && wMCONSUMERCHANNELTYPE !== null) {
+				localVarHeaderParameter['WM_CONSUMER.CHANNEL.TYPE'] = String(wMCONSUMERCHANNELTYPE);
+			}
+
+			if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
+				localVarHeaderParameter['WM_QOS.CORRELATION_ID'] = String(wMQOSCORRELATIONID);
+			}
+
+			if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
+				localVarHeaderParameter['WM_SVC.NAME'] = String(wMSVCNAME);
+			}
+
+			localVarHeaderParameter['Content-Type'] = 'application/json';
+
+			setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+			let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+			localVarRequestOptions.headers = {
+				...localVarHeaderParameter,
+				...headersFromBaseOptions,
+				...options.headers,
+			};
+			localVarRequestOptions.data = serializeDataIfNeeded(inlineObject, localVarRequestOptions, configuration);
+
+			return {
+				url: toPathString(localVarUrlObj),
+				options: localVarRequestOptions,
+			};
+		},
+		/**
+		 * Update existing Shipping Template.
+		 * @summary Update Shipping Templates
+		 * @param {string} templateId templateId
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {InlineObject3} inlineObject3
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		updateShippingTemplates: async (
+			templateId: string,
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			inlineObject3: InlineObject3,
+			wMCONSUMERCHANNELTYPE?: string,
+			options: any = {}
+		): Promise<RequestArgs> => {
+			// verify required parameter 'templateId' is not null or undefined
+			assertParamExists('updateShippingTemplates', 'templateId', templateId);
+			// verify required parameter 'authorization' is not null or undefined
+			assertParamExists('updateShippingTemplates', 'authorization', authorization);
+			// verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
+			assertParamExists('updateShippingTemplates', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN);
+			// verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
+			assertParamExists('updateShippingTemplates', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID);
+			// verify required parameter 'wMSVCNAME' is not null or undefined
+			assertParamExists('updateShippingTemplates', 'wMSVCNAME', wMSVCNAME);
+			// verify required parameter 'inlineObject3' is not null or undefined
+			assertParamExists('updateShippingTemplates', 'inlineObject3', inlineObject3);
+			const localVarPath = `/v3/settings/shipping/templates/{templateId}`.replace(
+				`{${'templateId'}}`,
+				encodeURIComponent(String(templateId))
+			);
+			// use dummy base URL string because the URL constructor only accepts absolute URLs.
+			const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+			let baseOptions;
+			if (configuration) {
+				baseOptions = configuration.baseOptions;
+			}
+
+			const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options };
+			const localVarHeaderParameter = {} as any;
+			const localVarQueryParameter = {} as any;
+
+			// authentication basicScheme required
+			// http basic authentication required
+			setBasicAuthToObject(localVarRequestOptions, configuration);
+
+			if (authorization !== undefined && authorization !== null) {
+				localVarHeaderParameter['Authorization'] = String(authorization);
+			}
+
+			if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
+				localVarHeaderParameter['WM_SEC.ACCESS_TOKEN'] = String(wMSECACCESSTOKEN);
+			}
+
+			if (wMCONSUMERCHANNELTYPE !== undefined && wMCONSUMERCHANNELTYPE !== null) {
+				localVarHeaderParameter['WM_CONSUMER.CHANNEL.TYPE'] = String(wMCONSUMERCHANNELTYPE);
+			}
+
+			if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
+				localVarHeaderParameter['WM_QOS.CORRELATION_ID'] = String(wMQOSCORRELATIONID);
+			}
+
+			if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
+				localVarHeaderParameter['WM_SVC.NAME'] = String(wMSVCNAME);
+			}
+
+			localVarHeaderParameter['Content-Type'] = 'application/json';
+
+			setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+			let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+			localVarRequestOptions.headers = {
+				...localVarHeaderParameter,
+				...headersFromBaseOptions,
+				...options.headers,
+			};
+			localVarRequestOptions.data = serializeDataIfNeeded(inlineObject3, localVarRequestOptions, configuration);
+
+			return {
+				url: toPathString(localVarUrlObj),
+				options: localVarRequestOptions,
+			};
+		},
+	};
 };
 
 /**
@@ -4847,1127 +4423,960 @@ export const SettingsApiAxiosParamCreator = function (
  * @export
  */
 export const SettingsApiFp = function (configuration?: Configuration) {
-  const localVarAxiosParamCreator = SettingsApiAxiosParamCreator(configuration);
-  return {
-    /**
-     * This API creates a third party fulfillment center.
-     * @summary Create third party fulfillment center
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {InlineObject4} inlineObject4
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async create3PFulfillmentCenter(
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      inlineObject4: InlineObject4,
-      wMCONSUMERCHANNELTYPE?: string,
-      options?: any
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<Array<V3SettingsShipping3plshipnodesShipNode>>
-    > {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.create3PFulfillmentCenter(
-          authorization,
-          wMSECACCESSTOKEN,
-          wMQOSCORRELATIONID,
-          wMSVCNAME,
-          inlineObject4,
-          wMCONSUMERCHANNELTYPE,
-          options
-        );
-      return createRequestFunction(
-        localVarAxiosArgs,
-        globalAxios,
-        BASE_PATH,
-        configuration
-      );
-    },
-    /**
-     * This API creates a fulfillment center.
-     * @summary Create fulfillment center
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {InlineObject1} inlineObject1
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async createFulfillmentCenter(
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      inlineObject1: InlineObject1,
-      wMCONSUMERCHANNELTYPE?: string,
-      options?: any
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<Array<InlineResponse2001>>
-    > {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.createFulfillmentCenter(
-          authorization,
-          wMSECACCESSTOKEN,
-          wMQOSCORRELATIONID,
-          wMSVCNAME,
-          inlineObject1,
-          wMCONSUMERCHANNELTYPE,
-          options
-        );
-      return createRequestFunction(
-        localVarAxiosArgs,
-        globalAxios,
-        BASE_PATH,
-        configuration
-      );
-    },
-    /**
-     * Create a new shipping template
-     * @summary Create Shipping Templates
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {InlineObject2} inlineObject2
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async createShippingTemplates(
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      inlineObject2: InlineObject2,
-      wMCONSUMERCHANNELTYPE?: string,
-      options?: any
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<InlineResponse2003>
-    > {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.createShippingTemplates(
-          authorization,
-          wMSECACCESSTOKEN,
-          wMQOSCORRELATIONID,
-          wMSVCNAME,
-          inlineObject2,
-          wMCONSUMERCHANNELTYPE,
-          options
-        );
-      return createRequestFunction(
-        localVarAxiosArgs,
-        globalAxios,
-        BASE_PATH,
-        configuration
-      );
-    },
-    /**
-     * Delete Existing Shipping Template. DEFAULT templates cannot be deleted. 3PL partners cannot delete templates created by Sellers.
-     * @summary Delete Shipping Template
-     * @param {string} templateId Shipping Template ID of the template to be deleted
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async deleteShippingTemplateDetails(
-      templateId: string,
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      wMCONSUMERCHANNELTYPE?: string,
-      options?: any
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<InlineResponse2007>
-    > {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.deleteShippingTemplateDetails(
-          templateId,
-          authorization,
-          wMSECACCESSTOKEN,
-          wMQOSCORRELATIONID,
-          wMSVCNAME,
-          wMCONSUMERCHANNELTYPE,
-          options
-        );
-      return createRequestFunction(
-        localVarAxiosArgs,
-        globalAxios,
-        BASE_PATH,
-        configuration
-      );
-    },
-    /**
-     * Get a list of all third party fulfillment providers.
-     * @summary Get all third party fulfillment providers
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async get3PFulfillmentProviders(
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      wMCONSUMERCHANNELTYPE?: string,
-      options?: any
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<Array<InlineResponse2006>>
-    > {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.get3PFulfillmentProviders(
-          authorization,
-          wMSECACCESSTOKEN,
-          wMQOSCORRELATIONID,
-          wMSVCNAME,
-          wMCONSUMERCHANNELTYPE,
-          options
-        );
-      return createRequestFunction(
-        localVarAxiosArgs,
-        globalAxios,
-        BASE_PATH,
-        configuration
-      );
-    },
-    /**
-     * This API provides a list of all the fulfillment centers
-     * @summary Get all fulfillment centers
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {boolean} [includeCalendarDayConfiguration] Flag to specify if calendarDayConfiguration block will be included in the response. Allowed values are true or false.
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async getAllFulfillmentCenters(
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      includeCalendarDayConfiguration?: boolean,
-      wMCONSUMERCHANNELTYPE?: string,
-      options?: any
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<Array<InlineResponse2001>>
-    > {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getAllFulfillmentCenters(
-          authorization,
-          wMSECACCESSTOKEN,
-          wMQOSCORRELATIONID,
-          wMSVCNAME,
-          includeCalendarDayConfiguration,
-          wMCONSUMERCHANNELTYPE,
-          options
-        );
-      return createRequestFunction(
-        localVarAxiosArgs,
-        globalAxios,
-        BASE_PATH,
-        configuration
-      );
-    },
-    /**
-     * Get all the shipping templates for a Seller. All template types viz. CUSTOM, DEFAULT and 3PL-specific (eg. DELIVERR) can be retrieved through this API.
-     * @summary Get All Shipping Templates
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async getAllShippingTemplates(
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      wMCONSUMERCHANNELTYPE?: string,
-      options?: any
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<InlineResponse2002>
-    > {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getAllShippingTemplates(
-          authorization,
-          wMSECACCESSTOKEN,
-          wMQOSCORRELATIONID,
-          wMSVCNAME,
-          wMCONSUMERCHANNELTYPE,
-          options
-        );
-      return createRequestFunction(
-        localVarAxiosArgs,
-        globalAxios,
-        BASE_PATH,
-        configuration
-      );
-    },
-    /**
-     * Gets the available carrier methods
-     * @summary Get carrier methods
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async getCarrierMethods(
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      wMCONSUMERCHANNELTYPE?: string,
-      options?: any
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<Array<InlineResponse2008>>
-    > {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getCarrierMethods(
-          authorization,
-          wMSECACCESSTOKEN,
-          wMQOSCORRELATIONID,
-          wMSVCNAME,
-          wMCONSUMERCHANNELTYPE,
-          options
-        );
-      return createRequestFunction(
-        localVarAxiosArgs,
-        globalAxios,
-        BASE_PATH,
-        configuration
-      );
-    },
-    /**
-     * This API provides the list of all fullfillment centers for the seller and their coverage areas defined by Walmart based on the address
-     * @summary Get coverage for fulfillment centers
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async getCoverageForFulfillmentCenters(
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      wMCONSUMERCHANNELTYPE?: string,
-      options?: any
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<Array<InlineResponse200>>
-    > {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getCoverageForFulfillmentCenters(
-          authorization,
-          wMSECACCESSTOKEN,
-          wMQOSCORRELATIONID,
-          wMSVCNAME,
-          wMCONSUMERCHANNELTYPE,
-          options
-        );
-      return createRequestFunction(
-        localVarAxiosArgs,
-        globalAxios,
-        BASE_PATH,
-        configuration
-      );
-    },
-    /**
-     * <p>This API can be used to retrieve partner configurations like Seller Account & feed throttling values configured for seller.</p><p>The Feed Configuration block in the response shows the seller specific throttling configuration based on the tier of seller. If a new Seller is not assigned any tier, the block will be empty.</p><p>Please note that the default throttling configuration across Walmart and the API Throttling Response Headers can be found <a href=\"/doc/us/mp/us-mp-throttling/\">here</a></p>
-     * @summary Get Partner Configurations
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async getPartnerConfigurations(
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      wMCONSUMERCHANNELTYPE?: string,
-      options?: any
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<InlineResponse2004>
-    > {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getPartnerConfigurations(
-          authorization,
-          wMSECACCESSTOKEN,
-          wMQOSCORRELATIONID,
-          wMSVCNAME,
-          wMCONSUMERCHANNELTYPE,
-          options
-        );
-      return createRequestFunction(
-        localVarAxiosArgs,
-        globalAxios,
-        BASE_PATH,
-        configuration
-      );
-    },
-    /**
-     * <p>This API can be used to retrieve shipping configurations like Lag Time configured for seller.It returns lag time for exception categories that were configured for the Seller through <a href=\"https://sellerhelp.walmart.com/s/guide?article=000005986\">Request Lag Time Exceptions</a> process.</p>
-     * @summary Get Shipping Configurations
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async getShippingConfigurations(
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      wMCONSUMERCHANNELTYPE?: string,
-      options?: any
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<InlineResponse2005>
-    > {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getShippingConfigurations(
-          authorization,
-          wMSECACCESSTOKEN,
-          wMQOSCORRELATIONID,
-          wMSVCNAME,
-          wMCONSUMERCHANNELTYPE,
-          options
-        );
-      return createRequestFunction(
-        localVarAxiosArgs,
-        globalAxios,
-        BASE_PATH,
-        configuration
-      );
-    },
-    /**
-     * This api can be used to get the Activation Status of the Shipping Templates, which can be set through Walmart Seller Center. This activation status is not the same as the \"status:ACTIVE/INACTIVE\" of each shipping template.
-     * @summary Get Shipping Template Activation Status
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async getShippingTemplateActivationStatus(
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      wMCONSUMERCHANNELTYPE?: string,
-      options?: any
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<InlineResponse2009>
-    > {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getShippingTemplateActivationStatus(
-          authorization,
-          wMSECACCESSTOKEN,
-          wMQOSCORRELATIONID,
-          wMSVCNAME,
-          wMCONSUMERCHANNELTYPE,
-          options
-        );
-      return createRequestFunction(
-        localVarAxiosArgs,
-        globalAxios,
-        BASE_PATH,
-        configuration
-      );
-    },
-    /**
-     * Get Shipping Template Details. Details of CUSTOM, DEFAULT and 3PL-specific (eg. DELIVERR) templates can be retrieved through this API. 3PL will be able to see details of only 3PL-specific templates.
-     * @summary Get Shipping Template Details
-     * @param {string} templateId templateId
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async getShippingTemplateDetails(
-      templateId: string,
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      wMCONSUMERCHANNELTYPE?: string,
-      options?: any
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<InlineResponse2003>
-    > {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getShippingTemplateDetails(
-          templateId,
-          authorization,
-          wMSECACCESSTOKEN,
-          wMQOSCORRELATIONID,
-          wMSVCNAME,
-          wMCONSUMERCHANNELTYPE,
-          options
-        );
-      return createRequestFunction(
-        localVarAxiosArgs,
-        globalAxios,
-        BASE_PATH,
-        configuration
-      );
-    },
-    /**
-     * This API enables or disables a fulfillment center.
-     * @summary Update fulfillment center
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {InlineObject} inlineObject
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async updateFulfillmentCenter(
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      inlineObject: InlineObject,
-      wMCONSUMERCHANNELTYPE?: string,
-      options?: any
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<InlineResponse2001>
-    > {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.updateFulfillmentCenter(
-          authorization,
-          wMSECACCESSTOKEN,
-          wMQOSCORRELATIONID,
-          wMSVCNAME,
-          inlineObject,
-          wMCONSUMERCHANNELTYPE,
-          options
-        );
-      return createRequestFunction(
-        localVarAxiosArgs,
-        globalAxios,
-        BASE_PATH,
-        configuration
-      );
-    },
-    /**
-     * Update existing Shipping Template.
-     * @summary Update Shipping Templates
-     * @param {string} templateId templateId
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {InlineObject3} inlineObject3
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async updateShippingTemplates(
-      templateId: string,
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      inlineObject3: InlineObject3,
-      wMCONSUMERCHANNELTYPE?: string,
-      options?: any
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<InlineResponse2003>
-    > {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.updateShippingTemplates(
-          templateId,
-          authorization,
-          wMSECACCESSTOKEN,
-          wMQOSCORRELATIONID,
-          wMSVCNAME,
-          inlineObject3,
-          wMCONSUMERCHANNELTYPE,
-          options
-        );
-      return createRequestFunction(
-        localVarAxiosArgs,
-        globalAxios,
-        BASE_PATH,
-        configuration
-      );
-    },
-  };
+	const localVarAxiosParamCreator = SettingsApiAxiosParamCreator(configuration);
+	return {
+		/**
+		 * This API creates a third party fulfillment center.
+		 * @summary Create third party fulfillment center
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {InlineObject4} inlineObject4
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		async create3PFulfillmentCenter(
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			inlineObject4: InlineObject4,
+			wMCONSUMERCHANNELTYPE?: string,
+			options?: any
+		): Promise<
+			(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<V3SettingsShipping3plshipnodesShipNode>>
+		> {
+			const localVarAxiosArgs = await localVarAxiosParamCreator.create3PFulfillmentCenter(
+				authorization,
+				wMSECACCESSTOKEN,
+				wMQOSCORRELATIONID,
+				wMSVCNAME,
+				inlineObject4,
+				wMCONSUMERCHANNELTYPE,
+				options
+			);
+			return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+		},
+		/**
+		 * This API creates a fulfillment center.
+		 * @summary Create fulfillment center
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {InlineObject1} inlineObject1
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		async createFulfillmentCenter(
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			inlineObject1: InlineObject1,
+			wMCONSUMERCHANNELTYPE?: string,
+			options?: any
+		): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<InlineResponse200>>> {
+			const localVarAxiosArgs = await localVarAxiosParamCreator.createFulfillmentCenter(
+				authorization,
+				wMSECACCESSTOKEN,
+				wMQOSCORRELATIONID,
+				wMSVCNAME,
+				inlineObject1,
+				wMCONSUMERCHANNELTYPE,
+				options
+			);
+			return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+		},
+		/**
+		 * Create a new shipping template
+		 * @summary Create Shipping Templates
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {InlineObject2} inlineObject2
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		async createShippingTemplates(
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			inlineObject2: InlineObject2,
+			wMCONSUMERCHANNELTYPE?: string,
+			options?: any
+		): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2003>> {
+			const localVarAxiosArgs = await localVarAxiosParamCreator.createShippingTemplates(
+				authorization,
+				wMSECACCESSTOKEN,
+				wMQOSCORRELATIONID,
+				wMSVCNAME,
+				inlineObject2,
+				wMCONSUMERCHANNELTYPE,
+				options
+			);
+			return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+		},
+		/**
+		 * Delete Existing Shipping Template. DEFAULT templates cannot be deleted. 3PL partners cannot delete templates created by Sellers.
+		 * @summary Delete Shipping Template
+		 * @param {string} templateId Shipping Template ID of the template to be deleted
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		async deleteShippingTemplateDetails(
+			templateId: string,
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			wMCONSUMERCHANNELTYPE?: string,
+			options?: any
+		): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2004>> {
+			const localVarAxiosArgs = await localVarAxiosParamCreator.deleteShippingTemplateDetails(
+				templateId,
+				authorization,
+				wMSECACCESSTOKEN,
+				wMQOSCORRELATIONID,
+				wMSVCNAME,
+				wMCONSUMERCHANNELTYPE,
+				options
+			);
+			return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+		},
+		/**
+		 * Get a list of all third party fulfillment providers.
+		 * @summary Get all third party fulfillment providers
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		async get3PFulfillmentProviders(
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			wMCONSUMERCHANNELTYPE?: string,
+			options?: any
+		): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<InlineResponse2007>>> {
+			const localVarAxiosArgs = await localVarAxiosParamCreator.get3PFulfillmentProviders(
+				authorization,
+				wMSECACCESSTOKEN,
+				wMQOSCORRELATIONID,
+				wMSVCNAME,
+				wMCONSUMERCHANNELTYPE,
+				options
+			);
+			return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+		},
+		/**
+		 * This API provides a list of all the fulfillment centers
+		 * @summary Get all fulfillment centers
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {boolean} [includeCalendarDayConfiguration] Flag to specify if calendarDayConfiguration block will be included in the response. Allowed values are true or false.
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		async getAllFulfillmentCenters(
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			includeCalendarDayConfiguration?: boolean,
+			wMCONSUMERCHANNELTYPE?: string,
+			options?: any
+		): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<InlineResponse200>>> {
+			const localVarAxiosArgs = await localVarAxiosParamCreator.getAllFulfillmentCenters(
+				authorization,
+				wMSECACCESSTOKEN,
+				wMQOSCORRELATIONID,
+				wMSVCNAME,
+				includeCalendarDayConfiguration,
+				wMCONSUMERCHANNELTYPE,
+				options
+			);
+			return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+		},
+		/**
+		 * Get all the shipping templates for a Seller. All template types viz. CUSTOM, DEFAULT and 3PL-specific (eg. DELIVERR) can be retrieved through this API.
+		 * @summary Get All Shipping Templates
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		async getAllShippingTemplates(
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			wMCONSUMERCHANNELTYPE?: string,
+			options?: any
+		): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2002>> {
+			const localVarAxiosArgs = await localVarAxiosParamCreator.getAllShippingTemplates(
+				authorization,
+				wMSECACCESSTOKEN,
+				wMQOSCORRELATIONID,
+				wMSVCNAME,
+				wMCONSUMERCHANNELTYPE,
+				options
+			);
+			return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+		},
+		/**
+		 * Gets the available carrier methods
+		 * @summary Get carrier methods
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		async getCarrierMethods(
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			wMCONSUMERCHANNELTYPE?: string,
+			options?: any
+		): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<InlineResponse2008>>> {
+			const localVarAxiosArgs = await localVarAxiosParamCreator.getCarrierMethods(
+				authorization,
+				wMSECACCESSTOKEN,
+				wMQOSCORRELATIONID,
+				wMSVCNAME,
+				wMCONSUMERCHANNELTYPE,
+				options
+			);
+			return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+		},
+		/**
+		 * This API provides the list of all fullfillment centers for the seller and their coverage areas defined by Walmart based on the address
+		 * @summary Get coverage for fulfillment centers
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		async getCoverageForFulfillmentCenters(
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			wMCONSUMERCHANNELTYPE?: string,
+			options?: any
+		): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<InlineResponse2001>>> {
+			const localVarAxiosArgs = await localVarAxiosParamCreator.getCoverageForFulfillmentCenters(
+				authorization,
+				wMSECACCESSTOKEN,
+				wMQOSCORRELATIONID,
+				wMSVCNAME,
+				wMCONSUMERCHANNELTYPE,
+				options
+			);
+			return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+		},
+		/**
+		 * <p>This API can be used to retrieve partner configurations like Seller Account & feed throttling values configured for seller.</p><p>The Feed Configuration block in the response shows the seller specific throttling configuration based on the tier of seller. If a new Seller is not assigned any tier, the block will be empty.</p><p>Please note that the default throttling configuration across Walmart and the API Throttling Response Headers can be found <a href=\"/doc/us/mp/us-mp-throttling/\">here</a></p>
+		 * @summary Get Partner Configurations
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		async getPartnerConfigurations(
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			wMCONSUMERCHANNELTYPE?: string,
+			options?: any
+		): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2005>> {
+			const localVarAxiosArgs = await localVarAxiosParamCreator.getPartnerConfigurations(
+				authorization,
+				wMSECACCESSTOKEN,
+				wMQOSCORRELATIONID,
+				wMSVCNAME,
+				wMCONSUMERCHANNELTYPE,
+				options
+			);
+			return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+		},
+		/**
+		 * <p>This API can be used to retrieve shipping configurations like Lag Time configured for seller.It returns lag time for exception categories that were configured for the Seller through <a href=\"https://sellerhelp.walmart.com/s/guide?article=000005986\">Request Lag Time Exceptions</a> process.</p>
+		 * @summary Get Shipping Configurations
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		async getShippingConfigurations(
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			wMCONSUMERCHANNELTYPE?: string,
+			options?: any
+		): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2006>> {
+			const localVarAxiosArgs = await localVarAxiosParamCreator.getShippingConfigurations(
+				authorization,
+				wMSECACCESSTOKEN,
+				wMQOSCORRELATIONID,
+				wMSVCNAME,
+				wMCONSUMERCHANNELTYPE,
+				options
+			);
+			return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+		},
+		/**
+		 * This api can be used to get the Activation Status of the Shipping Templates, which can be set through Walmart Seller Center. This activation status is not the same as the \"status:ACTIVE/INACTIVE\" of each shipping template.
+		 * @summary Get Shipping Template Activation Status
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		async getShippingTemplateActivationStatus(
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			wMCONSUMERCHANNELTYPE?: string,
+			options?: any
+		): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2009>> {
+			const localVarAxiosArgs = await localVarAxiosParamCreator.getShippingTemplateActivationStatus(
+				authorization,
+				wMSECACCESSTOKEN,
+				wMQOSCORRELATIONID,
+				wMSVCNAME,
+				wMCONSUMERCHANNELTYPE,
+				options
+			);
+			return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+		},
+		/**
+		 * Get Shipping Template Details. Details of CUSTOM, DEFAULT and 3PL-specific (eg. DELIVERR) templates can be retrieved through this API. 3PL will be able to see details of only 3PL-specific templates.
+		 * @summary Get Shipping Template Details
+		 * @param {string} templateId templateId
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		async getShippingTemplateDetails(
+			templateId: string,
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			wMCONSUMERCHANNELTYPE?: string,
+			options?: any
+		): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2003>> {
+			const localVarAxiosArgs = await localVarAxiosParamCreator.getShippingTemplateDetails(
+				templateId,
+				authorization,
+				wMSECACCESSTOKEN,
+				wMQOSCORRELATIONID,
+				wMSVCNAME,
+				wMCONSUMERCHANNELTYPE,
+				options
+			);
+			return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+		},
+		/**
+		 * This API enables or disables a fulfillment center.
+		 * @summary Update fulfillment center
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {InlineObject} inlineObject
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		async updateFulfillmentCenter(
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			inlineObject: InlineObject,
+			wMCONSUMERCHANNELTYPE?: string,
+			options?: any
+		): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
+			const localVarAxiosArgs = await localVarAxiosParamCreator.updateFulfillmentCenter(
+				authorization,
+				wMSECACCESSTOKEN,
+				wMQOSCORRELATIONID,
+				wMSVCNAME,
+				inlineObject,
+				wMCONSUMERCHANNELTYPE,
+				options
+			);
+			return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+		},
+		/**
+		 * Update existing Shipping Template.
+		 * @summary Update Shipping Templates
+		 * @param {string} templateId templateId
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {InlineObject3} inlineObject3
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		async updateShippingTemplates(
+			templateId: string,
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			inlineObject3: InlineObject3,
+			wMCONSUMERCHANNELTYPE?: string,
+			options?: any
+		): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2003>> {
+			const localVarAxiosArgs = await localVarAxiosParamCreator.updateShippingTemplates(
+				templateId,
+				authorization,
+				wMSECACCESSTOKEN,
+				wMQOSCORRELATIONID,
+				wMSVCNAME,
+				inlineObject3,
+				wMCONSUMERCHANNELTYPE,
+				options
+			);
+			return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+		},
+	};
 };
 
 /**
  * SettingsApi - factory interface
  * @export
  */
-export const SettingsApiFactory = function (
-  configuration?: Configuration,
-  basePath?: string,
-  axios?: AxiosInstance
-) {
-  const localVarFp = SettingsApiFp(configuration);
-  return {
-    /**
-     * This API creates a third party fulfillment center.
-     * @summary Create third party fulfillment center
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {InlineObject4} inlineObject4
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    create3PFulfillmentCenter(
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      inlineObject4: InlineObject4,
-      wMCONSUMERCHANNELTYPE?: string,
-      options?: any
-    ): AxiosPromise<Array<V3SettingsShipping3plshipnodesShipNode>> {
-      return localVarFp
-        .create3PFulfillmentCenter(
-          authorization,
-          wMSECACCESSTOKEN,
-          wMQOSCORRELATIONID,
-          wMSVCNAME,
-          inlineObject4,
-          wMCONSUMERCHANNELTYPE,
-          options
-        )
-        .then((request) => request(axios, basePath));
-    },
-    /**
-     * This API creates a fulfillment center.
-     * @summary Create fulfillment center
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {InlineObject1} inlineObject1
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    createFulfillmentCenter(
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      inlineObject1: InlineObject1,
-      wMCONSUMERCHANNELTYPE?: string,
-      options?: any
-    ): AxiosPromise<Array<InlineResponse2001>> {
-      return localVarFp
-        .createFulfillmentCenter(
-          authorization,
-          wMSECACCESSTOKEN,
-          wMQOSCORRELATIONID,
-          wMSVCNAME,
-          inlineObject1,
-          wMCONSUMERCHANNELTYPE,
-          options
-        )
-        .then((request) => request(axios, basePath));
-    },
-    /**
-     * Create a new shipping template
-     * @summary Create Shipping Templates
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {InlineObject2} inlineObject2
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    createShippingTemplates(
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      inlineObject2: InlineObject2,
-      wMCONSUMERCHANNELTYPE?: string,
-      options?: any
-    ): AxiosPromise<InlineResponse2003> {
-      return localVarFp
-        .createShippingTemplates(
-          authorization,
-          wMSECACCESSTOKEN,
-          wMQOSCORRELATIONID,
-          wMSVCNAME,
-          inlineObject2,
-          wMCONSUMERCHANNELTYPE,
-          options
-        )
-        .then((request) => request(axios, basePath));
-    },
-    /**
-     * Delete Existing Shipping Template. DEFAULT templates cannot be deleted. 3PL partners cannot delete templates created by Sellers.
-     * @summary Delete Shipping Template
-     * @param {string} templateId Shipping Template ID of the template to be deleted
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    deleteShippingTemplateDetails(
-      templateId: string,
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      wMCONSUMERCHANNELTYPE?: string,
-      options?: any
-    ): AxiosPromise<InlineResponse2007> {
-      return localVarFp
-        .deleteShippingTemplateDetails(
-          templateId,
-          authorization,
-          wMSECACCESSTOKEN,
-          wMQOSCORRELATIONID,
-          wMSVCNAME,
-          wMCONSUMERCHANNELTYPE,
-          options
-        )
-        .then((request) => request(axios, basePath));
-    },
-    /**
-     * Get a list of all third party fulfillment providers.
-     * @summary Get all third party fulfillment providers
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    get3PFulfillmentProviders(
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      wMCONSUMERCHANNELTYPE?: string,
-      options?: any
-    ): AxiosPromise<Array<InlineResponse2006>> {
-      return localVarFp
-        .get3PFulfillmentProviders(
-          authorization,
-          wMSECACCESSTOKEN,
-          wMQOSCORRELATIONID,
-          wMSVCNAME,
-          wMCONSUMERCHANNELTYPE,
-          options
-        )
-        .then((request) => request(axios, basePath));
-    },
-    /**
-     * This API provides a list of all the fulfillment centers
-     * @summary Get all fulfillment centers
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {boolean} [includeCalendarDayConfiguration] Flag to specify if calendarDayConfiguration block will be included in the response. Allowed values are true or false.
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getAllFulfillmentCenters(
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      includeCalendarDayConfiguration?: boolean,
-      wMCONSUMERCHANNELTYPE?: string,
-      options?: any
-    ): AxiosPromise<Array<InlineResponse2001>> {
-      return localVarFp
-        .getAllFulfillmentCenters(
-          authorization,
-          wMSECACCESSTOKEN,
-          wMQOSCORRELATIONID,
-          wMSVCNAME,
-          includeCalendarDayConfiguration,
-          wMCONSUMERCHANNELTYPE,
-          options
-        )
-        .then((request) => request(axios, basePath));
-    },
-    /**
-     * Get all the shipping templates for a Seller. All template types viz. CUSTOM, DEFAULT and 3PL-specific (eg. DELIVERR) can be retrieved through this API.
-     * @summary Get All Shipping Templates
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getAllShippingTemplates(
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      wMCONSUMERCHANNELTYPE?: string,
-      options?: any
-    ): AxiosPromise<InlineResponse2002> {
-      return localVarFp
-        .getAllShippingTemplates(
-          authorization,
-          wMSECACCESSTOKEN,
-          wMQOSCORRELATIONID,
-          wMSVCNAME,
-          wMCONSUMERCHANNELTYPE,
-          options
-        )
-        .then((request) => request(axios, basePath));
-    },
-    /**
-     * Gets the available carrier methods
-     * @summary Get carrier methods
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getCarrierMethods(
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      wMCONSUMERCHANNELTYPE?: string,
-      options?: any
-    ): AxiosPromise<Array<InlineResponse2008>> {
-      return localVarFp
-        .getCarrierMethods(
-          authorization,
-          wMSECACCESSTOKEN,
-          wMQOSCORRELATIONID,
-          wMSVCNAME,
-          wMCONSUMERCHANNELTYPE,
-          options
-        )
-        .then((request) => request(axios, basePath));
-    },
-    /**
-     * This API provides the list of all fullfillment centers for the seller and their coverage areas defined by Walmart based on the address
-     * @summary Get coverage for fulfillment centers
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getCoverageForFulfillmentCenters(
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      wMCONSUMERCHANNELTYPE?: string,
-      options?: any
-    ): AxiosPromise<Array<InlineResponse200>> {
-      return localVarFp
-        .getCoverageForFulfillmentCenters(
-          authorization,
-          wMSECACCESSTOKEN,
-          wMQOSCORRELATIONID,
-          wMSVCNAME,
-          wMCONSUMERCHANNELTYPE,
-          options
-        )
-        .then((request) => request(axios, basePath));
-    },
-    /**
-     * <p>This API can be used to retrieve partner configurations like Seller Account & feed throttling values configured for seller.</p><p>The Feed Configuration block in the response shows the seller specific throttling configuration based on the tier of seller. If a new Seller is not assigned any tier, the block will be empty.</p><p>Please note that the default throttling configuration across Walmart and the API Throttling Response Headers can be found <a href=\"/doc/us/mp/us-mp-throttling/\">here</a></p>
-     * @summary Get Partner Configurations
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getPartnerConfigurations(
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      wMCONSUMERCHANNELTYPE?: string,
-      options?: any
-    ): AxiosPromise<InlineResponse2004> {
-      return localVarFp
-        .getPartnerConfigurations(
-          authorization,
-          wMSECACCESSTOKEN,
-          wMQOSCORRELATIONID,
-          wMSVCNAME,
-          wMCONSUMERCHANNELTYPE,
-          options
-        )
-        .then((request) => request(axios, basePath));
-    },
-    /**
-     * <p>This API can be used to retrieve shipping configurations like Lag Time configured for seller.It returns lag time for exception categories that were configured for the Seller through <a href=\"https://sellerhelp.walmart.com/s/guide?article=000005986\">Request Lag Time Exceptions</a> process.</p>
-     * @summary Get Shipping Configurations
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getShippingConfigurations(
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      wMCONSUMERCHANNELTYPE?: string,
-      options?: any
-    ): AxiosPromise<InlineResponse2005> {
-      return localVarFp
-        .getShippingConfigurations(
-          authorization,
-          wMSECACCESSTOKEN,
-          wMQOSCORRELATIONID,
-          wMSVCNAME,
-          wMCONSUMERCHANNELTYPE,
-          options
-        )
-        .then((request) => request(axios, basePath));
-    },
-    /**
-     * This api can be used to get the Activation Status of the Shipping Templates, which can be set through Walmart Seller Center. This activation status is not the same as the \"status:ACTIVE/INACTIVE\" of each shipping template.
-     * @summary Get Shipping Template Activation Status
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getShippingTemplateActivationStatus(
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      wMCONSUMERCHANNELTYPE?: string,
-      options?: any
-    ): AxiosPromise<InlineResponse2009> {
-      return localVarFp
-        .getShippingTemplateActivationStatus(
-          authorization,
-          wMSECACCESSTOKEN,
-          wMQOSCORRELATIONID,
-          wMSVCNAME,
-          wMCONSUMERCHANNELTYPE,
-          options
-        )
-        .then((request) => request(axios, basePath));
-    },
-    /**
-     * Get Shipping Template Details. Details of CUSTOM, DEFAULT and 3PL-specific (eg. DELIVERR) templates can be retrieved through this API. 3PL will be able to see details of only 3PL-specific templates.
-     * @summary Get Shipping Template Details
-     * @param {string} templateId templateId
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getShippingTemplateDetails(
-      templateId: string,
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      wMCONSUMERCHANNELTYPE?: string,
-      options?: any
-    ): AxiosPromise<InlineResponse2003> {
-      return localVarFp
-        .getShippingTemplateDetails(
-          templateId,
-          authorization,
-          wMSECACCESSTOKEN,
-          wMQOSCORRELATIONID,
-          wMSVCNAME,
-          wMCONSUMERCHANNELTYPE,
-          options
-        )
-        .then((request) => request(axios, basePath));
-    },
-    /**
-     * This API enables or disables a fulfillment center.
-     * @summary Update fulfillment center
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {InlineObject} inlineObject
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateFulfillmentCenter(
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      inlineObject: InlineObject,
-      wMCONSUMERCHANNELTYPE?: string,
-      options?: any
-    ): AxiosPromise<InlineResponse2001> {
-      return localVarFp
-        .updateFulfillmentCenter(
-          authorization,
-          wMSECACCESSTOKEN,
-          wMQOSCORRELATIONID,
-          wMSVCNAME,
-          inlineObject,
-          wMCONSUMERCHANNELTYPE,
-          options
-        )
-        .then((request) => request(axios, basePath));
-    },
-    /**
-     * Update existing Shipping Template.
-     * @summary Update Shipping Templates
-     * @param {string} templateId templateId
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {InlineObject3} inlineObject3
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateShippingTemplates(
-      templateId: string,
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      inlineObject3: InlineObject3,
-      wMCONSUMERCHANNELTYPE?: string,
-      options?: any
-    ): AxiosPromise<InlineResponse2003> {
-      return localVarFp
-        .updateShippingTemplates(
-          templateId,
-          authorization,
-          wMSECACCESSTOKEN,
-          wMQOSCORRELATIONID,
-          wMSVCNAME,
-          inlineObject3,
-          wMCONSUMERCHANNELTYPE,
-          options
-        )
-        .then((request) => request(axios, basePath));
-    },
-  };
+export const SettingsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+	const localVarFp = SettingsApiFp(configuration);
+	return {
+		/**
+		 * This API creates a third party fulfillment center.
+		 * @summary Create third party fulfillment center
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {InlineObject4} inlineObject4
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		create3PFulfillmentCenter(
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			inlineObject4: InlineObject4,
+			wMCONSUMERCHANNELTYPE?: string,
+			options?: any
+		): AxiosPromise<Array<V3SettingsShipping3plshipnodesShipNode>> {
+			return localVarFp
+				.create3PFulfillmentCenter(
+					authorization,
+					wMSECACCESSTOKEN,
+					wMQOSCORRELATIONID,
+					wMSVCNAME,
+					inlineObject4,
+					wMCONSUMERCHANNELTYPE,
+					options
+				)
+				.then((request) => request(axios, basePath));
+		},
+		/**
+		 * This API creates a fulfillment center.
+		 * @summary Create fulfillment center
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {InlineObject1} inlineObject1
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		createFulfillmentCenter(
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			inlineObject1: InlineObject1,
+			wMCONSUMERCHANNELTYPE?: string,
+			options?: any
+		): AxiosPromise<Array<InlineResponse200>> {
+			return localVarFp
+				.createFulfillmentCenter(
+					authorization,
+					wMSECACCESSTOKEN,
+					wMQOSCORRELATIONID,
+					wMSVCNAME,
+					inlineObject1,
+					wMCONSUMERCHANNELTYPE,
+					options
+				)
+				.then((request) => request(axios, basePath));
+		},
+		/**
+		 * Create a new shipping template
+		 * @summary Create Shipping Templates
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {InlineObject2} inlineObject2
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		createShippingTemplates(
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			inlineObject2: InlineObject2,
+			wMCONSUMERCHANNELTYPE?: string,
+			options?: any
+		): AxiosPromise<InlineResponse2003> {
+			return localVarFp
+				.createShippingTemplates(
+					authorization,
+					wMSECACCESSTOKEN,
+					wMQOSCORRELATIONID,
+					wMSVCNAME,
+					inlineObject2,
+					wMCONSUMERCHANNELTYPE,
+					options
+				)
+				.then((request) => request(axios, basePath));
+		},
+		/**
+		 * Delete Existing Shipping Template. DEFAULT templates cannot be deleted. 3PL partners cannot delete templates created by Sellers.
+		 * @summary Delete Shipping Template
+		 * @param {string} templateId Shipping Template ID of the template to be deleted
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		deleteShippingTemplateDetails(
+			templateId: string,
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			wMCONSUMERCHANNELTYPE?: string,
+			options?: any
+		): AxiosPromise<InlineResponse2004> {
+			return localVarFp
+				.deleteShippingTemplateDetails(
+					templateId,
+					authorization,
+					wMSECACCESSTOKEN,
+					wMQOSCORRELATIONID,
+					wMSVCNAME,
+					wMCONSUMERCHANNELTYPE,
+					options
+				)
+				.then((request) => request(axios, basePath));
+		},
+		/**
+		 * Get a list of all third party fulfillment providers.
+		 * @summary Get all third party fulfillment providers
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		get3PFulfillmentProviders(
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			wMCONSUMERCHANNELTYPE?: string,
+			options?: any
+		): AxiosPromise<Array<InlineResponse2007>> {
+			return localVarFp
+				.get3PFulfillmentProviders(
+					authorization,
+					wMSECACCESSTOKEN,
+					wMQOSCORRELATIONID,
+					wMSVCNAME,
+					wMCONSUMERCHANNELTYPE,
+					options
+				)
+				.then((request) => request(axios, basePath));
+		},
+		/**
+		 * This API provides a list of all the fulfillment centers
+		 * @summary Get all fulfillment centers
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {boolean} [includeCalendarDayConfiguration] Flag to specify if calendarDayConfiguration block will be included in the response. Allowed values are true or false.
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		getAllFulfillmentCenters(
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			includeCalendarDayConfiguration?: boolean,
+			wMCONSUMERCHANNELTYPE?: string,
+			options?: any
+		): AxiosPromise<Array<InlineResponse200>> {
+			return localVarFp
+				.getAllFulfillmentCenters(
+					authorization,
+					wMSECACCESSTOKEN,
+					wMQOSCORRELATIONID,
+					wMSVCNAME,
+					includeCalendarDayConfiguration,
+					wMCONSUMERCHANNELTYPE,
+					options
+				)
+				.then((request) => request(axios, basePath));
+		},
+		/**
+		 * Get all the shipping templates for a Seller. All template types viz. CUSTOM, DEFAULT and 3PL-specific (eg. DELIVERR) can be retrieved through this API.
+		 * @summary Get All Shipping Templates
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		getAllShippingTemplates(
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			wMCONSUMERCHANNELTYPE?: string,
+			options?: any
+		): AxiosPromise<InlineResponse2002> {
+			return localVarFp
+				.getAllShippingTemplates(
+					authorization,
+					wMSECACCESSTOKEN,
+					wMQOSCORRELATIONID,
+					wMSVCNAME,
+					wMCONSUMERCHANNELTYPE,
+					options
+				)
+				.then((request) => request(axios, basePath));
+		},
+		/**
+		 * Gets the available carrier methods
+		 * @summary Get carrier methods
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		getCarrierMethods(
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			wMCONSUMERCHANNELTYPE?: string,
+			options?: any
+		): AxiosPromise<Array<InlineResponse2008>> {
+			return localVarFp
+				.getCarrierMethods(
+					authorization,
+					wMSECACCESSTOKEN,
+					wMQOSCORRELATIONID,
+					wMSVCNAME,
+					wMCONSUMERCHANNELTYPE,
+					options
+				)
+				.then((request) => request(axios, basePath));
+		},
+		/**
+		 * This API provides the list of all fullfillment centers for the seller and their coverage areas defined by Walmart based on the address
+		 * @summary Get coverage for fulfillment centers
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		getCoverageForFulfillmentCenters(
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			wMCONSUMERCHANNELTYPE?: string,
+			options?: any
+		): AxiosPromise<Array<InlineResponse2001>> {
+			return localVarFp
+				.getCoverageForFulfillmentCenters(
+					authorization,
+					wMSECACCESSTOKEN,
+					wMQOSCORRELATIONID,
+					wMSVCNAME,
+					wMCONSUMERCHANNELTYPE,
+					options
+				)
+				.then((request) => request(axios, basePath));
+		},
+		/**
+		 * <p>This API can be used to retrieve partner configurations like Seller Account & feed throttling values configured for seller.</p><p>The Feed Configuration block in the response shows the seller specific throttling configuration based on the tier of seller. If a new Seller is not assigned any tier, the block will be empty.</p><p>Please note that the default throttling configuration across Walmart and the API Throttling Response Headers can be found <a href=\"/doc/us/mp/us-mp-throttling/\">here</a></p>
+		 * @summary Get Partner Configurations
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		getPartnerConfigurations(
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			wMCONSUMERCHANNELTYPE?: string,
+			options?: any
+		): AxiosPromise<InlineResponse2005> {
+			return localVarFp
+				.getPartnerConfigurations(
+					authorization,
+					wMSECACCESSTOKEN,
+					wMQOSCORRELATIONID,
+					wMSVCNAME,
+					wMCONSUMERCHANNELTYPE,
+					options
+				)
+				.then((request) => request(axios, basePath));
+		},
+		/**
+		 * <p>This API can be used to retrieve shipping configurations like Lag Time configured for seller.It returns lag time for exception categories that were configured for the Seller through <a href=\"https://sellerhelp.walmart.com/s/guide?article=000005986\">Request Lag Time Exceptions</a> process.</p>
+		 * @summary Get Shipping Configurations
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		getShippingConfigurations(
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			wMCONSUMERCHANNELTYPE?: string,
+			options?: any
+		): AxiosPromise<InlineResponse2006> {
+			return localVarFp
+				.getShippingConfigurations(
+					authorization,
+					wMSECACCESSTOKEN,
+					wMQOSCORRELATIONID,
+					wMSVCNAME,
+					wMCONSUMERCHANNELTYPE,
+					options
+				)
+				.then((request) => request(axios, basePath));
+		},
+		/**
+		 * This api can be used to get the Activation Status of the Shipping Templates, which can be set through Walmart Seller Center. This activation status is not the same as the \"status:ACTIVE/INACTIVE\" of each shipping template.
+		 * @summary Get Shipping Template Activation Status
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		getShippingTemplateActivationStatus(
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			wMCONSUMERCHANNELTYPE?: string,
+			options?: any
+		): AxiosPromise<InlineResponse2009> {
+			return localVarFp
+				.getShippingTemplateActivationStatus(
+					authorization,
+					wMSECACCESSTOKEN,
+					wMQOSCORRELATIONID,
+					wMSVCNAME,
+					wMCONSUMERCHANNELTYPE,
+					options
+				)
+				.then((request) => request(axios, basePath));
+		},
+		/**
+		 * Get Shipping Template Details. Details of CUSTOM, DEFAULT and 3PL-specific (eg. DELIVERR) templates can be retrieved through this API. 3PL will be able to see details of only 3PL-specific templates.
+		 * @summary Get Shipping Template Details
+		 * @param {string} templateId templateId
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		getShippingTemplateDetails(
+			templateId: string,
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			wMCONSUMERCHANNELTYPE?: string,
+			options?: any
+		): AxiosPromise<InlineResponse2003> {
+			return localVarFp
+				.getShippingTemplateDetails(
+					templateId,
+					authorization,
+					wMSECACCESSTOKEN,
+					wMQOSCORRELATIONID,
+					wMSVCNAME,
+					wMCONSUMERCHANNELTYPE,
+					options
+				)
+				.then((request) => request(axios, basePath));
+		},
+		/**
+		 * This API enables or disables a fulfillment center.
+		 * @summary Update fulfillment center
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {InlineObject} inlineObject
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		updateFulfillmentCenter(
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			inlineObject: InlineObject,
+			wMCONSUMERCHANNELTYPE?: string,
+			options?: any
+		): AxiosPromise<InlineResponse200> {
+			return localVarFp
+				.updateFulfillmentCenter(
+					authorization,
+					wMSECACCESSTOKEN,
+					wMQOSCORRELATIONID,
+					wMSVCNAME,
+					inlineObject,
+					wMCONSUMERCHANNELTYPE,
+					options
+				)
+				.then((request) => request(axios, basePath));
+		},
+		/**
+		 * Update existing Shipping Template.
+		 * @summary Update Shipping Templates
+		 * @param {string} templateId templateId
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {InlineObject3} inlineObject3
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		updateShippingTemplates(
+			templateId: string,
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			inlineObject3: InlineObject3,
+			wMCONSUMERCHANNELTYPE?: string,
+			options?: any
+		): AxiosPromise<InlineResponse2003> {
+			return localVarFp
+				.updateShippingTemplates(
+					templateId,
+					authorization,
+					wMSECACCESSTOKEN,
+					wMQOSCORRELATIONID,
+					wMSVCNAME,
+					inlineObject3,
+					wMCONSUMERCHANNELTYPE,
+					options
+				)
+				.then((request) => request(axios, basePath));
+		},
+	};
 };
 
 /**
@@ -5976,47 +5385,47 @@ export const SettingsApiFactory = function (
  * @interface SettingsApiCreate3PFulfillmentCenterRequest
  */
 export interface SettingsApiCreate3PFulfillmentCenterRequest {
-  /**
-   * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-   * @type {string}
-   * @memberof SettingsApiCreate3PFulfillmentCenter
-   */
-  readonly authorization: string;
+	/**
+	 * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+	 * @type {string}
+	 * @memberof SettingsApiCreate3PFulfillmentCenter
+	 */
+	readonly authorization: string;
 
-  /**
-   * The access token retrieved in the Token API call
-   * @type {string}
-   * @memberof SettingsApiCreate3PFulfillmentCenter
-   */
-  readonly wMSECACCESSTOKEN: string;
+	/**
+	 * The access token retrieved in the Token API call
+	 * @type {string}
+	 * @memberof SettingsApiCreate3PFulfillmentCenter
+	 */
+	readonly wMSECACCESSTOKEN: string;
 
-  /**
-   * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-   * @type {string}
-   * @memberof SettingsApiCreate3PFulfillmentCenter
-   */
-  readonly wMQOSCORRELATIONID: string;
+	/**
+	 * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+	 * @type {string}
+	 * @memberof SettingsApiCreate3PFulfillmentCenter
+	 */
+	readonly wMQOSCORRELATIONID: string;
 
-  /**
-   * Walmart Service Name
-   * @type {string}
-   * @memberof SettingsApiCreate3PFulfillmentCenter
-   */
-  readonly wMSVCNAME: string;
+	/**
+	 * Walmart Service Name
+	 * @type {string}
+	 * @memberof SettingsApiCreate3PFulfillmentCenter
+	 */
+	readonly wMSVCNAME: string;
 
-  /**
-   *
-   * @type {InlineObject4}
-   * @memberof SettingsApiCreate3PFulfillmentCenter
-   */
-  readonly inlineObject4: InlineObject4;
+	/**
+	 *
+	 * @type {InlineObject4}
+	 * @memberof SettingsApiCreate3PFulfillmentCenter
+	 */
+	readonly inlineObject4: InlineObject4;
 
-  /**
-   * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-   * @type {string}
-   * @memberof SettingsApiCreate3PFulfillmentCenter
-   */
-  readonly wMCONSUMERCHANNELTYPE?: string;
+	/**
+	 * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+	 * @type {string}
+	 * @memberof SettingsApiCreate3PFulfillmentCenter
+	 */
+	readonly wMCONSUMERCHANNELTYPE?: string;
 }
 
 /**
@@ -6025,47 +5434,47 @@ export interface SettingsApiCreate3PFulfillmentCenterRequest {
  * @interface SettingsApiCreateFulfillmentCenterRequest
  */
 export interface SettingsApiCreateFulfillmentCenterRequest {
-  /**
-   * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-   * @type {string}
-   * @memberof SettingsApiCreateFulfillmentCenter
-   */
-  readonly authorization: string;
+	/**
+	 * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+	 * @type {string}
+	 * @memberof SettingsApiCreateFulfillmentCenter
+	 */
+	readonly authorization: string;
 
-  /**
-   * The access token retrieved in the Token API call
-   * @type {string}
-   * @memberof SettingsApiCreateFulfillmentCenter
-   */
-  readonly wMSECACCESSTOKEN: string;
+	/**
+	 * The access token retrieved in the Token API call
+	 * @type {string}
+	 * @memberof SettingsApiCreateFulfillmentCenter
+	 */
+	readonly wMSECACCESSTOKEN: string;
 
-  /**
-   * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-   * @type {string}
-   * @memberof SettingsApiCreateFulfillmentCenter
-   */
-  readonly wMQOSCORRELATIONID: string;
+	/**
+	 * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+	 * @type {string}
+	 * @memberof SettingsApiCreateFulfillmentCenter
+	 */
+	readonly wMQOSCORRELATIONID: string;
 
-  /**
-   * Walmart Service Name
-   * @type {string}
-   * @memberof SettingsApiCreateFulfillmentCenter
-   */
-  readonly wMSVCNAME: string;
+	/**
+	 * Walmart Service Name
+	 * @type {string}
+	 * @memberof SettingsApiCreateFulfillmentCenter
+	 */
+	readonly wMSVCNAME: string;
 
-  /**
-   *
-   * @type {InlineObject1}
-   * @memberof SettingsApiCreateFulfillmentCenter
-   */
-  readonly inlineObject1: InlineObject1;
+	/**
+	 *
+	 * @type {InlineObject1}
+	 * @memberof SettingsApiCreateFulfillmentCenter
+	 */
+	readonly inlineObject1: InlineObject1;
 
-  /**
-   * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-   * @type {string}
-   * @memberof SettingsApiCreateFulfillmentCenter
-   */
-  readonly wMCONSUMERCHANNELTYPE?: string;
+	/**
+	 * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+	 * @type {string}
+	 * @memberof SettingsApiCreateFulfillmentCenter
+	 */
+	readonly wMCONSUMERCHANNELTYPE?: string;
 }
 
 /**
@@ -6074,47 +5483,47 @@ export interface SettingsApiCreateFulfillmentCenterRequest {
  * @interface SettingsApiCreateShippingTemplatesRequest
  */
 export interface SettingsApiCreateShippingTemplatesRequest {
-  /**
-   * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-   * @type {string}
-   * @memberof SettingsApiCreateShippingTemplates
-   */
-  readonly authorization: string;
+	/**
+	 * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+	 * @type {string}
+	 * @memberof SettingsApiCreateShippingTemplates
+	 */
+	readonly authorization: string;
 
-  /**
-   * The access token retrieved in the Token API call
-   * @type {string}
-   * @memberof SettingsApiCreateShippingTemplates
-   */
-  readonly wMSECACCESSTOKEN: string;
+	/**
+	 * The access token retrieved in the Token API call
+	 * @type {string}
+	 * @memberof SettingsApiCreateShippingTemplates
+	 */
+	readonly wMSECACCESSTOKEN: string;
 
-  /**
-   * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-   * @type {string}
-   * @memberof SettingsApiCreateShippingTemplates
-   */
-  readonly wMQOSCORRELATIONID: string;
+	/**
+	 * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+	 * @type {string}
+	 * @memberof SettingsApiCreateShippingTemplates
+	 */
+	readonly wMQOSCORRELATIONID: string;
 
-  /**
-   * Walmart Service Name
-   * @type {string}
-   * @memberof SettingsApiCreateShippingTemplates
-   */
-  readonly wMSVCNAME: string;
+	/**
+	 * Walmart Service Name
+	 * @type {string}
+	 * @memberof SettingsApiCreateShippingTemplates
+	 */
+	readonly wMSVCNAME: string;
 
-  /**
-   *
-   * @type {InlineObject2}
-   * @memberof SettingsApiCreateShippingTemplates
-   */
-  readonly inlineObject2: InlineObject2;
+	/**
+	 *
+	 * @type {InlineObject2}
+	 * @memberof SettingsApiCreateShippingTemplates
+	 */
+	readonly inlineObject2: InlineObject2;
 
-  /**
-   * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-   * @type {string}
-   * @memberof SettingsApiCreateShippingTemplates
-   */
-  readonly wMCONSUMERCHANNELTYPE?: string;
+	/**
+	 * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+	 * @type {string}
+	 * @memberof SettingsApiCreateShippingTemplates
+	 */
+	readonly wMCONSUMERCHANNELTYPE?: string;
 }
 
 /**
@@ -6123,47 +5532,47 @@ export interface SettingsApiCreateShippingTemplatesRequest {
  * @interface SettingsApiDeleteShippingTemplateDetailsRequest
  */
 export interface SettingsApiDeleteShippingTemplateDetailsRequest {
-  /**
-   * Shipping Template ID of the template to be deleted
-   * @type {string}
-   * @memberof SettingsApiDeleteShippingTemplateDetails
-   */
-  readonly templateId: string;
+	/**
+	 * Shipping Template ID of the template to be deleted
+	 * @type {string}
+	 * @memberof SettingsApiDeleteShippingTemplateDetails
+	 */
+	readonly templateId: string;
 
-  /**
-   * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-   * @type {string}
-   * @memberof SettingsApiDeleteShippingTemplateDetails
-   */
-  readonly authorization: string;
+	/**
+	 * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+	 * @type {string}
+	 * @memberof SettingsApiDeleteShippingTemplateDetails
+	 */
+	readonly authorization: string;
 
-  /**
-   * The access token retrieved in the Token API call
-   * @type {string}
-   * @memberof SettingsApiDeleteShippingTemplateDetails
-   */
-  readonly wMSECACCESSTOKEN: string;
+	/**
+	 * The access token retrieved in the Token API call
+	 * @type {string}
+	 * @memberof SettingsApiDeleteShippingTemplateDetails
+	 */
+	readonly wMSECACCESSTOKEN: string;
 
-  /**
-   * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-   * @type {string}
-   * @memberof SettingsApiDeleteShippingTemplateDetails
-   */
-  readonly wMQOSCORRELATIONID: string;
+	/**
+	 * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+	 * @type {string}
+	 * @memberof SettingsApiDeleteShippingTemplateDetails
+	 */
+	readonly wMQOSCORRELATIONID: string;
 
-  /**
-   * Walmart Service Name
-   * @type {string}
-   * @memberof SettingsApiDeleteShippingTemplateDetails
-   */
-  readonly wMSVCNAME: string;
+	/**
+	 * Walmart Service Name
+	 * @type {string}
+	 * @memberof SettingsApiDeleteShippingTemplateDetails
+	 */
+	readonly wMSVCNAME: string;
 
-  /**
-   * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-   * @type {string}
-   * @memberof SettingsApiDeleteShippingTemplateDetails
-   */
-  readonly wMCONSUMERCHANNELTYPE?: string;
+	/**
+	 * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+	 * @type {string}
+	 * @memberof SettingsApiDeleteShippingTemplateDetails
+	 */
+	readonly wMCONSUMERCHANNELTYPE?: string;
 }
 
 /**
@@ -6172,40 +5581,40 @@ export interface SettingsApiDeleteShippingTemplateDetailsRequest {
  * @interface SettingsApiGet3PFulfillmentProvidersRequest
  */
 export interface SettingsApiGet3PFulfillmentProvidersRequest {
-  /**
-   * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-   * @type {string}
-   * @memberof SettingsApiGet3PFulfillmentProviders
-   */
-  readonly authorization: string;
+	/**
+	 * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+	 * @type {string}
+	 * @memberof SettingsApiGet3PFulfillmentProviders
+	 */
+	readonly authorization: string;
 
-  /**
-   * The access token retrieved in the Token API call
-   * @type {string}
-   * @memberof SettingsApiGet3PFulfillmentProviders
-   */
-  readonly wMSECACCESSTOKEN: string;
+	/**
+	 * The access token retrieved in the Token API call
+	 * @type {string}
+	 * @memberof SettingsApiGet3PFulfillmentProviders
+	 */
+	readonly wMSECACCESSTOKEN: string;
 
-  /**
-   * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-   * @type {string}
-   * @memberof SettingsApiGet3PFulfillmentProviders
-   */
-  readonly wMQOSCORRELATIONID: string;
+	/**
+	 * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+	 * @type {string}
+	 * @memberof SettingsApiGet3PFulfillmentProviders
+	 */
+	readonly wMQOSCORRELATIONID: string;
 
-  /**
-   * Walmart Service Name
-   * @type {string}
-   * @memberof SettingsApiGet3PFulfillmentProviders
-   */
-  readonly wMSVCNAME: string;
+	/**
+	 * Walmart Service Name
+	 * @type {string}
+	 * @memberof SettingsApiGet3PFulfillmentProviders
+	 */
+	readonly wMSVCNAME: string;
 
-  /**
-   * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-   * @type {string}
-   * @memberof SettingsApiGet3PFulfillmentProviders
-   */
-  readonly wMCONSUMERCHANNELTYPE?: string;
+	/**
+	 * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+	 * @type {string}
+	 * @memberof SettingsApiGet3PFulfillmentProviders
+	 */
+	readonly wMCONSUMERCHANNELTYPE?: string;
 }
 
 /**
@@ -6214,47 +5623,47 @@ export interface SettingsApiGet3PFulfillmentProvidersRequest {
  * @interface SettingsApiGetAllFulfillmentCentersRequest
  */
 export interface SettingsApiGetAllFulfillmentCentersRequest {
-  /**
-   * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-   * @type {string}
-   * @memberof SettingsApiGetAllFulfillmentCenters
-   */
-  readonly authorization: string;
+	/**
+	 * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+	 * @type {string}
+	 * @memberof SettingsApiGetAllFulfillmentCenters
+	 */
+	readonly authorization: string;
 
-  /**
-   * The access token retrieved in the Token API call
-   * @type {string}
-   * @memberof SettingsApiGetAllFulfillmentCenters
-   */
-  readonly wMSECACCESSTOKEN: string;
+	/**
+	 * The access token retrieved in the Token API call
+	 * @type {string}
+	 * @memberof SettingsApiGetAllFulfillmentCenters
+	 */
+	readonly wMSECACCESSTOKEN: string;
 
-  /**
-   * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-   * @type {string}
-   * @memberof SettingsApiGetAllFulfillmentCenters
-   */
-  readonly wMQOSCORRELATIONID: string;
+	/**
+	 * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+	 * @type {string}
+	 * @memberof SettingsApiGetAllFulfillmentCenters
+	 */
+	readonly wMQOSCORRELATIONID: string;
 
-  /**
-   * Walmart Service Name
-   * @type {string}
-   * @memberof SettingsApiGetAllFulfillmentCenters
-   */
-  readonly wMSVCNAME: string;
+	/**
+	 * Walmart Service Name
+	 * @type {string}
+	 * @memberof SettingsApiGetAllFulfillmentCenters
+	 */
+	readonly wMSVCNAME: string;
 
-  /**
-   * Flag to specify if calendarDayConfiguration block will be included in the response. Allowed values are true or false.
-   * @type {boolean}
-   * @memberof SettingsApiGetAllFulfillmentCenters
-   */
-  readonly includeCalendarDayConfiguration?: boolean;
+	/**
+	 * Flag to specify if calendarDayConfiguration block will be included in the response. Allowed values are true or false.
+	 * @type {boolean}
+	 * @memberof SettingsApiGetAllFulfillmentCenters
+	 */
+	readonly includeCalendarDayConfiguration?: boolean;
 
-  /**
-   * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-   * @type {string}
-   * @memberof SettingsApiGetAllFulfillmentCenters
-   */
-  readonly wMCONSUMERCHANNELTYPE?: string;
+	/**
+	 * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+	 * @type {string}
+	 * @memberof SettingsApiGetAllFulfillmentCenters
+	 */
+	readonly wMCONSUMERCHANNELTYPE?: string;
 }
 
 /**
@@ -6263,40 +5672,40 @@ export interface SettingsApiGetAllFulfillmentCentersRequest {
  * @interface SettingsApiGetAllShippingTemplatesRequest
  */
 export interface SettingsApiGetAllShippingTemplatesRequest {
-  /**
-   * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-   * @type {string}
-   * @memberof SettingsApiGetAllShippingTemplates
-   */
-  readonly authorization: string;
+	/**
+	 * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+	 * @type {string}
+	 * @memberof SettingsApiGetAllShippingTemplates
+	 */
+	readonly authorization: string;
 
-  /**
-   * The access token retrieved in the Token API call
-   * @type {string}
-   * @memberof SettingsApiGetAllShippingTemplates
-   */
-  readonly wMSECACCESSTOKEN: string;
+	/**
+	 * The access token retrieved in the Token API call
+	 * @type {string}
+	 * @memberof SettingsApiGetAllShippingTemplates
+	 */
+	readonly wMSECACCESSTOKEN: string;
 
-  /**
-   * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-   * @type {string}
-   * @memberof SettingsApiGetAllShippingTemplates
-   */
-  readonly wMQOSCORRELATIONID: string;
+	/**
+	 * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+	 * @type {string}
+	 * @memberof SettingsApiGetAllShippingTemplates
+	 */
+	readonly wMQOSCORRELATIONID: string;
 
-  /**
-   * Walmart Service Name
-   * @type {string}
-   * @memberof SettingsApiGetAllShippingTemplates
-   */
-  readonly wMSVCNAME: string;
+	/**
+	 * Walmart Service Name
+	 * @type {string}
+	 * @memberof SettingsApiGetAllShippingTemplates
+	 */
+	readonly wMSVCNAME: string;
 
-  /**
-   * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-   * @type {string}
-   * @memberof SettingsApiGetAllShippingTemplates
-   */
-  readonly wMCONSUMERCHANNELTYPE?: string;
+	/**
+	 * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+	 * @type {string}
+	 * @memberof SettingsApiGetAllShippingTemplates
+	 */
+	readonly wMCONSUMERCHANNELTYPE?: string;
 }
 
 /**
@@ -6305,40 +5714,40 @@ export interface SettingsApiGetAllShippingTemplatesRequest {
  * @interface SettingsApiGetCarrierMethodsRequest
  */
 export interface SettingsApiGetCarrierMethodsRequest {
-  /**
-   * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-   * @type {string}
-   * @memberof SettingsApiGetCarrierMethods
-   */
-  readonly authorization: string;
+	/**
+	 * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+	 * @type {string}
+	 * @memberof SettingsApiGetCarrierMethods
+	 */
+	readonly authorization: string;
 
-  /**
-   * The access token retrieved in the Token API call
-   * @type {string}
-   * @memberof SettingsApiGetCarrierMethods
-   */
-  readonly wMSECACCESSTOKEN: string;
+	/**
+	 * The access token retrieved in the Token API call
+	 * @type {string}
+	 * @memberof SettingsApiGetCarrierMethods
+	 */
+	readonly wMSECACCESSTOKEN: string;
 
-  /**
-   * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-   * @type {string}
-   * @memberof SettingsApiGetCarrierMethods
-   */
-  readonly wMQOSCORRELATIONID: string;
+	/**
+	 * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+	 * @type {string}
+	 * @memberof SettingsApiGetCarrierMethods
+	 */
+	readonly wMQOSCORRELATIONID: string;
 
-  /**
-   * Walmart Service Name
-   * @type {string}
-   * @memberof SettingsApiGetCarrierMethods
-   */
-  readonly wMSVCNAME: string;
+	/**
+	 * Walmart Service Name
+	 * @type {string}
+	 * @memberof SettingsApiGetCarrierMethods
+	 */
+	readonly wMSVCNAME: string;
 
-  /**
-   * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-   * @type {string}
-   * @memberof SettingsApiGetCarrierMethods
-   */
-  readonly wMCONSUMERCHANNELTYPE?: string;
+	/**
+	 * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+	 * @type {string}
+	 * @memberof SettingsApiGetCarrierMethods
+	 */
+	readonly wMCONSUMERCHANNELTYPE?: string;
 }
 
 /**
@@ -6347,40 +5756,40 @@ export interface SettingsApiGetCarrierMethodsRequest {
  * @interface SettingsApiGetCoverageForFulfillmentCentersRequest
  */
 export interface SettingsApiGetCoverageForFulfillmentCentersRequest {
-  /**
-   * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-   * @type {string}
-   * @memberof SettingsApiGetCoverageForFulfillmentCenters
-   */
-  readonly authorization: string;
+	/**
+	 * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+	 * @type {string}
+	 * @memberof SettingsApiGetCoverageForFulfillmentCenters
+	 */
+	readonly authorization: string;
 
-  /**
-   * The access token retrieved in the Token API call
-   * @type {string}
-   * @memberof SettingsApiGetCoverageForFulfillmentCenters
-   */
-  readonly wMSECACCESSTOKEN: string;
+	/**
+	 * The access token retrieved in the Token API call
+	 * @type {string}
+	 * @memberof SettingsApiGetCoverageForFulfillmentCenters
+	 */
+	readonly wMSECACCESSTOKEN: string;
 
-  /**
-   * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-   * @type {string}
-   * @memberof SettingsApiGetCoverageForFulfillmentCenters
-   */
-  readonly wMQOSCORRELATIONID: string;
+	/**
+	 * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+	 * @type {string}
+	 * @memberof SettingsApiGetCoverageForFulfillmentCenters
+	 */
+	readonly wMQOSCORRELATIONID: string;
 
-  /**
-   * Walmart Service Name
-   * @type {string}
-   * @memberof SettingsApiGetCoverageForFulfillmentCenters
-   */
-  readonly wMSVCNAME: string;
+	/**
+	 * Walmart Service Name
+	 * @type {string}
+	 * @memberof SettingsApiGetCoverageForFulfillmentCenters
+	 */
+	readonly wMSVCNAME: string;
 
-  /**
-   * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-   * @type {string}
-   * @memberof SettingsApiGetCoverageForFulfillmentCenters
-   */
-  readonly wMCONSUMERCHANNELTYPE?: string;
+	/**
+	 * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+	 * @type {string}
+	 * @memberof SettingsApiGetCoverageForFulfillmentCenters
+	 */
+	readonly wMCONSUMERCHANNELTYPE?: string;
 }
 
 /**
@@ -6389,40 +5798,40 @@ export interface SettingsApiGetCoverageForFulfillmentCentersRequest {
  * @interface SettingsApiGetPartnerConfigurationsRequest
  */
 export interface SettingsApiGetPartnerConfigurationsRequest {
-  /**
-   * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-   * @type {string}
-   * @memberof SettingsApiGetPartnerConfigurations
-   */
-  readonly authorization: string;
+	/**
+	 * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+	 * @type {string}
+	 * @memberof SettingsApiGetPartnerConfigurations
+	 */
+	readonly authorization: string;
 
-  /**
-   * The access token retrieved in the Token API call
-   * @type {string}
-   * @memberof SettingsApiGetPartnerConfigurations
-   */
-  readonly wMSECACCESSTOKEN: string;
+	/**
+	 * The access token retrieved in the Token API call
+	 * @type {string}
+	 * @memberof SettingsApiGetPartnerConfigurations
+	 */
+	readonly wMSECACCESSTOKEN: string;
 
-  /**
-   * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-   * @type {string}
-   * @memberof SettingsApiGetPartnerConfigurations
-   */
-  readonly wMQOSCORRELATIONID: string;
+	/**
+	 * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+	 * @type {string}
+	 * @memberof SettingsApiGetPartnerConfigurations
+	 */
+	readonly wMQOSCORRELATIONID: string;
 
-  /**
-   * Walmart Service Name
-   * @type {string}
-   * @memberof SettingsApiGetPartnerConfigurations
-   */
-  readonly wMSVCNAME: string;
+	/**
+	 * Walmart Service Name
+	 * @type {string}
+	 * @memberof SettingsApiGetPartnerConfigurations
+	 */
+	readonly wMSVCNAME: string;
 
-  /**
-   * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-   * @type {string}
-   * @memberof SettingsApiGetPartnerConfigurations
-   */
-  readonly wMCONSUMERCHANNELTYPE?: string;
+	/**
+	 * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+	 * @type {string}
+	 * @memberof SettingsApiGetPartnerConfigurations
+	 */
+	readonly wMCONSUMERCHANNELTYPE?: string;
 }
 
 /**
@@ -6431,40 +5840,40 @@ export interface SettingsApiGetPartnerConfigurationsRequest {
  * @interface SettingsApiGetShippingConfigurationsRequest
  */
 export interface SettingsApiGetShippingConfigurationsRequest {
-  /**
-   * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-   * @type {string}
-   * @memberof SettingsApiGetShippingConfigurations
-   */
-  readonly authorization: string;
+	/**
+	 * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+	 * @type {string}
+	 * @memberof SettingsApiGetShippingConfigurations
+	 */
+	readonly authorization: string;
 
-  /**
-   * The access token retrieved in the Token API call
-   * @type {string}
-   * @memberof SettingsApiGetShippingConfigurations
-   */
-  readonly wMSECACCESSTOKEN: string;
+	/**
+	 * The access token retrieved in the Token API call
+	 * @type {string}
+	 * @memberof SettingsApiGetShippingConfigurations
+	 */
+	readonly wMSECACCESSTOKEN: string;
 
-  /**
-   * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-   * @type {string}
-   * @memberof SettingsApiGetShippingConfigurations
-   */
-  readonly wMQOSCORRELATIONID: string;
+	/**
+	 * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+	 * @type {string}
+	 * @memberof SettingsApiGetShippingConfigurations
+	 */
+	readonly wMQOSCORRELATIONID: string;
 
-  /**
-   * Walmart Service Name
-   * @type {string}
-   * @memberof SettingsApiGetShippingConfigurations
-   */
-  readonly wMSVCNAME: string;
+	/**
+	 * Walmart Service Name
+	 * @type {string}
+	 * @memberof SettingsApiGetShippingConfigurations
+	 */
+	readonly wMSVCNAME: string;
 
-  /**
-   * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-   * @type {string}
-   * @memberof SettingsApiGetShippingConfigurations
-   */
-  readonly wMCONSUMERCHANNELTYPE?: string;
+	/**
+	 * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+	 * @type {string}
+	 * @memberof SettingsApiGetShippingConfigurations
+	 */
+	readonly wMCONSUMERCHANNELTYPE?: string;
 }
 
 /**
@@ -6473,40 +5882,40 @@ export interface SettingsApiGetShippingConfigurationsRequest {
  * @interface SettingsApiGetShippingTemplateActivationStatusRequest
  */
 export interface SettingsApiGetShippingTemplateActivationStatusRequest {
-  /**
-   * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-   * @type {string}
-   * @memberof SettingsApiGetShippingTemplateActivationStatus
-   */
-  readonly authorization: string;
+	/**
+	 * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+	 * @type {string}
+	 * @memberof SettingsApiGetShippingTemplateActivationStatus
+	 */
+	readonly authorization: string;
 
-  /**
-   * The access token retrieved in the Token API call
-   * @type {string}
-   * @memberof SettingsApiGetShippingTemplateActivationStatus
-   */
-  readonly wMSECACCESSTOKEN: string;
+	/**
+	 * The access token retrieved in the Token API call
+	 * @type {string}
+	 * @memberof SettingsApiGetShippingTemplateActivationStatus
+	 */
+	readonly wMSECACCESSTOKEN: string;
 
-  /**
-   * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-   * @type {string}
-   * @memberof SettingsApiGetShippingTemplateActivationStatus
-   */
-  readonly wMQOSCORRELATIONID: string;
+	/**
+	 * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+	 * @type {string}
+	 * @memberof SettingsApiGetShippingTemplateActivationStatus
+	 */
+	readonly wMQOSCORRELATIONID: string;
 
-  /**
-   * Walmart Service Name
-   * @type {string}
-   * @memberof SettingsApiGetShippingTemplateActivationStatus
-   */
-  readonly wMSVCNAME: string;
+	/**
+	 * Walmart Service Name
+	 * @type {string}
+	 * @memberof SettingsApiGetShippingTemplateActivationStatus
+	 */
+	readonly wMSVCNAME: string;
 
-  /**
-   * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-   * @type {string}
-   * @memberof SettingsApiGetShippingTemplateActivationStatus
-   */
-  readonly wMCONSUMERCHANNELTYPE?: string;
+	/**
+	 * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+	 * @type {string}
+	 * @memberof SettingsApiGetShippingTemplateActivationStatus
+	 */
+	readonly wMCONSUMERCHANNELTYPE?: string;
 }
 
 /**
@@ -6515,47 +5924,47 @@ export interface SettingsApiGetShippingTemplateActivationStatusRequest {
  * @interface SettingsApiGetShippingTemplateDetailsRequest
  */
 export interface SettingsApiGetShippingTemplateDetailsRequest {
-  /**
-   * templateId
-   * @type {string}
-   * @memberof SettingsApiGetShippingTemplateDetails
-   */
-  readonly templateId: string;
+	/**
+	 * templateId
+	 * @type {string}
+	 * @memberof SettingsApiGetShippingTemplateDetails
+	 */
+	readonly templateId: string;
 
-  /**
-   * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-   * @type {string}
-   * @memberof SettingsApiGetShippingTemplateDetails
-   */
-  readonly authorization: string;
+	/**
+	 * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+	 * @type {string}
+	 * @memberof SettingsApiGetShippingTemplateDetails
+	 */
+	readonly authorization: string;
 
-  /**
-   * The access token retrieved in the Token API call
-   * @type {string}
-   * @memberof SettingsApiGetShippingTemplateDetails
-   */
-  readonly wMSECACCESSTOKEN: string;
+	/**
+	 * The access token retrieved in the Token API call
+	 * @type {string}
+	 * @memberof SettingsApiGetShippingTemplateDetails
+	 */
+	readonly wMSECACCESSTOKEN: string;
 
-  /**
-   * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-   * @type {string}
-   * @memberof SettingsApiGetShippingTemplateDetails
-   */
-  readonly wMQOSCORRELATIONID: string;
+	/**
+	 * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+	 * @type {string}
+	 * @memberof SettingsApiGetShippingTemplateDetails
+	 */
+	readonly wMQOSCORRELATIONID: string;
 
-  /**
-   * Walmart Service Name
-   * @type {string}
-   * @memberof SettingsApiGetShippingTemplateDetails
-   */
-  readonly wMSVCNAME: string;
+	/**
+	 * Walmart Service Name
+	 * @type {string}
+	 * @memberof SettingsApiGetShippingTemplateDetails
+	 */
+	readonly wMSVCNAME: string;
 
-  /**
-   * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-   * @type {string}
-   * @memberof SettingsApiGetShippingTemplateDetails
-   */
-  readonly wMCONSUMERCHANNELTYPE?: string;
+	/**
+	 * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+	 * @type {string}
+	 * @memberof SettingsApiGetShippingTemplateDetails
+	 */
+	readonly wMCONSUMERCHANNELTYPE?: string;
 }
 
 /**
@@ -6564,47 +5973,47 @@ export interface SettingsApiGetShippingTemplateDetailsRequest {
  * @interface SettingsApiUpdateFulfillmentCenterRequest
  */
 export interface SettingsApiUpdateFulfillmentCenterRequest {
-  /**
-   * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-   * @type {string}
-   * @memberof SettingsApiUpdateFulfillmentCenter
-   */
-  readonly authorization: string;
+	/**
+	 * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+	 * @type {string}
+	 * @memberof SettingsApiUpdateFulfillmentCenter
+	 */
+	readonly authorization: string;
 
-  /**
-   * The access token retrieved in the Token API call
-   * @type {string}
-   * @memberof SettingsApiUpdateFulfillmentCenter
-   */
-  readonly wMSECACCESSTOKEN: string;
+	/**
+	 * The access token retrieved in the Token API call
+	 * @type {string}
+	 * @memberof SettingsApiUpdateFulfillmentCenter
+	 */
+	readonly wMSECACCESSTOKEN: string;
 
-  /**
-   * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-   * @type {string}
-   * @memberof SettingsApiUpdateFulfillmentCenter
-   */
-  readonly wMQOSCORRELATIONID: string;
+	/**
+	 * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+	 * @type {string}
+	 * @memberof SettingsApiUpdateFulfillmentCenter
+	 */
+	readonly wMQOSCORRELATIONID: string;
 
-  /**
-   * Walmart Service Name
-   * @type {string}
-   * @memberof SettingsApiUpdateFulfillmentCenter
-   */
-  readonly wMSVCNAME: string;
+	/**
+	 * Walmart Service Name
+	 * @type {string}
+	 * @memberof SettingsApiUpdateFulfillmentCenter
+	 */
+	readonly wMSVCNAME: string;
 
-  /**
-   *
-   * @type {InlineObject}
-   * @memberof SettingsApiUpdateFulfillmentCenter
-   */
-  readonly inlineObject: InlineObject;
+	/**
+	 *
+	 * @type {InlineObject}
+	 * @memberof SettingsApiUpdateFulfillmentCenter
+	 */
+	readonly inlineObject: InlineObject;
 
-  /**
-   * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-   * @type {string}
-   * @memberof SettingsApiUpdateFulfillmentCenter
-   */
-  readonly wMCONSUMERCHANNELTYPE?: string;
+	/**
+	 * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+	 * @type {string}
+	 * @memberof SettingsApiUpdateFulfillmentCenter
+	 */
+	readonly wMCONSUMERCHANNELTYPE?: string;
 }
 
 /**
@@ -6613,54 +6022,54 @@ export interface SettingsApiUpdateFulfillmentCenterRequest {
  * @interface SettingsApiUpdateShippingTemplatesRequest
  */
 export interface SettingsApiUpdateShippingTemplatesRequest {
-  /**
-   * templateId
-   * @type {string}
-   * @memberof SettingsApiUpdateShippingTemplates
-   */
-  readonly templateId: string;
+	/**
+	 * templateId
+	 * @type {string}
+	 * @memberof SettingsApiUpdateShippingTemplates
+	 */
+	readonly templateId: string;
 
-  /**
-   * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-   * @type {string}
-   * @memberof SettingsApiUpdateShippingTemplates
-   */
-  readonly authorization: string;
+	/**
+	 * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+	 * @type {string}
+	 * @memberof SettingsApiUpdateShippingTemplates
+	 */
+	readonly authorization: string;
 
-  /**
-   * The access token retrieved in the Token API call
-   * @type {string}
-   * @memberof SettingsApiUpdateShippingTemplates
-   */
-  readonly wMSECACCESSTOKEN: string;
+	/**
+	 * The access token retrieved in the Token API call
+	 * @type {string}
+	 * @memberof SettingsApiUpdateShippingTemplates
+	 */
+	readonly wMSECACCESSTOKEN: string;
 
-  /**
-   * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-   * @type {string}
-   * @memberof SettingsApiUpdateShippingTemplates
-   */
-  readonly wMQOSCORRELATIONID: string;
+	/**
+	 * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+	 * @type {string}
+	 * @memberof SettingsApiUpdateShippingTemplates
+	 */
+	readonly wMQOSCORRELATIONID: string;
 
-  /**
-   * Walmart Service Name
-   * @type {string}
-   * @memberof SettingsApiUpdateShippingTemplates
-   */
-  readonly wMSVCNAME: string;
+	/**
+	 * Walmart Service Name
+	 * @type {string}
+	 * @memberof SettingsApiUpdateShippingTemplates
+	 */
+	readonly wMSVCNAME: string;
 
-  /**
-   *
-   * @type {InlineObject3}
-   * @memberof SettingsApiUpdateShippingTemplates
-   */
-  readonly inlineObject3: InlineObject3;
+	/**
+	 *
+	 * @type {InlineObject3}
+	 * @memberof SettingsApiUpdateShippingTemplates
+	 */
+	readonly inlineObject3: InlineObject3;
 
-  /**
-   * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-   * @type {string}
-   * @memberof SettingsApiUpdateShippingTemplates
-   */
-  readonly wMCONSUMERCHANNELTYPE?: string;
+	/**
+	 * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+	 * @type {string}
+	 * @memberof SettingsApiUpdateShippingTemplates
+	 */
+	readonly wMCONSUMERCHANNELTYPE?: string;
 }
 
 /**
@@ -6670,372 +6079,336 @@ export interface SettingsApiUpdateShippingTemplatesRequest {
  * @extends {BaseAPI}
  */
 export class SettingsApi extends BaseAPI {
-  /**
-   * This API creates a third party fulfillment center.
-   * @summary Create third party fulfillment center
-   * @param {SettingsApiCreate3PFulfillmentCenterRequest} requestParameters Request parameters.
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof SettingsApi
-   */
-  public create3PFulfillmentCenter(
-    requestParameters: SettingsApiCreate3PFulfillmentCenterRequest,
-    options?: any
-  ) {
-    return SettingsApiFp(this.configuration)
-      .create3PFulfillmentCenter(
-        requestParameters.authorization,
-        requestParameters.wMSECACCESSTOKEN,
-        requestParameters.wMQOSCORRELATIONID,
-        requestParameters.wMSVCNAME,
-        requestParameters.inlineObject4,
-        requestParameters.wMCONSUMERCHANNELTYPE,
-        options
-      )
-      .then((request) => request(this.axios, this.basePath));
-  }
+	/**
+	 * This API creates a third party fulfillment center.
+	 * @summary Create third party fulfillment center
+	 * @param {SettingsApiCreate3PFulfillmentCenterRequest} requestParameters Request parameters.
+	 * @param {*} [options] Override http request option.
+	 * @throws {RequiredError}
+	 * @memberof SettingsApi
+	 */
+	public create3PFulfillmentCenter(requestParameters: SettingsApiCreate3PFulfillmentCenterRequest, options?: any) {
+		return SettingsApiFp(this.configuration)
+			.create3PFulfillmentCenter(
+				requestParameters.authorization,
+				requestParameters.wMSECACCESSTOKEN,
+				requestParameters.wMQOSCORRELATIONID,
+				requestParameters.wMSVCNAME,
+				requestParameters.inlineObject4,
+				requestParameters.wMCONSUMERCHANNELTYPE,
+				options
+			)
+			.then((request) => request(this.axios, this.basePath));
+	}
 
-  /**
-   * This API creates a fulfillment center.
-   * @summary Create fulfillment center
-   * @param {SettingsApiCreateFulfillmentCenterRequest} requestParameters Request parameters.
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof SettingsApi
-   */
-  public createFulfillmentCenter(
-    requestParameters: SettingsApiCreateFulfillmentCenterRequest,
-    options?: any
-  ) {
-    return SettingsApiFp(this.configuration)
-      .createFulfillmentCenter(
-        requestParameters.authorization,
-        requestParameters.wMSECACCESSTOKEN,
-        requestParameters.wMQOSCORRELATIONID,
-        requestParameters.wMSVCNAME,
-        requestParameters.inlineObject1,
-        requestParameters.wMCONSUMERCHANNELTYPE,
-        options
-      )
-      .then((request) => request(this.axios, this.basePath));
-  }
+	/**
+	 * This API creates a fulfillment center.
+	 * @summary Create fulfillment center
+	 * @param {SettingsApiCreateFulfillmentCenterRequest} requestParameters Request parameters.
+	 * @param {*} [options] Override http request option.
+	 * @throws {RequiredError}
+	 * @memberof SettingsApi
+	 */
+	public createFulfillmentCenter(requestParameters: SettingsApiCreateFulfillmentCenterRequest, options?: any) {
+		return SettingsApiFp(this.configuration)
+			.createFulfillmentCenter(
+				requestParameters.authorization,
+				requestParameters.wMSECACCESSTOKEN,
+				requestParameters.wMQOSCORRELATIONID,
+				requestParameters.wMSVCNAME,
+				requestParameters.inlineObject1,
+				requestParameters.wMCONSUMERCHANNELTYPE,
+				options
+			)
+			.then((request) => request(this.axios, this.basePath));
+	}
 
-  /**
-   * Create a new shipping template
-   * @summary Create Shipping Templates
-   * @param {SettingsApiCreateShippingTemplatesRequest} requestParameters Request parameters.
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof SettingsApi
-   */
-  public createShippingTemplates(
-    requestParameters: SettingsApiCreateShippingTemplatesRequest,
-    options?: any
-  ) {
-    return SettingsApiFp(this.configuration)
-      .createShippingTemplates(
-        requestParameters.authorization,
-        requestParameters.wMSECACCESSTOKEN,
-        requestParameters.wMQOSCORRELATIONID,
-        requestParameters.wMSVCNAME,
-        requestParameters.inlineObject2,
-        requestParameters.wMCONSUMERCHANNELTYPE,
-        options
-      )
-      .then((request) => request(this.axios, this.basePath));
-  }
+	/**
+	 * Create a new shipping template
+	 * @summary Create Shipping Templates
+	 * @param {SettingsApiCreateShippingTemplatesRequest} requestParameters Request parameters.
+	 * @param {*} [options] Override http request option.
+	 * @throws {RequiredError}
+	 * @memberof SettingsApi
+	 */
+	public createShippingTemplates(requestParameters: SettingsApiCreateShippingTemplatesRequest, options?: any) {
+		return SettingsApiFp(this.configuration)
+			.createShippingTemplates(
+				requestParameters.authorization,
+				requestParameters.wMSECACCESSTOKEN,
+				requestParameters.wMQOSCORRELATIONID,
+				requestParameters.wMSVCNAME,
+				requestParameters.inlineObject2,
+				requestParameters.wMCONSUMERCHANNELTYPE,
+				options
+			)
+			.then((request) => request(this.axios, this.basePath));
+	}
 
-  /**
-   * Delete Existing Shipping Template. DEFAULT templates cannot be deleted. 3PL partners cannot delete templates created by Sellers.
-   * @summary Delete Shipping Template
-   * @param {SettingsApiDeleteShippingTemplateDetailsRequest} requestParameters Request parameters.
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof SettingsApi
-   */
-  public deleteShippingTemplateDetails(
-    requestParameters: SettingsApiDeleteShippingTemplateDetailsRequest,
-    options?: any
-  ) {
-    return SettingsApiFp(this.configuration)
-      .deleteShippingTemplateDetails(
-        requestParameters.templateId,
-        requestParameters.authorization,
-        requestParameters.wMSECACCESSTOKEN,
-        requestParameters.wMQOSCORRELATIONID,
-        requestParameters.wMSVCNAME,
-        requestParameters.wMCONSUMERCHANNELTYPE,
-        options
-      )
-      .then((request) => request(this.axios, this.basePath));
-  }
+	/**
+	 * Delete Existing Shipping Template. DEFAULT templates cannot be deleted. 3PL partners cannot delete templates created by Sellers.
+	 * @summary Delete Shipping Template
+	 * @param {SettingsApiDeleteShippingTemplateDetailsRequest} requestParameters Request parameters.
+	 * @param {*} [options] Override http request option.
+	 * @throws {RequiredError}
+	 * @memberof SettingsApi
+	 */
+	public deleteShippingTemplateDetails(
+		requestParameters: SettingsApiDeleteShippingTemplateDetailsRequest,
+		options?: any
+	) {
+		return SettingsApiFp(this.configuration)
+			.deleteShippingTemplateDetails(
+				requestParameters.templateId,
+				requestParameters.authorization,
+				requestParameters.wMSECACCESSTOKEN,
+				requestParameters.wMQOSCORRELATIONID,
+				requestParameters.wMSVCNAME,
+				requestParameters.wMCONSUMERCHANNELTYPE,
+				options
+			)
+			.then((request) => request(this.axios, this.basePath));
+	}
 
-  /**
-   * Get a list of all third party fulfillment providers.
-   * @summary Get all third party fulfillment providers
-   * @param {SettingsApiGet3PFulfillmentProvidersRequest} requestParameters Request parameters.
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof SettingsApi
-   */
-  public get3PFulfillmentProviders(
-    requestParameters: SettingsApiGet3PFulfillmentProvidersRequest,
-    options?: any
-  ) {
-    return SettingsApiFp(this.configuration)
-      .get3PFulfillmentProviders(
-        requestParameters.authorization,
-        requestParameters.wMSECACCESSTOKEN,
-        requestParameters.wMQOSCORRELATIONID,
-        requestParameters.wMSVCNAME,
-        requestParameters.wMCONSUMERCHANNELTYPE,
-        options
-      )
-      .then((request) => request(this.axios, this.basePath));
-  }
+	/**
+	 * Get a list of all third party fulfillment providers.
+	 * @summary Get all third party fulfillment providers
+	 * @param {SettingsApiGet3PFulfillmentProvidersRequest} requestParameters Request parameters.
+	 * @param {*} [options] Override http request option.
+	 * @throws {RequiredError}
+	 * @memberof SettingsApi
+	 */
+	public get3PFulfillmentProviders(requestParameters: SettingsApiGet3PFulfillmentProvidersRequest, options?: any) {
+		return SettingsApiFp(this.configuration)
+			.get3PFulfillmentProviders(
+				requestParameters.authorization,
+				requestParameters.wMSECACCESSTOKEN,
+				requestParameters.wMQOSCORRELATIONID,
+				requestParameters.wMSVCNAME,
+				requestParameters.wMCONSUMERCHANNELTYPE,
+				options
+			)
+			.then((request) => request(this.axios, this.basePath));
+	}
 
-  /**
-   * This API provides a list of all the fulfillment centers
-   * @summary Get all fulfillment centers
-   * @param {SettingsApiGetAllFulfillmentCentersRequest} requestParameters Request parameters.
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof SettingsApi
-   */
-  public getAllFulfillmentCenters(
-    requestParameters: SettingsApiGetAllFulfillmentCentersRequest,
-    options?: any
-  ) {
-    return SettingsApiFp(this.configuration)
-      .getAllFulfillmentCenters(
-        requestParameters.authorization,
-        requestParameters.wMSECACCESSTOKEN,
-        requestParameters.wMQOSCORRELATIONID,
-        requestParameters.wMSVCNAME,
-        requestParameters.includeCalendarDayConfiguration,
-        requestParameters.wMCONSUMERCHANNELTYPE,
-        options
-      )
-      .then((request) => request(this.axios, this.basePath));
-  }
+	/**
+	 * This API provides a list of all the fulfillment centers
+	 * @summary Get all fulfillment centers
+	 * @param {SettingsApiGetAllFulfillmentCentersRequest} requestParameters Request parameters.
+	 * @param {*} [options] Override http request option.
+	 * @throws {RequiredError}
+	 * @memberof SettingsApi
+	 */
+	public getAllFulfillmentCenters(requestParameters: SettingsApiGetAllFulfillmentCentersRequest, options?: any) {
+		return SettingsApiFp(this.configuration)
+			.getAllFulfillmentCenters(
+				requestParameters.authorization,
+				requestParameters.wMSECACCESSTOKEN,
+				requestParameters.wMQOSCORRELATIONID,
+				requestParameters.wMSVCNAME,
+				requestParameters.includeCalendarDayConfiguration,
+				requestParameters.wMCONSUMERCHANNELTYPE,
+				options
+			)
+			.then((request) => request(this.axios, this.basePath));
+	}
 
-  /**
-   * Get all the shipping templates for a Seller. All template types viz. CUSTOM, DEFAULT and 3PL-specific (eg. DELIVERR) can be retrieved through this API.
-   * @summary Get All Shipping Templates
-   * @param {SettingsApiGetAllShippingTemplatesRequest} requestParameters Request parameters.
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof SettingsApi
-   */
-  public getAllShippingTemplates(
-    requestParameters: SettingsApiGetAllShippingTemplatesRequest,
-    options?: any
-  ) {
-    return SettingsApiFp(this.configuration)
-      .getAllShippingTemplates(
-        requestParameters.authorization,
-        requestParameters.wMSECACCESSTOKEN,
-        requestParameters.wMQOSCORRELATIONID,
-        requestParameters.wMSVCNAME,
-        requestParameters.wMCONSUMERCHANNELTYPE,
-        options
-      )
-      .then((request) => request(this.axios, this.basePath));
-  }
+	/**
+	 * Get all the shipping templates for a Seller. All template types viz. CUSTOM, DEFAULT and 3PL-specific (eg. DELIVERR) can be retrieved through this API.
+	 * @summary Get All Shipping Templates
+	 * @param {SettingsApiGetAllShippingTemplatesRequest} requestParameters Request parameters.
+	 * @param {*} [options] Override http request option.
+	 * @throws {RequiredError}
+	 * @memberof SettingsApi
+	 */
+	public getAllShippingTemplates(requestParameters: SettingsApiGetAllShippingTemplatesRequest, options?: any) {
+		return SettingsApiFp(this.configuration)
+			.getAllShippingTemplates(
+				requestParameters.authorization,
+				requestParameters.wMSECACCESSTOKEN,
+				requestParameters.wMQOSCORRELATIONID,
+				requestParameters.wMSVCNAME,
+				requestParameters.wMCONSUMERCHANNELTYPE,
+				options
+			)
+			.then((request) => request(this.axios, this.basePath));
+	}
 
-  /**
-   * Gets the available carrier methods
-   * @summary Get carrier methods
-   * @param {SettingsApiGetCarrierMethodsRequest} requestParameters Request parameters.
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof SettingsApi
-   */
-  public getCarrierMethods(
-    requestParameters: SettingsApiGetCarrierMethodsRequest,
-    options?: any
-  ) {
-    return SettingsApiFp(this.configuration)
-      .getCarrierMethods(
-        requestParameters.authorization,
-        requestParameters.wMSECACCESSTOKEN,
-        requestParameters.wMQOSCORRELATIONID,
-        requestParameters.wMSVCNAME,
-        requestParameters.wMCONSUMERCHANNELTYPE,
-        options
-      )
-      .then((request) => request(this.axios, this.basePath));
-  }
+	/**
+	 * Gets the available carrier methods
+	 * @summary Get carrier methods
+	 * @param {SettingsApiGetCarrierMethodsRequest} requestParameters Request parameters.
+	 * @param {*} [options] Override http request option.
+	 * @throws {RequiredError}
+	 * @memberof SettingsApi
+	 */
+	public getCarrierMethods(requestParameters: SettingsApiGetCarrierMethodsRequest, options?: any) {
+		return SettingsApiFp(this.configuration)
+			.getCarrierMethods(
+				requestParameters.authorization,
+				requestParameters.wMSECACCESSTOKEN,
+				requestParameters.wMQOSCORRELATIONID,
+				requestParameters.wMSVCNAME,
+				requestParameters.wMCONSUMERCHANNELTYPE,
+				options
+			)
+			.then((request) => request(this.axios, this.basePath));
+	}
 
-  /**
-   * This API provides the list of all fullfillment centers for the seller and their coverage areas defined by Walmart based on the address
-   * @summary Get coverage for fulfillment centers
-   * @param {SettingsApiGetCoverageForFulfillmentCentersRequest} requestParameters Request parameters.
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof SettingsApi
-   */
-  public getCoverageForFulfillmentCenters(
-    requestParameters: SettingsApiGetCoverageForFulfillmentCentersRequest,
-    options?: any
-  ) {
-    return SettingsApiFp(this.configuration)
-      .getCoverageForFulfillmentCenters(
-        requestParameters.authorization,
-        requestParameters.wMSECACCESSTOKEN,
-        requestParameters.wMQOSCORRELATIONID,
-        requestParameters.wMSVCNAME,
-        requestParameters.wMCONSUMERCHANNELTYPE,
-        options
-      )
-      .then((request) => request(this.axios, this.basePath));
-  }
+	/**
+	 * This API provides the list of all fullfillment centers for the seller and their coverage areas defined by Walmart based on the address
+	 * @summary Get coverage for fulfillment centers
+	 * @param {SettingsApiGetCoverageForFulfillmentCentersRequest} requestParameters Request parameters.
+	 * @param {*} [options] Override http request option.
+	 * @throws {RequiredError}
+	 * @memberof SettingsApi
+	 */
+	public getCoverageForFulfillmentCenters(
+		requestParameters: SettingsApiGetCoverageForFulfillmentCentersRequest,
+		options?: any
+	) {
+		return SettingsApiFp(this.configuration)
+			.getCoverageForFulfillmentCenters(
+				requestParameters.authorization,
+				requestParameters.wMSECACCESSTOKEN,
+				requestParameters.wMQOSCORRELATIONID,
+				requestParameters.wMSVCNAME,
+				requestParameters.wMCONSUMERCHANNELTYPE,
+				options
+			)
+			.then((request) => request(this.axios, this.basePath));
+	}
 
-  /**
-   * <p>This API can be used to retrieve partner configurations like Seller Account & feed throttling values configured for seller.</p><p>The Feed Configuration block in the response shows the seller specific throttling configuration based on the tier of seller. If a new Seller is not assigned any tier, the block will be empty.</p><p>Please note that the default throttling configuration across Walmart and the API Throttling Response Headers can be found <a href=\"/doc/us/mp/us-mp-throttling/\">here</a></p>
-   * @summary Get Partner Configurations
-   * @param {SettingsApiGetPartnerConfigurationsRequest} requestParameters Request parameters.
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof SettingsApi
-   */
-  public getPartnerConfigurations(
-    requestParameters: SettingsApiGetPartnerConfigurationsRequest,
-    options?: any
-  ) {
-    return SettingsApiFp(this.configuration)
-      .getPartnerConfigurations(
-        requestParameters.authorization,
-        requestParameters.wMSECACCESSTOKEN,
-        requestParameters.wMQOSCORRELATIONID,
-        requestParameters.wMSVCNAME,
-        requestParameters.wMCONSUMERCHANNELTYPE,
-        options
-      )
-      .then((request) => request(this.axios, this.basePath));
-  }
+	/**
+	 * <p>This API can be used to retrieve partner configurations like Seller Account & feed throttling values configured for seller.</p><p>The Feed Configuration block in the response shows the seller specific throttling configuration based on the tier of seller. If a new Seller is not assigned any tier, the block will be empty.</p><p>Please note that the default throttling configuration across Walmart and the API Throttling Response Headers can be found <a href=\"/doc/us/mp/us-mp-throttling/\">here</a></p>
+	 * @summary Get Partner Configurations
+	 * @param {SettingsApiGetPartnerConfigurationsRequest} requestParameters Request parameters.
+	 * @param {*} [options] Override http request option.
+	 * @throws {RequiredError}
+	 * @memberof SettingsApi
+	 */
+	public getPartnerConfigurations(requestParameters: SettingsApiGetPartnerConfigurationsRequest, options?: any) {
+		return SettingsApiFp(this.configuration)
+			.getPartnerConfigurations(
+				requestParameters.authorization,
+				requestParameters.wMSECACCESSTOKEN,
+				requestParameters.wMQOSCORRELATIONID,
+				requestParameters.wMSVCNAME,
+				requestParameters.wMCONSUMERCHANNELTYPE,
+				options
+			)
+			.then((request) => request(this.axios, this.basePath));
+	}
 
-  /**
-   * <p>This API can be used to retrieve shipping configurations like Lag Time configured for seller.It returns lag time for exception categories that were configured for the Seller through <a href=\"https://sellerhelp.walmart.com/s/guide?article=000005986\">Request Lag Time Exceptions</a> process.</p>
-   * @summary Get Shipping Configurations
-   * @param {SettingsApiGetShippingConfigurationsRequest} requestParameters Request parameters.
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof SettingsApi
-   */
-  public getShippingConfigurations(
-    requestParameters: SettingsApiGetShippingConfigurationsRequest,
-    options?: any
-  ) {
-    return SettingsApiFp(this.configuration)
-      .getShippingConfigurations(
-        requestParameters.authorization,
-        requestParameters.wMSECACCESSTOKEN,
-        requestParameters.wMQOSCORRELATIONID,
-        requestParameters.wMSVCNAME,
-        requestParameters.wMCONSUMERCHANNELTYPE,
-        options
-      )
-      .then((request) => request(this.axios, this.basePath));
-  }
+	/**
+	 * <p>This API can be used to retrieve shipping configurations like Lag Time configured for seller.It returns lag time for exception categories that were configured for the Seller through <a href=\"https://sellerhelp.walmart.com/s/guide?article=000005986\">Request Lag Time Exceptions</a> process.</p>
+	 * @summary Get Shipping Configurations
+	 * @param {SettingsApiGetShippingConfigurationsRequest} requestParameters Request parameters.
+	 * @param {*} [options] Override http request option.
+	 * @throws {RequiredError}
+	 * @memberof SettingsApi
+	 */
+	public getShippingConfigurations(requestParameters: SettingsApiGetShippingConfigurationsRequest, options?: any) {
+		return SettingsApiFp(this.configuration)
+			.getShippingConfigurations(
+				requestParameters.authorization,
+				requestParameters.wMSECACCESSTOKEN,
+				requestParameters.wMQOSCORRELATIONID,
+				requestParameters.wMSVCNAME,
+				requestParameters.wMCONSUMERCHANNELTYPE,
+				options
+			)
+			.then((request) => request(this.axios, this.basePath));
+	}
 
-  /**
-   * This api can be used to get the Activation Status of the Shipping Templates, which can be set through Walmart Seller Center. This activation status is not the same as the \"status:ACTIVE/INACTIVE\" of each shipping template.
-   * @summary Get Shipping Template Activation Status
-   * @param {SettingsApiGetShippingTemplateActivationStatusRequest} requestParameters Request parameters.
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof SettingsApi
-   */
-  public getShippingTemplateActivationStatus(
-    requestParameters: SettingsApiGetShippingTemplateActivationStatusRequest,
-    options?: any
-  ) {
-    return SettingsApiFp(this.configuration)
-      .getShippingTemplateActivationStatus(
-        requestParameters.authorization,
-        requestParameters.wMSECACCESSTOKEN,
-        requestParameters.wMQOSCORRELATIONID,
-        requestParameters.wMSVCNAME,
-        requestParameters.wMCONSUMERCHANNELTYPE,
-        options
-      )
-      .then((request) => request(this.axios, this.basePath));
-  }
+	/**
+	 * This api can be used to get the Activation Status of the Shipping Templates, which can be set through Walmart Seller Center. This activation status is not the same as the \"status:ACTIVE/INACTIVE\" of each shipping template.
+	 * @summary Get Shipping Template Activation Status
+	 * @param {SettingsApiGetShippingTemplateActivationStatusRequest} requestParameters Request parameters.
+	 * @param {*} [options] Override http request option.
+	 * @throws {RequiredError}
+	 * @memberof SettingsApi
+	 */
+	public getShippingTemplateActivationStatus(
+		requestParameters: SettingsApiGetShippingTemplateActivationStatusRequest,
+		options?: any
+	) {
+		return SettingsApiFp(this.configuration)
+			.getShippingTemplateActivationStatus(
+				requestParameters.authorization,
+				requestParameters.wMSECACCESSTOKEN,
+				requestParameters.wMQOSCORRELATIONID,
+				requestParameters.wMSVCNAME,
+				requestParameters.wMCONSUMERCHANNELTYPE,
+				options
+			)
+			.then((request) => request(this.axios, this.basePath));
+	}
 
-  /**
-   * Get Shipping Template Details. Details of CUSTOM, DEFAULT and 3PL-specific (eg. DELIVERR) templates can be retrieved through this API. 3PL will be able to see details of only 3PL-specific templates.
-   * @summary Get Shipping Template Details
-   * @param {SettingsApiGetShippingTemplateDetailsRequest} requestParameters Request parameters.
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof SettingsApi
-   */
-  public getShippingTemplateDetails(
-    requestParameters: SettingsApiGetShippingTemplateDetailsRequest,
-    options?: any
-  ) {
-    return SettingsApiFp(this.configuration)
-      .getShippingTemplateDetails(
-        requestParameters.templateId,
-        requestParameters.authorization,
-        requestParameters.wMSECACCESSTOKEN,
-        requestParameters.wMQOSCORRELATIONID,
-        requestParameters.wMSVCNAME,
-        requestParameters.wMCONSUMERCHANNELTYPE,
-        options
-      )
-      .then((request) => request(this.axios, this.basePath));
-  }
+	/**
+	 * Get Shipping Template Details. Details of CUSTOM, DEFAULT and 3PL-specific (eg. DELIVERR) templates can be retrieved through this API. 3PL will be able to see details of only 3PL-specific templates.
+	 * @summary Get Shipping Template Details
+	 * @param {SettingsApiGetShippingTemplateDetailsRequest} requestParameters Request parameters.
+	 * @param {*} [options] Override http request option.
+	 * @throws {RequiredError}
+	 * @memberof SettingsApi
+	 */
+	public getShippingTemplateDetails(requestParameters: SettingsApiGetShippingTemplateDetailsRequest, options?: any) {
+		return SettingsApiFp(this.configuration)
+			.getShippingTemplateDetails(
+				requestParameters.templateId,
+				requestParameters.authorization,
+				requestParameters.wMSECACCESSTOKEN,
+				requestParameters.wMQOSCORRELATIONID,
+				requestParameters.wMSVCNAME,
+				requestParameters.wMCONSUMERCHANNELTYPE,
+				options
+			)
+			.then((request) => request(this.axios, this.basePath));
+	}
 
-  /**
-   * This API enables or disables a fulfillment center.
-   * @summary Update fulfillment center
-   * @param {SettingsApiUpdateFulfillmentCenterRequest} requestParameters Request parameters.
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof SettingsApi
-   */
-  public updateFulfillmentCenter(
-    requestParameters: SettingsApiUpdateFulfillmentCenterRequest,
-    options?: any
-  ) {
-    return SettingsApiFp(this.configuration)
-      .updateFulfillmentCenter(
-        requestParameters.authorization,
-        requestParameters.wMSECACCESSTOKEN,
-        requestParameters.wMQOSCORRELATIONID,
-        requestParameters.wMSVCNAME,
-        requestParameters.inlineObject,
-        requestParameters.wMCONSUMERCHANNELTYPE,
-        options
-      )
-      .then((request) => request(this.axios, this.basePath));
-  }
+	/**
+	 * This API enables or disables a fulfillment center.
+	 * @summary Update fulfillment center
+	 * @param {SettingsApiUpdateFulfillmentCenterRequest} requestParameters Request parameters.
+	 * @param {*} [options] Override http request option.
+	 * @throws {RequiredError}
+	 * @memberof SettingsApi
+	 */
+	public updateFulfillmentCenter(requestParameters: SettingsApiUpdateFulfillmentCenterRequest, options?: any) {
+		return SettingsApiFp(this.configuration)
+			.updateFulfillmentCenter(
+				requestParameters.authorization,
+				requestParameters.wMSECACCESSTOKEN,
+				requestParameters.wMQOSCORRELATIONID,
+				requestParameters.wMSVCNAME,
+				requestParameters.inlineObject,
+				requestParameters.wMCONSUMERCHANNELTYPE,
+				options
+			)
+			.then((request) => request(this.axios, this.basePath));
+	}
 
-  /**
-   * Update existing Shipping Template.
-   * @summary Update Shipping Templates
-   * @param {SettingsApiUpdateShippingTemplatesRequest} requestParameters Request parameters.
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof SettingsApi
-   */
-  public updateShippingTemplates(
-    requestParameters: SettingsApiUpdateShippingTemplatesRequest,
-    options?: any
-  ) {
-    return SettingsApiFp(this.configuration)
-      .updateShippingTemplates(
-        requestParameters.templateId,
-        requestParameters.authorization,
-        requestParameters.wMSECACCESSTOKEN,
-        requestParameters.wMQOSCORRELATIONID,
-        requestParameters.wMSVCNAME,
-        requestParameters.inlineObject3,
-        requestParameters.wMCONSUMERCHANNELTYPE,
-        options
-      )
-      .then((request) => request(this.axios, this.basePath));
-  }
+	/**
+	 * Update existing Shipping Template.
+	 * @summary Update Shipping Templates
+	 * @param {SettingsApiUpdateShippingTemplatesRequest} requestParameters Request parameters.
+	 * @param {*} [options] Override http request option.
+	 * @throws {RequiredError}
+	 * @memberof SettingsApi
+	 */
+	public updateShippingTemplates(requestParameters: SettingsApiUpdateShippingTemplatesRequest, options?: any) {
+		return SettingsApiFp(this.configuration)
+			.updateShippingTemplates(
+				requestParameters.templateId,
+				requestParameters.authorization,
+				requestParameters.wMSECACCESSTOKEN,
+				requestParameters.wMQOSCORRELATIONID,
+				requestParameters.wMSVCNAME,
+				requestParameters.inlineObject3,
+				requestParameters.wMCONSUMERCHANNELTYPE,
+				options
+			)
+			.then((request) => request(this.axios, this.basePath));
+	}
 }

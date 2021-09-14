@@ -12,30 +12,24 @@
  * Do not edit the class manually.
  */
 
-import { Configuration } from "./configuration";
-import globalAxios, { AxiosPromise, AxiosInstance } from "axios";
+import { Configuration } from './configuration';
+import globalAxios, { AxiosPromise, AxiosInstance } from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import {
-  DUMMY_BASE_URL,
-  assertParamExists,
-  setApiKeyToObject,
-  setBasicAuthToObject,
-  setBearerAuthToObject,
-  setOAuthToObject,
-  setSearchParams,
-  serializeDataIfNeeded,
-  toPathString,
-  createRequestFunction,
-} from "./common";
+	DUMMY_BASE_URL,
+	assertParamExists,
+	setApiKeyToObject,
+	setBasicAuthToObject,
+	setBearerAuthToObject,
+	setOAuthToObject,
+	setSearchParams,
+	serializeDataIfNeeded,
+	toPathString,
+	createRequestFunction,
+} from './common';
 // @ts-ignore
-import {
-  BASE_PATH,
-  COLLECTION_FORMATS,
-  RequestArgs,
-  BaseAPI,
-  RequiredError,
-} from "./base";
+import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from './base';
 
 /**
  *
@@ -43,18 +37,18 @@ import {
  * @interface AdditionalAttribute
  */
 export interface AdditionalAttribute {
-  /**
-   *
-   * @type {string}
-   * @memberof AdditionalAttribute
-   */
-  name: string;
-  /**
-   *
-   * @type {string}
-   * @memberof AdditionalAttribute
-   */
-  value: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof AdditionalAttribute
+	 */
+	name: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof AdditionalAttribute
+	 */
+	value: string;
 }
 /**
  *
@@ -62,12 +56,12 @@ export interface AdditionalAttribute {
  * @interface AdditionalAttributes
  */
 export interface AdditionalAttributes {
-  /**
-   *
-   * @type {Array<InlineResponse200PayloadAdditionalAttributesAdditionalAttribute>}
-   * @memberof AdditionalAttributes
-   */
-  additionalAttribute: Array<InlineResponse200PayloadAdditionalAttributesAdditionalAttribute>;
+	/**
+	 *
+	 * @type {Array<InlineResponse200PayloadAdditionalAttributesAdditionalAttribute>}
+	 * @memberof AdditionalAttributes
+	 */
+	additionalAttribute: Array<InlineResponse200PayloadAdditionalAttributesAdditionalAttribute>;
 }
 /**
  *
@@ -75,30 +69,30 @@ export interface AdditionalAttributes {
  * @interface Cause
  */
 export interface Cause {
-  /**
-   *
-   * @type {string}
-   * @memberof Cause
-   */
-  code?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof Cause
-   */
-  field?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof Cause
-   */
-  type?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof Cause
-   */
-  description?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof Cause
+	 */
+	code?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof Cause
+	 */
+	field?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof Cause
+	 */
+	type?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof Cause
+	 */
+	description?: string;
 }
 /**
  * This is applicable only for promotions
@@ -106,18 +100,18 @@ export interface Cause {
  * @interface ComparisonPrice
  */
 export interface ComparisonPrice {
-  /**
-   *
-   * @type {string}
-   * @memberof ComparisonPrice
-   */
-  currency?: ComparisonPriceCurrencyEnum;
-  /**
-   *
-   * @type {number}
-   * @memberof ComparisonPrice
-   */
-  amount?: number;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof ComparisonPrice
+	 */
+	currency?: ComparisonPriceCurrencyEnum;
+	/**
+	 *
+	 * @type {number}
+	 * @memberof ComparisonPrice
+	 */
+	amount?: number;
 }
 
 /**
@@ -125,8 +119,8 @@ export interface ComparisonPrice {
  * @enum {string}
  */
 export enum ComparisonPriceCurrencyEnum {
-  Usd = "USD",
-  Cad = "CAD",
+	Usd = 'USD',
+	Cad = 'CAD',
 }
 
 /**
@@ -135,18 +129,18 @@ export enum ComparisonPriceCurrencyEnum {
  * @interface CurrentPrice
  */
 export interface CurrentPrice {
-  /**
-   *
-   * @type {string}
-   * @memberof CurrentPrice
-   */
-  currency?: CurrentPriceCurrencyEnum;
-  /**
-   *
-   * @type {number}
-   * @memberof CurrentPrice
-   */
-  amount?: number;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof CurrentPrice
+	 */
+	currency?: CurrentPriceCurrencyEnum;
+	/**
+	 *
+	 * @type {number}
+	 * @memberof CurrentPrice
+	 */
+	amount?: number;
 }
 
 /**
@@ -154,8 +148,8 @@ export interface CurrentPrice {
  * @enum {string}
  */
 export enum CurrentPriceCurrencyEnum {
-  Usd = "USD",
-  Cad = "CAD",
+	Usd = 'USD',
+	Cad = 'CAD',
 }
 
 /**
@@ -164,12 +158,12 @@ export enum CurrentPriceCurrencyEnum {
  * @interface FeedId
  */
 export interface FeedId {
-  /**
-   * A unique ID, returned from the Bulk Upload API, used for tracking the Feed File.
-   * @type {string}
-   * @memberof FeedId
-   */
-  feedId?: string;
+	/**
+	 * A unique ID, returned from the Bulk Upload API, used for tracking the Feed File.
+	 * @type {string}
+	 * @memberof FeedId
+	 */
+	feedId?: string;
 }
 /**
  *
@@ -177,78 +171,78 @@ export interface FeedId {
  * @interface GatewayError
  */
 export interface GatewayError {
-  /**
-   *
-   * @type {string}
-   * @memberof GatewayError
-   */
-  code: string;
-  /**
-   *
-   * @type {string}
-   * @memberof GatewayError
-   */
-  field?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof GatewayError
-   */
-  description?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof GatewayError
-   */
-  info?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof GatewayError
-   */
-  severity?: GatewayErrorSeverityEnum;
-  /**
-   *
-   * @type {string}
-   * @memberof GatewayError
-   */
-  category?: GatewayErrorCategoryEnum;
-  /**
-   *
-   * @type {Array<InlineResponse2001Causes>}
-   * @memberof GatewayError
-   */
-  causes?: Array<InlineResponse2001Causes>;
-  /**
-   *
-   * @type {{ [key: string]: object; }}
-   * @memberof GatewayError
-   */
-  errorIdentifiers?: { [key: string]: object };
-  /**
-   *
-   * @type {string}
-   * @memberof GatewayError
-   */
-  component?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof GatewayError
-   */
-  type?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof GatewayError
-   */
-  serviceName?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof GatewayError
-   */
-  gatewayErrorCategory?: GatewayErrorGatewayErrorCategoryEnum;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof GatewayError
+	 */
+	code: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof GatewayError
+	 */
+	field?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof GatewayError
+	 */
+	description?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof GatewayError
+	 */
+	info?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof GatewayError
+	 */
+	severity?: GatewayErrorSeverityEnum;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof GatewayError
+	 */
+	category?: GatewayErrorCategoryEnum;
+	/**
+	 *
+	 * @type {Array<InlineResponse2001Causes>}
+	 * @memberof GatewayError
+	 */
+	causes?: Array<InlineResponse2001Causes>;
+	/**
+	 *
+	 * @type {{ [key: string]: object; }}
+	 * @memberof GatewayError
+	 */
+	errorIdentifiers?: { [key: string]: object };
+	/**
+	 *
+	 * @type {string}
+	 * @memberof GatewayError
+	 */
+	component?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof GatewayError
+	 */
+	type?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof GatewayError
+	 */
+	serviceName?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof GatewayError
+	 */
+	gatewayErrorCategory?: GatewayErrorGatewayErrorCategoryEnum;
 }
 
 /**
@@ -256,28 +250,28 @@ export interface GatewayError {
  * @enum {string}
  */
 export enum GatewayErrorSeverityEnum {
-  Info = "INFO",
-  Warn = "WARN",
-  Error = "ERROR",
+	Info = 'INFO',
+	Warn = 'WARN',
+	Error = 'ERROR',
 }
 /**
  * @export
  * @enum {string}
  */
 export enum GatewayErrorCategoryEnum {
-  Application = "APPLICATION",
-  System = "SYSTEM",
-  Request = "REQUEST",
-  Data = "DATA",
+	Application = 'APPLICATION',
+	System = 'SYSTEM',
+	Request = 'REQUEST',
+	Data = 'DATA',
 }
 /**
  * @export
  * @enum {string}
  */
 export enum GatewayErrorGatewayErrorCategoryEnum {
-  InternalDataError = "INTERNAL_DATA_ERROR",
-  ExternalDataError = "EXTERNAL_DATA_ERROR",
-  SystemError = "SYSTEM_ERROR",
+	InternalDataError = 'INTERNAL_DATA_ERROR',
+	ExternalDataError = 'EXTERNAL_DATA_ERROR',
+	SystemError = 'SYSTEM_ERROR',
 }
 
 /**
@@ -286,12 +280,12 @@ export enum GatewayErrorGatewayErrorCategoryEnum {
  * @interface Header
  */
 export interface Header {
-  /**
-   *
-   * @type {object}
-   * @memberof Header
-   */
-  headerAttributes?: object;
+	/**
+	 *
+	 * @type {object}
+	 * @memberof Header
+	 */
+	headerAttributes?: object;
 }
 /**
  *
@@ -299,36 +293,36 @@ export interface Header {
  * @interface InlineObject
  */
 export interface InlineObject {
-  /**
-   * This is applicable only for promotions
-   * @type {string}
-   * @memberof InlineObject
-   */
-  offerId?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineObject
-   */
-  sku: string;
-  /**
-   * This is applicable only for promotions
-   * @type {string}
-   * @memberof InlineObject
-   */
-  replaceAll?: InlineObjectReplaceAllEnum;
-  /**
-   *
-   * @type {Array<V3PricePricing>}
-   * @memberof InlineObject
-   */
-  pricing: Array<V3PricePricing>;
-  /**
-   *
-   * @type {object}
-   * @memberof InlineObject
-   */
-  definitions?: object;
+	/**
+	 * This is applicable only for promotions
+	 * @type {string}
+	 * @memberof InlineObject
+	 */
+	offerId?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineObject
+	 */
+	sku: string;
+	/**
+	 * This is applicable only for promotions
+	 * @type {string}
+	 * @memberof InlineObject
+	 */
+	replaceAll?: InlineObjectReplaceAllEnum;
+	/**
+	 *
+	 * @type {Array<V3PricePricing>}
+	 * @memberof InlineObject
+	 */
+	pricing: Array<V3PricePricing>;
+	/**
+	 *
+	 * @type {object}
+	 * @memberof InlineObject
+	 */
+	definitions?: object;
 }
 
 /**
@@ -336,8 +330,8 @@ export interface InlineObject {
  * @enum {string}
  */
 export enum InlineObjectReplaceAllEnum {
-  True = "true",
-  False = "false",
+	True = 'true',
+	False = 'false',
 }
 
 /**
@@ -346,24 +340,24 @@ export enum InlineObjectReplaceAllEnum {
  * @interface InlineResponse200
  */
 export interface InlineResponse200 {
-  /**
-   *
-   * @type {InlineResponse200Payload}
-   * @memberof InlineResponse200
-   */
-  payload?: InlineResponse200Payload;
-  /**
-   *
-   * @type {InlineResponse200Header}
-   * @memberof InlineResponse200
-   */
-  header?: InlineResponse200Header;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse200
-   */
-  status?: string;
+	/**
+	 *
+	 * @type {InlineResponse200Payload}
+	 * @memberof InlineResponse200
+	 */
+	payload?: InlineResponse200Payload;
+	/**
+	 *
+	 * @type {InlineResponse200Header}
+	 * @memberof InlineResponse200
+	 */
+	header?: InlineResponse200Header;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineResponse200
+	 */
+	status?: string;
 }
 /**
  *
@@ -371,36 +365,36 @@ export interface InlineResponse200 {
  * @interface InlineResponse2001
  */
 export interface InlineResponse2001 {
-  /**
-   *
-   * @type {Array<InlineResponse2001Errors>}
-   * @memberof InlineResponse2001
-   */
-  errors?: Array<InlineResponse2001Errors>;
-  /**
-   *
-   * @type {number}
-   * @memberof InlineResponse2001
-   */
-  statusCode?: number;
-  /**
-   * Marketplace name. Example: Walmart-US
-   * @type {string}
-   * @memberof InlineResponse2001
-   */
-  mart?: string;
-  /**
-   * An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item.
-   * @type {string}
-   * @memberof InlineResponse2001
-   */
-  sku?: string;
-  /**
-   * A message of acknowledgement for a price update
-   * @type {string}
-   * @memberof InlineResponse2001
-   */
-  message?: string;
+	/**
+	 *
+	 * @type {Array<InlineResponse2001Errors>}
+	 * @memberof InlineResponse2001
+	 */
+	errors?: Array<InlineResponse2001Errors>;
+	/**
+	 *
+	 * @type {number}
+	 * @memberof InlineResponse2001
+	 */
+	statusCode?: number;
+	/**
+	 * Marketplace name. Example: Walmart-US
+	 * @type {string}
+	 * @memberof InlineResponse2001
+	 */
+	mart?: string;
+	/**
+	 * An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item.
+	 * @type {string}
+	 * @memberof InlineResponse2001
+	 */
+	sku?: string;
+	/**
+	 * A message of acknowledgement for a price update
+	 * @type {string}
+	 * @memberof InlineResponse2001
+	 */
+	message?: string;
 }
 /**
  *
@@ -408,30 +402,30 @@ export interface InlineResponse2001 {
  * @interface InlineResponse2001Causes
  */
 export interface InlineResponse2001Causes {
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse2001Causes
-   */
-  code?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse2001Causes
-   */
-  field?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse2001Causes
-   */
-  type?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse2001Causes
-   */
-  description?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineResponse2001Causes
+	 */
+	code?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineResponse2001Causes
+	 */
+	field?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineResponse2001Causes
+	 */
+	type?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineResponse2001Causes
+	 */
+	description?: string;
 }
 /**
  *
@@ -439,78 +433,78 @@ export interface InlineResponse2001Causes {
  * @interface InlineResponse2001Errors
  */
 export interface InlineResponse2001Errors {
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse2001Errors
-   */
-  code: string;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse2001Errors
-   */
-  field?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse2001Errors
-   */
-  description?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse2001Errors
-   */
-  info?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse2001Errors
-   */
-  severity?: InlineResponse2001ErrorsSeverityEnum;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse2001Errors
-   */
-  category?: InlineResponse2001ErrorsCategoryEnum;
-  /**
-   *
-   * @type {Array<InlineResponse2001Causes>}
-   * @memberof InlineResponse2001Errors
-   */
-  causes?: Array<InlineResponse2001Causes>;
-  /**
-   *
-   * @type {{ [key: string]: object; }}
-   * @memberof InlineResponse2001Errors
-   */
-  errorIdentifiers?: { [key: string]: object };
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse2001Errors
-   */
-  component?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse2001Errors
-   */
-  type?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse2001Errors
-   */
-  serviceName?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse2001Errors
-   */
-  gatewayErrorCategory?: InlineResponse2001ErrorsGatewayErrorCategoryEnum;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineResponse2001Errors
+	 */
+	code: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineResponse2001Errors
+	 */
+	field?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineResponse2001Errors
+	 */
+	description?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineResponse2001Errors
+	 */
+	info?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineResponse2001Errors
+	 */
+	severity?: InlineResponse2001ErrorsSeverityEnum;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineResponse2001Errors
+	 */
+	category?: InlineResponse2001ErrorsCategoryEnum;
+	/**
+	 *
+	 * @type {Array<InlineResponse2001Causes>}
+	 * @memberof InlineResponse2001Errors
+	 */
+	causes?: Array<InlineResponse2001Causes>;
+	/**
+	 *
+	 * @type {{ [key: string]: object; }}
+	 * @memberof InlineResponse2001Errors
+	 */
+	errorIdentifiers?: { [key: string]: object };
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineResponse2001Errors
+	 */
+	component?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineResponse2001Errors
+	 */
+	type?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineResponse2001Errors
+	 */
+	serviceName?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineResponse2001Errors
+	 */
+	gatewayErrorCategory?: InlineResponse2001ErrorsGatewayErrorCategoryEnum;
 }
 
 /**
@@ -518,28 +512,28 @@ export interface InlineResponse2001Errors {
  * @enum {string}
  */
 export enum InlineResponse2001ErrorsSeverityEnum {
-  Info = "INFO",
-  Warn = "WARN",
-  Error = "ERROR",
+	Info = 'INFO',
+	Warn = 'WARN',
+	Error = 'ERROR',
 }
 /**
  * @export
  * @enum {string}
  */
 export enum InlineResponse2001ErrorsCategoryEnum {
-  Application = "APPLICATION",
-  System = "SYSTEM",
-  Request = "REQUEST",
-  Data = "DATA",
+	Application = 'APPLICATION',
+	System = 'SYSTEM',
+	Request = 'REQUEST',
+	Data = 'DATA',
 }
 /**
  * @export
  * @enum {string}
  */
 export enum InlineResponse2001ErrorsGatewayErrorCategoryEnum {
-  InternalDataError = "INTERNAL_DATA_ERROR",
-  ExternalDataError = "EXTERNAL_DATA_ERROR",
-  SystemError = "SYSTEM_ERROR",
+	InternalDataError = 'INTERNAL_DATA_ERROR',
+	ExternalDataError = 'EXTERNAL_DATA_ERROR',
+	SystemError = 'SYSTEM_ERROR',
 }
 
 /**
@@ -548,12 +542,12 @@ export enum InlineResponse2001ErrorsGatewayErrorCategoryEnum {
  * @interface InlineResponse2002
  */
 export interface InlineResponse2002 {
-  /**
-   * A unique ID, returned from the Bulk Upload API, used for tracking the Feed File.
-   * @type {string}
-   * @memberof InlineResponse2002
-   */
-  feedId?: string;
+	/**
+	 * A unique ID, returned from the Bulk Upload API, used for tracking the Feed File.
+	 * @type {string}
+	 * @memberof InlineResponse2002
+	 */
+	feedId?: string;
 }
 /**
  *
@@ -561,12 +555,12 @@ export interface InlineResponse2002 {
  * @interface InlineResponse200Header
  */
 export interface InlineResponse200Header {
-  /**
-   *
-   * @type {object}
-   * @memberof InlineResponse200Header
-   */
-  headerAttributes?: object;
+	/**
+	 *
+	 * @type {object}
+	 * @memberof InlineResponse200Header
+	 */
+	headerAttributes?: object;
 }
 /**
  *
@@ -574,42 +568,42 @@ export interface InlineResponse200Header {
  * @interface InlineResponse200Payload
  */
 export interface InlineResponse200Payload {
-  /**
-   *
-   * @type {InlineResponse200PayloadItemIdentifier}
-   * @memberof InlineResponse200Payload
-   */
-  itemIdentifier: InlineResponse200PayloadItemIdentifier;
-  /**
-   *
-   * @type {InlineResponse200PayloadPricingList}
-   * @memberof InlineResponse200Payload
-   */
-  pricingList: InlineResponse200PayloadPricingList;
-  /**
-   *
-   * @type {InlineResponse200PayloadPricingListCurrentPriceValue}
-   * @memberof InlineResponse200Payload
-   */
-  maxSalesRetailPrice?: InlineResponse200PayloadPricingListCurrentPriceValue;
-  /**
-   *
-   * @type {InlineResponse200PayloadPricingListCurrentPriceValue}
-   * @memberof InlineResponse200Payload
-   */
-  minAdvtPrice?: InlineResponse200PayloadPricingListCurrentPriceValue;
-  /**
-   *
-   * @type {InlineResponse200PayloadRebate}
-   * @memberof InlineResponse200Payload
-   */
-  rebate?: InlineResponse200PayloadRebate;
-  /**
-   *
-   * @type {InlineResponse200PayloadAdditionalAttributes}
-   * @memberof InlineResponse200Payload
-   */
-  additionalAttributes?: InlineResponse200PayloadAdditionalAttributes;
+	/**
+	 *
+	 * @type {InlineResponse200PayloadItemIdentifier}
+	 * @memberof InlineResponse200Payload
+	 */
+	itemIdentifier: InlineResponse200PayloadItemIdentifier;
+	/**
+	 *
+	 * @type {InlineResponse200PayloadPricingList}
+	 * @memberof InlineResponse200Payload
+	 */
+	pricingList: InlineResponse200PayloadPricingList;
+	/**
+	 *
+	 * @type {InlineResponse200PayloadPricingListCurrentPriceValue}
+	 * @memberof InlineResponse200Payload
+	 */
+	maxSalesRetailPrice?: InlineResponse200PayloadPricingListCurrentPriceValue;
+	/**
+	 *
+	 * @type {InlineResponse200PayloadPricingListCurrentPriceValue}
+	 * @memberof InlineResponse200Payload
+	 */
+	minAdvtPrice?: InlineResponse200PayloadPricingListCurrentPriceValue;
+	/**
+	 *
+	 * @type {InlineResponse200PayloadRebate}
+	 * @memberof InlineResponse200Payload
+	 */
+	rebate?: InlineResponse200PayloadRebate;
+	/**
+	 *
+	 * @type {InlineResponse200PayloadAdditionalAttributes}
+	 * @memberof InlineResponse200Payload
+	 */
+	additionalAttributes?: InlineResponse200PayloadAdditionalAttributes;
 }
 /**
  *
@@ -617,12 +611,12 @@ export interface InlineResponse200Payload {
  * @interface InlineResponse200PayloadAdditionalAttributes
  */
 export interface InlineResponse200PayloadAdditionalAttributes {
-  /**
-   *
-   * @type {Array<InlineResponse200PayloadAdditionalAttributesAdditionalAttribute>}
-   * @memberof InlineResponse200PayloadAdditionalAttributes
-   */
-  additionalAttribute: Array<InlineResponse200PayloadAdditionalAttributesAdditionalAttribute>;
+	/**
+	 *
+	 * @type {Array<InlineResponse200PayloadAdditionalAttributesAdditionalAttribute>}
+	 * @memberof InlineResponse200PayloadAdditionalAttributes
+	 */
+	additionalAttribute: Array<InlineResponse200PayloadAdditionalAttributesAdditionalAttribute>;
 }
 /**
  *
@@ -630,18 +624,18 @@ export interface InlineResponse200PayloadAdditionalAttributes {
  * @interface InlineResponse200PayloadAdditionalAttributesAdditionalAttribute
  */
 export interface InlineResponse200PayloadAdditionalAttributesAdditionalAttribute {
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse200PayloadAdditionalAttributesAdditionalAttribute
-   */
-  name: string;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse200PayloadAdditionalAttributesAdditionalAttribute
-   */
-  value: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineResponse200PayloadAdditionalAttributesAdditionalAttribute
+	 */
+	name: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineResponse200PayloadAdditionalAttributesAdditionalAttribute
+	 */
+	value: string;
 }
 /**
  *
@@ -649,36 +643,36 @@ export interface InlineResponse200PayloadAdditionalAttributesAdditionalAttribute
  * @interface InlineResponse200PayloadItemIdentifier
  */
 export interface InlineResponse200PayloadItemIdentifier {
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse200PayloadItemIdentifier
-   */
-  sku?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse200PayloadItemIdentifier
-   */
-  offerId?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse200PayloadItemIdentifier
-   */
-  itemId?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse200PayloadItemIdentifier
-   */
-  wpid?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse200PayloadItemIdentifier
-   */
-  productType?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineResponse200PayloadItemIdentifier
+	 */
+	sku?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineResponse200PayloadItemIdentifier
+	 */
+	offerId?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineResponse200PayloadItemIdentifier
+	 */
+	itemId?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineResponse200PayloadItemIdentifier
+	 */
+	wpid?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineResponse200PayloadItemIdentifier
+	 */
+	productType?: string;
 }
 /**
  *
@@ -686,18 +680,18 @@ export interface InlineResponse200PayloadItemIdentifier {
  * @interface InlineResponse200PayloadPricingList
  */
 export interface InlineResponse200PayloadPricingList {
-  /**
-   *
-   * @type {boolean}
-   * @memberof InlineResponse200PayloadPricingList
-   */
-  replaceAll?: boolean;
-  /**
-   *
-   * @type {Array<InlineResponse200PayloadPricingListPricing>}
-   * @memberof InlineResponse200PayloadPricingList
-   */
-  pricing: Array<InlineResponse200PayloadPricingListPricing>;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof InlineResponse200PayloadPricingList
+	 */
+	replaceAll?: boolean;
+	/**
+	 *
+	 * @type {Array<InlineResponse200PayloadPricingListPricing>}
+	 * @memberof InlineResponse200PayloadPricingList
+	 */
+	pricing: Array<InlineResponse200PayloadPricingListPricing>;
 }
 /**
  *
@@ -705,48 +699,48 @@ export interface InlineResponse200PayloadPricingList {
  * @interface InlineResponse200PayloadPricingListCurrentPrice
  */
 export interface InlineResponse200PayloadPricingListCurrentPrice {
-  /**
-   *
-   * @type {InlineResponse200PayloadPricingListCurrentPriceValue}
-   * @memberof InlineResponse200PayloadPricingListCurrentPrice
-   */
-  value?: InlineResponse200PayloadPricingListCurrentPriceValue;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse200PayloadPricingListCurrentPrice
-   */
-  uomType?: string;
-  /**
-   *
-   * @type {InlineResponse200PayloadPricingListCurrentPriceValue}
-   * @memberof InlineResponse200PayloadPricingListCurrentPrice
-   */
-  minValue?: InlineResponse200PayloadPricingListCurrentPriceValue;
-  /**
-   *
-   * @type {InlineResponse200PayloadPricingListCurrentPriceValue}
-   * @memberof InlineResponse200PayloadPricingListCurrentPrice
-   */
-  maxValue?: InlineResponse200PayloadPricingListCurrentPriceValue;
-  /**
-   *
-   * @type {InlineResponse200PayloadPricingListCurrentPriceValue}
-   * @memberof InlineResponse200PayloadPricingListCurrentPrice
-   */
-  perUnitValue?: InlineResponse200PayloadPricingListCurrentPriceValue;
-  /**
-   *
-   * @type {InlineResponse200PayloadPricingListCurrentPriceValue}
-   * @memberof InlineResponse200PayloadPricingListCurrentPrice
-   */
-  minUnitValue?: InlineResponse200PayloadPricingListCurrentPriceValue;
-  /**
-   *
-   * @type {InlineResponse200PayloadPricingListCurrentPriceValue}
-   * @memberof InlineResponse200PayloadPricingListCurrentPrice
-   */
-  maxUnitValue?: InlineResponse200PayloadPricingListCurrentPriceValue;
+	/**
+	 *
+	 * @type {InlineResponse200PayloadPricingListCurrentPriceValue}
+	 * @memberof InlineResponse200PayloadPricingListCurrentPrice
+	 */
+	value?: InlineResponse200PayloadPricingListCurrentPriceValue;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineResponse200PayloadPricingListCurrentPrice
+	 */
+	uomType?: string;
+	/**
+	 *
+	 * @type {InlineResponse200PayloadPricingListCurrentPriceValue}
+	 * @memberof InlineResponse200PayloadPricingListCurrentPrice
+	 */
+	minValue?: InlineResponse200PayloadPricingListCurrentPriceValue;
+	/**
+	 *
+	 * @type {InlineResponse200PayloadPricingListCurrentPriceValue}
+	 * @memberof InlineResponse200PayloadPricingListCurrentPrice
+	 */
+	maxValue?: InlineResponse200PayloadPricingListCurrentPriceValue;
+	/**
+	 *
+	 * @type {InlineResponse200PayloadPricingListCurrentPriceValue}
+	 * @memberof InlineResponse200PayloadPricingListCurrentPrice
+	 */
+	perUnitValue?: InlineResponse200PayloadPricingListCurrentPriceValue;
+	/**
+	 *
+	 * @type {InlineResponse200PayloadPricingListCurrentPriceValue}
+	 * @memberof InlineResponse200PayloadPricingListCurrentPrice
+	 */
+	minUnitValue?: InlineResponse200PayloadPricingListCurrentPriceValue;
+	/**
+	 *
+	 * @type {InlineResponse200PayloadPricingListCurrentPriceValue}
+	 * @memberof InlineResponse200PayloadPricingListCurrentPrice
+	 */
+	maxUnitValue?: InlineResponse200PayloadPricingListCurrentPriceValue;
 }
 /**
  *
@@ -754,24 +748,24 @@ export interface InlineResponse200PayloadPricingListCurrentPrice {
  * @interface InlineResponse200PayloadPricingListCurrentPriceValue
  */
 export interface InlineResponse200PayloadPricingListCurrentPriceValue {
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse200PayloadPricingListCurrentPriceValue
-   */
-  value?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse200PayloadPricingListCurrentPriceValue
-   */
-  currency?: string;
-  /**
-   *
-   * @type {number}
-   * @memberof InlineResponse200PayloadPricingListCurrentPriceValue
-   */
-  amount?: number;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineResponse200PayloadPricingListCurrentPriceValue
+	 */
+	value?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineResponse200PayloadPricingListCurrentPriceValue
+	 */
+	currency?: string;
+	/**
+	 *
+	 * @type {number}
+	 * @memberof InlineResponse200PayloadPricingListCurrentPriceValue
+	 */
+	amount?: number;
 }
 /**
  *
@@ -779,18 +773,18 @@ export interface InlineResponse200PayloadPricingListCurrentPriceValue {
  * @interface InlineResponse200PayloadPricingListPickupDiscount
  */
 export interface InlineResponse200PayloadPricingListPickupDiscount {
-  /**
-   *
-   * @type {boolean}
-   * @memberof InlineResponse200PayloadPricingListPickupDiscount
-   */
-  isPickUpDiscountEligible?: boolean;
-  /**
-   *
-   * @type {InlineResponse200PayloadPricingListCurrentPriceValue}
-   * @memberof InlineResponse200PayloadPricingListPickupDiscount
-   */
-  pickupDiscountAmt?: InlineResponse200PayloadPricingListCurrentPriceValue;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof InlineResponse200PayloadPricingListPickupDiscount
+	 */
+	isPickUpDiscountEligible?: boolean;
+	/**
+	 *
+	 * @type {InlineResponse200PayloadPricingListCurrentPriceValue}
+	 * @memberof InlineResponse200PayloadPricingListPickupDiscount
+	 */
+	pickupDiscountAmt?: InlineResponse200PayloadPricingListCurrentPriceValue;
 }
 /**
  *
@@ -798,48 +792,48 @@ export interface InlineResponse200PayloadPricingListPickupDiscount {
  * @interface InlineResponse200PayloadPricingListPriceDisplayCodes
  */
 export interface InlineResponse200PayloadPricingListPriceDisplayCodes {
-  /**
-   *
-   * @type {boolean}
-   * @memberof InlineResponse200PayloadPricingListPriceDisplayCodes
-   */
-  isClearance?: boolean;
-  /**
-   *
-   * @type {object}
-   * @memberof InlineResponse200PayloadPricingListPriceDisplayCodes
-   */
-  hidePriceForSOI?: object;
-  /**
-   *
-   * @type {object}
-   * @memberof InlineResponse200PayloadPricingListPriceDisplayCodes
-   */
-  submapType?: object;
-  /**
-   *
-   * @type {boolean}
-   * @memberof InlineResponse200PayloadPricingListPriceDisplayCodes
-   */
-  isRollback?: boolean;
-  /**
-   *
-   * @type {boolean}
-   * @memberof InlineResponse200PayloadPricingListPriceDisplayCodes
-   */
-  isReducedPrice?: boolean;
-  /**
-   *
-   * @type {object}
-   * @memberof InlineResponse200PayloadPricingListPriceDisplayCodes
-   */
-  isEligibleForAssociateDiscount?: object;
-  /**
-   *
-   * @type {boolean}
-   * @memberof InlineResponse200PayloadPricingListPriceDisplayCodes
-   */
-  isStrikethrough?: boolean;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof InlineResponse200PayloadPricingListPriceDisplayCodes
+	 */
+	isClearance?: boolean;
+	/**
+	 *
+	 * @type {object}
+	 * @memberof InlineResponse200PayloadPricingListPriceDisplayCodes
+	 */
+	hidePriceForSOI?: object;
+	/**
+	 *
+	 * @type {object}
+	 * @memberof InlineResponse200PayloadPricingListPriceDisplayCodes
+	 */
+	submapType?: object;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof InlineResponse200PayloadPricingListPriceDisplayCodes
+	 */
+	isRollback?: boolean;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof InlineResponse200PayloadPricingListPriceDisplayCodes
+	 */
+	isReducedPrice?: boolean;
+	/**
+	 *
+	 * @type {object}
+	 * @memberof InlineResponse200PayloadPricingListPriceDisplayCodes
+	 */
+	isEligibleForAssociateDiscount?: object;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof InlineResponse200PayloadPricingListPriceDisplayCodes
+	 */
+	isStrikethrough?: boolean;
 }
 /**
  *
@@ -847,78 +841,78 @@ export interface InlineResponse200PayloadPricingListPriceDisplayCodes {
  * @interface InlineResponse200PayloadPricingListPricing
  */
 export interface InlineResponse200PayloadPricingListPricing {
-  /**
-   *
-   * @type {InlineResponse200PayloadPricingListCurrentPrice}
-   * @memberof InlineResponse200PayloadPricingListPricing
-   */
-  currentPrice: InlineResponse200PayloadPricingListCurrentPrice;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse200PayloadPricingListPricing
-   */
-  currentPriceType: InlineResponse200PayloadPricingListPricingCurrentPriceTypeEnum;
-  /**
-   *
-   * @type {InlineResponse200PayloadPricingListCurrentPrice}
-   * @memberof InlineResponse200PayloadPricingListPricing
-   */
-  comparisonPrice?: InlineResponse200PayloadPricingListCurrentPrice;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse200PayloadPricingListPricing
-   */
-  comparisonPriceType?: InlineResponse200PayloadPricingListPricingComparisonPriceTypeEnum;
-  /**
-   *
-   * @type {number}
-   * @memberof InlineResponse200PayloadPricingListPricing
-   */
-  savingsAmount?: number;
-  /**
-   *
-   * @type {number}
-   * @memberof InlineResponse200PayloadPricingListPricing
-   */
-  savingsPercent?: number;
-  /**
-   *
-   * @type {InlineResponse200PayloadPricingListPriceDisplayCodes}
-   * @memberof InlineResponse200PayloadPricingListPricing
-   */
-  priceDisplayCodes?: InlineResponse200PayloadPricingListPriceDisplayCodes;
-  /**
-   *
-   * @type {InlineResponse200PayloadPricingListPickupDiscount}
-   * @memberof InlineResponse200PayloadPricingListPricing
-   */
-  pickupDiscount?: InlineResponse200PayloadPricingListPickupDiscount;
-  /**
-   *
-   * @type {number}
-   * @memberof InlineResponse200PayloadPricingListPricing
-   */
-  effectiveDate?: number;
-  /**
-   *
-   * @type {number}
-   * @memberof InlineResponse200PayloadPricingListPricing
-   */
-  expirationDate?: number;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse200PayloadPricingListPricing
-   */
-  processMode?: InlineResponse200PayloadPricingListPricingProcessModeEnum;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse200PayloadPricingListPricing
-   */
-  pid?: string;
+	/**
+	 *
+	 * @type {InlineResponse200PayloadPricingListCurrentPrice}
+	 * @memberof InlineResponse200PayloadPricingListPricing
+	 */
+	currentPrice: InlineResponse200PayloadPricingListCurrentPrice;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineResponse200PayloadPricingListPricing
+	 */
+	currentPriceType: InlineResponse200PayloadPricingListPricingCurrentPriceTypeEnum;
+	/**
+	 *
+	 * @type {InlineResponse200PayloadPricingListCurrentPrice}
+	 * @memberof InlineResponse200PayloadPricingListPricing
+	 */
+	comparisonPrice?: InlineResponse200PayloadPricingListCurrentPrice;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineResponse200PayloadPricingListPricing
+	 */
+	comparisonPriceType?: InlineResponse200PayloadPricingListPricingComparisonPriceTypeEnum;
+	/**
+	 *
+	 * @type {number}
+	 * @memberof InlineResponse200PayloadPricingListPricing
+	 */
+	savingsAmount?: number;
+	/**
+	 *
+	 * @type {number}
+	 * @memberof InlineResponse200PayloadPricingListPricing
+	 */
+	savingsPercent?: number;
+	/**
+	 *
+	 * @type {InlineResponse200PayloadPricingListPriceDisplayCodes}
+	 * @memberof InlineResponse200PayloadPricingListPricing
+	 */
+	priceDisplayCodes?: InlineResponse200PayloadPricingListPriceDisplayCodes;
+	/**
+	 *
+	 * @type {InlineResponse200PayloadPricingListPickupDiscount}
+	 * @memberof InlineResponse200PayloadPricingListPricing
+	 */
+	pickupDiscount?: InlineResponse200PayloadPricingListPickupDiscount;
+	/**
+	 *
+	 * @type {number}
+	 * @memberof InlineResponse200PayloadPricingListPricing
+	 */
+	effectiveDate?: number;
+	/**
+	 *
+	 * @type {number}
+	 * @memberof InlineResponse200PayloadPricingListPricing
+	 */
+	expirationDate?: number;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineResponse200PayloadPricingListPricing
+	 */
+	processMode?: InlineResponse200PayloadPricingListPricingProcessModeEnum;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineResponse200PayloadPricingListPricing
+	 */
+	pid?: string;
 }
 
 /**
@@ -926,34 +920,34 @@ export interface InlineResponse200PayloadPricingListPricing {
  * @enum {string}
  */
 export enum InlineResponse200PayloadPricingListPricingCurrentPriceTypeEnum {
-  Base = "BASE",
-  Reduced = "REDUCED",
-  SavingsAmt = "SAVINGS_AMT",
-  SavingsPct = "SAVINGS_PCT",
-  Rollback = "ROLLBACK",
-  Clearance = "CLEARANCE",
-  ListPrice = "LIST_PRICE",
+	Base = 'BASE',
+	Reduced = 'REDUCED',
+	SavingsAmt = 'SAVINGS_AMT',
+	SavingsPct = 'SAVINGS_PCT',
+	Rollback = 'ROLLBACK',
+	Clearance = 'CLEARANCE',
+	ListPrice = 'LIST_PRICE',
 }
 /**
  * @export
  * @enum {string}
  */
 export enum InlineResponse200PayloadPricingListPricingComparisonPriceTypeEnum {
-  Base = "BASE",
-  Reduced = "REDUCED",
-  SavingsAmt = "SAVINGS_AMT",
-  SavingsPct = "SAVINGS_PCT",
-  Rollback = "ROLLBACK",
-  Clearance = "CLEARANCE",
-  ListPrice = "LIST_PRICE",
+	Base = 'BASE',
+	Reduced = 'REDUCED',
+	SavingsAmt = 'SAVINGS_AMT',
+	SavingsPct = 'SAVINGS_PCT',
+	Rollback = 'ROLLBACK',
+	Clearance = 'CLEARANCE',
+	ListPrice = 'LIST_PRICE',
 }
 /**
  * @export
  * @enum {string}
  */
 export enum InlineResponse200PayloadPricingListPricingProcessModeEnum {
-  Upsert = "UPSERT",
-  Delete = "DELETE",
+	Upsert = 'UPSERT',
+	Delete = 'DELETE',
 }
 
 /**
@@ -962,36 +956,36 @@ export enum InlineResponse200PayloadPricingListPricingProcessModeEnum {
  * @interface InlineResponse200PayloadRebate
  */
 export interface InlineResponse200PayloadRebate {
-  /**
-   *
-   * @type {InlineResponse200PayloadPricingListCurrentPriceValue}
-   * @memberof InlineResponse200PayloadRebate
-   */
-  rebateAmt: InlineResponse200PayloadPricingListCurrentPriceValue;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse200PayloadRebate
-   */
-  infoUrl?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse200PayloadRebate
-   */
-  rebateType?: InlineResponse200PayloadRebateRebateTypeEnum;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse200PayloadRebate
-   */
-  startDate?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse200PayloadRebate
-   */
-  endDate?: string;
+	/**
+	 *
+	 * @type {InlineResponse200PayloadPricingListCurrentPriceValue}
+	 * @memberof InlineResponse200PayloadRebate
+	 */
+	rebateAmt: InlineResponse200PayloadPricingListCurrentPriceValue;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineResponse200PayloadRebate
+	 */
+	infoUrl?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineResponse200PayloadRebate
+	 */
+	rebateType?: InlineResponse200PayloadRebateRebateTypeEnum;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineResponse200PayloadRebate
+	 */
+	startDate?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineResponse200PayloadRebate
+	 */
+	endDate?: string;
 }
 
 /**
@@ -999,8 +993,8 @@ export interface InlineResponse200PayloadRebate {
  * @enum {string}
  */
 export enum InlineResponse200PayloadRebateRebateTypeEnum {
-  Amount = "AMOUNT",
-  Product = "PRODUCT",
+	Amount = 'AMOUNT',
+	Product = 'PRODUCT',
 }
 
 /**
@@ -1009,36 +1003,36 @@ export enum InlineResponse200PayloadRebateRebateTypeEnum {
  * @interface ItemIdentifierType
  */
 export interface ItemIdentifierType {
-  /**
-   *
-   * @type {string}
-   * @memberof ItemIdentifierType
-   */
-  sku?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof ItemIdentifierType
-   */
-  offerId?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof ItemIdentifierType
-   */
-  itemId?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof ItemIdentifierType
-   */
-  wpid?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof ItemIdentifierType
-   */
-  productType?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof ItemIdentifierType
+	 */
+	sku?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof ItemIdentifierType
+	 */
+	offerId?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof ItemIdentifierType
+	 */
+	itemId?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof ItemIdentifierType
+	 */
+	wpid?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof ItemIdentifierType
+	 */
+	productType?: string;
 }
 /**
  *
@@ -1046,36 +1040,36 @@ export interface ItemIdentifierType {
  * @interface ItemPriceResponse
  */
 export interface ItemPriceResponse {
-  /**
-   *
-   * @type {Array<InlineResponse2001Errors>}
-   * @memberof ItemPriceResponse
-   */
-  errors?: Array<InlineResponse2001Errors>;
-  /**
-   *
-   * @type {number}
-   * @memberof ItemPriceResponse
-   */
-  statusCode?: number;
-  /**
-   * Marketplace name. Example: Walmart-US
-   * @type {string}
-   * @memberof ItemPriceResponse
-   */
-  mart?: string;
-  /**
-   * An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item.
-   * @type {string}
-   * @memberof ItemPriceResponse
-   */
-  sku?: string;
-  /**
-   * A message of acknowledgement for a price update
-   * @type {string}
-   * @memberof ItemPriceResponse
-   */
-  message?: string;
+	/**
+	 *
+	 * @type {Array<InlineResponse2001Errors>}
+	 * @memberof ItemPriceResponse
+	 */
+	errors?: Array<InlineResponse2001Errors>;
+	/**
+	 *
+	 * @type {number}
+	 * @memberof ItemPriceResponse
+	 */
+	statusCode?: number;
+	/**
+	 * Marketplace name. Example: Walmart-US
+	 * @type {string}
+	 * @memberof ItemPriceResponse
+	 */
+	mart?: string;
+	/**
+	 * An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item.
+	 * @type {string}
+	 * @memberof ItemPriceResponse
+	 */
+	sku?: string;
+	/**
+	 * A message of acknowledgement for a price update
+	 * @type {string}
+	 * @memberof ItemPriceResponse
+	 */
+	message?: string;
 }
 /**
  *
@@ -1083,42 +1077,42 @@ export interface ItemPriceResponse {
  * @interface ItemPriceType
  */
 export interface ItemPriceType {
-  /**
-   *
-   * @type {InlineResponse200PayloadItemIdentifier}
-   * @memberof ItemPriceType
-   */
-  itemIdentifier: InlineResponse200PayloadItemIdentifier;
-  /**
-   *
-   * @type {InlineResponse200PayloadPricingList}
-   * @memberof ItemPriceType
-   */
-  pricingList: InlineResponse200PayloadPricingList;
-  /**
-   *
-   * @type {InlineResponse200PayloadPricingListCurrentPriceValue}
-   * @memberof ItemPriceType
-   */
-  maxSalesRetailPrice?: InlineResponse200PayloadPricingListCurrentPriceValue;
-  /**
-   *
-   * @type {InlineResponse200PayloadPricingListCurrentPriceValue}
-   * @memberof ItemPriceType
-   */
-  minAdvtPrice?: InlineResponse200PayloadPricingListCurrentPriceValue;
-  /**
-   *
-   * @type {InlineResponse200PayloadRebate}
-   * @memberof ItemPriceType
-   */
-  rebate?: InlineResponse200PayloadRebate;
-  /**
-   *
-   * @type {InlineResponse200PayloadAdditionalAttributes}
-   * @memberof ItemPriceType
-   */
-  additionalAttributes?: InlineResponse200PayloadAdditionalAttributes;
+	/**
+	 *
+	 * @type {InlineResponse200PayloadItemIdentifier}
+	 * @memberof ItemPriceType
+	 */
+	itemIdentifier: InlineResponse200PayloadItemIdentifier;
+	/**
+	 *
+	 * @type {InlineResponse200PayloadPricingList}
+	 * @memberof ItemPriceType
+	 */
+	pricingList: InlineResponse200PayloadPricingList;
+	/**
+	 *
+	 * @type {InlineResponse200PayloadPricingListCurrentPriceValue}
+	 * @memberof ItemPriceType
+	 */
+	maxSalesRetailPrice?: InlineResponse200PayloadPricingListCurrentPriceValue;
+	/**
+	 *
+	 * @type {InlineResponse200PayloadPricingListCurrentPriceValue}
+	 * @memberof ItemPriceType
+	 */
+	minAdvtPrice?: InlineResponse200PayloadPricingListCurrentPriceValue;
+	/**
+	 *
+	 * @type {InlineResponse200PayloadRebate}
+	 * @memberof ItemPriceType
+	 */
+	rebate?: InlineResponse200PayloadRebate;
+	/**
+	 *
+	 * @type {InlineResponse200PayloadAdditionalAttributes}
+	 * @memberof ItemPriceType
+	 */
+	additionalAttributes?: InlineResponse200PayloadAdditionalAttributes;
 }
 /**
  *
@@ -1126,24 +1120,24 @@ export interface ItemPriceType {
  * @interface MoneyType
  */
 export interface MoneyType {
-  /**
-   *
-   * @type {string}
-   * @memberof MoneyType
-   */
-  value?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof MoneyType
-   */
-  currency?: string;
-  /**
-   *
-   * @type {number}
-   * @memberof MoneyType
-   */
-  amount?: number;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof MoneyType
+	 */
+	value?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof MoneyType
+	 */
+	currency?: string;
+	/**
+	 *
+	 * @type {number}
+	 * @memberof MoneyType
+	 */
+	amount?: number;
 }
 /**
  *
@@ -1151,18 +1145,18 @@ export interface MoneyType {
  * @interface PickupDiscount
  */
 export interface PickupDiscount {
-  /**
-   *
-   * @type {boolean}
-   * @memberof PickupDiscount
-   */
-  isPickUpDiscountEligible?: boolean;
-  /**
-   *
-   * @type {InlineResponse200PayloadPricingListCurrentPriceValue}
-   * @memberof PickupDiscount
-   */
-  pickupDiscountAmt?: InlineResponse200PayloadPricingListCurrentPriceValue;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof PickupDiscount
+	 */
+	isPickUpDiscountEligible?: boolean;
+	/**
+	 *
+	 * @type {InlineResponse200PayloadPricingListCurrentPriceValue}
+	 * @memberof PickupDiscount
+	 */
+	pickupDiscountAmt?: InlineResponse200PayloadPricingListCurrentPriceValue;
 }
 /**
  *
@@ -1170,36 +1164,36 @@ export interface PickupDiscount {
  * @interface Price
  */
 export interface Price {
-  /**
-   * This is applicable only for promotions
-   * @type {string}
-   * @memberof Price
-   */
-  offerId?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof Price
-   */
-  sku: string;
-  /**
-   * This is applicable only for promotions
-   * @type {string}
-   * @memberof Price
-   */
-  replaceAll?: PriceReplaceAllEnum;
-  /**
-   *
-   * @type {Array<V3PricePricing>}
-   * @memberof Price
-   */
-  pricing: Array<V3PricePricing>;
-  /**
-   *
-   * @type {object}
-   * @memberof Price
-   */
-  definitions?: object;
+	/**
+	 * This is applicable only for promotions
+	 * @type {string}
+	 * @memberof Price
+	 */
+	offerId?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof Price
+	 */
+	sku: string;
+	/**
+	 * This is applicable only for promotions
+	 * @type {string}
+	 * @memberof Price
+	 */
+	replaceAll?: PriceReplaceAllEnum;
+	/**
+	 *
+	 * @type {Array<V3PricePricing>}
+	 * @memberof Price
+	 */
+	pricing: Array<V3PricePricing>;
+	/**
+	 *
+	 * @type {object}
+	 * @memberof Price
+	 */
+	definitions?: object;
 }
 
 /**
@@ -1207,8 +1201,8 @@ export interface Price {
  * @enum {string}
  */
 export enum PriceReplaceAllEnum {
-  True = "true",
-  False = "false",
+	True = 'true',
+	False = 'false',
 }
 
 /**
@@ -1217,48 +1211,48 @@ export enum PriceReplaceAllEnum {
  * @interface PriceDisplayCodes
  */
 export interface PriceDisplayCodes {
-  /**
-   *
-   * @type {boolean}
-   * @memberof PriceDisplayCodes
-   */
-  isClearance?: boolean;
-  /**
-   *
-   * @type {object}
-   * @memberof PriceDisplayCodes
-   */
-  hidePriceForSOI?: object;
-  /**
-   *
-   * @type {object}
-   * @memberof PriceDisplayCodes
-   */
-  submapType?: object;
-  /**
-   *
-   * @type {boolean}
-   * @memberof PriceDisplayCodes
-   */
-  isRollback?: boolean;
-  /**
-   *
-   * @type {boolean}
-   * @memberof PriceDisplayCodes
-   */
-  isReducedPrice?: boolean;
-  /**
-   *
-   * @type {object}
-   * @memberof PriceDisplayCodes
-   */
-  isEligibleForAssociateDiscount?: object;
-  /**
-   *
-   * @type {boolean}
-   * @memberof PriceDisplayCodes
-   */
-  isStrikethrough?: boolean;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof PriceDisplayCodes
+	 */
+	isClearance?: boolean;
+	/**
+	 *
+	 * @type {object}
+	 * @memberof PriceDisplayCodes
+	 */
+	hidePriceForSOI?: object;
+	/**
+	 *
+	 * @type {object}
+	 * @memberof PriceDisplayCodes
+	 */
+	submapType?: object;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof PriceDisplayCodes
+	 */
+	isRollback?: boolean;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof PriceDisplayCodes
+	 */
+	isReducedPrice?: boolean;
+	/**
+	 *
+	 * @type {object}
+	 * @memberof PriceDisplayCodes
+	 */
+	isEligibleForAssociateDiscount?: object;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof PriceDisplayCodes
+	 */
+	isStrikethrough?: boolean;
 }
 /**
  *
@@ -1266,60 +1260,60 @@ export interface PriceDisplayCodes {
  * @interface Pricing
  */
 export interface Pricing {
-  /**
-   * This is applicable only for promotions
-   * @type {string}
-   * @memberof Pricing
-   */
-  effectiveDate?: string;
-  /**
-   * This is applicable only for promotions
-   * @type {string}
-   * @memberof Pricing
-   */
-  expirationDate?: string;
-  /**
-   * This is applicable only for promotions
-   * @type {string}
-   * @memberof Pricing
-   */
-  promoId?: string;
-  /**
-   * This is applicable only for promotions
-   * @type {string}
-   * @memberof Pricing
-   */
-  processMode?: PricingProcessModeEnum;
-  /**
-   * This is applicable only for both promotions and price
-   * @type {string}
-   * @memberof Pricing
-   */
-  currentPriceType: PricingCurrentPriceTypeEnum;
-  /**
-   *
-   * @type {V3PriceCurrentPrice}
-   * @memberof Pricing
-   */
-  currentPrice: V3PriceCurrentPrice;
-  /**
-   * This is applicable only for promotions
-   * @type {string}
-   * @memberof Pricing
-   */
-  comparisonPriceType?: PricingComparisonPriceTypeEnum;
-  /**
-   *
-   * @type {V3PriceComparisonPrice}
-   * @memberof Pricing
-   */
-  comparisonPrice?: V3PriceComparisonPrice;
-  /**
-   * Represent promo placement. This is applicable only for promotions
-   * @type {string}
-   * @memberof Pricing
-   */
-  priceDisplayCodes?: PricingPriceDisplayCodesEnum;
+	/**
+	 * This is applicable only for promotions
+	 * @type {string}
+	 * @memberof Pricing
+	 */
+	effectiveDate?: string;
+	/**
+	 * This is applicable only for promotions
+	 * @type {string}
+	 * @memberof Pricing
+	 */
+	expirationDate?: string;
+	/**
+	 * This is applicable only for promotions
+	 * @type {string}
+	 * @memberof Pricing
+	 */
+	promoId?: string;
+	/**
+	 * This is applicable only for promotions
+	 * @type {string}
+	 * @memberof Pricing
+	 */
+	processMode?: PricingProcessModeEnum;
+	/**
+	 * This is applicable only for both promotions and price
+	 * @type {string}
+	 * @memberof Pricing
+	 */
+	currentPriceType: PricingCurrentPriceTypeEnum;
+	/**
+	 *
+	 * @type {V3PriceCurrentPrice}
+	 * @memberof Pricing
+	 */
+	currentPrice: V3PriceCurrentPrice;
+	/**
+	 * This is applicable only for promotions
+	 * @type {string}
+	 * @memberof Pricing
+	 */
+	comparisonPriceType?: PricingComparisonPriceTypeEnum;
+	/**
+	 *
+	 * @type {V3PriceComparisonPrice}
+	 * @memberof Pricing
+	 */
+	comparisonPrice?: V3PriceComparisonPrice;
+	/**
+	 * Represent promo placement. This is applicable only for promotions
+	 * @type {string}
+	 * @memberof Pricing
+	 */
+	priceDisplayCodes?: PricingPriceDisplayCodesEnum;
 }
 
 /**
@@ -1327,32 +1321,32 @@ export interface Pricing {
  * @enum {string}
  */
 export enum PricingProcessModeEnum {
-  Upsert = "UPSERT",
-  Delete = "DELETE",
+	Upsert = 'UPSERT',
+	Delete = 'DELETE',
 }
 /**
  * @export
  * @enum {string}
  */
 export enum PricingCurrentPriceTypeEnum {
-  Base = "BASE",
-  Reduced = "REDUCED",
-  Clearance = "CLEARANCE",
+	Base = 'BASE',
+	Reduced = 'REDUCED',
+	Clearance = 'CLEARANCE',
 }
 /**
  * @export
  * @enum {string}
  */
 export enum PricingComparisonPriceTypeEnum {
-  Base = "BASE",
+	Base = 'BASE',
 }
 /**
  * @export
  * @enum {string}
  */
 export enum PricingPriceDisplayCodesEnum {
-  Cart = "CART",
-  Checkout = "CHECKOUT",
+	Cart = 'CART',
+	Checkout = 'CHECKOUT',
 }
 
 /**
@@ -1361,18 +1355,18 @@ export enum PricingPriceDisplayCodesEnum {
  * @interface PricingListType
  */
 export interface PricingListType {
-  /**
-   *
-   * @type {boolean}
-   * @memberof PricingListType
-   */
-  replaceAll?: boolean;
-  /**
-   *
-   * @type {Array<InlineResponse200PayloadPricingListPricing>}
-   * @memberof PricingListType
-   */
-  pricing: Array<InlineResponse200PayloadPricingListPricing>;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof PricingListType
+	 */
+	replaceAll?: boolean;
+	/**
+	 *
+	 * @type {Array<InlineResponse200PayloadPricingListPricing>}
+	 * @memberof PricingListType
+	 */
+	pricing: Array<InlineResponse200PayloadPricingListPricing>;
 }
 /**
  *
@@ -1380,78 +1374,78 @@ export interface PricingListType {
  * @interface PricingType
  */
 export interface PricingType {
-  /**
-   *
-   * @type {InlineResponse200PayloadPricingListCurrentPrice}
-   * @memberof PricingType
-   */
-  currentPrice: InlineResponse200PayloadPricingListCurrentPrice;
-  /**
-   *
-   * @type {string}
-   * @memberof PricingType
-   */
-  currentPriceType: PricingTypeCurrentPriceTypeEnum;
-  /**
-   *
-   * @type {InlineResponse200PayloadPricingListCurrentPrice}
-   * @memberof PricingType
-   */
-  comparisonPrice?: InlineResponse200PayloadPricingListCurrentPrice;
-  /**
-   *
-   * @type {string}
-   * @memberof PricingType
-   */
-  comparisonPriceType?: PricingTypeComparisonPriceTypeEnum;
-  /**
-   *
-   * @type {number}
-   * @memberof PricingType
-   */
-  savingsAmount?: number;
-  /**
-   *
-   * @type {number}
-   * @memberof PricingType
-   */
-  savingsPercent?: number;
-  /**
-   *
-   * @type {InlineResponse200PayloadPricingListPriceDisplayCodes}
-   * @memberof PricingType
-   */
-  priceDisplayCodes?: InlineResponse200PayloadPricingListPriceDisplayCodes;
-  /**
-   *
-   * @type {InlineResponse200PayloadPricingListPickupDiscount}
-   * @memberof PricingType
-   */
-  pickupDiscount?: InlineResponse200PayloadPricingListPickupDiscount;
-  /**
-   *
-   * @type {number}
-   * @memberof PricingType
-   */
-  effectiveDate?: number;
-  /**
-   *
-   * @type {number}
-   * @memberof PricingType
-   */
-  expirationDate?: number;
-  /**
-   *
-   * @type {string}
-   * @memberof PricingType
-   */
-  processMode?: PricingTypeProcessModeEnum;
-  /**
-   *
-   * @type {string}
-   * @memberof PricingType
-   */
-  pid?: string;
+	/**
+	 *
+	 * @type {InlineResponse200PayloadPricingListCurrentPrice}
+	 * @memberof PricingType
+	 */
+	currentPrice: InlineResponse200PayloadPricingListCurrentPrice;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof PricingType
+	 */
+	currentPriceType: PricingTypeCurrentPriceTypeEnum;
+	/**
+	 *
+	 * @type {InlineResponse200PayloadPricingListCurrentPrice}
+	 * @memberof PricingType
+	 */
+	comparisonPrice?: InlineResponse200PayloadPricingListCurrentPrice;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof PricingType
+	 */
+	comparisonPriceType?: PricingTypeComparisonPriceTypeEnum;
+	/**
+	 *
+	 * @type {number}
+	 * @memberof PricingType
+	 */
+	savingsAmount?: number;
+	/**
+	 *
+	 * @type {number}
+	 * @memberof PricingType
+	 */
+	savingsPercent?: number;
+	/**
+	 *
+	 * @type {InlineResponse200PayloadPricingListPriceDisplayCodes}
+	 * @memberof PricingType
+	 */
+	priceDisplayCodes?: InlineResponse200PayloadPricingListPriceDisplayCodes;
+	/**
+	 *
+	 * @type {InlineResponse200PayloadPricingListPickupDiscount}
+	 * @memberof PricingType
+	 */
+	pickupDiscount?: InlineResponse200PayloadPricingListPickupDiscount;
+	/**
+	 *
+	 * @type {number}
+	 * @memberof PricingType
+	 */
+	effectiveDate?: number;
+	/**
+	 *
+	 * @type {number}
+	 * @memberof PricingType
+	 */
+	expirationDate?: number;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof PricingType
+	 */
+	processMode?: PricingTypeProcessModeEnum;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof PricingType
+	 */
+	pid?: string;
 }
 
 /**
@@ -1459,34 +1453,34 @@ export interface PricingType {
  * @enum {string}
  */
 export enum PricingTypeCurrentPriceTypeEnum {
-  Base = "BASE",
-  Reduced = "REDUCED",
-  SavingsAmt = "SAVINGS_AMT",
-  SavingsPct = "SAVINGS_PCT",
-  Rollback = "ROLLBACK",
-  Clearance = "CLEARANCE",
-  ListPrice = "LIST_PRICE",
+	Base = 'BASE',
+	Reduced = 'REDUCED',
+	SavingsAmt = 'SAVINGS_AMT',
+	SavingsPct = 'SAVINGS_PCT',
+	Rollback = 'ROLLBACK',
+	Clearance = 'CLEARANCE',
+	ListPrice = 'LIST_PRICE',
 }
 /**
  * @export
  * @enum {string}
  */
 export enum PricingTypeComparisonPriceTypeEnum {
-  Base = "BASE",
-  Reduced = "REDUCED",
-  SavingsAmt = "SAVINGS_AMT",
-  SavingsPct = "SAVINGS_PCT",
-  Rollback = "ROLLBACK",
-  Clearance = "CLEARANCE",
-  ListPrice = "LIST_PRICE",
+	Base = 'BASE',
+	Reduced = 'REDUCED',
+	SavingsAmt = 'SAVINGS_AMT',
+	SavingsPct = 'SAVINGS_PCT',
+	Rollback = 'ROLLBACK',
+	Clearance = 'CLEARANCE',
+	ListPrice = 'LIST_PRICE',
 }
 /**
  * @export
  * @enum {string}
  */
 export enum PricingTypeProcessModeEnum {
-  Upsert = "UPSERT",
-  Delete = "DELETE",
+	Upsert = 'UPSERT',
+	Delete = 'DELETE',
 }
 
 /**
@@ -1495,24 +1489,24 @@ export enum PricingTypeProcessModeEnum {
  * @interface PromotionalPriceResponse
  */
 export interface PromotionalPriceResponse {
-  /**
-   *
-   * @type {InlineResponse200Payload}
-   * @memberof PromotionalPriceResponse
-   */
-  payload?: InlineResponse200Payload;
-  /**
-   *
-   * @type {InlineResponse200Header}
-   * @memberof PromotionalPriceResponse
-   */
-  header?: InlineResponse200Header;
-  /**
-   *
-   * @type {string}
-   * @memberof PromotionalPriceResponse
-   */
-  status?: string;
+	/**
+	 *
+	 * @type {InlineResponse200Payload}
+	 * @memberof PromotionalPriceResponse
+	 */
+	payload?: InlineResponse200Payload;
+	/**
+	 *
+	 * @type {InlineResponse200Header}
+	 * @memberof PromotionalPriceResponse
+	 */
+	header?: InlineResponse200Header;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof PromotionalPriceResponse
+	 */
+	status?: string;
 }
 /**
  *
@@ -1520,48 +1514,48 @@ export interface PromotionalPriceResponse {
  * @interface PromotionsPrice
  */
 export interface PromotionsPrice {
-  /**
-   *
-   * @type {InlineResponse200PayloadPricingListCurrentPriceValue}
-   * @memberof PromotionsPrice
-   */
-  value?: InlineResponse200PayloadPricingListCurrentPriceValue;
-  /**
-   *
-   * @type {string}
-   * @memberof PromotionsPrice
-   */
-  uomType?: string;
-  /**
-   *
-   * @type {InlineResponse200PayloadPricingListCurrentPriceValue}
-   * @memberof PromotionsPrice
-   */
-  minValue?: InlineResponse200PayloadPricingListCurrentPriceValue;
-  /**
-   *
-   * @type {InlineResponse200PayloadPricingListCurrentPriceValue}
-   * @memberof PromotionsPrice
-   */
-  maxValue?: InlineResponse200PayloadPricingListCurrentPriceValue;
-  /**
-   *
-   * @type {InlineResponse200PayloadPricingListCurrentPriceValue}
-   * @memberof PromotionsPrice
-   */
-  perUnitValue?: InlineResponse200PayloadPricingListCurrentPriceValue;
-  /**
-   *
-   * @type {InlineResponse200PayloadPricingListCurrentPriceValue}
-   * @memberof PromotionsPrice
-   */
-  minUnitValue?: InlineResponse200PayloadPricingListCurrentPriceValue;
-  /**
-   *
-   * @type {InlineResponse200PayloadPricingListCurrentPriceValue}
-   * @memberof PromotionsPrice
-   */
-  maxUnitValue?: InlineResponse200PayloadPricingListCurrentPriceValue;
+	/**
+	 *
+	 * @type {InlineResponse200PayloadPricingListCurrentPriceValue}
+	 * @memberof PromotionsPrice
+	 */
+	value?: InlineResponse200PayloadPricingListCurrentPriceValue;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof PromotionsPrice
+	 */
+	uomType?: string;
+	/**
+	 *
+	 * @type {InlineResponse200PayloadPricingListCurrentPriceValue}
+	 * @memberof PromotionsPrice
+	 */
+	minValue?: InlineResponse200PayloadPricingListCurrentPriceValue;
+	/**
+	 *
+	 * @type {InlineResponse200PayloadPricingListCurrentPriceValue}
+	 * @memberof PromotionsPrice
+	 */
+	maxValue?: InlineResponse200PayloadPricingListCurrentPriceValue;
+	/**
+	 *
+	 * @type {InlineResponse200PayloadPricingListCurrentPriceValue}
+	 * @memberof PromotionsPrice
+	 */
+	perUnitValue?: InlineResponse200PayloadPricingListCurrentPriceValue;
+	/**
+	 *
+	 * @type {InlineResponse200PayloadPricingListCurrentPriceValue}
+	 * @memberof PromotionsPrice
+	 */
+	minUnitValue?: InlineResponse200PayloadPricingListCurrentPriceValue;
+	/**
+	 *
+	 * @type {InlineResponse200PayloadPricingListCurrentPriceValue}
+	 * @memberof PromotionsPrice
+	 */
+	maxUnitValue?: InlineResponse200PayloadPricingListCurrentPriceValue;
 }
 /**
  *
@@ -1569,36 +1563,36 @@ export interface PromotionsPrice {
  * @interface Rebate
  */
 export interface Rebate {
-  /**
-   *
-   * @type {InlineResponse200PayloadPricingListCurrentPriceValue}
-   * @memberof Rebate
-   */
-  rebateAmt: InlineResponse200PayloadPricingListCurrentPriceValue;
-  /**
-   *
-   * @type {string}
-   * @memberof Rebate
-   */
-  infoUrl?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof Rebate
-   */
-  rebateType?: RebateRebateTypeEnum;
-  /**
-   *
-   * @type {string}
-   * @memberof Rebate
-   */
-  startDate?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof Rebate
-   */
-  endDate?: string;
+	/**
+	 *
+	 * @type {InlineResponse200PayloadPricingListCurrentPriceValue}
+	 * @memberof Rebate
+	 */
+	rebateAmt: InlineResponse200PayloadPricingListCurrentPriceValue;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof Rebate
+	 */
+	infoUrl?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof Rebate
+	 */
+	rebateType?: RebateRebateTypeEnum;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof Rebate
+	 */
+	startDate?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof Rebate
+	 */
+	endDate?: string;
 }
 
 /**
@@ -1606,8 +1600,8 @@ export interface Rebate {
  * @enum {string}
  */
 export enum RebateRebateTypeEnum {
-  Amount = "AMOUNT",
-  Product = "PRODUCT",
+	Amount = 'AMOUNT',
+	Product = 'PRODUCT',
 }
 
 /**
@@ -1616,18 +1610,18 @@ export enum RebateRebateTypeEnum {
  * @interface V3PriceComparisonPrice
  */
 export interface V3PriceComparisonPrice {
-  /**
-   *
-   * @type {string}
-   * @memberof V3PriceComparisonPrice
-   */
-  currency?: V3PriceComparisonPriceCurrencyEnum;
-  /**
-   *
-   * @type {number}
-   * @memberof V3PriceComparisonPrice
-   */
-  amount?: number;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof V3PriceComparisonPrice
+	 */
+	currency?: V3PriceComparisonPriceCurrencyEnum;
+	/**
+	 *
+	 * @type {number}
+	 * @memberof V3PriceComparisonPrice
+	 */
+	amount?: number;
 }
 
 /**
@@ -1635,8 +1629,8 @@ export interface V3PriceComparisonPrice {
  * @enum {string}
  */
 export enum V3PriceComparisonPriceCurrencyEnum {
-  Usd = "USD",
-  Cad = "CAD",
+	Usd = 'USD',
+	Cad = 'CAD',
 }
 
 /**
@@ -1645,18 +1639,18 @@ export enum V3PriceComparisonPriceCurrencyEnum {
  * @interface V3PriceCurrentPrice
  */
 export interface V3PriceCurrentPrice {
-  /**
-   *
-   * @type {string}
-   * @memberof V3PriceCurrentPrice
-   */
-  currency?: V3PriceCurrentPriceCurrencyEnum;
-  /**
-   *
-   * @type {number}
-   * @memberof V3PriceCurrentPrice
-   */
-  amount?: number;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof V3PriceCurrentPrice
+	 */
+	currency?: V3PriceCurrentPriceCurrencyEnum;
+	/**
+	 *
+	 * @type {number}
+	 * @memberof V3PriceCurrentPrice
+	 */
+	amount?: number;
 }
 
 /**
@@ -1664,8 +1658,8 @@ export interface V3PriceCurrentPrice {
  * @enum {string}
  */
 export enum V3PriceCurrentPriceCurrencyEnum {
-  Usd = "USD",
-  Cad = "CAD",
+	Usd = 'USD',
+	Cad = 'CAD',
 }
 
 /**
@@ -1674,60 +1668,60 @@ export enum V3PriceCurrentPriceCurrencyEnum {
  * @interface V3PricePricing
  */
 export interface V3PricePricing {
-  /**
-   * This is applicable only for promotions
-   * @type {string}
-   * @memberof V3PricePricing
-   */
-  effectiveDate?: string;
-  /**
-   * This is applicable only for promotions
-   * @type {string}
-   * @memberof V3PricePricing
-   */
-  expirationDate?: string;
-  /**
-   * This is applicable only for promotions
-   * @type {string}
-   * @memberof V3PricePricing
-   */
-  promoId?: string;
-  /**
-   * This is applicable only for promotions
-   * @type {string}
-   * @memberof V3PricePricing
-   */
-  processMode?: V3PricePricingProcessModeEnum;
-  /**
-   * This is applicable only for both promotions and price
-   * @type {string}
-   * @memberof V3PricePricing
-   */
-  currentPriceType: V3PricePricingCurrentPriceTypeEnum;
-  /**
-   *
-   * @type {V3PriceCurrentPrice}
-   * @memberof V3PricePricing
-   */
-  currentPrice: V3PriceCurrentPrice;
-  /**
-   * This is applicable only for promotions
-   * @type {string}
-   * @memberof V3PricePricing
-   */
-  comparisonPriceType?: V3PricePricingComparisonPriceTypeEnum;
-  /**
-   *
-   * @type {V3PriceComparisonPrice}
-   * @memberof V3PricePricing
-   */
-  comparisonPrice?: V3PriceComparisonPrice;
-  /**
-   * Represent promo placement. This is applicable only for promotions
-   * @type {string}
-   * @memberof V3PricePricing
-   */
-  priceDisplayCodes?: V3PricePricingPriceDisplayCodesEnum;
+	/**
+	 * This is applicable only for promotions
+	 * @type {string}
+	 * @memberof V3PricePricing
+	 */
+	effectiveDate?: string;
+	/**
+	 * This is applicable only for promotions
+	 * @type {string}
+	 * @memberof V3PricePricing
+	 */
+	expirationDate?: string;
+	/**
+	 * This is applicable only for promotions
+	 * @type {string}
+	 * @memberof V3PricePricing
+	 */
+	promoId?: string;
+	/**
+	 * This is applicable only for promotions
+	 * @type {string}
+	 * @memberof V3PricePricing
+	 */
+	processMode?: V3PricePricingProcessModeEnum;
+	/**
+	 * This is applicable only for both promotions and price
+	 * @type {string}
+	 * @memberof V3PricePricing
+	 */
+	currentPriceType: V3PricePricingCurrentPriceTypeEnum;
+	/**
+	 *
+	 * @type {V3PriceCurrentPrice}
+	 * @memberof V3PricePricing
+	 */
+	currentPrice: V3PriceCurrentPrice;
+	/**
+	 * This is applicable only for promotions
+	 * @type {string}
+	 * @memberof V3PricePricing
+	 */
+	comparisonPriceType?: V3PricePricingComparisonPriceTypeEnum;
+	/**
+	 *
+	 * @type {V3PriceComparisonPrice}
+	 * @memberof V3PricePricing
+	 */
+	comparisonPrice?: V3PriceComparisonPrice;
+	/**
+	 * Represent promo placement. This is applicable only for promotions
+	 * @type {string}
+	 * @memberof V3PricePricing
+	 */
+	priceDisplayCodes?: V3PricePricingPriceDisplayCodesEnum;
 }
 
 /**
@@ -1735,389 +1729,306 @@ export interface V3PricePricing {
  * @enum {string}
  */
 export enum V3PricePricingProcessModeEnum {
-  Upsert = "UPSERT",
-  Delete = "DELETE",
+	Upsert = 'UPSERT',
+	Delete = 'DELETE',
 }
 /**
  * @export
  * @enum {string}
  */
 export enum V3PricePricingCurrentPriceTypeEnum {
-  Base = "BASE",
-  Reduced = "REDUCED",
-  Clearance = "CLEARANCE",
+	Base = 'BASE',
+	Reduced = 'REDUCED',
+	Clearance = 'CLEARANCE',
 }
 /**
  * @export
  * @enum {string}
  */
 export enum V3PricePricingComparisonPriceTypeEnum {
-  Base = "BASE",
+	Base = 'BASE',
 }
 /**
  * @export
  * @enum {string}
  */
 export enum V3PricePricingPriceDisplayCodesEnum {
-  Cart = "CART",
-  Checkout = "CHECKOUT",
+	Cart = 'CART',
+	Checkout = 'CHECKOUT',
 }
 
 /**
  * PromotionsApi - axios parameter creator
  * @export
  */
-export const PromotionsApiAxiosParamCreator = function (
-  configuration?: Configuration
-) {
-  return {
-    /**
-     *  Retrieves a list of promotional prices for a single SKU.
-     * @summary Promotional prices
-     * @param {string} sku An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: \&#39;:\&#39;, \&#39;/\&#39;, \&#39;?\&#39;, \&#39;#\&#39;, \&#39;[\&#39;, \&#39;]\&#39;, \&#39;@\&#39;, \&#39;!\&#39;, \&#39;$\&#39;, \&#39;&amp;\&#39;, \&quot;\&#39;\&quot;, \&#39;(\&#39;, \&#39;)\&#39;, \&#39;*\&#39;, \&#39;+\&#39;, \&#39;,\&#39;, \&#39;;\&#39;, \&#39;&#x3D;\&#39;, as well as \&#39;%\&#39; itself. Other characters don\&#39;t need to be encoded.
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getPromotionalPrices: async (
-      sku: string,
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      wMCONSUMERCHANNELTYPE?: string,
-      options: any = {}
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'sku' is not null or undefined
-      assertParamExists("getPromotionalPrices", "sku", sku);
-      // verify required parameter 'authorization' is not null or undefined
-      assertParamExists("getPromotionalPrices", "authorization", authorization);
-      // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
-      assertParamExists(
-        "getPromotionalPrices",
-        "wMSECACCESSTOKEN",
-        wMSECACCESSTOKEN
-      );
-      // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
-      assertParamExists(
-        "getPromotionalPrices",
-        "wMQOSCORRELATIONID",
-        wMQOSCORRELATIONID
-      );
-      // verify required parameter 'wMSVCNAME' is not null or undefined
-      assertParamExists("getPromotionalPrices", "wMSVCNAME", wMSVCNAME);
-      const localVarPath = `/v3/promo/sku/{sku}`.replace(
-        `{${"sku"}}`,
-        encodeURIComponent(String(sku))
-      );
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+export const PromotionsApiAxiosParamCreator = function (configuration?: Configuration) {
+	return {
+		/**
+		 *  Retrieves a list of promotional prices for a single SKU.
+		 * @summary Promotional prices
+		 * @param {string} sku An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: \&#39;:\&#39;, \&#39;/\&#39;, \&#39;?\&#39;, \&#39;#\&#39;, \&#39;[\&#39;, \&#39;]\&#39;, \&#39;@\&#39;, \&#39;!\&#39;, \&#39;$\&#39;, \&#39;&amp;\&#39;, \&quot;\&#39;\&quot;, \&#39;(\&#39;, \&#39;)\&#39;, \&#39;*\&#39;, \&#39;+\&#39;, \&#39;,\&#39;, \&#39;;\&#39;, \&#39;&#x3D;\&#39;, as well as \&#39;%\&#39; itself. Other characters don\&#39;t need to be encoded.
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		getPromotionalPrices: async (
+			sku: string,
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			wMCONSUMERCHANNELTYPE?: string,
+			options: any = {}
+		): Promise<RequestArgs> => {
+			// verify required parameter 'sku' is not null or undefined
+			assertParamExists('getPromotionalPrices', 'sku', sku);
+			// verify required parameter 'authorization' is not null or undefined
+			assertParamExists('getPromotionalPrices', 'authorization', authorization);
+			// verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
+			assertParamExists('getPromotionalPrices', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN);
+			// verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
+			assertParamExists('getPromotionalPrices', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID);
+			// verify required parameter 'wMSVCNAME' is not null or undefined
+			assertParamExists('getPromotionalPrices', 'wMSVCNAME', wMSVCNAME);
+			const localVarPath = `/v3/promo/sku/{sku}`.replace(`{${'sku'}}`, encodeURIComponent(String(sku)));
+			// use dummy base URL string because the URL constructor only accepts absolute URLs.
+			const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+			let baseOptions;
+			if (configuration) {
+				baseOptions = configuration.baseOptions;
+			}
 
-      const localVarRequestOptions = {
-        method: "GET",
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+			const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+			const localVarHeaderParameter = {} as any;
+			const localVarQueryParameter = {} as any;
 
-      // authentication basicScheme required
-      // http basic authentication required
-      setBasicAuthToObject(localVarRequestOptions, configuration);
+			// authentication basicScheme required
+			// http basic authentication required
+			setBasicAuthToObject(localVarRequestOptions, configuration);
 
-      if (authorization !== undefined && authorization !== null) {
-        localVarHeaderParameter["Authorization"] = String(authorization);
-      }
+			if (authorization !== undefined && authorization !== null) {
+				localVarHeaderParameter['Authorization'] = String(authorization);
+			}
 
-      if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
-        localVarHeaderParameter["WM_SEC.ACCESS_TOKEN"] =
-          String(wMSECACCESSTOKEN);
-      }
+			if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
+				localVarHeaderParameter['WM_SEC.ACCESS_TOKEN'] = String(wMSECACCESSTOKEN);
+			}
 
-      if (
-        wMCONSUMERCHANNELTYPE !== undefined &&
-        wMCONSUMERCHANNELTYPE !== null
-      ) {
-        localVarHeaderParameter["WM_CONSUMER.CHANNEL.TYPE"] = String(
-          wMCONSUMERCHANNELTYPE
-        );
-      }
+			if (wMCONSUMERCHANNELTYPE !== undefined && wMCONSUMERCHANNELTYPE !== null) {
+				localVarHeaderParameter['WM_CONSUMER.CHANNEL.TYPE'] = String(wMCONSUMERCHANNELTYPE);
+			}
 
-      if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
-        localVarHeaderParameter["WM_QOS.CORRELATION_ID"] =
-          String(wMQOSCORRELATIONID);
-      }
+			if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
+				localVarHeaderParameter['WM_QOS.CORRELATION_ID'] = String(wMQOSCORRELATIONID);
+			}
 
-      if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
-        localVarHeaderParameter["WM_SVC.NAME"] = String(wMSVCNAME);
-      }
+			if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
+				localVarHeaderParameter['WM_SVC.NAME'] = String(wMSVCNAME);
+			}
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
+			setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+			let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+			localVarRequestOptions.headers = {
+				...localVarHeaderParameter,
+				...headersFromBaseOptions,
+				...options.headers,
+			};
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * Updates or creates promotional prices for multiple specified SKUs
-     * @summary Updates bulk promotional prices
-     * @param {string} feedType Feed Type
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {any} [file]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateBulkPromotionalPrice: async (
-      feedType: string,
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      wMCONSUMERCHANNELTYPE?: string,
-      file?: any,
-      options: any = {}
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'feedType' is not null or undefined
-      assertParamExists("updateBulkPromotionalPrice", "feedType", feedType);
-      // verify required parameter 'authorization' is not null or undefined
-      assertParamExists(
-        "updateBulkPromotionalPrice",
-        "authorization",
-        authorization
-      );
-      // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
-      assertParamExists(
-        "updateBulkPromotionalPrice",
-        "wMSECACCESSTOKEN",
-        wMSECACCESSTOKEN
-      );
-      // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
-      assertParamExists(
-        "updateBulkPromotionalPrice",
-        "wMQOSCORRELATIONID",
-        wMQOSCORRELATIONID
-      );
-      // verify required parameter 'wMSVCNAME' is not null or undefined
-      assertParamExists("updateBulkPromotionalPrice", "wMSVCNAME", wMSVCNAME);
-      const localVarPath = `/v3/feeds`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+			return {
+				url: toPathString(localVarUrlObj),
+				options: localVarRequestOptions,
+			};
+		},
+		/**
+		 * Updates or creates promotional prices for multiple specified SKUs
+		 * @summary Updates bulk promotional prices
+		 * @param {string} feedType Feed Type
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {any} [file]
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		updateBulkPromotionalPrice: async (
+			feedType: string,
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			wMCONSUMERCHANNELTYPE?: string,
+			file?: any,
+			options: any = {}
+		): Promise<RequestArgs> => {
+			// verify required parameter 'feedType' is not null or undefined
+			assertParamExists('updateBulkPromotionalPrice', 'feedType', feedType);
+			// verify required parameter 'authorization' is not null or undefined
+			assertParamExists('updateBulkPromotionalPrice', 'authorization', authorization);
+			// verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
+			assertParamExists('updateBulkPromotionalPrice', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN);
+			// verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
+			assertParamExists('updateBulkPromotionalPrice', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID);
+			// verify required parameter 'wMSVCNAME' is not null or undefined
+			assertParamExists('updateBulkPromotionalPrice', 'wMSVCNAME', wMSVCNAME);
+			const localVarPath = `/v3/feeds`;
+			// use dummy base URL string because the URL constructor only accepts absolute URLs.
+			const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+			let baseOptions;
+			if (configuration) {
+				baseOptions = configuration.baseOptions;
+			}
 
-      const localVarRequestOptions = {
-        method: "POST",
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
-      const localVarFormParams = new ((configuration &&
-        configuration.formDataCtor) ||
-        FormData)();
+			const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
+			const localVarHeaderParameter = {} as any;
+			const localVarQueryParameter = {} as any;
+			const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)();
 
-      // authentication basicScheme required
-      // http basic authentication required
-      setBasicAuthToObject(localVarRequestOptions, configuration);
+			// authentication basicScheme required
+			// http basic authentication required
+			setBasicAuthToObject(localVarRequestOptions, configuration);
 
-      if (feedType !== undefined) {
-        localVarQueryParameter["feedType"] = feedType;
-      }
+			if (feedType !== undefined) {
+				localVarQueryParameter['feedType'] = feedType;
+			}
 
-      if (authorization !== undefined && authorization !== null) {
-        localVarHeaderParameter["Authorization"] = String(authorization);
-      }
+			if (authorization !== undefined && authorization !== null) {
+				localVarHeaderParameter['Authorization'] = String(authorization);
+			}
 
-      if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
-        localVarHeaderParameter["WM_SEC.ACCESS_TOKEN"] =
-          String(wMSECACCESSTOKEN);
-      }
+			if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
+				localVarHeaderParameter['WM_SEC.ACCESS_TOKEN'] = String(wMSECACCESSTOKEN);
+			}
 
-      if (
-        wMCONSUMERCHANNELTYPE !== undefined &&
-        wMCONSUMERCHANNELTYPE !== null
-      ) {
-        localVarHeaderParameter["WM_CONSUMER.CHANNEL.TYPE"] = String(
-          wMCONSUMERCHANNELTYPE
-        );
-      }
+			if (wMCONSUMERCHANNELTYPE !== undefined && wMCONSUMERCHANNELTYPE !== null) {
+				localVarHeaderParameter['WM_CONSUMER.CHANNEL.TYPE'] = String(wMCONSUMERCHANNELTYPE);
+			}
 
-      if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
-        localVarHeaderParameter["WM_QOS.CORRELATION_ID"] =
-          String(wMQOSCORRELATIONID);
-      }
+			if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
+				localVarHeaderParameter['WM_QOS.CORRELATION_ID'] = String(wMQOSCORRELATIONID);
+			}
 
-      if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
-        localVarHeaderParameter["WM_SVC.NAME"] = String(wMSVCNAME);
-      }
+			if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
+				localVarHeaderParameter['WM_SVC.NAME'] = String(wMSVCNAME);
+			}
 
-      if (file !== undefined) {
-        localVarFormParams.append("file", file as any);
-      }
+			if (file !== undefined) {
+				localVarFormParams.append('file', file as any);
+			}
 
-      localVarHeaderParameter["Content-Type"] = "multipart/form-data";
+			localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
-      localVarRequestOptions.data = localVarFormParams;
+			setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+			let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+			localVarRequestOptions.headers = {
+				...localVarHeaderParameter,
+				...headersFromBaseOptions,
+				...options.headers,
+			};
+			localVarRequestOptions.data = localVarFormParams;
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * Updates the promotional price.  Sellers can update or delete an existing promotional price as well as set up a new promotional price.  To set a new promotional price or update an existing one, set the XML pricing attribute processMode to UPSERT. To delete a promotional price, set the XML pricing attribute processMode to DELETE. To delete all promotions for a SKU, set replaceAll to an empty payload.
-     * @summary Update a promotional price
-     * @param {boolean} promo The promotional price. Set to \&#39;true\&#39; in order to retrieve promotional prices
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {InlineObject} inlineObject
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updatePromotionalPrices: async (
-      promo: boolean,
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      inlineObject: InlineObject,
-      wMCONSUMERCHANNELTYPE?: string,
-      options: any = {}
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'promo' is not null or undefined
-      assertParamExists("updatePromotionalPrices", "promo", promo);
-      // verify required parameter 'authorization' is not null or undefined
-      assertParamExists(
-        "updatePromotionalPrices",
-        "authorization",
-        authorization
-      );
-      // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
-      assertParamExists(
-        "updatePromotionalPrices",
-        "wMSECACCESSTOKEN",
-        wMSECACCESSTOKEN
-      );
-      // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
-      assertParamExists(
-        "updatePromotionalPrices",
-        "wMQOSCORRELATIONID",
-        wMQOSCORRELATIONID
-      );
-      // verify required parameter 'wMSVCNAME' is not null or undefined
-      assertParamExists("updatePromotionalPrices", "wMSVCNAME", wMSVCNAME);
-      // verify required parameter 'inlineObject' is not null or undefined
-      assertParamExists(
-        "updatePromotionalPrices",
-        "inlineObject",
-        inlineObject
-      );
-      const localVarPath = `/v3/price`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+			return {
+				url: toPathString(localVarUrlObj),
+				options: localVarRequestOptions,
+			};
+		},
+		/**
+		 * Updates the promotional price.  Sellers can update or delete an existing promotional price as well as set up a new promotional price.  To set a new promotional price or update an existing one, set the XML pricing attribute processMode to UPSERT. To delete a promotional price, set the XML pricing attribute processMode to DELETE. To delete all promotions for a SKU, set replaceAll to an empty payload.
+		 * @summary Update a promotional price
+		 * @param {boolean} promo The promotional price. Set to \&#39;true\&#39; in order to retrieve promotional prices
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {InlineObject} inlineObject
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		updatePromotionalPrices: async (
+			promo: boolean,
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			inlineObject: InlineObject,
+			wMCONSUMERCHANNELTYPE?: string,
+			options: any = {}
+		): Promise<RequestArgs> => {
+			// verify required parameter 'promo' is not null or undefined
+			assertParamExists('updatePromotionalPrices', 'promo', promo);
+			// verify required parameter 'authorization' is not null or undefined
+			assertParamExists('updatePromotionalPrices', 'authorization', authorization);
+			// verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
+			assertParamExists('updatePromotionalPrices', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN);
+			// verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
+			assertParamExists('updatePromotionalPrices', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID);
+			// verify required parameter 'wMSVCNAME' is not null or undefined
+			assertParamExists('updatePromotionalPrices', 'wMSVCNAME', wMSVCNAME);
+			// verify required parameter 'inlineObject' is not null or undefined
+			assertParamExists('updatePromotionalPrices', 'inlineObject', inlineObject);
+			const localVarPath = `/v3/price`;
+			// use dummy base URL string because the URL constructor only accepts absolute URLs.
+			const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+			let baseOptions;
+			if (configuration) {
+				baseOptions = configuration.baseOptions;
+			}
 
-      const localVarRequestOptions = {
-        method: "PUT",
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+			const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options };
+			const localVarHeaderParameter = {} as any;
+			const localVarQueryParameter = {} as any;
 
-      // authentication basicScheme required
-      // http basic authentication required
-      setBasicAuthToObject(localVarRequestOptions, configuration);
+			// authentication basicScheme required
+			// http basic authentication required
+			setBasicAuthToObject(localVarRequestOptions, configuration);
 
-      if (promo !== undefined) {
-        localVarQueryParameter["promo"] = promo;
-      }
+			if (promo !== undefined) {
+				localVarQueryParameter['promo'] = promo;
+			}
 
-      if (authorization !== undefined && authorization !== null) {
-        localVarHeaderParameter["Authorization"] = String(authorization);
-      }
+			if (authorization !== undefined && authorization !== null) {
+				localVarHeaderParameter['Authorization'] = String(authorization);
+			}
 
-      if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
-        localVarHeaderParameter["WM_SEC.ACCESS_TOKEN"] =
-          String(wMSECACCESSTOKEN);
-      }
+			if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
+				localVarHeaderParameter['WM_SEC.ACCESS_TOKEN'] = String(wMSECACCESSTOKEN);
+			}
 
-      if (
-        wMCONSUMERCHANNELTYPE !== undefined &&
-        wMCONSUMERCHANNELTYPE !== null
-      ) {
-        localVarHeaderParameter["WM_CONSUMER.CHANNEL.TYPE"] = String(
-          wMCONSUMERCHANNELTYPE
-        );
-      }
+			if (wMCONSUMERCHANNELTYPE !== undefined && wMCONSUMERCHANNELTYPE !== null) {
+				localVarHeaderParameter['WM_CONSUMER.CHANNEL.TYPE'] = String(wMCONSUMERCHANNELTYPE);
+			}
 
-      if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
-        localVarHeaderParameter["WM_QOS.CORRELATION_ID"] =
-          String(wMQOSCORRELATIONID);
-      }
+			if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
+				localVarHeaderParameter['WM_QOS.CORRELATION_ID'] = String(wMQOSCORRELATIONID);
+			}
 
-      if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
-        localVarHeaderParameter["WM_SVC.NAME"] = String(wMSVCNAME);
-      }
+			if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
+				localVarHeaderParameter['WM_SVC.NAME'] = String(wMSVCNAME);
+			}
 
-      localVarHeaderParameter["Content-Type"] = "application/json";
+			localVarHeaderParameter['Content-Type'] = 'application/json';
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
-      localVarRequestOptions.data = serializeDataIfNeeded(
-        inlineObject,
-        localVarRequestOptions,
-        configuration
-      );
+			setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+			let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+			localVarRequestOptions.headers = {
+				...localVarHeaderParameter,
+				...headersFromBaseOptions,
+				...options.headers,
+			};
+			localVarRequestOptions.data = serializeDataIfNeeded(inlineObject, localVarRequestOptions, configuration);
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-  };
+			return {
+				url: toPathString(localVarUrlObj),
+				options: localVarRequestOptions,
+			};
+		},
+	};
 };
 
 /**
@@ -2125,264 +2036,226 @@ export const PromotionsApiAxiosParamCreator = function (
  * @export
  */
 export const PromotionsApiFp = function (configuration?: Configuration) {
-  const localVarAxiosParamCreator =
-    PromotionsApiAxiosParamCreator(configuration);
-  return {
-    /**
-     *  Retrieves a list of promotional prices for a single SKU.
-     * @summary Promotional prices
-     * @param {string} sku An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: \&#39;:\&#39;, \&#39;/\&#39;, \&#39;?\&#39;, \&#39;#\&#39;, \&#39;[\&#39;, \&#39;]\&#39;, \&#39;@\&#39;, \&#39;!\&#39;, \&#39;$\&#39;, \&#39;&amp;\&#39;, \&quot;\&#39;\&quot;, \&#39;(\&#39;, \&#39;)\&#39;, \&#39;*\&#39;, \&#39;+\&#39;, \&#39;,\&#39;, \&#39;;\&#39;, \&#39;&#x3D;\&#39;, as well as \&#39;%\&#39; itself. Other characters don\&#39;t need to be encoded.
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async getPromotionalPrices(
-      sku: string,
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      wMCONSUMERCHANNELTYPE?: string,
-      options?: any
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<InlineResponse200>
-    > {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getPromotionalPrices(
-          sku,
-          authorization,
-          wMSECACCESSTOKEN,
-          wMQOSCORRELATIONID,
-          wMSVCNAME,
-          wMCONSUMERCHANNELTYPE,
-          options
-        );
-      return createRequestFunction(
-        localVarAxiosArgs,
-        globalAxios,
-        BASE_PATH,
-        configuration
-      );
-    },
-    /**
-     * Updates or creates promotional prices for multiple specified SKUs
-     * @summary Updates bulk promotional prices
-     * @param {string} feedType Feed Type
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {any} [file]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async updateBulkPromotionalPrice(
-      feedType: string,
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      wMCONSUMERCHANNELTYPE?: string,
-      file?: any,
-      options?: any
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<InlineResponse2002>
-    > {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.updateBulkPromotionalPrice(
-          feedType,
-          authorization,
-          wMSECACCESSTOKEN,
-          wMQOSCORRELATIONID,
-          wMSVCNAME,
-          wMCONSUMERCHANNELTYPE,
-          file,
-          options
-        );
-      return createRequestFunction(
-        localVarAxiosArgs,
-        globalAxios,
-        BASE_PATH,
-        configuration
-      );
-    },
-    /**
-     * Updates the promotional price.  Sellers can update or delete an existing promotional price as well as set up a new promotional price.  To set a new promotional price or update an existing one, set the XML pricing attribute processMode to UPSERT. To delete a promotional price, set the XML pricing attribute processMode to DELETE. To delete all promotions for a SKU, set replaceAll to an empty payload.
-     * @summary Update a promotional price
-     * @param {boolean} promo The promotional price. Set to \&#39;true\&#39; in order to retrieve promotional prices
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {InlineObject} inlineObject
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async updatePromotionalPrices(
-      promo: boolean,
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      inlineObject: InlineObject,
-      wMCONSUMERCHANNELTYPE?: string,
-      options?: any
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<InlineResponse2001>
-    > {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.updatePromotionalPrices(
-          promo,
-          authorization,
-          wMSECACCESSTOKEN,
-          wMQOSCORRELATIONID,
-          wMSVCNAME,
-          inlineObject,
-          wMCONSUMERCHANNELTYPE,
-          options
-        );
-      return createRequestFunction(
-        localVarAxiosArgs,
-        globalAxios,
-        BASE_PATH,
-        configuration
-      );
-    },
-  };
+	const localVarAxiosParamCreator = PromotionsApiAxiosParamCreator(configuration);
+	return {
+		/**
+		 *  Retrieves a list of promotional prices for a single SKU.
+		 * @summary Promotional prices
+		 * @param {string} sku An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: \&#39;:\&#39;, \&#39;/\&#39;, \&#39;?\&#39;, \&#39;#\&#39;, \&#39;[\&#39;, \&#39;]\&#39;, \&#39;@\&#39;, \&#39;!\&#39;, \&#39;$\&#39;, \&#39;&amp;\&#39;, \&quot;\&#39;\&quot;, \&#39;(\&#39;, \&#39;)\&#39;, \&#39;*\&#39;, \&#39;+\&#39;, \&#39;,\&#39;, \&#39;;\&#39;, \&#39;&#x3D;\&#39;, as well as \&#39;%\&#39; itself. Other characters don\&#39;t need to be encoded.
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		async getPromotionalPrices(
+			sku: string,
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			wMCONSUMERCHANNELTYPE?: string,
+			options?: any
+		): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
+			const localVarAxiosArgs = await localVarAxiosParamCreator.getPromotionalPrices(
+				sku,
+				authorization,
+				wMSECACCESSTOKEN,
+				wMQOSCORRELATIONID,
+				wMSVCNAME,
+				wMCONSUMERCHANNELTYPE,
+				options
+			);
+			return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+		},
+		/**
+		 * Updates or creates promotional prices for multiple specified SKUs
+		 * @summary Updates bulk promotional prices
+		 * @param {string} feedType Feed Type
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {any} [file]
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		async updateBulkPromotionalPrice(
+			feedType: string,
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			wMCONSUMERCHANNELTYPE?: string,
+			file?: any,
+			options?: any
+		): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2002>> {
+			const localVarAxiosArgs = await localVarAxiosParamCreator.updateBulkPromotionalPrice(
+				feedType,
+				authorization,
+				wMSECACCESSTOKEN,
+				wMQOSCORRELATIONID,
+				wMSVCNAME,
+				wMCONSUMERCHANNELTYPE,
+				file,
+				options
+			);
+			return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+		},
+		/**
+		 * Updates the promotional price.  Sellers can update or delete an existing promotional price as well as set up a new promotional price.  To set a new promotional price or update an existing one, set the XML pricing attribute processMode to UPSERT. To delete a promotional price, set the XML pricing attribute processMode to DELETE. To delete all promotions for a SKU, set replaceAll to an empty payload.
+		 * @summary Update a promotional price
+		 * @param {boolean} promo The promotional price. Set to \&#39;true\&#39; in order to retrieve promotional prices
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {InlineObject} inlineObject
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		async updatePromotionalPrices(
+			promo: boolean,
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			inlineObject: InlineObject,
+			wMCONSUMERCHANNELTYPE?: string,
+			options?: any
+		): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
+			const localVarAxiosArgs = await localVarAxiosParamCreator.updatePromotionalPrices(
+				promo,
+				authorization,
+				wMSECACCESSTOKEN,
+				wMQOSCORRELATIONID,
+				wMSVCNAME,
+				inlineObject,
+				wMCONSUMERCHANNELTYPE,
+				options
+			);
+			return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+		},
+	};
 };
 
 /**
  * PromotionsApi - factory interface
  * @export
  */
-export const PromotionsApiFactory = function (
-  configuration?: Configuration,
-  basePath?: string,
-  axios?: AxiosInstance
-) {
-  const localVarFp = PromotionsApiFp(configuration);
-  return {
-    /**
-     *  Retrieves a list of promotional prices for a single SKU.
-     * @summary Promotional prices
-     * @param {string} sku An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: \&#39;:\&#39;, \&#39;/\&#39;, \&#39;?\&#39;, \&#39;#\&#39;, \&#39;[\&#39;, \&#39;]\&#39;, \&#39;@\&#39;, \&#39;!\&#39;, \&#39;$\&#39;, \&#39;&amp;\&#39;, \&quot;\&#39;\&quot;, \&#39;(\&#39;, \&#39;)\&#39;, \&#39;*\&#39;, \&#39;+\&#39;, \&#39;,\&#39;, \&#39;;\&#39;, \&#39;&#x3D;\&#39;, as well as \&#39;%\&#39; itself. Other characters don\&#39;t need to be encoded.
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getPromotionalPrices(
-      sku: string,
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      wMCONSUMERCHANNELTYPE?: string,
-      options?: any
-    ): AxiosPromise<InlineResponse200> {
-      return localVarFp
-        .getPromotionalPrices(
-          sku,
-          authorization,
-          wMSECACCESSTOKEN,
-          wMQOSCORRELATIONID,
-          wMSVCNAME,
-          wMCONSUMERCHANNELTYPE,
-          options
-        )
-        .then((request) => request(axios, basePath));
-    },
-    /**
-     * Updates or creates promotional prices for multiple specified SKUs
-     * @summary Updates bulk promotional prices
-     * @param {string} feedType Feed Type
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {any} [file]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateBulkPromotionalPrice(
-      feedType: string,
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      wMCONSUMERCHANNELTYPE?: string,
-      file?: any,
-      options?: any
-    ): AxiosPromise<InlineResponse2002> {
-      return localVarFp
-        .updateBulkPromotionalPrice(
-          feedType,
-          authorization,
-          wMSECACCESSTOKEN,
-          wMQOSCORRELATIONID,
-          wMSVCNAME,
-          wMCONSUMERCHANNELTYPE,
-          file,
-          options
-        )
-        .then((request) => request(axios, basePath));
-    },
-    /**
-     * Updates the promotional price.  Sellers can update or delete an existing promotional price as well as set up a new promotional price.  To set a new promotional price or update an existing one, set the XML pricing attribute processMode to UPSERT. To delete a promotional price, set the XML pricing attribute processMode to DELETE. To delete all promotions for a SKU, set replaceAll to an empty payload.
-     * @summary Update a promotional price
-     * @param {boolean} promo The promotional price. Set to \&#39;true\&#39; in order to retrieve promotional prices
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {InlineObject} inlineObject
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updatePromotionalPrices(
-      promo: boolean,
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      inlineObject: InlineObject,
-      wMCONSUMERCHANNELTYPE?: string,
-      options?: any
-    ): AxiosPromise<InlineResponse2001> {
-      return localVarFp
-        .updatePromotionalPrices(
-          promo,
-          authorization,
-          wMSECACCESSTOKEN,
-          wMQOSCORRELATIONID,
-          wMSVCNAME,
-          inlineObject,
-          wMCONSUMERCHANNELTYPE,
-          options
-        )
-        .then((request) => request(axios, basePath));
-    },
-  };
+export const PromotionsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+	const localVarFp = PromotionsApiFp(configuration);
+	return {
+		/**
+		 *  Retrieves a list of promotional prices for a single SKU.
+		 * @summary Promotional prices
+		 * @param {string} sku An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: \&#39;:\&#39;, \&#39;/\&#39;, \&#39;?\&#39;, \&#39;#\&#39;, \&#39;[\&#39;, \&#39;]\&#39;, \&#39;@\&#39;, \&#39;!\&#39;, \&#39;$\&#39;, \&#39;&amp;\&#39;, \&quot;\&#39;\&quot;, \&#39;(\&#39;, \&#39;)\&#39;, \&#39;*\&#39;, \&#39;+\&#39;, \&#39;,\&#39;, \&#39;;\&#39;, \&#39;&#x3D;\&#39;, as well as \&#39;%\&#39; itself. Other characters don\&#39;t need to be encoded.
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		getPromotionalPrices(
+			sku: string,
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			wMCONSUMERCHANNELTYPE?: string,
+			options?: any
+		): AxiosPromise<InlineResponse200> {
+			return localVarFp
+				.getPromotionalPrices(
+					sku,
+					authorization,
+					wMSECACCESSTOKEN,
+					wMQOSCORRELATIONID,
+					wMSVCNAME,
+					wMCONSUMERCHANNELTYPE,
+					options
+				)
+				.then((request) => request(axios, basePath));
+		},
+		/**
+		 * Updates or creates promotional prices for multiple specified SKUs
+		 * @summary Updates bulk promotional prices
+		 * @param {string} feedType Feed Type
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {any} [file]
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		updateBulkPromotionalPrice(
+			feedType: string,
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			wMCONSUMERCHANNELTYPE?: string,
+			file?: any,
+			options?: any
+		): AxiosPromise<InlineResponse2002> {
+			return localVarFp
+				.updateBulkPromotionalPrice(
+					feedType,
+					authorization,
+					wMSECACCESSTOKEN,
+					wMQOSCORRELATIONID,
+					wMSVCNAME,
+					wMCONSUMERCHANNELTYPE,
+					file,
+					options
+				)
+				.then((request) => request(axios, basePath));
+		},
+		/**
+		 * Updates the promotional price.  Sellers can update or delete an existing promotional price as well as set up a new promotional price.  To set a new promotional price or update an existing one, set the XML pricing attribute processMode to UPSERT. To delete a promotional price, set the XML pricing attribute processMode to DELETE. To delete all promotions for a SKU, set replaceAll to an empty payload.
+		 * @summary Update a promotional price
+		 * @param {boolean} promo The promotional price. Set to \&#39;true\&#39; in order to retrieve promotional prices
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {InlineObject} inlineObject
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		updatePromotionalPrices(
+			promo: boolean,
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			inlineObject: InlineObject,
+			wMCONSUMERCHANNELTYPE?: string,
+			options?: any
+		): AxiosPromise<InlineResponse2001> {
+			return localVarFp
+				.updatePromotionalPrices(
+					promo,
+					authorization,
+					wMSECACCESSTOKEN,
+					wMQOSCORRELATIONID,
+					wMSVCNAME,
+					inlineObject,
+					wMCONSUMERCHANNELTYPE,
+					options
+				)
+				.then((request) => request(axios, basePath));
+		},
+	};
 };
 
 /**
@@ -2391,47 +2264,47 @@ export const PromotionsApiFactory = function (
  * @interface PromotionsApiGetPromotionalPricesRequest
  */
 export interface PromotionsApiGetPromotionalPricesRequest {
-  /**
-   * An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: \&#39;:\&#39;, \&#39;/\&#39;, \&#39;?\&#39;, \&#39;#\&#39;, \&#39;[\&#39;, \&#39;]\&#39;, \&#39;@\&#39;, \&#39;!\&#39;, \&#39;$\&#39;, \&#39;&amp;\&#39;, \&quot;\&#39;\&quot;, \&#39;(\&#39;, \&#39;)\&#39;, \&#39;*\&#39;, \&#39;+\&#39;, \&#39;,\&#39;, \&#39;;\&#39;, \&#39;&#x3D;\&#39;, as well as \&#39;%\&#39; itself. Other characters don\&#39;t need to be encoded.
-   * @type {string}
-   * @memberof PromotionsApiGetPromotionalPrices
-   */
-  readonly sku: string;
+	/**
+	 * An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: \&#39;:\&#39;, \&#39;/\&#39;, \&#39;?\&#39;, \&#39;#\&#39;, \&#39;[\&#39;, \&#39;]\&#39;, \&#39;@\&#39;, \&#39;!\&#39;, \&#39;$\&#39;, \&#39;&amp;\&#39;, \&quot;\&#39;\&quot;, \&#39;(\&#39;, \&#39;)\&#39;, \&#39;*\&#39;, \&#39;+\&#39;, \&#39;,\&#39;, \&#39;;\&#39;, \&#39;&#x3D;\&#39;, as well as \&#39;%\&#39; itself. Other characters don\&#39;t need to be encoded.
+	 * @type {string}
+	 * @memberof PromotionsApiGetPromotionalPrices
+	 */
+	readonly sku: string;
 
-  /**
-   * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-   * @type {string}
-   * @memberof PromotionsApiGetPromotionalPrices
-   */
-  readonly authorization: string;
+	/**
+	 * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+	 * @type {string}
+	 * @memberof PromotionsApiGetPromotionalPrices
+	 */
+	readonly authorization: string;
 
-  /**
-   * The access token retrieved in the Token API call
-   * @type {string}
-   * @memberof PromotionsApiGetPromotionalPrices
-   */
-  readonly wMSECACCESSTOKEN: string;
+	/**
+	 * The access token retrieved in the Token API call
+	 * @type {string}
+	 * @memberof PromotionsApiGetPromotionalPrices
+	 */
+	readonly wMSECACCESSTOKEN: string;
 
-  /**
-   * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-   * @type {string}
-   * @memberof PromotionsApiGetPromotionalPrices
-   */
-  readonly wMQOSCORRELATIONID: string;
+	/**
+	 * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+	 * @type {string}
+	 * @memberof PromotionsApiGetPromotionalPrices
+	 */
+	readonly wMQOSCORRELATIONID: string;
 
-  /**
-   * Walmart Service Name
-   * @type {string}
-   * @memberof PromotionsApiGetPromotionalPrices
-   */
-  readonly wMSVCNAME: string;
+	/**
+	 * Walmart Service Name
+	 * @type {string}
+	 * @memberof PromotionsApiGetPromotionalPrices
+	 */
+	readonly wMSVCNAME: string;
 
-  /**
-   * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-   * @type {string}
-   * @memberof PromotionsApiGetPromotionalPrices
-   */
-  readonly wMCONSUMERCHANNELTYPE?: string;
+	/**
+	 * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+	 * @type {string}
+	 * @memberof PromotionsApiGetPromotionalPrices
+	 */
+	readonly wMCONSUMERCHANNELTYPE?: string;
 }
 
 /**
@@ -2440,54 +2313,54 @@ export interface PromotionsApiGetPromotionalPricesRequest {
  * @interface PromotionsApiUpdateBulkPromotionalPriceRequest
  */
 export interface PromotionsApiUpdateBulkPromotionalPriceRequest {
-  /**
-   * Feed Type
-   * @type {string}
-   * @memberof PromotionsApiUpdateBulkPromotionalPrice
-   */
-  readonly feedType: string;
+	/**
+	 * Feed Type
+	 * @type {string}
+	 * @memberof PromotionsApiUpdateBulkPromotionalPrice
+	 */
+	readonly feedType: string;
 
-  /**
-   * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-   * @type {string}
-   * @memberof PromotionsApiUpdateBulkPromotionalPrice
-   */
-  readonly authorization: string;
+	/**
+	 * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+	 * @type {string}
+	 * @memberof PromotionsApiUpdateBulkPromotionalPrice
+	 */
+	readonly authorization: string;
 
-  /**
-   * The access token retrieved in the Token API call
-   * @type {string}
-   * @memberof PromotionsApiUpdateBulkPromotionalPrice
-   */
-  readonly wMSECACCESSTOKEN: string;
+	/**
+	 * The access token retrieved in the Token API call
+	 * @type {string}
+	 * @memberof PromotionsApiUpdateBulkPromotionalPrice
+	 */
+	readonly wMSECACCESSTOKEN: string;
 
-  /**
-   * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-   * @type {string}
-   * @memberof PromotionsApiUpdateBulkPromotionalPrice
-   */
-  readonly wMQOSCORRELATIONID: string;
+	/**
+	 * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+	 * @type {string}
+	 * @memberof PromotionsApiUpdateBulkPromotionalPrice
+	 */
+	readonly wMQOSCORRELATIONID: string;
 
-  /**
-   * Walmart Service Name
-   * @type {string}
-   * @memberof PromotionsApiUpdateBulkPromotionalPrice
-   */
-  readonly wMSVCNAME: string;
+	/**
+	 * Walmart Service Name
+	 * @type {string}
+	 * @memberof PromotionsApiUpdateBulkPromotionalPrice
+	 */
+	readonly wMSVCNAME: string;
 
-  /**
-   * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-   * @type {string}
-   * @memberof PromotionsApiUpdateBulkPromotionalPrice
-   */
-  readonly wMCONSUMERCHANNELTYPE?: string;
+	/**
+	 * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+	 * @type {string}
+	 * @memberof PromotionsApiUpdateBulkPromotionalPrice
+	 */
+	readonly wMCONSUMERCHANNELTYPE?: string;
 
-  /**
-   *
-   * @type {any}
-   * @memberof PromotionsApiUpdateBulkPromotionalPrice
-   */
-  readonly file?: any;
+	/**
+	 *
+	 * @type {any}
+	 * @memberof PromotionsApiUpdateBulkPromotionalPrice
+	 */
+	readonly file?: any;
 }
 
 /**
@@ -2496,54 +2369,54 @@ export interface PromotionsApiUpdateBulkPromotionalPriceRequest {
  * @interface PromotionsApiUpdatePromotionalPricesRequest
  */
 export interface PromotionsApiUpdatePromotionalPricesRequest {
-  /**
-   * The promotional price. Set to \&#39;true\&#39; in order to retrieve promotional prices
-   * @type {boolean}
-   * @memberof PromotionsApiUpdatePromotionalPrices
-   */
-  readonly promo: boolean;
+	/**
+	 * The promotional price. Set to \&#39;true\&#39; in order to retrieve promotional prices
+	 * @type {boolean}
+	 * @memberof PromotionsApiUpdatePromotionalPrices
+	 */
+	readonly promo: boolean;
 
-  /**
-   * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-   * @type {string}
-   * @memberof PromotionsApiUpdatePromotionalPrices
-   */
-  readonly authorization: string;
+	/**
+	 * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+	 * @type {string}
+	 * @memberof PromotionsApiUpdatePromotionalPrices
+	 */
+	readonly authorization: string;
 
-  /**
-   * The access token retrieved in the Token API call
-   * @type {string}
-   * @memberof PromotionsApiUpdatePromotionalPrices
-   */
-  readonly wMSECACCESSTOKEN: string;
+	/**
+	 * The access token retrieved in the Token API call
+	 * @type {string}
+	 * @memberof PromotionsApiUpdatePromotionalPrices
+	 */
+	readonly wMSECACCESSTOKEN: string;
 
-  /**
-   * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-   * @type {string}
-   * @memberof PromotionsApiUpdatePromotionalPrices
-   */
-  readonly wMQOSCORRELATIONID: string;
+	/**
+	 * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+	 * @type {string}
+	 * @memberof PromotionsApiUpdatePromotionalPrices
+	 */
+	readonly wMQOSCORRELATIONID: string;
 
-  /**
-   * Walmart Service Name
-   * @type {string}
-   * @memberof PromotionsApiUpdatePromotionalPrices
-   */
-  readonly wMSVCNAME: string;
+	/**
+	 * Walmart Service Name
+	 * @type {string}
+	 * @memberof PromotionsApiUpdatePromotionalPrices
+	 */
+	readonly wMSVCNAME: string;
 
-  /**
-   *
-   * @type {InlineObject}
-   * @memberof PromotionsApiUpdatePromotionalPrices
-   */
-  readonly inlineObject: InlineObject;
+	/**
+	 *
+	 * @type {InlineObject}
+	 * @memberof PromotionsApiUpdatePromotionalPrices
+	 */
+	readonly inlineObject: InlineObject;
 
-  /**
-   * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-   * @type {string}
-   * @memberof PromotionsApiUpdatePromotionalPrices
-   */
-  readonly wMCONSUMERCHANNELTYPE?: string;
+	/**
+	 * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+	 * @type {string}
+	 * @memberof PromotionsApiUpdatePromotionalPrices
+	 */
+	readonly wMCONSUMERCHANNELTYPE?: string;
 }
 
 /**
@@ -2553,80 +2426,74 @@ export interface PromotionsApiUpdatePromotionalPricesRequest {
  * @extends {BaseAPI}
  */
 export class PromotionsApi extends BaseAPI {
-  /**
-   *  Retrieves a list of promotional prices for a single SKU.
-   * @summary Promotional prices
-   * @param {PromotionsApiGetPromotionalPricesRequest} requestParameters Request parameters.
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof PromotionsApi
-   */
-  public getPromotionalPrices(
-    requestParameters: PromotionsApiGetPromotionalPricesRequest,
-    options?: any
-  ) {
-    return PromotionsApiFp(this.configuration)
-      .getPromotionalPrices(
-        requestParameters.sku,
-        requestParameters.authorization,
-        requestParameters.wMSECACCESSTOKEN,
-        requestParameters.wMQOSCORRELATIONID,
-        requestParameters.wMSVCNAME,
-        requestParameters.wMCONSUMERCHANNELTYPE,
-        options
-      )
-      .then((request) => request(this.axios, this.basePath));
-  }
+	/**
+	 *  Retrieves a list of promotional prices for a single SKU.
+	 * @summary Promotional prices
+	 * @param {PromotionsApiGetPromotionalPricesRequest} requestParameters Request parameters.
+	 * @param {*} [options] Override http request option.
+	 * @throws {RequiredError}
+	 * @memberof PromotionsApi
+	 */
+	public getPromotionalPrices(requestParameters: PromotionsApiGetPromotionalPricesRequest, options?: any) {
+		return PromotionsApiFp(this.configuration)
+			.getPromotionalPrices(
+				requestParameters.sku,
+				requestParameters.authorization,
+				requestParameters.wMSECACCESSTOKEN,
+				requestParameters.wMQOSCORRELATIONID,
+				requestParameters.wMSVCNAME,
+				requestParameters.wMCONSUMERCHANNELTYPE,
+				options
+			)
+			.then((request) => request(this.axios, this.basePath));
+	}
 
-  /**
-   * Updates or creates promotional prices for multiple specified SKUs
-   * @summary Updates bulk promotional prices
-   * @param {PromotionsApiUpdateBulkPromotionalPriceRequest} requestParameters Request parameters.
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof PromotionsApi
-   */
-  public updateBulkPromotionalPrice(
-    requestParameters: PromotionsApiUpdateBulkPromotionalPriceRequest,
-    options?: any
-  ) {
-    return PromotionsApiFp(this.configuration)
-      .updateBulkPromotionalPrice(
-        requestParameters.feedType,
-        requestParameters.authorization,
-        requestParameters.wMSECACCESSTOKEN,
-        requestParameters.wMQOSCORRELATIONID,
-        requestParameters.wMSVCNAME,
-        requestParameters.wMCONSUMERCHANNELTYPE,
-        requestParameters.file,
-        options
-      )
-      .then((request) => request(this.axios, this.basePath));
-  }
+	/**
+	 * Updates or creates promotional prices for multiple specified SKUs
+	 * @summary Updates bulk promotional prices
+	 * @param {PromotionsApiUpdateBulkPromotionalPriceRequest} requestParameters Request parameters.
+	 * @param {*} [options] Override http request option.
+	 * @throws {RequiredError}
+	 * @memberof PromotionsApi
+	 */
+	public updateBulkPromotionalPrice(
+		requestParameters: PromotionsApiUpdateBulkPromotionalPriceRequest,
+		options?: any
+	) {
+		return PromotionsApiFp(this.configuration)
+			.updateBulkPromotionalPrice(
+				requestParameters.feedType,
+				requestParameters.authorization,
+				requestParameters.wMSECACCESSTOKEN,
+				requestParameters.wMQOSCORRELATIONID,
+				requestParameters.wMSVCNAME,
+				requestParameters.wMCONSUMERCHANNELTYPE,
+				requestParameters.file,
+				options
+			)
+			.then((request) => request(this.axios, this.basePath));
+	}
 
-  /**
-   * Updates the promotional price.  Sellers can update or delete an existing promotional price as well as set up a new promotional price.  To set a new promotional price or update an existing one, set the XML pricing attribute processMode to UPSERT. To delete a promotional price, set the XML pricing attribute processMode to DELETE. To delete all promotions for a SKU, set replaceAll to an empty payload.
-   * @summary Update a promotional price
-   * @param {PromotionsApiUpdatePromotionalPricesRequest} requestParameters Request parameters.
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof PromotionsApi
-   */
-  public updatePromotionalPrices(
-    requestParameters: PromotionsApiUpdatePromotionalPricesRequest,
-    options?: any
-  ) {
-    return PromotionsApiFp(this.configuration)
-      .updatePromotionalPrices(
-        requestParameters.promo,
-        requestParameters.authorization,
-        requestParameters.wMSECACCESSTOKEN,
-        requestParameters.wMQOSCORRELATIONID,
-        requestParameters.wMSVCNAME,
-        requestParameters.inlineObject,
-        requestParameters.wMCONSUMERCHANNELTYPE,
-        options
-      )
-      .then((request) => request(this.axios, this.basePath));
-  }
+	/**
+	 * Updates the promotional price.  Sellers can update or delete an existing promotional price as well as set up a new promotional price.  To set a new promotional price or update an existing one, set the XML pricing attribute processMode to UPSERT. To delete a promotional price, set the XML pricing attribute processMode to DELETE. To delete all promotions for a SKU, set replaceAll to an empty payload.
+	 * @summary Update a promotional price
+	 * @param {PromotionsApiUpdatePromotionalPricesRequest} requestParameters Request parameters.
+	 * @param {*} [options] Override http request option.
+	 * @throws {RequiredError}
+	 * @memberof PromotionsApi
+	 */
+	public updatePromotionalPrices(requestParameters: PromotionsApiUpdatePromotionalPricesRequest, options?: any) {
+		return PromotionsApiFp(this.configuration)
+			.updatePromotionalPrices(
+				requestParameters.promo,
+				requestParameters.authorization,
+				requestParameters.wMSECACCESSTOKEN,
+				requestParameters.wMQOSCORRELATIONID,
+				requestParameters.wMSVCNAME,
+				requestParameters.inlineObject,
+				requestParameters.wMCONSUMERCHANNELTYPE,
+				options
+			)
+			.then((request) => request(this.axios, this.basePath));
+	}
 }

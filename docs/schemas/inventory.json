@@ -448,235 +448,6 @@
         }
       }
     },
-    "/v3/fulfillment/inventory": {
-      "get": {
-        "tags": [
-          "Inventory"
-        ],
-        "summary": "WFS Inventory",
-        "description": "You can use this API to get the current Available to Sell inventory quantities for all WFS items in your catalog. You can also query specific SKUs or filter to only items updated after a specific date in order to reduce the response size.",
-        "operationId": "getWFSInventory",
-        "parameters": [
-          {
-            "name": "sku",
-            "in": "query",
-            "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: ':', '/', '?', '#', '[', ']', '@', '!', '$', '&', \"'\", '(', ')', '*', '+', ',', ';', '=', ‘ ’ as well as '%' itself if it's a part of sku. Make sure to encode space with %20. Other characters don't need to be encoded.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "fromModifiedDate",
-            "in": "query",
-            "description": "last inventory modified date - starting range.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "toModifiedDate",
-            "in": "query",
-            "description": "last inventory modified date - starting range.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "Number of Sku to be returned. Cannot be larger than 300.",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "default": "10"
-            }
-          },
-          {
-            "name": "offset",
-            "in": "query",
-            "description": "Offset is the number of records you wish to skip before selecting records.",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "default": "0"
-            }
-          },
-          {
-            "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
-          },
-          {
-            "in": "header",
-            "name": "WM_SEC.ACCESS_TOKEN",
-            "description": "The access token retrieved in the Token API call",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
-          },
-          {
-            "in": "header",
-            "name": "WM_CONSUMER.CHANNEL.TYPE",
-            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "header",
-            "name": "WM_QOS.CORRELATION_ID",
-            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
-          },
-          {
-            "in": "header",
-            "name": "WM_SVC.NAME",
-            "description": "Walmart Service Name",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Walmart Service Name"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "headers": {
-                      "type": "object",
-                      "properties": {
-                        "totalCount": {
-                          "type": "integer",
-                          "description": "Total number of results for query.",
-                          "format": "int32"
-                        },
-                        "limit": {
-                          "type": "integer",
-                          "description": "Information about the quantity in inventory",
-                          "format": "int32"
-                        },
-                        "offset": {
-                          "type": "integer",
-                          "description": "Offset is the number of records you wish to skip before selecting results.",
-                          "format": "int32"
-                        }
-                      }
-                    },
-                    "payload": {
-                      "type": "object",
-                      "properties": {
-                        "inventory": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "sku": {
-                                "type": "string",
-                                "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
-                              },
-                              "shipNodes": {
-                                "type": "array",
-                                "items": {
-                                  "type": "object",
-                                  "properties": {
-                                    "modifiedDate": {
-                                      "type": "string",
-                                      "description": "Last changes date for the item."
-                                    },
-                                    "availToSellQty": {
-                                      "type": "integer",
-                                      "description": "The available quantity is the quantity of an item that is available to be allocated to orders.",
-                                      "format": "int32"
-                                    },
-                                    "onHandQty": {
-                                      "type": "integer",
-                                      "description": "The on-hand balance is the quantity of active inventory stored at the warehouse.Active inventory is defined as the usable amount of an item that is in the warehouse.Inventory is active if it is not damaged, expired or being inspected.",
-                                      "format": "int32"
-                                    },
-                                    "shipNodeType": {
-                                      "type": "string",
-                                      "description": "Identifies fulfillment aspect of invetory. Walmart, seller or 3PL fulfilled. Possible value is 'WFSFulfilled'. In later phase we will also add seller fulfilled inventory."
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                },
-                "example": {
-                  "headers": {
-                    "totalCount": 20,
-                    "limit": 10,
-                    "offset": 0
-                  },
-                  "payload": {
-                    "inventory": [
-                      {
-                        "sku": "12345",
-                        "shipNodes": [
-                          {
-                            "modifiedDate": "2020-04-13T06:00:32.393Z",
-                            "availToSellQty": 37,
-                            "onHandQty": 1,
-                            "shipNodeType": "WFSFulfilled"
-                          }
-                        ]
-                      },
-                      {
-                        "sku": "12345",
-                        "shipNodes": [
-                          {
-                            "modifiedDate": "2020-04-13T06:00:32.393Z",
-                            "availToSellQty": 37,
-                            "onHandQty": 37,
-                            "shipNodeType": "WFSFulfilled"
-                          }
-                        ]
-                      },
-                      {
-                        "sku": "12347",
-                        "shipNodes": [
-                          {
-                            "modifiedDate": "2020-04-13T06:00:32.393Z",
-                            "availToSellQty": 26,
-                            "onHandQty": 26,
-                            "shipNodeType": "WFSFulfilled"
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/v3/inventories": {
       "get": {
         "tags": [
@@ -1395,6 +1166,235 @@
         }
       }
     },
+    "/v3/fulfillment/inventory": {
+      "get": {
+        "tags": [
+          "Inventory"
+        ],
+        "summary": "WFS Inventory",
+        "description": "You can use this API to get the current Available to Sell inventory quantities for all WFS items in your catalog. You can also query specific SKUs or filter to only items updated after a specific date in order to reduce the response size.",
+        "operationId": "getWFSInventory",
+        "parameters": [
+          {
+            "name": "sku",
+            "in": "query",
+            "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: ':', '/', '?', '#', '[', ']', '@', '!', '$', '&', \"'\", '(', ')', '*', '+', ',', ';', '=', ‘ ’ as well as '%' itself if it's a part of sku. Make sure to encode space with %20. Other characters don't need to be encoded.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fromModifiedDate",
+            "in": "query",
+            "description": "last inventory modified date - starting range.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "toModifiedDate",
+            "in": "query",
+            "description": "last inventory modified date - starting range.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of Sku to be returned. Cannot be larger than 300.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "10"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Offset is the number of records you wish to skip before selecting records.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "0"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Basic YzcyOTFjNmItNzI5MC00...."
+          },
+          {
+            "in": "header",
+            "name": "WM_SEC.ACCESS_TOKEN",
+            "description": "The access token retrieved in the Token API call",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
+          },
+          {
+            "in": "header",
+            "name": "WM_CONSUMER.CHANNEL.TYPE",
+            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "WM_QOS.CORRELATION_ID",
+            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
+          },
+          {
+            "in": "header",
+            "name": "WM_SVC.NAME",
+            "description": "Walmart Service Name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Walmart Service Name"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "headers": {
+                      "type": "object",
+                      "properties": {
+                        "totalCount": {
+                          "type": "integer",
+                          "description": "Total number of results for query.",
+                          "format": "int32"
+                        },
+                        "limit": {
+                          "type": "integer",
+                          "description": "Information about the quantity in inventory",
+                          "format": "int32"
+                        },
+                        "offset": {
+                          "type": "integer",
+                          "description": "Offset is the number of records you wish to skip before selecting results.",
+                          "format": "int32"
+                        }
+                      }
+                    },
+                    "payload": {
+                      "type": "object",
+                      "properties": {
+                        "inventory": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "sku": {
+                                "type": "string",
+                                "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
+                              },
+                              "shipNodes": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "modifiedDate": {
+                                      "type": "string",
+                                      "description": "Last changes date for the item."
+                                    },
+                                    "availToSellQty": {
+                                      "type": "integer",
+                                      "description": "The available quantity is the quantity of an item that is available to be allocated to orders.",
+                                      "format": "int32"
+                                    },
+                                    "onHandQty": {
+                                      "type": "integer",
+                                      "description": "The on-hand balance is the quantity of active inventory stored at the warehouse.Active inventory is defined as the usable amount of an item that is in the warehouse.Inventory is active if it is not damaged, expired or being inspected.",
+                                      "format": "int32"
+                                    },
+                                    "shipNodeType": {
+                                      "type": "string",
+                                      "description": "Identifies fulfillment aspect of invetory. Walmart, seller or 3PL fulfilled. Possible value is 'WFSFulfilled'. In later phase we will also add seller fulfilled inventory."
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "headers": {
+                    "totalCount": 20,
+                    "limit": 10,
+                    "offset": 0
+                  },
+                  "payload": {
+                    "inventory": [
+                      {
+                        "sku": "12345",
+                        "shipNodes": [
+                          {
+                            "modifiedDate": "2020-04-13T06:00:32.393Z",
+                            "availToSellQty": 37,
+                            "onHandQty": 1,
+                            "shipNodeType": "WFSFulfilled"
+                          }
+                        ]
+                      },
+                      {
+                        "sku": "12345",
+                        "shipNodes": [
+                          {
+                            "modifiedDate": "2020-04-13T06:00:32.393Z",
+                            "availToSellQty": 37,
+                            "onHandQty": 37,
+                            "shipNodeType": "WFSFulfilled"
+                          }
+                        ]
+                      },
+                      {
+                        "sku": "12347",
+                        "shipNodes": [
+                          {
+                            "modifiedDate": "2020-04-13T06:00:32.393Z",
+                            "availToSellQty": 26,
+                            "onHandQty": 26,
+                            "shipNodeType": "WFSFulfilled"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v3/feeds": {
       "post": {
         "tags": [
@@ -1625,195 +1625,6 @@
           "amount": {
             "type": "number",
             "description": "The number available in the inventory"
-          }
-        }
-      },
-      "Headers": {
-        "type": "object",
-        "properties": {
-          "totalCount": {
-            "type": "integer",
-            "description": "Total number of results for query.",
-            "format": "int32"
-          },
-          "limit": {
-            "type": "integer",
-            "description": "Information about the quantity in inventory",
-            "format": "int32"
-          },
-          "offset": {
-            "type": "integer",
-            "description": "Offset is the number of records you wish to skip before selecting results.",
-            "format": "int32"
-          }
-        }
-      },
-      "InventoryWFS": {
-        "type": "object",
-        "properties": {
-          "sku": {
-            "type": "string",
-            "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
-          },
-          "shipNodes": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "modifiedDate": {
-                  "type": "string",
-                  "description": "Last changes date for the item."
-                },
-                "availToSellQty": {
-                  "type": "integer",
-                  "description": "The available quantity is the quantity of an item that is available to be allocated to orders.",
-                  "format": "int32"
-                },
-                "onHandQty": {
-                  "type": "integer",
-                  "description": "The on-hand balance is the quantity of active inventory stored at the warehouse.Active inventory is defined as the usable amount of an item that is in the warehouse.Inventory is active if it is not damaged, expired or being inspected.",
-                  "format": "int32"
-                },
-                "shipNodeType": {
-                  "type": "string",
-                  "description": "Identifies fulfillment aspect of invetory. Walmart, seller or 3PL fulfilled. Possible value is 'WFSFulfilled'. In later phase we will also add seller fulfilled inventory."
-                }
-              }
-            }
-          }
-        }
-      },
-      "Payload": {
-        "type": "object",
-        "properties": {
-          "inventory": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "sku": {
-                  "type": "string",
-                  "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
-                },
-                "shipNodes": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "modifiedDate": {
-                        "type": "string",
-                        "description": "Last changes date for the item."
-                      },
-                      "availToSellQty": {
-                        "type": "integer",
-                        "description": "The available quantity is the quantity of an item that is available to be allocated to orders.",
-                        "format": "int32"
-                      },
-                      "onHandQty": {
-                        "type": "integer",
-                        "description": "The on-hand balance is the quantity of active inventory stored at the warehouse.Active inventory is defined as the usable amount of an item that is in the warehouse.Inventory is active if it is not damaged, expired or being inspected.",
-                        "format": "int32"
-                      },
-                      "shipNodeType": {
-                        "type": "string",
-                        "description": "Identifies fulfillment aspect of invetory. Walmart, seller or 3PL fulfilled. Possible value is 'WFSFulfilled'. In later phase we will also add seller fulfilled inventory."
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "ShipNodes": {
-        "type": "object",
-        "properties": {
-          "modifiedDate": {
-            "type": "string",
-            "description": "Last changes date for the item."
-          },
-          "availToSellQty": {
-            "type": "integer",
-            "description": "The available quantity is the quantity of an item that is available to be allocated to orders.",
-            "format": "int32"
-          },
-          "onHandQty": {
-            "type": "integer",
-            "description": "The on-hand balance is the quantity of active inventory stored at the warehouse.Active inventory is defined as the usable amount of an item that is in the warehouse.Inventory is active if it is not damaged, expired or being inspected.",
-            "format": "int32"
-          },
-          "shipNodeType": {
-            "type": "string",
-            "description": "Identifies fulfillment aspect of invetory. Walmart, seller or 3PL fulfilled. Possible value is 'WFSFulfilled'. In later phase we will also add seller fulfilled inventory."
-          }
-        }
-      },
-      "WfsInventoryDTO": {
-        "type": "object",
-        "properties": {
-          "headers": {
-            "type": "object",
-            "properties": {
-              "totalCount": {
-                "type": "integer",
-                "description": "Total number of results for query.",
-                "format": "int32"
-              },
-              "limit": {
-                "type": "integer",
-                "description": "Information about the quantity in inventory",
-                "format": "int32"
-              },
-              "offset": {
-                "type": "integer",
-                "description": "Offset is the number of records you wish to skip before selecting results.",
-                "format": "int32"
-              }
-            }
-          },
-          "payload": {
-            "type": "object",
-            "properties": {
-              "inventory": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "sku": {
-                      "type": "string",
-                      "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
-                    },
-                    "shipNodes": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "modifiedDate": {
-                            "type": "string",
-                            "description": "Last changes date for the item."
-                          },
-                          "availToSellQty": {
-                            "type": "integer",
-                            "description": "The available quantity is the quantity of an item that is available to be allocated to orders.",
-                            "format": "int32"
-                          },
-                          "onHandQty": {
-                            "type": "integer",
-                            "description": "The on-hand balance is the quantity of active inventory stored at the warehouse.Active inventory is defined as the usable amount of an item that is in the warehouse.Inventory is active if it is not damaged, expired or being inspected.",
-                            "format": "int32"
-                          },
-                          "shipNodeType": {
-                            "type": "string",
-                            "description": "Identifies fulfillment aspect of invetory. Walmart, seller or 3PL fulfilled. Possible value is 'WFSFulfilled'. In later phase we will also add seller fulfilled inventory."
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
           }
         }
       },
@@ -2773,6 +2584,195 @@
               "amount": {
                 "type": "number",
                 "description": "The number available in the inventory"
+              }
+            }
+          }
+        }
+      },
+      "Headers": {
+        "type": "object",
+        "properties": {
+          "totalCount": {
+            "type": "integer",
+            "description": "Total number of results for query.",
+            "format": "int32"
+          },
+          "limit": {
+            "type": "integer",
+            "description": "Information about the quantity in inventory",
+            "format": "int32"
+          },
+          "offset": {
+            "type": "integer",
+            "description": "Offset is the number of records you wish to skip before selecting results.",
+            "format": "int32"
+          }
+        }
+      },
+      "InventoryWFS": {
+        "type": "object",
+        "properties": {
+          "sku": {
+            "type": "string",
+            "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
+          },
+          "shipNodes": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "modifiedDate": {
+                  "type": "string",
+                  "description": "Last changes date for the item."
+                },
+                "availToSellQty": {
+                  "type": "integer",
+                  "description": "The available quantity is the quantity of an item that is available to be allocated to orders.",
+                  "format": "int32"
+                },
+                "onHandQty": {
+                  "type": "integer",
+                  "description": "The on-hand balance is the quantity of active inventory stored at the warehouse.Active inventory is defined as the usable amount of an item that is in the warehouse.Inventory is active if it is not damaged, expired or being inspected.",
+                  "format": "int32"
+                },
+                "shipNodeType": {
+                  "type": "string",
+                  "description": "Identifies fulfillment aspect of invetory. Walmart, seller or 3PL fulfilled. Possible value is 'WFSFulfilled'. In later phase we will also add seller fulfilled inventory."
+                }
+              }
+            }
+          }
+        }
+      },
+      "Payload": {
+        "type": "object",
+        "properties": {
+          "inventory": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "sku": {
+                  "type": "string",
+                  "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
+                },
+                "shipNodes": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "modifiedDate": {
+                        "type": "string",
+                        "description": "Last changes date for the item."
+                      },
+                      "availToSellQty": {
+                        "type": "integer",
+                        "description": "The available quantity is the quantity of an item that is available to be allocated to orders.",
+                        "format": "int32"
+                      },
+                      "onHandQty": {
+                        "type": "integer",
+                        "description": "The on-hand balance is the quantity of active inventory stored at the warehouse.Active inventory is defined as the usable amount of an item that is in the warehouse.Inventory is active if it is not damaged, expired or being inspected.",
+                        "format": "int32"
+                      },
+                      "shipNodeType": {
+                        "type": "string",
+                        "description": "Identifies fulfillment aspect of invetory. Walmart, seller or 3PL fulfilled. Possible value is 'WFSFulfilled'. In later phase we will also add seller fulfilled inventory."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "ShipNodes": {
+        "type": "object",
+        "properties": {
+          "modifiedDate": {
+            "type": "string",
+            "description": "Last changes date for the item."
+          },
+          "availToSellQty": {
+            "type": "integer",
+            "description": "The available quantity is the quantity of an item that is available to be allocated to orders.",
+            "format": "int32"
+          },
+          "onHandQty": {
+            "type": "integer",
+            "description": "The on-hand balance is the quantity of active inventory stored at the warehouse.Active inventory is defined as the usable amount of an item that is in the warehouse.Inventory is active if it is not damaged, expired or being inspected.",
+            "format": "int32"
+          },
+          "shipNodeType": {
+            "type": "string",
+            "description": "Identifies fulfillment aspect of invetory. Walmart, seller or 3PL fulfilled. Possible value is 'WFSFulfilled'. In later phase we will also add seller fulfilled inventory."
+          }
+        }
+      },
+      "WfsInventoryDTO": {
+        "type": "object",
+        "properties": {
+          "headers": {
+            "type": "object",
+            "properties": {
+              "totalCount": {
+                "type": "integer",
+                "description": "Total number of results for query.",
+                "format": "int32"
+              },
+              "limit": {
+                "type": "integer",
+                "description": "Information about the quantity in inventory",
+                "format": "int32"
+              },
+              "offset": {
+                "type": "integer",
+                "description": "Offset is the number of records you wish to skip before selecting results.",
+                "format": "int32"
+              }
+            }
+          },
+          "payload": {
+            "type": "object",
+            "properties": {
+              "inventory": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "sku": {
+                      "type": "string",
+                      "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
+                    },
+                    "shipNodes": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "modifiedDate": {
+                            "type": "string",
+                            "description": "Last changes date for the item."
+                          },
+                          "availToSellQty": {
+                            "type": "integer",
+                            "description": "The available quantity is the quantity of an item that is available to be allocated to orders.",
+                            "format": "int32"
+                          },
+                          "onHandQty": {
+                            "type": "integer",
+                            "description": "The on-hand balance is the quantity of active inventory stored at the warehouse.Active inventory is defined as the usable amount of an item that is in the warehouse.Inventory is active if it is not damaged, expired or being inspected.",
+                            "format": "int32"
+                          },
+                          "shipNodeType": {
+                            "type": "string",
+                            "description": "Identifies fulfillment aspect of invetory. Walmart, seller or 3PL fulfilled. Possible value is 'WFSFulfilled'. In later phase we will also add seller fulfilled inventory."
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
               }
             }
           }

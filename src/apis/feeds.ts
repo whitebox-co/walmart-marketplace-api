@@ -12,30 +12,24 @@
  * Do not edit the class manually.
  */
 
-import { Configuration } from "./configuration";
-import globalAxios, { AxiosPromise, AxiosInstance } from "axios";
+import { Configuration } from './configuration';
+import globalAxios, { AxiosPromise, AxiosInstance } from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import {
-  DUMMY_BASE_URL,
-  assertParamExists,
-  setApiKeyToObject,
-  setBasicAuthToObject,
-  setBearerAuthToObject,
-  setOAuthToObject,
-  setSearchParams,
-  serializeDataIfNeeded,
-  toPathString,
-  createRequestFunction,
-} from "./common";
+	DUMMY_BASE_URL,
+	assertParamExists,
+	setApiKeyToObject,
+	setBasicAuthToObject,
+	setBearerAuthToObject,
+	setOAuthToObject,
+	setSearchParams,
+	serializeDataIfNeeded,
+	toPathString,
+	createRequestFunction,
+} from './common';
 // @ts-ignore
-import {
-  BASE_PATH,
-  COLLECTION_FORMATS,
-  RequestArgs,
-  BaseAPI,
-  RequiredError,
-} from "./base";
+import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from './base';
 
 /**
  *
@@ -43,30 +37,30 @@ import {
  * @interface Cause
  */
 export interface Cause {
-  /**
-   *
-   * @type {string}
-   * @memberof Cause
-   */
-  code?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof Cause
-   */
-  field?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof Cause
-   */
-  type?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof Cause
-   */
-  description?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof Cause
+	 */
+	code?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof Cause
+	 */
+	field?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof Cause
+	 */
+	type?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof Cause
+	 */
+	description?: string;
 }
 /**
  * Information about the individual feed
@@ -74,78 +68,78 @@ export interface Cause {
  * @interface FeedRecord
  */
 export interface FeedRecord {
-  /**
-   * A unique ID used for tracking the Feed File
-   * @type {string}
-   * @memberof FeedRecord
-   */
-  feedId?: string;
-  /**
-   * The source of the feed
-   * @type {string}
-   * @memberof FeedRecord
-   */
-  feedSource?: string;
-  /**
-   * The feed type
-   * @type {string}
-   * @memberof FeedRecord
-   */
-  feedType?: string;
-  /**
-   * The seller ID
-   * @type {string}
-   * @memberof FeedRecord
-   */
-  partnerId?: string;
-  /**
-   * The number of items received
-   * @type {number}
-   * @memberof FeedRecord
-   */
-  itemsReceived?: number;
-  /**
-   * The number of items in the feed that have successfully processed
-   * @type {number}
-   * @memberof FeedRecord
-   */
-  itemsSucceeded?: number;
-  /**
-   * The number of items in the feed that failed due to a data or system error
-   * @type {number}
-   * @memberof FeedRecord
-   */
-  itemsFailed?: number;
-  /**
-   * The number of items in the feed that are still in progress
-   * @type {number}
-   * @memberof FeedRecord
-   */
-  itemsProcessing?: number;
-  /**
-   * Can be one of the following: RECEIVED, INPROGRESS, PROCESSED, or ERROR. For details, see the definitions listed under \'Feed Statuses\' at the beginning of this section.
-   * @type {string}
-   * @memberof FeedRecord
-   */
-  feedStatus?: string;
-  /**
-   * The date and time the feed was submitted. Format: yyyymmddThh:mm:ss.xxxz
-   * @type {number}
-   * @memberof FeedRecord
-   */
-  feedDate?: number;
-  /**
-   * The batch ID for the feed, if provided
-   * @type {string}
-   * @memberof FeedRecord
-   */
-  batchId?: string;
-  /**
-   * The most recent time the feed was modified. Format: yyyymmddThh:mm:ss.xxxz
-   * @type {number}
-   * @memberof FeedRecord
-   */
-  modifiedDtm?: number;
+	/**
+	 * A unique ID used for tracking the Feed File
+	 * @type {string}
+	 * @memberof FeedRecord
+	 */
+	feedId?: string;
+	/**
+	 * The source of the feed
+	 * @type {string}
+	 * @memberof FeedRecord
+	 */
+	feedSource?: string;
+	/**
+	 * The feed type
+	 * @type {string}
+	 * @memberof FeedRecord
+	 */
+	feedType?: string;
+	/**
+	 * The seller ID
+	 * @type {string}
+	 * @memberof FeedRecord
+	 */
+	partnerId?: string;
+	/**
+	 * The number of items received
+	 * @type {number}
+	 * @memberof FeedRecord
+	 */
+	itemsReceived?: number;
+	/**
+	 * The number of items in the feed that have successfully processed
+	 * @type {number}
+	 * @memberof FeedRecord
+	 */
+	itemsSucceeded?: number;
+	/**
+	 * The number of items in the feed that failed due to a data or system error
+	 * @type {number}
+	 * @memberof FeedRecord
+	 */
+	itemsFailed?: number;
+	/**
+	 * The number of items in the feed that are still in progress
+	 * @type {number}
+	 * @memberof FeedRecord
+	 */
+	itemsProcessing?: number;
+	/**
+	 * Can be one of the following: RECEIVED, INPROGRESS, PROCESSED, or ERROR. For details, see the definitions listed under \'Feed Statuses\' at the beginning of this section.
+	 * @type {string}
+	 * @memberof FeedRecord
+	 */
+	feedStatus?: string;
+	/**
+	 * The date and time the feed was submitted. Format: yyyymmddThh:mm:ss.xxxz
+	 * @type {number}
+	 * @memberof FeedRecord
+	 */
+	feedDate?: number;
+	/**
+	 * The batch ID for the feed, if provided
+	 * @type {string}
+	 * @memberof FeedRecord
+	 */
+	batchId?: string;
+	/**
+	 * The most recent time the feed was modified. Format: yyyymmddThh:mm:ss.xxxz
+	 * @type {number}
+	 * @memberof FeedRecord
+	 */
+	modifiedDtm?: number;
 }
 /**
  *
@@ -153,36 +147,36 @@ export interface FeedRecord {
  * @interface FeedRecordResponse
  */
 export interface FeedRecordResponse {
-  /**
-   *
-   * @type {Array<InlineResponse200Errors>}
-   * @memberof FeedRecordResponse
-   */
-  errors?: Array<InlineResponse200Errors>;
-  /**
-   * Total number of feeds returned
-   * @type {number}
-   * @memberof FeedRecordResponse
-   */
-  totalResults?: number;
-  /**
-   * The object response to the starting number, where 0 is the first available
-   * @type {number}
-   * @memberof FeedRecordResponse
-   */
-  offset?: number;
-  /**
-   * The number of items to be returned
-   * @type {number}
-   * @memberof FeedRecordResponse
-   */
-  limit?: number;
-  /**
-   *
-   * @type {InlineResponse2001Results}
-   * @memberof FeedRecordResponse
-   */
-  results?: InlineResponse2001Results;
+	/**
+	 *
+	 * @type {Array<InlineResponse200Errors>}
+	 * @memberof FeedRecordResponse
+	 */
+	errors?: Array<InlineResponse200Errors>;
+	/**
+	 * Total number of feeds returned
+	 * @type {number}
+	 * @memberof FeedRecordResponse
+	 */
+	totalResults?: number;
+	/**
+	 * The object response to the starting number, where 0 is the first available
+	 * @type {number}
+	 * @memberof FeedRecordResponse
+	 */
+	offset?: number;
+	/**
+	 * The number of items to be returned
+	 * @type {number}
+	 * @memberof FeedRecordResponse
+	 */
+	limit?: number;
+	/**
+	 *
+	 * @type {InlineResponse200Results}
+	 * @memberof FeedRecordResponse
+	 */
+	results?: InlineResponse200Results;
 }
 /**
  *
@@ -190,78 +184,78 @@ export interface FeedRecordResponse {
  * @interface GatewayError
  */
 export interface GatewayError {
-  /**
-   *
-   * @type {string}
-   * @memberof GatewayError
-   */
-  code: string;
-  /**
-   *
-   * @type {string}
-   * @memberof GatewayError
-   */
-  field?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof GatewayError
-   */
-  description?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof GatewayError
-   */
-  info?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof GatewayError
-   */
-  severity?: GatewayErrorSeverityEnum;
-  /**
-   *
-   * @type {string}
-   * @memberof GatewayError
-   */
-  category?: GatewayErrorCategoryEnum;
-  /**
-   *
-   * @type {Array<InlineResponse200Causes>}
-   * @memberof GatewayError
-   */
-  causes?: Array<InlineResponse200Causes>;
-  /**
-   *
-   * @type {{ [key: string]: object; }}
-   * @memberof GatewayError
-   */
-  errorIdentifiers?: { [key: string]: object };
-  /**
-   *
-   * @type {string}
-   * @memberof GatewayError
-   */
-  component?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof GatewayError
-   */
-  type?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof GatewayError
-   */
-  serviceName?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof GatewayError
-   */
-  gatewayErrorCategory?: GatewayErrorGatewayErrorCategoryEnum;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof GatewayError
+	 */
+	code: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof GatewayError
+	 */
+	field?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof GatewayError
+	 */
+	description?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof GatewayError
+	 */
+	info?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof GatewayError
+	 */
+	severity?: GatewayErrorSeverityEnum;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof GatewayError
+	 */
+	category?: GatewayErrorCategoryEnum;
+	/**
+	 *
+	 * @type {Array<InlineResponse200Causes>}
+	 * @memberof GatewayError
+	 */
+	causes?: Array<InlineResponse200Causes>;
+	/**
+	 *
+	 * @type {{ [key: string]: object; }}
+	 * @memberof GatewayError
+	 */
+	errorIdentifiers?: { [key: string]: object };
+	/**
+	 *
+	 * @type {string}
+	 * @memberof GatewayError
+	 */
+	component?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof GatewayError
+	 */
+	type?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof GatewayError
+	 */
+	serviceName?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof GatewayError
+	 */
+	gatewayErrorCategory?: GatewayErrorGatewayErrorCategoryEnum;
 }
 
 /**
@@ -269,28 +263,28 @@ export interface GatewayError {
  * @enum {string}
  */
 export enum GatewayErrorSeverityEnum {
-  Info = "INFO",
-  Warn = "WARN",
-  Error = "ERROR",
+	Info = 'INFO',
+	Warn = 'WARN',
+	Error = 'ERROR',
 }
 /**
  * @export
  * @enum {string}
  */
 export enum GatewayErrorCategoryEnum {
-  Application = "APPLICATION",
-  System = "SYSTEM",
-  Request = "REQUEST",
-  Data = "DATA",
+	Application = 'APPLICATION',
+	System = 'SYSTEM',
+	Request = 'REQUEST',
+	Data = 'DATA',
 }
 /**
  * @export
  * @enum {string}
  */
 export enum GatewayErrorGatewayErrorCategoryEnum {
-  InternalDataError = "INTERNAL_DATA_ERROR",
-  ExternalDataError = "EXTERNAL_DATA_ERROR",
-  SystemError = "SYSTEM_ERROR",
+	InternalDataError = 'INTERNAL_DATA_ERROR',
+	ExternalDataError = 'EXTERNAL_DATA_ERROR',
+	SystemError = 'SYSTEM_ERROR',
 }
 
 /**
@@ -299,24 +293,24 @@ export enum GatewayErrorGatewayErrorCategoryEnum {
  * @interface IngestionError
  */
 export interface IngestionError {
-  /**
-   * Error Type
-   * @type {string}
-   * @memberof IngestionError
-   */
-  type: IngestionErrorTypeEnum;
-  /**
-   * Error code
-   * @type {string}
-   * @memberof IngestionError
-   */
-  code: string;
-  /**
-   * Error description
-   * @type {string}
-   * @memberof IngestionError
-   */
-  description?: string;
+	/**
+	 * Error Type
+	 * @type {string}
+	 * @memberof IngestionError
+	 */
+	type: IngestionErrorTypeEnum;
+	/**
+	 * Error code
+	 * @type {string}
+	 * @memberof IngestionError
+	 */
+	code: string;
+	/**
+	 * Error description
+	 * @type {string}
+	 * @memberof IngestionError
+	 */
+	description?: string;
 }
 
 /**
@@ -324,9 +318,9 @@ export interface IngestionError {
  * @enum {string}
  */
 export enum IngestionErrorTypeEnum {
-  DataError = "DATA_ERROR",
-  SystemError = "SYSTEM_ERROR",
-  TimeoutError = "TIMEOUT_ERROR",
+	DataError = 'DATA_ERROR',
+	SystemError = 'SYSTEM_ERROR',
+	TimeoutError = 'TIMEOUT_ERROR',
 }
 
 /**
@@ -335,12 +329,12 @@ export enum IngestionErrorTypeEnum {
  * @interface IngestionErrors
  */
 export interface IngestionErrors {
-  /**
-   *
-   * @type {Array<InlineResponse200IngestionErrorsIngestionError>}
-   * @memberof IngestionErrors
-   */
-  ingestionError?: Array<InlineResponse200IngestionErrorsIngestionError>;
+	/**
+	 *
+	 * @type {Array<InlineResponse2001IngestionErrorsIngestionError>}
+	 * @memberof IngestionErrors
+	 */
+	ingestionError?: Array<InlineResponse2001IngestionErrorsIngestionError>;
 }
 /**
  *
@@ -348,244 +342,270 @@ export interface IngestionErrors {
  * @interface InlineResponse200
  */
 export interface InlineResponse200 {
-  /**
-   *
-   * @type {Array<InlineResponse200Errors>}
-   * @memberof InlineResponse200
-   */
-  errors?: Array<InlineResponse200Errors>;
-  /**
-   * A unique ID used for tracking the Feed File
-   * @type {string}
-   * @memberof InlineResponse200
-   */
-  feedId?: string;
-  /**
-   * Can be one of the following: RECEIVED, INPROGRESS, PROCESSED, or ERROR
-   * @type {string}
-   * @memberof InlineResponse200
-   */
-  feedStatus?: InlineResponse200FeedStatusEnum;
-  /**
-   *
-   * @type {InlineResponse200IngestionErrors}
-   * @memberof InlineResponse200
-   */
-  ingestionErrors?: InlineResponse200IngestionErrors;
-  /**
-   * The number of items received in the feed
-   * @type {number}
-   * @memberof InlineResponse200
-   */
-  itemsReceived?: number;
-  /**
-   * The number of items in the feed that processed successfully
-   * @type {number}
-   * @memberof InlineResponse200
-   */
-  itemsSucceeded?: number;
-  /**
-   * The number of items in the feed that failed due to a data or system error
-   * @type {number}
-   * @memberof InlineResponse200
-   */
-  itemsFailed?: number;
-  /**
-   * The number of items in the feed that are still processing
-   * @type {number}
-   * @memberof InlineResponse200
-   */
-  itemsProcessing?: number;
-  /**
-   * The object response to the starting number, where 0 is the first entity available for request
-   * @type {number}
-   * @memberof InlineResponse200
-   */
-  offset?: number;
-  /**
-   * The number of items returned. Cannot be greater than 1000.
-   * @type {number}
-   * @memberof InlineResponse200
-   */
-  limit?: number;
-  /**
-   *
-   * @type {InlineResponse200ItemDetails}
-   * @memberof InlineResponse200
-   */
-  itemDetails?: InlineResponse200ItemDetails;
+	/**
+	 *
+	 * @type {Array<InlineResponse200Errors>}
+	 * @memberof InlineResponse200
+	 */
+	errors?: Array<InlineResponse200Errors>;
+	/**
+	 * Total number of feeds returned
+	 * @type {number}
+	 * @memberof InlineResponse200
+	 */
+	totalResults?: number;
+	/**
+	 * The object response to the starting number, where 0 is the first available
+	 * @type {number}
+	 * @memberof InlineResponse200
+	 */
+	offset?: number;
+	/**
+	 * The number of items to be returned
+	 * @type {number}
+	 * @memberof InlineResponse200
+	 */
+	limit?: number;
+	/**
+	 *
+	 * @type {InlineResponse200Results}
+	 * @memberof InlineResponse200
+	 */
+	results?: InlineResponse200Results;
 }
-
-/**
- * @export
- * @enum {string}
- */
-export enum InlineResponse200FeedStatusEnum {
-  Received = "RECEIVED",
-  Inprogress = "INPROGRESS",
-  Processed = "PROCESSED",
-  Error = "ERROR",
-}
-
 /**
  *
  * @export
  * @interface InlineResponse2001
  */
 export interface InlineResponse2001 {
-  /**
-   *
-   * @type {Array<InlineResponse200Errors>}
-   * @memberof InlineResponse2001
-   */
-  errors?: Array<InlineResponse200Errors>;
-  /**
-   * Total number of feeds returned
-   * @type {number}
-   * @memberof InlineResponse2001
-   */
-  totalResults?: number;
-  /**
-   * The object response to the starting number, where 0 is the first available
-   * @type {number}
-   * @memberof InlineResponse2001
-   */
-  offset?: number;
-  /**
-   * The number of items to be returned
-   * @type {number}
-   * @memberof InlineResponse2001
-   */
-  limit?: number;
-  /**
-   *
-   * @type {InlineResponse2001Results}
-   * @memberof InlineResponse2001
-   */
-  results?: InlineResponse2001Results;
+	/**
+	 *
+	 * @type {Array<InlineResponse200Errors>}
+	 * @memberof InlineResponse2001
+	 */
+	errors?: Array<InlineResponse200Errors>;
+	/**
+	 * A unique ID used for tracking the Feed File
+	 * @type {string}
+	 * @memberof InlineResponse2001
+	 */
+	feedId?: string;
+	/**
+	 * Can be one of the following: RECEIVED, INPROGRESS, PROCESSED, or ERROR
+	 * @type {string}
+	 * @memberof InlineResponse2001
+	 */
+	feedStatus?: InlineResponse2001FeedStatusEnum;
+	/**
+	 *
+	 * @type {InlineResponse2001IngestionErrors}
+	 * @memberof InlineResponse2001
+	 */
+	ingestionErrors?: InlineResponse2001IngestionErrors;
+	/**
+	 * The number of items received in the feed
+	 * @type {number}
+	 * @memberof InlineResponse2001
+	 */
+	itemsReceived?: number;
+	/**
+	 * The number of items in the feed that processed successfully
+	 * @type {number}
+	 * @memberof InlineResponse2001
+	 */
+	itemsSucceeded?: number;
+	/**
+	 * The number of items in the feed that failed due to a data or system error
+	 * @type {number}
+	 * @memberof InlineResponse2001
+	 */
+	itemsFailed?: number;
+	/**
+	 * The number of items in the feed that are still processing
+	 * @type {number}
+	 * @memberof InlineResponse2001
+	 */
+	itemsProcessing?: number;
+	/**
+	 * The object response to the starting number, where 0 is the first entity available for request
+	 * @type {number}
+	 * @memberof InlineResponse2001
+	 */
+	offset?: number;
+	/**
+	 * The number of items returned. Cannot be greater than 1000.
+	 * @type {number}
+	 * @memberof InlineResponse2001
+	 */
+	limit?: number;
+	/**
+	 *
+	 * @type {InlineResponse2001ItemDetails}
+	 * @memberof InlineResponse2001
+	 */
+	itemDetails?: InlineResponse2001ItemDetails;
+}
+
+/**
+ * @export
+ * @enum {string}
+ */
+export enum InlineResponse2001FeedStatusEnum {
+	Received = 'RECEIVED',
+	Inprogress = 'INPROGRESS',
+	Processed = 'PROCESSED',
+	Error = 'ERROR',
+}
+
+/**
+ * List of errors for an item
+ * @export
+ * @interface InlineResponse2001IngestionErrors
+ */
+export interface InlineResponse2001IngestionErrors {
+	/**
+	 *
+	 * @type {Array<InlineResponse2001IngestionErrorsIngestionError>}
+	 * @memberof InlineResponse2001IngestionErrors
+	 */
+	ingestionError?: Array<InlineResponse2001IngestionErrorsIngestionError>;
 }
 /**
- * The feed status results
+ *
  * @export
- * @interface InlineResponse2001Results
+ * @interface InlineResponse2001IngestionErrorsIngestionError
  */
-export interface InlineResponse2001Results {
-  /**
-   * The feed status results
-   * @type {Array<InlineResponse2001ResultsFeed>}
-   * @memberof InlineResponse2001Results
-   */
-  feed?: Array<InlineResponse2001ResultsFeed>;
+export interface InlineResponse2001IngestionErrorsIngestionError {
+	/**
+	 * Error Type
+	 * @type {string}
+	 * @memberof InlineResponse2001IngestionErrorsIngestionError
+	 */
+	type: InlineResponse2001IngestionErrorsIngestionErrorTypeEnum;
+	/**
+	 * Error code
+	 * @type {string}
+	 * @memberof InlineResponse2001IngestionErrorsIngestionError
+	 */
+	code: string;
+	/**
+	 * Error description
+	 * @type {string}
+	 * @memberof InlineResponse2001IngestionErrorsIngestionError
+	 */
+	description?: string;
+}
+
+/**
+ * @export
+ * @enum {string}
+ */
+export enum InlineResponse2001IngestionErrorsIngestionErrorTypeEnum {
+	DataError = 'DATA_ERROR',
+	SystemError = 'SYSTEM_ERROR',
+	TimeoutError = 'TIMEOUT_ERROR',
+}
+
+/**
+ * List of ingestion status details for items in the feed
+ * @export
+ * @interface InlineResponse2001ItemDetails
+ */
+export interface InlineResponse2001ItemDetails {
+	/**
+	 * The ingestion status of an individual item
+	 * @type {Array<InlineResponse2001ItemDetailsItemIngestionStatus>}
+	 * @memberof InlineResponse2001ItemDetails
+	 */
+	itemIngestionStatus?: Array<InlineResponse2001ItemDetailsItemIngestionStatus>;
 }
 /**
- * Information about the individual feed
+ * The ingestion status of an individual item
  * @export
- * @interface InlineResponse2001ResultsFeed
+ * @interface InlineResponse2001ItemDetailsItemIngestionStatus
  */
-export interface InlineResponse2001ResultsFeed {
-  /**
-   * A unique ID used for tracking the Feed File
-   * @type {string}
-   * @memberof InlineResponse2001ResultsFeed
-   */
-  feedId?: string;
-  /**
-   * The source of the feed
-   * @type {string}
-   * @memberof InlineResponse2001ResultsFeed
-   */
-  feedSource?: string;
-  /**
-   * The feed type
-   * @type {string}
-   * @memberof InlineResponse2001ResultsFeed
-   */
-  feedType?: string;
-  /**
-   * The seller ID
-   * @type {string}
-   * @memberof InlineResponse2001ResultsFeed
-   */
-  partnerId?: string;
-  /**
-   * The number of items received
-   * @type {number}
-   * @memberof InlineResponse2001ResultsFeed
-   */
-  itemsReceived?: number;
-  /**
-   * The number of items in the feed that have successfully processed
-   * @type {number}
-   * @memberof InlineResponse2001ResultsFeed
-   */
-  itemsSucceeded?: number;
-  /**
-   * The number of items in the feed that failed due to a data or system error
-   * @type {number}
-   * @memberof InlineResponse2001ResultsFeed
-   */
-  itemsFailed?: number;
-  /**
-   * The number of items in the feed that are still in progress
-   * @type {number}
-   * @memberof InlineResponse2001ResultsFeed
-   */
-  itemsProcessing?: number;
-  /**
-   * Can be one of the following: RECEIVED, INPROGRESS, PROCESSED, or ERROR. For details, see the definitions listed under \'Feed Statuses\' at the beginning of this section.
-   * @type {string}
-   * @memberof InlineResponse2001ResultsFeed
-   */
-  feedStatus?: string;
-  /**
-   * The date and time the feed was submitted. Format: yyyymmddThh:mm:ss.xxxz
-   * @type {number}
-   * @memberof InlineResponse2001ResultsFeed
-   */
-  feedDate?: number;
-  /**
-   * The batch ID for the feed, if provided
-   * @type {string}
-   * @memberof InlineResponse2001ResultsFeed
-   */
-  batchId?: string;
-  /**
-   * The most recent time the feed was modified. Format: yyyymmddThh:mm:ss.xxxz
-   * @type {number}
-   * @memberof InlineResponse2001ResultsFeed
-   */
-  modifiedDtm?: number;
+export interface InlineResponse2001ItemDetailsItemIngestionStatus {
+	/**
+	 * Mart ID that a user or seller uses for a marketplace
+	 * @type {number}
+	 * @memberof InlineResponse2001ItemDetailsItemIngestionStatus
+	 */
+	martId?: number;
+	/**
+	 * An arbitrary alphanumeric unique ID, seller-specified, identifying each item.
+	 * @type {string}
+	 * @memberof InlineResponse2001ItemDetailsItemIngestionStatus
+	 */
+	sku?: string;
+	/**
+	 * An alphanumeric product ID, generated by Walmart
+	 * @type {string}
+	 * @memberof InlineResponse2001ItemDetailsItemIngestionStatus
+	 */
+	wpid?: string;
+	/**
+	 * index of items in the feed
+	 * @type {number}
+	 * @memberof InlineResponse2001ItemDetailsItemIngestionStatus
+	 */
+	index?: number;
+	/**
+	 * Can be one of the following: DATA_ERROR, SYSTEM_ERROR, TIMEOUT_ERROR, or INPROGRESS
+	 * @type {string}
+	 * @memberof InlineResponse2001ItemDetailsItemIngestionStatus
+	 */
+	ingestionStatus: InlineResponse2001ItemDetailsItemIngestionStatusIngestionStatusEnum;
+	/**
+	 *
+	 * @type {InlineResponse2001IngestionErrors}
+	 * @memberof InlineResponse2001ItemDetailsItemIngestionStatus
+	 */
+	ingestionErrors?: InlineResponse2001IngestionErrors;
 }
+
+/**
+ * @export
+ * @enum {string}
+ */
+export enum InlineResponse2001ItemDetailsItemIngestionStatusIngestionStatusEnum {
+	Inprogress = 'INPROGRESS',
+	Success = 'SUCCESS',
+	DataError = 'DATA_ERROR',
+	SystemError = 'SYSTEM_ERROR',
+	TimeoutError = 'TIMEOUT_ERROR',
+}
+
 /**
  *
  * @export
  * @interface InlineResponse200Causes
  */
 export interface InlineResponse200Causes {
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse200Causes
-   */
-  code?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse200Causes
-   */
-  field?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse200Causes
-   */
-  type?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse200Causes
-   */
-  description?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineResponse200Causes
+	 */
+	code?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineResponse200Causes
+	 */
+	field?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineResponse200Causes
+	 */
+	type?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineResponse200Causes
+	 */
+	description?: string;
 }
 /**
  *
@@ -593,78 +613,78 @@ export interface InlineResponse200Causes {
  * @interface InlineResponse200Errors
  */
 export interface InlineResponse200Errors {
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse200Errors
-   */
-  code: string;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse200Errors
-   */
-  field?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse200Errors
-   */
-  description?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse200Errors
-   */
-  info?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse200Errors
-   */
-  severity?: InlineResponse200ErrorsSeverityEnum;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse200Errors
-   */
-  category?: InlineResponse200ErrorsCategoryEnum;
-  /**
-   *
-   * @type {Array<InlineResponse200Causes>}
-   * @memberof InlineResponse200Errors
-   */
-  causes?: Array<InlineResponse200Causes>;
-  /**
-   *
-   * @type {{ [key: string]: object; }}
-   * @memberof InlineResponse200Errors
-   */
-  errorIdentifiers?: { [key: string]: object };
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse200Errors
-   */
-  component?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse200Errors
-   */
-  type?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse200Errors
-   */
-  serviceName?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof InlineResponse200Errors
-   */
-  gatewayErrorCategory?: InlineResponse200ErrorsGatewayErrorCategoryEnum;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineResponse200Errors
+	 */
+	code: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineResponse200Errors
+	 */
+	field?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineResponse200Errors
+	 */
+	description?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineResponse200Errors
+	 */
+	info?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineResponse200Errors
+	 */
+	severity?: InlineResponse200ErrorsSeverityEnum;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineResponse200Errors
+	 */
+	category?: InlineResponse200ErrorsCategoryEnum;
+	/**
+	 *
+	 * @type {Array<InlineResponse200Causes>}
+	 * @memberof InlineResponse200Errors
+	 */
+	causes?: Array<InlineResponse200Causes>;
+	/**
+	 *
+	 * @type {{ [key: string]: object; }}
+	 * @memberof InlineResponse200Errors
+	 */
+	errorIdentifiers?: { [key: string]: object };
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineResponse200Errors
+	 */
+	component?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineResponse200Errors
+	 */
+	type?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineResponse200Errors
+	 */
+	serviceName?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof InlineResponse200Errors
+	 */
+	gatewayErrorCategory?: InlineResponse200ErrorsGatewayErrorCategoryEnum;
 }
 
 /**
@@ -672,160 +692,134 @@ export interface InlineResponse200Errors {
  * @enum {string}
  */
 export enum InlineResponse200ErrorsSeverityEnum {
-  Info = "INFO",
-  Warn = "WARN",
-  Error = "ERROR",
+	Info = 'INFO',
+	Warn = 'WARN',
+	Error = 'ERROR',
 }
 /**
  * @export
  * @enum {string}
  */
 export enum InlineResponse200ErrorsCategoryEnum {
-  Application = "APPLICATION",
-  System = "SYSTEM",
-  Request = "REQUEST",
-  Data = "DATA",
+	Application = 'APPLICATION',
+	System = 'SYSTEM',
+	Request = 'REQUEST',
+	Data = 'DATA',
 }
 /**
  * @export
  * @enum {string}
  */
 export enum InlineResponse200ErrorsGatewayErrorCategoryEnum {
-  InternalDataError = "INTERNAL_DATA_ERROR",
-  ExternalDataError = "EXTERNAL_DATA_ERROR",
-  SystemError = "SYSTEM_ERROR",
+	InternalDataError = 'INTERNAL_DATA_ERROR',
+	ExternalDataError = 'EXTERNAL_DATA_ERROR',
+	SystemError = 'SYSTEM_ERROR',
 }
 
 /**
- * List of errors for an item
+ * The feed status results
  * @export
- * @interface InlineResponse200IngestionErrors
+ * @interface InlineResponse200Results
  */
-export interface InlineResponse200IngestionErrors {
-  /**
-   *
-   * @type {Array<InlineResponse200IngestionErrorsIngestionError>}
-   * @memberof InlineResponse200IngestionErrors
-   */
-  ingestionError?: Array<InlineResponse200IngestionErrorsIngestionError>;
+export interface InlineResponse200Results {
+	/**
+	 * The feed status results
+	 * @type {Array<InlineResponse200ResultsFeed>}
+	 * @memberof InlineResponse200Results
+	 */
+	feed?: Array<InlineResponse200ResultsFeed>;
 }
 /**
- *
+ * Information about the individual feed
  * @export
- * @interface InlineResponse200IngestionErrorsIngestionError
+ * @interface InlineResponse200ResultsFeed
  */
-export interface InlineResponse200IngestionErrorsIngestionError {
-  /**
-   * Error Type
-   * @type {string}
-   * @memberof InlineResponse200IngestionErrorsIngestionError
-   */
-  type: InlineResponse200IngestionErrorsIngestionErrorTypeEnum;
-  /**
-   * Error code
-   * @type {string}
-   * @memberof InlineResponse200IngestionErrorsIngestionError
-   */
-  code: string;
-  /**
-   * Error description
-   * @type {string}
-   * @memberof InlineResponse200IngestionErrorsIngestionError
-   */
-  description?: string;
+export interface InlineResponse200ResultsFeed {
+	/**
+	 * A unique ID used for tracking the Feed File
+	 * @type {string}
+	 * @memberof InlineResponse200ResultsFeed
+	 */
+	feedId?: string;
+	/**
+	 * The source of the feed
+	 * @type {string}
+	 * @memberof InlineResponse200ResultsFeed
+	 */
+	feedSource?: string;
+	/**
+	 * The feed type
+	 * @type {string}
+	 * @memberof InlineResponse200ResultsFeed
+	 */
+	feedType?: string;
+	/**
+	 * The seller ID
+	 * @type {string}
+	 * @memberof InlineResponse200ResultsFeed
+	 */
+	partnerId?: string;
+	/**
+	 * The number of items received
+	 * @type {number}
+	 * @memberof InlineResponse200ResultsFeed
+	 */
+	itemsReceived?: number;
+	/**
+	 * The number of items in the feed that have successfully processed
+	 * @type {number}
+	 * @memberof InlineResponse200ResultsFeed
+	 */
+	itemsSucceeded?: number;
+	/**
+	 * The number of items in the feed that failed due to a data or system error
+	 * @type {number}
+	 * @memberof InlineResponse200ResultsFeed
+	 */
+	itemsFailed?: number;
+	/**
+	 * The number of items in the feed that are still in progress
+	 * @type {number}
+	 * @memberof InlineResponse200ResultsFeed
+	 */
+	itemsProcessing?: number;
+	/**
+	 * Can be one of the following: RECEIVED, INPROGRESS, PROCESSED, or ERROR. For details, see the definitions listed under \'Feed Statuses\' at the beginning of this section.
+	 * @type {string}
+	 * @memberof InlineResponse200ResultsFeed
+	 */
+	feedStatus?: string;
+	/**
+	 * The date and time the feed was submitted. Format: yyyymmddThh:mm:ss.xxxz
+	 * @type {number}
+	 * @memberof InlineResponse200ResultsFeed
+	 */
+	feedDate?: number;
+	/**
+	 * The batch ID for the feed, if provided
+	 * @type {string}
+	 * @memberof InlineResponse200ResultsFeed
+	 */
+	batchId?: string;
+	/**
+	 * The most recent time the feed was modified. Format: yyyymmddThh:mm:ss.xxxz
+	 * @type {number}
+	 * @memberof InlineResponse200ResultsFeed
+	 */
+	modifiedDtm?: number;
 }
-
-/**
- * @export
- * @enum {string}
- */
-export enum InlineResponse200IngestionErrorsIngestionErrorTypeEnum {
-  DataError = "DATA_ERROR",
-  SystemError = "SYSTEM_ERROR",
-  TimeoutError = "TIMEOUT_ERROR",
-}
-
-/**
- * List of ingestion status details for items in the feed
- * @export
- * @interface InlineResponse200ItemDetails
- */
-export interface InlineResponse200ItemDetails {
-  /**
-   * The ingestion status of an individual item
-   * @type {Array<InlineResponse200ItemDetailsItemIngestionStatus>}
-   * @memberof InlineResponse200ItemDetails
-   */
-  itemIngestionStatus?: Array<InlineResponse200ItemDetailsItemIngestionStatus>;
-}
-/**
- * The ingestion status of an individual item
- * @export
- * @interface InlineResponse200ItemDetailsItemIngestionStatus
- */
-export interface InlineResponse200ItemDetailsItemIngestionStatus {
-  /**
-   * Mart ID that a user or seller uses for a marketplace
-   * @type {number}
-   * @memberof InlineResponse200ItemDetailsItemIngestionStatus
-   */
-  martId?: number;
-  /**
-   * An arbitrary alphanumeric unique ID, seller-specified, identifying each item.
-   * @type {string}
-   * @memberof InlineResponse200ItemDetailsItemIngestionStatus
-   */
-  sku?: string;
-  /**
-   * An alphanumeric product ID, generated by Walmart
-   * @type {string}
-   * @memberof InlineResponse200ItemDetailsItemIngestionStatus
-   */
-  wpid?: string;
-  /**
-   * index of items in the feed
-   * @type {number}
-   * @memberof InlineResponse200ItemDetailsItemIngestionStatus
-   */
-  index?: number;
-  /**
-   * Can be one of the following: DATA_ERROR, SYSTEM_ERROR, TIMEOUT_ERROR, or INPROGRESS
-   * @type {string}
-   * @memberof InlineResponse200ItemDetailsItemIngestionStatus
-   */
-  ingestionStatus: InlineResponse200ItemDetailsItemIngestionStatusIngestionStatusEnum;
-  /**
-   *
-   * @type {InlineResponse200IngestionErrors}
-   * @memberof InlineResponse200ItemDetailsItemIngestionStatus
-   */
-  ingestionErrors?: InlineResponse200IngestionErrors;
-}
-
-/**
- * @export
- * @enum {string}
- */
-export enum InlineResponse200ItemDetailsItemIngestionStatusIngestionStatusEnum {
-  Inprogress = "INPROGRESS",
-  Success = "SUCCESS",
-  DataError = "DATA_ERROR",
-  SystemError = "SYSTEM_ERROR",
-  TimeoutError = "TIMEOUT_ERROR",
-}
-
 /**
  * List of ingestion status details for items in the feed
  * @export
  * @interface ItemDetails
  */
 export interface ItemDetails {
-  /**
-   * The ingestion status of an individual item
-   * @type {Array<InlineResponse200ItemDetailsItemIngestionStatus>}
-   * @memberof ItemDetails
-   */
-  itemIngestionStatus?: Array<InlineResponse200ItemDetailsItemIngestionStatus>;
+	/**
+	 * The ingestion status of an individual item
+	 * @type {Array<InlineResponse2001ItemDetailsItemIngestionStatus>}
+	 * @memberof ItemDetails
+	 */
+	itemIngestionStatus?: Array<InlineResponse2001ItemDetailsItemIngestionStatus>;
 }
 /**
  *
@@ -833,72 +827,72 @@ export interface ItemDetails {
  * @interface PartnerFeedResponse
  */
 export interface PartnerFeedResponse {
-  /**
-   *
-   * @type {Array<InlineResponse200Errors>}
-   * @memberof PartnerFeedResponse
-   */
-  errors?: Array<InlineResponse200Errors>;
-  /**
-   * A unique ID used for tracking the Feed File
-   * @type {string}
-   * @memberof PartnerFeedResponse
-   */
-  feedId?: string;
-  /**
-   * Can be one of the following: RECEIVED, INPROGRESS, PROCESSED, or ERROR
-   * @type {string}
-   * @memberof PartnerFeedResponse
-   */
-  feedStatus?: PartnerFeedResponseFeedStatusEnum;
-  /**
-   *
-   * @type {InlineResponse200IngestionErrors}
-   * @memberof PartnerFeedResponse
-   */
-  ingestionErrors?: InlineResponse200IngestionErrors;
-  /**
-   * The number of items received in the feed
-   * @type {number}
-   * @memberof PartnerFeedResponse
-   */
-  itemsReceived?: number;
-  /**
-   * The number of items in the feed that processed successfully
-   * @type {number}
-   * @memberof PartnerFeedResponse
-   */
-  itemsSucceeded?: number;
-  /**
-   * The number of items in the feed that failed due to a data or system error
-   * @type {number}
-   * @memberof PartnerFeedResponse
-   */
-  itemsFailed?: number;
-  /**
-   * The number of items in the feed that are still processing
-   * @type {number}
-   * @memberof PartnerFeedResponse
-   */
-  itemsProcessing?: number;
-  /**
-   * The object response to the starting number, where 0 is the first entity available for request
-   * @type {number}
-   * @memberof PartnerFeedResponse
-   */
-  offset?: number;
-  /**
-   * The number of items returned. Cannot be greater than 1000.
-   * @type {number}
-   * @memberof PartnerFeedResponse
-   */
-  limit?: number;
-  /**
-   *
-   * @type {InlineResponse200ItemDetails}
-   * @memberof PartnerFeedResponse
-   */
-  itemDetails?: InlineResponse200ItemDetails;
+	/**
+	 *
+	 * @type {Array<InlineResponse200Errors>}
+	 * @memberof PartnerFeedResponse
+	 */
+	errors?: Array<InlineResponse200Errors>;
+	/**
+	 * A unique ID used for tracking the Feed File
+	 * @type {string}
+	 * @memberof PartnerFeedResponse
+	 */
+	feedId?: string;
+	/**
+	 * Can be one of the following: RECEIVED, INPROGRESS, PROCESSED, or ERROR
+	 * @type {string}
+	 * @memberof PartnerFeedResponse
+	 */
+	feedStatus?: PartnerFeedResponseFeedStatusEnum;
+	/**
+	 *
+	 * @type {InlineResponse2001IngestionErrors}
+	 * @memberof PartnerFeedResponse
+	 */
+	ingestionErrors?: InlineResponse2001IngestionErrors;
+	/**
+	 * The number of items received in the feed
+	 * @type {number}
+	 * @memberof PartnerFeedResponse
+	 */
+	itemsReceived?: number;
+	/**
+	 * The number of items in the feed that processed successfully
+	 * @type {number}
+	 * @memberof PartnerFeedResponse
+	 */
+	itemsSucceeded?: number;
+	/**
+	 * The number of items in the feed that failed due to a data or system error
+	 * @type {number}
+	 * @memberof PartnerFeedResponse
+	 */
+	itemsFailed?: number;
+	/**
+	 * The number of items in the feed that are still processing
+	 * @type {number}
+	 * @memberof PartnerFeedResponse
+	 */
+	itemsProcessing?: number;
+	/**
+	 * The object response to the starting number, where 0 is the first entity available for request
+	 * @type {number}
+	 * @memberof PartnerFeedResponse
+	 */
+	offset?: number;
+	/**
+	 * The number of items returned. Cannot be greater than 1000.
+	 * @type {number}
+	 * @memberof PartnerFeedResponse
+	 */
+	limit?: number;
+	/**
+	 *
+	 * @type {InlineResponse2001ItemDetails}
+	 * @memberof PartnerFeedResponse
+	 */
+	itemDetails?: InlineResponse2001ItemDetails;
 }
 
 /**
@@ -906,10 +900,10 @@ export interface PartnerFeedResponse {
  * @enum {string}
  */
 export enum PartnerFeedResponseFeedStatusEnum {
-  Received = "RECEIVED",
-  Inprogress = "INPROGRESS",
-  Processed = "PROCESSED",
-  Error = "ERROR",
+	Received = 'RECEIVED',
+	Inprogress = 'INPROGRESS',
+	Processed = 'PROCESSED',
+	Error = 'ERROR',
 }
 
 /**
@@ -918,42 +912,42 @@ export enum PartnerFeedResponseFeedStatusEnum {
  * @interface PartnerItemIngestionStatus
  */
 export interface PartnerItemIngestionStatus {
-  /**
-   * Mart ID that a user or seller uses for a marketplace
-   * @type {number}
-   * @memberof PartnerItemIngestionStatus
-   */
-  martId?: number;
-  /**
-   * An arbitrary alphanumeric unique ID, seller-specified, identifying each item.
-   * @type {string}
-   * @memberof PartnerItemIngestionStatus
-   */
-  sku?: string;
-  /**
-   * An alphanumeric product ID, generated by Walmart
-   * @type {string}
-   * @memberof PartnerItemIngestionStatus
-   */
-  wpid?: string;
-  /**
-   * index of items in the feed
-   * @type {number}
-   * @memberof PartnerItemIngestionStatus
-   */
-  index?: number;
-  /**
-   * Can be one of the following: DATA_ERROR, SYSTEM_ERROR, TIMEOUT_ERROR, or INPROGRESS
-   * @type {string}
-   * @memberof PartnerItemIngestionStatus
-   */
-  ingestionStatus: PartnerItemIngestionStatusIngestionStatusEnum;
-  /**
-   *
-   * @type {InlineResponse200IngestionErrors}
-   * @memberof PartnerItemIngestionStatus
-   */
-  ingestionErrors?: InlineResponse200IngestionErrors;
+	/**
+	 * Mart ID that a user or seller uses for a marketplace
+	 * @type {number}
+	 * @memberof PartnerItemIngestionStatus
+	 */
+	martId?: number;
+	/**
+	 * An arbitrary alphanumeric unique ID, seller-specified, identifying each item.
+	 * @type {string}
+	 * @memberof PartnerItemIngestionStatus
+	 */
+	sku?: string;
+	/**
+	 * An alphanumeric product ID, generated by Walmart
+	 * @type {string}
+	 * @memberof PartnerItemIngestionStatus
+	 */
+	wpid?: string;
+	/**
+	 * index of items in the feed
+	 * @type {number}
+	 * @memberof PartnerItemIngestionStatus
+	 */
+	index?: number;
+	/**
+	 * Can be one of the following: DATA_ERROR, SYSTEM_ERROR, TIMEOUT_ERROR, or INPROGRESS
+	 * @type {string}
+	 * @memberof PartnerItemIngestionStatus
+	 */
+	ingestionStatus: PartnerItemIngestionStatusIngestionStatusEnum;
+	/**
+	 *
+	 * @type {InlineResponse2001IngestionErrors}
+	 * @memberof PartnerItemIngestionStatus
+	 */
+	ingestionErrors?: InlineResponse2001IngestionErrors;
 }
 
 /**
@@ -961,11 +955,11 @@ export interface PartnerItemIngestionStatus {
  * @enum {string}
  */
 export enum PartnerItemIngestionStatusIngestionStatusEnum {
-  Inprogress = "INPROGRESS",
-  Success = "SUCCESS",
-  DataError = "DATA_ERROR",
-  SystemError = "SYSTEM_ERROR",
-  TimeoutError = "TIMEOUT_ERROR",
+	Inprogress = 'INPROGRESS',
+	Success = 'SUCCESS',
+	DataError = 'DATA_ERROR',
+	SystemError = 'SYSTEM_ERROR',
+	TimeoutError = 'TIMEOUT_ERROR',
 }
 
 /**
@@ -974,258 +968,213 @@ export enum PartnerItemIngestionStatusIngestionStatusEnum {
  * @interface ResultRecord
  */
 export interface ResultRecord {
-  /**
-   * The feed status results
-   * @type {Array<InlineResponse2001ResultsFeed>}
-   * @memberof ResultRecord
-   */
-  feed?: Array<InlineResponse2001ResultsFeed>;
+	/**
+	 * The feed status results
+	 * @type {Array<InlineResponse200ResultsFeed>}
+	 * @memberof ResultRecord
+	 */
+	feed?: Array<InlineResponse200ResultsFeed>;
 }
 
 /**
  * FeedsApi - axios parameter creator
  * @export
  */
-export const FeedsApiAxiosParamCreator = function (
-  configuration?: Configuration
-) {
-  return {
-    /**
-     * Returns the feed statuses for all the specified Feed IDs.
-     * @summary  All feed statuses
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {string} [feedId] A unique ID returned from the Bulk Upload API, used for tracking the Feed File. Special characters must be escaped. (e.g., feedId: \&#39;...3456@789...\&#39; must be entered in the URL as \&#39;...3456%40789).
-     * @param {string} [offset] The object response to start with, where 0 is the first entity that can be requested. It can only be used when includeDetails is set to true.
-     * @param {string} [limit] The number of entities to be returned. It cannot be more than 50 entities. Use it only when the includeDetails is set to true.
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getAllFeedStatuses: async (
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      feedId?: string,
-      offset?: string,
-      limit?: string,
-      wMCONSUMERCHANNELTYPE?: string,
-      options: any = {}
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'authorization' is not null or undefined
-      assertParamExists("getAllFeedStatuses", "authorization", authorization);
-      // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
-      assertParamExists(
-        "getAllFeedStatuses",
-        "wMSECACCESSTOKEN",
-        wMSECACCESSTOKEN
-      );
-      // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
-      assertParamExists(
-        "getAllFeedStatuses",
-        "wMQOSCORRELATIONID",
-        wMQOSCORRELATIONID
-      );
-      // verify required parameter 'wMSVCNAME' is not null or undefined
-      assertParamExists("getAllFeedStatuses", "wMSVCNAME", wMSVCNAME);
-      const localVarPath = `/v3/feeds`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+export const FeedsApiAxiosParamCreator = function (configuration?: Configuration) {
+	return {
+		/**
+		 * Returns the feed statuses for all the specified Feed IDs.
+		 * @summary  All feed statuses
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {string} [feedId] A unique ID returned from the Bulk Upload API, used for tracking the Feed File. Special characters must be escaped. (e.g., feedId: \&#39;...3456@789...\&#39; must be entered in the URL as \&#39;...3456%40789).
+		 * @param {string} [offset] The object response to start with, where 0 is the first entity that can be requested. It can only be used when includeDetails is set to true.
+		 * @param {string} [limit] The number of entities to be returned. It cannot be more than 50 entities. Use it only when the includeDetails is set to true.
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		getAllFeedStatuses: async (
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			feedId?: string,
+			offset?: string,
+			limit?: string,
+			wMCONSUMERCHANNELTYPE?: string,
+			options: any = {}
+		): Promise<RequestArgs> => {
+			// verify required parameter 'authorization' is not null or undefined
+			assertParamExists('getAllFeedStatuses', 'authorization', authorization);
+			// verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
+			assertParamExists('getAllFeedStatuses', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN);
+			// verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
+			assertParamExists('getAllFeedStatuses', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID);
+			// verify required parameter 'wMSVCNAME' is not null or undefined
+			assertParamExists('getAllFeedStatuses', 'wMSVCNAME', wMSVCNAME);
+			const localVarPath = `/v3/feeds`;
+			// use dummy base URL string because the URL constructor only accepts absolute URLs.
+			const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+			let baseOptions;
+			if (configuration) {
+				baseOptions = configuration.baseOptions;
+			}
 
-      const localVarRequestOptions = {
-        method: "GET",
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+			const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+			const localVarHeaderParameter = {} as any;
+			const localVarQueryParameter = {} as any;
 
-      // authentication basicScheme required
-      // http basic authentication required
-      setBasicAuthToObject(localVarRequestOptions, configuration);
+			// authentication basicScheme required
+			// http basic authentication required
+			setBasicAuthToObject(localVarRequestOptions, configuration);
 
-      if (feedId !== undefined) {
-        localVarQueryParameter["feedId"] = feedId;
-      }
+			if (feedId !== undefined) {
+				localVarQueryParameter['feedId'] = feedId;
+			}
 
-      if (offset !== undefined) {
-        localVarQueryParameter["offset"] = offset;
-      }
+			if (offset !== undefined) {
+				localVarQueryParameter['offset'] = offset;
+			}
 
-      if (limit !== undefined) {
-        localVarQueryParameter["limit"] = limit;
-      }
+			if (limit !== undefined) {
+				localVarQueryParameter['limit'] = limit;
+			}
 
-      if (authorization !== undefined && authorization !== null) {
-        localVarHeaderParameter["Authorization"] = String(authorization);
-      }
+			if (authorization !== undefined && authorization !== null) {
+				localVarHeaderParameter['Authorization'] = String(authorization);
+			}
 
-      if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
-        localVarHeaderParameter["WM_SEC.ACCESS_TOKEN"] =
-          String(wMSECACCESSTOKEN);
-      }
+			if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
+				localVarHeaderParameter['WM_SEC.ACCESS_TOKEN'] = String(wMSECACCESSTOKEN);
+			}
 
-      if (
-        wMCONSUMERCHANNELTYPE !== undefined &&
-        wMCONSUMERCHANNELTYPE !== null
-      ) {
-        localVarHeaderParameter["WM_CONSUMER.CHANNEL.TYPE"] = String(
-          wMCONSUMERCHANNELTYPE
-        );
-      }
+			if (wMCONSUMERCHANNELTYPE !== undefined && wMCONSUMERCHANNELTYPE !== null) {
+				localVarHeaderParameter['WM_CONSUMER.CHANNEL.TYPE'] = String(wMCONSUMERCHANNELTYPE);
+			}
 
-      if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
-        localVarHeaderParameter["WM_QOS.CORRELATION_ID"] =
-          String(wMQOSCORRELATIONID);
-      }
+			if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
+				localVarHeaderParameter['WM_QOS.CORRELATION_ID'] = String(wMQOSCORRELATIONID);
+			}
 
-      if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
-        localVarHeaderParameter["WM_SVC.NAME"] = String(wMSVCNAME);
-      }
+			if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
+				localVarHeaderParameter['WM_SVC.NAME'] = String(wMSVCNAME);
+			}
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
+			setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+			let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+			localVarRequestOptions.headers = {
+				...localVarHeaderParameter,
+				...headersFromBaseOptions,
+				...options.headers,
+			};
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * Returns the feed and item status for a specified Feed ID.
-     * @summary Feed item status
-     * @param {string} feedId A unique ID returned from the Bulk Upload API, used for tracking the Feed File. Special characters must be escaped. (e.g., feedId: \&#39;...3456@789...\&#39; must be entered in the URL as \&#39;...3456%40789)
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {string} [includeDetails] Includes details of each entity in the feed.
-     * @param {string} [offset] The object response to start with, where 0 is the first entity that can be requested. It can only be used when includeDetails is set to true.
-     * @param {string} [limit] The number of entities to be returned. It cannot be more than 50 entities. Use it only when the includeDetails is set to true.
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getFeedItemStatus: async (
-      feedId: string,
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      includeDetails?: string,
-      offset?: string,
-      limit?: string,
-      wMCONSUMERCHANNELTYPE?: string,
-      options: any = {}
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'feedId' is not null or undefined
-      assertParamExists("getFeedItemStatus", "feedId", feedId);
-      // verify required parameter 'authorization' is not null or undefined
-      assertParamExists("getFeedItemStatus", "authorization", authorization);
-      // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
-      assertParamExists(
-        "getFeedItemStatus",
-        "wMSECACCESSTOKEN",
-        wMSECACCESSTOKEN
-      );
-      // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
-      assertParamExists(
-        "getFeedItemStatus",
-        "wMQOSCORRELATIONID",
-        wMQOSCORRELATIONID
-      );
-      // verify required parameter 'wMSVCNAME' is not null or undefined
-      assertParamExists("getFeedItemStatus", "wMSVCNAME", wMSVCNAME);
-      const localVarPath = `/v3/feeds/{feedId}`.replace(
-        `{${"feedId"}}`,
-        encodeURIComponent(String(feedId))
-      );
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+			return {
+				url: toPathString(localVarUrlObj),
+				options: localVarRequestOptions,
+			};
+		},
+		/**
+		 * Returns the feed and item status for a specified Feed ID.
+		 * @summary Feed item status
+		 * @param {string} feedId A unique ID returned from the Bulk Upload API, used for tracking the Feed File. Special characters must be escaped. (e.g., feedId: \&#39;...3456@789...\&#39; must be entered in the URL as \&#39;...3456%40789)
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {string} [includeDetails] Includes details of each entity in the feed.
+		 * @param {string} [offset] The object response to start with, where 0 is the first entity that can be requested. It can only be used when includeDetails is set to true.
+		 * @param {string} [limit] The number of entities to be returned. It cannot be more than 50 entities. Use it only when the includeDetails is set to true.
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		getFeedItemStatus: async (
+			feedId: string,
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			includeDetails?: string,
+			offset?: string,
+			limit?: string,
+			wMCONSUMERCHANNELTYPE?: string,
+			options: any = {}
+		): Promise<RequestArgs> => {
+			// verify required parameter 'feedId' is not null or undefined
+			assertParamExists('getFeedItemStatus', 'feedId', feedId);
+			// verify required parameter 'authorization' is not null or undefined
+			assertParamExists('getFeedItemStatus', 'authorization', authorization);
+			// verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
+			assertParamExists('getFeedItemStatus', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN);
+			// verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
+			assertParamExists('getFeedItemStatus', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID);
+			// verify required parameter 'wMSVCNAME' is not null or undefined
+			assertParamExists('getFeedItemStatus', 'wMSVCNAME', wMSVCNAME);
+			const localVarPath = `/v3/feeds/{feedId}`.replace(`{${'feedId'}}`, encodeURIComponent(String(feedId)));
+			// use dummy base URL string because the URL constructor only accepts absolute URLs.
+			const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+			let baseOptions;
+			if (configuration) {
+				baseOptions = configuration.baseOptions;
+			}
 
-      const localVarRequestOptions = {
-        method: "GET",
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+			const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+			const localVarHeaderParameter = {} as any;
+			const localVarQueryParameter = {} as any;
 
-      // authentication basicScheme required
-      // http basic authentication required
-      setBasicAuthToObject(localVarRequestOptions, configuration);
+			// authentication basicScheme required
+			// http basic authentication required
+			setBasicAuthToObject(localVarRequestOptions, configuration);
 
-      if (includeDetails !== undefined) {
-        localVarQueryParameter["includeDetails"] = includeDetails;
-      }
+			if (includeDetails !== undefined) {
+				localVarQueryParameter['includeDetails'] = includeDetails;
+			}
 
-      if (offset !== undefined) {
-        localVarQueryParameter["offset"] = offset;
-      }
+			if (offset !== undefined) {
+				localVarQueryParameter['offset'] = offset;
+			}
 
-      if (limit !== undefined) {
-        localVarQueryParameter["limit"] = limit;
-      }
+			if (limit !== undefined) {
+				localVarQueryParameter['limit'] = limit;
+			}
 
-      if (authorization !== undefined && authorization !== null) {
-        localVarHeaderParameter["Authorization"] = String(authorization);
-      }
+			if (authorization !== undefined && authorization !== null) {
+				localVarHeaderParameter['Authorization'] = String(authorization);
+			}
 
-      if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
-        localVarHeaderParameter["WM_SEC.ACCESS_TOKEN"] =
-          String(wMSECACCESSTOKEN);
-      }
+			if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
+				localVarHeaderParameter['WM_SEC.ACCESS_TOKEN'] = String(wMSECACCESSTOKEN);
+			}
 
-      if (
-        wMCONSUMERCHANNELTYPE !== undefined &&
-        wMCONSUMERCHANNELTYPE !== null
-      ) {
-        localVarHeaderParameter["WM_CONSUMER.CHANNEL.TYPE"] = String(
-          wMCONSUMERCHANNELTYPE
-        );
-      }
+			if (wMCONSUMERCHANNELTYPE !== undefined && wMCONSUMERCHANNELTYPE !== null) {
+				localVarHeaderParameter['WM_CONSUMER.CHANNEL.TYPE'] = String(wMCONSUMERCHANNELTYPE);
+			}
 
-      if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
-        localVarHeaderParameter["WM_QOS.CORRELATION_ID"] =
-          String(wMQOSCORRELATIONID);
-      }
+			if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
+				localVarHeaderParameter['WM_QOS.CORRELATION_ID'] = String(wMQOSCORRELATIONID);
+			}
 
-      if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
-        localVarHeaderParameter["WM_SVC.NAME"] = String(wMSVCNAME);
-      }
+			if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
+				localVarHeaderParameter['WM_SVC.NAME'] = String(wMSVCNAME);
+			}
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
+			setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+			let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+			localVarRequestOptions.headers = {
+				...localVarHeaderParameter,
+				...headersFromBaseOptions,
+				...options.headers,
+			};
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-  };
+			return {
+				url: toPathString(localVarUrlObj),
+				options: localVarRequestOptions,
+			};
+		},
+	};
 };
 
 /**
@@ -1233,205 +1182,179 @@ export const FeedsApiAxiosParamCreator = function (
  * @export
  */
 export const FeedsApiFp = function (configuration?: Configuration) {
-  const localVarAxiosParamCreator = FeedsApiAxiosParamCreator(configuration);
-  return {
-    /**
-     * Returns the feed statuses for all the specified Feed IDs.
-     * @summary  All feed statuses
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {string} [feedId] A unique ID returned from the Bulk Upload API, used for tracking the Feed File. Special characters must be escaped. (e.g., feedId: \&#39;...3456@789...\&#39; must be entered in the URL as \&#39;...3456%40789).
-     * @param {string} [offset] The object response to start with, where 0 is the first entity that can be requested. It can only be used when includeDetails is set to true.
-     * @param {string} [limit] The number of entities to be returned. It cannot be more than 50 entities. Use it only when the includeDetails is set to true.
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async getAllFeedStatuses(
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      feedId?: string,
-      offset?: string,
-      limit?: string,
-      wMCONSUMERCHANNELTYPE?: string,
-      options?: any
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<InlineResponse2001>
-    > {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getAllFeedStatuses(
-          authorization,
-          wMSECACCESSTOKEN,
-          wMQOSCORRELATIONID,
-          wMSVCNAME,
-          feedId,
-          offset,
-          limit,
-          wMCONSUMERCHANNELTYPE,
-          options
-        );
-      return createRequestFunction(
-        localVarAxiosArgs,
-        globalAxios,
-        BASE_PATH,
-        configuration
-      );
-    },
-    /**
-     * Returns the feed and item status for a specified Feed ID.
-     * @summary Feed item status
-     * @param {string} feedId A unique ID returned from the Bulk Upload API, used for tracking the Feed File. Special characters must be escaped. (e.g., feedId: \&#39;...3456@789...\&#39; must be entered in the URL as \&#39;...3456%40789)
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {string} [includeDetails] Includes details of each entity in the feed.
-     * @param {string} [offset] The object response to start with, where 0 is the first entity that can be requested. It can only be used when includeDetails is set to true.
-     * @param {string} [limit] The number of entities to be returned. It cannot be more than 50 entities. Use it only when the includeDetails is set to true.
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async getFeedItemStatus(
-      feedId: string,
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      includeDetails?: string,
-      offset?: string,
-      limit?: string,
-      wMCONSUMERCHANNELTYPE?: string,
-      options?: any
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<InlineResponse200>
-    > {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getFeedItemStatus(
-          feedId,
-          authorization,
-          wMSECACCESSTOKEN,
-          wMQOSCORRELATIONID,
-          wMSVCNAME,
-          includeDetails,
-          offset,
-          limit,
-          wMCONSUMERCHANNELTYPE,
-          options
-        );
-      return createRequestFunction(
-        localVarAxiosArgs,
-        globalAxios,
-        BASE_PATH,
-        configuration
-      );
-    },
-  };
+	const localVarAxiosParamCreator = FeedsApiAxiosParamCreator(configuration);
+	return {
+		/**
+		 * Returns the feed statuses for all the specified Feed IDs.
+		 * @summary  All feed statuses
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {string} [feedId] A unique ID returned from the Bulk Upload API, used for tracking the Feed File. Special characters must be escaped. (e.g., feedId: \&#39;...3456@789...\&#39; must be entered in the URL as \&#39;...3456%40789).
+		 * @param {string} [offset] The object response to start with, where 0 is the first entity that can be requested. It can only be used when includeDetails is set to true.
+		 * @param {string} [limit] The number of entities to be returned. It cannot be more than 50 entities. Use it only when the includeDetails is set to true.
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		async getAllFeedStatuses(
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			feedId?: string,
+			offset?: string,
+			limit?: string,
+			wMCONSUMERCHANNELTYPE?: string,
+			options?: any
+		): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
+			const localVarAxiosArgs = await localVarAxiosParamCreator.getAllFeedStatuses(
+				authorization,
+				wMSECACCESSTOKEN,
+				wMQOSCORRELATIONID,
+				wMSVCNAME,
+				feedId,
+				offset,
+				limit,
+				wMCONSUMERCHANNELTYPE,
+				options
+			);
+			return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+		},
+		/**
+		 * Returns the feed and item status for a specified Feed ID.
+		 * @summary Feed item status
+		 * @param {string} feedId A unique ID returned from the Bulk Upload API, used for tracking the Feed File. Special characters must be escaped. (e.g., feedId: \&#39;...3456@789...\&#39; must be entered in the URL as \&#39;...3456%40789)
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {string} [includeDetails] Includes details of each entity in the feed.
+		 * @param {string} [offset] The object response to start with, where 0 is the first entity that can be requested. It can only be used when includeDetails is set to true.
+		 * @param {string} [limit] The number of entities to be returned. It cannot be more than 50 entities. Use it only when the includeDetails is set to true.
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		async getFeedItemStatus(
+			feedId: string,
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			includeDetails?: string,
+			offset?: string,
+			limit?: string,
+			wMCONSUMERCHANNELTYPE?: string,
+			options?: any
+		): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
+			const localVarAxiosArgs = await localVarAxiosParamCreator.getFeedItemStatus(
+				feedId,
+				authorization,
+				wMSECACCESSTOKEN,
+				wMQOSCORRELATIONID,
+				wMSVCNAME,
+				includeDetails,
+				offset,
+				limit,
+				wMCONSUMERCHANNELTYPE,
+				options
+			);
+			return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+		},
+	};
 };
 
 /**
  * FeedsApi - factory interface
  * @export
  */
-export const FeedsApiFactory = function (
-  configuration?: Configuration,
-  basePath?: string,
-  axios?: AxiosInstance
-) {
-  const localVarFp = FeedsApiFp(configuration);
-  return {
-    /**
-     * Returns the feed statuses for all the specified Feed IDs.
-     * @summary  All feed statuses
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {string} [feedId] A unique ID returned from the Bulk Upload API, used for tracking the Feed File. Special characters must be escaped. (e.g., feedId: \&#39;...3456@789...\&#39; must be entered in the URL as \&#39;...3456%40789).
-     * @param {string} [offset] The object response to start with, where 0 is the first entity that can be requested. It can only be used when includeDetails is set to true.
-     * @param {string} [limit] The number of entities to be returned. It cannot be more than 50 entities. Use it only when the includeDetails is set to true.
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getAllFeedStatuses(
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      feedId?: string,
-      offset?: string,
-      limit?: string,
-      wMCONSUMERCHANNELTYPE?: string,
-      options?: any
-    ): AxiosPromise<InlineResponse2001> {
-      return localVarFp
-        .getAllFeedStatuses(
-          authorization,
-          wMSECACCESSTOKEN,
-          wMQOSCORRELATIONID,
-          wMSVCNAME,
-          feedId,
-          offset,
-          limit,
-          wMCONSUMERCHANNELTYPE,
-          options
-        )
-        .then((request) => request(axios, basePath));
-    },
-    /**
-     * Returns the feed and item status for a specified Feed ID.
-     * @summary Feed item status
-     * @param {string} feedId A unique ID returned from the Bulk Upload API, used for tracking the Feed File. Special characters must be escaped. (e.g., feedId: \&#39;...3456@789...\&#39; must be entered in the URL as \&#39;...3456%40789)
-     * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-     * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-     * @param {string} wMSVCNAME Walmart Service Name
-     * @param {string} [includeDetails] Includes details of each entity in the feed.
-     * @param {string} [offset] The object response to start with, where 0 is the first entity that can be requested. It can only be used when includeDetails is set to true.
-     * @param {string} [limit] The number of entities to be returned. It cannot be more than 50 entities. Use it only when the includeDetails is set to true.
-     * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getFeedItemStatus(
-      feedId: string,
-      authorization: string,
-      wMSECACCESSTOKEN: string,
-      wMQOSCORRELATIONID: string,
-      wMSVCNAME: string,
-      includeDetails?: string,
-      offset?: string,
-      limit?: string,
-      wMCONSUMERCHANNELTYPE?: string,
-      options?: any
-    ): AxiosPromise<InlineResponse200> {
-      return localVarFp
-        .getFeedItemStatus(
-          feedId,
-          authorization,
-          wMSECACCESSTOKEN,
-          wMQOSCORRELATIONID,
-          wMSVCNAME,
-          includeDetails,
-          offset,
-          limit,
-          wMCONSUMERCHANNELTYPE,
-          options
-        )
-        .then((request) => request(axios, basePath));
-    },
-  };
+export const FeedsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+	const localVarFp = FeedsApiFp(configuration);
+	return {
+		/**
+		 * Returns the feed statuses for all the specified Feed IDs.
+		 * @summary  All feed statuses
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {string} [feedId] A unique ID returned from the Bulk Upload API, used for tracking the Feed File. Special characters must be escaped. (e.g., feedId: \&#39;...3456@789...\&#39; must be entered in the URL as \&#39;...3456%40789).
+		 * @param {string} [offset] The object response to start with, where 0 is the first entity that can be requested. It can only be used when includeDetails is set to true.
+		 * @param {string} [limit] The number of entities to be returned. It cannot be more than 50 entities. Use it only when the includeDetails is set to true.
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		getAllFeedStatuses(
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			feedId?: string,
+			offset?: string,
+			limit?: string,
+			wMCONSUMERCHANNELTYPE?: string,
+			options?: any
+		): AxiosPromise<InlineResponse200> {
+			return localVarFp
+				.getAllFeedStatuses(
+					authorization,
+					wMSECACCESSTOKEN,
+					wMQOSCORRELATIONID,
+					wMSVCNAME,
+					feedId,
+					offset,
+					limit,
+					wMCONSUMERCHANNELTYPE,
+					options
+				)
+				.then((request) => request(axios, basePath));
+		},
+		/**
+		 * Returns the feed and item status for a specified Feed ID.
+		 * @summary Feed item status
+		 * @param {string} feedId A unique ID returned from the Bulk Upload API, used for tracking the Feed File. Special characters must be escaped. (e.g., feedId: \&#39;...3456@789...\&#39; must be entered in the URL as \&#39;...3456%40789)
+		 * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+		 * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+		 * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+		 * @param {string} wMSVCNAME Walmart Service Name
+		 * @param {string} [includeDetails] Includes details of each entity in the feed.
+		 * @param {string} [offset] The object response to start with, where 0 is the first entity that can be requested. It can only be used when includeDetails is set to true.
+		 * @param {string} [limit] The number of entities to be returned. It cannot be more than 50 entities. Use it only when the includeDetails is set to true.
+		 * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		getFeedItemStatus(
+			feedId: string,
+			authorization: string,
+			wMSECACCESSTOKEN: string,
+			wMQOSCORRELATIONID: string,
+			wMSVCNAME: string,
+			includeDetails?: string,
+			offset?: string,
+			limit?: string,
+			wMCONSUMERCHANNELTYPE?: string,
+			options?: any
+		): AxiosPromise<InlineResponse2001> {
+			return localVarFp
+				.getFeedItemStatus(
+					feedId,
+					authorization,
+					wMSECACCESSTOKEN,
+					wMQOSCORRELATIONID,
+					wMSVCNAME,
+					includeDetails,
+					offset,
+					limit,
+					wMCONSUMERCHANNELTYPE,
+					options
+				)
+				.then((request) => request(axios, basePath));
+		},
+	};
 };
 
 /**
@@ -1440,61 +1363,61 @@ export const FeedsApiFactory = function (
  * @interface FeedsApiGetAllFeedStatusesRequest
  */
 export interface FeedsApiGetAllFeedStatusesRequest {
-  /**
-   * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-   * @type {string}
-   * @memberof FeedsApiGetAllFeedStatuses
-   */
-  readonly authorization: string;
+	/**
+	 * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+	 * @type {string}
+	 * @memberof FeedsApiGetAllFeedStatuses
+	 */
+	readonly authorization: string;
 
-  /**
-   * The access token retrieved in the Token API call
-   * @type {string}
-   * @memberof FeedsApiGetAllFeedStatuses
-   */
-  readonly wMSECACCESSTOKEN: string;
+	/**
+	 * The access token retrieved in the Token API call
+	 * @type {string}
+	 * @memberof FeedsApiGetAllFeedStatuses
+	 */
+	readonly wMSECACCESSTOKEN: string;
 
-  /**
-   * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-   * @type {string}
-   * @memberof FeedsApiGetAllFeedStatuses
-   */
-  readonly wMQOSCORRELATIONID: string;
+	/**
+	 * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+	 * @type {string}
+	 * @memberof FeedsApiGetAllFeedStatuses
+	 */
+	readonly wMQOSCORRELATIONID: string;
 
-  /**
-   * Walmart Service Name
-   * @type {string}
-   * @memberof FeedsApiGetAllFeedStatuses
-   */
-  readonly wMSVCNAME: string;
+	/**
+	 * Walmart Service Name
+	 * @type {string}
+	 * @memberof FeedsApiGetAllFeedStatuses
+	 */
+	readonly wMSVCNAME: string;
 
-  /**
-   * A unique ID returned from the Bulk Upload API, used for tracking the Feed File. Special characters must be escaped. (e.g., feedId: \&#39;...3456@789...\&#39; must be entered in the URL as \&#39;...3456%40789).
-   * @type {string}
-   * @memberof FeedsApiGetAllFeedStatuses
-   */
-  readonly feedId?: string;
+	/**
+	 * A unique ID returned from the Bulk Upload API, used for tracking the Feed File. Special characters must be escaped. (e.g., feedId: \&#39;...3456@789...\&#39; must be entered in the URL as \&#39;...3456%40789).
+	 * @type {string}
+	 * @memberof FeedsApiGetAllFeedStatuses
+	 */
+	readonly feedId?: string;
 
-  /**
-   * The object response to start with, where 0 is the first entity that can be requested. It can only be used when includeDetails is set to true.
-   * @type {string}
-   * @memberof FeedsApiGetAllFeedStatuses
-   */
-  readonly offset?: string;
+	/**
+	 * The object response to start with, where 0 is the first entity that can be requested. It can only be used when includeDetails is set to true.
+	 * @type {string}
+	 * @memberof FeedsApiGetAllFeedStatuses
+	 */
+	readonly offset?: string;
 
-  /**
-   * The number of entities to be returned. It cannot be more than 50 entities. Use it only when the includeDetails is set to true.
-   * @type {string}
-   * @memberof FeedsApiGetAllFeedStatuses
-   */
-  readonly limit?: string;
+	/**
+	 * The number of entities to be returned. It cannot be more than 50 entities. Use it only when the includeDetails is set to true.
+	 * @type {string}
+	 * @memberof FeedsApiGetAllFeedStatuses
+	 */
+	readonly limit?: string;
 
-  /**
-   * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-   * @type {string}
-   * @memberof FeedsApiGetAllFeedStatuses
-   */
-  readonly wMCONSUMERCHANNELTYPE?: string;
+	/**
+	 * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+	 * @type {string}
+	 * @memberof FeedsApiGetAllFeedStatuses
+	 */
+	readonly wMCONSUMERCHANNELTYPE?: string;
 }
 
 /**
@@ -1503,68 +1426,68 @@ export interface FeedsApiGetAllFeedStatusesRequest {
  * @interface FeedsApiGetFeedItemStatusRequest
  */
 export interface FeedsApiGetFeedItemStatusRequest {
-  /**
-   * A unique ID returned from the Bulk Upload API, used for tracking the Feed File. Special characters must be escaped. (e.g., feedId: \&#39;...3456@789...\&#39; must be entered in the URL as \&#39;...3456%40789)
-   * @type {string}
-   * @memberof FeedsApiGetFeedItemStatus
-   */
-  readonly feedId: string;
+	/**
+	 * A unique ID returned from the Bulk Upload API, used for tracking the Feed File. Special characters must be escaped. (e.g., feedId: \&#39;...3456@789...\&#39; must be entered in the URL as \&#39;...3456%40789)
+	 * @type {string}
+	 * @memberof FeedsApiGetFeedItemStatus
+	 */
+	readonly feedId: string;
 
-  /**
-   * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-   * @type {string}
-   * @memberof FeedsApiGetFeedItemStatus
-   */
-  readonly authorization: string;
+	/**
+	 * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+	 * @type {string}
+	 * @memberof FeedsApiGetFeedItemStatus
+	 */
+	readonly authorization: string;
 
-  /**
-   * The access token retrieved in the Token API call
-   * @type {string}
-   * @memberof FeedsApiGetFeedItemStatus
-   */
-  readonly wMSECACCESSTOKEN: string;
+	/**
+	 * The access token retrieved in the Token API call
+	 * @type {string}
+	 * @memberof FeedsApiGetFeedItemStatus
+	 */
+	readonly wMSECACCESSTOKEN: string;
 
-  /**
-   * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-   * @type {string}
-   * @memberof FeedsApiGetFeedItemStatus
-   */
-  readonly wMQOSCORRELATIONID: string;
+	/**
+	 * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+	 * @type {string}
+	 * @memberof FeedsApiGetFeedItemStatus
+	 */
+	readonly wMQOSCORRELATIONID: string;
 
-  /**
-   * Walmart Service Name
-   * @type {string}
-   * @memberof FeedsApiGetFeedItemStatus
-   */
-  readonly wMSVCNAME: string;
+	/**
+	 * Walmart Service Name
+	 * @type {string}
+	 * @memberof FeedsApiGetFeedItemStatus
+	 */
+	readonly wMSVCNAME: string;
 
-  /**
-   * Includes details of each entity in the feed.
-   * @type {string}
-   * @memberof FeedsApiGetFeedItemStatus
-   */
-  readonly includeDetails?: string;
+	/**
+	 * Includes details of each entity in the feed.
+	 * @type {string}
+	 * @memberof FeedsApiGetFeedItemStatus
+	 */
+	readonly includeDetails?: string;
 
-  /**
-   * The object response to start with, where 0 is the first entity that can be requested. It can only be used when includeDetails is set to true.
-   * @type {string}
-   * @memberof FeedsApiGetFeedItemStatus
-   */
-  readonly offset?: string;
+	/**
+	 * The object response to start with, where 0 is the first entity that can be requested. It can only be used when includeDetails is set to true.
+	 * @type {string}
+	 * @memberof FeedsApiGetFeedItemStatus
+	 */
+	readonly offset?: string;
 
-  /**
-   * The number of entities to be returned. It cannot be more than 50 entities. Use it only when the includeDetails is set to true.
-   * @type {string}
-   * @memberof FeedsApiGetFeedItemStatus
-   */
-  readonly limit?: string;
+	/**
+	 * The number of entities to be returned. It cannot be more than 50 entities. Use it only when the includeDetails is set to true.
+	 * @type {string}
+	 * @memberof FeedsApiGetFeedItemStatus
+	 */
+	readonly limit?: string;
 
-  /**
-   * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-   * @type {string}
-   * @memberof FeedsApiGetFeedItemStatus
-   */
-  readonly wMCONSUMERCHANNELTYPE?: string;
+	/**
+	 * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+	 * @type {string}
+	 * @memberof FeedsApiGetFeedItemStatus
+	 */
+	readonly wMCONSUMERCHANNELTYPE?: string;
 }
 
 /**
@@ -1574,58 +1497,52 @@ export interface FeedsApiGetFeedItemStatusRequest {
  * @extends {BaseAPI}
  */
 export class FeedsApi extends BaseAPI {
-  /**
-   * Returns the feed statuses for all the specified Feed IDs.
-   * @summary  All feed statuses
-   * @param {FeedsApiGetAllFeedStatusesRequest} requestParameters Request parameters.
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof FeedsApi
-   */
-  public getAllFeedStatuses(
-    requestParameters: FeedsApiGetAllFeedStatusesRequest,
-    options?: any
-  ) {
-    return FeedsApiFp(this.configuration)
-      .getAllFeedStatuses(
-        requestParameters.authorization,
-        requestParameters.wMSECACCESSTOKEN,
-        requestParameters.wMQOSCORRELATIONID,
-        requestParameters.wMSVCNAME,
-        requestParameters.feedId,
-        requestParameters.offset,
-        requestParameters.limit,
-        requestParameters.wMCONSUMERCHANNELTYPE,
-        options
-      )
-      .then((request) => request(this.axios, this.basePath));
-  }
+	/**
+	 * Returns the feed statuses for all the specified Feed IDs.
+	 * @summary  All feed statuses
+	 * @param {FeedsApiGetAllFeedStatusesRequest} requestParameters Request parameters.
+	 * @param {*} [options] Override http request option.
+	 * @throws {RequiredError}
+	 * @memberof FeedsApi
+	 */
+	public getAllFeedStatuses(requestParameters: FeedsApiGetAllFeedStatusesRequest, options?: any) {
+		return FeedsApiFp(this.configuration)
+			.getAllFeedStatuses(
+				requestParameters.authorization,
+				requestParameters.wMSECACCESSTOKEN,
+				requestParameters.wMQOSCORRELATIONID,
+				requestParameters.wMSVCNAME,
+				requestParameters.feedId,
+				requestParameters.offset,
+				requestParameters.limit,
+				requestParameters.wMCONSUMERCHANNELTYPE,
+				options
+			)
+			.then((request) => request(this.axios, this.basePath));
+	}
 
-  /**
-   * Returns the feed and item status for a specified Feed ID.
-   * @summary Feed item status
-   * @param {FeedsApiGetFeedItemStatusRequest} requestParameters Request parameters.
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof FeedsApi
-   */
-  public getFeedItemStatus(
-    requestParameters: FeedsApiGetFeedItemStatusRequest,
-    options?: any
-  ) {
-    return FeedsApiFp(this.configuration)
-      .getFeedItemStatus(
-        requestParameters.feedId,
-        requestParameters.authorization,
-        requestParameters.wMSECACCESSTOKEN,
-        requestParameters.wMQOSCORRELATIONID,
-        requestParameters.wMSVCNAME,
-        requestParameters.includeDetails,
-        requestParameters.offset,
-        requestParameters.limit,
-        requestParameters.wMCONSUMERCHANNELTYPE,
-        options
-      )
-      .then((request) => request(this.axios, this.basePath));
-  }
+	/**
+	 * Returns the feed and item status for a specified Feed ID.
+	 * @summary Feed item status
+	 * @param {FeedsApiGetFeedItemStatusRequest} requestParameters Request parameters.
+	 * @param {*} [options] Override http request option.
+	 * @throws {RequiredError}
+	 * @memberof FeedsApi
+	 */
+	public getFeedItemStatus(requestParameters: FeedsApiGetFeedItemStatusRequest, options?: any) {
+		return FeedsApiFp(this.configuration)
+			.getFeedItemStatus(
+				requestParameters.feedId,
+				requestParameters.authorization,
+				requestParameters.wMSECACCESSTOKEN,
+				requestParameters.wMQOSCORRELATIONID,
+				requestParameters.wMSVCNAME,
+				requestParameters.includeDetails,
+				requestParameters.offset,
+				requestParameters.limit,
+				requestParameters.wMCONSUMERCHANNELTYPE,
+				options
+			)
+			.then((request) => request(this.axios, this.basePath));
+	}
 }

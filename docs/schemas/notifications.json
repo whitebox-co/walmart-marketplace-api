@@ -20,15 +20,24 @@
     }
   ],
   "paths": {
-    "/v3/webhooks/eventTypes": {
-      "get": {
+    "/v3/webhooks/subscriptions/{subscriptionId}": {
+      "delete": {
         "tags": [
           "Notifications"
         ],
-        "summary": "Event Types",
-        "description": "This API provides the list of event types and resource names that you can subscribe to. Notifications will be triggered only for the event types that you subscribe to using Create Subscription API .\n\nEvent Types are workflow events that are triggered when status or conditions change. Some examples are an offer moving from published to unpublished status, an order getting auto-cancelled by Walmart, a buy box price/winner change, etc.\n\nResource Names are functional API categories that group similar event types. Resource Names can be Item, Price, Orders, Inventory, etc. The permissions to subscribe to an Event Type is defined by Resource Name which is mapped to permissions in Delegated Access.",
-        "operationId": "getEventTypes",
+        "summary": "Delete Subscription",
+        "description": "This API is used to delete the subscription. Once deleted, the subscription cannot be retrieved.",
+        "operationId": "deleteSubscription",
         "parameters": [
+          {
+            "name": "subscriptionId",
+            "in": "path",
+            "description": "Unique ID for the subscription",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "in": "header",
             "name": "Authorization",
@@ -87,67 +96,472 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "eventTypes": {
+                    "subscriptionId": {
+                      "type": "string",
+                      "description": "Subscription Id of the subscription that is deleted"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Message confirming that the subscription has been deleted"
+                    }
+                  }
+                },
+                "example": {
+                  "subscriptionId": "subscriptionId",
+                  "message": "Successfully deleted subscription"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Notifications"
+        ],
+        "summary": "Update Subscription",
+        "description": "This API is used to update the details of subscriptions. You can update event version, event URL, headers, authentication details of a subscription using this API. You can also disable/enable the subscription by changing the status from ACTIVE to INACTIVE or vice versa .",
+        "operationId": "updateSubscription",
+        "parameters": [
+          {
+            "name": "subscriptionId",
+            "in": "path",
+            "description": "Unique ID for the subscription",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Basic YzcyOTFjNmItNzI5MC00...."
+          },
+          {
+            "in": "header",
+            "name": "WM_SEC.ACCESS_TOKEN",
+            "description": "The access token retrieved in the Token API call",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
+          },
+          {
+            "in": "header",
+            "name": "WM_CONSUMER.CHANNEL.TYPE",
+            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "WM_QOS.CORRELATION_ID",
+            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
+          },
+          {
+            "in": "header",
+            "name": "WM_SVC.NAME",
+            "description": "Walmart Service Name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Walmart Service Name"
+          }
+        ],
+        "requestBody": {
+          "description": "Request fields",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "eventType": {
+                    "type": "string",
+                    "description": "Event that is subscribed for notifications."
+                  },
+                  "eventVersion": {
+                    "type": "string",
+                    "description": "Version of the specific event type"
+                  },
+                  "resourceName": {
+                    "type": "string",
+                    "description": "Delegated access scope that event type is mapped to."
+                  },
+                  "eventUrl": {
+                    "type": "string",
+                    "description": "Destination URL where notification will be received by seller"
+                  },
+                  "authDetails": {
+                    "type": "object",
+                    "properties": {
+                      "authMethod": {
+                        "type": "string",
+                        "description": "enumeration: BASIC_AUTH,OAUTH,HMAC"
+                      },
+                      "userName": {
+                        "type": "string",
+                        "description": "UserName to access destination URL"
+                      },
+                      "password": {
+                        "type": "string",
+                        "description": "Password to access destination URL"
+                      },
+                      "authHeaderName": {
+                        "type": "string",
+                        "description": "authHeaderName , using which authorization header will be passed"
+                      },
+                      "authUrl": {
+                        "type": "string",
+                        "description": "OAUTH URL"
+                      },
+                      "clientSecret": {
+                        "type": "string",
+                        "description": "Client Secret for OAUTH URL / HMAC"
+                      },
+                      "clientId": {
+                        "type": "string",
+                        "description": "ClientId for OAUTH URL"
+                      }
+                    },
+                    "description": "Authentication details for accessing the destination URL, if URL is protected"
+                  },
+                  "headers": {
+                    "type": "object",
+                    "properties": {
+                      "content-type": {
+                        "type": "string"
+                      }
+                    },
+                    "description": "Headers required for accessing the destination URL"
+                  },
+                  "status": {
+                    "type": "string",
+                    "description": "Status of the subscription. Allowed values are ACTIVE or INACTIVE"
+                  }
+                }
+              },
+              "examples": {
+                "sample1": {
+                  "value": {
+                    "eventUrl": "https://example.com/events",
+                    "authDetails": {
+                      "authMethod": "BASIC_AUTH",
+                      "userName": "abc",
+                      "password": "test",
+                      "authHeaderName": "Authorization"
+                    },
+                    "status": "ACTIVE"
+                  }
+                },
+                "sample2": {
+                  "value": {
+                    "status": "ACTIVE"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "event": {
                       "type": "array",
-                      "description": "List of event types",
                       "items": {
                         "type": "object",
                         "properties": {
+                          "eventType": {
+                            "type": "string",
+                            "description": "Event for which the subscription is created"
+                          },
+                          "subscriptionId": {
+                            "type": "string",
+                            "description": "Unique ID for the subscription that can be used for fetching details, editing or deleting the subscription"
+                          },
+                          "partnerId": {
+                            "type": "string",
+                            "description": "Partner ID of the seller who created the subscription"
+                          },
+                          "eventVersion": {
+                            "type": "string",
+                            "description": "Version of the event type for which the subscription is created"
+                          },
                           "resourceName": {
                             "type": "string",
                             "description": "Delegated access scope that event type is mapped to."
                           },
-                          "eventType": {
+                          "status": {
                             "type": "string",
-                            "description": "Event that you want to subscribe to."
+                            "description": "ACTIVE or INACTIVE status of the subscription"
                           },
-                          "eventVersion": {
+                          "eventUrl": {
                             "type": "string",
-                            "description": "Version of the specific event type"
+                            "description": "Destination URL where notification will be received by seller"
                           },
-                          "description": {
-                            "type": "string",
-                            "description": "Description of the specific event type"
+                          "authDetails": {
+                            "type": "object",
+                            "properties": {
+                              "authMethod": {
+                                "type": "string",
+                                "description": "enumeration: BASIC_AUTH,OAUTH,HMAC"
+                              },
+                              "userName": {
+                                "type": "string",
+                                "description": "UserName to access destination URL"
+                              },
+                              "password": {
+                                "type": "string",
+                                "description": "Password to access destination URL"
+                              },
+                              "authHeaderName": {
+                                "type": "string",
+                                "description": "authHeaderName , using which authorization header will be passed"
+                              },
+                              "authUrl": {
+                                "type": "string",
+                                "description": "OAUTH URL"
+                              },
+                              "clientSecret": {
+                                "type": "string",
+                                "description": "Client Secret for OAUTH URL / HMAC"
+                              },
+                              "clientId": {
+                                "type": "string",
+                                "description": "ClientId for OAUTH URL"
+                              }
+                            },
+                            "description": "Authentication details for accessing the destination URL, if URL is protected"
+                          },
+                          "headers": {
+                            "type": "object",
+                            "properties": {
+                              "content-type": {
+                                "type": "string"
+                              }
+                            },
+                            "description": "Headers required for accessing the destination URL"
                           }
-                        },
-                        "description": "List of event types"
+                        }
                       }
                     }
                   }
                 },
                 "example": {
-                  "events": [
-                    {
-                      "resourceName": "ITEM",
-                      "eventType": "OFFER_UNPUBLISHED",
-                      "eventVersion": "V1",
-                      "description": "Notification for unpublished offers"
+                  "eventType": "OFFER_UNPUBLISHED",
+                  "subscriptionId": "243ba4d0-b322-11ea-b385-0127e9b85538",
+                  "partnerId": "12300000359",
+                  "eventVersion": "V1",
+                  "resourceName": "ITEM",
+                  "eventUrl": "https://example.com/events",
+                  "headers": {
+                    "content-type": "application/json"
+                  },
+                  "authDetails": {
+                    "authHeaderName": "Authorization",
+                    "authMethod": "BASIC_AUTH",
+                    "userName": "abc",
+                    "password": "test"
+                  },
+                  "status": "ACTIVE"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/webhooks/test": {
+      "post": {
+        "tags": [
+          "Notifications"
+        ],
+        "summary": "Test Notification",
+        "description": "This API can be used to send a test notification to the destination URL with the sample payload.",
+        "operationId": "testNotification",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Basic YzcyOTFjNmItNzI5MC00...."
+          },
+          {
+            "in": "header",
+            "name": "WM_SEC.ACCESS_TOKEN",
+            "description": "The access token retrieved in the Token API call",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
+          },
+          {
+            "in": "header",
+            "name": "WM_CONSUMER.CHANNEL.TYPE",
+            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "WM_QOS.CORRELATION_ID",
+            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
+          },
+          {
+            "in": "header",
+            "name": "WM_SVC.NAME",
+            "description": "Walmart Service Name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Walmart Service Name"
+          }
+        ],
+        "requestBody": {
+          "description": "Request fields",
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "eventType",
+                  "eventUrl",
+                  "eventVersion",
+                  "resourceName"
+                ],
+                "type": "object",
+                "properties": {
+                  "eventType": {
+                    "type": "string",
+                    "description": "Event that you want to subscribe to"
+                  },
+                  "eventVersion": {
+                    "type": "string",
+                    "description": "Version of the specific event type"
+                  },
+                  "resourceName": {
+                    "type": "string",
+                    "description": "Functional category that event type is mapped to."
+                  },
+                  "eventUrl": {
+                    "type": "string",
+                    "description": "Destination URL where notification will be received by seller"
+                  },
+                  "authDetails": {
+                    "type": "object",
+                    "properties": {
+                      "authMethod": {
+                        "type": "string",
+                        "description": "enumeration: BASIC_AUTH,OAUTH,HMAC"
+                      },
+                      "userName": {
+                        "type": "string",
+                        "description": "UserName to access destination URL"
+                      },
+                      "password": {
+                        "type": "string",
+                        "description": "Password to access destination URL"
+                      },
+                      "authHeaderName": {
+                        "type": "string",
+                        "description": "authHeaderName , using which authorization header will be passed"
+                      },
+                      "authUrl": {
+                        "type": "string",
+                        "description": "OAUTH URL"
+                      },
+                      "clientSecret": {
+                        "type": "string",
+                        "description": "Client Secret for OAUTH URL / HMAC"
+                      },
+                      "clientId": {
+                        "type": "string",
+                        "description": "ClientId for OAUTH URL"
+                      }
                     },
-                    {
-                      "resourceName": "PRICE",
-                      "eventType": "BUY_BOX_CHANGED",
-                      "eventVersion": "V1",
-                      "description": "Notification for change in buy box"
+                    "description": "Authentication details for accessing the destination URL, if URL is protected"
+                  },
+                  "headers": {
+                    "type": "object",
+                    "properties": {
+                      "content-type": {
+                        "type": "string"
+                      }
                     },
-                    {
-                      "resourceName": "ORDER",
-                      "eventType": "PO_CREATED",
-                      "eventVersion": "V1",
-                      "description": "Notification for new purchase order created"
+                    "description": "Headers required for accessing the destination URL"
+                  }
+                }
+              },
+              "examples": {
+                "sample": {
+                  "value": {
+                    "eventType": "OFFER_UNPUBLISHED",
+                    "eventVersion": "V1",
+                    "resourceName": "ITEM",
+                    "eventUrl": "https://example.com/events",
+                    "authDetails": {
+                      "authMethod": "BASIC_AUTH",
+                      "userName": "abc",
+                      "password": "test",
+                      "authHeaderName": "Authorization"
                     },
-                    {
-                      "resourceName": "ORDER",
-                      "eventType": "PO_LINE_AUTOCANCELLED",
-                      "eventVersion": "V1",
-                      "description": "Notification for purchase order line auto-cancelled"
-                    },
-                    {
-                      "resourceName": "REPORTS",
-                      "eventType": "REPORT_STATUS",
-                      "eventVersion": "V1",
-                      "description": "Notification for report status"
+                    "headers": {
+                      "content-type": "application/json"
                     }
-                  ]
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Message confirming that the eventURL is validated"
+                    }
+                  }
+                },
+                "example": {
+                  "message": "Eventurl successfully validated"
                 }
               }
             }
@@ -838,24 +1252,15 @@
         }
       }
     },
-    "/v3/webhooks/subscriptions/{subscriptionId}": {
-      "delete": {
+    "/v3/webhooks/eventTypes": {
+      "get": {
         "tags": [
           "Notifications"
         ],
-        "summary": "Delete Subscription",
-        "description": "This API is used to delete the subscription. Once deleted, the subscription cannot be retrieved.",
-        "operationId": "deleteSubscription",
+        "summary": "Event Types",
+        "description": "This API provides the list of event types and resource names that you can subscribe to. Notifications will be triggered only for the event types that you subscribe to using Create Subscription API .\n\nEvent Types are workflow events that are triggered when status or conditions change. Some examples are an offer moving from published to unpublished status, an order getting auto-cancelled by Walmart, a buy box price/winner change, etc.\n\nResource Names are functional API categories that group similar event types. Resource Names can be Item, Price, Orders, Inventory, etc. The permissions to subscribe to an Event Type is defined by Resource Name which is mapped to permissions in Delegated Access.",
+        "operationId": "getEventTypes",
         "parameters": [
-          {
-            "name": "subscriptionId",
-            "in": "path",
-            "description": "Unique ID for the subscription",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "in": "header",
             "name": "Authorization",
@@ -914,472 +1319,67 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "subscriptionId": {
-                      "type": "string",
-                      "description": "Subscription Id of the subscription that is deleted"
-                    },
-                    "message": {
-                      "type": "string",
-                      "description": "Message confirming that the subscription has been deleted"
-                    }
-                  }
-                },
-                "example": {
-                  "subscriptionId": "subscriptionId",
-                  "message": "Successfully deleted subscription"
-                }
-              }
-            }
-          }
-        }
-      },
-      "patch": {
-        "tags": [
-          "Notifications"
-        ],
-        "summary": "Update Subscription",
-        "description": "This API is used to update the details of subscriptions. You can update event version, event URL, headers, authentication details of a subscription using this API. You can also disable/enable the subscription by changing the status from ACTIVE to INACTIVE or vice versa .",
-        "operationId": "updateSubscription",
-        "parameters": [
-          {
-            "name": "subscriptionId",
-            "in": "path",
-            "description": "Unique ID for the subscription",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
-          },
-          {
-            "in": "header",
-            "name": "WM_SEC.ACCESS_TOKEN",
-            "description": "The access token retrieved in the Token API call",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
-          },
-          {
-            "in": "header",
-            "name": "WM_CONSUMER.CHANNEL.TYPE",
-            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "header",
-            "name": "WM_QOS.CORRELATION_ID",
-            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
-          },
-          {
-            "in": "header",
-            "name": "WM_SVC.NAME",
-            "description": "Walmart Service Name",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Walmart Service Name"
-          }
-        ],
-        "requestBody": {
-          "description": "Request fields",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "eventType": {
-                    "type": "string",
-                    "description": "Event that is subscribed for notifications."
-                  },
-                  "eventVersion": {
-                    "type": "string",
-                    "description": "Version of the specific event type"
-                  },
-                  "resourceName": {
-                    "type": "string",
-                    "description": "Delegated access scope that event type is mapped to."
-                  },
-                  "eventUrl": {
-                    "type": "string",
-                    "description": "Destination URL where notification will be received by seller"
-                  },
-                  "authDetails": {
-                    "type": "object",
-                    "properties": {
-                      "authMethod": {
-                        "type": "string",
-                        "description": "enumeration: BASIC_AUTH,OAUTH,HMAC"
-                      },
-                      "userName": {
-                        "type": "string",
-                        "description": "UserName to access destination URL"
-                      },
-                      "password": {
-                        "type": "string",
-                        "description": "Password to access destination URL"
-                      },
-                      "authHeaderName": {
-                        "type": "string",
-                        "description": "authHeaderName , using which authorization header will be passed"
-                      },
-                      "authUrl": {
-                        "type": "string",
-                        "description": "OAUTH URL"
-                      },
-                      "clientSecret": {
-                        "type": "string",
-                        "description": "Client Secret for OAUTH URL / HMAC"
-                      },
-                      "clientId": {
-                        "type": "string",
-                        "description": "ClientId for OAUTH URL"
-                      }
-                    },
-                    "description": "Authentication details for accessing the destination URL, if URL is protected"
-                  },
-                  "headers": {
-                    "type": "object",
-                    "properties": {
-                      "content-type": {
-                        "type": "string"
-                      }
-                    },
-                    "description": "Headers required for accessing the destination URL"
-                  },
-                  "status": {
-                    "type": "string",
-                    "description": "Status of the subscription. Allowed values are ACTIVE or INACTIVE"
-                  }
-                }
-              },
-              "examples": {
-                "sample1": {
-                  "value": {
-                    "eventUrl": "https://example.com/events",
-                    "authDetails": {
-                      "authMethod": "BASIC_AUTH",
-                      "userName": "abc",
-                      "password": "test",
-                      "authHeaderName": "Authorization"
-                    },
-                    "status": "ACTIVE"
-                  }
-                },
-                "sample2": {
-                  "value": {
-                    "status": "ACTIVE"
-                  }
-                }
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "event": {
+                    "eventTypes": {
                       "type": "array",
+                      "description": "List of event types",
                       "items": {
                         "type": "object",
                         "properties": {
-                          "eventType": {
-                            "type": "string",
-                            "description": "Event for which the subscription is created"
-                          },
-                          "subscriptionId": {
-                            "type": "string",
-                            "description": "Unique ID for the subscription that can be used for fetching details, editing or deleting the subscription"
-                          },
-                          "partnerId": {
-                            "type": "string",
-                            "description": "Partner ID of the seller who created the subscription"
-                          },
-                          "eventVersion": {
-                            "type": "string",
-                            "description": "Version of the event type for which the subscription is created"
-                          },
                           "resourceName": {
                             "type": "string",
                             "description": "Delegated access scope that event type is mapped to."
                           },
-                          "status": {
+                          "eventType": {
                             "type": "string",
-                            "description": "ACTIVE or INACTIVE status of the subscription"
+                            "description": "Event that you want to subscribe to."
                           },
-                          "eventUrl": {
+                          "eventVersion": {
                             "type": "string",
-                            "description": "Destination URL where notification will be received by seller"
+                            "description": "Version of the specific event type"
                           },
-                          "authDetails": {
-                            "type": "object",
-                            "properties": {
-                              "authMethod": {
-                                "type": "string",
-                                "description": "enumeration: BASIC_AUTH,OAUTH,HMAC"
-                              },
-                              "userName": {
-                                "type": "string",
-                                "description": "UserName to access destination URL"
-                              },
-                              "password": {
-                                "type": "string",
-                                "description": "Password to access destination URL"
-                              },
-                              "authHeaderName": {
-                                "type": "string",
-                                "description": "authHeaderName , using which authorization header will be passed"
-                              },
-                              "authUrl": {
-                                "type": "string",
-                                "description": "OAUTH URL"
-                              },
-                              "clientSecret": {
-                                "type": "string",
-                                "description": "Client Secret for OAUTH URL / HMAC"
-                              },
-                              "clientId": {
-                                "type": "string",
-                                "description": "ClientId for OAUTH URL"
-                              }
-                            },
-                            "description": "Authentication details for accessing the destination URL, if URL is protected"
-                          },
-                          "headers": {
-                            "type": "object",
-                            "properties": {
-                              "content-type": {
-                                "type": "string"
-                              }
-                            },
-                            "description": "Headers required for accessing the destination URL"
+                          "description": {
+                            "type": "string",
+                            "description": "Description of the specific event type"
                           }
-                        }
+                        },
+                        "description": "List of event types"
                       }
                     }
                   }
                 },
                 "example": {
-                  "eventType": "OFFER_UNPUBLISHED",
-                  "subscriptionId": "243ba4d0-b322-11ea-b385-0127e9b85538",
-                  "partnerId": "12300000359",
-                  "eventVersion": "V1",
-                  "resourceName": "ITEM",
-                  "eventUrl": "https://example.com/events",
-                  "headers": {
-                    "content-type": "application/json"
-                  },
-                  "authDetails": {
-                    "authHeaderName": "Authorization",
-                    "authMethod": "BASIC_AUTH",
-                    "userName": "abc",
-                    "password": "test"
-                  },
-                  "status": "ACTIVE"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v3/webhooks/test": {
-      "post": {
-        "tags": [
-          "Notifications"
-        ],
-        "summary": "Test Notification",
-        "description": "This API can be used to send a test notification to the destination URL with the sample payload.",
-        "operationId": "testNotification",
-        "parameters": [
-          {
-            "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
-          },
-          {
-            "in": "header",
-            "name": "WM_SEC.ACCESS_TOKEN",
-            "description": "The access token retrieved in the Token API call",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
-          },
-          {
-            "in": "header",
-            "name": "WM_CONSUMER.CHANNEL.TYPE",
-            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "header",
-            "name": "WM_QOS.CORRELATION_ID",
-            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
-          },
-          {
-            "in": "header",
-            "name": "WM_SVC.NAME",
-            "description": "Walmart Service Name",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Walmart Service Name"
-          }
-        ],
-        "requestBody": {
-          "description": "Request fields",
-          "content": {
-            "application/json": {
-              "schema": {
-                "required": [
-                  "eventType",
-                  "eventUrl",
-                  "eventVersion",
-                  "resourceName"
-                ],
-                "type": "object",
-                "properties": {
-                  "eventType": {
-                    "type": "string",
-                    "description": "Event that you want to subscribe to"
-                  },
-                  "eventVersion": {
-                    "type": "string",
-                    "description": "Version of the specific event type"
-                  },
-                  "resourceName": {
-                    "type": "string",
-                    "description": "Functional category that event type is mapped to."
-                  },
-                  "eventUrl": {
-                    "type": "string",
-                    "description": "Destination URL where notification will be received by seller"
-                  },
-                  "authDetails": {
-                    "type": "object",
-                    "properties": {
-                      "authMethod": {
-                        "type": "string",
-                        "description": "enumeration: BASIC_AUTH,OAUTH,HMAC"
-                      },
-                      "userName": {
-                        "type": "string",
-                        "description": "UserName to access destination URL"
-                      },
-                      "password": {
-                        "type": "string",
-                        "description": "Password to access destination URL"
-                      },
-                      "authHeaderName": {
-                        "type": "string",
-                        "description": "authHeaderName , using which authorization header will be passed"
-                      },
-                      "authUrl": {
-                        "type": "string",
-                        "description": "OAUTH URL"
-                      },
-                      "clientSecret": {
-                        "type": "string",
-                        "description": "Client Secret for OAUTH URL / HMAC"
-                      },
-                      "clientId": {
-                        "type": "string",
-                        "description": "ClientId for OAUTH URL"
-                      }
+                  "events": [
+                    {
+                      "resourceName": "ITEM",
+                      "eventType": "OFFER_UNPUBLISHED",
+                      "eventVersion": "V1",
+                      "description": "Notification for unpublished offers"
                     },
-                    "description": "Authentication details for accessing the destination URL, if URL is protected"
-                  },
-                  "headers": {
-                    "type": "object",
-                    "properties": {
-                      "content-type": {
-                        "type": "string"
-                      }
+                    {
+                      "resourceName": "PRICE",
+                      "eventType": "BUY_BOX_CHANGED",
+                      "eventVersion": "V1",
+                      "description": "Notification for change in buy box"
                     },
-                    "description": "Headers required for accessing the destination URL"
-                  }
-                }
-              },
-              "examples": {
-                "sample": {
-                  "value": {
-                    "eventType": "OFFER_UNPUBLISHED",
-                    "eventVersion": "V1",
-                    "resourceName": "ITEM",
-                    "eventUrl": "https://example.com/events",
-                    "authDetails": {
-                      "authMethod": "BASIC_AUTH",
-                      "userName": "abc",
-                      "password": "test",
-                      "authHeaderName": "Authorization"
+                    {
+                      "resourceName": "ORDER",
+                      "eventType": "PO_CREATED",
+                      "eventVersion": "V1",
+                      "description": "Notification for new purchase order created"
                     },
-                    "headers": {
-                      "content-type": "application/json"
+                    {
+                      "resourceName": "ORDER",
+                      "eventType": "PO_LINE_AUTOCANCELLED",
+                      "eventVersion": "V1",
+                      "description": "Notification for purchase order line auto-cancelled"
+                    },
+                    {
+                      "resourceName": "REPORTS",
+                      "eventType": "REPORT_STATUS",
+                      "eventVersion": "V1",
+                      "description": "Notification for report status"
                     }
-                  }
-                }
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string",
-                      "description": "Message confirming that the eventURL is validated"
-                    }
-                  }
-                },
-                "example": {
-                  "message": "Eventurl successfully validated"
+                  ]
                 }
               }
             }
@@ -1390,56 +1390,25 @@
   },
   "components": {
     "schemas": {
-      "EventType": {
+      "SubscriptionDeleteResponseDTO": {
         "type": "object",
         "properties": {
-          "resourceName": {
+          "subscriptionId": {
             "type": "string",
-            "description": "Delegated access scope that event type is mapped to."
+            "description": "Subscription Id of the subscription that is deleted"
           },
-          "eventType": {
+          "message": {
             "type": "string",
-            "description": "Event that you want to subscribe to."
-          },
-          "eventVersion": {
-            "type": "string",
-            "description": "Version of the specific event type"
-          },
-          "description": {
-            "type": "string",
-            "description": "Description of the specific event type"
+            "description": "Message confirming that the subscription has been deleted"
           }
-        },
-        "description": "List of event types"
+        }
       },
-      "EventTypes": {
+      "TestNotificationResponseDTO": {
         "type": "object",
         "properties": {
-          "eventTypes": {
-            "type": "array",
-            "description": "List of event types",
-            "items": {
-              "type": "object",
-              "properties": {
-                "resourceName": {
-                  "type": "string",
-                  "description": "Delegated access scope that event type is mapped to."
-                },
-                "eventType": {
-                  "type": "string",
-                  "description": "Event that you want to subscribe to."
-                },
-                "eventVersion": {
-                  "type": "string",
-                  "description": "Version of the specific event type"
-                },
-                "description": {
-                  "type": "string",
-                  "description": "Description of the specific event type"
-                }
-              },
-              "description": "List of event types"
-            }
+          "message": {
+            "type": "string",
+            "description": "Message confirming that the eventURL is validated"
           }
         }
       },
@@ -1476,6 +1445,85 @@
           }
         },
         "description": "Authentication details for accessing the destination URL, if URL is protected"
+      },
+      "Headers": {
+        "type": "object",
+        "properties": {
+          "content-type": {
+            "type": "string"
+          }
+        },
+        "description": "Headers required for accessing the destination URL"
+      },
+      "TestNotificationRequest": {
+        "required": [
+          "eventType",
+          "eventUrl",
+          "eventVersion",
+          "resourceName"
+        ],
+        "type": "object",
+        "properties": {
+          "eventType": {
+            "type": "string",
+            "description": "Event that you want to subscribe to"
+          },
+          "eventVersion": {
+            "type": "string",
+            "description": "Version of the specific event type"
+          },
+          "resourceName": {
+            "type": "string",
+            "description": "Functional category that event type is mapped to."
+          },
+          "eventUrl": {
+            "type": "string",
+            "description": "Destination URL where notification will be received by seller"
+          },
+          "authDetails": {
+            "type": "object",
+            "properties": {
+              "authMethod": {
+                "type": "string",
+                "description": "enumeration: BASIC_AUTH,OAUTH,HMAC"
+              },
+              "userName": {
+                "type": "string",
+                "description": "UserName to access destination URL"
+              },
+              "password": {
+                "type": "string",
+                "description": "Password to access destination URL"
+              },
+              "authHeaderName": {
+                "type": "string",
+                "description": "authHeaderName , using which authorization header will be passed"
+              },
+              "authUrl": {
+                "type": "string",
+                "description": "OAUTH URL"
+              },
+              "clientSecret": {
+                "type": "string",
+                "description": "Client Secret for OAUTH URL / HMAC"
+              },
+              "clientId": {
+                "type": "string",
+                "description": "ClientId for OAUTH URL"
+              }
+            },
+            "description": "Authentication details for accessing the destination URL, if URL is protected"
+          },
+          "headers": {
+            "type": "object",
+            "properties": {
+              "content-type": {
+                "type": "string"
+              }
+            },
+            "description": "Headers required for accessing the destination URL"
+          }
+        }
       },
       "Events": {
         "type": "object",
@@ -1569,15 +1617,6 @@
             }
           }
         }
-      },
-      "Headers": {
-        "type": "object",
-        "properties": {
-          "content-type": {
-            "type": "string"
-          }
-        },
-        "description": "Headers required for accessing the destination URL"
       },
       "SubscriptionResponseDTO": {
         "type": "object",
@@ -1689,98 +1728,6 @@
           "status": {
             "type": "string",
             "description": "ACTIVE or INACTIVE status of the subscription"
-          },
-          "eventUrl": {
-            "type": "string",
-            "description": "Destination URL where notification will be received by seller"
-          },
-          "authDetails": {
-            "type": "object",
-            "properties": {
-              "authMethod": {
-                "type": "string",
-                "description": "enumeration: BASIC_AUTH,OAUTH,HMAC"
-              },
-              "userName": {
-                "type": "string",
-                "description": "UserName to access destination URL"
-              },
-              "password": {
-                "type": "string",
-                "description": "Password to access destination URL"
-              },
-              "authHeaderName": {
-                "type": "string",
-                "description": "authHeaderName , using which authorization header will be passed"
-              },
-              "authUrl": {
-                "type": "string",
-                "description": "OAUTH URL"
-              },
-              "clientSecret": {
-                "type": "string",
-                "description": "Client Secret for OAUTH URL / HMAC"
-              },
-              "clientId": {
-                "type": "string",
-                "description": "ClientId for OAUTH URL"
-              }
-            },
-            "description": "Authentication details for accessing the destination URL, if URL is protected"
-          },
-          "headers": {
-            "type": "object",
-            "properties": {
-              "content-type": {
-                "type": "string"
-              }
-            },
-            "description": "Headers required for accessing the destination URL"
-          }
-        }
-      },
-      "SubscriptionDeleteResponseDTO": {
-        "type": "object",
-        "properties": {
-          "subscriptionId": {
-            "type": "string",
-            "description": "Subscription Id of the subscription that is deleted"
-          },
-          "message": {
-            "type": "string",
-            "description": "Message confirming that the subscription has been deleted"
-          }
-        }
-      },
-      "TestNotificationResponseDTO": {
-        "type": "object",
-        "properties": {
-          "message": {
-            "type": "string",
-            "description": "Message confirming that the eventURL is validated"
-          }
-        }
-      },
-      "TestNotificationRequest": {
-        "required": [
-          "eventType",
-          "eventUrl",
-          "eventVersion",
-          "resourceName"
-        ],
-        "type": "object",
-        "properties": {
-          "eventType": {
-            "type": "string",
-            "description": "Event that you want to subscribe to"
-          },
-          "eventVersion": {
-            "type": "string",
-            "description": "Version of the specific event type"
-          },
-          "resourceName": {
-            "type": "string",
-            "description": "Functional category that event type is mapped to."
           },
           "eventUrl": {
             "type": "string",
@@ -2054,6 +2001,59 @@
           "status": {
             "type": "string",
             "description": "Status of the subscription. Allowed values are ACTIVE or INACTIVE. To create subscription, use status = ACTIVE. Notification will be triggered only if subscription is in ACTIVE status"
+          }
+        }
+      },
+      "EventType": {
+        "type": "object",
+        "properties": {
+          "resourceName": {
+            "type": "string",
+            "description": "Delegated access scope that event type is mapped to."
+          },
+          "eventType": {
+            "type": "string",
+            "description": "Event that you want to subscribe to."
+          },
+          "eventVersion": {
+            "type": "string",
+            "description": "Version of the specific event type"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the specific event type"
+          }
+        },
+        "description": "List of event types"
+      },
+      "EventTypes": {
+        "type": "object",
+        "properties": {
+          "eventTypes": {
+            "type": "array",
+            "description": "List of event types",
+            "items": {
+              "type": "object",
+              "properties": {
+                "resourceName": {
+                  "type": "string",
+                  "description": "Delegated access scope that event type is mapped to."
+                },
+                "eventType": {
+                  "type": "string",
+                  "description": "Event that you want to subscribe to."
+                },
+                "eventVersion": {
+                  "type": "string",
+                  "description": "Version of the specific event type"
+                },
+                "description": {
+                  "type": "string",
+                  "description": "Description of the specific event type"
+                }
+              },
+              "description": "List of event types"
+            }
           }
         }
       }
