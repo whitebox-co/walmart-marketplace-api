@@ -62,6 +62,8 @@ intercept all API methods to prevent the user from having to input the same auth
 Until Walmart changes their OpenApi schema so that auto-generation does not require these parameters, this
 the approach will greatly simplify making API calls.
 
+### Preferred Usage
+
 ```typescript
 import walmartMarketplaceApi, { OrdersApi, defaultParams } from '@whitebox-co/walmart-marketplace-api';
 
@@ -95,7 +97,26 @@ const exampleOrder = await ordersApi.getAnOrder({
 });
 ```
 
-### Alternative Usage (using Api's Directly)
+### Class Based Alternative
+
+```typescript
+import { WalmartApi, OrdersApi, defaultParams } from '@whitebox-co/walmart-marketplace-api';
+
+const walmartApi = new WalmartApi({
+	clientId,
+	clientSecret,
+	consumerChannelType,
+});
+
+const ordersApi = await walmartApi.getConfiguredApi(OrdersApi);
+
+const exampleOrder = await ordersApi.getAnOrder({
+	...defaultParams,
+	...customParams,
+});
+```
+
+### Direct API Usage
 
 ```typescript
 import { Configuration, AuthenticationApi, OrdersApi } from '@whitebox-co/walmart-marketplace-api';
@@ -210,12 +231,12 @@ These schemas are generated manually into the models found in the [src/models] d
 If you wish to generate these for some reason, install `quicktype` globally and issue the following commands:
 
 ```sh
-quicktype -l ts ./docs/item-schemas/MP_ITEM_MATCH_v4.json -o ./src/models/v4/mpItemMatch.ts
-quicktype -l ts ./docs/item-schemas/MP_ITEM_SPEC_4.3.json -o ./src/models/v4/mpItem4.3.ts
-quicktype -l ts ./docs/item-schemas/MP_MAINTENANCE_SPEC_4.3.json -o ./src/models/v4/mpMaintenance4.3.ts
-quicktype -l ts ./docs/item-schemas/MP_WFS_ITEM_SPEC_4.2.json -o ./src/models/v4/mpWfsItem4.2.ts
+quicktype -s schema ./docs/item-schemas/MP_ITEM_MATCH_v4.json -o ./src/models/v4/mpItemMatch4.ts
+quicktype -s schema ./docs/item-schemas/MP_ITEM_SPEC_4.3.json -o ./src/models/v4/mpItem4.3.ts
+quicktype -s schema ./docs/item-schemas/MP_MAINTENANCE_SPEC_4.3.json -o ./src/models/v4/mpMaintenance4.3.ts
+quicktype -s schema ./docs/item-schemas/MP_WFS_ITEM_SPEC_4.2.json -o ./src/models/v4/mpWfsItem4.2.ts
 
-quicktype -l ts ./docs/item-schemas/V3-Spec-Marketplace-Items-3.2-JSON/ -o ./src/models/v3/mpItems3.2.ts
+quicktype -s schema ./docs/item-schemas/V3-Spec-Marketplace-Items-3.2-JSON/ -o ./src/models/v3/mpItems3.2.ts
 ```
 
 [MP_MAINTENANCE_SPEC_4.3.json](./docs/item-schemas/MP_MAINTENANCE_SPEC_4.3.json) will fail to generate as

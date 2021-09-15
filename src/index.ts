@@ -170,6 +170,14 @@ const getConfiguredApi = async <T extends WalmartMarketplaceApi>(
 	});
 };
 
+export class WalmartApi {
+	constructor(public credentials: WalmartApiCredentials) {}
+
+	getConfiguredApi = async <T extends WalmartMarketplaceApi>(Api: new (config: Configuration) => T): Promise<T> => {
+		return await getConfiguredApi(Api, this.credentials);
+	};
+}
+
 export * from './apis';
 export * from './apis/configuration';
 export * from './constants';
