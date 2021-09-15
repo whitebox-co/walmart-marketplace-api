@@ -43,7 +43,7 @@
     "prepare": "husky install",
     "semantic-release": "semantic-release",
     "start": "ts-node --transpile-only --pretty src",
-    "test:integration": "jest tests/integration/apis/auth --setupFiles dotenv/config",
+    "test:integration": "jest tests/integration/apis/items --setupFiles dotenv/config",
     "test:integration:watch": "jest tests/integration --setupFiles dotenv/config --watchAll",
     "test:unit": "jest tests/unit",
     "test:unit:watch": "jest tests/unit --watchAll",
@@ -54,6 +54,7 @@
   "dependencies": {
     "axios": "^0.21.2",
     "bunyan": "^1.8.15",
+    "form-data": "^4.0.0",
     "lodash": "^4.17.21",
     "uuid": "^8.3.2"
   },

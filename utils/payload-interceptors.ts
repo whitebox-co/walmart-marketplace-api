@@ -1,20 +1,12 @@
-import axios from 'axios';
 import fs from 'fs';
-
-import { requestInterceptor, responseInterceptor } from '../src/util/interceptors';
+import axios from 'axios';
 
 const writeDataToFile = (outputPath: string, data: any) => {
 	const stringifiedConfig = JSON.stringify(data, null, 2);
 	fs.writeFileSync(outputPath, stringifiedConfig);
 };
 
-/**
- * Add request and response interceptors.
- *
- * @param {string} outputFileName The name of the file to output
- * @returns {object} {requestInterceptor: any, responseInterceptor: any}
- */
-const addInterceptors = (outputFileName: string): any => {
+const getOutputPath = (outputFileName: string) => {
 	const baseOutputPath = 'docs/testing/integration/payloads/';
 	const isSolutionProvider = outputFileName.includes('solution-provider-use-case');
 	const subFolder = isSolutionProvider ? 'solution-provider-use-cases' : 'methods';
@@ -30,56 +22,41 @@ const addInterceptors = (outputFileName: string): any => {
 		outputFileName = outputFileName.replace(/\s/g, '_');
 	}
 
-	const outputPath = `${baseOutputPath}/${subFolder}/${outputFileName}`;
+	return `${baseOutputPath}/${subFolder}/${outputFileName}`;
+};
 
-	return {
-		/**
-		 * Custom request interceptor for solution-provider-use-cases. Used to output all
-		 * requests to an output file for use in Verification by Walmart Solution Provider
-		 * team.
-		 */
-		requestInterceptor: requestInterceptor(
-			(config: any) => {
-				writeDataToFile(`${outputPath}_Request.json`, config);
-				return config;
-			},
-			(error: any) => {
-				writeDataToFile(`${outputPath}_Request.json`, error.toJSON());
-				return Promise.reject(error);
-			}
-		),
+/**
+ * Add request and response interceptors.
+ *
+ * @param {string} outputFileName The name of the file to output
+ * @returns {number} interceptor id
+ */
+const addInterceptor = (outputFileName: string): any => {
+	const outputPath = getOutputPath(outputFileName);
 
-		/**
-		 * Custom response interceptor for solution-provider-use-cases. Used to output all
-		 * responses to an output file for use in Verification by Walmart Solution Provider
-		 * team.
-		 */
-		responseInterceptor: responseInterceptor(
-			(response: any) => {
-				// create new object and remove request data as it contains circular data.
-				const outputData = {
-					...response,
-				};
-				delete outputData.request;
+	return axios.interceptors.response.use(
+		(response: any) => {
+			const outputData = {
+				...response,
+			};
+			delete outputData.request;
 
-				writeDataToFile(`${outputPath}_Response.json`, outputData);
-				return response;
-			},
-			(error: any) => {
-				writeDataToFile(`${outputPath}_Response.json`, error.toJSON());
-				return Promise.reject(error);
-			}
-		),
-	};
+			writeDataToFile(`${outputPath}.json`, outputData);
+			return response;
+		},
+		(error: any) => {
+			writeDataToFile(`${outputPath}.json`, error);
+
+			return Promise.reject(error);
+		}
+	);
 };
 
 /**
  * remove initialized request and response interceptors
  */
-const removeInterceptors = (interceptors = []) => {
-	interceptors.forEach((interceptor) => {
-		axios.interceptors.request.eject(interceptor);
-	});
+const removeInterceptor = (interceptor) => {
+	axios.interceptors.response.eject(interceptor);
 };
 
-export { addInterceptors, removeInterceptors };
+export { addInterceptor, removeInterceptor };
