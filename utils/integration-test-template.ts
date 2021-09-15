@@ -1,10 +1,10 @@
 export const integrationTestTemplate = `
 import * as env from '../../environment';
 import walmartApi, { <%= apiClassName %> , defaultParams } from '../../../src/index';
-import { addInterceptors, removeInterceptors } from '../../../utils/payload-interceptors';
+import { addInterceptor } from '../../../utils/payload-interceptors';
 
 describe('<%= apiClassName %>', () => {
-	let interceptors: any;
+	let interceptor: any;
 	let <%= apiInstanceName %>: <%= apiClassName %>;
 
 	beforeAll(async () => {
@@ -17,11 +17,11 @@ describe('<%= apiClassName %>', () => {
 
 	beforeEach(() => {
 		const testName = expect.getState().currentTestName;
-		interceptors = Object.values(addInterceptors(testName));
+		interceptor = addInterceptors(testName);
 	});
 
 	afterEach(() => {
-		removeInterceptors(interceptors);
+		removeInterceptor(interceptor);
 	});
 	
 	it('should instantiate the api', () => {
