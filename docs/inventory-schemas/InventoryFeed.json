@@ -1,0 +1,17 @@
+{
+	"type": "object",
+	"$schema": "http://json-schema.org/draft-06/schema#",
+	"properties": {
+		"InventoryHeader": {
+			"$ref": "InventoryHeader.json"
+		},
+		"Inventory": {
+			"type": "array",
+			"items": {
+				"$ref": "Inventory.json"
+			},
+			"maxItems": 100000,
+			"minItems": 1
+		}
+	}
+}

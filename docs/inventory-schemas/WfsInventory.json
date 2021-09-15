@@ -1,0 +1,328 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "http://example.com/example.json",
+    "type": "object",
+    "title": "The root schema",
+    "description": "The root schema comprises the entire JSON document.",
+    "default": {},
+    "examples": [
+        {
+            "headers": {
+                "totalCount": 20,
+                "limit": 10,
+                "offset": 0
+            },
+            "payload": {
+                "inventory": [
+                    {
+                        "sku": "12345",
+                        "shipNodes": [
+                            {
+                                "modifiedDate": "2020-04-13T06:00:32.393Z",
+                                "availToSellQty": 37,
+                                "onHandQty": 1,
+                                "shipNodeType": "WFSFulfilled"
+                            }
+                        ]
+                    },
+                    {
+                        "sku": "12345",
+                        "shipNodes": [
+                            {
+                                "modifiedDate": "2020-04-13T06:00:32.393Z",
+                                "availToSellQty": 37,
+                                "onHandQty": 37,
+                                "shipNodeType": "WFSFulfilled"
+                            }
+                        ]
+                    },
+                    {
+                        "sku": "12347",
+                        "shipNodes": [
+                            {
+                                "modifiedDate": "2020-04-13T06:00:32.393Z",
+                                "availToSellQty": 26,
+                                "onHandQty": 26,
+                                "shipNodeType": "WFSFulfilled"
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    ],
+    "required": [
+        "headers",
+        "payload"
+    ],
+    "additionalProperties": true,
+    "properties": {
+        "headers": {
+            "$id": "#/properties/headers",
+            "type": "object",
+            "title": "The headers schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": {},
+            "examples": [
+                {
+                    "totalCount": 20,
+                    "limit": 10,
+                    "offset": 0
+                }
+            ],
+            "required": [
+                "totalCount",
+                "limit",
+                "offset"
+            ],
+            "additionalProperties": true,
+            "properties": {
+                "totalCount": {
+                    "$id": "#/properties/headers/properties/totalCount",
+                    "type": "integer",
+                    "title": "The totalCount schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": 0,
+                    "examples": [
+                        20
+                    ]
+                },
+                "limit": {
+                    "$id": "#/properties/headers/properties/limit",
+                    "type": "integer",
+                    "title": "The limit schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": 0,
+                    "examples": [
+                        10
+                    ]
+                },
+                "offset": {
+                    "$id": "#/properties/headers/properties/offset",
+                    "type": "integer",
+                    "title": "The offset schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": 0,
+                    "examples": [
+                        0
+                    ]
+                }
+            }
+        },
+        "payload": {
+            "$id": "#/properties/payload",
+            "type": "object",
+            "title": "The payload schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": {},
+            "examples": [
+                {
+                    "inventory": [
+                        {
+                            "sku": "12345",
+                            "shipNodes": [
+                                {
+                                    "modifiedDate": "2020-04-13T06:00:32.393Z",
+                                    "availToSellQty": 37,
+                                    "onHandQty": 1,
+                                    "shipNodeType": "WFSFulfilled"
+                                }
+                            ]
+                        },
+                        {
+                            "sku": "12345",
+                            "shipNodes": [
+                                {
+                                    "modifiedDate": "2020-04-13T06:00:32.393Z",
+                                    "availToSellQty": 37,
+                                    "onHandQty": 37,
+                                    "shipNodeType": "WFSFulfilled"
+                                }
+                            ]
+                        },
+                        {
+                            "sku": "12347",
+                            "shipNodes": [
+                                {
+                                    "modifiedDate": "2020-04-13T06:00:32.393Z",
+                                    "availToSellQty": 26,
+                                    "onHandQty": 26,
+                                    "shipNodeType": "WFSFulfilled"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "required": [
+                "inventory"
+            ],
+            "additionalProperties": true,
+            "properties": {
+                "inventory": {
+                    "$id": "#/properties/payload/properties/inventory",
+                    "type": "array",
+                    "title": "The inventory schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": [],
+                    "examples": [
+                        [
+                            {
+                                "sku": "12345",
+                                "shipNodes": [
+                                    {
+                                        "modifiedDate": "2020-04-13T06:00:32.393Z",
+                                        "availToSellQty": 37,
+                                        "onHandQty": 1,
+                                        "shipNodeType": "WFSFulfilled"
+                                    }
+                                ]
+                            },
+                            {
+                                "sku": "12345",
+                                "shipNodes": [
+                                    {
+                                        "modifiedDate": "2020-04-13T06:00:32.393Z",
+                                        "availToSellQty": 37,
+                                        "onHandQty": 37,
+                                        "shipNodeType": "WFSFulfilled"
+                                    }
+                                ]
+                            }
+                        ]
+                    ],
+                    "additionalItems": true,
+                    "items": {
+                        "anyOf": [
+                            {
+                                "$id": "#/properties/payload/properties/inventory/items/anyOf/0",
+                                "type": "object",
+                                "title": "The first anyOf schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": {},
+                                "examples": [
+                                    {
+                                        "sku": "12345",
+                                        "shipNodes": [
+                                            {
+                                                "modifiedDate": "2020-04-13T06:00:32.393Z",
+                                                "availToSellQty": 37,
+                                                "onHandQty": 1,
+                                                "shipNodeType": "WFSFulfilled"
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "required": [
+                                    "sku",
+                                    "shipNodes"
+                                ],
+                                "additionalProperties": true,
+                                "properties": {
+                                    "sku": {
+                                        "$id": "#/properties/payload/properties/inventory/items/anyOf/0/properties/sku",
+                                        "type": "string",
+                                        "title": "The sku schema",
+                                        "description": "An explanation about the purpose of this instance.",
+                                        "default": "",
+                                        "examples": [
+                                            "12345"
+                                        ]
+                                    },
+                                    "shipNodes": {
+                                        "$id": "#/properties/payload/properties/inventory/items/anyOf/0/properties/shipNodes",
+                                        "type": "array",
+                                        "title": "The shipNodes schema",
+                                        "description": "An explanation about the purpose of this instance.",
+                                        "default": [],
+                                        "examples": [
+                                            [
+                                                {
+                                                    "modifiedDate": "2020-04-13T06:00:32.393Z",
+                                                    "availToSellQty": 37,
+                                                    "onHandQty": 1,
+                                                    "shipNodeType": "WFSFulfilled"
+                                                }
+                                            ]
+                                        ],
+                                        "additionalItems": true,
+                                        "items": {
+                                            "anyOf": [
+                                                {
+                                                    "$id": "#/properties/payload/properties/inventory/items/anyOf/0/properties/shipNodes/items/anyOf/0",
+                                                    "type": "object",
+                                                    "title": "The first anyOf schema",
+                                                    "description": "An explanation about the purpose of this instance.",
+                                                    "default": {},
+                                                    "examples": [
+                                                        {
+                                                            "modifiedDate": "2020-04-13T06:00:32.393Z",
+                                                            "availToSellQty": 37,
+                                                            "onHandQty": 1,
+                                                            "shipNodeType": "WFSFulfilled"
+                                                        }
+                                                    ],
+                                                    "required": [
+                                                        "modifiedDate",
+                                                        "availToSellQty",
+                                                        "onHandQty",
+                                                        "shipNodeType"
+                                                    ],
+                                                    "additionalProperties": true,
+                                                    "properties": {
+                                                        "modifiedDate": {
+                                                            "$id": "#/properties/payload/properties/inventory/items/anyOf/0/properties/shipNodes/items/anyOf/0/properties/modifiedDate",
+                                                            "type": "string",
+                                                            "title": "The modifiedDate schema",
+                                                            "description": "An explanation about the purpose of this instance.",
+                                                            "default": "",
+                                                            "examples": [
+                                                                "2020-04-13T06:00:32.393Z"
+                                                            ]
+                                                        },
+                                                        "availToSellQty": {
+                                                            "$id": "#/properties/payload/properties/inventory/items/anyOf/0/properties/shipNodes/items/anyOf/0/properties/availToSellQty",
+                                                            "type": "integer",
+                                                            "title": "The availToSellQty schema",
+                                                            "description": "An explanation about the purpose of this instance.",
+                                                            "default": 0,
+                                                            "examples": [
+                                                                37
+                                                            ]
+                                                        },
+                                                        "onHandQty": {
+                                                            "$id": "#/properties/payload/properties/inventory/items/anyOf/0/properties/shipNodes/items/anyOf/0/properties/onHandQty",
+                                                            "type": "integer",
+                                                            "title": "The onHandQty schema",
+                                                            "description": "An explanation about the purpose of this instance.",
+                                                            "default": 0,
+                                                            "examples": [
+                                                                1
+                                                            ]
+                                                        },
+                                                        "shipNodeType": {
+                                                            "$id": "#/properties/payload/properties/inventory/items/anyOf/0/properties/shipNodes/items/anyOf/0/properties/shipNodeType",
+                                                            "type": "string",
+                                                            "title": "The shipNodeType schema",
+                                                            "description": "An explanation about the purpose of this instance.",
+                                                            "default": "",
+                                                            "examples": [
+                                                                "WFSFulfilled"
+                                                            ]
+                                                        }
+                                                    }
+                                                }
+                                            ],
+                                            "$id": "#/properties/payload/properties/inventory/items/anyOf/0/properties/shipNodes/items"
+                                        }
+                                    }
+                                }
+                            }
+                        ],
+                        "$id": "#/properties/payload/properties/inventory/items"
+                    }
+                }
+            }
+        }
+    }
+}

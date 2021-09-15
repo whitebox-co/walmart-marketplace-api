@@ -1,0 +1,17 @@
+{
+	"type": "object",
+	"$schema": "http://json-schema.org/draft-06/schema#",
+	"properties": {
+		"PriceHeader": {
+			"$ref": "PriceHeader.json"
+		},
+		"Price": {
+			"type": "array",
+			"items": {
+				"$ref": "Price.json"
+			},
+			"maxItems": 100000,
+			"minItems": 1
+		}
+	}
+}

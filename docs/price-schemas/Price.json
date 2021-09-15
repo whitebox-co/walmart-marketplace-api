@@ -1,0 +1,88 @@
+{
+	"type": "object",
+	"$schema": "http://json-schema.org/draft-06/schema#",
+	"additionalProperties": false,
+	"properties": {
+		"sku": {
+			"type": "string"
+		},
+		"offerId": {
+			"type": "string"
+		},
+		"replaceAll": {
+			"enum": ["true", "false"]
+		},
+		"pricing": {
+			"type": "array",
+			"items": {
+				"$ref": "#/definitions/pricing"
+			},
+			"maxItems": 1000,
+			"minItems": 1
+		}
+	},
+	"required": ["sku", "pricing"],
+	"definitions": {
+		"pricing": {
+			"type": "object",
+			"maxItems": 10,
+			"minItems": 1,
+			"additionalProperties": false,
+			"properties": {
+				"effectiveDate": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"expirationDate": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"promoId": {
+					"type": "string"
+				},
+				"processMode": {
+					"enum": ["UPSERT", "DELETE"]
+				},
+				"currentPriceType": {
+					"enum": ["BASE", "REDUCED", "CLEARANCE"]
+				},
+				"currentPrice": {
+					"type": "object",
+					"additionalProperties": false,
+					"properties": {
+						"currency": {
+							"$ref": "#/definitions/currency"
+						},
+						"amount": {
+							"type": "number"
+						}
+					}
+				},
+				"comparisonPriceType": {
+					"enum": ["BASE"]
+				},
+				"comparisonPrice": {
+					"type": "object",
+					"additionalProperties": false,
+					"properties": {
+						"currency": {
+							"$ref": "#/definitions/currency"
+						},
+						"amount": {
+							"type": "number"
+						}
+					}
+				},
+				"priceDisplayCodes": {
+					"enum": ["CART", "CHECKOUT"]
+				}
+			}
+		},
+		"dependencies": {
+			"promoId": ["effectiveDate", "expirationDate"]
+		},
+		"currency": {
+			"enum": ["USD", "CAD"]
+		}
+	}
+}
