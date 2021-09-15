@@ -12,7 +12,7 @@ import {
 	Subset,
 	SpecVersion,
 	ProductIDType,
-} from '../../../src/models/v4/mpItem4.3';
+} from '../../../src/models/item/v4/mpItem4.3';
 
 describe(`${ItemsApi.name}`, () => {
 	let interceptor: any;

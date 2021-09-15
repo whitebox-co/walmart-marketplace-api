@@ -1,9 +1,9 @@
 import * as env from '../../environment';
 import walmartApi, { OrdersApi, defaultParams } from '../../../src/index';
-import { addInterceptors, removeInterceptors } from '../../../utils/payload-interceptors';
+import { addInterceptor, removeInterceptor } from '../../../utils/payload-interceptors';
 
 describe('orders', () => {
-	let interceptors: any;
+	let interceptor: any;
 	let ordersApi: OrdersApi;
 
 	beforeAll(async () => {
@@ -16,11 +16,11 @@ describe('orders', () => {
 
 	beforeEach(() => {
 		const testName = expect.getState().currentTestName;
-		interceptors = Object.values(addInterceptors(testName));
+		interceptor = addInterceptor(testName);
 	});
 
 	afterEach(() => {
-		removeInterceptors(interceptors);
+		removeInterceptor(interceptor);
 	});
 
 	it('should instantiate the api', () => {
