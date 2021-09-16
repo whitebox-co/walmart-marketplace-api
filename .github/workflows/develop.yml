@@ -61,21 +61,3 @@ jobs:
 
             - name: Test
               run: npm run test:unit
-
-    integration_tests:
-        name: Integration Tests
-        needs: [lint, build]
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout
-              uses: actions/checkout@v2
-
-            - name: Install
-              uses: bahmutov/npm-install@v1
-
-            - name: Test integration
-              run: npm run test:integration
-              env:
-                  CLIENT_ID: ${{ secrets.WALMART_CLIENT_ID }}
-                  CLIENT_SECRET: ${{ secrets.WALMART_CLIENT_SECRET }}
-                  CONSUMER_CHANNEL_TYPE: ${{ secrets.WALMART_CONSUMER_CHANNEL_TYPE }}
