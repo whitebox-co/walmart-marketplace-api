@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/whitebox-co/walmart-marketplace-api/compare/v1.1.0...v1.2.0) (2021-09-16)
+
+### Features
+
+-   adding latest walmart schema and auto generated api changes ([da5035d](https://github.com/whitebox-co/walmart-marketplace-api/commit/da5035dcfeec11f05682db78863572c33a1415d1))
+
 # [1.1.0](https://github.com/whitebox-co/walmart-marketplace-api/compare/v1.0.1...v1.1.0) (2021-09-16)
 
 ### Bug Fixes
