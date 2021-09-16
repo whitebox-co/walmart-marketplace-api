@@ -86,7 +86,7 @@ describe(`${InventoryApi.name}`, () => {
 
 			const promises = await Promise.allSettled(inventoryPromises);
 
-			// get original inventory element and increase by 1.
+			// get original inventory element
 			const inventoryElements = [];
 			promises.forEach((result: any) => {
 				if (result.status === 'fulfilled') {
