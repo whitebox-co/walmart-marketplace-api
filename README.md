@@ -34,7 +34,6 @@ TLDR: It did not exist and we really needed it!
 -   Integration Test stubs are auto generated for every generated api class and function.
 -   Documentation is auto generated and updated based on the latest openapi schemas changes.
 
-
 ## Installation
 
 Packages are maintained on both [Github](https://github.com/whitebox-co/walmart-marketplace-api/packages) and
