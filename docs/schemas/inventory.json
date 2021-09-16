@@ -20,28 +20,29 @@
     }
   ],
   "paths": {
-    "/v3/inventory": {
+    "/v3/inventories": {
       "get": {
         "tags": [
           "Inventory"
         ],
-        "summary": "Inventory",
-        "description": "You can use this API to get the inventory for a given item.",
-        "operationId": "getInventory",
+        "summary": "Multiple Item Inventory for All Ship Nodes",
+        "description": "This API will retrieve the inventory count for all of a seller's items across all ship nodes by item to ship node mapping. Inventory can be zero or non-zero.",
+        "operationId": "getMultiNodeInventoryForAllSkuAndAllShipNodes",
         "parameters": [
           {
-            "name": "sku",
+            "name": "limit",
             "in": "query",
-            "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: ':', '/', '?', '#', '[', ']', '@', '!', '$', '&', \"'\", '(', ')', '*', '+', ',', ';', '=', ‘ ’, '{', '}' as well as '%' itself if it's a part of sku. Make sure to encode space with %20. Other characters don't need to be encoded.",
-            "required": true,
+            "description": "The number of items returned. Cannot be more than 50.",
+            "required": false,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "default": "10"
             }
           },
           {
-            "name": "shipNode",
+            "name": "nextCursor",
             "in": "query",
-            "description": "The shipNode for which the inventory is requested",
+            "description": "String returned from initial API call to indicate pagination. Specify nextCursor value to retrieve the next 50 items.",
             "required": false,
             "schema": {
               "type": "string"
@@ -101,88 +102,366 @@
           "200": {
             "description": "Successful Operation",
             "content": {
-              "application/xml": {
-                "schema": {
-                  "required": [
-                    "quantity",
-                    "sku"
-                  ],
-                  "type": "object",
-                  "properties": {
-                    "sku": {
-                      "type": "string",
-                      "description": "A seller-provided Product ID. Response will have decoded value."
-                    },
-                    "quantity": {
-                      "required": [
-                        "amount",
-                        "unit"
-                      ],
-                      "type": "object",
-                      "properties": {
-                        "unit": {
-                          "type": "string",
-                          "description": "The unit of measurement. Example: 'EACH'",
-                          "enum": [
-                            "EACH"
-                          ]
-                        },
-                        "amount": {
-                          "type": "number",
-                          "description": "The number available in the inventory"
-                        }
-                      }
-                    }
-                  },
-                  "xml": {
-                    "name": "inventory"
-                  }
-                },
-                "example": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<inventory xmlns=\"http://walmart.com/\">\n    <sku>97964_KFTest</sku>\n    <quantity>\n        <unit>EACH</unit>\n        <amount>10</amount>\n    </quantity>\n</inventory>"
-              },
               "application/json": {
                 "schema": {
-                  "required": [
-                    "quantity",
-                    "sku"
-                  ],
                   "type": "object",
                   "properties": {
-                    "sku": {
-                      "type": "string",
-                      "description": "A seller-provided Product ID. Response will have decoded value."
-                    },
-                    "quantity": {
-                      "required": [
-                        "amount",
-                        "unit"
-                      ],
+                    "meta": {
                       "type": "object",
                       "properties": {
-                        "unit": {
-                          "type": "string",
-                          "description": "The unit of measurement. Example: 'EACH'",
-                          "enum": [
-                            "EACH"
-                          ]
-                        },
-                        "amount": {
+                        "totalCount": {
                           "type": "number",
-                          "description": "The number available in the inventory"
+                          "description": "Total number of Skus of the Seller. Example: '235'"
+                        },
+                        "nextCursor": {
+                          "type": "string",
+                          "description": "Used for pagination to fetch the next set of items."
+                        }
+                      },
+                      "xml": {
+                        "name": "meta"
+                      }
+                    },
+                    "elements": {
+                      "type": "object",
+                      "properties": {
+                        "inventories": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "sku": {
+                                "type": "string",
+                                "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
+                              },
+                              "nodes": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "shipNode": {
+                                      "type": "string",
+                                      "description": "ShipNode Id of the ship node for which the inventory is requested"
+                                    },
+                                    "inputQty": {
+                                      "required": [
+                                        "amount",
+                                        "unit"
+                                      ],
+                                      "type": "object",
+                                      "properties": {
+                                        "unit": {
+                                          "type": "string",
+                                          "description": "The unit of measurement. Example: 'EACH'",
+                                          "enum": [
+                                            "EACH"
+                                          ]
+                                        },
+                                        "amount": {
+                                          "type": "number",
+                                          "description": "The number available in the inventory"
+                                        }
+                                      },
+                                      "description": "Information about the quantity in inventory"
+                                    },
+                                    "availToSellQty": {
+                                      "required": [
+                                        "amount",
+                                        "unit"
+                                      ],
+                                      "type": "object",
+                                      "properties": {
+                                        "unit": {
+                                          "type": "string",
+                                          "description": "The unit of measurement. Example: 'EACH'",
+                                          "enum": [
+                                            "EACH"
+                                          ]
+                                        },
+                                        "amount": {
+                                          "type": "number",
+                                          "description": "The number available in the inventory"
+                                        }
+                                      },
+                                      "description": "Information about the quantity in inventory"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
                         }
                       }
                     }
-                  },
-                  "xml": {
-                    "name": "inventory"
                   }
                 },
                 "example": {
-                  "sku": "97964_KFTest",
-                  "quantity": {
-                    "unit": "EACH",
-                    "amount": 10
+                  "meta": {
+                    "totalCount": 123,
+                    "nextCursor": "37b56ddb-a949-4d9f-91e2-a6d56dda3c47&limit=50"
+                  },
+                  "elements": {
+                    "inventories": [
+                      {
+                        "sku": "AI-IGH4-5509",
+                        "nodes": [
+                          {
+                            "shipNode": "100009",
+                            "inputQty": {
+                              "unit": "EACH",
+                              "amount": 5
+                            },
+                            "availToSellQty": {
+                              "unit": "EACH",
+                              "amount": 3
+                            }
+                          }
+                        ]
+                      }
+                    ]
                   }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/inventories/{sku}": {
+      "get": {
+        "tags": [
+          "Inventory"
+        ],
+        "summary": "Single Item Inventory by Ship Node",
+        "description": "This API will retrieve the inventory count for an item across all ship nodes or one specific ship node. You can specify the ship node for which you want to fetch the inventory",
+        "operationId": "getMultiNodeInventoryForSkuAndAllShipnodes",
+        "parameters": [
+          {
+            "name": "sku",
+            "in": "path",
+            "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: ':', '/', '?', '#', '[', ']', '@', '!', '$', '&', \"'\", '(', ')', '*', '+', ',', ';', '=', ‘ ’ as well as '%' itself if it's a part of sku. Make sure to encode space with %20. Other characters don't need to be encoded.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "shipNode",
+            "in": "query",
+            "description": "ShipNode Id of the ship node for which the inventory is requested",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Basic YzcyOTFjNmItNzI5MC00...."
+          },
+          {
+            "in": "header",
+            "name": "WM_SEC.ACCESS_TOKEN",
+            "description": "The access token retrieved in the Token API call",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
+          },
+          {
+            "in": "header",
+            "name": "WM_CONSUMER.CHANNEL.TYPE",
+            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "WM_QOS.CORRELATION_ID",
+            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
+          },
+          {
+            "in": "header",
+            "name": "WM_SVC.NAME",
+            "description": "Walmart Service Name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Walmart Service Name"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "sku": {
+                      "type": "string",
+                      "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
+                    },
+                    "nodes": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "shipNode": {
+                            "type": "string",
+                            "description": "ShipNode Id of the ship node for which the inventory is requested"
+                          },
+                          "inputQty": {
+                            "required": [
+                              "amount",
+                              "unit"
+                            ],
+                            "type": "object",
+                            "properties": {
+                              "unit": {
+                                "type": "string",
+                                "description": "The unit of measurement. Example: 'EACH'",
+                                "enum": [
+                                  "EACH"
+                                ]
+                              },
+                              "amount": {
+                                "type": "number",
+                                "description": "The number available in the inventory"
+                              }
+                            },
+                            "description": "Information about the quantity in inventory"
+                          },
+                          "availToSellQty": {
+                            "required": [
+                              "amount",
+                              "unit"
+                            ],
+                            "type": "object",
+                            "properties": {
+                              "unit": {
+                                "type": "string",
+                                "description": "The unit of measurement. Example: 'EACH'",
+                                "enum": [
+                                  "EACH"
+                                ]
+                              },
+                              "amount": {
+                                "type": "number",
+                                "description": "The number available in the inventory"
+                              }
+                            },
+                            "description": "Information about the quantity in inventory"
+                          },
+                          "errors": {
+                            "type": "array",
+                            "items": {
+                              "required": [
+                                "code"
+                              ],
+                              "type": "object",
+                              "properties": {
+                                "code": {
+                                  "type": "string"
+                                },
+                                "field": {
+                                  "type": "string"
+                                },
+                                "description": {
+                                  "type": "string"
+                                },
+                                "info": {
+                                  "type": "string"
+                                },
+                                "severity": {
+                                  "type": "string",
+                                  "enum": [
+                                    "INFO",
+                                    "WARN",
+                                    "ERROR"
+                                  ]
+                                },
+                                "category": {
+                                  "type": "string",
+                                  "enum": [
+                                    "APPLICATION",
+                                    "SYSTEM",
+                                    "REQUEST",
+                                    "DATA"
+                                  ]
+                                },
+                                "causes": {
+                                  "type": "array",
+                                  "xml": {
+                                    "wrapped": true
+                                  },
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "code": {
+                                        "type": "string"
+                                      },
+                                      "field": {
+                                        "type": "string"
+                                      },
+                                      "type": {
+                                        "type": "string"
+                                      },
+                                      "description": {
+                                        "type": "string"
+                                      }
+                                    },
+                                    "xml": {
+                                      "name": "Cause"
+                                    }
+                                  }
+                                },
+                                "errorIdentifiers": {
+                                  "type": "object",
+                                  "additionalProperties": {
+                                    "type": "object"
+                                  }
+                                }
+                              },
+                              "xml": {
+                                "name": "Error"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "sku": "AR-CTIX-0092",
+                  "nodes": [
+                    {
+                      "shipNode": "100009",
+                      "inputQty": {
+                        "unit": "EACH",
+                        "amount": 5
+                      },
+                      "availToSellQty": {
+                        "unit": "EACH",
+                        "amount": 3
+                      }
+                    }
+                  ]
                 }
               }
             }
@@ -193,24 +472,15 @@
         "tags": [
           "Inventory"
         ],
-        "summary": "Update inventory",
-        "description": "Updates the inventory for a given item.",
-        "operationId": "updateInventoryForAnItem",
+        "summary": "Update Item Inventory per Ship Node",
+        "description": "This API will update the inventory for an item across one or more fulfillment centers, known as ship nodes.",
+        "operationId": "updateMultiNodeInventory",
         "parameters": [
           {
             "name": "sku",
-            "in": "query",
-            "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: ':', '/', '?', '#', '[', ']', '@', '!', '$', '&', \"'\", '(', ')', '*', '+', ',', ';', '=', ‘ ’, '{', '}' as well as '%' itself if it's a part of sku. Make sure to encode space with %20. Other characters don't need to be encoded.",
+            "in": "path",
+            "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: ':', '/', '?', '#', '[', ']', '@', '!', '$', '&', \"'\", '(', ')', '*', '+', ',', ';', '=', ‘ ’ as well as '%' itself if it's a part of sku. Make sure to encode space with %20. Other characters don't need to be encoded.",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "shipNode",
-            "in": "query",
-            "description": "The shipNode for which the inventory is to be updated.",
-            "required": false,
             "schema": {
               "type": "string"
             }
@@ -266,89 +536,80 @@
           }
         ],
         "requestBody": {
-          "description": "File fields",
+          "description": "Request fields",
           "content": {
-            "application/xml": {
-              "schema": {
-                "required": [
-                  "quantity",
-                  "sku"
-                ],
-                "type": "object",
-                "properties": {
-                  "sku": {
-                    "type": "string",
-                    "description": "A seller-provided Product ID. Response will have decoded value."
-                  },
-                  "quantity": {
-                    "required": [
-                      "amount",
-                      "unit"
-                    ],
-                    "type": "object",
-                    "properties": {
-                      "unit": {
-                        "type": "string",
-                        "description": "The unit of measurement. Example: 'EACH'",
-                        "enum": [
-                          "EACH"
-                        ]
-                      },
-                      "amount": {
-                        "type": "number",
-                        "description": "The number available in the inventory"
-                      }
-                    }
-                  }
-                },
-                "xml": {
-                  "name": "inventory"
-                }
-              },
-              "example": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<inventory xmlns=\"http://walmart.com/\">\n    <sku>97964_KFTest</sku>\n    <quantity>\n        <unit>EACH</unit>\n        <amount>3</amount>\n    </quantity>\n</inventory>"
-            },
             "application/json": {
               "schema": {
                 "required": [
-                  "quantity",
-                  "sku"
+                  "inventories"
                 ],
                 "type": "object",
                 "properties": {
-                  "sku": {
-                    "type": "string",
-                    "description": "A seller-provided Product ID. Response will have decoded value."
-                  },
-                  "quantity": {
+                  "inventories": {
                     "required": [
-                      "amount",
-                      "unit"
+                      "nodes"
                     ],
                     "type": "object",
                     "properties": {
-                      "unit": {
-                        "type": "string",
-                        "description": "The unit of measurement. Example: 'EACH'",
-                        "enum": [
-                          "EACH"
-                        ]
-                      },
-                      "amount": {
-                        "type": "number",
-                        "description": "The number available in the inventory"
+                      "nodes": {
+                        "type": "array",
+                        "items": {
+                          "required": [
+                            "inputQty",
+                            "shipNode"
+                          ],
+                          "type": "object",
+                          "properties": {
+                            "shipNode": {
+                              "type": "string",
+                              "description": "ShipNode Id of the ship node for which the inventory is requested"
+                            },
+                            "inputQty": {
+                              "required": [
+                                "amount",
+                                "unit"
+                              ],
+                              "type": "object",
+                              "properties": {
+                                "unit": {
+                                  "type": "string",
+                                  "description": "The unit of measurement. Example: 'EACH'",
+                                  "enum": [
+                                    "EACH"
+                                  ]
+                                },
+                                "amount": {
+                                  "type": "number",
+                                  "description": "The number available in the inventory"
+                                }
+                              },
+                              "description": "Information about the quantity in inventory"
+                            }
+                          }
+                        }
                       }
                     }
                   }
-                },
-                "xml": {
-                  "name": "inventory"
                 }
               },
               "example": {
-                "sku": "97964_KFTest",
-                "quantity": {
-                  "unit": "EACH",
-                  "amount": 10
+                "inventories": {
+                  "nodes": [
+                    {
+                      "shipNode": "1000005050",
+                      "inputQty": {
+                        "unit": "EACH",
+                        "amount": 88
+                      }
+                    },
+                    {
+                      "shipNode": "79897837271126017",
+                      "inputQty": {
+                        "unit": "EACH",
+                        "amount": 55
+                      }
+                    }
+                  ]
                 }
               }
             }
@@ -359,88 +620,120 @@
           "200": {
             "description": "Successful Operation",
             "content": {
-              "application/xml": {
-                "schema": {
-                  "required": [
-                    "quantity",
-                    "sku"
-                  ],
-                  "type": "object",
-                  "properties": {
-                    "sku": {
-                      "type": "string",
-                      "description": "A seller-provided Product ID. Response will have decoded value."
-                    },
-                    "quantity": {
-                      "required": [
-                        "amount",
-                        "unit"
-                      ],
-                      "type": "object",
-                      "properties": {
-                        "unit": {
-                          "type": "string",
-                          "description": "The unit of measurement. Example: 'EACH'",
-                          "enum": [
-                            "EACH"
-                          ]
-                        },
-                        "amount": {
-                          "type": "number",
-                          "description": "The number available in the inventory"
-                        }
-                      }
-                    }
-                  },
-                  "xml": {
-                    "name": "inventory"
-                  }
-                },
-                "example": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<inventory xmlns=\"http://walmart.com/\">\n    <sku>97964_KFTest</sku>\n    <quantity>\n        <unit>EACH</unit>\n        <amount>3</amount>\n    </quantity>\n</inventory>"
-              },
               "application/json": {
                 "schema": {
-                  "required": [
-                    "quantity",
-                    "sku"
-                  ],
                   "type": "object",
                   "properties": {
                     "sku": {
                       "type": "string",
-                      "description": "A seller-provided Product ID. Response will have decoded value."
+                      "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
                     },
-                    "quantity": {
-                      "required": [
-                        "amount",
-                        "unit"
-                      ],
-                      "type": "object",
-                      "properties": {
-                        "unit": {
-                          "type": "string",
-                          "description": "The unit of measurement. Example: 'EACH'",
-                          "enum": [
-                            "EACH"
-                          ]
-                        },
-                        "amount": {
-                          "type": "number",
-                          "description": "The number available in the inventory"
+                    "nodes": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "shipNode": {
+                            "type": "string",
+                            "description": "ShipNode Id of the ship node for which the inventory is requested"
+                          },
+                          "status": {
+                            "type": "string",
+                            "description": "Node Update status. Example: 'Success'"
+                          },
+                          "errors": {
+                            "type": "array",
+                            "description": "Node Update Error description.",
+                            "items": {
+                              "required": [
+                                "code"
+                              ],
+                              "type": "object",
+                              "properties": {
+                                "code": {
+                                  "type": "string"
+                                },
+                                "field": {
+                                  "type": "string"
+                                },
+                                "description": {
+                                  "type": "string"
+                                },
+                                "info": {
+                                  "type": "string"
+                                },
+                                "severity": {
+                                  "type": "string",
+                                  "enum": [
+                                    "INFO",
+                                    "WARN",
+                                    "ERROR"
+                                  ]
+                                },
+                                "category": {
+                                  "type": "string",
+                                  "enum": [
+                                    "APPLICATION",
+                                    "SYSTEM",
+                                    "REQUEST",
+                                    "DATA"
+                                  ]
+                                },
+                                "causes": {
+                                  "type": "array",
+                                  "xml": {
+                                    "wrapped": true
+                                  },
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "code": {
+                                        "type": "string"
+                                      },
+                                      "field": {
+                                        "type": "string"
+                                      },
+                                      "type": {
+                                        "type": "string"
+                                      },
+                                      "description": {
+                                        "type": "string"
+                                      }
+                                    },
+                                    "xml": {
+                                      "name": "Cause"
+                                    }
+                                  }
+                                },
+                                "errorIdentifiers": {
+                                  "type": "object",
+                                  "additionalProperties": {
+                                    "type": "object"
+                                  }
+                                }
+                              },
+                              "xml": {
+                                "name": "Error"
+                              }
+                            }
+                          }
                         }
                       }
                     }
-                  },
-                  "xml": {
-                    "name": "inventory"
                   }
                 },
                 "example": {
-                  "sku": "97964_KFTest",
-                  "quantity": {
-                    "unit": "EACH",
-                    "amount": 10
-                  }
+                  "sku": "00757642886669_test_01",
+                  "nodes": [
+                    {
+                      "shipNode": "1000005050",
+                      "status": "Success"
+                    },
+                    {
+                      "shipNode": "79897837271126017",
+                      "status": "Success"
+                    }
+                  ]
                 }
               }
             }
@@ -677,224 +970,19 @@
         }
       }
     },
-    "/v3/inventories": {
+    "/v3/inventory": {
       "get": {
         "tags": [
           "Inventory"
         ],
-        "summary": "Multiple Item Inventory for All Ship Nodes",
-        "description": "This API will retrieve the inventory count for all of a seller's items across all ship nodes by item to ship node mapping. Inventory can be zero or non-zero.",
-        "operationId": "getMultiNodeInventoryForAllSkuAndAllShipNodes",
-        "parameters": [
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "The number of items returned. Cannot be more than 50.",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "default": "10"
-            }
-          },
-          {
-            "name": "nextCursor",
-            "in": "query",
-            "description": "String returned from initial API call to indicate pagination. Specify nextCursor value to retrieve the next 50 items.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
-          },
-          {
-            "in": "header",
-            "name": "WM_SEC.ACCESS_TOKEN",
-            "description": "The access token retrieved in the Token API call",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
-          },
-          {
-            "in": "header",
-            "name": "WM_CONSUMER.CHANNEL.TYPE",
-            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "header",
-            "name": "WM_QOS.CORRELATION_ID",
-            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
-          },
-          {
-            "in": "header",
-            "name": "WM_SVC.NAME",
-            "description": "Walmart Service Name",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Walmart Service Name"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "meta": {
-                      "type": "object",
-                      "properties": {
-                        "totalCount": {
-                          "type": "number",
-                          "description": "Total number of Skus of the Seller. Example: '235'"
-                        },
-                        "nextCursor": {
-                          "type": "string",
-                          "description": "Used for pagination to fetch the next set of items."
-                        }
-                      },
-                      "xml": {
-                        "name": "meta"
-                      }
-                    },
-                    "elements": {
-                      "type": "object",
-                      "properties": {
-                        "inventories": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "sku": {
-                                "type": "string",
-                                "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
-                              },
-                              "nodes": {
-                                "type": "array",
-                                "items": {
-                                  "type": "object",
-                                  "properties": {
-                                    "shipNode": {
-                                      "type": "string",
-                                      "description": "ShipNode Id of the ship node for which the inventory is requested"
-                                    },
-                                    "inputQty": {
-                                      "required": [
-                                        "amount",
-                                        "unit"
-                                      ],
-                                      "type": "object",
-                                      "properties": {
-                                        "unit": {
-                                          "type": "string",
-                                          "description": "The unit of measurement. Example: 'EACH'",
-                                          "enum": [
-                                            "EACH"
-                                          ]
-                                        },
-                                        "amount": {
-                                          "type": "number",
-                                          "description": "The number available in the inventory"
-                                        }
-                                      }
-                                    },
-                                    "availToSellQty": {
-                                      "required": [
-                                        "amount",
-                                        "unit"
-                                      ],
-                                      "type": "object",
-                                      "properties": {
-                                        "unit": {
-                                          "type": "string",
-                                          "description": "The unit of measurement. Example: 'EACH'",
-                                          "enum": [
-                                            "EACH"
-                                          ]
-                                        },
-                                        "amount": {
-                                          "type": "number",
-                                          "description": "The number available in the inventory"
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                },
-                "example": {
-                  "meta": {
-                    "totalCount": 123,
-                    "nextCursor": "37b56ddb-a949-4d9f-91e2-a6d56dda3c47&limit=50"
-                  },
-                  "elements": {
-                    "inventories": [
-                      {
-                        "sku": "AI-IGH4-5509",
-                        "nodes": [
-                          {
-                            "shipNode": "100009",
-                            "inputQty": {
-                              "unit": "EACH",
-                              "amount": 5
-                            },
-                            "availToSellQty": {
-                              "unit": "EACH",
-                              "amount": 3
-                            }
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v3/inventories/{sku}": {
-      "get": {
-        "tags": [
-          "Inventory"
-        ],
-        "summary": "Single Item Inventory by Ship Node",
-        "description": "This API will retrieve the inventory count for an item across all ship nodes or one specific ship node. You can specify the ship node for which you want to fetch the inventory",
-        "operationId": "getMultiNodeInventoryForSkuAndAllShipnodes",
+        "summary": "Inventory",
+        "description": "You can use this API to get the inventory for a given item.",
+        "operationId": "getInventory",
         "parameters": [
           {
             "name": "sku",
-            "in": "path",
-            "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: ':', '/', '?', '#', '[', ']', '@', '!', '$', '&', \"'\", '(', ')', '*', '+', ',', ';', '=', ‘ ’ as well as '%' itself if it's a part of sku. Make sure to encode space with %20. Other characters don't need to be encoded.",
+            "in": "query",
+            "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: ':', '/', '?', '#', '[', ']', '@', '!', '$', '&', \"'\", '(', ')', '*', '+', ',', ';', '=', ‘ ’, '{', '}' as well as '%' itself if it's a part of sku. Make sure to encode space with %20. Other characters don't need to be encoded.",
             "required": true,
             "schema": {
               "type": "string"
@@ -903,7 +991,7 @@
           {
             "name": "shipNode",
             "in": "query",
-            "description": "ShipNode Id of the ship node for which the inventory is requested",
+            "description": "The shipNode for which the inventory is requested",
             "required": false,
             "schema": {
               "type": "string"
@@ -963,159 +1051,90 @@
           "200": {
             "description": "Successful Operation",
             "content": {
-              "application/json": {
+              "application/xml": {
                 "schema": {
+                  "required": [
+                    "quantity",
+                    "sku"
+                  ],
                   "type": "object",
                   "properties": {
                     "sku": {
                       "type": "string",
-                      "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
+                      "description": "A seller-provided Product ID. Response will have decoded value."
                     },
-                    "nodes": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "shipNode": {
-                            "type": "string",
-                            "description": "ShipNode Id of the ship node for which the inventory is requested"
-                          },
-                          "inputQty": {
-                            "required": [
-                              "amount",
-                              "unit"
-                            ],
-                            "type": "object",
-                            "properties": {
-                              "unit": {
-                                "type": "string",
-                                "description": "The unit of measurement. Example: 'EACH'",
-                                "enum": [
-                                  "EACH"
-                                ]
-                              },
-                              "amount": {
-                                "type": "number",
-                                "description": "The number available in the inventory"
-                              }
-                            }
-                          },
-                          "availToSellQty": {
-                            "required": [
-                              "amount",
-                              "unit"
-                            ],
-                            "type": "object",
-                            "properties": {
-                              "unit": {
-                                "type": "string",
-                                "description": "The unit of measurement. Example: 'EACH'",
-                                "enum": [
-                                  "EACH"
-                                ]
-                              },
-                              "amount": {
-                                "type": "number",
-                                "description": "The number available in the inventory"
-                              }
-                            }
-                          },
-                          "errors": {
-                            "type": "array",
-                            "items": {
-                              "required": [
-                                "code"
-                              ],
-                              "type": "object",
-                              "properties": {
-                                "code": {
-                                  "type": "string"
-                                },
-                                "field": {
-                                  "type": "string"
-                                },
-                                "description": {
-                                  "type": "string"
-                                },
-                                "info": {
-                                  "type": "string"
-                                },
-                                "severity": {
-                                  "type": "string",
-                                  "enum": [
-                                    "INFO",
-                                    "WARN",
-                                    "ERROR"
-                                  ]
-                                },
-                                "category": {
-                                  "type": "string",
-                                  "enum": [
-                                    "APPLICATION",
-                                    "SYSTEM",
-                                    "REQUEST",
-                                    "DATA"
-                                  ]
-                                },
-                                "causes": {
-                                  "type": "array",
-                                  "xml": {
-                                    "wrapped": true
-                                  },
-                                  "items": {
-                                    "type": "object",
-                                    "properties": {
-                                      "code": {
-                                        "type": "string"
-                                      },
-                                      "field": {
-                                        "type": "string"
-                                      },
-                                      "type": {
-                                        "type": "string"
-                                      },
-                                      "description": {
-                                        "type": "string"
-                                      }
-                                    },
-                                    "xml": {
-                                      "name": "Cause"
-                                    }
-                                  }
-                                },
-                                "errorIdentifiers": {
-                                  "type": "object",
-                                  "additionalProperties": {
-                                    "type": "object"
-                                  }
-                                }
-                              },
-                              "description": "Node Update Error description.",
-                              "xml": {
-                                "name": "Error"
-                              }
-                            }
-                          }
+                    "quantity": {
+                      "required": [
+                        "amount",
+                        "unit"
+                      ],
+                      "type": "object",
+                      "properties": {
+                        "unit": {
+                          "type": "string",
+                          "description": "The unit of measurement. Example: 'EACH'",
+                          "enum": [
+                            "EACH"
+                          ]
+                        },
+                        "amount": {
+                          "type": "number",
+                          "description": "The number available in the inventory"
                         }
-                      }
+                      },
+                      "description": "Information about the quantity in inventory"
                     }
+                  },
+                  "xml": {
+                    "name": "inventory"
+                  }
+                },
+                "example": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<inventory xmlns=\"http://walmart.com/\">\n    <sku>97964_KFTest</sku>\n    <quantity>\n        <unit>EACH</unit>\n        <amount>10</amount>\n    </quantity>\n</inventory>"
+              },
+              "application/json": {
+                "schema": {
+                  "required": [
+                    "quantity",
+                    "sku"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "sku": {
+                      "type": "string",
+                      "description": "A seller-provided Product ID. Response will have decoded value."
+                    },
+                    "quantity": {
+                      "required": [
+                        "amount",
+                        "unit"
+                      ],
+                      "type": "object",
+                      "properties": {
+                        "unit": {
+                          "type": "string",
+                          "description": "The unit of measurement. Example: 'EACH'",
+                          "enum": [
+                            "EACH"
+                          ]
+                        },
+                        "amount": {
+                          "type": "number",
+                          "description": "The number available in the inventory"
+                        }
+                      },
+                      "description": "Information about the quantity in inventory"
+                    }
+                  },
+                  "xml": {
+                    "name": "inventory"
                   }
                 },
                 "example": {
-                  "sku": "AR-CTIX-0092",
-                  "nodes": [
-                    {
-                      "shipNode": "100009",
-                      "inputQty": {
-                        "unit": "EACH",
-                        "amount": 5
-                      },
-                      "availToSellQty": {
-                        "unit": "EACH",
-                        "amount": 3
-                      }
-                    }
-                  ]
+                  "sku": "97964_KFTest",
+                  "quantity": {
+                    "unit": "EACH",
+                    "amount": 10
+                  }
                 }
               }
             }
@@ -1126,15 +1145,24 @@
         "tags": [
           "Inventory"
         ],
-        "summary": "Update Item Inventory per Ship Node",
-        "description": "This API will update the inventory for an item across one or more fulfillment centers, known as ship nodes.",
-        "operationId": "updateMultiNodeInventory",
+        "summary": "Update inventory",
+        "description": "Updates the inventory for a given item.",
+        "operationId": "updateInventoryForAnItem",
         "parameters": [
           {
             "name": "sku",
-            "in": "path",
-            "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: ':', '/', '?', '#', '[', ']', '@', '!', '$', '&', \"'\", '(', ')', '*', '+', ',', ';', '=', ‘ ’ as well as '%' itself if it's a part of sku. Make sure to encode space with %20. Other characters don't need to be encoded.",
+            "in": "query",
+            "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: ':', '/', '?', '#', '[', ']', '@', '!', '$', '&', \"'\", '(', ')', '*', '+', ',', ';', '=', ‘ ’, '{', '}' as well as '%' itself if it's a part of sku. Make sure to encode space with %20. Other characters don't need to be encoded.",
             "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "shipNode",
+            "in": "query",
+            "description": "The shipNode for which the inventory is to be updated.",
+            "required": false,
             "schema": {
               "type": "string"
             }
@@ -1190,79 +1218,91 @@
           }
         ],
         "requestBody": {
-          "description": "Request fields",
+          "description": "File fields",
           "content": {
-            "application/json": {
+            "application/xml": {
               "schema": {
                 "required": [
-                  "inventories"
+                  "quantity",
+                  "sku"
                 ],
                 "type": "object",
                 "properties": {
-                  "inventories": {
+                  "sku": {
+                    "type": "string",
+                    "description": "A seller-provided Product ID. Response will have decoded value."
+                  },
+                  "quantity": {
                     "required": [
-                      "nodes"
+                      "amount",
+                      "unit"
                     ],
                     "type": "object",
                     "properties": {
-                      "nodes": {
-                        "type": "array",
-                        "items": {
-                          "required": [
-                            "inputQty",
-                            "shipNode"
-                          ],
-                          "type": "object",
-                          "properties": {
-                            "shipNode": {
-                              "type": "string",
-                              "description": "ShipNode Id of the ship node for which the inventory is requested"
-                            },
-                            "inputQty": {
-                              "required": [
-                                "amount",
-                                "unit"
-                              ],
-                              "type": "object",
-                              "properties": {
-                                "unit": {
-                                  "type": "string",
-                                  "description": "The unit of measurement. Example: 'EACH'",
-                                  "enum": [
-                                    "EACH"
-                                  ]
-                                },
-                                "amount": {
-                                  "type": "number",
-                                  "description": "The number available in the inventory"
-                                }
-                              }
-                            }
-                          }
-                        }
+                      "unit": {
+                        "type": "string",
+                        "description": "The unit of measurement. Example: 'EACH'",
+                        "enum": [
+                          "EACH"
+                        ]
+                      },
+                      "amount": {
+                        "type": "number",
+                        "description": "The number available in the inventory"
                       }
-                    }
+                    },
+                    "description": "Information about the quantity in inventory"
                   }
+                },
+                "xml": {
+                  "name": "inventory"
+                }
+              },
+              "example": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<inventory xmlns=\"http://walmart.com/\">\n    <sku>97964_KFTest</sku>\n    <quantity>\n        <unit>EACH</unit>\n        <amount>3</amount>\n    </quantity>\n</inventory>"
+            },
+            "application/json": {
+              "schema": {
+                "required": [
+                  "quantity",
+                  "sku"
+                ],
+                "type": "object",
+                "properties": {
+                  "sku": {
+                    "type": "string",
+                    "description": "A seller-provided Product ID. Response will have decoded value."
+                  },
+                  "quantity": {
+                    "required": [
+                      "amount",
+                      "unit"
+                    ],
+                    "type": "object",
+                    "properties": {
+                      "unit": {
+                        "type": "string",
+                        "description": "The unit of measurement. Example: 'EACH'",
+                        "enum": [
+                          "EACH"
+                        ]
+                      },
+                      "amount": {
+                        "type": "number",
+                        "description": "The number available in the inventory"
+                      }
+                    },
+                    "description": "Information about the quantity in inventory"
+                  }
+                },
+                "xml": {
+                  "name": "inventory"
                 }
               },
               "example": {
-                "inventories": {
-                  "nodes": [
-                    {
-                      "shipNode": "1000005050",
-                      "inputQty": {
-                        "unit": "EACH",
-                        "amount": 88
-                      }
-                    },
-                    {
-                      "shipNode": "79897837271126017",
-                      "inputQty": {
-                        "unit": "EACH",
-                        "amount": 55
-                      }
-                    }
-                  ]
+                "sku": "97964_KFTest",
+                "quantity": {
+                  "unit": "EACH",
+                  "amount": 10
                 }
               }
             }
@@ -1273,121 +1313,90 @@
           "200": {
             "description": "Successful Operation",
             "content": {
-              "application/json": {
+              "application/xml": {
                 "schema": {
+                  "required": [
+                    "quantity",
+                    "sku"
+                  ],
                   "type": "object",
                   "properties": {
                     "sku": {
                       "type": "string",
-                      "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
+                      "description": "A seller-provided Product ID. Response will have decoded value."
                     },
-                    "nodes": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "shipNode": {
-                            "type": "string",
-                            "description": "ShipNode Id of the ship node for which the inventory is requested"
-                          },
-                          "status": {
-                            "type": "string",
-                            "description": "Node Update status. Example: 'Success'"
-                          },
-                          "errors": {
-                            "type": "array",
-                            "description": "Node Update Error description.",
-                            "items": {
-                              "required": [
-                                "code"
-                              ],
-                              "type": "object",
-                              "properties": {
-                                "code": {
-                                  "type": "string"
-                                },
-                                "field": {
-                                  "type": "string"
-                                },
-                                "description": {
-                                  "type": "string"
-                                },
-                                "info": {
-                                  "type": "string"
-                                },
-                                "severity": {
-                                  "type": "string",
-                                  "enum": [
-                                    "INFO",
-                                    "WARN",
-                                    "ERROR"
-                                  ]
-                                },
-                                "category": {
-                                  "type": "string",
-                                  "enum": [
-                                    "APPLICATION",
-                                    "SYSTEM",
-                                    "REQUEST",
-                                    "DATA"
-                                  ]
-                                },
-                                "causes": {
-                                  "type": "array",
-                                  "xml": {
-                                    "wrapped": true
-                                  },
-                                  "items": {
-                                    "type": "object",
-                                    "properties": {
-                                      "code": {
-                                        "type": "string"
-                                      },
-                                      "field": {
-                                        "type": "string"
-                                      },
-                                      "type": {
-                                        "type": "string"
-                                      },
-                                      "description": {
-                                        "type": "string"
-                                      }
-                                    },
-                                    "xml": {
-                                      "name": "Cause"
-                                    }
-                                  }
-                                },
-                                "errorIdentifiers": {
-                                  "type": "object",
-                                  "additionalProperties": {
-                                    "type": "object"
-                                  }
-                                }
-                              },
-                              "description": "Node Update Error description.",
-                              "xml": {
-                                "name": "Error"
-                              }
-                            }
-                          }
+                    "quantity": {
+                      "required": [
+                        "amount",
+                        "unit"
+                      ],
+                      "type": "object",
+                      "properties": {
+                        "unit": {
+                          "type": "string",
+                          "description": "The unit of measurement. Example: 'EACH'",
+                          "enum": [
+                            "EACH"
+                          ]
+                        },
+                        "amount": {
+                          "type": "number",
+                          "description": "The number available in the inventory"
                         }
-                      }
+                      },
+                      "description": "Information about the quantity in inventory"
                     }
+                  },
+                  "xml": {
+                    "name": "inventory"
+                  }
+                },
+                "example": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<inventory xmlns=\"http://walmart.com/\">\n    <sku>97964_KFTest</sku>\n    <quantity>\n        <unit>EACH</unit>\n        <amount>3</amount>\n    </quantity>\n</inventory>"
+              },
+              "application/json": {
+                "schema": {
+                  "required": [
+                    "quantity",
+                    "sku"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "sku": {
+                      "type": "string",
+                      "description": "A seller-provided Product ID. Response will have decoded value."
+                    },
+                    "quantity": {
+                      "required": [
+                        "amount",
+                        "unit"
+                      ],
+                      "type": "object",
+                      "properties": {
+                        "unit": {
+                          "type": "string",
+                          "description": "The unit of measurement. Example: 'EACH'",
+                          "enum": [
+                            "EACH"
+                          ]
+                        },
+                        "amount": {
+                          "type": "number",
+                          "description": "The number available in the inventory"
+                        }
+                      },
+                      "description": "Information about the quantity in inventory"
+                    }
+                  },
+                  "xml": {
+                    "name": "inventory"
                   }
                 },
                 "example": {
-                  "sku": "00757642886669_test_01",
-                  "nodes": [
-                    {
-                      "shipNode": "1000005050",
-                      "status": "Success"
-                    },
-                    {
-                      "shipNode": "79897837271126017",
-                      "status": "Success"
-                    }
-                  ]
+                  "sku": "97964_KFTest",
+                  "quantity": {
+                    "unit": "EACH",
+                    "amount": 10
+                  }
                 }
               }
             }
@@ -1572,18 +1581,148 @@
   },
   "components": {
     "schemas": {
-      "Inventory": {
-        "required": [
-          "quantity",
-          "sku"
-        ],
+      "Elements": {
+        "type": "object",
+        "properties": {
+          "inventories": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "sku": {
+                  "type": "string",
+                  "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
+                },
+                "nodes": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "shipNode": {
+                        "type": "string",
+                        "description": "ShipNode Id of the ship node for which the inventory is requested"
+                      },
+                      "inputQty": {
+                        "required": [
+                          "amount",
+                          "unit"
+                        ],
+                        "type": "object",
+                        "properties": {
+                          "unit": {
+                            "type": "string",
+                            "description": "The unit of measurement. Example: 'EACH'",
+                            "enum": [
+                              "EACH"
+                            ]
+                          },
+                          "amount": {
+                            "type": "number",
+                            "description": "The number available in the inventory"
+                          }
+                        },
+                        "description": "Information about the quantity in inventory"
+                      },
+                      "availToSellQty": {
+                        "required": [
+                          "amount",
+                          "unit"
+                        ],
+                        "type": "object",
+                        "properties": {
+                          "unit": {
+                            "type": "string",
+                            "description": "The unit of measurement. Example: 'EACH'",
+                            "enum": [
+                              "EACH"
+                            ]
+                          },
+                          "amount": {
+                            "type": "number",
+                            "description": "The number available in the inventory"
+                          }
+                        },
+                        "description": "Information about the quantity in inventory"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "GetAllInventoriesDTO": {
         "type": "object",
         "properties": {
           "sku": {
             "type": "string",
-            "description": "A seller-provided Product ID. Response will have decoded value."
+            "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
           },
-          "quantity": {
+          "nodes": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "shipNode": {
+                  "type": "string",
+                  "description": "ShipNode Id of the ship node for which the inventory is requested"
+                },
+                "inputQty": {
+                  "required": [
+                    "amount",
+                    "unit"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "unit": {
+                      "type": "string",
+                      "description": "The unit of measurement. Example: 'EACH'",
+                      "enum": [
+                        "EACH"
+                      ]
+                    },
+                    "amount": {
+                      "type": "number",
+                      "description": "The number available in the inventory"
+                    }
+                  },
+                  "description": "Information about the quantity in inventory"
+                },
+                "availToSellQty": {
+                  "required": [
+                    "amount",
+                    "unit"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "unit": {
+                      "type": "string",
+                      "description": "The unit of measurement. Example: 'EACH'",
+                      "enum": [
+                        "EACH"
+                      ]
+                    },
+                    "amount": {
+                      "type": "number",
+                      "description": "The number available in the inventory"
+                    }
+                  },
+                  "description": "Information about the quantity in inventory"
+                }
+              }
+            }
+          }
+        }
+      },
+      "GetAllInventoriesNodeDTO": {
+        "type": "object",
+        "properties": {
+          "shipNode": {
+            "type": "string",
+            "description": "ShipNode Id of the ship node for which the inventory is requested"
+          },
+          "inputQty": {
             "required": [
               "amount",
               "unit"
@@ -1601,11 +1740,138 @@
                 "type": "number",
                 "description": "The number available in the inventory"
               }
-            }
+            },
+            "description": "Information about the quantity in inventory"
+          },
+          "availToSellQty": {
+            "required": [
+              "amount",
+              "unit"
+            ],
+            "type": "object",
+            "properties": {
+              "unit": {
+                "type": "string",
+                "description": "The unit of measurement. Example: 'EACH'",
+                "enum": [
+                  "EACH"
+                ]
+              },
+              "amount": {
+                "type": "number",
+                "description": "The number available in the inventory"
+              }
+            },
+            "description": "Information about the quantity in inventory"
+          }
+        }
+      },
+      "Meta": {
+        "type": "object",
+        "properties": {
+          "totalCount": {
+            "type": "number",
+            "description": "Total number of Skus of the Seller. Example: '235'"
+          },
+          "nextCursor": {
+            "type": "string",
+            "description": "Used for pagination to fetch the next set of items."
           }
         },
         "xml": {
-          "name": "inventory"
+          "name": "meta"
+        }
+      },
+      "MultiNodeInventoryFetchResponseDTO": {
+        "type": "object",
+        "properties": {
+          "meta": {
+            "type": "object",
+            "properties": {
+              "totalCount": {
+                "type": "number",
+                "description": "Total number of Skus of the Seller. Example: '235'"
+              },
+              "nextCursor": {
+                "type": "string",
+                "description": "Used for pagination to fetch the next set of items."
+              }
+            },
+            "xml": {
+              "name": "meta"
+            }
+          },
+          "elements": {
+            "type": "object",
+            "properties": {
+              "inventories": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "sku": {
+                      "type": "string",
+                      "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
+                    },
+                    "nodes": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "shipNode": {
+                            "type": "string",
+                            "description": "ShipNode Id of the ship node for which the inventory is requested"
+                          },
+                          "inputQty": {
+                            "required": [
+                              "amount",
+                              "unit"
+                            ],
+                            "type": "object",
+                            "properties": {
+                              "unit": {
+                                "type": "string",
+                                "description": "The unit of measurement. Example: 'EACH'",
+                                "enum": [
+                                  "EACH"
+                                ]
+                              },
+                              "amount": {
+                                "type": "number",
+                                "description": "The number available in the inventory"
+                              }
+                            },
+                            "description": "Information about the quantity in inventory"
+                          },
+                          "availToSellQty": {
+                            "required": [
+                              "amount",
+                              "unit"
+                            ],
+                            "type": "object",
+                            "properties": {
+                              "unit": {
+                                "type": "string",
+                                "description": "The unit of measurement. Example: 'EACH'",
+                                "enum": [
+                                  "EACH"
+                                ]
+                              },
+                              "amount": {
+                                "type": "number",
+                                "description": "The number available in the inventory"
+                              }
+                            },
+                            "description": "Information about the quantity in inventory"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       },
       "SupplyQuantity": {
@@ -1625,6 +1891,685 @@
           "amount": {
             "type": "number",
             "description": "The number available in the inventory"
+          }
+        },
+        "description": "Information about the quantity in inventory"
+      },
+      "Cause": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "field": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        },
+        "xml": {
+          "name": "Cause"
+        }
+      },
+      "Error": {
+        "required": [
+          "code"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "field": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "info": {
+            "type": "string"
+          },
+          "severity": {
+            "type": "string",
+            "enum": [
+              "INFO",
+              "WARN",
+              "ERROR"
+            ]
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "APPLICATION",
+              "SYSTEM",
+              "REQUEST",
+              "DATA"
+            ]
+          },
+          "causes": {
+            "type": "array",
+            "xml": {
+              "wrapped": true
+            },
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string"
+                },
+                "field": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                }
+              },
+              "xml": {
+                "name": "Cause"
+              }
+            }
+          },
+          "errorIdentifiers": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object"
+            }
+          }
+        },
+        "xml": {
+          "name": "Error"
+        }
+      },
+      "MultiNodeInventoryUpdateResponseDTO": {
+        "type": "object",
+        "properties": {
+          "sku": {
+            "type": "string",
+            "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
+          },
+          "nodes": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "shipNode": {
+                  "type": "string",
+                  "description": "ShipNode Id of the ship node for which the inventory is requested"
+                },
+                "status": {
+                  "type": "string",
+                  "description": "Node Update status. Example: 'Success'"
+                },
+                "errors": {
+                  "type": "array",
+                  "description": "Node Update Error description.",
+                  "items": {
+                    "required": [
+                      "code"
+                    ],
+                    "type": "object",
+                    "properties": {
+                      "code": {
+                        "type": "string"
+                      },
+                      "field": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "info": {
+                        "type": "string"
+                      },
+                      "severity": {
+                        "type": "string",
+                        "enum": [
+                          "INFO",
+                          "WARN",
+                          "ERROR"
+                        ]
+                      },
+                      "category": {
+                        "type": "string",
+                        "enum": [
+                          "APPLICATION",
+                          "SYSTEM",
+                          "REQUEST",
+                          "DATA"
+                        ]
+                      },
+                      "causes": {
+                        "type": "array",
+                        "xml": {
+                          "wrapped": true
+                        },
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "code": {
+                              "type": "string"
+                            },
+                            "field": {
+                              "type": "string"
+                            },
+                            "type": {
+                              "type": "string"
+                            },
+                            "description": {
+                              "type": "string"
+                            }
+                          },
+                          "xml": {
+                            "name": "Cause"
+                          }
+                        }
+                      },
+                      "errorIdentifiers": {
+                        "type": "object",
+                        "additionalProperties": {
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "xml": {
+                      "name": "Error"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "UpdateInventoriesResponseNodeDTO": {
+        "type": "object",
+        "properties": {
+          "shipNode": {
+            "type": "string",
+            "description": "ShipNode Id of the ship node for which the inventory is requested"
+          },
+          "status": {
+            "type": "string",
+            "description": "Node Update status. Example: 'Success'"
+          },
+          "errors": {
+            "type": "array",
+            "description": "Node Update Error description.",
+            "items": {
+              "required": [
+                "code"
+              ],
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string"
+                },
+                "field": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "info": {
+                  "type": "string"
+                },
+                "severity": {
+                  "type": "string",
+                  "enum": [
+                    "INFO",
+                    "WARN",
+                    "ERROR"
+                  ]
+                },
+                "category": {
+                  "type": "string",
+                  "enum": [
+                    "APPLICATION",
+                    "SYSTEM",
+                    "REQUEST",
+                    "DATA"
+                  ]
+                },
+                "causes": {
+                  "type": "array",
+                  "xml": {
+                    "wrapped": true
+                  },
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "code": {
+                        "type": "string"
+                      },
+                      "field": {
+                        "type": "string"
+                      },
+                      "type": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      }
+                    },
+                    "xml": {
+                      "name": "Cause"
+                    }
+                  }
+                },
+                "errorIdentifiers": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "object"
+                  }
+                }
+              },
+              "xml": {
+                "name": "Error"
+              }
+            }
+          }
+        }
+      },
+      "MultiNodeInventoryUpdateRequestDTO": {
+        "required": [
+          "inventories"
+        ],
+        "type": "object",
+        "properties": {
+          "inventories": {
+            "required": [
+              "nodes"
+            ],
+            "type": "object",
+            "properties": {
+              "nodes": {
+                "type": "array",
+                "items": {
+                  "required": [
+                    "inputQty",
+                    "shipNode"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "shipNode": {
+                      "type": "string",
+                      "description": "ShipNode Id of the ship node for which the inventory is requested"
+                    },
+                    "inputQty": {
+                      "required": [
+                        "amount",
+                        "unit"
+                      ],
+                      "type": "object",
+                      "properties": {
+                        "unit": {
+                          "type": "string",
+                          "description": "The unit of measurement. Example: 'EACH'",
+                          "enum": [
+                            "EACH"
+                          ]
+                        },
+                        "amount": {
+                          "type": "number",
+                          "description": "The number available in the inventory"
+                        }
+                      },
+                      "description": "Information about the quantity in inventory"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "UpdateInventoriesRequestDTO": {
+        "required": [
+          "nodes"
+        ],
+        "type": "object",
+        "properties": {
+          "nodes": {
+            "type": "array",
+            "items": {
+              "required": [
+                "inputQty",
+                "shipNode"
+              ],
+              "type": "object",
+              "properties": {
+                "shipNode": {
+                  "type": "string",
+                  "description": "ShipNode Id of the ship node for which the inventory is requested"
+                },
+                "inputQty": {
+                  "required": [
+                    "amount",
+                    "unit"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "unit": {
+                      "type": "string",
+                      "description": "The unit of measurement. Example: 'EACH'",
+                      "enum": [
+                        "EACH"
+                      ]
+                    },
+                    "amount": {
+                      "type": "number",
+                      "description": "The number available in the inventory"
+                    }
+                  },
+                  "description": "Information about the quantity in inventory"
+                }
+              }
+            }
+          }
+        }
+      },
+      "UpdateInventoriesRequestNodeDTO": {
+        "required": [
+          "inputQty",
+          "shipNode"
+        ],
+        "type": "object",
+        "properties": {
+          "shipNode": {
+            "type": "string",
+            "description": "ShipNode Id of the ship node for which the inventory is requested"
+          },
+          "inputQty": {
+            "required": [
+              "amount",
+              "unit"
+            ],
+            "type": "object",
+            "properties": {
+              "unit": {
+                "type": "string",
+                "description": "The unit of measurement. Example: 'EACH'",
+                "enum": [
+                  "EACH"
+                ]
+              },
+              "amount": {
+                "type": "number",
+                "description": "The number available in the inventory"
+              }
+            },
+            "description": "Information about the quantity in inventory"
+          }
+        }
+      },
+      "InventoriesDTO": {
+        "type": "object",
+        "properties": {
+          "sku": {
+            "type": "string",
+            "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
+          },
+          "nodes": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "shipNode": {
+                  "type": "string",
+                  "description": "ShipNode Id of the ship node for which the inventory is requested"
+                },
+                "inputQty": {
+                  "required": [
+                    "amount",
+                    "unit"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "unit": {
+                      "type": "string",
+                      "description": "The unit of measurement. Example: 'EACH'",
+                      "enum": [
+                        "EACH"
+                      ]
+                    },
+                    "amount": {
+                      "type": "number",
+                      "description": "The number available in the inventory"
+                    }
+                  },
+                  "description": "Information about the quantity in inventory"
+                },
+                "availToSellQty": {
+                  "required": [
+                    "amount",
+                    "unit"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "unit": {
+                      "type": "string",
+                      "description": "The unit of measurement. Example: 'EACH'",
+                      "enum": [
+                        "EACH"
+                      ]
+                    },
+                    "amount": {
+                      "type": "number",
+                      "description": "The number available in the inventory"
+                    }
+                  },
+                  "description": "Information about the quantity in inventory"
+                },
+                "errors": {
+                  "type": "array",
+                  "items": {
+                    "required": [
+                      "code"
+                    ],
+                    "type": "object",
+                    "properties": {
+                      "code": {
+                        "type": "string"
+                      },
+                      "field": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "info": {
+                        "type": "string"
+                      },
+                      "severity": {
+                        "type": "string",
+                        "enum": [
+                          "INFO",
+                          "WARN",
+                          "ERROR"
+                        ]
+                      },
+                      "category": {
+                        "type": "string",
+                        "enum": [
+                          "APPLICATION",
+                          "SYSTEM",
+                          "REQUEST",
+                          "DATA"
+                        ]
+                      },
+                      "causes": {
+                        "type": "array",
+                        "xml": {
+                          "wrapped": true
+                        },
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "code": {
+                              "type": "string"
+                            },
+                            "field": {
+                              "type": "string"
+                            },
+                            "type": {
+                              "type": "string"
+                            },
+                            "description": {
+                              "type": "string"
+                            }
+                          },
+                          "xml": {
+                            "name": "Cause"
+                          }
+                        }
+                      },
+                      "errorIdentifiers": {
+                        "type": "object",
+                        "additionalProperties": {
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "xml": {
+                      "name": "Error"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "NodeDTO": {
+        "type": "object",
+        "properties": {
+          "shipNode": {
+            "type": "string",
+            "description": "ShipNode Id of the ship node for which the inventory is requested"
+          },
+          "inputQty": {
+            "required": [
+              "amount",
+              "unit"
+            ],
+            "type": "object",
+            "properties": {
+              "unit": {
+                "type": "string",
+                "description": "The unit of measurement. Example: 'EACH'",
+                "enum": [
+                  "EACH"
+                ]
+              },
+              "amount": {
+                "type": "number",
+                "description": "The number available in the inventory"
+              }
+            },
+            "description": "Information about the quantity in inventory"
+          },
+          "availToSellQty": {
+            "required": [
+              "amount",
+              "unit"
+            ],
+            "type": "object",
+            "properties": {
+              "unit": {
+                "type": "string",
+                "description": "The unit of measurement. Example: 'EACH'",
+                "enum": [
+                  "EACH"
+                ]
+              },
+              "amount": {
+                "type": "number",
+                "description": "The number available in the inventory"
+              }
+            },
+            "description": "Information about the quantity in inventory"
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "required": [
+                "code"
+              ],
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string"
+                },
+                "field": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "info": {
+                  "type": "string"
+                },
+                "severity": {
+                  "type": "string",
+                  "enum": [
+                    "INFO",
+                    "WARN",
+                    "ERROR"
+                  ]
+                },
+                "category": {
+                  "type": "string",
+                  "enum": [
+                    "APPLICATION",
+                    "SYSTEM",
+                    "REQUEST",
+                    "DATA"
+                  ]
+                },
+                "causes": {
+                  "type": "array",
+                  "xml": {
+                    "wrapped": true
+                  },
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "code": {
+                        "type": "string"
+                      },
+                      "field": {
+                        "type": "string"
+                      },
+                      "type": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      }
+                    },
+                    "xml": {
+                      "name": "Cause"
+                    }
+                  }
+                },
+                "errorIdentifiers": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "object"
+                  }
+                }
+              },
+              "xml": {
+                "name": "Error"
+              }
+            }
           }
         }
       },
@@ -1817,144 +2762,18 @@
           }
         }
       },
-      "Elements": {
-        "type": "object",
-        "properties": {
-          "inventories": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "sku": {
-                  "type": "string",
-                  "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
-                },
-                "nodes": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "shipNode": {
-                        "type": "string",
-                        "description": "ShipNode Id of the ship node for which the inventory is requested"
-                      },
-                      "inputQty": {
-                        "required": [
-                          "amount",
-                          "unit"
-                        ],
-                        "type": "object",
-                        "properties": {
-                          "unit": {
-                            "type": "string",
-                            "description": "The unit of measurement. Example: 'EACH'",
-                            "enum": [
-                              "EACH"
-                            ]
-                          },
-                          "amount": {
-                            "type": "number",
-                            "description": "The number available in the inventory"
-                          }
-                        }
-                      },
-                      "availToSellQty": {
-                        "required": [
-                          "amount",
-                          "unit"
-                        ],
-                        "type": "object",
-                        "properties": {
-                          "unit": {
-                            "type": "string",
-                            "description": "The unit of measurement. Example: 'EACH'",
-                            "enum": [
-                              "EACH"
-                            ]
-                          },
-                          "amount": {
-                            "type": "number",
-                            "description": "The number available in the inventory"
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "GetAllInventoriesDTO": {
+      "Inventory": {
+        "required": [
+          "quantity",
+          "sku"
+        ],
         "type": "object",
         "properties": {
           "sku": {
             "type": "string",
-            "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
+            "description": "A seller-provided Product ID. Response will have decoded value."
           },
-          "nodes": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "shipNode": {
-                  "type": "string",
-                  "description": "ShipNode Id of the ship node for which the inventory is requested"
-                },
-                "inputQty": {
-                  "required": [
-                    "amount",
-                    "unit"
-                  ],
-                  "type": "object",
-                  "properties": {
-                    "unit": {
-                      "type": "string",
-                      "description": "The unit of measurement. Example: 'EACH'",
-                      "enum": [
-                        "EACH"
-                      ]
-                    },
-                    "amount": {
-                      "type": "number",
-                      "description": "The number available in the inventory"
-                    }
-                  }
-                },
-                "availToSellQty": {
-                  "required": [
-                    "amount",
-                    "unit"
-                  ],
-                  "type": "object",
-                  "properties": {
-                    "unit": {
-                      "type": "string",
-                      "description": "The unit of measurement. Example: 'EACH'",
-                      "enum": [
-                        "EACH"
-                      ]
-                    },
-                    "amount": {
-                      "type": "number",
-                      "description": "The number available in the inventory"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "GetAllInventoriesNodeDTO": {
-        "type": "object",
-        "properties": {
-          "shipNode": {
-            "type": "string",
-            "description": "ShipNode Id of the ship node for which the inventory is requested"
-          },
-          "inputQty": {
+          "quantity": {
             "required": [
               "amount",
               "unit"
@@ -1971,811 +2790,13 @@
               "amount": {
                 "type": "number",
                 "description": "The number available in the inventory"
-              }
-            }
-          },
-          "availToSellQty": {
-            "required": [
-              "amount",
-              "unit"
-            ],
-            "type": "object",
-            "properties": {
-              "unit": {
-                "type": "string",
-                "description": "The unit of measurement. Example: 'EACH'",
-                "enum": [
-                  "EACH"
-                ]
-              },
-              "amount": {
-                "type": "number",
-                "description": "The number available in the inventory"
-              }
-            }
-          }
-        }
-      },
-      "Meta": {
-        "type": "object",
-        "properties": {
-          "totalCount": {
-            "type": "number",
-            "description": "Total number of Skus of the Seller. Example: '235'"
-          },
-          "nextCursor": {
-            "type": "string",
-            "description": "Used for pagination to fetch the next set of items."
-          }
-        },
-        "xml": {
-          "name": "meta"
-        }
-      },
-      "MultiNodeInventoryFetchResponseDTO": {
-        "type": "object",
-        "properties": {
-          "meta": {
-            "type": "object",
-            "properties": {
-              "totalCount": {
-                "type": "number",
-                "description": "Total number of Skus of the Seller. Example: '235'"
-              },
-              "nextCursor": {
-                "type": "string",
-                "description": "Used for pagination to fetch the next set of items."
               }
             },
-            "xml": {
-              "name": "meta"
-            }
-          },
-          "elements": {
-            "type": "object",
-            "properties": {
-              "inventories": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "sku": {
-                      "type": "string",
-                      "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
-                    },
-                    "nodes": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "shipNode": {
-                            "type": "string",
-                            "description": "ShipNode Id of the ship node for which the inventory is requested"
-                          },
-                          "inputQty": {
-                            "required": [
-                              "amount",
-                              "unit"
-                            ],
-                            "type": "object",
-                            "properties": {
-                              "unit": {
-                                "type": "string",
-                                "description": "The unit of measurement. Example: 'EACH'",
-                                "enum": [
-                                  "EACH"
-                                ]
-                              },
-                              "amount": {
-                                "type": "number",
-                                "description": "The number available in the inventory"
-                              }
-                            }
-                          },
-                          "availToSellQty": {
-                            "required": [
-                              "amount",
-                              "unit"
-                            ],
-                            "type": "object",
-                            "properties": {
-                              "unit": {
-                                "type": "string",
-                                "description": "The unit of measurement. Example: 'EACH'",
-                                "enum": [
-                                  "EACH"
-                                ]
-                              },
-                              "amount": {
-                                "type": "number",
-                                "description": "The number available in the inventory"
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "Cause": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "string"
-          },
-          "field": {
-            "type": "string"
-          },
-          "type": {
-            "type": "string"
-          },
-          "description": {
-            "type": "string"
+            "description": "Information about the quantity in inventory"
           }
         },
         "xml": {
-          "name": "Cause"
-        }
-      },
-      "Error": {
-        "required": [
-          "code"
-        ],
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "string"
-          },
-          "field": {
-            "type": "string"
-          },
-          "description": {
-            "type": "string"
-          },
-          "info": {
-            "type": "string"
-          },
-          "severity": {
-            "type": "string",
-            "enum": [
-              "INFO",
-              "WARN",
-              "ERROR"
-            ]
-          },
-          "category": {
-            "type": "string",
-            "enum": [
-              "APPLICATION",
-              "SYSTEM",
-              "REQUEST",
-              "DATA"
-            ]
-          },
-          "causes": {
-            "type": "array",
-            "xml": {
-              "wrapped": true
-            },
-            "items": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "string"
-                },
-                "field": {
-                  "type": "string"
-                },
-                "type": {
-                  "type": "string"
-                },
-                "description": {
-                  "type": "string"
-                }
-              },
-              "xml": {
-                "name": "Cause"
-              }
-            }
-          },
-          "errorIdentifiers": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "object"
-            }
-          }
-        },
-        "description": "Node Update Error description.",
-        "xml": {
-          "name": "Error"
-        }
-      },
-      "InventoriesDTO": {
-        "type": "object",
-        "properties": {
-          "sku": {
-            "type": "string",
-            "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
-          },
-          "nodes": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "shipNode": {
-                  "type": "string",
-                  "description": "ShipNode Id of the ship node for which the inventory is requested"
-                },
-                "inputQty": {
-                  "required": [
-                    "amount",
-                    "unit"
-                  ],
-                  "type": "object",
-                  "properties": {
-                    "unit": {
-                      "type": "string",
-                      "description": "The unit of measurement. Example: 'EACH'",
-                      "enum": [
-                        "EACH"
-                      ]
-                    },
-                    "amount": {
-                      "type": "number",
-                      "description": "The number available in the inventory"
-                    }
-                  }
-                },
-                "availToSellQty": {
-                  "required": [
-                    "amount",
-                    "unit"
-                  ],
-                  "type": "object",
-                  "properties": {
-                    "unit": {
-                      "type": "string",
-                      "description": "The unit of measurement. Example: 'EACH'",
-                      "enum": [
-                        "EACH"
-                      ]
-                    },
-                    "amount": {
-                      "type": "number",
-                      "description": "The number available in the inventory"
-                    }
-                  }
-                },
-                "errors": {
-                  "type": "array",
-                  "items": {
-                    "required": [
-                      "code"
-                    ],
-                    "type": "object",
-                    "properties": {
-                      "code": {
-                        "type": "string"
-                      },
-                      "field": {
-                        "type": "string"
-                      },
-                      "description": {
-                        "type": "string"
-                      },
-                      "info": {
-                        "type": "string"
-                      },
-                      "severity": {
-                        "type": "string",
-                        "enum": [
-                          "INFO",
-                          "WARN",
-                          "ERROR"
-                        ]
-                      },
-                      "category": {
-                        "type": "string",
-                        "enum": [
-                          "APPLICATION",
-                          "SYSTEM",
-                          "REQUEST",
-                          "DATA"
-                        ]
-                      },
-                      "causes": {
-                        "type": "array",
-                        "xml": {
-                          "wrapped": true
-                        },
-                        "items": {
-                          "type": "object",
-                          "properties": {
-                            "code": {
-                              "type": "string"
-                            },
-                            "field": {
-                              "type": "string"
-                            },
-                            "type": {
-                              "type": "string"
-                            },
-                            "description": {
-                              "type": "string"
-                            }
-                          },
-                          "xml": {
-                            "name": "Cause"
-                          }
-                        }
-                      },
-                      "errorIdentifiers": {
-                        "type": "object",
-                        "additionalProperties": {
-                          "type": "object"
-                        }
-                      }
-                    },
-                    "description": "Node Update Error description.",
-                    "xml": {
-                      "name": "Error"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "NodeDTO": {
-        "type": "object",
-        "properties": {
-          "shipNode": {
-            "type": "string",
-            "description": "ShipNode Id of the ship node for which the inventory is requested"
-          },
-          "inputQty": {
-            "required": [
-              "amount",
-              "unit"
-            ],
-            "type": "object",
-            "properties": {
-              "unit": {
-                "type": "string",
-                "description": "The unit of measurement. Example: 'EACH'",
-                "enum": [
-                  "EACH"
-                ]
-              },
-              "amount": {
-                "type": "number",
-                "description": "The number available in the inventory"
-              }
-            }
-          },
-          "availToSellQty": {
-            "required": [
-              "amount",
-              "unit"
-            ],
-            "type": "object",
-            "properties": {
-              "unit": {
-                "type": "string",
-                "description": "The unit of measurement. Example: 'EACH'",
-                "enum": [
-                  "EACH"
-                ]
-              },
-              "amount": {
-                "type": "number",
-                "description": "The number available in the inventory"
-              }
-            }
-          },
-          "errors": {
-            "type": "array",
-            "items": {
-              "required": [
-                "code"
-              ],
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "string"
-                },
-                "field": {
-                  "type": "string"
-                },
-                "description": {
-                  "type": "string"
-                },
-                "info": {
-                  "type": "string"
-                },
-                "severity": {
-                  "type": "string",
-                  "enum": [
-                    "INFO",
-                    "WARN",
-                    "ERROR"
-                  ]
-                },
-                "category": {
-                  "type": "string",
-                  "enum": [
-                    "APPLICATION",
-                    "SYSTEM",
-                    "REQUEST",
-                    "DATA"
-                  ]
-                },
-                "causes": {
-                  "type": "array",
-                  "xml": {
-                    "wrapped": true
-                  },
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "code": {
-                        "type": "string"
-                      },
-                      "field": {
-                        "type": "string"
-                      },
-                      "type": {
-                        "type": "string"
-                      },
-                      "description": {
-                        "type": "string"
-                      }
-                    },
-                    "xml": {
-                      "name": "Cause"
-                    }
-                  }
-                },
-                "errorIdentifiers": {
-                  "type": "object",
-                  "additionalProperties": {
-                    "type": "object"
-                  }
-                }
-              },
-              "description": "Node Update Error description.",
-              "xml": {
-                "name": "Error"
-              }
-            }
-          }
-        }
-      },
-      "MultiNodeInventoryUpdateResponseDTO": {
-        "type": "object",
-        "properties": {
-          "sku": {
-            "type": "string",
-            "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
-          },
-          "nodes": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "shipNode": {
-                  "type": "string",
-                  "description": "ShipNode Id of the ship node for which the inventory is requested"
-                },
-                "status": {
-                  "type": "string",
-                  "description": "Node Update status. Example: 'Success'"
-                },
-                "errors": {
-                  "type": "array",
-                  "description": "Node Update Error description.",
-                  "items": {
-                    "required": [
-                      "code"
-                    ],
-                    "type": "object",
-                    "properties": {
-                      "code": {
-                        "type": "string"
-                      },
-                      "field": {
-                        "type": "string"
-                      },
-                      "description": {
-                        "type": "string"
-                      },
-                      "info": {
-                        "type": "string"
-                      },
-                      "severity": {
-                        "type": "string",
-                        "enum": [
-                          "INFO",
-                          "WARN",
-                          "ERROR"
-                        ]
-                      },
-                      "category": {
-                        "type": "string",
-                        "enum": [
-                          "APPLICATION",
-                          "SYSTEM",
-                          "REQUEST",
-                          "DATA"
-                        ]
-                      },
-                      "causes": {
-                        "type": "array",
-                        "xml": {
-                          "wrapped": true
-                        },
-                        "items": {
-                          "type": "object",
-                          "properties": {
-                            "code": {
-                              "type": "string"
-                            },
-                            "field": {
-                              "type": "string"
-                            },
-                            "type": {
-                              "type": "string"
-                            },
-                            "description": {
-                              "type": "string"
-                            }
-                          },
-                          "xml": {
-                            "name": "Cause"
-                          }
-                        }
-                      },
-                      "errorIdentifiers": {
-                        "type": "object",
-                        "additionalProperties": {
-                          "type": "object"
-                        }
-                      }
-                    },
-                    "description": "Node Update Error description.",
-                    "xml": {
-                      "name": "Error"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "UpdateInventoriesResponseNodeDTO": {
-        "type": "object",
-        "properties": {
-          "shipNode": {
-            "type": "string",
-            "description": "ShipNode Id of the ship node for which the inventory is requested"
-          },
-          "status": {
-            "type": "string",
-            "description": "Node Update status. Example: 'Success'"
-          },
-          "errors": {
-            "type": "array",
-            "description": "Node Update Error description.",
-            "items": {
-              "required": [
-                "code"
-              ],
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "string"
-                },
-                "field": {
-                  "type": "string"
-                },
-                "description": {
-                  "type": "string"
-                },
-                "info": {
-                  "type": "string"
-                },
-                "severity": {
-                  "type": "string",
-                  "enum": [
-                    "INFO",
-                    "WARN",
-                    "ERROR"
-                  ]
-                },
-                "category": {
-                  "type": "string",
-                  "enum": [
-                    "APPLICATION",
-                    "SYSTEM",
-                    "REQUEST",
-                    "DATA"
-                  ]
-                },
-                "causes": {
-                  "type": "array",
-                  "xml": {
-                    "wrapped": true
-                  },
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "code": {
-                        "type": "string"
-                      },
-                      "field": {
-                        "type": "string"
-                      },
-                      "type": {
-                        "type": "string"
-                      },
-                      "description": {
-                        "type": "string"
-                      }
-                    },
-                    "xml": {
-                      "name": "Cause"
-                    }
-                  }
-                },
-                "errorIdentifiers": {
-                  "type": "object",
-                  "additionalProperties": {
-                    "type": "object"
-                  }
-                }
-              },
-              "description": "Node Update Error description.",
-              "xml": {
-                "name": "Error"
-              }
-            }
-          }
-        }
-      },
-      "MultiNodeInventoryUpdateRequestDTO": {
-        "required": [
-          "inventories"
-        ],
-        "type": "object",
-        "properties": {
-          "inventories": {
-            "required": [
-              "nodes"
-            ],
-            "type": "object",
-            "properties": {
-              "nodes": {
-                "type": "array",
-                "items": {
-                  "required": [
-                    "inputQty",
-                    "shipNode"
-                  ],
-                  "type": "object",
-                  "properties": {
-                    "shipNode": {
-                      "type": "string",
-                      "description": "ShipNode Id of the ship node for which the inventory is requested"
-                    },
-                    "inputQty": {
-                      "required": [
-                        "amount",
-                        "unit"
-                      ],
-                      "type": "object",
-                      "properties": {
-                        "unit": {
-                          "type": "string",
-                          "description": "The unit of measurement. Example: 'EACH'",
-                          "enum": [
-                            "EACH"
-                          ]
-                        },
-                        "amount": {
-                          "type": "number",
-                          "description": "The number available in the inventory"
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "UpdateInventoriesRequestDTO": {
-        "required": [
-          "nodes"
-        ],
-        "type": "object",
-        "properties": {
-          "nodes": {
-            "type": "array",
-            "items": {
-              "required": [
-                "inputQty",
-                "shipNode"
-              ],
-              "type": "object",
-              "properties": {
-                "shipNode": {
-                  "type": "string",
-                  "description": "ShipNode Id of the ship node for which the inventory is requested"
-                },
-                "inputQty": {
-                  "required": [
-                    "amount",
-                    "unit"
-                  ],
-                  "type": "object",
-                  "properties": {
-                    "unit": {
-                      "type": "string",
-                      "description": "The unit of measurement. Example: 'EACH'",
-                      "enum": [
-                        "EACH"
-                      ]
-                    },
-                    "amount": {
-                      "type": "number",
-                      "description": "The number available in the inventory"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "UpdateInventoriesRequestNodeDTO": {
-        "required": [
-          "inputQty",
-          "shipNode"
-        ],
-        "type": "object",
-        "properties": {
-          "shipNode": {
-            "type": "string",
-            "description": "ShipNode Id of the ship node for which the inventory is requested"
-          },
-          "inputQty": {
-            "required": [
-              "amount",
-              "unit"
-            ],
-            "type": "object",
-            "properties": {
-              "unit": {
-                "type": "string",
-                "description": "The unit of measurement. Example: 'EACH'",
-                "enum": [
-                  "EACH"
-                ]
-              },
-              "amount": {
-                "type": "number",
-                "description": "The number available in the inventory"
-              }
-            }
-          }
+          "name": "inventory"
         }
       },
       "FeedId": {

@@ -659,10 +659,7 @@
                 "example": {
                   "feedId": "F129C19240844B97A3C6AD8F1A2C4997@AU8BAQA",
                   "feedStatus": "PROCESSED",
-                  "shipNode": null,
-                  "submittedBy": null,
                   "feedSubmissionDate": 1568310803059,
-                  "ingestionErrors": null,
                   "itemsReceived": 1,
                   "itemsSucceeded": 1,
                   "itemsFailed": 0,
@@ -689,13 +686,10 @@
                             }
                           ]
                         },
-                        "ingestionStatus": "SUCCESS",
-                        "ingestionErrors": null,
-                        "additionalAttributes": null
+                        "ingestionStatus": "SUCCESS"
                       }
                     ]
-                  },
-                  "additionalAttributes": null
+                  }
                 }
               }
             }
@@ -1637,7 +1631,6 @@
                         "feedStatus": "ERROR",
                         "feedDate": 1567808525522,
                         "modifiedDtm": 1567808525661,
-                        "vendorId": "null",
                         "itemDataErrorCount": 0,
                         "itemSystemErrorCount": 0,
                         "itemTimeoutErrorCount": 0,
