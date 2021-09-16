@@ -62,6 +62,8 @@ intercept all API methods to prevent the user from having to input the same auth
 Until Walmart changes their OpenApi schema so that auto-generation does not require these parameters, this
 the approach will greatly simplify making API calls.
 
+### Preferred Usage
+
 ```typescript
 import walmartMarketplaceApi, { OrdersApi, defaultParams } from '@whitebox-co/walmart-marketplace-api';
 
@@ -95,7 +97,26 @@ const exampleOrder = await ordersApi.getAnOrder({
 });
 ```
 
-### Alternative Usage (using Api's Directly)
+### Class Based Alternative
+
+```typescript
+import { WalmartApi, OrdersApi, defaultParams } from '@whitebox-co/walmart-marketplace-api';
+
+const walmartApi = new WalmartApi({
+	clientId,
+	clientSecret,
+	consumerChannelType,
+});
+
+const ordersApi = await walmartApi.getConfiguredApi(OrdersApi);
+
+const exampleOrder = await ordersApi.getAnOrder({
+	...defaultParams,
+	...customParams,
+});
+```
+
+### Direct API Usage
 
 ```typescript
 import { Configuration, AuthenticationApi, OrdersApi } from '@whitebox-co/walmart-marketplace-api';
@@ -199,27 +220,95 @@ npm run generate-apis
 Which will start the generation and processing of all of the schemas and eventually finish with all api's created in
 the `src/apis` directory.
 
-## Item Model Generation
+## Model Generation
+
+Walmart uses a bunch of JSON Schema files that define how data should be formatted for bulk creations and updates.
+These all use JSON schemas specific to each operation. These schemas are available on Walmart's Developer site but we also download and keep them in the `./docs/` directory.
+
+Each schema is generated into types using `quicktype` and saved in their respective `src/model` folders.
+
+### Item Model Generation
 
 Item Models
 [(MP_ITEM_MATCH, MP_ITEM, MP_MAINTENANCE, MP_WFS_ITEM)](https://developer.walmart.com/doc/us/us-mp/us-mp-items/#1232)
 are saved to the [docs/item-schemas](docs/items-schemas) directory.
 
-These schemas are generated manually into the models found in the [src/models] directory using [quicktype](https://github.com/quicktype/quicktype).
+These schemas are generated manually using [quicktype](https://github.com/quicktype/quicktype) into the
+`src/models/items` directory.
 
 If you wish to generate these for some reason, install `quicktype` globally and issue the following commands:
 
 ```sh
-quicktype -l ts ./docs/item-schemas/MP_ITEM_MATCH_v4.json -o ./src/models/v4/mpItemMatch.ts
-quicktype -l ts ./docs/item-schemas/MP_ITEM_SPEC_4.3.json -o ./src/models/v4/mpItem4.3.ts
-quicktype -l ts ./docs/item-schemas/MP_MAINTENANCE_SPEC_4.3.json -o ./src/models/v4/mpMaintenance4.3.ts
-quicktype -l ts ./docs/item-schemas/MP_WFS_ITEM_SPEC_4.2.json -o ./src/models/v4/mpWfsItem4.2.ts
+quicktype -s schema ./docs/item-schemas/MP_ITEM_MATCH_v4.json -o ./src/models/item/v4/mpItemMatch4.ts
+quicktype -s schema ./docs/item-schemas/MP_ITEM_SPEC_4.3.json -o ./src/models/item/v4/mpItem4.3.ts
+quicktype -s schema ./docs/item-schemas/MP_MAINTENANCE_SPEC_4.3.json -o ./src/models/item/v4/mpMaintenance4.3.ts
+quicktype -s schema ./docs/item-schemas/MP_WFS_ITEM_SPEC_4.2.json -o ./src/models/item/v4/mpWfsItem4.2.ts
 
-quicktype -l ts ./docs/item-schemas/V3-Spec-Marketplace-Items-3.2-JSON/ -o ./src/models/v3/mpItems3.2.ts
+quicktype -s schema ./docs/item-schemas/V3-Spec-Marketplace-Items-3.2-JSON/ -o ./src/models/item/v3/mpItems3.2.ts
 ```
 
 [MP_MAINTENANCE_SPEC_4.3.json](./docs/item-schemas/MP_MAINTENANCE_SPEC_4.3.json) will fail to generate as
 is not a complete schema. It is missing at the end of the file. Complain to walmart!
+
+### Inventory Model Generation
+
+Inventory Model
+[InventoryJSONSchemaV1](https://developer.walmart.com/doc/us/us-mp/us-mp-inventory/) is saved to the
+[docs/inventory-schemas](docs/inventory-schemas) directory.
+
+These schemas are generated manually using [quicktype](https://github.com/quicktype/quicktype) into the
+`src/models/inventory` directory.
+
+If you wish to generate these for some reason, install `quicktype` globally and issue the following commands:
+
+```sh
+quicktype -s schema ./docs/inventory-schemas/Inventory.json -o ./src/models/inventory/v1/inventory.ts
+quicktype -s schema ./docs/inventory-schemas/InventoryFeed.json -o ./src/models/inventory/v1/inventoryFeed.ts
+quicktype -s schema ./docs/inventory-schemas/InventoryHeader.json -o ./src/models/inventory/v1/inventoryHeader.ts
+quicktype -s schema ./docs/inventory-schemas/WfsInventory.json -o ./src/models/inventory/v1/wfsInventory.ts
+```
+
+### Price Model Generation
+
+Price Model
+[PriceJSONSchemaV1](https://developer.walmart.com/doc/us/us-mp/us-mp-price/) is saved to the
+[docs/price-schemas](docs/price-schemas) directory.
+
+These schemas are generated manually using [quicktype](https://github.com/quicktype/quicktype) into the
+`src/models/price` directory.
+
+If you wish to generate these for some reason, install `quicktype` globally and issue the following commands:
+
+```sh
+quicktype -s schema ./docs/price-schemas/Price.json -o ./src/models/price/v1/price.ts
+quicktype -s schema ./docs/price-schemas/PriceFeed.json -o ./src/models/price/v1/priceFeed.ts
+quicktype -s schema ./docs/price-schemas/PriceHeader.json -o ./src/models/price/v1/priceHeader.ts
+```
+
+The `Price.json` schema is not able to be used with `quicktype` for typescript generation without modification.
+
+The currency definition:
+
+```json
+	"currency": {
+		"type": "object",
+		"additionalProperties": false,
+		"enum": ["USD", "CAD"]
+	}
+```
+
+should be:
+
+```json
+	"currency": {
+		"enum": ["USD", "CAD"]
+	}
+```
+
+This seems like a bug with the schema but will leave that up to Walmart to decide.
+
+We have changed this in our downloaded schema doc but you should be aware if you download the schema from walmart
+directly.
 
 ## Token Authorization and Caching
 

@@ -3,6 +3,9 @@ updates:
     # Keep npm dependencies up to date
     - package-ecosystem: 'npm'
       directory: '/'
+      target-branch: develop
+      reviewers:
+          - 'josh-fisher'
       schedule:
           interval: 'daily'
       labels:

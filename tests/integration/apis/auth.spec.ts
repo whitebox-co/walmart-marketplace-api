@@ -2,10 +2,10 @@ import { v4 as uuidv4 } from 'uuid';
 import * as env from '../../environment';
 import { Configuration } from '../../../src/index';
 import { AuthenticationApi } from '../../../src/apis/auth';
-import { addInterceptors, removeInterceptors } from '../../../utils/payload-interceptors';
+import { addInterceptor, removeInterceptor } from '../../../utils/payload-interceptors';
 
 describe(`${AuthenticationApi.name}`, () => {
-	let interceptors: any;
+	let interceptor: any;
 	let authorization: string;
 	let authApi: AuthenticationApi;
 
@@ -18,11 +18,11 @@ describe(`${AuthenticationApi.name}`, () => {
 
 	beforeEach(() => {
 		const testName = expect.getState().currentTestName;
-		interceptors = Object.values(addInterceptors(testName));
+		interceptor = addInterceptor(testName);
 	});
 
 	afterEach(() => {
-		removeInterceptors(interceptors);
+		removeInterceptor(interceptor);
 	});
 
 	describe('#tokenAPI', () => {

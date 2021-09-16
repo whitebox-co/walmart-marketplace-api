@@ -2,7 +2,7 @@
 	"$schema": "./node_modules/markdownlint/schema/markdownlint-config-schema.json",
 	"default": true,
 	"MD013": {
-		"line_length": 120
+		"line_length": 240
 	},
 	"MD010": {
 		"code_blocks": false

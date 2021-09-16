@@ -1132,6 +1132,7 @@ export const PricesApiAxiosParamCreator = function (
       }
 
       localVarHeaderParameter["Content-Type"] = "multipart/form-data";
+      localVarHeaderParameter["Accept"] = "application/json";
 
       setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
       let headersFromBaseOptions =
@@ -1140,6 +1141,7 @@ export const PricesApiAxiosParamCreator = function (
         ...localVarHeaderParameter,
         ...headersFromBaseOptions,
         ...options.headers,
+        ...localVarFormParams.headers()
       };
       localVarRequestOptions.data = localVarFormParams;
 

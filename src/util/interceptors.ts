@@ -1,5 +1,3 @@
-import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
-
 import { WalmartMarketplaceApi } from '../constants';
 
 /**
@@ -26,32 +24,4 @@ const apiInterceptor = <T extends WalmartMarketplaceApi>(obj: T, fn: any) => {
 	});
 };
 
-/**
- * Utility to abstract request interceptor as implementation might be different for different places
- *
- * @param onFulfilled
- * @param onRejected
- * @returns {Promise} A request promise
- */
-const requestInterceptor = (
-	onFulfilled: (value: AxiosRequestConfig) => AxiosRequestConfig | Promise<AxiosRequestConfig>,
-	onRejected: (error: any) => any
-) => {
-	return axios.interceptors.request.use(onFulfilled, onRejected);
-};
-
-/**
- * Utility to abstract response interceptor as implementation might be different for different places
- *
- * @param onFulfilled
- * @param onRejected
- * @returns {Promise} A request promise
- */
-const responseInterceptor = (
-	onFulfilled: (value: AxiosResponse<any>) => AxiosResponse<any> | Promise<AxiosResponse<any>>,
-	onRejected: (error: any) => any
-) => {
-	axios.interceptors.response.use(onFulfilled, onRejected);
-};
-
-export { apiInterceptor, requestInterceptor, responseInterceptor };
+export { apiInterceptor };

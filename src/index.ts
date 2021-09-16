@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { AxiosResponse } from 'axios';
 import { apiInterceptor } from './util/interceptors';
 import { defaultParams, WalmartMarketplaceApi } from './constants';
+import FormData from 'form-data';
 
 export interface WalmartApiCredentials {
 	clientId: string;
@@ -156,6 +157,8 @@ const getConfiguredApi = async <T extends WalmartMarketplaceApi>(
 	credentials: WalmartApiCredentials
 ): Promise<T> => {
 	const authorizedConfiguration = await getAuthorizedConfiguration(credentials);
+	authorizedConfiguration.formDataCtor = FormData;
+
 	const api = new Api(authorizedConfiguration);
 
 	// run an apiInterceptor in order to fill in defaultParams necessary for each call.
@@ -169,6 +172,14 @@ const getConfiguredApi = async <T extends WalmartMarketplaceApi>(
 		api[fnName](...fnArgs);
 	});
 };
+
+export class WalmartApi {
+	constructor(public credentials: WalmartApiCredentials) {}
+
+	getConfiguredApi = async <T extends WalmartMarketplaceApi>(Api: new (config: Configuration) => T): Promise<T> => {
+		return await getConfiguredApi(Api, this.credentials);
+	};
+}
 
 export * from './apis';
 export * from './apis/configuration';
