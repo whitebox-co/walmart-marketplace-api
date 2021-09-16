@@ -1710,6 +1710,7 @@ export const InventoryApiAxiosParamCreator = function (
       }
 
       localVarHeaderParameter["Content-Type"] = "multipart/form-data";
+      localVarHeaderParameter["Accept"] = "application/json";
 
       setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
       let headersFromBaseOptions =
@@ -1718,6 +1719,7 @@ export const InventoryApiAxiosParamCreator = function (
         ...localVarHeaderParameter,
         ...headersFromBaseOptions,
         ...options.headers,
+        ...localVarFormParams.getHeaders()
       };
       localVarRequestOptions.data = localVarFormParams;
 
