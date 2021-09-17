@@ -9,8 +9,8 @@ import { InlineResponse200ListElementsOrderLinesOrderLineStatusesOrderLineStatus
  * @param multiLineOrders
  * @returns
  */
-const convertOrderLines = (multiLineOrders) => {
-	return multiLineOrders[0].orderLines.orderLine.map((orderLine) => {
+const convertOrderLines = (multiLineOrder) => {
+	return multiLineOrder.orderLines.orderLine.map((orderLine) => {
 		return {
 			lineNumber: orderLine.lineNumber,
 			orderLineStatuses: {
@@ -120,6 +120,8 @@ describe(`${OrdersApi.name}`, () => {
 				status: 'Acknowledged',
 			});
 
+			expect(ordersResponse.data.list.elements.order.length).toBeGreaterThan(0);
+
 			const order = ordersResponse.data.list.elements.order[0];
 
 			// re acknowledge an order so we comply with request but do not mess up any other orders
@@ -137,7 +139,7 @@ describe(`${OrdersApi.name}`, () => {
 
 		// Scenario 4 - Ship entire order - Ship an order with multi lines
 		it('should pass Scenario 4', async () => {
-			// get an already shipped order
+			// get an already delivered order
 			const ordersResponse = await ordersApi.getAllOrders({
 				...defaultParams,
 				limit: '100',
@@ -150,13 +152,15 @@ describe(`${OrdersApi.name}`, () => {
 				return order.orderLines?.orderLine?.length > 1;
 			});
 
+			expect(multiLineOrders.length).toBeGreaterThan(0);
+
 			// convert order orderLines to shipping order order lines (because of course they are slightly different)
-			const shippingOrderOrderLines = convertOrderLines(multiLineOrders);
+			const shippingOrderOrderLines = convertOrderLines(multiLineOrders[0]);
 
 			// response should throw 400 because this order was already delivered
 			const shipOrderResponse = await ordersApi.shippingUpdates({
 				...defaultParams,
-				purchaseOrderId: multiLineOrders[0].purchaseOrderId,
+				purchaseOrderId: multiLineOrders[0]?.purchaseOrderId,
 				inlineObject: {
 					orderShipment: {
 						orderLines: {
@@ -170,12 +174,12 @@ describe(`${OrdersApi.name}`, () => {
 			expect(shipOrderResponse.data).toBeDefined();
 			expect(shipOrderResponse.data.order).toBeDefined();
 			expect(shipOrderResponse.data.order.purchaseOrderId).toBeDefined();
-			expect(shipOrderResponse.data.order.purchaseOrderId).toEqual(multiLineOrders[0].purchaseOrderId);
+			expect(shipOrderResponse.data.order.purchaseOrderId).toEqual(multiLineOrders[0]?.purchaseOrderId);
 		});
 
 		// Scenario 5 - Ship order line - Ship one order line at a time in a multi line order
 		it('should pass Scenario 5', async () => {
-			// get an already shipped order
+			// get an already delivered order
 			const ordersResponse = await ordersApi.getAllOrders({
 				...defaultParams,
 				limit: '100',
@@ -188,12 +192,14 @@ describe(`${OrdersApi.name}`, () => {
 				return order.orderLines?.orderLine?.length > 1;
 			});
 
-			const shippingOrderOrderLines = convertOrderLines(multiLineOrders);
+			expect(multiLineOrders.length).toBeGreaterThan(0);
+
+			const shippingOrderOrderLines = convertOrderLines(multiLineOrders[0]);
 
 			// response should throw 400 because this order was already delivered
 			const shipOrderResponse = await ordersApi.shippingUpdates({
 				...defaultParams,
-				purchaseOrderId: multiLineOrders[0].purchaseOrderId,
+				purchaseOrderId: multiLineOrders[0]?.purchaseOrderId,
 				inlineObject: {
 					orderShipment: {
 						orderLines: {
@@ -207,7 +213,7 @@ describe(`${OrdersApi.name}`, () => {
 			expect(shipOrderResponse.data).toBeDefined();
 			expect(shipOrderResponse.data.order).toBeDefined();
 			expect(shipOrderResponse.data.order.purchaseOrderId).toBeDefined();
-			expect(shipOrderResponse.data.order.purchaseOrderId).toEqual(multiLineOrders[0].purchaseOrderId);
+			expect(shipOrderResponse.data.order.purchaseOrderId).toEqual(multiLineOrders[0]?.purchaseOrderId);
 		});
 	});
 });
