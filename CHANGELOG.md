@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1](https://github.com/whitebox-co/walmart-marketplace-api/compare/v1.2.0...v1.2.1) (2021-09-17)
+
+### Bug Fixes
+
+-   updating npm deps ([046011d](https://github.com/whitebox-co/walmart-marketplace-api/commit/046011da72c9f203ede11a609cfeb43c9cac0dc0))
+-   **deps:** bump axios from 0.21.2 to 0.21.4 ([#27](https://github.com/whitebox-co/walmart-marketplace-api/issues/27)) ([ce1dfa5](https://github.com/whitebox-co/walmart-marketplace-api/commit/ce1dfa5bd1567505a0a93b21d7ca0b354363a2d5))
+-   orders shippingUpdates was serializing data before post unecessarily causing errors ([2684d9f](https://github.com/whitebox-co/walmart-marketplace-api/commit/2684d9f017f44cdbce62f5921ba8ebca57e83fe8))
+
 # [1.2.0](https://github.com/whitebox-co/walmart-marketplace-api/compare/v1.1.0...v1.2.0) (2021-09-16)
 
 ### Features
