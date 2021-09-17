@@ -2,6 +2,7 @@ import * as env from '../../environment';
 import walmartApi, { OrdersApi, defaultParams } from '../../../src/index';
 import { addInterceptor, removeInterceptor } from '../../../utils/payload-interceptors';
 import { InlineResponse200ListElementsOrderLinesOrderLineStatusesOrderLineStatusStatusEnum } from '../../../src/apis/orders';
+import { getAllRecursively } from '../../../src/util/requestHelpers';
 
 /**
  * Convert order orderLines to shipping order order lines (because of course they are slightly different)
@@ -74,6 +75,13 @@ describe(`${OrdersApi.name}`, () => {
 			expect(ordersResponse.data.list.elements.order).toBeDefined();
 			expect(ordersResponse.data.list.elements.order).toBeInstanceOf(Array);
 		});
+
+		it('should recursively get all orders', async () => {
+			const orders = await getAllRecursively(ordersApi, ordersApi.getAllOrders.name, '100');
+
+			expect(orders).toBeDefined();
+			expect(orders.length).toBeGreaterThan(0);
+		}, 20000);
 	});
 
 	describe('#getAllReleasedOrders', () => {
