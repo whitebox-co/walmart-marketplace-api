@@ -149,6 +149,24 @@ const orderResponse = await ordersApi.getAnOrder({
 });
 ```
 
+## Helpers
+
+Some parts of the Walmart REST endpoint require helpers in order to achieve proper usage above what the auto-generated
+library provides. These helpers will generally be available in the [util](./src/utils/) folder.
+
+### Request Helpers
+
+`requestHelper` Can be found in the [util](.src/utils/) folder.
+
+```typescript
+// getAllRecursively usage
+import { getAllRecursively } from '../../../src/util/requestHelpers';
+
+const walmartApi = new WalmartApi(...);
+const ordersApi = await walmartApi.getConfiguredApi(...);
+const orders = await getAllRecursively(ordersApi, ordersApi.getAllOrders.name);
+```
+
 ## Docs
 
 There are three different types of documentation included for this repo.
