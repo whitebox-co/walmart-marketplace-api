@@ -162,14 +162,16 @@ found often times become unresponsive in certain browsers.
 
 ### Viewing Docs
 
-We have packaged live-server as a way to quickly view the docs. Issue any one of the following commands to build and
-view any of the docs.
+We have packaged [http-server](https://github.com/http-party/http-server) as a dev dependency as a way to quickly view the docs. Issue any one of the following commands to build and view any of the docs.
 
 ```sh
 npm run docs # or `npm run docs:typedoc`
 npm run docs:redoc
 npm run docs:swaggerui
 ```
+
+**Note:** `http-server` will try and serve the docs on port `8080` and will auto launch your browser to the
+specified documentation.
 
 ## Development
 
