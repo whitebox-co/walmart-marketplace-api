@@ -7,7 +7,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
--   add the ability to throttle requests ([#18](https://github.com/whitebox-co/walmart-marketplace-api/issues/18)) ([9851c9f](https://github.com/whitebox-co/walmart-marketplace-api/commit/9851c9f9904a0daf68a2a0df976ad6ea01cae46b))
+-   implement a solution to handle recursively getting All data([#38](https://github.com/whitebox-co/walmart-marketplace-api/issues/18)) ([9851c9f](https://github.com/whitebox-co/walmart-marketplace-api/commit/9851c9f9904a0daf68a2a0df976ad6ea01cae46b))
 
 ## [1.2.1](https://github.com/whitebox-co/walmart-marketplace-api/compare/v1.2.0...v1.2.1) (2021-09-17)
 
