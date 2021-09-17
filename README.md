@@ -342,6 +342,16 @@ These need to be moved over to github issues.
 Feel free to open PR's. [Whitebox](https://whitebox.com/) is currently using this in our production code and we will
 evaluate changes on a case by case basis.
 
+See the [Contributing](CONTRIBUTING.md) documentation for further details.
+
+## Code of Conduct
+
+This project has adopted the [Contributor Covenant Code of Conduct](https://www.contributor-covenant.org/).
+
+See the [Code Of Conduct](CODE_OF_CONDUCT.md) documentation for further details.
+
 ## License
 
 ![GitHub](https://img.shields.io/github/license/whitebox-co/walmart-marketplace-api)
+
+A copy of the license is provided in the root directory under [LICENSE](LICENSE)
