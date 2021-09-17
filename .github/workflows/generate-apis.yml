@@ -63,13 +63,6 @@ jobs:
             - name: Test
               run: npm run test:unit
 
-            - name: Test integration
-              run: npm run test:integration
-              env:
-                  CLIENT_ID: ${{ secrets.WALMART_CLIENT_ID }}
-                  CLIENT_SECRET: ${{ secrets.WALMART_CLIENT_SECRET }}
-                  CONSUMER_CHANNEL_TYPE: ${{ secrets.WALMART_CONSUMER_CHANNEL_TYPE }}
-
             - name: Build
               run: npm run build
 
