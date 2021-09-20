@@ -8,7 +8,7 @@ import { defaultParams } from '../index';
  *
  * @param {T} api The INSTANCE of an api (ex. ordersApi, inventoryApi, etc)
  * @param {string} methodName The name of the instanced method to use for request (ex. ordersApi.getAllOrders.name)
- * @param {string} limit The limit param sent to all endpoints that require pagination
+ * @param {object} requestParams The request parameters for the type of API.
  * @param {string} nextCursor Data returned from previous response to handle requesting next pagination records -       Optional and should be null for first call.
  *
  * Note: Please use with caution. It is possible for this to be long running and quickly consume your request
@@ -16,7 +16,12 @@ import { defaultParams } from '../index';
  *
  * @returns {Promise<T[]>} Array of data based on the endpoint requested
  */
-const getAllRecursively = async <T>(api: T, methodName: string, limit = '100', nextCursor?: string): Promise<T[]> => {
+const getAllRecursively = async <T>(
+	api: T,
+	methodName: string,
+	requestParams = { limit: '100' },
+	nextCursor?: string
+): Promise<T[]> => {
 	// parse out cursor params
 	const nextCursorUrlParams = new URLSearchParams(nextCursor);
 
@@ -34,7 +39,7 @@ const getAllRecursively = async <T>(api: T, methodName: string, limit = '100', n
 	const ordersResponse = await api[methodName](
 		{
 			...defaultParams,
-			limit,
+			...requestParams,
 		},
 		options
 	);
@@ -43,7 +48,7 @@ const getAllRecursively = async <T>(api: T, methodName: string, limit = '100', n
 	const { meta, elements } = ordersResponse.data.list;
 	let data = [...elements.order];
 	if (meta.nextCursor) {
-		const recursiveData = await getAllRecursively(api, methodName, limit, meta.nextCursor);
+		const recursiveData = await getAllRecursively(api, methodName, requestParams, meta.nextCursor);
 		data = [...data, ...recursiveData];
 	}
 
