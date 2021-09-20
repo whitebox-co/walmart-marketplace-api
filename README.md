@@ -164,7 +164,8 @@ import { getAllRecursively } from '../../../src/util/requestHelpers';
 
 const walmartApi = new WalmartApi(...);
 const ordersApi = await walmartApi.getConfiguredApi(...);
-const orders = await getAllRecursively(ordersApi, ordersApi.getAllOrders.name);
+const requestParams = {limit: 20};
+const orders = await getAllRecursively(ordersApi, ordersApi.getAllOrders.name, requestParams);
 ```
 
 ## Docs
