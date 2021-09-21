@@ -77,7 +77,7 @@ describe(`${OrdersApi.name}`, () => {
 		});
 
 		it('should recursively get all orders', async () => {
-			const orders = await getAllRecursively(ordersApi, ordersApi.getAllOrders.name, '100');
+			const orders = await getAllRecursively(ordersApi, ordersApi.getAllOrders.name);
 
 			expect(orders).toBeDefined();
 			expect(orders.length).toBeGreaterThan(0);
