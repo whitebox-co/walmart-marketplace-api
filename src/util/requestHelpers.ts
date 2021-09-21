@@ -26,9 +26,9 @@ const getAllRecursively = async <T>(
 	const nextCursorUrlParams = new URLSearchParams(nextCursor);
 
 	// convert to array for library usage
-	const query = [];
-	for (const entry of nextCursorUrlParams.entries()) {
-		query.push(entry);
+	const query = {};
+	for (const [key, value] of nextCursorUrlParams.entries()) {
+		query[key] = value;
 	}
 
 	const options = nextCursor && {
@@ -47,6 +47,7 @@ const getAllRecursively = async <T>(
 	//  recursively get new data
 	const { meta, elements } = ordersResponse.data.list;
 	let data = [...elements.order];
+
 	if (meta.nextCursor) {
 		const recursiveData = await getAllRecursively(api, methodName, requestParams, meta.nextCursor);
 		data = [...data, ...recursiveData];
