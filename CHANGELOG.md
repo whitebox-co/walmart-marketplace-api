@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1](https://github.com/whitebox-co/walmart-marketplace-api/compare/v2.0.0...v2.0.1) (2021-09-21)
+
+### Bug Fixes
+
+-   **requestHelper:** getAllRecusively was not properly forming recusive requests ([e00f805](https://github.com/whitebox-co/walmart-marketplace-api/commit/e00f805cc66bb1907668c5be7be44a9e86605ab4))
+
 # [2.0.0](https://github.com/whitebox-co/walmart-marketplace-api/compare/v1.3.1...v2.0.0) (2021-09-20)
 
 ### Code Refactoring
