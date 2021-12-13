@@ -20,6 +20,132 @@
     }
   ],
   "paths": {
+    "/v3/items/{SKU}": {
+      "delete": {
+        "tags": [
+          "Items"
+        ],
+        "summary": "Retire an item",
+        "description": "Completely deactivates and un-publishes an item from the site.",
+        "operationId": "retireAnItem",
+        "parameters": [
+          {
+            "name": "SKU",
+            "in": "path",
+            "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: ':', '/', '?', '#', '[', ']', '@', '!', '$', '&', \"'\", '(', ')', '*', '+', ',', ';', '=', as well as '%' itself. Other characters don't need to be encoded.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Basic YzcyOTFjNmItNzI5MC00...."
+          },
+          {
+            "in": "header",
+            "name": "WM_SEC.ACCESS_TOKEN",
+            "description": "The access token retrieved in the Token API call",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
+          },
+          {
+            "in": "header",
+            "name": "WM_CONSUMER.CHANNEL.TYPE",
+            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "WM_QOS.CORRELATION_ID",
+            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
+          },
+          {
+            "in": "header",
+            "name": "WM_SVC.NAME",
+            "description": "Walmart Service Name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Walmart Service Name"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "required": [
+                    "sku"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "sku": {
+                      "type": "string",
+                      "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Message confirming the deletion or retirement of an item from the Walmart Catalog"
+                    }
+                  },
+                  "xml": {
+                    "name": "ItemRetireResponse"
+                  }
+                },
+                "example": {
+                  "sku": "97964_KFTest",
+                  "message": "Thank you.  Your item has been submitted for retirement from Walmart Catalog.  Please note that it can take up to 48 hours for items to be retired from our catalog.",
+                  "additionalAttributes": null,
+                  "errors": null
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "required": [
+                    "sku"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "sku": {
+                      "type": "string",
+                      "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Message confirming the deletion or retirement of an item from the Walmart Catalog"
+                    }
+                  },
+                  "xml": {
+                    "name": "ItemRetireResponse"
+                  }
+                },
+                "example": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<ns2:ItemRetireResponse xmlns:ns2=\"http://walmart.com/\">\n    <ns2:sku>97964_KFTest</ns2:sku>\n    <ns2:message>Thank you.  Your item has been submitted for retirement from Walmart Catalog.  Please note that it can take up to 48 hours for items to be retired from our catalog.</ns2:message>\n</ns2:ItemRetireResponse>"
+              }
+            }
+          }
+        }
+      }
+    },
     "/v3/items/associations": {
       "post": {
         "tags": [
@@ -322,747 +448,6 @@
         }
       }
     },
-    "/v3/items/catalog/search": {
-      "post": {
-        "tags": [
-          "Items"
-        ],
-        "summary": "Catalog Search",
-        "description": "Get Catalog Search Result",
-        "externalDocs": {
-          "description": "View Guide",
-          "url": "/doc/us/mp/us-mp-items/"
-        },
-        "operationId": "getCatalogSearch",
-        "parameters": [
-          {
-            "name": "page",
-            "in": "query",
-            "description": "number of page",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 0
-            }
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "number of items",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 100
-            }
-          },
-          {
-            "name": "nextCursor",
-            "in": "query",
-            "description": "nextCursor",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
-          },
-          {
-            "in": "header",
-            "name": "WM_SEC.ACCESS_TOKEN",
-            "description": "The access token retrieved in the Token API call",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
-          },
-          {
-            "in": "header",
-            "name": "WM_CONSUMER.CHANNEL.TYPE",
-            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "header",
-            "name": "WM_QOS.CORRELATION_ID",
-            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
-          },
-          {
-            "in": "header",
-            "name": "WM_SVC.NAME",
-            "description": "Walmart Service Name",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Walmart Service Name"
-          }
-        ],
-        "requestBody": {
-          "description": "Request fields",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "query": {
-                    "type": "object",
-                    "properties": {
-                      "field": {
-                        "type": "string",
-                        "description": "| Attribute | Description | Data Type\n| --- | ----------- | -------\n| productName | Product Name, can do white card search | string |\n| sku | An arbitrary alphanumeric unique ID, seller-specified, identifying each item | string |\n| gtin | Specifies a Global Trade Item Number (GTIN) search. GTIN must be 14 digits. | string |\n| wpid | The Walmart Product ID assigned by Walmart to the item when listed on Walmart.com | string |\n| upc | Specifies a Universal Product Code (UPC) search. UPC must be 12 digits. | string |\n| isbn | International Standard Book Number | string |\n| ean | Product ID, EANs must be 13 digits in length. | string |\n| itemId | A unique Id which identifies the item | string |",
-                        "enum": [
-                          "productName",
-                          "sku",
-                          "gtin",
-                          "wpid",
-                          "upc",
-                          "isbn",
-                          "ean",
-                          "itemId"
-                        ]
-                      },
-                      "value": {
-                        "type": "string"
-                      }
-                    }
-                  },
-                  "filters": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "field": {
-                          "type": "string",
-                          "description": "| Attribute | Description | Data Type\n| num_reviews | The reviewed times for Items | string |\n| customerRating | Customer rating | string |\n| lifecycleStatus | The lifecycle status of an item describes where the item listing is in the overall lifecycle | string |\n| publishedStatus | The published status of an item describes where the item is in the submission process | string |\n| unpublishedReasons | It outlines the reason for an item when unpublished | string |\n| inventoryStatus | It indicates whether the product is in stock or not | string |\n| price | Price of the Item | string |\n| fulfillmentType | Fulfillment information | string |",
-                          "enum": [
-                            "num_reviews",
-                            "customerRating",
-                            "lifecycleStatus",
-                            "publishedStatus",
-                            "unpublishedReasons",
-                            "inventoryStatus",
-                            "price",
-                            "fulfillmentType"
-                          ]
-                        },
-                        "op": {
-                          "type": "string",
-                          "enum": [
-                            "equals",
-                            "between",
-                            "greater_than",
-                            "less_than"
-                          ]
-                        },
-                        "values": {
-                          "type": "array",
-                          "items": {
-                            "type": "string"
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "sort": {
-                    "type": "object",
-                    "properties": {
-                      "field": {
-                        "type": "string",
-                        "description": "| Attribute | Description | Data Type\n| --- | ----------- | -------\n| num_reviews | The revied number for Items | string |\n| customerRating | An arbitrary alphanumeric unique ID, seller-specified, identifying each item | string |\n| lifecycleStatus | The lifecycle status of an item describes where the item listing is in the overall lifecycle | string |\n| publishedStatus | The published status of an item describes where the item is in the submission process | string |\n| unpublishedReasons | It outlines the reason for an item when unpublished | string |\n| inventoryStatus | It indicates whether the product is in stock or not | string |",
-                        "enum": [
-                          "num_reviews",
-                          "customerRating",
-                          "lifecycleStatus",
-                          "publishedStatus",
-                          "unpublishedReasons",
-                          "inventoryStatus"
-                        ]
-                      },
-                      "order": {
-                        "type": "string",
-                        "enum": [
-                          "ASC",
-                          "DESC"
-                        ]
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "description": "Response Status"
-                    },
-                    "payload": {
-                      "type": "array",
-                      "description": "Items included in the response list",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "mart": {
-                            "type": "string",
-                            "description": "The marketplace name. Example: Walmart_US",
-                            "enum": [
-                              "WALMART_US",
-                              "WALMART_CA",
-                              "ASDA_GM",
-                              "WALMART_MEXICO"
-                            ]
-                          },
-                          "sku": {
-                            "type": "string",
-                            "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
-                          },
-                          "wpid": {
-                            "type": "string",
-                            "description": "The Walmart Product ID assigned by Walmart to the item when listed on Walmart.com"
-                          },
-                          "upc": {
-                            "type": "string",
-                            "description": "The 12-digit bar code used extensively for retail packaging in the United States"
-                          },
-                          "isbn": {
-                            "type": "string",
-                            "description": "International Standard Book Number"
-                          },
-                          "ean": {
-                            "type": "string",
-                            "description": "Product ID, EANs must be 13 digits in length."
-                          },
-                          "gtin": {
-                            "type": "string",
-                            "description": "The GTIN-compatible Product ID (i.e. UPC or EAN). UPCs must be 12 or 14 digitis in length. EANs must be 13 digits in length."
-                          },
-                          "itemId": {
-                            "type": "string",
-                            "description": "A unique Id which identifies the item."
-                          },
-                          "productName": {
-                            "type": "string",
-                            "description": "A seller-specified, alphanumeric string uniquely identifying the product name. Example: 'Sterling Silver Blue Diamond Heart Pendant with 18in Chain'"
-                          },
-                          "shelf": {
-                            "type": "string",
-                            "description": "Walmart assigned an item shelf name"
-                          },
-                          "productType": {
-                            "type": "string",
-                            "description": "A seller-specified, alphanumeric string uniquely identifying the Product Type. Example: 'Diamond'"
-                          },
-                          "price": {
-                            "type": "object",
-                            "properties": {
-                              "unit": {
-                                "type": "string",
-                                "description": "The currency type. Example: USD for US Dollars",
-                                "enum": [
-                                  "AED",
-                                  "AFN",
-                                  "ALL",
-                                  "AMD",
-                                  "ANG",
-                                  "AOA",
-                                  "ARS",
-                                  "AUD",
-                                  "AWG",
-                                  "AZN",
-                                  "BAM",
-                                  "BBD",
-                                  "BDT",
-                                  "BGN",
-                                  "BHD",
-                                  "BIF",
-                                  "BMD",
-                                  "BND",
-                                  "BOB",
-                                  "BRL",
-                                  "BSD",
-                                  "BTN",
-                                  "BWP",
-                                  "BYR",
-                                  "BZD",
-                                  "CAD",
-                                  "CDF",
-                                  "CHF",
-                                  "CLP",
-                                  "CNY",
-                                  "COP",
-                                  "CRC",
-                                  "CUP",
-                                  "CVE",
-                                  "CZK",
-                                  "DJF",
-                                  "DKK",
-                                  "DOP",
-                                  "DZD",
-                                  "EGP",
-                                  "ERN",
-                                  "ETB",
-                                  "EUR",
-                                  "FJD",
-                                  "FKP",
-                                  "GBP",
-                                  "GEL",
-                                  "GHS",
-                                  "GIP",
-                                  "GMD",
-                                  "GNF",
-                                  "GTQ",
-                                  "GYD",
-                                  "HKD",
-                                  "HNL",
-                                  "HRK",
-                                  "HTG",
-                                  "HUF",
-                                  "IDR",
-                                  "ILS",
-                                  "INR",
-                                  "IQD",
-                                  "IRR",
-                                  "ISK",
-                                  "JMD",
-                                  "JOD",
-                                  "JPY",
-                                  "KES",
-                                  "KGS",
-                                  "KHR",
-                                  "KMF",
-                                  "KPW",
-                                  "KRW",
-                                  "KWD",
-                                  "KYD",
-                                  "KZT",
-                                  "LAK",
-                                  "LBP",
-                                  "LKR",
-                                  "LRD",
-                                  "LSL",
-                                  "LTL",
-                                  "LVL",
-                                  "LYD",
-                                  "MAD",
-                                  "MDL",
-                                  "MGA",
-                                  "MKD",
-                                  "MMK",
-                                  "MNT",
-                                  "MOP",
-                                  "MRO",
-                                  "MUR",
-                                  "MVR",
-                                  "MWK",
-                                  "MXN",
-                                  "MYR",
-                                  "MZN",
-                                  "NAD",
-                                  "NGN",
-                                  "NIO",
-                                  "NOK",
-                                  "NPR",
-                                  "NZD",
-                                  "OMR",
-                                  "PAB",
-                                  "PEN",
-                                  "PGK",
-                                  "PHP",
-                                  "PKR",
-                                  "PLN",
-                                  "PYG",
-                                  "QAR",
-                                  "RON",
-                                  "RSD",
-                                  "RUB",
-                                  "RUR",
-                                  "RWF",
-                                  "SAR",
-                                  "SBD",
-                                  "SCR",
-                                  "SDG",
-                                  "SEK",
-                                  "SGD",
-                                  "SHP",
-                                  "SLL",
-                                  "SOS",
-                                  "SRD",
-                                  "STD",
-                                  "SYP",
-                                  "SZL",
-                                  "THB",
-                                  "TJS",
-                                  "TMT",
-                                  "TND",
-                                  "TOP",
-                                  "TRY",
-                                  "TTD",
-                                  "TWD",
-                                  "TZS",
-                                  "UAH",
-                                  "UGX",
-                                  "USD",
-                                  "UYU",
-                                  "UZS",
-                                  "VEF",
-                                  "VND",
-                                  "VUV",
-                                  "WST",
-                                  "XAF",
-                                  "XAG",
-                                  "XAU",
-                                  "XBA",
-                                  "XBB",
-                                  "XBC",
-                                  "XBD",
-                                  "XCD",
-                                  "XDR",
-                                  "XFU",
-                                  "XOF",
-                                  "XPD",
-                                  "XPF",
-                                  "XPT",
-                                  "XTS",
-                                  "XXX",
-                                  "YER",
-                                  "ZAR",
-                                  "ZMK",
-                                  "ZWL"
-                                ]
-                              },
-                              "amount": {
-                                "type": "number",
-                                "description": "The numerical amount of the price. Example: 9.99"
-                              }
-                            },
-                            "description": "Specifies item purchase price information, including currency and amount."
-                          },
-                          "brand": {
-                            "type": "string",
-                            "description": "Brand of Item."
-                          },
-                          "num_reviews": {
-                            "type": "string",
-                            "description": "The reviewed times for Items."
-                          },
-                          "customerRating": {
-                            "type": "string",
-                            "description": "Customer rating."
-                          },
-                          "manufacturer": {
-                            "type": "string",
-                            "description": "manufacturer of Item."
-                          },
-                          "fulfillmentType": {
-                            "type": "string",
-                            "description": "Fulfillment information."
-                          },
-                          "publishedStatus": {
-                            "type": "object",
-                            "properties": {
-                              "status": {
-                                "type": "string",
-                                "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
-                              },
-                              "reasons": {
-                                "type": "array",
-                                "description": "The Walmart Product ID assigned by Walmart to the item when listed on Walmart.com",
-                                "items": {
-                                  "type": "string",
-                                  "description": "The Walmart Product ID assigned by Walmart to the item when listed on Walmart.com"
-                                }
-                              }
-                            },
-                            "description": "The status of an item when the item is in the submission process. The status can be one of the following: PUBLISHED, READY_TO_PUBLISH, IN_PROGRESS, UNPUBLISHED, STAGE, or SYSTEM_PROBLEM."
-                          },
-                          "inventoryStatus": {
-                            "type": "string",
-                            "description": "It indicates whether the product is in stock or not."
-                          },
-                          "lifecycleStatus": {
-                            "type": "string",
-                            "description": "The lifecycle status of an item describes where the item listing is in the overall lifecycle. Examples of allowed values are ACTIVE , ARCHIVED, RETIRED."
-                          },
-                          "shop_ref": {
-                            "type": "string"
-                          },
-                          "shop_product_id": {
-                            "type": "string"
-                          },
-                          "shop_variant_id": {
-                            "type": "string"
-                          }
-                        },
-                        "description": "Items included in the response list"
-                      }
-                    },
-                    "totalItems": {
-                      "type": "integer",
-                      "description": "Total items for the query",
-                      "format": "int64"
-                    },
-                    "limit": {
-                      "type": "integer",
-                      "description": "Number of items shown in this page",
-                      "format": "int32"
-                    },
-                    "nextCursor": {
-                      "type": "string",
-                      "description": "Used for pagination to fetch the next set of items"
-                    },
-                    "statuss": {
-                      "type": "string",
-                      "writeOnly": true
-                    }
-                  }
-                },
-                "example": {
-                  "status": "Success",
-                  "payload": [
-                    {
-                      "gtin": "05420529997042",
-                      "wpid": "5DTSM799JCUI",
-                      "lifecycleStatus": "RETIRED",
-                      "mart": "WALMART_US",
-                      "publishedStatus": {
-                        "reasons": [
-                          "END_DATE"
-                        ],
-                        "status": "UNPUBLISHED"
-                      },
-                      "productName": "Electronic Cables",
-                      "manufacturer": "ECManu",
-                      "shelf": "[\"UNNAV\"]",
-                      "itemId": "562433848",
-                      "price": {
-                        "amount": 70,
-                        "unit": "USD"
-                      },
-                      "sku": "88nZ6RR82XghDkd",
-                      "brand": "ECB brand",
-                      "productType": "default"
-                    },
-                    {
-                      "itemId": "458505242",
-                      "gtin": "05828079255702",
-                      "wpid": "3SNE69WWZOWX",
-                      "lifecycleStatus": "ACTIVE",
-                      "mart": "WALMART_US",
-                      "publishedStatus": {
-                        "status": "PUBLISHED"
-                      },
-                      "price": {
-                        "amount": 325,
-                        "unit": "USD"
-                      },
-                      "sku": "SDdk1BnxmLdKlqR",
-                      "productName": "Xbox 360 500GB Console with Fable Anniversary and Plants vs Zombies: Garden Warfare",
-                      "productType": "Video Game Consoles",
-                      "manufacturer": "Xbox",
-                      "shelf": "[\"Home Page\",\"Video Games\",\"Xbox 360 Consoles, Games, Accessories\",\"Xbox 360 Games\"]"
-                    },
-                    {
-                      "itemId": "923248096",
-                      "gtin": "05919650669831",
-                      "wpid": "5X7QAK7X2X0S",
-                      "lifecycleStatus": "ACTIVE",
-                      "mart": "WALMART_US",
-                      "publishedStatus": {
-                        "reasons": [
-                          "SHIPPING_INFO_MISSING",
-                          "NO_MIN_MAX_PRICE",
-                          "NO_LOGISTICS_DATA",
-                          "NO_PRICE",
-                          "NO_ACTIVE_DISTR"
-                        ],
-                        "status": "UNPUBLISHED"
-                      },
-                      "sku": "Wlju1ugimjnDyC7",
-                      "productName": "Xbox 360 500GB Console with Fable Anniversary and Plants vs Zombies: Garden Warfare",
-                      "productType": "Video Game Consoles",
-                      "manufacturer": "Xbox",
-                      "shelf": "[\"Home Page\",\"Video Games\",\"Xbox 360 Consoles, Games, Accessories\",\"Xbox 360 Games\"]"
-                    },
-                    {
-                      "gtin": "05935576685236",
-                      "wpid": "2IQ9J36SRZ3T",
-                      "lifecycleStatus": "ACTIVE",
-                      "mart": "WALMART_US",
-                      "publishedStatus": {
-                        "status": "PUBLISHED"
-                      },
-                      "productName": "Microfleece Blanket Sleeper Pajamas (Toddler Girls)",
-                      "manufacturer": "Komar Kids LLC",
-                      "shelf": "[\"UNNAV\"]",
-                      "itemId": "734690732",
-                      "price": {
-                        "amount": 8,
-                        "unit": "USD"
-                      },
-                      "sku": "sku-nrtVAYGPjdsgbviOD0mw766852",
-                      "brand": "Peas & Carrots",
-                      "productType": "Pajamas"
-                    },
-                    {
-                      "gtin": "05643842631879",
-                      "wpid": "31ZGLJXCMALD",
-                      "lifecycleStatus": "ACTIVE",
-                      "mart": "WALMART_US",
-                      "publishedStatus": {
-                        "reasons": [
-                          "PROHIBITED_TNS_RESPONSE"
-                        ],
-                        "status": "SYSTEM_PROBLEM"
-                      },
-                      "productName": "Mainstays Multifunction Kitchen Cart, Multiple Colors",
-                      "manufacturer": "Dorel Asia",
-                      "shelf": "[\"Home Page\",\"Home\",\"Furniture\",\"Kitchen & Dining Furniture\",\"Kitchen Islands & Carts\"]",
-                      "itemId": "839833087",
-                      "price": {
-                        "amount": 89,
-                        "unit": "USD"
-                      },
-                      "sku": "sku-1Zyf4nJnNoFGX8p5In6M426318",
-                      "brand": "Mainstays",
-                      "productType": "Kitchen Storage Carts"
-                    },
-                    {
-                      "itemId": "862640320",
-                      "gtin": "05040277834668",
-                      "price": {
-                        "amount": 7,
-                        "unit": "USD"
-                      },
-                      "sku": "7tdXa2Lnezu8yv1",
-                      "brand": "Levi Strauss",
-                      "productName": "Levi's - Big Men's Flat -Front Wrinkle-Resistant Pants",
-                      "productType": "Pants",
-                      "manufacturer": "Levi's company",
-                      "shelf": "[\"Home Page\",\"Clothing\",\"Men\",\"Men's Bottoms\",\"Men's Pants\"]"
-                    },
-                    {
-                      "gtin": "00080529910042",
-                      "wpid": "5X0LZVVJU89V",
-                      "lifecycleStatus": "ACTIVE",
-                      "mart": "WALMART_US",
-                      "publishedStatus": {
-                        "status": "PUBLISHED"
-                      },
-                      "upc": "080529910042",
-                      "productName": "E-A-R Classic Earplugs, Neon Yellow, 1000 / Bottle (Quantity)",
-                      "shelf": "[\"Home Page\",\"Health\",\"Ear Care\",\"Ear Plugs\"]",
-                      "itemId": "19674841",
-                      "price": {
-                        "amount": 45.1,
-                        "unit": "USD"
-                      },
-                      "sku": "SKUSafety&Emergency",
-                      "brand": "E-A-R",
-                      "productType": "Earplugs"
-                    },
-                    {
-                      "itemId": "769546740",
-                      "gtin": "05403344892488",
-                      "wpid": "5WCPNN3IUOHV",
-                      "lifecycleStatus": "ACTIVE",
-                      "mart": "WALMART_US",
-                      "publishedStatus": {
-                        "status": "PUBLISHED"
-                      },
-                      "price": {
-                        "amount": 325,
-                        "unit": "USD"
-                      },
-                      "sku": "2RSJ3i1pynYPBAf",
-                      "productName": "Xbox 360 500GB Console with Fable Anniversary and Plants vs Zombies: Garden Warfare",
-                      "productType": "default",
-                      "manufacturer": "Xbox",
-                      "shelf": "[\"Home Page\",\"Video Games\",\"Video Game Consoles\"]"
-                    },
-                    {
-                      "itemId": "988223634",
-                      "gtin": "05884984304980",
-                      "wpid": "6VBKXTHP3KMB",
-                      "lifecycleStatus": "ACTIVE",
-                      "mart": "WALMART_US",
-                      "publishedStatus": {
-                        "reasons": [
-                          "PARTNER_ITEM_DEFAULT_DISPLAY_STATUS"
-                        ],
-                        "status": "STAGE"
-                      },
-                      "price": {
-                        "amount": 4.83,
-                        "unit": "USD"
-                      },
-                      "sku": "sCOHsnCYqs1KWmd",
-                      "brand": "Crown",
-                      "productName": "Crown Camp Fuel, Quart",
-                      "productType": "Fuel Tank & Line Repairs",
-                      "shelf": "[\"Home Page\",\"Auto & Tires\",\"Automotive Replacement Parts\",\"Air Intake and Fuel Delivery\",\"Fuel Pumps and Tanks\"]"
-                    },
-                    {
-                      "gtin": "05243875323040",
-                      "wpid": "2DMH907FBZBU",
-                      "lifecycleStatus": "RETIRED",
-                      "mart": "WALMART_US",
-                      "publishedStatus": {
-                        "reasons": [
-                          "END_DATE"
-                        ],
-                        "status": "UNPUBLISHED"
-                      },
-                      "productName": "Electronic Cables",
-                      "manufacturer": "ECManu",
-                      "shelf": "[\"UNNAV\"]",
-                      "itemId": "162790217",
-                      "price": {
-                        "amount": 70,
-                        "unit": "USD"
-                      },
-                      "sku": "jiPOjG6m7NNn00f",
-                      "brand": "ECB brand",
-                      "productType": "default"
-                    }
-                  ],
-                  "limit": 10,
-                  "totalItems": 126331,
-                  "nextCursor": "DnF1ZXJ5VGhlbkZldGNoFAAAAAAFY5rZFmJYLXU3cXBtUkptLUh5Rl9SelItZmcAAAAAAyAIRRZ4Mm41WTB1UlFIUzkyUVlOSjhFWXV3AAAAAAMgCEYWeDJuNVkwdVJRSFM5MlFZTko4RVl1dwAAAAAFhKggFmswVURRXzhzUlYtQVhyRmVXTy1UN0EAAAAABYSoHxZrMFVEUV84c1JWLUFYckZlV08tVDdBAAAAAAWt5AIWTl82dF9OR09Uc2VXbVhwRUFUSk44ZwAAAAAFTM_uFk11Q04ydmlOUk1pNW1iS0paUUt6Q1EAAAAABUzP7xZNdUNOMnZpTlJNaTVtYktKWlFLekNRAAAAAAWEqCIWazBVRFFfOHNSVi1BWHJGZVdPLVQ3QQAAAAAFhKghFmswVURRXzhzUlYtQVhyRmVXTy1UN0EAAAAABWOa2hZiWC11N3FwbVJKbS1IeUZfUnpSLWZnAAAAAAVMz_EWTXVDTjJ2aU5STWk1bWJLSlpRS3pDUQAAAAADIAhHFngybjVZMHVSUUhTOTJRWU5KOEVZdXcAAAAABWOa3BZiWC11N3FwbVJKbS1IeUZfUnpSLWZnAAAAAAWt5AMWTl82dF9OR09Uc2VXbVhwRUFUSk44ZwAAAAAFY5rbFmJYLXU3cXBtUkptLUh5Rl9SelItZmcAAAAABUzP8BZNdUNOMnZpTlJNaTVtYktKWlFLekNRAAAAAAMgCEgWeDJuNVkwdVJRSFM5MlFZTko4RVl1dwAAAAAFreQFFk5fNnRfTkdPVHNlV21YcEVBVEpOOGcAAAAABa3kBBZOXzZ0X05HT1RzZVdtWHBFQVRKTjhn"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/v3/items/taxonomy": {
       "get": {
         "tags": [
@@ -1199,6 +584,113 @@
                       ]
                     }
                   ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/items/count": {
+      "get": {
+        "tags": [
+          "Items"
+        ],
+        "summary": "Get items count by status",
+        "description": "Get total count of items based on status",
+        "operationId": "getCountByStatus",
+        "parameters": [
+          {
+            "name": "status",
+            "in": "query",
+            "description": "Status of Item",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Allowed Status",
+              "enum": [
+                "PUBLISHED",
+                "UNPUBLISHED",
+                "SYSTEM_PROBLEM",
+                "IN_PROGRESS",
+                "ALL"
+              ]
+            }
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Basic YzcyOTFjNmItNzI5MC00...."
+          },
+          {
+            "in": "header",
+            "name": "WM_SEC.ACCESS_TOKEN",
+            "description": "The access token retrieved in the Token API call",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
+          },
+          {
+            "in": "header",
+            "name": "WM_CONSUMER.CHANNEL.TYPE",
+            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "WM_QOS.CORRELATION_ID",
+            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
+          },
+          {
+            "in": "header",
+            "name": "WM_SVC.NAME",
+            "description": "Walmart Service Name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Walmart Service Name"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "ALL": {
+                    "value": {
+                      "All": 682
+                    }
+                  },
+                  "PUBLISHED": {
+                    "value": {
+                      "PUBLISHED": 99
+                    }
+                  },
+                  "UNPUBLISHED": {
+                    "value": {
+                      "UNPUBLISHED": 383
+                    }
+                  }
                 }
               }
             }
@@ -1605,239 +1097,6 @@
                     }
                   ]
                 }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v3/items/count": {
-      "get": {
-        "tags": [
-          "Items"
-        ],
-        "summary": "Get items count by status",
-        "description": "Get total count of items based on status",
-        "operationId": "getCountByStatus",
-        "parameters": [
-          {
-            "name": "status",
-            "in": "query",
-            "description": "Status of Item",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Allowed Status",
-              "enum": [
-                "PUBLISHED",
-                "UNPUBLISHED",
-                "SYSTEM_PROBLEM",
-                "IN_PROGRESS",
-                "ALL"
-              ]
-            }
-          },
-          {
-            "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
-          },
-          {
-            "in": "header",
-            "name": "WM_SEC.ACCESS_TOKEN",
-            "description": "The access token retrieved in the Token API call",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
-          },
-          {
-            "in": "header",
-            "name": "WM_CONSUMER.CHANNEL.TYPE",
-            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "header",
-            "name": "WM_QOS.CORRELATION_ID",
-            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
-          },
-          {
-            "in": "header",
-            "name": "WM_SVC.NAME",
-            "description": "Walmart Service Name",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Walmart Service Name"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "string"
-                },
-                "examples": {
-                  "ALL": {
-                    "value": {
-                      "All": 682
-                    }
-                  },
-                  "PUBLISHED": {
-                    "value": {
-                      "PUBLISHED": 99
-                    }
-                  },
-                  "UNPUBLISHED": {
-                    "value": {
-                      "UNPUBLISHED": 383
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v3/items/{SKU}": {
-      "delete": {
-        "tags": [
-          "Items"
-        ],
-        "summary": "Retire an item",
-        "description": "Completely deactivates and un-publishes an item from the site.",
-        "operationId": "retireAnItem",
-        "parameters": [
-          {
-            "name": "SKU",
-            "in": "path",
-            "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: ':', '/', '?', '#', '[', ']', '@', '!', '$', '&', \"'\", '(', ')', '*', '+', ',', ';', '=', as well as '%' itself. Other characters don't need to be encoded.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
-          },
-          {
-            "in": "header",
-            "name": "WM_SEC.ACCESS_TOKEN",
-            "description": "The access token retrieved in the Token API call",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
-          },
-          {
-            "in": "header",
-            "name": "WM_CONSUMER.CHANNEL.TYPE",
-            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "header",
-            "name": "WM_QOS.CORRELATION_ID",
-            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
-          },
-          {
-            "in": "header",
-            "name": "WM_SVC.NAME",
-            "description": "Walmart Service Name",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Walmart Service Name"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "required": [
-                    "sku"
-                  ],
-                  "type": "object",
-                  "properties": {
-                    "sku": {
-                      "type": "string",
-                      "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
-                    },
-                    "message": {
-                      "type": "string",
-                      "description": "Message confirming the deletion or retirement of an item from the Walmart Catalog"
-                    }
-                  },
-                  "xml": {
-                    "name": "ItemRetireResponse"
-                  }
-                },
-                "example": {
-                  "sku": "97964_KFTest",
-                  "message": "Thank you.  Your item has been submitted for retirement from Walmart Catalog.  Please note that it can take up to 48 hours for items to be retired from our catalog.",
-                  "additionalAttributes": null,
-                  "errors": null
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "required": [
-                    "sku"
-                  ],
-                  "type": "object",
-                  "properties": {
-                    "sku": {
-                      "type": "string",
-                      "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
-                    },
-                    "message": {
-                      "type": "string",
-                      "description": "Message confirming the deletion or retirement of an item from the Walmart Catalog"
-                    }
-                  },
-                  "xml": {
-                    "name": "ItemRetireResponse"
-                  }
-                },
-                "example": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<ns2:ItemRetireResponse xmlns:ns2=\"http://walmart.com/\">\n    <ns2:sku>97964_KFTest</ns2:sku>\n    <ns2:message>Thank you.  Your item has been submitted for retirement from Walmart Catalog.  Please note that it can take up to 48 hours for items to be retired from our catalog.</ns2:message>\n</ns2:ItemRetireResponse>"
               }
             }
           }
@@ -4230,6 +3489,747 @@
         }
       }
     },
+    "/v3/items/catalog/search": {
+      "post": {
+        "tags": [
+          "Items"
+        ],
+        "summary": "Catalog Search",
+        "description": "Get Catalog Search Result",
+        "externalDocs": {
+          "description": "View Guide",
+          "url": "/doc/us/mp/us-mp-items/"
+        },
+        "operationId": "getCatalogSearch",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "number of page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "number of items",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "nextCursor",
+            "in": "query",
+            "description": "nextCursor",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Basic YzcyOTFjNmItNzI5MC00...."
+          },
+          {
+            "in": "header",
+            "name": "WM_SEC.ACCESS_TOKEN",
+            "description": "The access token retrieved in the Token API call",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
+          },
+          {
+            "in": "header",
+            "name": "WM_CONSUMER.CHANNEL.TYPE",
+            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "WM_QOS.CORRELATION_ID",
+            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
+          },
+          {
+            "in": "header",
+            "name": "WM_SVC.NAME",
+            "description": "Walmart Service Name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Walmart Service Name"
+          }
+        ],
+        "requestBody": {
+          "description": "Request fields",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "query": {
+                    "type": "object",
+                    "properties": {
+                      "field": {
+                        "type": "string",
+                        "description": "| Attribute | Description | Data Type\n| --- | ----------- | -------\n| productName | Product Name, can do white card search | string |\n| sku | An arbitrary alphanumeric unique ID, seller-specified, identifying each item | string |\n| gtin | Specifies a Global Trade Item Number (GTIN) search. GTIN must be 14 digits. | string |\n| wpid | The Walmart Product ID assigned by Walmart to the item when listed on Walmart.com | string |\n| upc | Specifies a Universal Product Code (UPC) search. UPC must be 12 digits. | string |\n| isbn | International Standard Book Number | string |\n| ean | Product ID, EANs must be 13 digits in length. | string |\n| itemId | A unique Id which identifies the item | string |",
+                        "enum": [
+                          "productName",
+                          "sku",
+                          "gtin",
+                          "wpid",
+                          "upc",
+                          "isbn",
+                          "ean",
+                          "itemId"
+                        ]
+                      },
+                      "value": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "filters": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "field": {
+                          "type": "string",
+                          "description": "| Attribute | Description | Data Type\n| num_reviews | The reviewed times for Items | string |\n| customerRating | Customer rating | string |\n| lifecycleStatus | The lifecycle status of an item describes where the item listing is in the overall lifecycle | string |\n| publishedStatus | The published status of an item describes where the item is in the submission process | string |\n| unpublishedReasons | It outlines the reason for an item when unpublished | string |\n| inventoryStatus | It indicates whether the product is in stock or not | string |\n| price | Price of the Item | string |\n| fulfillmentType | Fulfillment information | string |",
+                          "enum": [
+                            "num_reviews",
+                            "customerRating",
+                            "lifecycleStatus",
+                            "publishedStatus",
+                            "unpublishedReasons",
+                            "inventoryStatus",
+                            "price",
+                            "fulfillmentType"
+                          ]
+                        },
+                        "op": {
+                          "type": "string",
+                          "enum": [
+                            "equals",
+                            "between",
+                            "greater_than",
+                            "less_than"
+                          ]
+                        },
+                        "values": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "sort": {
+                    "type": "object",
+                    "properties": {
+                      "field": {
+                        "type": "string",
+                        "description": "| Attribute | Description | Data Type\n| --- | ----------- | -------\n| num_reviews | The revied number for Items | string |\n| customerRating | An arbitrary alphanumeric unique ID, seller-specified, identifying each item | string |\n| lifecycleStatus | The lifecycle status of an item describes where the item listing is in the overall lifecycle | string |\n| publishedStatus | The published status of an item describes where the item is in the submission process | string |\n| unpublishedReasons | It outlines the reason for an item when unpublished | string |\n| inventoryStatus | It indicates whether the product is in stock or not | string |",
+                        "enum": [
+                          "num_reviews",
+                          "customerRating",
+                          "lifecycleStatus",
+                          "publishedStatus",
+                          "unpublishedReasons",
+                          "inventoryStatus"
+                        ]
+                      },
+                      "order": {
+                        "type": "string",
+                        "enum": [
+                          "ASC",
+                          "DESC"
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Response Status"
+                    },
+                    "payload": {
+                      "type": "array",
+                      "description": "Items included in the response list",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "mart": {
+                            "type": "string",
+                            "description": "The marketplace name. Example: Walmart_US",
+                            "enum": [
+                              "WALMART_US",
+                              "WALMART_CA",
+                              "ASDA_GM",
+                              "WALMART_MEXICO"
+                            ]
+                          },
+                          "sku": {
+                            "type": "string",
+                            "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
+                          },
+                          "wpid": {
+                            "type": "string",
+                            "description": "The Walmart Product ID assigned by Walmart to the item when listed on Walmart.com"
+                          },
+                          "upc": {
+                            "type": "string",
+                            "description": "The 12-digit bar code used extensively for retail packaging in the United States"
+                          },
+                          "isbn": {
+                            "type": "string",
+                            "description": "International Standard Book Number"
+                          },
+                          "ean": {
+                            "type": "string",
+                            "description": "Product ID, EANs must be 13 digits in length."
+                          },
+                          "gtin": {
+                            "type": "string",
+                            "description": "The GTIN-compatible Product ID (i.e. UPC or EAN). UPCs must be 12 or 14 digitis in length. EANs must be 13 digits in length."
+                          },
+                          "itemId": {
+                            "type": "string",
+                            "description": "A unique Id which identifies the item."
+                          },
+                          "productName": {
+                            "type": "string",
+                            "description": "A seller-specified, alphanumeric string uniquely identifying the product name. Example: 'Sterling Silver Blue Diamond Heart Pendant with 18in Chain'"
+                          },
+                          "shelf": {
+                            "type": "string",
+                            "description": "Walmart assigned an item shelf name"
+                          },
+                          "productType": {
+                            "type": "string",
+                            "description": "A seller-specified, alphanumeric string uniquely identifying the Product Type. Example: 'Diamond'"
+                          },
+                          "price": {
+                            "type": "object",
+                            "properties": {
+                              "unit": {
+                                "type": "string",
+                                "description": "The currency type. Example: USD for US Dollars",
+                                "enum": [
+                                  "AED",
+                                  "AFN",
+                                  "ALL",
+                                  "AMD",
+                                  "ANG",
+                                  "AOA",
+                                  "ARS",
+                                  "AUD",
+                                  "AWG",
+                                  "AZN",
+                                  "BAM",
+                                  "BBD",
+                                  "BDT",
+                                  "BGN",
+                                  "BHD",
+                                  "BIF",
+                                  "BMD",
+                                  "BND",
+                                  "BOB",
+                                  "BRL",
+                                  "BSD",
+                                  "BTN",
+                                  "BWP",
+                                  "BYR",
+                                  "BZD",
+                                  "CAD",
+                                  "CDF",
+                                  "CHF",
+                                  "CLP",
+                                  "CNY",
+                                  "COP",
+                                  "CRC",
+                                  "CUP",
+                                  "CVE",
+                                  "CZK",
+                                  "DJF",
+                                  "DKK",
+                                  "DOP",
+                                  "DZD",
+                                  "EGP",
+                                  "ERN",
+                                  "ETB",
+                                  "EUR",
+                                  "FJD",
+                                  "FKP",
+                                  "GBP",
+                                  "GEL",
+                                  "GHS",
+                                  "GIP",
+                                  "GMD",
+                                  "GNF",
+                                  "GTQ",
+                                  "GYD",
+                                  "HKD",
+                                  "HNL",
+                                  "HRK",
+                                  "HTG",
+                                  "HUF",
+                                  "IDR",
+                                  "ILS",
+                                  "INR",
+                                  "IQD",
+                                  "IRR",
+                                  "ISK",
+                                  "JMD",
+                                  "JOD",
+                                  "JPY",
+                                  "KES",
+                                  "KGS",
+                                  "KHR",
+                                  "KMF",
+                                  "KPW",
+                                  "KRW",
+                                  "KWD",
+                                  "KYD",
+                                  "KZT",
+                                  "LAK",
+                                  "LBP",
+                                  "LKR",
+                                  "LRD",
+                                  "LSL",
+                                  "LTL",
+                                  "LVL",
+                                  "LYD",
+                                  "MAD",
+                                  "MDL",
+                                  "MGA",
+                                  "MKD",
+                                  "MMK",
+                                  "MNT",
+                                  "MOP",
+                                  "MRO",
+                                  "MUR",
+                                  "MVR",
+                                  "MWK",
+                                  "MXN",
+                                  "MYR",
+                                  "MZN",
+                                  "NAD",
+                                  "NGN",
+                                  "NIO",
+                                  "NOK",
+                                  "NPR",
+                                  "NZD",
+                                  "OMR",
+                                  "PAB",
+                                  "PEN",
+                                  "PGK",
+                                  "PHP",
+                                  "PKR",
+                                  "PLN",
+                                  "PYG",
+                                  "QAR",
+                                  "RON",
+                                  "RSD",
+                                  "RUB",
+                                  "RUR",
+                                  "RWF",
+                                  "SAR",
+                                  "SBD",
+                                  "SCR",
+                                  "SDG",
+                                  "SEK",
+                                  "SGD",
+                                  "SHP",
+                                  "SLL",
+                                  "SOS",
+                                  "SRD",
+                                  "STD",
+                                  "SYP",
+                                  "SZL",
+                                  "THB",
+                                  "TJS",
+                                  "TMT",
+                                  "TND",
+                                  "TOP",
+                                  "TRY",
+                                  "TTD",
+                                  "TWD",
+                                  "TZS",
+                                  "UAH",
+                                  "UGX",
+                                  "USD",
+                                  "UYU",
+                                  "UZS",
+                                  "VEF",
+                                  "VND",
+                                  "VUV",
+                                  "WST",
+                                  "XAF",
+                                  "XAG",
+                                  "XAU",
+                                  "XBA",
+                                  "XBB",
+                                  "XBC",
+                                  "XBD",
+                                  "XCD",
+                                  "XDR",
+                                  "XFU",
+                                  "XOF",
+                                  "XPD",
+                                  "XPF",
+                                  "XPT",
+                                  "XTS",
+                                  "XXX",
+                                  "YER",
+                                  "ZAR",
+                                  "ZMK",
+                                  "ZWL"
+                                ]
+                              },
+                              "amount": {
+                                "type": "number",
+                                "description": "The numerical amount of the price. Example: 9.99"
+                              }
+                            },
+                            "description": "Specifies item purchase price information, including currency and amount."
+                          },
+                          "brand": {
+                            "type": "string",
+                            "description": "Brand of Item."
+                          },
+                          "num_reviews": {
+                            "type": "string",
+                            "description": "The reviewed times for Items."
+                          },
+                          "customerRating": {
+                            "type": "string",
+                            "description": "Customer rating."
+                          },
+                          "manufacturer": {
+                            "type": "string",
+                            "description": "manufacturer of Item."
+                          },
+                          "fulfillmentType": {
+                            "type": "string",
+                            "description": "Fulfillment information."
+                          },
+                          "publishedStatus": {
+                            "type": "object",
+                            "properties": {
+                              "status": {
+                                "type": "string",
+                                "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
+                              },
+                              "reasons": {
+                                "type": "array",
+                                "description": "The Walmart Product ID assigned by Walmart to the item when listed on Walmart.com",
+                                "items": {
+                                  "type": "string",
+                                  "description": "The Walmart Product ID assigned by Walmart to the item when listed on Walmart.com"
+                                }
+                              }
+                            },
+                            "description": "The status of an item when the item is in the submission process. The status can be one of the following: PUBLISHED, READY_TO_PUBLISH, IN_PROGRESS, UNPUBLISHED, STAGE, or SYSTEM_PROBLEM."
+                          },
+                          "inventoryStatus": {
+                            "type": "string",
+                            "description": "It indicates whether the product is in stock or not."
+                          },
+                          "lifecycleStatus": {
+                            "type": "string",
+                            "description": "The lifecycle status of an item describes where the item listing is in the overall lifecycle. Examples of allowed values are ACTIVE , ARCHIVED, RETIRED."
+                          },
+                          "shop_ref": {
+                            "type": "string"
+                          },
+                          "shop_product_id": {
+                            "type": "string"
+                          },
+                          "shop_variant_id": {
+                            "type": "string"
+                          }
+                        },
+                        "description": "Items included in the response list"
+                      }
+                    },
+                    "totalItems": {
+                      "type": "integer",
+                      "description": "Total items for the query",
+                      "format": "int64"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Number of items shown in this page",
+                      "format": "int32"
+                    },
+                    "nextCursor": {
+                      "type": "string",
+                      "description": "Used for pagination to fetch the next set of items"
+                    },
+                    "statuss": {
+                      "type": "string",
+                      "writeOnly": true
+                    }
+                  }
+                },
+                "example": {
+                  "status": "Success",
+                  "payload": [
+                    {
+                      "gtin": "05420529997042",
+                      "wpid": "5DTSM799JCUI",
+                      "lifecycleStatus": "RETIRED",
+                      "mart": "WALMART_US",
+                      "publishedStatus": {
+                        "reasons": [
+                          "END_DATE"
+                        ],
+                        "status": "UNPUBLISHED"
+                      },
+                      "productName": "Electronic Cables",
+                      "manufacturer": "ECManu",
+                      "shelf": "[\"UNNAV\"]",
+                      "itemId": "562433848",
+                      "price": {
+                        "amount": 70,
+                        "unit": "USD"
+                      },
+                      "sku": "88nZ6RR82XghDkd",
+                      "brand": "ECB brand",
+                      "productType": "default"
+                    },
+                    {
+                      "itemId": "458505242",
+                      "gtin": "05828079255702",
+                      "wpid": "3SNE69WWZOWX",
+                      "lifecycleStatus": "ACTIVE",
+                      "mart": "WALMART_US",
+                      "publishedStatus": {
+                        "status": "PUBLISHED"
+                      },
+                      "price": {
+                        "amount": 325,
+                        "unit": "USD"
+                      },
+                      "sku": "SDdk1BnxmLdKlqR",
+                      "productName": "Xbox 360 500GB Console with Fable Anniversary and Plants vs Zombies: Garden Warfare",
+                      "productType": "Video Game Consoles",
+                      "manufacturer": "Xbox",
+                      "shelf": "[\"Home Page\",\"Video Games\",\"Xbox 360 Consoles, Games, Accessories\",\"Xbox 360 Games\"]"
+                    },
+                    {
+                      "itemId": "923248096",
+                      "gtin": "05919650669831",
+                      "wpid": "5X7QAK7X2X0S",
+                      "lifecycleStatus": "ACTIVE",
+                      "mart": "WALMART_US",
+                      "publishedStatus": {
+                        "reasons": [
+                          "SHIPPING_INFO_MISSING",
+                          "NO_MIN_MAX_PRICE",
+                          "NO_LOGISTICS_DATA",
+                          "NO_PRICE",
+                          "NO_ACTIVE_DISTR"
+                        ],
+                        "status": "UNPUBLISHED"
+                      },
+                      "sku": "Wlju1ugimjnDyC7",
+                      "productName": "Xbox 360 500GB Console with Fable Anniversary and Plants vs Zombies: Garden Warfare",
+                      "productType": "Video Game Consoles",
+                      "manufacturer": "Xbox",
+                      "shelf": "[\"Home Page\",\"Video Games\",\"Xbox 360 Consoles, Games, Accessories\",\"Xbox 360 Games\"]"
+                    },
+                    {
+                      "gtin": "05935576685236",
+                      "wpid": "2IQ9J36SRZ3T",
+                      "lifecycleStatus": "ACTIVE",
+                      "mart": "WALMART_US",
+                      "publishedStatus": {
+                        "status": "PUBLISHED"
+                      },
+                      "productName": "Microfleece Blanket Sleeper Pajamas (Toddler Girls)",
+                      "manufacturer": "Komar Kids LLC",
+                      "shelf": "[\"UNNAV\"]",
+                      "itemId": "734690732",
+                      "price": {
+                        "amount": 8,
+                        "unit": "USD"
+                      },
+                      "sku": "sku-nrtVAYGPjdsgbviOD0mw766852",
+                      "brand": "Peas & Carrots",
+                      "productType": "Pajamas"
+                    },
+                    {
+                      "gtin": "05643842631879",
+                      "wpid": "31ZGLJXCMALD",
+                      "lifecycleStatus": "ACTIVE",
+                      "mart": "WALMART_US",
+                      "publishedStatus": {
+                        "reasons": [
+                          "PROHIBITED_TNS_RESPONSE"
+                        ],
+                        "status": "SYSTEM_PROBLEM"
+                      },
+                      "productName": "Mainstays Multifunction Kitchen Cart, Multiple Colors",
+                      "manufacturer": "Dorel Asia",
+                      "shelf": "[\"Home Page\",\"Home\",\"Furniture\",\"Kitchen & Dining Furniture\",\"Kitchen Islands & Carts\"]",
+                      "itemId": "839833087",
+                      "price": {
+                        "amount": 89,
+                        "unit": "USD"
+                      },
+                      "sku": "sku-1Zyf4nJnNoFGX8p5In6M426318",
+                      "brand": "Mainstays",
+                      "productType": "Kitchen Storage Carts"
+                    },
+                    {
+                      "itemId": "862640320",
+                      "gtin": "05040277834668",
+                      "price": {
+                        "amount": 7,
+                        "unit": "USD"
+                      },
+                      "sku": "7tdXa2Lnezu8yv1",
+                      "brand": "Levi Strauss",
+                      "productName": "Levi's - Big Men's Flat -Front Wrinkle-Resistant Pants",
+                      "productType": "Pants",
+                      "manufacturer": "Levi's company",
+                      "shelf": "[\"Home Page\",\"Clothing\",\"Men\",\"Men's Bottoms\",\"Men's Pants\"]"
+                    },
+                    {
+                      "gtin": "00080529910042",
+                      "wpid": "5X0LZVVJU89V",
+                      "lifecycleStatus": "ACTIVE",
+                      "mart": "WALMART_US",
+                      "publishedStatus": {
+                        "status": "PUBLISHED"
+                      },
+                      "upc": "080529910042",
+                      "productName": "E-A-R Classic Earplugs, Neon Yellow, 1000 / Bottle (Quantity)",
+                      "shelf": "[\"Home Page\",\"Health\",\"Ear Care\",\"Ear Plugs\"]",
+                      "itemId": "19674841",
+                      "price": {
+                        "amount": 45.1,
+                        "unit": "USD"
+                      },
+                      "sku": "SKUSafety&Emergency",
+                      "brand": "E-A-R",
+                      "productType": "Earplugs"
+                    },
+                    {
+                      "itemId": "769546740",
+                      "gtin": "05403344892488",
+                      "wpid": "5WCPNN3IUOHV",
+                      "lifecycleStatus": "ACTIVE",
+                      "mart": "WALMART_US",
+                      "publishedStatus": {
+                        "status": "PUBLISHED"
+                      },
+                      "price": {
+                        "amount": 325,
+                        "unit": "USD"
+                      },
+                      "sku": "2RSJ3i1pynYPBAf",
+                      "productName": "Xbox 360 500GB Console with Fable Anniversary and Plants vs Zombies: Garden Warfare",
+                      "productType": "default",
+                      "manufacturer": "Xbox",
+                      "shelf": "[\"Home Page\",\"Video Games\",\"Video Game Consoles\"]"
+                    },
+                    {
+                      "itemId": "988223634",
+                      "gtin": "05884984304980",
+                      "wpid": "6VBKXTHP3KMB",
+                      "lifecycleStatus": "ACTIVE",
+                      "mart": "WALMART_US",
+                      "publishedStatus": {
+                        "reasons": [
+                          "PARTNER_ITEM_DEFAULT_DISPLAY_STATUS"
+                        ],
+                        "status": "STAGE"
+                      },
+                      "price": {
+                        "amount": 4.83,
+                        "unit": "USD"
+                      },
+                      "sku": "sCOHsnCYqs1KWmd",
+                      "brand": "Crown",
+                      "productName": "Crown Camp Fuel, Quart",
+                      "productType": "Fuel Tank & Line Repairs",
+                      "shelf": "[\"Home Page\",\"Auto & Tires\",\"Automotive Replacement Parts\",\"Air Intake and Fuel Delivery\",\"Fuel Pumps and Tanks\"]"
+                    },
+                    {
+                      "gtin": "05243875323040",
+                      "wpid": "2DMH907FBZBU",
+                      "lifecycleStatus": "RETIRED",
+                      "mart": "WALMART_US",
+                      "publishedStatus": {
+                        "reasons": [
+                          "END_DATE"
+                        ],
+                        "status": "UNPUBLISHED"
+                      },
+                      "productName": "Electronic Cables",
+                      "manufacturer": "ECManu",
+                      "shelf": "[\"UNNAV\"]",
+                      "itemId": "162790217",
+                      "price": {
+                        "amount": 70,
+                        "unit": "USD"
+                      },
+                      "sku": "jiPOjG6m7NNn00f",
+                      "brand": "ECB brand",
+                      "productType": "default"
+                    }
+                  ],
+                  "limit": 10,
+                  "totalItems": 126331,
+                  "nextCursor": "DnF1ZXJ5VGhlbkZldGNoFAAAAAAFY5rZFmJYLXU3cXBtUkptLUh5Rl9SelItZmcAAAAAAyAIRRZ4Mm41WTB1UlFIUzkyUVlOSjhFWXV3AAAAAAMgCEYWeDJuNVkwdVJRSFM5MlFZTko4RVl1dwAAAAAFhKggFmswVURRXzhzUlYtQVhyRmVXTy1UN0EAAAAABYSoHxZrMFVEUV84c1JWLUFYckZlV08tVDdBAAAAAAWt5AIWTl82dF9OR09Uc2VXbVhwRUFUSk44ZwAAAAAFTM_uFk11Q04ydmlOUk1pNW1iS0paUUt6Q1EAAAAABUzP7xZNdUNOMnZpTlJNaTVtYktKWlFLekNRAAAAAAWEqCIWazBVRFFfOHNSVi1BWHJGZVdPLVQ3QQAAAAAFhKghFmswVURRXzhzUlYtQVhyRmVXTy1UN0EAAAAABWOa2hZiWC11N3FwbVJKbS1IeUZfUnpSLWZnAAAAAAVMz_EWTXVDTjJ2aU5STWk1bWJLSlpRS3pDUQAAAAADIAhHFngybjVZMHVSUUhTOTJRWU5KOEVZdXcAAAAABWOa3BZiWC11N3FwbVJKbS1IeUZfUnpSLWZnAAAAAAWt5AMWTl82dF9OR09Uc2VXbVhwRUFUSk44ZwAAAAAFY5rbFmJYLXU3cXBtUkptLUh5Rl9SelItZmcAAAAABUzP8BZNdUNOMnZpTlJNaTVtYktKWlFLekNRAAAAAAMgCEgWeDJuNVkwdVJRSFM5MlFZTko4RVl1dwAAAAAFreQFFk5fNnRfTkdPVHNlV21YcEVBVEpOOGcAAAAABa3kBBZOXzZ0X05HT1RzZVdtWHBFQVRKTjhn"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v3/feeds": {
       "post": {
         "tags": [
@@ -4795,6 +4795,25 @@
   },
   "components": {
     "schemas": {
+      "ItemRetireResponse": {
+        "required": [
+          "sku"
+        ],
+        "type": "object",
+        "properties": {
+          "sku": {
+            "type": "string",
+            "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
+          },
+          "message": {
+            "type": "string",
+            "description": "Message confirming the deletion or retirement of an item from the Walmart Catalog"
+          }
+        },
+        "xml": {
+          "name": "ItemRetireResponse"
+        }
+      },
       "Association": {
         "type": "object",
         "properties": {
@@ -5251,1000 +5270,6 @@
           }
         },
         "description": "List of items whose associations need to be fetched. It should not have more than 50 items."
-      },
-      "ItemCatalogResponse": {
-        "type": "object",
-        "properties": {
-          "mart": {
-            "type": "string",
-            "description": "The marketplace name. Example: Walmart_US",
-            "enum": [
-              "WALMART_US",
-              "WALMART_CA",
-              "ASDA_GM",
-              "WALMART_MEXICO"
-            ]
-          },
-          "sku": {
-            "type": "string",
-            "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
-          },
-          "wpid": {
-            "type": "string",
-            "description": "The Walmart Product ID assigned by Walmart to the item when listed on Walmart.com"
-          },
-          "upc": {
-            "type": "string",
-            "description": "The 12-digit bar code used extensively for retail packaging in the United States"
-          },
-          "isbn": {
-            "type": "string",
-            "description": "International Standard Book Number"
-          },
-          "ean": {
-            "type": "string",
-            "description": "Product ID, EANs must be 13 digits in length."
-          },
-          "gtin": {
-            "type": "string",
-            "description": "The GTIN-compatible Product ID (i.e. UPC or EAN). UPCs must be 12 or 14 digitis in length. EANs must be 13 digits in length."
-          },
-          "itemId": {
-            "type": "string",
-            "description": "A unique Id which identifies the item."
-          },
-          "productName": {
-            "type": "string",
-            "description": "A seller-specified, alphanumeric string uniquely identifying the product name. Example: 'Sterling Silver Blue Diamond Heart Pendant with 18in Chain'"
-          },
-          "shelf": {
-            "type": "string",
-            "description": "Walmart assigned an item shelf name"
-          },
-          "productType": {
-            "type": "string",
-            "description": "A seller-specified, alphanumeric string uniquely identifying the Product Type. Example: 'Diamond'"
-          },
-          "price": {
-            "type": "object",
-            "properties": {
-              "unit": {
-                "type": "string",
-                "description": "The currency type. Example: USD for US Dollars",
-                "enum": [
-                  "AED",
-                  "AFN",
-                  "ALL",
-                  "AMD",
-                  "ANG",
-                  "AOA",
-                  "ARS",
-                  "AUD",
-                  "AWG",
-                  "AZN",
-                  "BAM",
-                  "BBD",
-                  "BDT",
-                  "BGN",
-                  "BHD",
-                  "BIF",
-                  "BMD",
-                  "BND",
-                  "BOB",
-                  "BRL",
-                  "BSD",
-                  "BTN",
-                  "BWP",
-                  "BYR",
-                  "BZD",
-                  "CAD",
-                  "CDF",
-                  "CHF",
-                  "CLP",
-                  "CNY",
-                  "COP",
-                  "CRC",
-                  "CUP",
-                  "CVE",
-                  "CZK",
-                  "DJF",
-                  "DKK",
-                  "DOP",
-                  "DZD",
-                  "EGP",
-                  "ERN",
-                  "ETB",
-                  "EUR",
-                  "FJD",
-                  "FKP",
-                  "GBP",
-                  "GEL",
-                  "GHS",
-                  "GIP",
-                  "GMD",
-                  "GNF",
-                  "GTQ",
-                  "GYD",
-                  "HKD",
-                  "HNL",
-                  "HRK",
-                  "HTG",
-                  "HUF",
-                  "IDR",
-                  "ILS",
-                  "INR",
-                  "IQD",
-                  "IRR",
-                  "ISK",
-                  "JMD",
-                  "JOD",
-                  "JPY",
-                  "KES",
-                  "KGS",
-                  "KHR",
-                  "KMF",
-                  "KPW",
-                  "KRW",
-                  "KWD",
-                  "KYD",
-                  "KZT",
-                  "LAK",
-                  "LBP",
-                  "LKR",
-                  "LRD",
-                  "LSL",
-                  "LTL",
-                  "LVL",
-                  "LYD",
-                  "MAD",
-                  "MDL",
-                  "MGA",
-                  "MKD",
-                  "MMK",
-                  "MNT",
-                  "MOP",
-                  "MRO",
-                  "MUR",
-                  "MVR",
-                  "MWK",
-                  "MXN",
-                  "MYR",
-                  "MZN",
-                  "NAD",
-                  "NGN",
-                  "NIO",
-                  "NOK",
-                  "NPR",
-                  "NZD",
-                  "OMR",
-                  "PAB",
-                  "PEN",
-                  "PGK",
-                  "PHP",
-                  "PKR",
-                  "PLN",
-                  "PYG",
-                  "QAR",
-                  "RON",
-                  "RSD",
-                  "RUB",
-                  "RUR",
-                  "RWF",
-                  "SAR",
-                  "SBD",
-                  "SCR",
-                  "SDG",
-                  "SEK",
-                  "SGD",
-                  "SHP",
-                  "SLL",
-                  "SOS",
-                  "SRD",
-                  "STD",
-                  "SYP",
-                  "SZL",
-                  "THB",
-                  "TJS",
-                  "TMT",
-                  "TND",
-                  "TOP",
-                  "TRY",
-                  "TTD",
-                  "TWD",
-                  "TZS",
-                  "UAH",
-                  "UGX",
-                  "USD",
-                  "UYU",
-                  "UZS",
-                  "VEF",
-                  "VND",
-                  "VUV",
-                  "WST",
-                  "XAF",
-                  "XAG",
-                  "XAU",
-                  "XBA",
-                  "XBB",
-                  "XBC",
-                  "XBD",
-                  "XCD",
-                  "XDR",
-                  "XFU",
-                  "XOF",
-                  "XPD",
-                  "XPF",
-                  "XPT",
-                  "XTS",
-                  "XXX",
-                  "YER",
-                  "ZAR",
-                  "ZMK",
-                  "ZWL"
-                ]
-              },
-              "amount": {
-                "type": "number",
-                "description": "The numerical amount of the price. Example: 9.99"
-              }
-            },
-            "description": "Specifies item purchase price information, including currency and amount."
-          },
-          "brand": {
-            "type": "string",
-            "description": "Brand of Item."
-          },
-          "num_reviews": {
-            "type": "string",
-            "description": "The reviewed times for Items."
-          },
-          "customerRating": {
-            "type": "string",
-            "description": "Customer rating."
-          },
-          "manufacturer": {
-            "type": "string",
-            "description": "manufacturer of Item."
-          },
-          "fulfillmentType": {
-            "type": "string",
-            "description": "Fulfillment information."
-          },
-          "publishedStatus": {
-            "type": "object",
-            "properties": {
-              "status": {
-                "type": "string",
-                "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
-              },
-              "reasons": {
-                "type": "array",
-                "description": "The Walmart Product ID assigned by Walmart to the item when listed on Walmart.com",
-                "items": {
-                  "type": "string",
-                  "description": "The Walmart Product ID assigned by Walmart to the item when listed on Walmart.com"
-                }
-              }
-            },
-            "description": "The status of an item when the item is in the submission process. The status can be one of the following: PUBLISHED, READY_TO_PUBLISH, IN_PROGRESS, UNPUBLISHED, STAGE, or SYSTEM_PROBLEM."
-          },
-          "inventoryStatus": {
-            "type": "string",
-            "description": "It indicates whether the product is in stock or not."
-          },
-          "lifecycleStatus": {
-            "type": "string",
-            "description": "The lifecycle status of an item describes where the item listing is in the overall lifecycle. Examples of allowed values are ACTIVE , ARCHIVED, RETIRED."
-          },
-          "shop_ref": {
-            "type": "string"
-          },
-          "shop_product_id": {
-            "type": "string"
-          },
-          "shop_variant_id": {
-            "type": "string"
-          }
-        },
-        "description": "Items included in the response list"
-      },
-      "ItemCatalogResponses": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "string",
-            "description": "Response Status"
-          },
-          "payload": {
-            "type": "array",
-            "description": "Items included in the response list",
-            "items": {
-              "type": "object",
-              "properties": {
-                "mart": {
-                  "type": "string",
-                  "description": "The marketplace name. Example: Walmart_US",
-                  "enum": [
-                    "WALMART_US",
-                    "WALMART_CA",
-                    "ASDA_GM",
-                    "WALMART_MEXICO"
-                  ]
-                },
-                "sku": {
-                  "type": "string",
-                  "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
-                },
-                "wpid": {
-                  "type": "string",
-                  "description": "The Walmart Product ID assigned by Walmart to the item when listed on Walmart.com"
-                },
-                "upc": {
-                  "type": "string",
-                  "description": "The 12-digit bar code used extensively for retail packaging in the United States"
-                },
-                "isbn": {
-                  "type": "string",
-                  "description": "International Standard Book Number"
-                },
-                "ean": {
-                  "type": "string",
-                  "description": "Product ID, EANs must be 13 digits in length."
-                },
-                "gtin": {
-                  "type": "string",
-                  "description": "The GTIN-compatible Product ID (i.e. UPC or EAN). UPCs must be 12 or 14 digitis in length. EANs must be 13 digits in length."
-                },
-                "itemId": {
-                  "type": "string",
-                  "description": "A unique Id which identifies the item."
-                },
-                "productName": {
-                  "type": "string",
-                  "description": "A seller-specified, alphanumeric string uniquely identifying the product name. Example: 'Sterling Silver Blue Diamond Heart Pendant with 18in Chain'"
-                },
-                "shelf": {
-                  "type": "string",
-                  "description": "Walmart assigned an item shelf name"
-                },
-                "productType": {
-                  "type": "string",
-                  "description": "A seller-specified, alphanumeric string uniquely identifying the Product Type. Example: 'Diamond'"
-                },
-                "price": {
-                  "type": "object",
-                  "properties": {
-                    "unit": {
-                      "type": "string",
-                      "description": "The currency type. Example: USD for US Dollars",
-                      "enum": [
-                        "AED",
-                        "AFN",
-                        "ALL",
-                        "AMD",
-                        "ANG",
-                        "AOA",
-                        "ARS",
-                        "AUD",
-                        "AWG",
-                        "AZN",
-                        "BAM",
-                        "BBD",
-                        "BDT",
-                        "BGN",
-                        "BHD",
-                        "BIF",
-                        "BMD",
-                        "BND",
-                        "BOB",
-                        "BRL",
-                        "BSD",
-                        "BTN",
-                        "BWP",
-                        "BYR",
-                        "BZD",
-                        "CAD",
-                        "CDF",
-                        "CHF",
-                        "CLP",
-                        "CNY",
-                        "COP",
-                        "CRC",
-                        "CUP",
-                        "CVE",
-                        "CZK",
-                        "DJF",
-                        "DKK",
-                        "DOP",
-                        "DZD",
-                        "EGP",
-                        "ERN",
-                        "ETB",
-                        "EUR",
-                        "FJD",
-                        "FKP",
-                        "GBP",
-                        "GEL",
-                        "GHS",
-                        "GIP",
-                        "GMD",
-                        "GNF",
-                        "GTQ",
-                        "GYD",
-                        "HKD",
-                        "HNL",
-                        "HRK",
-                        "HTG",
-                        "HUF",
-                        "IDR",
-                        "ILS",
-                        "INR",
-                        "IQD",
-                        "IRR",
-                        "ISK",
-                        "JMD",
-                        "JOD",
-                        "JPY",
-                        "KES",
-                        "KGS",
-                        "KHR",
-                        "KMF",
-                        "KPW",
-                        "KRW",
-                        "KWD",
-                        "KYD",
-                        "KZT",
-                        "LAK",
-                        "LBP",
-                        "LKR",
-                        "LRD",
-                        "LSL",
-                        "LTL",
-                        "LVL",
-                        "LYD",
-                        "MAD",
-                        "MDL",
-                        "MGA",
-                        "MKD",
-                        "MMK",
-                        "MNT",
-                        "MOP",
-                        "MRO",
-                        "MUR",
-                        "MVR",
-                        "MWK",
-                        "MXN",
-                        "MYR",
-                        "MZN",
-                        "NAD",
-                        "NGN",
-                        "NIO",
-                        "NOK",
-                        "NPR",
-                        "NZD",
-                        "OMR",
-                        "PAB",
-                        "PEN",
-                        "PGK",
-                        "PHP",
-                        "PKR",
-                        "PLN",
-                        "PYG",
-                        "QAR",
-                        "RON",
-                        "RSD",
-                        "RUB",
-                        "RUR",
-                        "RWF",
-                        "SAR",
-                        "SBD",
-                        "SCR",
-                        "SDG",
-                        "SEK",
-                        "SGD",
-                        "SHP",
-                        "SLL",
-                        "SOS",
-                        "SRD",
-                        "STD",
-                        "SYP",
-                        "SZL",
-                        "THB",
-                        "TJS",
-                        "TMT",
-                        "TND",
-                        "TOP",
-                        "TRY",
-                        "TTD",
-                        "TWD",
-                        "TZS",
-                        "UAH",
-                        "UGX",
-                        "USD",
-                        "UYU",
-                        "UZS",
-                        "VEF",
-                        "VND",
-                        "VUV",
-                        "WST",
-                        "XAF",
-                        "XAG",
-                        "XAU",
-                        "XBA",
-                        "XBB",
-                        "XBC",
-                        "XBD",
-                        "XCD",
-                        "XDR",
-                        "XFU",
-                        "XOF",
-                        "XPD",
-                        "XPF",
-                        "XPT",
-                        "XTS",
-                        "XXX",
-                        "YER",
-                        "ZAR",
-                        "ZMK",
-                        "ZWL"
-                      ]
-                    },
-                    "amount": {
-                      "type": "number",
-                      "description": "The numerical amount of the price. Example: 9.99"
-                    }
-                  },
-                  "description": "Specifies item purchase price information, including currency and amount."
-                },
-                "brand": {
-                  "type": "string",
-                  "description": "Brand of Item."
-                },
-                "num_reviews": {
-                  "type": "string",
-                  "description": "The reviewed times for Items."
-                },
-                "customerRating": {
-                  "type": "string",
-                  "description": "Customer rating."
-                },
-                "manufacturer": {
-                  "type": "string",
-                  "description": "manufacturer of Item."
-                },
-                "fulfillmentType": {
-                  "type": "string",
-                  "description": "Fulfillment information."
-                },
-                "publishedStatus": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
-                    },
-                    "reasons": {
-                      "type": "array",
-                      "description": "The Walmart Product ID assigned by Walmart to the item when listed on Walmart.com",
-                      "items": {
-                        "type": "string",
-                        "description": "The Walmart Product ID assigned by Walmart to the item when listed on Walmart.com"
-                      }
-                    }
-                  },
-                  "description": "The status of an item when the item is in the submission process. The status can be one of the following: PUBLISHED, READY_TO_PUBLISH, IN_PROGRESS, UNPUBLISHED, STAGE, or SYSTEM_PROBLEM."
-                },
-                "inventoryStatus": {
-                  "type": "string",
-                  "description": "It indicates whether the product is in stock or not."
-                },
-                "lifecycleStatus": {
-                  "type": "string",
-                  "description": "The lifecycle status of an item describes where the item listing is in the overall lifecycle. Examples of allowed values are ACTIVE , ARCHIVED, RETIRED."
-                },
-                "shop_ref": {
-                  "type": "string"
-                },
-                "shop_product_id": {
-                  "type": "string"
-                },
-                "shop_variant_id": {
-                  "type": "string"
-                }
-              },
-              "description": "Items included in the response list"
-            }
-          },
-          "totalItems": {
-            "type": "integer",
-            "description": "Total items for the query",
-            "format": "int64"
-          },
-          "limit": {
-            "type": "integer",
-            "description": "Number of items shown in this page",
-            "format": "int32"
-          },
-          "nextCursor": {
-            "type": "string",
-            "description": "Used for pagination to fetch the next set of items"
-          },
-          "statuss": {
-            "type": "string",
-            "writeOnly": true
-          }
-        }
-      },
-      "Price": {
-        "type": "object",
-        "properties": {
-          "unit": {
-            "type": "string",
-            "description": "The currency type. Example: USD for US Dollars",
-            "enum": [
-              "AED",
-              "AFN",
-              "ALL",
-              "AMD",
-              "ANG",
-              "AOA",
-              "ARS",
-              "AUD",
-              "AWG",
-              "AZN",
-              "BAM",
-              "BBD",
-              "BDT",
-              "BGN",
-              "BHD",
-              "BIF",
-              "BMD",
-              "BND",
-              "BOB",
-              "BRL",
-              "BSD",
-              "BTN",
-              "BWP",
-              "BYR",
-              "BZD",
-              "CAD",
-              "CDF",
-              "CHF",
-              "CLP",
-              "CNY",
-              "COP",
-              "CRC",
-              "CUP",
-              "CVE",
-              "CZK",
-              "DJF",
-              "DKK",
-              "DOP",
-              "DZD",
-              "EGP",
-              "ERN",
-              "ETB",
-              "EUR",
-              "FJD",
-              "FKP",
-              "GBP",
-              "GEL",
-              "GHS",
-              "GIP",
-              "GMD",
-              "GNF",
-              "GTQ",
-              "GYD",
-              "HKD",
-              "HNL",
-              "HRK",
-              "HTG",
-              "HUF",
-              "IDR",
-              "ILS",
-              "INR",
-              "IQD",
-              "IRR",
-              "ISK",
-              "JMD",
-              "JOD",
-              "JPY",
-              "KES",
-              "KGS",
-              "KHR",
-              "KMF",
-              "KPW",
-              "KRW",
-              "KWD",
-              "KYD",
-              "KZT",
-              "LAK",
-              "LBP",
-              "LKR",
-              "LRD",
-              "LSL",
-              "LTL",
-              "LVL",
-              "LYD",
-              "MAD",
-              "MDL",
-              "MGA",
-              "MKD",
-              "MMK",
-              "MNT",
-              "MOP",
-              "MRO",
-              "MUR",
-              "MVR",
-              "MWK",
-              "MXN",
-              "MYR",
-              "MZN",
-              "NAD",
-              "NGN",
-              "NIO",
-              "NOK",
-              "NPR",
-              "NZD",
-              "OMR",
-              "PAB",
-              "PEN",
-              "PGK",
-              "PHP",
-              "PKR",
-              "PLN",
-              "PYG",
-              "QAR",
-              "RON",
-              "RSD",
-              "RUB",
-              "RUR",
-              "RWF",
-              "SAR",
-              "SBD",
-              "SCR",
-              "SDG",
-              "SEK",
-              "SGD",
-              "SHP",
-              "SLL",
-              "SOS",
-              "SRD",
-              "STD",
-              "SYP",
-              "SZL",
-              "THB",
-              "TJS",
-              "TMT",
-              "TND",
-              "TOP",
-              "TRY",
-              "TTD",
-              "TWD",
-              "TZS",
-              "UAH",
-              "UGX",
-              "USD",
-              "UYU",
-              "UZS",
-              "VEF",
-              "VND",
-              "VUV",
-              "WST",
-              "XAF",
-              "XAG",
-              "XAU",
-              "XBA",
-              "XBB",
-              "XBC",
-              "XBD",
-              "XCD",
-              "XDR",
-              "XFU",
-              "XOF",
-              "XPD",
-              "XPF",
-              "XPT",
-              "XTS",
-              "XXX",
-              "YER",
-              "ZAR",
-              "ZMK",
-              "ZWL"
-            ]
-          },
-          "amount": {
-            "type": "number",
-            "description": "The numerical amount of the price. Example: 9.99"
-          }
-        },
-        "description": "Specifies item purchase price information, including currency and amount."
-      },
-      "PublishedStatus": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "string",
-            "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
-          },
-          "reasons": {
-            "type": "array",
-            "description": "The Walmart Product ID assigned by Walmart to the item when listed on Walmart.com",
-            "items": {
-              "type": "string",
-              "description": "The Walmart Product ID assigned by Walmart to the item when listed on Walmart.com"
-            }
-          }
-        },
-        "description": "The status of an item when the item is in the submission process. The status can be one of the following: PUBLISHED, READY_TO_PUBLISH, IN_PROGRESS, UNPUBLISHED, STAGE, or SYSTEM_PROBLEM."
-      },
-      "Filter": {
-        "type": "object",
-        "properties": {
-          "field": {
-            "type": "string",
-            "description": "| Attribute | Description | Data Type\n| num_reviews | The reviewed times for Items | string |\n| customerRating | Customer rating | string |\n| lifecycleStatus | The lifecycle status of an item describes where the item listing is in the overall lifecycle | string |\n| publishedStatus | The published status of an item describes where the item is in the submission process | string |\n| unpublishedReasons | It outlines the reason for an item when unpublished | string |\n| inventoryStatus | It indicates whether the product is in stock or not | string |\n| price | Price of the Item | string |\n| fulfillmentType | Fulfillment information | string |",
-            "enum": [
-              "num_reviews",
-              "customerRating",
-              "lifecycleStatus",
-              "publishedStatus",
-              "unpublishedReasons",
-              "inventoryStatus",
-              "price",
-              "fulfillmentType"
-            ]
-          },
-          "op": {
-            "type": "string",
-            "enum": [
-              "equals",
-              "between",
-              "greater_than",
-              "less_than"
-            ]
-          },
-          "values": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          }
-        }
-      },
-      "ItemCatalogSearchPayload": {
-        "type": "object",
-        "properties": {
-          "query": {
-            "type": "object",
-            "properties": {
-              "field": {
-                "type": "string",
-                "description": "| Attribute | Description | Data Type\n| --- | ----------- | -------\n| productName | Product Name, can do white card search | string |\n| sku | An arbitrary alphanumeric unique ID, seller-specified, identifying each item | string |\n| gtin | Specifies a Global Trade Item Number (GTIN) search. GTIN must be 14 digits. | string |\n| wpid | The Walmart Product ID assigned by Walmart to the item when listed on Walmart.com | string |\n| upc | Specifies a Universal Product Code (UPC) search. UPC must be 12 digits. | string |\n| isbn | International Standard Book Number | string |\n| ean | Product ID, EANs must be 13 digits in length. | string |\n| itemId | A unique Id which identifies the item | string |",
-                "enum": [
-                  "productName",
-                  "sku",
-                  "gtin",
-                  "wpid",
-                  "upc",
-                  "isbn",
-                  "ean",
-                  "itemId"
-                ]
-              },
-              "value": {
-                "type": "string"
-              }
-            }
-          },
-          "filters": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "field": {
-                  "type": "string",
-                  "description": "| Attribute | Description | Data Type\n| num_reviews | The reviewed times for Items | string |\n| customerRating | Customer rating | string |\n| lifecycleStatus | The lifecycle status of an item describes where the item listing is in the overall lifecycle | string |\n| publishedStatus | The published status of an item describes where the item is in the submission process | string |\n| unpublishedReasons | It outlines the reason for an item when unpublished | string |\n| inventoryStatus | It indicates whether the product is in stock or not | string |\n| price | Price of the Item | string |\n| fulfillmentType | Fulfillment information | string |",
-                  "enum": [
-                    "num_reviews",
-                    "customerRating",
-                    "lifecycleStatus",
-                    "publishedStatus",
-                    "unpublishedReasons",
-                    "inventoryStatus",
-                    "price",
-                    "fulfillmentType"
-                  ]
-                },
-                "op": {
-                  "type": "string",
-                  "enum": [
-                    "equals",
-                    "between",
-                    "greater_than",
-                    "less_than"
-                  ]
-                },
-                "values": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                }
-              }
-            }
-          },
-          "sort": {
-            "type": "object",
-            "properties": {
-              "field": {
-                "type": "string",
-                "description": "| Attribute | Description | Data Type\n| --- | ----------- | -------\n| num_reviews | The revied number for Items | string |\n| customerRating | An arbitrary alphanumeric unique ID, seller-specified, identifying each item | string |\n| lifecycleStatus | The lifecycle status of an item describes where the item listing is in the overall lifecycle | string |\n| publishedStatus | The published status of an item describes where the item is in the submission process | string |\n| unpublishedReasons | It outlines the reason for an item when unpublished | string |\n| inventoryStatus | It indicates whether the product is in stock or not | string |",
-                "enum": [
-                  "num_reviews",
-                  "customerRating",
-                  "lifecycleStatus",
-                  "publishedStatus",
-                  "unpublishedReasons",
-                  "inventoryStatus"
-                ]
-              },
-              "order": {
-                "type": "string",
-                "enum": [
-                  "ASC",
-                  "DESC"
-                ]
-              }
-            }
-          }
-        }
-      },
-      "Query": {
-        "type": "object",
-        "properties": {
-          "field": {
-            "type": "string",
-            "description": "| Attribute | Description | Data Type\n| --- | ----------- | -------\n| productName | Product Name, can do white card search | string |\n| sku | An arbitrary alphanumeric unique ID, seller-specified, identifying each item | string |\n| gtin | Specifies a Global Trade Item Number (GTIN) search. GTIN must be 14 digits. | string |\n| wpid | The Walmart Product ID assigned by Walmart to the item when listed on Walmart.com | string |\n| upc | Specifies a Universal Product Code (UPC) search. UPC must be 12 digits. | string |\n| isbn | International Standard Book Number | string |\n| ean | Product ID, EANs must be 13 digits in length. | string |\n| itemId | A unique Id which identifies the item | string |",
-            "enum": [
-              "productName",
-              "sku",
-              "gtin",
-              "wpid",
-              "upc",
-              "isbn",
-              "ean",
-              "itemId"
-            ]
-          },
-          "value": {
-            "type": "string"
-          }
-        }
-      },
-      "Sort": {
-        "type": "object",
-        "properties": {
-          "field": {
-            "type": "string",
-            "description": "| Attribute | Description | Data Type\n| --- | ----------- | -------\n| num_reviews | The revied number for Items | string |\n| customerRating | An arbitrary alphanumeric unique ID, seller-specified, identifying each item | string |\n| lifecycleStatus | The lifecycle status of an item describes where the item listing is in the overall lifecycle | string |\n| publishedStatus | The published status of an item describes where the item is in the submission process | string |\n| unpublishedReasons | It outlines the reason for an item when unpublished | string |\n| inventoryStatus | It indicates whether the product is in stock or not | string |",
-            "enum": [
-              "num_reviews",
-              "customerRating",
-              "lifecycleStatus",
-              "publishedStatus",
-              "unpublishedReasons",
-              "inventoryStatus"
-            ]
-          },
-          "order": {
-            "type": "string",
-            "enum": [
-              "ASC",
-              "DESC"
-            ]
-          }
-        }
       },
       "CategoryPayload": {
         "type": "object",
@@ -6822,25 +5847,6 @@
               }
             }
           }
-        }
-      },
-      "ItemRetireResponse": {
-        "required": [
-          "sku"
-        ],
-        "type": "object",
-        "properties": {
-          "sku": {
-            "type": "string",
-            "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
-          },
-          "message": {
-            "type": "string",
-            "description": "Message confirming the deletion or retirement of an item from the Walmart Catalog"
-          }
-        },
-        "xml": {
-          "name": "ItemRetireResponse"
         }
       },
       "GatewayError": {
@@ -8783,6 +7789,1000 @@
             "xml": {
               "name": "ItemResponse"
             }
+          }
+        }
+      },
+      "ItemCatalogResponse": {
+        "type": "object",
+        "properties": {
+          "mart": {
+            "type": "string",
+            "description": "The marketplace name. Example: Walmart_US",
+            "enum": [
+              "WALMART_US",
+              "WALMART_CA",
+              "ASDA_GM",
+              "WALMART_MEXICO"
+            ]
+          },
+          "sku": {
+            "type": "string",
+            "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
+          },
+          "wpid": {
+            "type": "string",
+            "description": "The Walmart Product ID assigned by Walmart to the item when listed on Walmart.com"
+          },
+          "upc": {
+            "type": "string",
+            "description": "The 12-digit bar code used extensively for retail packaging in the United States"
+          },
+          "isbn": {
+            "type": "string",
+            "description": "International Standard Book Number"
+          },
+          "ean": {
+            "type": "string",
+            "description": "Product ID, EANs must be 13 digits in length."
+          },
+          "gtin": {
+            "type": "string",
+            "description": "The GTIN-compatible Product ID (i.e. UPC or EAN). UPCs must be 12 or 14 digitis in length. EANs must be 13 digits in length."
+          },
+          "itemId": {
+            "type": "string",
+            "description": "A unique Id which identifies the item."
+          },
+          "productName": {
+            "type": "string",
+            "description": "A seller-specified, alphanumeric string uniquely identifying the product name. Example: 'Sterling Silver Blue Diamond Heart Pendant with 18in Chain'"
+          },
+          "shelf": {
+            "type": "string",
+            "description": "Walmart assigned an item shelf name"
+          },
+          "productType": {
+            "type": "string",
+            "description": "A seller-specified, alphanumeric string uniquely identifying the Product Type. Example: 'Diamond'"
+          },
+          "price": {
+            "type": "object",
+            "properties": {
+              "unit": {
+                "type": "string",
+                "description": "The currency type. Example: USD for US Dollars",
+                "enum": [
+                  "AED",
+                  "AFN",
+                  "ALL",
+                  "AMD",
+                  "ANG",
+                  "AOA",
+                  "ARS",
+                  "AUD",
+                  "AWG",
+                  "AZN",
+                  "BAM",
+                  "BBD",
+                  "BDT",
+                  "BGN",
+                  "BHD",
+                  "BIF",
+                  "BMD",
+                  "BND",
+                  "BOB",
+                  "BRL",
+                  "BSD",
+                  "BTN",
+                  "BWP",
+                  "BYR",
+                  "BZD",
+                  "CAD",
+                  "CDF",
+                  "CHF",
+                  "CLP",
+                  "CNY",
+                  "COP",
+                  "CRC",
+                  "CUP",
+                  "CVE",
+                  "CZK",
+                  "DJF",
+                  "DKK",
+                  "DOP",
+                  "DZD",
+                  "EGP",
+                  "ERN",
+                  "ETB",
+                  "EUR",
+                  "FJD",
+                  "FKP",
+                  "GBP",
+                  "GEL",
+                  "GHS",
+                  "GIP",
+                  "GMD",
+                  "GNF",
+                  "GTQ",
+                  "GYD",
+                  "HKD",
+                  "HNL",
+                  "HRK",
+                  "HTG",
+                  "HUF",
+                  "IDR",
+                  "ILS",
+                  "INR",
+                  "IQD",
+                  "IRR",
+                  "ISK",
+                  "JMD",
+                  "JOD",
+                  "JPY",
+                  "KES",
+                  "KGS",
+                  "KHR",
+                  "KMF",
+                  "KPW",
+                  "KRW",
+                  "KWD",
+                  "KYD",
+                  "KZT",
+                  "LAK",
+                  "LBP",
+                  "LKR",
+                  "LRD",
+                  "LSL",
+                  "LTL",
+                  "LVL",
+                  "LYD",
+                  "MAD",
+                  "MDL",
+                  "MGA",
+                  "MKD",
+                  "MMK",
+                  "MNT",
+                  "MOP",
+                  "MRO",
+                  "MUR",
+                  "MVR",
+                  "MWK",
+                  "MXN",
+                  "MYR",
+                  "MZN",
+                  "NAD",
+                  "NGN",
+                  "NIO",
+                  "NOK",
+                  "NPR",
+                  "NZD",
+                  "OMR",
+                  "PAB",
+                  "PEN",
+                  "PGK",
+                  "PHP",
+                  "PKR",
+                  "PLN",
+                  "PYG",
+                  "QAR",
+                  "RON",
+                  "RSD",
+                  "RUB",
+                  "RUR",
+                  "RWF",
+                  "SAR",
+                  "SBD",
+                  "SCR",
+                  "SDG",
+                  "SEK",
+                  "SGD",
+                  "SHP",
+                  "SLL",
+                  "SOS",
+                  "SRD",
+                  "STD",
+                  "SYP",
+                  "SZL",
+                  "THB",
+                  "TJS",
+                  "TMT",
+                  "TND",
+                  "TOP",
+                  "TRY",
+                  "TTD",
+                  "TWD",
+                  "TZS",
+                  "UAH",
+                  "UGX",
+                  "USD",
+                  "UYU",
+                  "UZS",
+                  "VEF",
+                  "VND",
+                  "VUV",
+                  "WST",
+                  "XAF",
+                  "XAG",
+                  "XAU",
+                  "XBA",
+                  "XBB",
+                  "XBC",
+                  "XBD",
+                  "XCD",
+                  "XDR",
+                  "XFU",
+                  "XOF",
+                  "XPD",
+                  "XPF",
+                  "XPT",
+                  "XTS",
+                  "XXX",
+                  "YER",
+                  "ZAR",
+                  "ZMK",
+                  "ZWL"
+                ]
+              },
+              "amount": {
+                "type": "number",
+                "description": "The numerical amount of the price. Example: 9.99"
+              }
+            },
+            "description": "Specifies item purchase price information, including currency and amount."
+          },
+          "brand": {
+            "type": "string",
+            "description": "Brand of Item."
+          },
+          "num_reviews": {
+            "type": "string",
+            "description": "The reviewed times for Items."
+          },
+          "customerRating": {
+            "type": "string",
+            "description": "Customer rating."
+          },
+          "manufacturer": {
+            "type": "string",
+            "description": "manufacturer of Item."
+          },
+          "fulfillmentType": {
+            "type": "string",
+            "description": "Fulfillment information."
+          },
+          "publishedStatus": {
+            "type": "object",
+            "properties": {
+              "status": {
+                "type": "string",
+                "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
+              },
+              "reasons": {
+                "type": "array",
+                "description": "The Walmart Product ID assigned by Walmart to the item when listed on Walmart.com",
+                "items": {
+                  "type": "string",
+                  "description": "The Walmart Product ID assigned by Walmart to the item when listed on Walmart.com"
+                }
+              }
+            },
+            "description": "The status of an item when the item is in the submission process. The status can be one of the following: PUBLISHED, READY_TO_PUBLISH, IN_PROGRESS, UNPUBLISHED, STAGE, or SYSTEM_PROBLEM."
+          },
+          "inventoryStatus": {
+            "type": "string",
+            "description": "It indicates whether the product is in stock or not."
+          },
+          "lifecycleStatus": {
+            "type": "string",
+            "description": "The lifecycle status of an item describes where the item listing is in the overall lifecycle. Examples of allowed values are ACTIVE , ARCHIVED, RETIRED."
+          },
+          "shop_ref": {
+            "type": "string"
+          },
+          "shop_product_id": {
+            "type": "string"
+          },
+          "shop_variant_id": {
+            "type": "string"
+          }
+        },
+        "description": "Items included in the response list"
+      },
+      "ItemCatalogResponses": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "Response Status"
+          },
+          "payload": {
+            "type": "array",
+            "description": "Items included in the response list",
+            "items": {
+              "type": "object",
+              "properties": {
+                "mart": {
+                  "type": "string",
+                  "description": "The marketplace name. Example: Walmart_US",
+                  "enum": [
+                    "WALMART_US",
+                    "WALMART_CA",
+                    "ASDA_GM",
+                    "WALMART_MEXICO"
+                  ]
+                },
+                "sku": {
+                  "type": "string",
+                  "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
+                },
+                "wpid": {
+                  "type": "string",
+                  "description": "The Walmart Product ID assigned by Walmart to the item when listed on Walmart.com"
+                },
+                "upc": {
+                  "type": "string",
+                  "description": "The 12-digit bar code used extensively for retail packaging in the United States"
+                },
+                "isbn": {
+                  "type": "string",
+                  "description": "International Standard Book Number"
+                },
+                "ean": {
+                  "type": "string",
+                  "description": "Product ID, EANs must be 13 digits in length."
+                },
+                "gtin": {
+                  "type": "string",
+                  "description": "The GTIN-compatible Product ID (i.e. UPC or EAN). UPCs must be 12 or 14 digitis in length. EANs must be 13 digits in length."
+                },
+                "itemId": {
+                  "type": "string",
+                  "description": "A unique Id which identifies the item."
+                },
+                "productName": {
+                  "type": "string",
+                  "description": "A seller-specified, alphanumeric string uniquely identifying the product name. Example: 'Sterling Silver Blue Diamond Heart Pendant with 18in Chain'"
+                },
+                "shelf": {
+                  "type": "string",
+                  "description": "Walmart assigned an item shelf name"
+                },
+                "productType": {
+                  "type": "string",
+                  "description": "A seller-specified, alphanumeric string uniquely identifying the Product Type. Example: 'Diamond'"
+                },
+                "price": {
+                  "type": "object",
+                  "properties": {
+                    "unit": {
+                      "type": "string",
+                      "description": "The currency type. Example: USD for US Dollars",
+                      "enum": [
+                        "AED",
+                        "AFN",
+                        "ALL",
+                        "AMD",
+                        "ANG",
+                        "AOA",
+                        "ARS",
+                        "AUD",
+                        "AWG",
+                        "AZN",
+                        "BAM",
+                        "BBD",
+                        "BDT",
+                        "BGN",
+                        "BHD",
+                        "BIF",
+                        "BMD",
+                        "BND",
+                        "BOB",
+                        "BRL",
+                        "BSD",
+                        "BTN",
+                        "BWP",
+                        "BYR",
+                        "BZD",
+                        "CAD",
+                        "CDF",
+                        "CHF",
+                        "CLP",
+                        "CNY",
+                        "COP",
+                        "CRC",
+                        "CUP",
+                        "CVE",
+                        "CZK",
+                        "DJF",
+                        "DKK",
+                        "DOP",
+                        "DZD",
+                        "EGP",
+                        "ERN",
+                        "ETB",
+                        "EUR",
+                        "FJD",
+                        "FKP",
+                        "GBP",
+                        "GEL",
+                        "GHS",
+                        "GIP",
+                        "GMD",
+                        "GNF",
+                        "GTQ",
+                        "GYD",
+                        "HKD",
+                        "HNL",
+                        "HRK",
+                        "HTG",
+                        "HUF",
+                        "IDR",
+                        "ILS",
+                        "INR",
+                        "IQD",
+                        "IRR",
+                        "ISK",
+                        "JMD",
+                        "JOD",
+                        "JPY",
+                        "KES",
+                        "KGS",
+                        "KHR",
+                        "KMF",
+                        "KPW",
+                        "KRW",
+                        "KWD",
+                        "KYD",
+                        "KZT",
+                        "LAK",
+                        "LBP",
+                        "LKR",
+                        "LRD",
+                        "LSL",
+                        "LTL",
+                        "LVL",
+                        "LYD",
+                        "MAD",
+                        "MDL",
+                        "MGA",
+                        "MKD",
+                        "MMK",
+                        "MNT",
+                        "MOP",
+                        "MRO",
+                        "MUR",
+                        "MVR",
+                        "MWK",
+                        "MXN",
+                        "MYR",
+                        "MZN",
+                        "NAD",
+                        "NGN",
+                        "NIO",
+                        "NOK",
+                        "NPR",
+                        "NZD",
+                        "OMR",
+                        "PAB",
+                        "PEN",
+                        "PGK",
+                        "PHP",
+                        "PKR",
+                        "PLN",
+                        "PYG",
+                        "QAR",
+                        "RON",
+                        "RSD",
+                        "RUB",
+                        "RUR",
+                        "RWF",
+                        "SAR",
+                        "SBD",
+                        "SCR",
+                        "SDG",
+                        "SEK",
+                        "SGD",
+                        "SHP",
+                        "SLL",
+                        "SOS",
+                        "SRD",
+                        "STD",
+                        "SYP",
+                        "SZL",
+                        "THB",
+                        "TJS",
+                        "TMT",
+                        "TND",
+                        "TOP",
+                        "TRY",
+                        "TTD",
+                        "TWD",
+                        "TZS",
+                        "UAH",
+                        "UGX",
+                        "USD",
+                        "UYU",
+                        "UZS",
+                        "VEF",
+                        "VND",
+                        "VUV",
+                        "WST",
+                        "XAF",
+                        "XAG",
+                        "XAU",
+                        "XBA",
+                        "XBB",
+                        "XBC",
+                        "XBD",
+                        "XCD",
+                        "XDR",
+                        "XFU",
+                        "XOF",
+                        "XPD",
+                        "XPF",
+                        "XPT",
+                        "XTS",
+                        "XXX",
+                        "YER",
+                        "ZAR",
+                        "ZMK",
+                        "ZWL"
+                      ]
+                    },
+                    "amount": {
+                      "type": "number",
+                      "description": "The numerical amount of the price. Example: 9.99"
+                    }
+                  },
+                  "description": "Specifies item purchase price information, including currency and amount."
+                },
+                "brand": {
+                  "type": "string",
+                  "description": "Brand of Item."
+                },
+                "num_reviews": {
+                  "type": "string",
+                  "description": "The reviewed times for Items."
+                },
+                "customerRating": {
+                  "type": "string",
+                  "description": "Customer rating."
+                },
+                "manufacturer": {
+                  "type": "string",
+                  "description": "manufacturer of Item."
+                },
+                "fulfillmentType": {
+                  "type": "string",
+                  "description": "Fulfillment information."
+                },
+                "publishedStatus": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
+                    },
+                    "reasons": {
+                      "type": "array",
+                      "description": "The Walmart Product ID assigned by Walmart to the item when listed on Walmart.com",
+                      "items": {
+                        "type": "string",
+                        "description": "The Walmart Product ID assigned by Walmart to the item when listed on Walmart.com"
+                      }
+                    }
+                  },
+                  "description": "The status of an item when the item is in the submission process. The status can be one of the following: PUBLISHED, READY_TO_PUBLISH, IN_PROGRESS, UNPUBLISHED, STAGE, or SYSTEM_PROBLEM."
+                },
+                "inventoryStatus": {
+                  "type": "string",
+                  "description": "It indicates whether the product is in stock or not."
+                },
+                "lifecycleStatus": {
+                  "type": "string",
+                  "description": "The lifecycle status of an item describes where the item listing is in the overall lifecycle. Examples of allowed values are ACTIVE , ARCHIVED, RETIRED."
+                },
+                "shop_ref": {
+                  "type": "string"
+                },
+                "shop_product_id": {
+                  "type": "string"
+                },
+                "shop_variant_id": {
+                  "type": "string"
+                }
+              },
+              "description": "Items included in the response list"
+            }
+          },
+          "totalItems": {
+            "type": "integer",
+            "description": "Total items for the query",
+            "format": "int64"
+          },
+          "limit": {
+            "type": "integer",
+            "description": "Number of items shown in this page",
+            "format": "int32"
+          },
+          "nextCursor": {
+            "type": "string",
+            "description": "Used for pagination to fetch the next set of items"
+          },
+          "statuss": {
+            "type": "string",
+            "writeOnly": true
+          }
+        }
+      },
+      "Price": {
+        "type": "object",
+        "properties": {
+          "unit": {
+            "type": "string",
+            "description": "The currency type. Example: USD for US Dollars",
+            "enum": [
+              "AED",
+              "AFN",
+              "ALL",
+              "AMD",
+              "ANG",
+              "AOA",
+              "ARS",
+              "AUD",
+              "AWG",
+              "AZN",
+              "BAM",
+              "BBD",
+              "BDT",
+              "BGN",
+              "BHD",
+              "BIF",
+              "BMD",
+              "BND",
+              "BOB",
+              "BRL",
+              "BSD",
+              "BTN",
+              "BWP",
+              "BYR",
+              "BZD",
+              "CAD",
+              "CDF",
+              "CHF",
+              "CLP",
+              "CNY",
+              "COP",
+              "CRC",
+              "CUP",
+              "CVE",
+              "CZK",
+              "DJF",
+              "DKK",
+              "DOP",
+              "DZD",
+              "EGP",
+              "ERN",
+              "ETB",
+              "EUR",
+              "FJD",
+              "FKP",
+              "GBP",
+              "GEL",
+              "GHS",
+              "GIP",
+              "GMD",
+              "GNF",
+              "GTQ",
+              "GYD",
+              "HKD",
+              "HNL",
+              "HRK",
+              "HTG",
+              "HUF",
+              "IDR",
+              "ILS",
+              "INR",
+              "IQD",
+              "IRR",
+              "ISK",
+              "JMD",
+              "JOD",
+              "JPY",
+              "KES",
+              "KGS",
+              "KHR",
+              "KMF",
+              "KPW",
+              "KRW",
+              "KWD",
+              "KYD",
+              "KZT",
+              "LAK",
+              "LBP",
+              "LKR",
+              "LRD",
+              "LSL",
+              "LTL",
+              "LVL",
+              "LYD",
+              "MAD",
+              "MDL",
+              "MGA",
+              "MKD",
+              "MMK",
+              "MNT",
+              "MOP",
+              "MRO",
+              "MUR",
+              "MVR",
+              "MWK",
+              "MXN",
+              "MYR",
+              "MZN",
+              "NAD",
+              "NGN",
+              "NIO",
+              "NOK",
+              "NPR",
+              "NZD",
+              "OMR",
+              "PAB",
+              "PEN",
+              "PGK",
+              "PHP",
+              "PKR",
+              "PLN",
+              "PYG",
+              "QAR",
+              "RON",
+              "RSD",
+              "RUB",
+              "RUR",
+              "RWF",
+              "SAR",
+              "SBD",
+              "SCR",
+              "SDG",
+              "SEK",
+              "SGD",
+              "SHP",
+              "SLL",
+              "SOS",
+              "SRD",
+              "STD",
+              "SYP",
+              "SZL",
+              "THB",
+              "TJS",
+              "TMT",
+              "TND",
+              "TOP",
+              "TRY",
+              "TTD",
+              "TWD",
+              "TZS",
+              "UAH",
+              "UGX",
+              "USD",
+              "UYU",
+              "UZS",
+              "VEF",
+              "VND",
+              "VUV",
+              "WST",
+              "XAF",
+              "XAG",
+              "XAU",
+              "XBA",
+              "XBB",
+              "XBC",
+              "XBD",
+              "XCD",
+              "XDR",
+              "XFU",
+              "XOF",
+              "XPD",
+              "XPF",
+              "XPT",
+              "XTS",
+              "XXX",
+              "YER",
+              "ZAR",
+              "ZMK",
+              "ZWL"
+            ]
+          },
+          "amount": {
+            "type": "number",
+            "description": "The numerical amount of the price. Example: 9.99"
+          }
+        },
+        "description": "Specifies item purchase price information, including currency and amount."
+      },
+      "PublishedStatus": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
+          },
+          "reasons": {
+            "type": "array",
+            "description": "The Walmart Product ID assigned by Walmart to the item when listed on Walmart.com",
+            "items": {
+              "type": "string",
+              "description": "The Walmart Product ID assigned by Walmart to the item when listed on Walmart.com"
+            }
+          }
+        },
+        "description": "The status of an item when the item is in the submission process. The status can be one of the following: PUBLISHED, READY_TO_PUBLISH, IN_PROGRESS, UNPUBLISHED, STAGE, or SYSTEM_PROBLEM."
+      },
+      "Filter": {
+        "type": "object",
+        "properties": {
+          "field": {
+            "type": "string",
+            "description": "| Attribute | Description | Data Type\n| num_reviews | The reviewed times for Items | string |\n| customerRating | Customer rating | string |\n| lifecycleStatus | The lifecycle status of an item describes where the item listing is in the overall lifecycle | string |\n| publishedStatus | The published status of an item describes where the item is in the submission process | string |\n| unpublishedReasons | It outlines the reason for an item when unpublished | string |\n| inventoryStatus | It indicates whether the product is in stock or not | string |\n| price | Price of the Item | string |\n| fulfillmentType | Fulfillment information | string |",
+            "enum": [
+              "num_reviews",
+              "customerRating",
+              "lifecycleStatus",
+              "publishedStatus",
+              "unpublishedReasons",
+              "inventoryStatus",
+              "price",
+              "fulfillmentType"
+            ]
+          },
+          "op": {
+            "type": "string",
+            "enum": [
+              "equals",
+              "between",
+              "greater_than",
+              "less_than"
+            ]
+          },
+          "values": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "ItemCatalogSearchPayload": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "object",
+            "properties": {
+              "field": {
+                "type": "string",
+                "description": "| Attribute | Description | Data Type\n| --- | ----------- | -------\n| productName | Product Name, can do white card search | string |\n| sku | An arbitrary alphanumeric unique ID, seller-specified, identifying each item | string |\n| gtin | Specifies a Global Trade Item Number (GTIN) search. GTIN must be 14 digits. | string |\n| wpid | The Walmart Product ID assigned by Walmart to the item when listed on Walmart.com | string |\n| upc | Specifies a Universal Product Code (UPC) search. UPC must be 12 digits. | string |\n| isbn | International Standard Book Number | string |\n| ean | Product ID, EANs must be 13 digits in length. | string |\n| itemId | A unique Id which identifies the item | string |",
+                "enum": [
+                  "productName",
+                  "sku",
+                  "gtin",
+                  "wpid",
+                  "upc",
+                  "isbn",
+                  "ean",
+                  "itemId"
+                ]
+              },
+              "value": {
+                "type": "string"
+              }
+            }
+          },
+          "filters": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "field": {
+                  "type": "string",
+                  "description": "| Attribute | Description | Data Type\n| num_reviews | The reviewed times for Items | string |\n| customerRating | Customer rating | string |\n| lifecycleStatus | The lifecycle status of an item describes where the item listing is in the overall lifecycle | string |\n| publishedStatus | The published status of an item describes where the item is in the submission process | string |\n| unpublishedReasons | It outlines the reason for an item when unpublished | string |\n| inventoryStatus | It indicates whether the product is in stock or not | string |\n| price | Price of the Item | string |\n| fulfillmentType | Fulfillment information | string |",
+                  "enum": [
+                    "num_reviews",
+                    "customerRating",
+                    "lifecycleStatus",
+                    "publishedStatus",
+                    "unpublishedReasons",
+                    "inventoryStatus",
+                    "price",
+                    "fulfillmentType"
+                  ]
+                },
+                "op": {
+                  "type": "string",
+                  "enum": [
+                    "equals",
+                    "between",
+                    "greater_than",
+                    "less_than"
+                  ]
+                },
+                "values": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "sort": {
+            "type": "object",
+            "properties": {
+              "field": {
+                "type": "string",
+                "description": "| Attribute | Description | Data Type\n| --- | ----------- | -------\n| num_reviews | The revied number for Items | string |\n| customerRating | An arbitrary alphanumeric unique ID, seller-specified, identifying each item | string |\n| lifecycleStatus | The lifecycle status of an item describes where the item listing is in the overall lifecycle | string |\n| publishedStatus | The published status of an item describes where the item is in the submission process | string |\n| unpublishedReasons | It outlines the reason for an item when unpublished | string |\n| inventoryStatus | It indicates whether the product is in stock or not | string |",
+                "enum": [
+                  "num_reviews",
+                  "customerRating",
+                  "lifecycleStatus",
+                  "publishedStatus",
+                  "unpublishedReasons",
+                  "inventoryStatus"
+                ]
+              },
+              "order": {
+                "type": "string",
+                "enum": [
+                  "ASC",
+                  "DESC"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "Query": {
+        "type": "object",
+        "properties": {
+          "field": {
+            "type": "string",
+            "description": "| Attribute | Description | Data Type\n| --- | ----------- | -------\n| productName | Product Name, can do white card search | string |\n| sku | An arbitrary alphanumeric unique ID, seller-specified, identifying each item | string |\n| gtin | Specifies a Global Trade Item Number (GTIN) search. GTIN must be 14 digits. | string |\n| wpid | The Walmart Product ID assigned by Walmart to the item when listed on Walmart.com | string |\n| upc | Specifies a Universal Product Code (UPC) search. UPC must be 12 digits. | string |\n| isbn | International Standard Book Number | string |\n| ean | Product ID, EANs must be 13 digits in length. | string |\n| itemId | A unique Id which identifies the item | string |",
+            "enum": [
+              "productName",
+              "sku",
+              "gtin",
+              "wpid",
+              "upc",
+              "isbn",
+              "ean",
+              "itemId"
+            ]
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "Sort": {
+        "type": "object",
+        "properties": {
+          "field": {
+            "type": "string",
+            "description": "| Attribute | Description | Data Type\n| --- | ----------- | -------\n| num_reviews | The revied number for Items | string |\n| customerRating | An arbitrary alphanumeric unique ID, seller-specified, identifying each item | string |\n| lifecycleStatus | The lifecycle status of an item describes where the item listing is in the overall lifecycle | string |\n| publishedStatus | The published status of an item describes where the item is in the submission process | string |\n| unpublishedReasons | It outlines the reason for an item when unpublished | string |\n| inventoryStatus | It indicates whether the product is in stock or not | string |",
+            "enum": [
+              "num_reviews",
+              "customerRating",
+              "lifecycleStatus",
+              "publishedStatus",
+              "unpublishedReasons",
+              "inventoryStatus"
+            ]
+          },
+          "order": {
+            "type": "string",
+            "enum": [
+              "ASC",
+              "DESC"
+            ]
           }
         }
       },

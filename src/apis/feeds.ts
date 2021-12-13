@@ -163,10 +163,10 @@ export interface FeedRecordResponse {
     limit?: number;
     /**
      * 
-     * @type {InlineResponse2001Results}
+     * @type {InlineResponse200Results}
      * @memberof FeedRecordResponse
      */
-    results?: InlineResponse2001Results;
+    results?: InlineResponse200Results;
 }
 /**
  * 
@@ -321,10 +321,10 @@ export enum IngestionErrorTypeEnum {
 export interface IngestionErrors {
     /**
      * 
-     * @type {Array<InlineResponse200IngestionErrorsIngestionError>}
+     * @type {Array<InlineResponse2001IngestionErrorsIngestionError>}
      * @memberof IngestionErrors
      */
-    ingestionError?: Array<InlineResponse200IngestionErrorsIngestionError>;
+    ingestionError?: Array<InlineResponse2001IngestionErrorsIngestionError>;
 }
 /**
  * 
@@ -339,78 +339,30 @@ export interface InlineResponse200 {
      */
     errors?: Array<InlineResponse200Errors>;
     /**
-     * A unique ID used for tracking the Feed File
-     * @type {string}
-     * @memberof InlineResponse200
-     */
-    feedId?: string;
-    /**
-     * Can be one of the following: RECEIVED, INPROGRESS, PROCESSED, or ERROR
-     * @type {string}
-     * @memberof InlineResponse200
-     */
-    feedStatus?: InlineResponse200FeedStatusEnum;
-    /**
-     * 
-     * @type {InlineResponse200IngestionErrors}
-     * @memberof InlineResponse200
-     */
-    ingestionErrors?: InlineResponse200IngestionErrors;
-    /**
-     * The number of items received in the feed
+     * Total number of feeds returned
      * @type {number}
      * @memberof InlineResponse200
      */
-    itemsReceived?: number;
+    totalResults?: number;
     /**
-     * The number of items in the feed that processed successfully
-     * @type {number}
-     * @memberof InlineResponse200
-     */
-    itemsSucceeded?: number;
-    /**
-     * The number of items in the feed that failed due to a data or system error
-     * @type {number}
-     * @memberof InlineResponse200
-     */
-    itemsFailed?: number;
-    /**
-     * The number of items in the feed that are still processing
-     * @type {number}
-     * @memberof InlineResponse200
-     */
-    itemsProcessing?: number;
-    /**
-     * The object response to the starting number, where 0 is the first entity available for request
+     * The object response to the starting number, where 0 is the first available
      * @type {number}
      * @memberof InlineResponse200
      */
     offset?: number;
     /**
-     * The number of items returned. Cannot be greater than 1000.
+     * The number of items to be returned
      * @type {number}
      * @memberof InlineResponse200
      */
     limit?: number;
     /**
      * 
-     * @type {InlineResponse200ItemDetails}
+     * @type {InlineResponse200Results}
      * @memberof InlineResponse200
      */
-    itemDetails?: InlineResponse200ItemDetails;
+    results?: InlineResponse200Results;
 }
-
-/**
-    * @export
-    * @enum {string}
-    */
-export enum InlineResponse200FeedStatusEnum {
-    Received = 'RECEIVED',
-    Inprogress = 'INPROGRESS',
-    Processed = 'PROCESSED',
-    Error = 'ERROR'
-}
-
 /**
  * 
  * @export
@@ -424,122 +376,196 @@ export interface InlineResponse2001 {
      */
     errors?: Array<InlineResponse200Errors>;
     /**
-     * Total number of feeds returned
+     * A unique ID used for tracking the Feed File
+     * @type {string}
+     * @memberof InlineResponse2001
+     */
+    feedId?: string;
+    /**
+     * Can be one of the following: RECEIVED, INPROGRESS, PROCESSED, or ERROR
+     * @type {string}
+     * @memberof InlineResponse2001
+     */
+    feedStatus?: InlineResponse2001FeedStatusEnum;
+    /**
+     * 
+     * @type {InlineResponse2001IngestionErrors}
+     * @memberof InlineResponse2001
+     */
+    ingestionErrors?: InlineResponse2001IngestionErrors;
+    /**
+     * The number of items received in the feed
      * @type {number}
      * @memberof InlineResponse2001
      */
-    totalResults?: number;
+    itemsReceived?: number;
     /**
-     * The object response to the starting number, where 0 is the first available
+     * The number of items in the feed that processed successfully
+     * @type {number}
+     * @memberof InlineResponse2001
+     */
+    itemsSucceeded?: number;
+    /**
+     * The number of items in the feed that failed due to a data or system error
+     * @type {number}
+     * @memberof InlineResponse2001
+     */
+    itemsFailed?: number;
+    /**
+     * The number of items in the feed that are still processing
+     * @type {number}
+     * @memberof InlineResponse2001
+     */
+    itemsProcessing?: number;
+    /**
+     * The object response to the starting number, where 0 is the first entity available for request
      * @type {number}
      * @memberof InlineResponse2001
      */
     offset?: number;
     /**
-     * The number of items to be returned
+     * The number of items returned. Cannot be greater than 1000.
      * @type {number}
      * @memberof InlineResponse2001
      */
     limit?: number;
     /**
      * 
-     * @type {InlineResponse2001Results}
+     * @type {InlineResponse2001ItemDetails}
      * @memberof InlineResponse2001
      */
-    results?: InlineResponse2001Results;
+    itemDetails?: InlineResponse2001ItemDetails;
+}
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum InlineResponse2001FeedStatusEnum {
+    Received = 'RECEIVED',
+    Inprogress = 'INPROGRESS',
+    Processed = 'PROCESSED',
+    Error = 'ERROR'
+}
+
+/**
+ * List of errors for an item
+ * @export
+ * @interface InlineResponse2001IngestionErrors
+ */
+export interface InlineResponse2001IngestionErrors {
+    /**
+     * 
+     * @type {Array<InlineResponse2001IngestionErrorsIngestionError>}
+     * @memberof InlineResponse2001IngestionErrors
+     */
+    ingestionError?: Array<InlineResponse2001IngestionErrorsIngestionError>;
 }
 /**
- * The feed status results
+ * 
  * @export
- * @interface InlineResponse2001Results
+ * @interface InlineResponse2001IngestionErrorsIngestionError
  */
-export interface InlineResponse2001Results {
+export interface InlineResponse2001IngestionErrorsIngestionError {
     /**
-     * The feed status results
-     * @type {Array<InlineResponse2001ResultsFeed>}
-     * @memberof InlineResponse2001Results
+     * Error Type
+     * @type {string}
+     * @memberof InlineResponse2001IngestionErrorsIngestionError
      */
-    feed?: Array<InlineResponse2001ResultsFeed>;
+    type: InlineResponse2001IngestionErrorsIngestionErrorTypeEnum;
+    /**
+     * Error code
+     * @type {string}
+     * @memberof InlineResponse2001IngestionErrorsIngestionError
+     */
+    code: string;
+    /**
+     * Error description
+     * @type {string}
+     * @memberof InlineResponse2001IngestionErrorsIngestionError
+     */
+    description?: string;
+}
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum InlineResponse2001IngestionErrorsIngestionErrorTypeEnum {
+    DataError = 'DATA_ERROR',
+    SystemError = 'SYSTEM_ERROR',
+    TimeoutError = 'TIMEOUT_ERROR'
+}
+
+/**
+ * List of ingestion status details for items in the feed
+ * @export
+ * @interface InlineResponse2001ItemDetails
+ */
+export interface InlineResponse2001ItemDetails {
+    /**
+     * The ingestion status of an individual item
+     * @type {Array<InlineResponse2001ItemDetailsItemIngestionStatus>}
+     * @memberof InlineResponse2001ItemDetails
+     */
+    itemIngestionStatus?: Array<InlineResponse2001ItemDetailsItemIngestionStatus>;
 }
 /**
- * Information about the individual feed
+ * The ingestion status of an individual item
  * @export
- * @interface InlineResponse2001ResultsFeed
+ * @interface InlineResponse2001ItemDetailsItemIngestionStatus
  */
-export interface InlineResponse2001ResultsFeed {
+export interface InlineResponse2001ItemDetailsItemIngestionStatus {
     /**
-     * A unique ID used for tracking the Feed File
-     * @type {string}
-     * @memberof InlineResponse2001ResultsFeed
-     */
-    feedId?: string;
-    /**
-     * The source of the feed
-     * @type {string}
-     * @memberof InlineResponse2001ResultsFeed
-     */
-    feedSource?: string;
-    /**
-     * The feed type
-     * @type {string}
-     * @memberof InlineResponse2001ResultsFeed
-     */
-    feedType?: string;
-    /**
-     * The seller ID
-     * @type {string}
-     * @memberof InlineResponse2001ResultsFeed
-     */
-    partnerId?: string;
-    /**
-     * The number of items received
+     * Mart ID that a user or seller uses for a marketplace
      * @type {number}
-     * @memberof InlineResponse2001ResultsFeed
+     * @memberof InlineResponse2001ItemDetailsItemIngestionStatus
      */
-    itemsReceived?: number;
+    martId?: number;
     /**
-     * The number of items in the feed that have successfully processed
-     * @type {number}
-     * @memberof InlineResponse2001ResultsFeed
-     */
-    itemsSucceeded?: number;
-    /**
-     * The number of items in the feed that failed due to a data or system error
-     * @type {number}
-     * @memberof InlineResponse2001ResultsFeed
-     */
-    itemsFailed?: number;
-    /**
-     * The number of items in the feed that are still in progress
-     * @type {number}
-     * @memberof InlineResponse2001ResultsFeed
-     */
-    itemsProcessing?: number;
-    /**
-     * Can be one of the following: RECEIVED, INPROGRESS, PROCESSED, or ERROR. For details, see the definitions listed under \'Feed Statuses\' at the beginning of this section.
+     * An arbitrary alphanumeric unique ID, seller-specified, identifying each item.
      * @type {string}
-     * @memberof InlineResponse2001ResultsFeed
+     * @memberof InlineResponse2001ItemDetailsItemIngestionStatus
      */
-    feedStatus?: string;
+    sku?: string;
     /**
-     * The date and time the feed was submitted. Format: yyyymmddThh:mm:ss.xxxz
-     * @type {number}
-     * @memberof InlineResponse2001ResultsFeed
-     */
-    feedDate?: number;
-    /**
-     * The batch ID for the feed, if provided
+     * An alphanumeric product ID, generated by Walmart
      * @type {string}
-     * @memberof InlineResponse2001ResultsFeed
+     * @memberof InlineResponse2001ItemDetailsItemIngestionStatus
      */
-    batchId?: string;
+    wpid?: string;
     /**
-     * The most recent time the feed was modified. Format: yyyymmddThh:mm:ss.xxxz
+     * index of items in the feed
      * @type {number}
-     * @memberof InlineResponse2001ResultsFeed
+     * @memberof InlineResponse2001ItemDetailsItemIngestionStatus
      */
-    modifiedDtm?: number;
+    index?: number;
+    /**
+     * Can be one of the following: DATA_ERROR, SYSTEM_ERROR, TIMEOUT_ERROR, or INPROGRESS
+     * @type {string}
+     * @memberof InlineResponse2001ItemDetailsItemIngestionStatus
+     */
+    ingestionStatus: InlineResponse2001ItemDetailsItemIngestionStatusIngestionStatusEnum;
+    /**
+     * 
+     * @type {InlineResponse2001IngestionErrors}
+     * @memberof InlineResponse2001ItemDetailsItemIngestionStatus
+     */
+    ingestionErrors?: InlineResponse2001IngestionErrors;
 }
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum InlineResponse2001ItemDetailsItemIngestionStatusIngestionStatusEnum {
+    Inprogress = 'INPROGRESS',
+    Success = 'SUCCESS',
+    DataError = 'DATA_ERROR',
+    SystemError = 'SYSTEM_ERROR',
+    TimeoutError = 'TIMEOUT_ERROR'
+}
+
 /**
  * 
  * @export
@@ -681,123 +707,97 @@ export enum InlineResponse200ErrorsGatewayErrorCategoryEnum {
 }
 
 /**
- * List of errors for an item
+ * The feed status results
  * @export
- * @interface InlineResponse200IngestionErrors
+ * @interface InlineResponse200Results
  */
-export interface InlineResponse200IngestionErrors {
+export interface InlineResponse200Results {
     /**
-     * 
-     * @type {Array<InlineResponse200IngestionErrorsIngestionError>}
-     * @memberof InlineResponse200IngestionErrors
+     * The feed status results
+     * @type {Array<InlineResponse200ResultsFeed>}
+     * @memberof InlineResponse200Results
      */
-    ingestionError?: Array<InlineResponse200IngestionErrorsIngestionError>;
+    feed?: Array<InlineResponse200ResultsFeed>;
 }
 /**
- * 
+ * Information about the individual feed
  * @export
- * @interface InlineResponse200IngestionErrorsIngestionError
+ * @interface InlineResponse200ResultsFeed
  */
-export interface InlineResponse200IngestionErrorsIngestionError {
+export interface InlineResponse200ResultsFeed {
     /**
-     * Error Type
+     * A unique ID used for tracking the Feed File
      * @type {string}
-     * @memberof InlineResponse200IngestionErrorsIngestionError
+     * @memberof InlineResponse200ResultsFeed
      */
-    type: InlineResponse200IngestionErrorsIngestionErrorTypeEnum;
+    feedId?: string;
     /**
-     * Error code
+     * The source of the feed
      * @type {string}
-     * @memberof InlineResponse200IngestionErrorsIngestionError
+     * @memberof InlineResponse200ResultsFeed
      */
-    code: string;
+    feedSource?: string;
     /**
-     * Error description
+     * The feed type
      * @type {string}
-     * @memberof InlineResponse200IngestionErrorsIngestionError
+     * @memberof InlineResponse200ResultsFeed
      */
-    description?: string;
-}
-
-/**
-    * @export
-    * @enum {string}
-    */
-export enum InlineResponse200IngestionErrorsIngestionErrorTypeEnum {
-    DataError = 'DATA_ERROR',
-    SystemError = 'SYSTEM_ERROR',
-    TimeoutError = 'TIMEOUT_ERROR'
-}
-
-/**
- * List of ingestion status details for items in the feed
- * @export
- * @interface InlineResponse200ItemDetails
- */
-export interface InlineResponse200ItemDetails {
+    feedType?: string;
     /**
-     * The ingestion status of an individual item
-     * @type {Array<InlineResponse200ItemDetailsItemIngestionStatus>}
-     * @memberof InlineResponse200ItemDetails
+     * The seller ID
+     * @type {string}
+     * @memberof InlineResponse200ResultsFeed
      */
-    itemIngestionStatus?: Array<InlineResponse200ItemDetailsItemIngestionStatus>;
-}
-/**
- * The ingestion status of an individual item
- * @export
- * @interface InlineResponse200ItemDetailsItemIngestionStatus
- */
-export interface InlineResponse200ItemDetailsItemIngestionStatus {
+    partnerId?: string;
     /**
-     * Mart ID that a user or seller uses for a marketplace
+     * The number of items received
      * @type {number}
-     * @memberof InlineResponse200ItemDetailsItemIngestionStatus
+     * @memberof InlineResponse200ResultsFeed
      */
-    martId?: number;
+    itemsReceived?: number;
     /**
-     * An arbitrary alphanumeric unique ID, seller-specified, identifying each item.
-     * @type {string}
-     * @memberof InlineResponse200ItemDetailsItemIngestionStatus
-     */
-    sku?: string;
-    /**
-     * An alphanumeric product ID, generated by Walmart
-     * @type {string}
-     * @memberof InlineResponse200ItemDetailsItemIngestionStatus
-     */
-    wpid?: string;
-    /**
-     * index of items in the feed
+     * The number of items in the feed that have successfully processed
      * @type {number}
-     * @memberof InlineResponse200ItemDetailsItemIngestionStatus
+     * @memberof InlineResponse200ResultsFeed
      */
-    index?: number;
+    itemsSucceeded?: number;
     /**
-     * Can be one of the following: DATA_ERROR, SYSTEM_ERROR, TIMEOUT_ERROR, or INPROGRESS
+     * The number of items in the feed that failed due to a data or system error
+     * @type {number}
+     * @memberof InlineResponse200ResultsFeed
+     */
+    itemsFailed?: number;
+    /**
+     * The number of items in the feed that are still in progress
+     * @type {number}
+     * @memberof InlineResponse200ResultsFeed
+     */
+    itemsProcessing?: number;
+    /**
+     * Can be one of the following: RECEIVED, INPROGRESS, PROCESSED, or ERROR. For details, see the definitions listed under \'Feed Statuses\' at the beginning of this section.
      * @type {string}
-     * @memberof InlineResponse200ItemDetailsItemIngestionStatus
+     * @memberof InlineResponse200ResultsFeed
      */
-    ingestionStatus: InlineResponse200ItemDetailsItemIngestionStatusIngestionStatusEnum;
+    feedStatus?: string;
     /**
-     * 
-     * @type {InlineResponse200IngestionErrors}
-     * @memberof InlineResponse200ItemDetailsItemIngestionStatus
+     * The date and time the feed was submitted. Format: yyyymmddThh:mm:ss.xxxz
+     * @type {number}
+     * @memberof InlineResponse200ResultsFeed
      */
-    ingestionErrors?: InlineResponse200IngestionErrors;
+    feedDate?: number;
+    /**
+     * The batch ID for the feed, if provided
+     * @type {string}
+     * @memberof InlineResponse200ResultsFeed
+     */
+    batchId?: string;
+    /**
+     * The most recent time the feed was modified. Format: yyyymmddThh:mm:ss.xxxz
+     * @type {number}
+     * @memberof InlineResponse200ResultsFeed
+     */
+    modifiedDtm?: number;
 }
-
-/**
-    * @export
-    * @enum {string}
-    */
-export enum InlineResponse200ItemDetailsItemIngestionStatusIngestionStatusEnum {
-    Inprogress = 'INPROGRESS',
-    Success = 'SUCCESS',
-    DataError = 'DATA_ERROR',
-    SystemError = 'SYSTEM_ERROR',
-    TimeoutError = 'TIMEOUT_ERROR'
-}
-
 /**
  * List of ingestion status details for items in the feed
  * @export
@@ -806,10 +806,10 @@ export enum InlineResponse200ItemDetailsItemIngestionStatusIngestionStatusEnum {
 export interface ItemDetails {
     /**
      * The ingestion status of an individual item
-     * @type {Array<InlineResponse200ItemDetailsItemIngestionStatus>}
+     * @type {Array<InlineResponse2001ItemDetailsItemIngestionStatus>}
      * @memberof ItemDetails
      */
-    itemIngestionStatus?: Array<InlineResponse200ItemDetailsItemIngestionStatus>;
+    itemIngestionStatus?: Array<InlineResponse2001ItemDetailsItemIngestionStatus>;
 }
 /**
  * 
@@ -837,10 +837,10 @@ export interface PartnerFeedResponse {
     feedStatus?: PartnerFeedResponseFeedStatusEnum;
     /**
      * 
-     * @type {InlineResponse200IngestionErrors}
+     * @type {InlineResponse2001IngestionErrors}
      * @memberof PartnerFeedResponse
      */
-    ingestionErrors?: InlineResponse200IngestionErrors;
+    ingestionErrors?: InlineResponse2001IngestionErrors;
     /**
      * The number of items received in the feed
      * @type {number}
@@ -879,10 +879,10 @@ export interface PartnerFeedResponse {
     limit?: number;
     /**
      * 
-     * @type {InlineResponse200ItemDetails}
+     * @type {InlineResponse2001ItemDetails}
      * @memberof PartnerFeedResponse
      */
-    itemDetails?: InlineResponse200ItemDetails;
+    itemDetails?: InlineResponse2001ItemDetails;
 }
 
 /**
@@ -934,10 +934,10 @@ export interface PartnerItemIngestionStatus {
     ingestionStatus: PartnerItemIngestionStatusIngestionStatusEnum;
     /**
      * 
-     * @type {InlineResponse200IngestionErrors}
+     * @type {InlineResponse2001IngestionErrors}
      * @memberof PartnerItemIngestionStatus
      */
-    ingestionErrors?: InlineResponse200IngestionErrors;
+    ingestionErrors?: InlineResponse2001IngestionErrors;
 }
 
 /**
@@ -960,10 +960,10 @@ export enum PartnerItemIngestionStatusIngestionStatusEnum {
 export interface ResultRecord {
     /**
      * The feed status results
-     * @type {Array<InlineResponse2001ResultsFeed>}
+     * @type {Array<InlineResponse200ResultsFeed>}
      * @memberof ResultRecord
      */
-    feed?: Array<InlineResponse2001ResultsFeed>;
+    feed?: Array<InlineResponse200ResultsFeed>;
 }
 
 /**
@@ -1164,7 +1164,7 @@ export const FeedsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getAllFeedStatuses(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, feedId?: string, offset?: string, limit?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
+        async getAllFeedStatuses(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, feedId?: string, offset?: string, limit?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getAllFeedStatuses(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, feedId, offset, limit, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -1183,7 +1183,7 @@ export const FeedsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getFeedItemStatus(feedId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, includeDetails?: string, offset?: string, limit?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
+        async getFeedItemStatus(feedId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, includeDetails?: string, offset?: string, limit?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getFeedItemStatus(feedId, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, includeDetails, offset, limit, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -1211,7 +1211,7 @@ export const FeedsApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAllFeedStatuses(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, feedId?: string, offset?: string, limit?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2001> {
+        getAllFeedStatuses(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, feedId?: string, offset?: string, limit?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse200> {
             return localVarFp.getAllFeedStatuses(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, feedId, offset, limit, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1229,7 +1229,7 @@ export const FeedsApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getFeedItemStatus(feedId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, includeDetails?: string, offset?: string, limit?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse200> {
+        getFeedItemStatus(feedId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, includeDetails?: string, offset?: string, limit?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2001> {
             return localVarFp.getFeedItemStatus(feedId, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, includeDetails, offset, limit, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
     };

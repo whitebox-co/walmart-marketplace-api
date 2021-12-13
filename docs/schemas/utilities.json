@@ -20,179 +20,6 @@
     }
   ],
   "paths": {
-    "/v3/utilities/taxonomy": {
-      "get": {
-        "tags": [
-          "Utilities"
-        ],
-        "summary": "Taxonomy by spec",
-        "description": "The Taxonomy by Item spec API exposes the category taxonomy that Walmart.com uses to categorize items for each Item spec version. It returns a list of all Categories and Sub-categories that are available on Walmart.com for the Item spec version you specify.\nYou can specify the feedType and version for these available Item specs. Make sure to specify the corresponding version that is available for that feed type:\n*   Item spec 3.2 feed type: item\n*   Item spec 4.0 feed types: MP_ITEM, MP_WFS_ITEM, or MP_MAINTENANCE\n*   Item spec 4.1 feed types: MP_WFS_ITEM, or MP_MAINTENANCE\n*   Item spec 4.2 feed type: MP_ITEM or MP_WFS_ITEM\n*   Item spec 4.3 feed type: MP_ITEM or MP_MAINTENANCE",
-        "operationId": "getTaxonomyResponse",
-        "parameters": [
-          {
-            "name": "feedType",
-            "in": "query",
-            "description": "Specifies the Feed Type",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "enum": [
-                "item",
-                "MP_ITEM",
-                "MP_WFS_ITEM",
-                "MP_MAINTENANCE"
-              ]
-            }
-          },
-          {
-            "name": "version",
-            "in": "query",
-            "description": "Specifies the version for the Feed Type",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "enum": [
-                "3.2",
-                "4.0",
-                "4.1",
-                "4.2"
-              ]
-            }
-          },
-          {
-            "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
-          },
-          {
-            "in": "header",
-            "name": "WM_SEC.ACCESS_TOKEN",
-            "description": "The access token retrieved in the Token API call",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
-          },
-          {
-            "in": "header",
-            "name": "WM_CONSUMER.CHANNEL.TYPE",
-            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "header",
-            "name": "WM_QOS.CORRELATION_ID",
-            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
-          },
-          {
-            "in": "header",
-            "name": "WM_SVC.NAME",
-            "description": "Walmart Service Name",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Walmart Service Name"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string"
-                    },
-                    "payload": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "category": {
-                            "type": "string",
-                            "description": "Type of item"
-                          },
-                          "subcategory": {
-                            "type": "array",
-                            "description": "Specific kind of category",
-                            "items": {
-                              "type": "object",
-                              "properties": {
-                                "subCategoryName": {
-                                  "type": "string",
-                                  "description": "Name of specific kind of category"
-                                },
-                                "subCategoryId": {
-                                  "type": "string",
-                                  "description": "ID of specific kind of category"
-                                }
-                              },
-                              "description": "Specific kind of category"
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                },
-                "example": {
-                  "status": "SUCCESS",
-                  "payload": [
-                    {
-                      "category": "Animal",
-                      "subcategory": [
-                        {
-                          "subCategoryName": "Animal Accessories",
-                          "subCategoryId": "559c5d924fff3d64de18bf45"
-                        },
-                        {
-                          "subCategoryName": "Animal Food",
-                          "subCategoryId": "559c5d8f4fff3d64de18bf3d"
-                        },
-                        {
-                          "subCategoryName": "Animal Health & Grooming",
-                          "subCategoryId": "559c5d90ed25b136f13a05df"
-                        },
-                        {
-                          "subCategoryName": "Animal Other",
-                          "subCategoryId": "56f2eb66208f9a06158f1748"
-                        }
-                      ]
-                    },
-                    {
-                      "category": "Art & Craft",
-                      "subcategory": [
-                        {
-                          "subCategoryName": "Art & Craft",
-                          "subCategoryId": "571fdff7208f9a0cdb760a7f"
-                        }
-                      ]
-                    }
-                  ]
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/v3/utilities/taxonomy/departments/{departmentId}": {
       "get": {
         "tags": [
@@ -546,89 +373,183 @@
           }
         }
       }
-    }
-  },
-  "components": {
-    "schemas": {
-      "CategoryPayload": {
-        "type": "object",
-        "properties": {
-          "category": {
-            "type": "string",
-            "description": "Type of item"
-          },
-          "subcategory": {
-            "type": "array",
-            "description": "Specific kind of category",
-            "items": {
-              "type": "object",
-              "properties": {
-                "subCategoryName": {
-                  "type": "string",
-                  "description": "Name of specific kind of category"
-                },
-                "subCategoryId": {
-                  "type": "string",
-                  "description": "ID of specific kind of category"
-                }
-              },
-              "description": "Specific kind of category"
+    },
+    "/v3/utilities/taxonomy": {
+      "get": {
+        "tags": [
+          "Utilities"
+        ],
+        "summary": "Taxonomy by spec",
+        "description": "The Taxonomy by Item spec API exposes the category taxonomy that Walmart.com uses to categorize items for each Item spec version. It returns a list of all Categories and Sub-categories that are available on Walmart.com for the Item spec version you specify.\nYou can specify the feedType and version for these available Item specs. Make sure to specify the corresponding version that is available for that feed type:\n*   Item spec 3.2 feed type: item\n*   Item spec 4.0 feed types: MP_ITEM, MP_WFS_ITEM, or MP_MAINTENANCE\n*   Item spec 4.1 feed types: MP_WFS_ITEM, or MP_MAINTENANCE\n*   Item spec 4.2 feed type: MP_ITEM or MP_WFS_ITEM\n*   Item spec 4.3 feed type: MP_ITEM or MP_MAINTENANCE",
+        "operationId": "getTaxonomyResponse",
+        "parameters": [
+          {
+            "name": "feedType",
+            "in": "query",
+            "description": "Specifies the Feed Type",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "item",
+                "MP_ITEM",
+                "MP_WFS_ITEM",
+                "MP_MAINTENANCE"
+              ]
             }
-          }
-        }
-      },
-      "SubCategory": {
-        "type": "object",
-        "properties": {
-          "subCategoryName": {
-            "type": "string",
-            "description": "Name of specific kind of category"
           },
-          "subCategoryId": {
-            "type": "string",
-            "description": "ID of specific kind of category"
-          }
-        },
-        "description": "Specific kind of category"
-      },
-      "TaxonomyResponseDTO": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "string"
+          {
+            "name": "version",
+            "in": "query",
+            "description": "Specifies the version for the Feed Type",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "3.2",
+                "4.0",
+                "4.1",
+                "4.2"
+              ]
+            }
           },
-          "payload": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "category": {
-                  "type": "string",
-                  "description": "Type of item"
-                },
-                "subcategory": {
-                  "type": "array",
-                  "description": "Specific kind of category",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "subCategoryName": {
-                        "type": "string",
-                        "description": "Name of specific kind of category"
-                      },
-                      "subCategoryId": {
-                        "type": "string",
-                        "description": "ID of specific kind of category"
-                      }
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Basic YzcyOTFjNmItNzI5MC00...."
+          },
+          {
+            "in": "header",
+            "name": "WM_SEC.ACCESS_TOKEN",
+            "description": "The access token retrieved in the Token API call",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
+          },
+          {
+            "in": "header",
+            "name": "WM_CONSUMER.CHANNEL.TYPE",
+            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "WM_QOS.CORRELATION_ID",
+            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
+          },
+          {
+            "in": "header",
+            "name": "WM_SVC.NAME",
+            "description": "Walmart Service Name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Walmart Service Name"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
                     },
-                    "description": "Specific kind of category"
+                    "payload": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "category": {
+                            "type": "string",
+                            "description": "Type of item"
+                          },
+                          "subcategory": {
+                            "type": "array",
+                            "description": "Specific kind of category",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "subCategoryName": {
+                                  "type": "string",
+                                  "description": "Name of specific kind of category"
+                                },
+                                "subCategoryId": {
+                                  "type": "string",
+                                  "description": "ID of specific kind of category"
+                                }
+                              },
+                              "description": "Specific kind of category"
+                            }
+                          }
+                        }
+                      }
+                    }
                   }
+                },
+                "example": {
+                  "status": "SUCCESS",
+                  "payload": [
+                    {
+                      "category": "Animal",
+                      "subcategory": [
+                        {
+                          "subCategoryName": "Animal Accessories",
+                          "subCategoryId": "559c5d924fff3d64de18bf45"
+                        },
+                        {
+                          "subCategoryName": "Animal Food",
+                          "subCategoryId": "559c5d8f4fff3d64de18bf3d"
+                        },
+                        {
+                          "subCategoryName": "Animal Health & Grooming",
+                          "subCategoryId": "559c5d90ed25b136f13a05df"
+                        },
+                        {
+                          "subCategoryName": "Animal Other",
+                          "subCategoryId": "56f2eb66208f9a06158f1748"
+                        }
+                      ]
+                    },
+                    {
+                      "category": "Art & Craft",
+                      "subcategory": [
+                        {
+                          "subCategoryName": "Art & Craft",
+                          "subCategoryId": "571fdff7208f9a0cdb760a7f"
+                        }
+                      ]
+                    }
+                  ]
                 }
               }
             }
           }
         }
-      },
+      }
+    }
+  },
+  "components": {
+    "schemas": {
       "Category": {
         "type": "object",
         "properties": {
@@ -784,6 +705,85 @@
                 "departmentId": {
                   "type": "string",
                   "description": "The department id for which the categories have to be fetched"
+                }
+              }
+            }
+          }
+        }
+      },
+      "CategoryPayload": {
+        "type": "object",
+        "properties": {
+          "category": {
+            "type": "string",
+            "description": "Type of item"
+          },
+          "subcategory": {
+            "type": "array",
+            "description": "Specific kind of category",
+            "items": {
+              "type": "object",
+              "properties": {
+                "subCategoryName": {
+                  "type": "string",
+                  "description": "Name of specific kind of category"
+                },
+                "subCategoryId": {
+                  "type": "string",
+                  "description": "ID of specific kind of category"
+                }
+              },
+              "description": "Specific kind of category"
+            }
+          }
+        }
+      },
+      "SubCategory": {
+        "type": "object",
+        "properties": {
+          "subCategoryName": {
+            "type": "string",
+            "description": "Name of specific kind of category"
+          },
+          "subCategoryId": {
+            "type": "string",
+            "description": "ID of specific kind of category"
+          }
+        },
+        "description": "Specific kind of category"
+      },
+      "TaxonomyResponseDTO": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "payload": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "category": {
+                  "type": "string",
+                  "description": "Type of item"
+                },
+                "subcategory": {
+                  "type": "array",
+                  "description": "Specific kind of category",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "subCategoryName": {
+                        "type": "string",
+                        "description": "Name of specific kind of category"
+                      },
+                      "subCategoryId": {
+                        "type": "string",
+                        "description": "ID of specific kind of category"
+                      }
+                    },
+                    "description": "Specific kind of category"
+                  }
                 }
               }
             }

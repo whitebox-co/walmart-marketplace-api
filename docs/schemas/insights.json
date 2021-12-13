@@ -20,6 +20,948 @@
     }
   ],
   "paths": {
+    "/v3/insights/items/trending": {
+      "get": {
+        "tags": [
+          "Insight"
+        ],
+        "summary": "Top Trending Items",
+        "description": "Get Trending Item List",
+        "externalDocs": {
+          "description": "View Guide",
+          "url": "/doc/us/mp/us-mp-insights/#3865"
+        },
+        "operationId": "getTrendingResult",
+        "parameters": [
+          {
+            "name": "departmentId",
+            "in": "query",
+            "description": "departmentId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "categoryId",
+            "in": "query",
+            "description": "categoryId",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "null"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The number of items to be returned.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "20"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The object response to start with, where 0 is the first entity that can be requested.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "0"
+            }
+          },
+          {
+            "name": "timeFrame",
+            "in": "query",
+            "description": "Returns all trending items for the given time frame in days",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "7"
+            },
+            "example": 10
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Basic YzcyOTFjNmItNzI5MC00...."
+          },
+          {
+            "in": "header",
+            "name": "WM_SEC.ACCESS_TOKEN",
+            "description": "The access token retrieved in the Token API call",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
+          },
+          {
+            "in": "header",
+            "name": "WM_CONSUMER.CHANNEL.TYPE",
+            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "WM_QOS.CORRELATION_ID",
+            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
+          },
+          {
+            "in": "header",
+            "name": "WM_SVC.NAME",
+            "description": "Walmart Service Name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Walmart Service Name"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "payload": {
+                      "type": "object",
+                      "properties": {
+                        "totalCount": {
+                          "type": "integer",
+                          "description": "Total count of qualified items",
+                          "format": "int32"
+                        },
+                        "items": {
+                          "type": "array",
+                          "description": "List of Qualified Items",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "categoryName": {
+                                "type": "string",
+                                "description": "The categories this item belongs to"
+                              },
+                              "departmentName": {
+                                "type": "string",
+                                "description": "The department this product belongs to"
+                              },
+                              "isbn": {
+                                "type": "string",
+                                "description": "International Standard Book Number"
+                              },
+                              "productName": {
+                                "type": "string",
+                                "description": "A seller-specified, alphanumeric string uniquely identifying the product name"
+                              },
+                              "isTwoDayEligible": {
+                                "type": "integer",
+                                "description": "if the item can be shipped in two days",
+                                "format": "int32"
+                              },
+                              "itemId": {
+                                "type": "string",
+                                "description": "Specifies the item identifier generated by Walmart"
+                              },
+                              "totalOffers": {
+                                "type": "integer",
+                                "description": "Total number of item stored by seller",
+                                "format": "int32"
+                              },
+                              "issn": {
+                                "type": "string",
+                                "description": "International Standard Serial Number"
+                              },
+                              "existsForSeller": {
+                                "type": "integer",
+                                "description": "if seller is selling this item",
+                                "format": "int32"
+                              },
+                              "rank": {
+                                "type": "integer",
+                                "description": "Level of trending for this item",
+                                "format": "int32"
+                              },
+                              "brand": {
+                                "type": "string",
+                                "description": "Specifies the item brand"
+                              },
+                              "superDepartmentName": {
+                                "type": "string",
+                                "description": "The superDepartmentName this item belongs to"
+                              },
+                              "subCategoryName": {
+                                "type": "string",
+                                "description": "The subCategoryName this item belongs to"
+                              }
+                            },
+                            "description": "List of Qualified Items"
+                          }
+                        }
+                      }
+                    },
+                    "status": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "status": "SUCCESS",
+                  "payload": {
+                    "items": [
+                      {
+                        "departmentName": "BATH AND SHOWER",
+                        "isbn": "",
+                        "categoryName": "BATH DECOR",
+                        "productName": "High Precision Digital Body Weight Bathroom Scale with Ultra Wide Platform and Easy-to-Read Backlit LCD,400 Pounds",
+                        "subCategoryName": "BATH SCALES",
+                        "isTwoDayEligible": 0,
+                        "itemId": "297382621",
+                        "totalOffers": 1,
+                        "issn": "",
+                        "superDepartmentName": "20 BATH AND SHOWER",
+                        "existsForSeller": 0,
+                        "rank": 1,
+                        "brand": "POCFGST"
+                      },
+                      {
+                        "departmentName": "BATH AND SHOWER",
+                        "isbn": "",
+                        "categoryName": "SHOWER",
+                        "productName": "LiBa Mildew Resistant Anti-Bacterial PEVA Shower Curtain Liner, 72x72 Clear Non Toxic, No Odor",
+                        "subCategoryName": "SHOWER CURTAINS AND LINERS",
+                        "isTwoDayEligible": 1,
+                        "itemId": "195087796",
+                        "totalOffers": 1,
+                        "issn": "",
+                        "superDepartmentName": "20 BATH AND SHOWER",
+                        "existsForSeller": 0,
+                        "rank": 2,
+                        "brand": "Liba"
+                      },
+                      {
+                        "departmentName": "BATH AND SHOWER",
+                        "isbn": "",
+                        "categoryName": "SHOWER",
+                        "productName": "Clorox Cushioned 17 In. x 36 In. Bathtub Mat, White",
+                        "subCategoryName": "TUB MATS",
+                        "isTwoDayEligible": 1,
+                        "itemId": "933889813",
+                        "totalOffers": 1,
+                        "issn": "",
+                        "superDepartmentName": "20 BATH AND SHOWER",
+                        "existsForSeller": 0,
+                        "rank": 3,
+                        "brand": "Duck"
+                      }
+                    ],
+                    "totalCount": 187
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/insights/items/listingQuality/score": {
+      "get": {
+        "tags": [
+          "Insight"
+        ],
+        "summary": "Seller Listing Quality Score",
+        "description": "Get the total Listing Quality Score for a seller's entire item catalog.",
+        "externalDocs": {
+          "description": "View Guide",
+          "url": "/doc/us/mp/us-mp-insights/#3880"
+        },
+        "operationId": "getListingQualityScore",
+        "parameters": [
+          {
+            "name": "viewTrendingItems",
+            "in": "query",
+            "description": "Specify whether or not to include seller's items that are trending in the Listing Quality Score.",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "wfsFlag",
+            "in": "query",
+            "description": "Specify whether or not to include WFS-eligible items in the overall Listing Quality Score.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Basic YzcyOTFjNmItNzI5MC00...."
+          },
+          {
+            "in": "header",
+            "name": "WM_SEC.ACCESS_TOKEN",
+            "description": "The access token retrieved in the Token API call",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
+          },
+          {
+            "in": "header",
+            "name": "WM_CONSUMER.CHANNEL.TYPE",
+            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "WM_QOS.CORRELATION_ID",
+            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
+          },
+          {
+            "in": "header",
+            "name": "WM_SVC.NAME",
+            "description": "Walmart Service Name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Walmart Service Name"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "payload": {
+                      "type": "object",
+                      "properties": {
+                        "overAllQuality": {
+                          "type": "number",
+                          "description": "Over All Quality ",
+                          "format": "double"
+                        },
+                        "score": {
+                          "type": "object",
+                          "properties": {
+                            "offerScore": {
+                              "type": "number",
+                              "description": "Offer Score",
+                              "format": "double"
+                            },
+                            "contentScore": {
+                              "type": "number",
+                              "description": "Content Score",
+                              "format": "double"
+                            },
+                            "ratingReviewScore": {
+                              "type": "number",
+                              "description": "Rating Review Score",
+                              "format": "double"
+                            }
+                          },
+                          "description": "Score"
+                        },
+                        "postPurchaseQuality": {
+                          "type": "object",
+                          "properties": {
+                            "defectRatio": {
+                              "type": "integer",
+                              "description": "Defect Ratio",
+                              "format": "int32"
+                            },
+                            "itemDefectCnt": {
+                              "type": "integer",
+                              "description": "Item Defect Count",
+                              "format": "int32"
+                            }
+                          },
+                          "description": "Post Purchase Quality"
+                        }
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "payload": {
+                    "score": {
+                      "offerScore": 50,
+                      "ratingReviewScore": 14.48,
+                      "contentScore": 64.24
+                    },
+                    "postPurchaseQuality": {
+                      "itemDefectCnt": 0,
+                      "defectRatio": 0
+                    },
+                    "overAllQuality": 44.7
+                  },
+                  "status": "OK"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/insights/items/unpublished/counts": {
+      "get": {
+        "tags": [
+          "Insight"
+        ],
+        "summary": "Unpublished Item Counts",
+        "description": "Get Count for Unpubished Item",
+        "externalDocs": {
+          "description": "View Guide",
+          "url": "/doc/us/mp/us-mp-insights/#3880"
+        },
+        "operationId": "getUnpublishedItemCount",
+        "parameters": [
+          {
+            "name": "fromDate",
+            "in": "query",
+            "description": "Returns all unpublished items count with reason codes since the given date",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "2020-09-23"
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Basic YzcyOTFjNmItNzI5MC00...."
+          },
+          {
+            "in": "header",
+            "name": "WM_SEC.ACCESS_TOKEN",
+            "description": "The access token retrieved in the Token API call",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
+          },
+          {
+            "in": "header",
+            "name": "WM_CONSUMER.CHANNEL.TYPE",
+            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "WM_QOS.CORRELATION_ID",
+            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
+          },
+          {
+            "in": "header",
+            "name": "WM_SVC.NAME",
+            "description": "Walmart Service Name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Walmart Service Name"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "payload": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "unpublishedCount": {
+                            "type": "string",
+                            "description": "total count for unpublished Item"
+                          },
+                          "unpublishedValue": {
+                            "type": "string",
+                            "description": "total value for unpublished Item"
+                          },
+                          "unpublishedReasonCode": {
+                            "type": "string",
+                            "description": "the reason why item is unpublished"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "payload": [
+                    {
+                      "unpublishedCount": "185",
+                      "unpublishedValue": "2154.0",
+                      "unpublishedReasonCode": "END_DATE"
+                    },
+                    {
+                      "unpublishedCount": "3",
+                      "unpublishedValue": "0.0",
+                      "unpublishedReasonCode": "END_DATE,REASONABLE_PRICE_NOT_SATISFIED"
+                    },
+                    {
+                      "unpublishedCount": "1",
+                      "unpublishedValue": "0.0",
+                      "unpublishedReasonCode": "NO_PRICE,END_DATE"
+                    },
+                    {
+                      "unpublishedCount": "94",
+                      "unpublishedValue": "1900.89",
+                      "unpublishedReasonCode": "REASONABLE_PRICE_NOT_SATISFIED"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/insights/items/unpublished/items": {
+      "get": {
+        "tags": [
+          "Insight"
+        ],
+        "summary": "Unpublished Items",
+        "description": "Get Unpublished Items",
+        "externalDocs": {
+          "description": "View Guide",
+          "url": "/doc/us/mp/us-mp-insights/#3880"
+        },
+        "operationId": "getUnpublishedItems",
+        "parameters": [
+          {
+            "name": "unpublishedReasonCode",
+            "in": "query",
+            "description": "Unpublished reason code",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "all"
+            }
+          },
+          {
+            "name": "fromDate",
+            "in": "query",
+            "description": "Returns all unpublished items since the given date",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "2020-09-23"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The number of items to be returned.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "20"
+            }
+          },
+          {
+            "name": "offerLifecycleStatus",
+            "in": "query",
+            "description": "The lifecycle status of an item describes where the item listing is in the overall lifecycle. Examples of allowed values are ACTIVE , ARCHIVED, RETIRED.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "all"
+            }
+          },
+          {
+            "name": "marketTrending",
+            "in": "query",
+            "description": "Filter the item list to return only items that are trending on Walmart.com",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "false"
+            }
+          },
+          {
+            "name": "itemsWithInventory",
+            "in": "query",
+            "description": "Filter the item list to return only items that have inventory",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "true"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Basic YzcyOTFjNmItNzI5MC00...."
+          },
+          {
+            "in": "header",
+            "name": "WM_SEC.ACCESS_TOKEN",
+            "description": "The access token retrieved in the Token API call",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
+          },
+          {
+            "in": "header",
+            "name": "WM_CONSUMER.CHANNEL.TYPE",
+            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "WM_QOS.CORRELATION_ID",
+            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
+          },
+          {
+            "in": "header",
+            "name": "WM_SVC.NAME",
+            "description": "Walmart Service Name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Walmart Service Name"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "payload": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "gtin": {
+                            "type": "string",
+                            "description": "The GTIN-compatible Product ID (i.e. UPC or EAN)"
+                          },
+                          "marketPrice": {
+                            "type": "object",
+                            "properties": {
+                              "amount": {
+                                "type": "string",
+                                "description": "The numerical value of the price"
+                              },
+                              "currency": {
+                                "type": "string",
+                                "description": "The currency type"
+                              }
+                            }
+                          },
+                          "offerStartDate": {
+                            "type": "string",
+                            "description": "The Date when item becomes available to sell in Walmart"
+                          },
+                          "marketTrending": {
+                            "type": "string",
+                            "description": "If item is trending in walmart"
+                          },
+                          "lifecycleStatus": {
+                            "type": "string",
+                            "description": "The lifecycle status of an item describes where the item listing is in the overall lifecycle"
+                          },
+                          "unpublishReasons": {
+                            "type": "string",
+                            "description": "It outlines the reason for an item when unpublished"
+                          },
+                          "conversionRate": {
+                            "type": "integer",
+                            "description": "Percentage of number of items that are converted into sales",
+                            "format": "int32"
+                          },
+                          "productName": {
+                            "type": "string",
+                            "description": "A seller-specified, alphanumeric string uniquely identifying the product name"
+                          },
+                          "gmvAmount": {
+                            "type": "object",
+                            "properties": {
+                              "amount": {
+                                "type": "integer",
+                                "description": "The numerical value of the price",
+                                "format": "int32"
+                              },
+                              "currency": {
+                                "type": "string",
+                                "description": "The currency type"
+                              }
+                            }
+                          },
+                          "itemId": {
+                            "type": "string",
+                            "description": "Specifies the item identifier generated by Walmart"
+                          },
+                          "customerRating": {
+                            "type": "string",
+                            "description": "An average rating number for the item from customers"
+                          },
+                          "pageViews": {
+                            "type": "integer",
+                            "description": "number of times this item is viewed by customers",
+                            "format": "int32"
+                          },
+                          "price": {
+                            "type": "object",
+                            "properties": {
+                              "price": {
+                                "type": "integer",
+                                "format": "int32"
+                              },
+                              "issueTitle": {
+                                "type": "object"
+                              },
+                              "competitorPrice": {
+                                "type": "number",
+                                "format": "double"
+                              },
+                              "walmartShipping": {
+                                "type": "object"
+                              },
+                              "competitorShipping": {
+                                "type": "object"
+                              },
+                              "score": {
+                                "type": "object"
+                              },
+                              "additionalDes": {
+                                "type": "object"
+                              },
+                              "asin": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "unpublishedDate": {
+                            "type": "string",
+                            "description": "The Date item becomes to Unpublished"
+                          },
+                          "brand": {
+                            "type": "string",
+                            "description": "Specifies the item brand"
+                          },
+                          "sku": {
+                            "type": "string",
+                            "description": "String of letters and/or numbers a partner uses to identify the item"
+                          },
+                          "productType": {
+                            "type": "string",
+                            "description": "A seller-specified, alphanumeric string uniquely identifying the Product Type"
+                          },
+                          "offerEndDate": {
+                            "type": "string",
+                            "description": "The Date when item becomes unavailable to sell in Walmart"
+                          },
+                          "publishStatus": {
+                            "type": "string",
+                            "description": "The status of an item when the item is in the submission process"
+                          }
+                        }
+                      }
+                    },
+                    "totalCount": {
+                      "type": "integer",
+                      "description": "total number of unpublished items",
+                      "format": "int32"
+                    },
+                    "totalGmvAmount": {
+                      "type": "object",
+                      "properties": {
+                        "amount": {
+                          "type": "string",
+                          "description": "The numerical value of the price"
+                        },
+                        "currency": {
+                          "type": "string",
+                          "description": "The currency type"
+                        }
+                      },
+                      "description": "Gross Merchandise Value of the total result set"
+                    }
+                  }
+                },
+                "example": {
+                  "payload": [
+                    {
+                      "gtin": "00847321012345",
+                      "marketPrice": {
+                        "amount": "0.000000",
+                        "currency": "USD"
+                      },
+                      "offerStartDate": "2020-01-06",
+                      "marketTrending": "false",
+                      "lifecycleStatus": "ACTIVE",
+                      "unpublishReasons": "REASONABLE_PRICE_NOT_SATISFIED",
+                      "conversionRate": 0,
+                      "productName": "Baxton Studio BBT5111 Bar Stool-Brown Libra Dark Brown Modern Bar Stool with Nail Head Trim - 44.5 x 18.5 x 21.5 in. - Pack of 2",
+                      "gmvAmount": {
+                        "amount": 0,
+                        "currency": "USD"
+                      },
+                      "itemId": "196412345",
+                      "customerRating": "4",
+                      "pageViews": 3,
+                      "price": {
+                        "amount": "309.95",
+                        "currency": "USD"
+                      },
+                      "unpublishedDate": "2020-08-04",
+                      "brand": "Baxton Studio",
+                      "sku": "DEAL12345",
+                      "productType": "Stools",
+                      "offerEndDate": "2049-12-30",
+                      "publishStatus": "PUBLISHED"
+                    },
+                    {
+                      "gtin": "07612981712345",
+                      "marketPrice": {
+                        "amount": "0.000000",
+                        "currency": "USD"
+                      },
+                      "offerStartDate": "2019-11-13",
+                      "marketTrending": "false",
+                      "lifecycleStatus": "ACTIVE",
+                      "unpublishReasons": "REASONABLE_PRICE_NOT_SATISFIED",
+                      "conversionRate": 0,
+                      "productName": "Franke  Bernadine Kitchen Faucet Stainless Steel",
+                      "gmvAmount": {
+                        "amount": 0,
+                        "currency": "USD"
+                      },
+                      "itemId": "236212345",
+                      "customerRating": "0",
+                      "pageViews": 88,
+                      "price": {
+                        "amount": "187.98",
+                        "currency": "USD"
+                      },
+                      "unpublishedDate": "2020-08-13",
+                      "brand": "Franke",
+                      "sku": "DEAL12345",
+                      "productType": "faucets",
+                      "offerEndDate": "2049-12-30",
+                      "publishStatus": "UNPUBLISHED"
+                    },
+                    {
+                      "gtin": "00190931112345",
+                      "marketPrice": {
+                        "amount": "0.000000",
+                        "currency": "USD"
+                      },
+                      "offerStartDate": "2019-04-09",
+                      "marketTrending": "false",
+                      "lifecycleStatus": "ACTIVE",
+                      "unpublishReasons": "REASONABLE_PRICE_NOT_SATISFIED",
+                      "conversionRate": 0,
+                      "productName": "Coastal Blue Women's SwimsuitDeep V Ruffle Front One Piece S 4-6 Swimsuit",
+                      "gmvAmount": {
+                        "amount": 0,
+                        "currency": "USD"
+                      },
+                      "itemId": "332612345",
+                      "customerRating": "0",
+                      "pageViews": 0,
+                      "price": {
+                        "amount": "31.98",
+                        "currency": "USD"
+                      },
+                      "unpublishedDate": "2020-09-13",
+                      "brand": "Coastal Blue",
+                      "sku": "DEAL12345",
+                      "productType": "One-Piece Swimsuits",
+                      "offerEndDate": "2049-12-30",
+                      "publishStatus": "UNPUBLISHED"
+                    }
+                  ],
+                  "totalCount": 7,
+                  "totalGmvAmount": {
+                    "amount": "3760.95",
+                    "currency": "USD"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v3/insights/items/listingQuality/items": {
       "post": {
         "tags": [
@@ -250,13 +1192,31 @@
                                   "price": {
                                     "type": "object",
                                     "properties": {
-                                      "amount": {
-                                        "type": "string",
-                                        "description": "The numerical value of the price"
+                                      "price": {
+                                        "type": "integer",
+                                        "format": "int32"
                                       },
-                                      "currency": {
-                                        "type": "string",
-                                        "description": "The currency type"
+                                      "issueTitle": {
+                                        "type": "object"
+                                      },
+                                      "competitorPrice": {
+                                        "type": "number",
+                                        "format": "double"
+                                      },
+                                      "walmartShipping": {
+                                        "type": "object"
+                                      },
+                                      "competitorShipping": {
+                                        "type": "object"
+                                      },
+                                      "score": {
+                                        "type": "object"
+                                      },
+                                      "additionalDes": {
+                                        "type": "object"
+                                      },
+                                      "asin": {
+                                        "type": "string"
                                       }
                                     }
                                   },
@@ -1476,37 +2436,19 @@
         }
       }
     },
-    "/v3/insights/items/listingQuality/score": {
+    "/v3/insights/prosellerbadge": {
       "get": {
         "tags": [
           "Insight"
         ],
-        "summary": "Seller Listing Quality Score",
-        "description": "Get the total Listing Quality Score for a seller's entire item catalog.",
+        "summary": "Pro Seller Badge Status",
+        "description": "The Pro Seller badge status will provide you with information regarding your current badge status as well as the progress you've made in meeting the criteria.",
         "externalDocs": {
           "description": "View Guide",
           "url": "/doc/us/mp/us-mp-insights/#3880"
         },
-        "operationId": "getListingQualityScore",
+        "operationId": "getProSellerBadgeInfo",
         "parameters": [
-          {
-            "name": "viewTrendingItems",
-            "in": "query",
-            "description": "Specify whether or not to include seller's items that are trending in the Listing Quality Score.",
-            "required": false,
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "wfsFlag",
-            "in": "query",
-            "description": "Specify whether or not to include WFS-eligible items in the overall Listing Quality Score.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "in": "header",
             "name": "Authorization",
@@ -1565,833 +2507,100 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "payload": {
+                    "hasBadge": {
+                      "type": "boolean",
+                      "description": "Specifies if the seller has the badge"
+                    },
+                    "isEligible": {
+                      "type": "boolean",
+                      "description": "Specifies if the seller is eligible for the badge in the next refresh"
+                    },
+                    "badgedSince": {
+                      "type": "string",
+                      "description": "Specifies when the seller received their badge",
+                      "format": "date-time"
+                    },
+                    "isProhibited": {
+                      "type": "boolean",
+                      "description": "Specifies whether the seller is prohibited from participating in the Pro Seller badge program."
+                    },
+                    "badgeStatus": {
+                      "type": "string",
+                      "description": "Specifies the seller's badge status in detail. The possible values are \"Become a Pro Seller\", \"You are a Pro Seller\", \"Pro Seller Badge at risk\", \"Eligible starting from YYYY-MM-DD\", and \"Not eligible for the Pro Seller Badge\""
+                    },
+                    "meetsCriteria": {
                       "type": "object",
                       "properties": {
-                        "overAllQuality": {
-                          "type": "number",
-                          "description": "Over All Quality ",
-                          "format": "double"
+                        "isOrdersCriteriaMet": {
+                          "type": "boolean",
+                          "description": "Indicates whether the seller has met the minimum number of orders required."
                         },
-                        "score": {
-                          "type": "object",
-                          "properties": {
-                            "offerScore": {
-                              "type": "number",
-                              "description": "Offer Score",
-                              "format": "double"
-                            },
-                            "contentScore": {
-                              "type": "number",
-                              "description": "Content Score",
-                              "format": "double"
-                            },
-                            "ratingReviewScore": {
-                              "type": "number",
-                              "description": "Rating Review Score",
-                              "format": "double"
-                            }
-                          },
-                          "description": "Score"
+                        "isDeliveryDefectCriteriaMet": {
+                          "type": "boolean",
+                          "description": "Indicates whether the seller has a low delivery defect, meeting the threshold for the badge."
                         },
-                        "postPurchaseQuality": {
-                          "type": "object",
-                          "properties": {
-                            "defectRatio": {
-                              "type": "integer",
-                              "description": "Defect Ratio",
-                              "format": "int32"
-                            },
-                            "itemDefectCnt": {
-                              "type": "integer",
-                              "description": "Item Defect Count",
-                              "format": "int32"
-                            }
-                          },
-                          "description": "Post Purchase Quality"
+                        "isCancellationCriteriaMet": {
+                          "type": "boolean",
+                          "description": "Indicates whether the seller has a low cancellation rate, meeting the threshold for the badge."
+                        },
+                        "isListingQualityCatalogCriteriaMet": {
+                          "type": "boolean",
+                          "description": "Indicates whether the seller is meeting the trending catalog requirement."
+                        },
+                        "isActiveDaysCriteriaMet": {
+                          "type": "boolean",
+                          "description": "Indicates whether the seller has met the minimum number of active days required."
                         }
-                      }
-                    }
-                  }
-                },
-                "example": {
-                  "payload": {
-                    "score": {
-                      "offerScore": 50,
-                      "ratingReviewScore": 14.48,
-                      "contentScore": 64.24
+                      },
+                      "description": "Shows whether the seller has met the requirements for the badge."
                     },
-                    "postPurchaseQuality": {
-                      "itemDefectCnt": 0,
-                      "defectRatio": 0
-                    },
-                    "overAllQuality": 44.7
-                  },
-                  "status": "OK"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v3/insights/items/unpublished/counts": {
-      "get": {
-        "tags": [
-          "Insight"
-        ],
-        "summary": "Unpublished Item Counts",
-        "description": "Get Count for Unpubished Item",
-        "externalDocs": {
-          "description": "View Guide",
-          "url": "/doc/us/mp/us-mp-insights/#3880"
-        },
-        "operationId": "getUnpublishedItemCount",
-        "parameters": [
-          {
-            "name": "fromDate",
-            "in": "query",
-            "description": "Returns all unpublished items count with reason codes since the given date",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "2020-09-23"
-          },
-          {
-            "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
-          },
-          {
-            "in": "header",
-            "name": "WM_SEC.ACCESS_TOKEN",
-            "description": "The access token retrieved in the Token API call",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
-          },
-          {
-            "in": "header",
-            "name": "WM_CONSUMER.CHANNEL.TYPE",
-            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "header",
-            "name": "WM_QOS.CORRELATION_ID",
-            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
-          },
-          {
-            "in": "header",
-            "name": "WM_SVC.NAME",
-            "description": "Walmart Service Name",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Walmart Service Name"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "payload": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "unpublishedCount": {
-                            "type": "string",
-                            "description": "total count for unpublished Item"
-                          },
-                          "unpublishedValue": {
-                            "type": "string",
-                            "description": "total value for unpublished Item"
-                          },
-                          "unpublishedReasonCode": {
-                            "type": "string",
-                            "description": "the reason why item is unpublished"
-                          }
-                        }
-                      }
-                    }
-                  }
-                },
-                "example": {
-                  "payload": [
-                    {
-                      "unpublishedCount": "185",
-                      "unpublishedValue": "2154.0",
-                      "unpublishedReasonCode": "END_DATE"
-                    },
-                    {
-                      "unpublishedCount": "3",
-                      "unpublishedValue": "0.0",
-                      "unpublishedReasonCode": "END_DATE,REASONABLE_PRICE_NOT_SATISFIED"
-                    },
-                    {
-                      "unpublishedCount": "1",
-                      "unpublishedValue": "0.0",
-                      "unpublishedReasonCode": "NO_PRICE,END_DATE"
-                    },
-                    {
-                      "unpublishedCount": "94",
-                      "unpublishedValue": "1900.89",
-                      "unpublishedReasonCode": "REASONABLE_PRICE_NOT_SATISFIED"
-                    }
-                  ]
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v3/insights/items/trending": {
-      "get": {
-        "tags": [
-          "Insight"
-        ],
-        "summary": "Top Trending Items",
-        "description": "Get Trending Item List",
-        "externalDocs": {
-          "description": "View Guide",
-          "url": "/doc/us/mp/us-mp-insights/#3865"
-        },
-        "operationId": "getTrendingResult",
-        "parameters": [
-          {
-            "name": "departmentId",
-            "in": "query",
-            "description": "departmentId",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "categoryId",
-            "in": "query",
-            "description": "categoryId",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "default": "null"
-            }
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "The number of items to be returned.",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "default": "20"
-            }
-          },
-          {
-            "name": "offset",
-            "in": "query",
-            "description": "The object response to start with, where 0 is the first entity that can be requested.",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "default": "0"
-            }
-          },
-          {
-            "name": "timeFrame",
-            "in": "query",
-            "description": "Returns all trending items for the given time frame in days",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "default": "7"
-            },
-            "example": 10
-          },
-          {
-            "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
-          },
-          {
-            "in": "header",
-            "name": "WM_SEC.ACCESS_TOKEN",
-            "description": "The access token retrieved in the Token API call",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
-          },
-          {
-            "in": "header",
-            "name": "WM_CONSUMER.CHANNEL.TYPE",
-            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "header",
-            "name": "WM_QOS.CORRELATION_ID",
-            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
-          },
-          {
-            "in": "header",
-            "name": "WM_SVC.NAME",
-            "description": "Walmart Service Name",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Walmart Service Name"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "payload": {
+                    "criteriaData": {
                       "type": "object",
                       "properties": {
-                        "totalCount": {
+                        "orders": {
                           "type": "integer",
-                          "description": "Total count of qualified items",
+                          "description": "Number of orders received during the last 90 days.",
                           "format": "int32"
                         },
-                        "items": {
-                          "type": "array",
-                          "description": "List of Qualified Items",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "categoryName": {
-                                "type": "string",
-                                "description": "The categories this item belongs to"
-                              },
-                              "departmentName": {
-                                "type": "string",
-                                "description": "The department this product belongs to"
-                              },
-                              "isbn": {
-                                "type": "string",
-                                "description": "International Standard Book Number"
-                              },
-                              "productName": {
-                                "type": "string",
-                                "description": "A seller-specified, alphanumeric string uniquely identifying the product name"
-                              },
-                              "isTwoDayEligible": {
-                                "type": "integer",
-                                "description": "if the item can be shipped in two days",
-                                "format": "int32"
-                              },
-                              "itemId": {
-                                "type": "string",
-                                "description": "Specifies the item identifier generated by Walmart"
-                              },
-                              "totalOffers": {
-                                "type": "integer",
-                                "description": "Total number of item stored by seller",
-                                "format": "int32"
-                              },
-                              "issn": {
-                                "type": "string",
-                                "description": "International Standard Serial Number"
-                              },
-                              "existsForSeller": {
-                                "type": "integer",
-                                "description": "if seller is selling this item",
-                                "format": "int32"
-                              },
-                              "rank": {
-                                "type": "integer",
-                                "description": "Level of trending for this item",
-                                "format": "int32"
-                              },
-                              "brand": {
-                                "type": "string",
-                                "description": "Specifies the item brand"
-                              },
-                              "superDepartmentName": {
-                                "type": "string",
-                                "description": "The superDepartmentName this item belongs to"
-                              },
-                              "subCategoryName": {
-                                "type": "string",
-                                "description": "The subCategoryName this item belongs to"
-                              }
-                            },
-                            "description": "List of Qualified Items"
-                          }
+                        "deliveryDefectRate": {
+                          "type": "string",
+                          "description": "Delivery Defect rate in the given timeframe."
+                        },
+                        "cancellationRate": {
+                          "type": "string",
+                          "description": "Cancellation rate in the given timeframe."
+                        },
+                        "listingQualityCatalog": {
+                          "type": "integer",
+                          "description": "Trending Catalog Quality Score coverage.",
+                          "format": "int32"
+                        },
+                        "activeDays": {
+                          "type": "integer",
+                          "description": "Days active on the platform.",
+                          "format": "int32"
                         }
-                      }
-                    },
-                    "status": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "example": {
-                  "status": "SUCCESS",
-                  "payload": {
-                    "items": [
-                      {
-                        "departmentName": "BATH AND SHOWER",
-                        "isbn": "",
-                        "categoryName": "BATH DECOR",
-                        "productName": "High Precision Digital Body Weight Bathroom Scale with Ultra Wide Platform and Easy-to-Read Backlit LCD,400 Pounds",
-                        "subCategoryName": "BATH SCALES",
-                        "isTwoDayEligible": 0,
-                        "itemId": "297382621",
-                        "totalOffers": 1,
-                        "issn": "",
-                        "superDepartmentName": "20 BATH AND SHOWER",
-                        "existsForSeller": 0,
-                        "rank": 1,
-                        "brand": "POCFGST"
                       },
-                      {
-                        "departmentName": "BATH AND SHOWER",
-                        "isbn": "",
-                        "categoryName": "SHOWER",
-                        "productName": "LiBa Mildew Resistant Anti-Bacterial PEVA Shower Curtain Liner, 72x72 Clear Non Toxic, No Odor",
-                        "subCategoryName": "SHOWER CURTAINS AND LINERS",
-                        "isTwoDayEligible": 1,
-                        "itemId": "195087796",
-                        "totalOffers": 1,
-                        "issn": "",
-                        "superDepartmentName": "20 BATH AND SHOWER",
-                        "existsForSeller": 0,
-                        "rank": 2,
-                        "brand": "Liba"
-                      },
-                      {
-                        "departmentName": "BATH AND SHOWER",
-                        "isbn": "",
-                        "categoryName": "SHOWER",
-                        "productName": "Clorox Cushioned 17 In. x 36 In. Bathtub Mat, White",
-                        "subCategoryName": "TUB MATS",
-                        "isTwoDayEligible": 1,
-                        "itemId": "933889813",
-                        "totalOffers": 1,
-                        "issn": "",
-                        "superDepartmentName": "20 BATH AND SHOWER",
-                        "existsForSeller": 0,
-                        "rank": 3,
-                        "brand": "Duck"
-                      }
-                    ],
-                    "totalCount": 187
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v3/insights/items/unpublished/items": {
-      "get": {
-        "tags": [
-          "Insight"
-        ],
-        "summary": "Unpublished Items",
-        "description": "Get Unpublished Items",
-        "externalDocs": {
-          "description": "View Guide",
-          "url": "/doc/us/mp/us-mp-insights/#3880"
-        },
-        "operationId": "getUnpublishedItems",
-        "parameters": [
-          {
-            "name": "unpublishedReasonCode",
-            "in": "query",
-            "description": "Unpublished reason code",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "default": "all"
-            }
-          },
-          {
-            "name": "fromDate",
-            "in": "query",
-            "description": "Returns all unpublished items since the given date",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "2020-09-23"
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "The number of items to be returned.",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "default": "20"
-            }
-          },
-          {
-            "name": "offerLifecycleStatus",
-            "in": "query",
-            "description": "The lifecycle status of an item describes where the item listing is in the overall lifecycle. Examples of allowed values are ACTIVE , ARCHIVED, RETIRED.",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "default": "all"
-            }
-          },
-          {
-            "name": "marketTrending",
-            "in": "query",
-            "description": "Filter the item list to return only items that are trending on Walmart.com",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "default": "false"
-            }
-          },
-          {
-            "name": "itemsWithInventory",
-            "in": "query",
-            "description": "Filter the item list to return only items that have inventory",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "default": "true"
-            }
-          },
-          {
-            "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
-          },
-          {
-            "in": "header",
-            "name": "WM_SEC.ACCESS_TOKEN",
-            "description": "The access token retrieved in the Token API call",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
-          },
-          {
-            "in": "header",
-            "name": "WM_CONSUMER.CHANNEL.TYPE",
-            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "header",
-            "name": "WM_QOS.CORRELATION_ID",
-            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
-          },
-          {
-            "in": "header",
-            "name": "WM_SVC.NAME",
-            "description": "Walmart Service Name",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Walmart Service Name"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "payload": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "gtin": {
-                            "type": "string",
-                            "description": "The GTIN-compatible Product ID (i.e. UPC or EAN)"
-                          },
-                          "marketPrice": {
-                            "type": "object",
-                            "properties": {
-                              "amount": {
-                                "type": "string",
-                                "description": "The numerical value of the price"
-                              },
-                              "currency": {
-                                "type": "string",
-                                "description": "The currency type"
-                              }
-                            }
-                          },
-                          "offerStartDate": {
-                            "type": "string",
-                            "description": "The Date when item becomes available to sell in Walmart"
-                          },
-                          "marketTrending": {
-                            "type": "string",
-                            "description": "If item is trending in walmart"
-                          },
-                          "lifecycleStatus": {
-                            "type": "string",
-                            "description": "The lifecycle status of an item describes where the item listing is in the overall lifecycle"
-                          },
-                          "unpublishReasons": {
-                            "type": "string",
-                            "description": "It outlines the reason for an item when unpublished"
-                          },
-                          "conversionRate": {
-                            "type": "integer",
-                            "description": "Percentage of number of items that are converted into sales",
-                            "format": "int32"
-                          },
-                          "productName": {
-                            "type": "string",
-                            "description": "A seller-specified, alphanumeric string uniquely identifying the product name"
-                          },
-                          "gmvAmount": {
-                            "type": "object",
-                            "properties": {
-                              "amount": {
-                                "type": "integer",
-                                "description": "The numerical value of the price",
-                                "format": "int32"
-                              },
-                              "currency": {
-                                "type": "string",
-                                "description": "The currency type"
-                              }
-                            }
-                          },
-                          "itemId": {
-                            "type": "string",
-                            "description": "Specifies the item identifier generated by Walmart"
-                          },
-                          "customerRating": {
-                            "type": "string",
-                            "description": "An average rating number for the item from customers"
-                          },
-                          "pageViews": {
-                            "type": "integer",
-                            "description": "number of times this item is viewed by customers",
-                            "format": "int32"
-                          },
-                          "price": {
-                            "type": "object",
-                            "properties": {
-                              "amount": {
-                                "type": "string",
-                                "description": "The numerical value of the price"
-                              },
-                              "currency": {
-                                "type": "string",
-                                "description": "The currency type"
-                              }
-                            }
-                          },
-                          "unpublishedDate": {
-                            "type": "string",
-                            "description": "The Date item becomes to Unpublished"
-                          },
-                          "brand": {
-                            "type": "string",
-                            "description": "Specifies the item brand"
-                          },
-                          "sku": {
-                            "type": "string",
-                            "description": "String of letters and/or numbers a partner uses to identify the item"
-                          },
-                          "productType": {
-                            "type": "string",
-                            "description": "A seller-specified, alphanumeric string uniquely identifying the Product Type"
-                          },
-                          "offerEndDate": {
-                            "type": "string",
-                            "description": "The Date when item becomes unavailable to sell in Walmart"
-                          },
-                          "publishStatus": {
-                            "type": "string",
-                            "description": "The status of an item when the item is in the submission process"
-                          }
-                        }
-                      }
+                      "description": "Shows the criteria for the Pro Seller badge."
                     },
-                    "totalCount": {
-                      "type": "integer",
-                      "description": "total number of unpublished items",
-                      "format": "int32"
-                    },
-                    "totalGmvAmount": {
+                    "recommendations": {
                       "type": "object",
                       "properties": {
-                        "amount": {
+                        "deliveryDefectRate": {
                           "type": "string",
-                          "description": "The numerical value of the price"
+                          "description": "Recommendations on reducing the delivery defect rate"
                         },
-                        "currency": {
+                        "cancellationRate": {
                           "type": "string",
-                          "description": "The currency type"
+                          "description": "Recommendations on reducing the Cancellation rate"
+                        },
+                        "listingQualityCatalog": {
+                          "type": "string",
+                          "description": "Recommendations on increasing the trending item catalog coverage"
                         }
                       },
-                      "description": "Gross Merchandise Value of the total result set"
+                      "description": "Recommendations on how to increase chances of Pro Seller Badge eligibility"
                     }
-                  }
-                },
-                "example": {
-                  "payload": [
-                    {
-                      "gtin": "00847321012345",
-                      "marketPrice": {
-                        "amount": "0.000000",
-                        "currency": "USD"
-                      },
-                      "offerStartDate": "2020-01-06",
-                      "marketTrending": "false",
-                      "lifecycleStatus": "ACTIVE",
-                      "unpublishReasons": "REASONABLE_PRICE_NOT_SATISFIED",
-                      "conversionRate": 0,
-                      "productName": "Baxton Studio BBT5111 Bar Stool-Brown Libra Dark Brown Modern Bar Stool with Nail Head Trim - 44.5 x 18.5 x 21.5 in. - Pack of 2",
-                      "gmvAmount": {
-                        "amount": 0,
-                        "currency": "USD"
-                      },
-                      "itemId": "196412345",
-                      "customerRating": "4",
-                      "pageViews": 3,
-                      "price": {
-                        "amount": "309.95",
-                        "currency": "USD"
-                      },
-                      "unpublishedDate": "2020-08-04",
-                      "brand": "Baxton Studio",
-                      "sku": "DEAL12345",
-                      "productType": "Stools",
-                      "offerEndDate": "2049-12-30",
-                      "publishStatus": "PUBLISHED"
-                    },
-                    {
-                      "gtin": "07612981712345",
-                      "marketPrice": {
-                        "amount": "0.000000",
-                        "currency": "USD"
-                      },
-                      "offerStartDate": "2019-11-13",
-                      "marketTrending": "false",
-                      "lifecycleStatus": "ACTIVE",
-                      "unpublishReasons": "REASONABLE_PRICE_NOT_SATISFIED",
-                      "conversionRate": 0,
-                      "productName": "Franke  Bernadine Kitchen Faucet Stainless Steel",
-                      "gmvAmount": {
-                        "amount": 0,
-                        "currency": "USD"
-                      },
-                      "itemId": "236212345",
-                      "customerRating": "0",
-                      "pageViews": 88,
-                      "price": {
-                        "amount": "187.98",
-                        "currency": "USD"
-                      },
-                      "unpublishedDate": "2020-08-13",
-                      "brand": "Franke",
-                      "sku": "DEAL12345",
-                      "productType": "faucets",
-                      "offerEndDate": "2049-12-30",
-                      "publishStatus": "UNPUBLISHED"
-                    },
-                    {
-                      "gtin": "00190931112345",
-                      "marketPrice": {
-                        "amount": "0.000000",
-                        "currency": "USD"
-                      },
-                      "offerStartDate": "2019-04-09",
-                      "marketTrending": "false",
-                      "lifecycleStatus": "ACTIVE",
-                      "unpublishReasons": "REASONABLE_PRICE_NOT_SATISFIED",
-                      "conversionRate": 0,
-                      "productName": "Coastal Blue Women's SwimsuitDeep V Ruffle Front One Piece S 4-6 Swimsuit",
-                      "gmvAmount": {
-                        "amount": 0,
-                        "currency": "USD"
-                      },
-                      "itemId": "332612345",
-                      "customerRating": "0",
-                      "pageViews": 0,
-                      "price": {
-                        "amount": "31.98",
-                        "currency": "USD"
-                      },
-                      "unpublishedDate": "2020-09-13",
-                      "brand": "Coastal Blue",
-                      "sku": "DEAL12345",
-                      "productType": "One-Piece Swimsuits",
-                      "offerEndDate": "2049-12-30",
-                      "publishStatus": "UNPUBLISHED"
-                    }
-                  ],
-                  "totalCount": 7,
-                  "totalGmvAmount": {
-                    "amount": "3760.95",
-                    "currency": "USD"
                   }
                 }
               }
@@ -2403,6 +2612,763 @@
   },
   "components": {
     "schemas": {
+      "GetTrendingResult": {
+        "type": "object",
+        "properties": {
+          "payload": {
+            "type": "object",
+            "properties": {
+              "totalCount": {
+                "type": "integer",
+                "description": "Total count of qualified items",
+                "format": "int32"
+              },
+              "items": {
+                "type": "array",
+                "description": "List of Qualified Items",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "categoryName": {
+                      "type": "string",
+                      "description": "The categories this item belongs to"
+                    },
+                    "departmentName": {
+                      "type": "string",
+                      "description": "The department this product belongs to"
+                    },
+                    "isbn": {
+                      "type": "string",
+                      "description": "International Standard Book Number"
+                    },
+                    "productName": {
+                      "type": "string",
+                      "description": "A seller-specified, alphanumeric string uniquely identifying the product name"
+                    },
+                    "isTwoDayEligible": {
+                      "type": "integer",
+                      "description": "if the item can be shipped in two days",
+                      "format": "int32"
+                    },
+                    "itemId": {
+                      "type": "string",
+                      "description": "Specifies the item identifier generated by Walmart"
+                    },
+                    "totalOffers": {
+                      "type": "integer",
+                      "description": "Total number of item stored by seller",
+                      "format": "int32"
+                    },
+                    "issn": {
+                      "type": "string",
+                      "description": "International Standard Serial Number"
+                    },
+                    "existsForSeller": {
+                      "type": "integer",
+                      "description": "if seller is selling this item",
+                      "format": "int32"
+                    },
+                    "rank": {
+                      "type": "integer",
+                      "description": "Level of trending for this item",
+                      "format": "int32"
+                    },
+                    "brand": {
+                      "type": "string",
+                      "description": "Specifies the item brand"
+                    },
+                    "superDepartmentName": {
+                      "type": "string",
+                      "description": "The superDepartmentName this item belongs to"
+                    },
+                    "subCategoryName": {
+                      "type": "string",
+                      "description": "The subCategoryName this item belongs to"
+                    }
+                  },
+                  "description": "List of Qualified Items"
+                }
+              }
+            }
+          },
+          "status": {
+            "type": "string"
+          }
+        }
+      },
+      "GetTrendingResultPayload": {
+        "type": "object",
+        "properties": {
+          "totalCount": {
+            "type": "integer",
+            "description": "Total count of qualified items",
+            "format": "int32"
+          },
+          "items": {
+            "type": "array",
+            "description": "List of Qualified Items",
+            "items": {
+              "type": "object",
+              "properties": {
+                "categoryName": {
+                  "type": "string",
+                  "description": "The categories this item belongs to"
+                },
+                "departmentName": {
+                  "type": "string",
+                  "description": "The department this product belongs to"
+                },
+                "isbn": {
+                  "type": "string",
+                  "description": "International Standard Book Number"
+                },
+                "productName": {
+                  "type": "string",
+                  "description": "A seller-specified, alphanumeric string uniquely identifying the product name"
+                },
+                "isTwoDayEligible": {
+                  "type": "integer",
+                  "description": "if the item can be shipped in two days",
+                  "format": "int32"
+                },
+                "itemId": {
+                  "type": "string",
+                  "description": "Specifies the item identifier generated by Walmart"
+                },
+                "totalOffers": {
+                  "type": "integer",
+                  "description": "Total number of item stored by seller",
+                  "format": "int32"
+                },
+                "issn": {
+                  "type": "string",
+                  "description": "International Standard Serial Number"
+                },
+                "existsForSeller": {
+                  "type": "integer",
+                  "description": "if seller is selling this item",
+                  "format": "int32"
+                },
+                "rank": {
+                  "type": "integer",
+                  "description": "Level of trending for this item",
+                  "format": "int32"
+                },
+                "brand": {
+                  "type": "string",
+                  "description": "Specifies the item brand"
+                },
+                "superDepartmentName": {
+                  "type": "string",
+                  "description": "The superDepartmentName this item belongs to"
+                },
+                "subCategoryName": {
+                  "type": "string",
+                  "description": "The subCategoryName this item belongs to"
+                }
+              },
+              "description": "List of Qualified Items"
+            }
+          }
+        }
+      },
+      "TrendingItem": {
+        "type": "object",
+        "properties": {
+          "categoryName": {
+            "type": "string",
+            "description": "The categories this item belongs to"
+          },
+          "departmentName": {
+            "type": "string",
+            "description": "The department this product belongs to"
+          },
+          "isbn": {
+            "type": "string",
+            "description": "International Standard Book Number"
+          },
+          "productName": {
+            "type": "string",
+            "description": "A seller-specified, alphanumeric string uniquely identifying the product name"
+          },
+          "isTwoDayEligible": {
+            "type": "integer",
+            "description": "if the item can be shipped in two days",
+            "format": "int32"
+          },
+          "itemId": {
+            "type": "string",
+            "description": "Specifies the item identifier generated by Walmart"
+          },
+          "totalOffers": {
+            "type": "integer",
+            "description": "Total number of item stored by seller",
+            "format": "int32"
+          },
+          "issn": {
+            "type": "string",
+            "description": "International Standard Serial Number"
+          },
+          "existsForSeller": {
+            "type": "integer",
+            "description": "if seller is selling this item",
+            "format": "int32"
+          },
+          "rank": {
+            "type": "integer",
+            "description": "Level of trending for this item",
+            "format": "int32"
+          },
+          "brand": {
+            "type": "string",
+            "description": "Specifies the item brand"
+          },
+          "superDepartmentName": {
+            "type": "string",
+            "description": "The superDepartmentName this item belongs to"
+          },
+          "subCategoryName": {
+            "type": "string",
+            "description": "The subCategoryName this item belongs to"
+          }
+        },
+        "description": "List of Qualified Items"
+      },
+      "GetListingQualityScore": {
+        "type": "object",
+        "properties": {
+          "payload": {
+            "type": "object",
+            "properties": {
+              "overAllQuality": {
+                "type": "number",
+                "description": "Over All Quality ",
+                "format": "double"
+              },
+              "score": {
+                "type": "object",
+                "properties": {
+                  "offerScore": {
+                    "type": "number",
+                    "description": "Offer Score",
+                    "format": "double"
+                  },
+                  "contentScore": {
+                    "type": "number",
+                    "description": "Content Score",
+                    "format": "double"
+                  },
+                  "ratingReviewScore": {
+                    "type": "number",
+                    "description": "Rating Review Score",
+                    "format": "double"
+                  }
+                },
+                "description": "Score"
+              },
+              "postPurchaseQuality": {
+                "type": "object",
+                "properties": {
+                  "defectRatio": {
+                    "type": "integer",
+                    "description": "Defect Ratio",
+                    "format": "int32"
+                  },
+                  "itemDefectCnt": {
+                    "type": "integer",
+                    "description": "Item Defect Count",
+                    "format": "int32"
+                  }
+                },
+                "description": "Post Purchase Quality"
+              }
+            }
+          }
+        }
+      },
+      "ListingQualityScorePayload": {
+        "type": "object",
+        "properties": {
+          "overAllQuality": {
+            "type": "number",
+            "description": "Over All Quality ",
+            "format": "double"
+          },
+          "score": {
+            "type": "object",
+            "properties": {
+              "offerScore": {
+                "type": "number",
+                "description": "Offer Score",
+                "format": "double"
+              },
+              "contentScore": {
+                "type": "number",
+                "description": "Content Score",
+                "format": "double"
+              },
+              "ratingReviewScore": {
+                "type": "number",
+                "description": "Rating Review Score",
+                "format": "double"
+              }
+            },
+            "description": "Score"
+          },
+          "postPurchaseQuality": {
+            "type": "object",
+            "properties": {
+              "defectRatio": {
+                "type": "integer",
+                "description": "Defect Ratio",
+                "format": "int32"
+              },
+              "itemDefectCnt": {
+                "type": "integer",
+                "description": "Item Defect Count",
+                "format": "int32"
+              }
+            },
+            "description": "Post Purchase Quality"
+          }
+        }
+      },
+      "PostPurchaseQuality": {
+        "type": "object",
+        "properties": {
+          "defectRatio": {
+            "type": "integer",
+            "description": "Defect Ratio",
+            "format": "int32"
+          },
+          "itemDefectCnt": {
+            "type": "integer",
+            "description": "Item Defect Count",
+            "format": "int32"
+          }
+        },
+        "description": "Post Purchase Quality"
+      },
+      "Score": {
+        "type": "object",
+        "properties": {
+          "offerScore": {
+            "type": "number",
+            "description": "Offer Score",
+            "format": "double"
+          },
+          "contentScore": {
+            "type": "number",
+            "description": "Content Score",
+            "format": "double"
+          },
+          "ratingReviewScore": {
+            "type": "number",
+            "description": "Rating Review Score",
+            "format": "double"
+          }
+        },
+        "description": "Score"
+      },
+      "GetUnpublishedItemsCount": {
+        "type": "object",
+        "properties": {
+          "payload": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "unpublishedCount": {
+                  "type": "string",
+                  "description": "total count for unpublished Item"
+                },
+                "unpublishedValue": {
+                  "type": "string",
+                  "description": "total value for unpublished Item"
+                },
+                "unpublishedReasonCode": {
+                  "type": "string",
+                  "description": "the reason why item is unpublished"
+                }
+              }
+            }
+          }
+        }
+      },
+      "Payload": {
+        "type": "object",
+        "properties": {
+          "unpublishedCount": {
+            "type": "string",
+            "description": "total count for unpublished Item"
+          },
+          "unpublishedValue": {
+            "type": "string",
+            "description": "total value for unpublished Item"
+          },
+          "unpublishedReasonCode": {
+            "type": "string",
+            "description": "the reason why item is unpublished"
+          }
+        }
+      },
+      "GetUnpublishedItem": {
+        "type": "object",
+        "properties": {
+          "payload": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "gtin": {
+                  "type": "string",
+                  "description": "The GTIN-compatible Product ID (i.e. UPC or EAN)"
+                },
+                "marketPrice": {
+                  "type": "object",
+                  "properties": {
+                    "amount": {
+                      "type": "string",
+                      "description": "The numerical value of the price"
+                    },
+                    "currency": {
+                      "type": "string",
+                      "description": "The currency type"
+                    }
+                  }
+                },
+                "offerStartDate": {
+                  "type": "string",
+                  "description": "The Date when item becomes available to sell in Walmart"
+                },
+                "marketTrending": {
+                  "type": "string",
+                  "description": "If item is trending in walmart"
+                },
+                "lifecycleStatus": {
+                  "type": "string",
+                  "description": "The lifecycle status of an item describes where the item listing is in the overall lifecycle"
+                },
+                "unpublishReasons": {
+                  "type": "string",
+                  "description": "It outlines the reason for an item when unpublished"
+                },
+                "conversionRate": {
+                  "type": "integer",
+                  "description": "Percentage of number of items that are converted into sales",
+                  "format": "int32"
+                },
+                "productName": {
+                  "type": "string",
+                  "description": "A seller-specified, alphanumeric string uniquely identifying the product name"
+                },
+                "gmvAmount": {
+                  "type": "object",
+                  "properties": {
+                    "amount": {
+                      "type": "integer",
+                      "description": "The numerical value of the price",
+                      "format": "int32"
+                    },
+                    "currency": {
+                      "type": "string",
+                      "description": "The currency type"
+                    }
+                  }
+                },
+                "itemId": {
+                  "type": "string",
+                  "description": "Specifies the item identifier generated by Walmart"
+                },
+                "customerRating": {
+                  "type": "string",
+                  "description": "An average rating number for the item from customers"
+                },
+                "pageViews": {
+                  "type": "integer",
+                  "description": "number of times this item is viewed by customers",
+                  "format": "int32"
+                },
+                "price": {
+                  "type": "object",
+                  "properties": {
+                    "price": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "issueTitle": {
+                      "type": "object"
+                    },
+                    "competitorPrice": {
+                      "type": "number",
+                      "format": "double"
+                    },
+                    "walmartShipping": {
+                      "type": "object"
+                    },
+                    "competitorShipping": {
+                      "type": "object"
+                    },
+                    "score": {
+                      "type": "object"
+                    },
+                    "additionalDes": {
+                      "type": "object"
+                    },
+                    "asin": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "unpublishedDate": {
+                  "type": "string",
+                  "description": "The Date item becomes to Unpublished"
+                },
+                "brand": {
+                  "type": "string",
+                  "description": "Specifies the item brand"
+                },
+                "sku": {
+                  "type": "string",
+                  "description": "String of letters and/or numbers a partner uses to identify the item"
+                },
+                "productType": {
+                  "type": "string",
+                  "description": "A seller-specified, alphanumeric string uniquely identifying the Product Type"
+                },
+                "offerEndDate": {
+                  "type": "string",
+                  "description": "The Date when item becomes unavailable to sell in Walmart"
+                },
+                "publishStatus": {
+                  "type": "string",
+                  "description": "The status of an item when the item is in the submission process"
+                }
+              }
+            }
+          },
+          "totalCount": {
+            "type": "integer",
+            "description": "total number of unpublished items",
+            "format": "int32"
+          },
+          "totalGmvAmount": {
+            "type": "object",
+            "properties": {
+              "amount": {
+                "type": "string",
+                "description": "The numerical value of the price"
+              },
+              "currency": {
+                "type": "string",
+                "description": "The currency type"
+              }
+            },
+            "description": "Gross Merchandise Value of the total result set"
+          }
+        }
+      },
+      "GetUnpublishedItemsPayload": {
+        "type": "object",
+        "properties": {
+          "gtin": {
+            "type": "string",
+            "description": "The GTIN-compatible Product ID (i.e. UPC or EAN)"
+          },
+          "marketPrice": {
+            "type": "object",
+            "properties": {
+              "amount": {
+                "type": "string",
+                "description": "The numerical value of the price"
+              },
+              "currency": {
+                "type": "string",
+                "description": "The currency type"
+              }
+            }
+          },
+          "offerStartDate": {
+            "type": "string",
+            "description": "The Date when item becomes available to sell in Walmart"
+          },
+          "marketTrending": {
+            "type": "string",
+            "description": "If item is trending in walmart"
+          },
+          "lifecycleStatus": {
+            "type": "string",
+            "description": "The lifecycle status of an item describes where the item listing is in the overall lifecycle"
+          },
+          "unpublishReasons": {
+            "type": "string",
+            "description": "It outlines the reason for an item when unpublished"
+          },
+          "conversionRate": {
+            "type": "integer",
+            "description": "Percentage of number of items that are converted into sales",
+            "format": "int32"
+          },
+          "productName": {
+            "type": "string",
+            "description": "A seller-specified, alphanumeric string uniquely identifying the product name"
+          },
+          "gmvAmount": {
+            "type": "object",
+            "properties": {
+              "amount": {
+                "type": "integer",
+                "description": "The numerical value of the price",
+                "format": "int32"
+              },
+              "currency": {
+                "type": "string",
+                "description": "The currency type"
+              }
+            }
+          },
+          "itemId": {
+            "type": "string",
+            "description": "Specifies the item identifier generated by Walmart"
+          },
+          "customerRating": {
+            "type": "string",
+            "description": "An average rating number for the item from customers"
+          },
+          "pageViews": {
+            "type": "integer",
+            "description": "number of times this item is viewed by customers",
+            "format": "int32"
+          },
+          "price": {
+            "type": "object",
+            "properties": {
+              "price": {
+                "type": "integer",
+                "format": "int32"
+              },
+              "issueTitle": {
+                "type": "object"
+              },
+              "competitorPrice": {
+                "type": "number",
+                "format": "double"
+              },
+              "walmartShipping": {
+                "type": "object"
+              },
+              "competitorShipping": {
+                "type": "object"
+              },
+              "score": {
+                "type": "object"
+              },
+              "additionalDes": {
+                "type": "object"
+              },
+              "asin": {
+                "type": "string"
+              }
+            }
+          },
+          "unpublishedDate": {
+            "type": "string",
+            "description": "The Date item becomes to Unpublished"
+          },
+          "brand": {
+            "type": "string",
+            "description": "Specifies the item brand"
+          },
+          "sku": {
+            "type": "string",
+            "description": "String of letters and/or numbers a partner uses to identify the item"
+          },
+          "productType": {
+            "type": "string",
+            "description": "A seller-specified, alphanumeric string uniquely identifying the Product Type"
+          },
+          "offerEndDate": {
+            "type": "string",
+            "description": "The Date when item becomes unavailable to sell in Walmart"
+          },
+          "publishStatus": {
+            "type": "string",
+            "description": "The status of an item when the item is in the submission process"
+          }
+        }
+      },
+      "GmvAmount": {
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "integer",
+            "description": "The numerical value of the price",
+            "format": "int32"
+          },
+          "currency": {
+            "type": "string",
+            "description": "The currency type"
+          }
+        }
+      },
+      "MarketPrice": {
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "string",
+            "description": "The numerical value of the price"
+          },
+          "currency": {
+            "type": "string",
+            "description": "The currency type"
+          }
+        }
+      },
+      "Price": {
+        "type": "object",
+        "properties": {
+          "price": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "issueTitle": {
+            "type": "object"
+          },
+          "competitorPrice": {
+            "type": "number",
+            "format": "double"
+          },
+          "walmartShipping": {
+            "type": "object"
+          },
+          "competitorShipping": {
+            "type": "object"
+          },
+          "score": {
+            "type": "object"
+          },
+          "additionalDes": {
+            "type": "object"
+          },
+          "asin": {
+            "type": "string"
+          }
+        }
+      },
+      "TotalGmvAmount": {
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "string",
+            "description": "The numerical value of the price"
+          },
+          "currency": {
+            "type": "string",
+            "description": "The currency type"
+          }
+        },
+        "description": "Gross Merchandise Value of the total result set"
+      },
       "Cancellations": {
         "type": "object",
         "properties": {
@@ -2565,13 +3531,31 @@
                   "price": {
                     "type": "object",
                     "properties": {
-                      "amount": {
-                        "type": "string",
-                        "description": "The numerical value of the price"
+                      "price": {
+                        "type": "integer",
+                        "format": "int32"
                       },
-                      "currency": {
-                        "type": "string",
-                        "description": "The currency type"
+                      "issueTitle": {
+                        "type": "object"
+                      },
+                      "competitorPrice": {
+                        "type": "number",
+                        "format": "double"
+                      },
+                      "walmartShipping": {
+                        "type": "object"
+                      },
+                      "competitorShipping": {
+                        "type": "object"
+                      },
+                      "score": {
+                        "type": "object"
+                      },
+                      "additionalDes": {
+                        "type": "object"
+                      },
+                      "asin": {
+                        "type": "string"
                       }
                     }
                   },
@@ -2864,13 +3848,31 @@
                         "price": {
                           "type": "object",
                           "properties": {
-                            "amount": {
-                              "type": "string",
-                              "description": "The numerical value of the price"
+                            "price": {
+                              "type": "integer",
+                              "format": "int32"
                             },
-                            "currency": {
-                              "type": "string",
-                              "description": "The currency type"
+                            "issueTitle": {
+                              "type": "object"
+                            },
+                            "competitorPrice": {
+                              "type": "number",
+                              "format": "double"
+                            },
+                            "walmartShipping": {
+                              "type": "object"
+                            },
+                            "competitorShipping": {
+                              "type": "object"
+                            },
+                            "score": {
+                              "type": "object"
+                            },
+                            "additionalDes": {
+                              "type": "object"
+                            },
+                            "asin": {
+                              "type": "string"
                             }
                           }
                         },
@@ -3149,13 +4151,31 @@
           "price": {
             "type": "object",
             "properties": {
-              "amount": {
-                "type": "string",
-                "description": "The numerical value of the price"
+              "price": {
+                "type": "integer",
+                "format": "int32"
               },
-              "currency": {
-                "type": "string",
-                "description": "The currency type"
+              "issueTitle": {
+                "type": "object"
+              },
+              "competitorPrice": {
+                "type": "number",
+                "format": "double"
+              },
+              "walmartShipping": {
+                "type": "object"
+              },
+              "competitorShipping": {
+                "type": "object"
+              },
+              "score": {
+                "type": "object"
+              },
+              "additionalDes": {
+                "type": "object"
+              },
+              "asin": {
+                "type": "string"
               }
             }
           },
@@ -3278,19 +4298,6 @@
           }
         }
       },
-      "Price": {
-        "type": "object",
-        "properties": {
-          "amount": {
-            "type": "string",
-            "description": "The numerical value of the price"
-          },
-          "currency": {
-            "type": "string",
-            "description": "The currency type"
-          }
-        }
-      },
       "PublishAndTransactable": {
         "type": "object",
         "properties": {
@@ -3382,13 +4389,31 @@
               "price": {
                 "type": "object",
                 "properties": {
-                  "amount": {
-                    "type": "string",
-                    "description": "The numerical value of the price"
+                  "price": {
+                    "type": "integer",
+                    "format": "int32"
                   },
-                  "currency": {
-                    "type": "string",
-                    "description": "The currency type"
+                  "issueTitle": {
+                    "type": "object"
+                  },
+                  "competitorPrice": {
+                    "type": "number",
+                    "format": "double"
+                  },
+                  "walmartShipping": {
+                    "type": "object"
+                  },
+                  "competitorShipping": {
+                    "type": "object"
+                  },
+                  "score": {
+                    "type": "object"
+                  },
+                  "additionalDes": {
+                    "type": "object"
+                  },
+                  "asin": {
+                    "type": "string"
                   }
                 }
               },
@@ -3807,695 +4832,177 @@
           }
         }
       },
-      "GetListingQualityScore": {
+      "CriteriaData": {
         "type": "object",
         "properties": {
-          "payload": {
-            "type": "object",
-            "properties": {
-              "overAllQuality": {
-                "type": "number",
-                "description": "Over All Quality ",
-                "format": "double"
-              },
-              "score": {
-                "type": "object",
-                "properties": {
-                  "offerScore": {
-                    "type": "number",
-                    "description": "Offer Score",
-                    "format": "double"
-                  },
-                  "contentScore": {
-                    "type": "number",
-                    "description": "Content Score",
-                    "format": "double"
-                  },
-                  "ratingReviewScore": {
-                    "type": "number",
-                    "description": "Rating Review Score",
-                    "format": "double"
-                  }
-                },
-                "description": "Score"
-              },
-              "postPurchaseQuality": {
-                "type": "object",
-                "properties": {
-                  "defectRatio": {
-                    "type": "integer",
-                    "description": "Defect Ratio",
-                    "format": "int32"
-                  },
-                  "itemDefectCnt": {
-                    "type": "integer",
-                    "description": "Item Defect Count",
-                    "format": "int32"
-                  }
-                },
-                "description": "Post Purchase Quality"
-              }
-            }
-          }
-        }
-      },
-      "ListingQualityScorePayload": {
-        "type": "object",
-        "properties": {
-          "overAllQuality": {
-            "type": "number",
-            "description": "Over All Quality ",
-            "format": "double"
+          "orders": {
+            "type": "integer",
+            "description": "Number of orders received during the last 90 days.",
+            "format": "int32"
           },
-          "score": {
+          "deliveryDefectRate": {
+            "type": "string",
+            "description": "Delivery Defect rate in the given timeframe."
+          },
+          "cancellationRate": {
+            "type": "string",
+            "description": "Cancellation rate in the given timeframe."
+          },
+          "listingQualityCatalog": {
+            "type": "integer",
+            "description": "Trending Catalog Quality Score coverage.",
+            "format": "int32"
+          },
+          "activeDays": {
+            "type": "integer",
+            "description": "Days active on the platform.",
+            "format": "int32"
+          }
+        },
+        "description": "Shows the criteria for the Pro Seller badge."
+      },
+      "MeetsCriteria": {
+        "type": "object",
+        "properties": {
+          "isOrdersCriteriaMet": {
+            "type": "boolean",
+            "description": "Indicates whether the seller has met the minimum number of orders required."
+          },
+          "isDeliveryDefectCriteriaMet": {
+            "type": "boolean",
+            "description": "Indicates whether the seller has a low delivery defect, meeting the threshold for the badge."
+          },
+          "isCancellationCriteriaMet": {
+            "type": "boolean",
+            "description": "Indicates whether the seller has a low cancellation rate, meeting the threshold for the badge."
+          },
+          "isListingQualityCatalogCriteriaMet": {
+            "type": "boolean",
+            "description": "Indicates whether the seller is meeting the trending catalog requirement."
+          },
+          "isActiveDaysCriteriaMet": {
+            "type": "boolean",
+            "description": "Indicates whether the seller has met the minimum number of active days required."
+          }
+        },
+        "description": "Shows whether the seller has met the requirements for the badge."
+      },
+      "ProSellerResponse": {
+        "type": "object",
+        "properties": {
+          "hasBadge": {
+            "type": "boolean",
+            "description": "Specifies if the seller has the badge"
+          },
+          "isEligible": {
+            "type": "boolean",
+            "description": "Specifies if the seller is eligible for the badge in the next refresh"
+          },
+          "badgedSince": {
+            "type": "string",
+            "description": "Specifies when the seller received their badge",
+            "format": "date-time"
+          },
+          "isProhibited": {
+            "type": "boolean",
+            "description": "Specifies whether the seller is prohibited from participating in the Pro Seller badge program."
+          },
+          "badgeStatus": {
+            "type": "string",
+            "description": "Specifies the seller's badge status in detail. The possible values are \"Become a Pro Seller\", \"You are a Pro Seller\", \"Pro Seller Badge at risk\", \"Eligible starting from YYYY-MM-DD\", and \"Not eligible for the Pro Seller Badge\""
+          },
+          "meetsCriteria": {
             "type": "object",
             "properties": {
-              "offerScore": {
-                "type": "number",
-                "description": "Offer Score",
-                "format": "double"
+              "isOrdersCriteriaMet": {
+                "type": "boolean",
+                "description": "Indicates whether the seller has met the minimum number of orders required."
               },
-              "contentScore": {
-                "type": "number",
-                "description": "Content Score",
-                "format": "double"
+              "isDeliveryDefectCriteriaMet": {
+                "type": "boolean",
+                "description": "Indicates whether the seller has a low delivery defect, meeting the threshold for the badge."
               },
-              "ratingReviewScore": {
-                "type": "number",
-                "description": "Rating Review Score",
-                "format": "double"
+              "isCancellationCriteriaMet": {
+                "type": "boolean",
+                "description": "Indicates whether the seller has a low cancellation rate, meeting the threshold for the badge."
+              },
+              "isListingQualityCatalogCriteriaMet": {
+                "type": "boolean",
+                "description": "Indicates whether the seller is meeting the trending catalog requirement."
+              },
+              "isActiveDaysCriteriaMet": {
+                "type": "boolean",
+                "description": "Indicates whether the seller has met the minimum number of active days required."
               }
             },
-            "description": "Score"
+            "description": "Shows whether the seller has met the requirements for the badge."
           },
-          "postPurchaseQuality": {
+          "criteriaData": {
             "type": "object",
             "properties": {
-              "defectRatio": {
+              "orders": {
                 "type": "integer",
-                "description": "Defect Ratio",
+                "description": "Number of orders received during the last 90 days.",
                 "format": "int32"
               },
-              "itemDefectCnt": {
+              "deliveryDefectRate": {
+                "type": "string",
+                "description": "Delivery Defect rate in the given timeframe."
+              },
+              "cancellationRate": {
+                "type": "string",
+                "description": "Cancellation rate in the given timeframe."
+              },
+              "listingQualityCatalog": {
                 "type": "integer",
-                "description": "Item Defect Count",
+                "description": "Trending Catalog Quality Score coverage.",
+                "format": "int32"
+              },
+              "activeDays": {
+                "type": "integer",
+                "description": "Days active on the platform.",
                 "format": "int32"
               }
             },
-            "description": "Post Purchase Quality"
-          }
-        }
-      },
-      "PostPurchaseQuality": {
-        "type": "object",
-        "properties": {
-          "defectRatio": {
-            "type": "integer",
-            "description": "Defect Ratio",
-            "format": "int32"
+            "description": "Shows the criteria for the Pro Seller badge."
           },
-          "itemDefectCnt": {
-            "type": "integer",
-            "description": "Item Defect Count",
-            "format": "int32"
-          }
-        },
-        "description": "Post Purchase Quality"
-      },
-      "Score": {
-        "type": "object",
-        "properties": {
-          "offerScore": {
-            "type": "number",
-            "description": "Offer Score",
-            "format": "double"
-          },
-          "contentScore": {
-            "type": "number",
-            "description": "Content Score",
-            "format": "double"
-          },
-          "ratingReviewScore": {
-            "type": "number",
-            "description": "Rating Review Score",
-            "format": "double"
-          }
-        },
-        "description": "Score"
-      },
-      "GetUnpublishedItemsCount": {
-        "type": "object",
-        "properties": {
-          "payload": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "unpublishedCount": {
-                  "type": "string",
-                  "description": "total count for unpublished Item"
-                },
-                "unpublishedValue": {
-                  "type": "string",
-                  "description": "total value for unpublished Item"
-                },
-                "unpublishedReasonCode": {
-                  "type": "string",
-                  "description": "the reason why item is unpublished"
-                }
-              }
-            }
-          }
-        }
-      },
-      "Payload": {
-        "type": "object",
-        "properties": {
-          "unpublishedCount": {
-            "type": "string",
-            "description": "total count for unpublished Item"
-          },
-          "unpublishedValue": {
-            "type": "string",
-            "description": "total value for unpublished Item"
-          },
-          "unpublishedReasonCode": {
-            "type": "string",
-            "description": "the reason why item is unpublished"
-          }
-        }
-      },
-      "GetTrendingResult": {
-        "type": "object",
-        "properties": {
-          "payload": {
+          "recommendations": {
             "type": "object",
             "properties": {
-              "totalCount": {
-                "type": "integer",
-                "description": "Total count of qualified items",
-                "format": "int32"
-              },
-              "items": {
-                "type": "array",
-                "description": "List of Qualified Items",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "categoryName": {
-                      "type": "string",
-                      "description": "The categories this item belongs to"
-                    },
-                    "departmentName": {
-                      "type": "string",
-                      "description": "The department this product belongs to"
-                    },
-                    "isbn": {
-                      "type": "string",
-                      "description": "International Standard Book Number"
-                    },
-                    "productName": {
-                      "type": "string",
-                      "description": "A seller-specified, alphanumeric string uniquely identifying the product name"
-                    },
-                    "isTwoDayEligible": {
-                      "type": "integer",
-                      "description": "if the item can be shipped in two days",
-                      "format": "int32"
-                    },
-                    "itemId": {
-                      "type": "string",
-                      "description": "Specifies the item identifier generated by Walmart"
-                    },
-                    "totalOffers": {
-                      "type": "integer",
-                      "description": "Total number of item stored by seller",
-                      "format": "int32"
-                    },
-                    "issn": {
-                      "type": "string",
-                      "description": "International Standard Serial Number"
-                    },
-                    "existsForSeller": {
-                      "type": "integer",
-                      "description": "if seller is selling this item",
-                      "format": "int32"
-                    },
-                    "rank": {
-                      "type": "integer",
-                      "description": "Level of trending for this item",
-                      "format": "int32"
-                    },
-                    "brand": {
-                      "type": "string",
-                      "description": "Specifies the item brand"
-                    },
-                    "superDepartmentName": {
-                      "type": "string",
-                      "description": "The superDepartmentName this item belongs to"
-                    },
-                    "subCategoryName": {
-                      "type": "string",
-                      "description": "The subCategoryName this item belongs to"
-                    }
-                  },
-                  "description": "List of Qualified Items"
-                }
-              }
-            }
-          },
-          "status": {
-            "type": "string"
-          }
-        }
-      },
-      "GetTrendingResultPayload": {
-        "type": "object",
-        "properties": {
-          "totalCount": {
-            "type": "integer",
-            "description": "Total count of qualified items",
-            "format": "int32"
-          },
-          "items": {
-            "type": "array",
-            "description": "List of Qualified Items",
-            "items": {
-              "type": "object",
-              "properties": {
-                "categoryName": {
-                  "type": "string",
-                  "description": "The categories this item belongs to"
-                },
-                "departmentName": {
-                  "type": "string",
-                  "description": "The department this product belongs to"
-                },
-                "isbn": {
-                  "type": "string",
-                  "description": "International Standard Book Number"
-                },
-                "productName": {
-                  "type": "string",
-                  "description": "A seller-specified, alphanumeric string uniquely identifying the product name"
-                },
-                "isTwoDayEligible": {
-                  "type": "integer",
-                  "description": "if the item can be shipped in two days",
-                  "format": "int32"
-                },
-                "itemId": {
-                  "type": "string",
-                  "description": "Specifies the item identifier generated by Walmart"
-                },
-                "totalOffers": {
-                  "type": "integer",
-                  "description": "Total number of item stored by seller",
-                  "format": "int32"
-                },
-                "issn": {
-                  "type": "string",
-                  "description": "International Standard Serial Number"
-                },
-                "existsForSeller": {
-                  "type": "integer",
-                  "description": "if seller is selling this item",
-                  "format": "int32"
-                },
-                "rank": {
-                  "type": "integer",
-                  "description": "Level of trending for this item",
-                  "format": "int32"
-                },
-                "brand": {
-                  "type": "string",
-                  "description": "Specifies the item brand"
-                },
-                "superDepartmentName": {
-                  "type": "string",
-                  "description": "The superDepartmentName this item belongs to"
-                },
-                "subCategoryName": {
-                  "type": "string",
-                  "description": "The subCategoryName this item belongs to"
-                }
-              },
-              "description": "List of Qualified Items"
-            }
-          }
-        }
-      },
-      "TrendingItem": {
-        "type": "object",
-        "properties": {
-          "categoryName": {
-            "type": "string",
-            "description": "The categories this item belongs to"
-          },
-          "departmentName": {
-            "type": "string",
-            "description": "The department this product belongs to"
-          },
-          "isbn": {
-            "type": "string",
-            "description": "International Standard Book Number"
-          },
-          "productName": {
-            "type": "string",
-            "description": "A seller-specified, alphanumeric string uniquely identifying the product name"
-          },
-          "isTwoDayEligible": {
-            "type": "integer",
-            "description": "if the item can be shipped in two days",
-            "format": "int32"
-          },
-          "itemId": {
-            "type": "string",
-            "description": "Specifies the item identifier generated by Walmart"
-          },
-          "totalOffers": {
-            "type": "integer",
-            "description": "Total number of item stored by seller",
-            "format": "int32"
-          },
-          "issn": {
-            "type": "string",
-            "description": "International Standard Serial Number"
-          },
-          "existsForSeller": {
-            "type": "integer",
-            "description": "if seller is selling this item",
-            "format": "int32"
-          },
-          "rank": {
-            "type": "integer",
-            "description": "Level of trending for this item",
-            "format": "int32"
-          },
-          "brand": {
-            "type": "string",
-            "description": "Specifies the item brand"
-          },
-          "superDepartmentName": {
-            "type": "string",
-            "description": "The superDepartmentName this item belongs to"
-          },
-          "subCategoryName": {
-            "type": "string",
-            "description": "The subCategoryName this item belongs to"
-          }
-        },
-        "description": "List of Qualified Items"
-      },
-      "GetUnpublishedItem": {
-        "type": "object",
-        "properties": {
-          "payload": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "gtin": {
-                  "type": "string",
-                  "description": "The GTIN-compatible Product ID (i.e. UPC or EAN)"
-                },
-                "marketPrice": {
-                  "type": "object",
-                  "properties": {
-                    "amount": {
-                      "type": "string",
-                      "description": "The numerical value of the price"
-                    },
-                    "currency": {
-                      "type": "string",
-                      "description": "The currency type"
-                    }
-                  }
-                },
-                "offerStartDate": {
-                  "type": "string",
-                  "description": "The Date when item becomes available to sell in Walmart"
-                },
-                "marketTrending": {
-                  "type": "string",
-                  "description": "If item is trending in walmart"
-                },
-                "lifecycleStatus": {
-                  "type": "string",
-                  "description": "The lifecycle status of an item describes where the item listing is in the overall lifecycle"
-                },
-                "unpublishReasons": {
-                  "type": "string",
-                  "description": "It outlines the reason for an item when unpublished"
-                },
-                "conversionRate": {
-                  "type": "integer",
-                  "description": "Percentage of number of items that are converted into sales",
-                  "format": "int32"
-                },
-                "productName": {
-                  "type": "string",
-                  "description": "A seller-specified, alphanumeric string uniquely identifying the product name"
-                },
-                "gmvAmount": {
-                  "type": "object",
-                  "properties": {
-                    "amount": {
-                      "type": "integer",
-                      "description": "The numerical value of the price",
-                      "format": "int32"
-                    },
-                    "currency": {
-                      "type": "string",
-                      "description": "The currency type"
-                    }
-                  }
-                },
-                "itemId": {
-                  "type": "string",
-                  "description": "Specifies the item identifier generated by Walmart"
-                },
-                "customerRating": {
-                  "type": "string",
-                  "description": "An average rating number for the item from customers"
-                },
-                "pageViews": {
-                  "type": "integer",
-                  "description": "number of times this item is viewed by customers",
-                  "format": "int32"
-                },
-                "price": {
-                  "type": "object",
-                  "properties": {
-                    "amount": {
-                      "type": "string",
-                      "description": "The numerical value of the price"
-                    },
-                    "currency": {
-                      "type": "string",
-                      "description": "The currency type"
-                    }
-                  }
-                },
-                "unpublishedDate": {
-                  "type": "string",
-                  "description": "The Date item becomes to Unpublished"
-                },
-                "brand": {
-                  "type": "string",
-                  "description": "Specifies the item brand"
-                },
-                "sku": {
-                  "type": "string",
-                  "description": "String of letters and/or numbers a partner uses to identify the item"
-                },
-                "productType": {
-                  "type": "string",
-                  "description": "A seller-specified, alphanumeric string uniquely identifying the Product Type"
-                },
-                "offerEndDate": {
-                  "type": "string",
-                  "description": "The Date when item becomes unavailable to sell in Walmart"
-                },
-                "publishStatus": {
-                  "type": "string",
-                  "description": "The status of an item when the item is in the submission process"
-                }
-              }
-            }
-          },
-          "totalCount": {
-            "type": "integer",
-            "description": "total number of unpublished items",
-            "format": "int32"
-          },
-          "totalGmvAmount": {
-            "type": "object",
-            "properties": {
-              "amount": {
+              "deliveryDefectRate": {
                 "type": "string",
-                "description": "The numerical value of the price"
+                "description": "Recommendations on reducing the delivery defect rate"
               },
-              "currency": {
+              "cancellationRate": {
                 "type": "string",
-                "description": "The currency type"
+                "description": "Recommendations on reducing the Cancellation rate"
+              },
+              "listingQualityCatalog": {
+                "type": "string",
+                "description": "Recommendations on increasing the trending item catalog coverage"
               }
             },
-            "description": "Gross Merchandise Value of the total result set"
+            "description": "Recommendations on how to increase chances of Pro Seller Badge eligibility"
           }
         }
       },
-      "GetUnpublishedItemsPayload": {
+      "Recommendations": {
         "type": "object",
         "properties": {
-          "gtin": {
+          "deliveryDefectRate": {
             "type": "string",
-            "description": "The GTIN-compatible Product ID (i.e. UPC or EAN)"
+            "description": "Recommendations on reducing the delivery defect rate"
           },
-          "marketPrice": {
-            "type": "object",
-            "properties": {
-              "amount": {
-                "type": "string",
-                "description": "The numerical value of the price"
-              },
-              "currency": {
-                "type": "string",
-                "description": "The currency type"
-              }
-            }
-          },
-          "offerStartDate": {
+          "cancellationRate": {
             "type": "string",
-            "description": "The Date when item becomes available to sell in Walmart"
+            "description": "Recommendations on reducing the Cancellation rate"
           },
-          "marketTrending": {
+          "listingQualityCatalog": {
             "type": "string",
-            "description": "If item is trending in walmart"
-          },
-          "lifecycleStatus": {
-            "type": "string",
-            "description": "The lifecycle status of an item describes where the item listing is in the overall lifecycle"
-          },
-          "unpublishReasons": {
-            "type": "string",
-            "description": "It outlines the reason for an item when unpublished"
-          },
-          "conversionRate": {
-            "type": "integer",
-            "description": "Percentage of number of items that are converted into sales",
-            "format": "int32"
-          },
-          "productName": {
-            "type": "string",
-            "description": "A seller-specified, alphanumeric string uniquely identifying the product name"
-          },
-          "gmvAmount": {
-            "type": "object",
-            "properties": {
-              "amount": {
-                "type": "integer",
-                "description": "The numerical value of the price",
-                "format": "int32"
-              },
-              "currency": {
-                "type": "string",
-                "description": "The currency type"
-              }
-            }
-          },
-          "itemId": {
-            "type": "string",
-            "description": "Specifies the item identifier generated by Walmart"
-          },
-          "customerRating": {
-            "type": "string",
-            "description": "An average rating number for the item from customers"
-          },
-          "pageViews": {
-            "type": "integer",
-            "description": "number of times this item is viewed by customers",
-            "format": "int32"
-          },
-          "price": {
-            "type": "object",
-            "properties": {
-              "amount": {
-                "type": "string",
-                "description": "The numerical value of the price"
-              },
-              "currency": {
-                "type": "string",
-                "description": "The currency type"
-              }
-            }
-          },
-          "unpublishedDate": {
-            "type": "string",
-            "description": "The Date item becomes to Unpublished"
-          },
-          "brand": {
-            "type": "string",
-            "description": "Specifies the item brand"
-          },
-          "sku": {
-            "type": "string",
-            "description": "String of letters and/or numbers a partner uses to identify the item"
-          },
-          "productType": {
-            "type": "string",
-            "description": "A seller-specified, alphanumeric string uniquely identifying the Product Type"
-          },
-          "offerEndDate": {
-            "type": "string",
-            "description": "The Date when item becomes unavailable to sell in Walmart"
-          },
-          "publishStatus": {
-            "type": "string",
-            "description": "The status of an item when the item is in the submission process"
-          }
-        }
-      },
-      "GmvAmount": {
-        "type": "object",
-        "properties": {
-          "amount": {
-            "type": "integer",
-            "description": "The numerical value of the price",
-            "format": "int32"
-          },
-          "currency": {
-            "type": "string",
-            "description": "The currency type"
-          }
-        }
-      },
-      "MarketPrice": {
-        "type": "object",
-        "properties": {
-          "amount": {
-            "type": "string",
-            "description": "The numerical value of the price"
-          },
-          "currency": {
-            "type": "string",
-            "description": "The currency type"
-          }
-        }
-      },
-      "TotalGmvAmount": {
-        "type": "object",
-        "properties": {
-          "amount": {
-            "type": "string",
-            "description": "The numerical value of the price"
-          },
-          "currency": {
-            "type": "string",
-            "description": "The currency type"
+            "description": "Recommendations on increasing the trending item catalog coverage"
           }
         },
-        "description": "Gross Merchandise Value of the total result set"
+        "description": "Recommendations on how to increase chances of Pro Seller Badge eligibility"
       }
     },
     "parameters": {

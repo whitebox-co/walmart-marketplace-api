@@ -72,10 +72,10 @@ export interface Charge {
     chargeName?: string;
     /**
      * 
-     * @type {InlineResponse2001TotalRefundAmount}
+     * @type {InlineResponse200TotalRefundAmount}
      * @memberof Charge
      */
-    chargePerUnit?: InlineResponse2001TotalRefundAmount;
+    chargePerUnit?: InlineResponse200TotalRefundAmount;
     /**
      * Is this charge a discount, which then needs to be subtracted from the refund
      * @type {boolean}
@@ -90,22 +90,22 @@ export interface Charge {
     isBillable?: boolean;
     /**
      * Taxes for each charge
-     * @type {Array<InlineResponse2001Tax>}
+     * @type {Array<InlineResponse200Tax>}
      * @memberof Charge
      */
-    tax?: Array<InlineResponse2001Tax>;
+    tax?: Array<InlineResponse200Tax>;
     /**
      * 
-     * @type {InlineResponse2001TotalRefundAmount}
+     * @type {InlineResponse200TotalRefundAmount}
      * @memberof Charge
      */
-    excessCharge?: InlineResponse2001TotalRefundAmount;
+    excessCharge?: InlineResponse200TotalRefundAmount;
     /**
      * Used only for OG
-     * @type {Array<InlineResponse2001References>}
+     * @type {Array<InlineResponse200References>}
      * @memberof Charge
      */
-    references?: Array<InlineResponse2001References>;
+    references?: Array<InlineResponse200References>;
 }
 /**
  * Contains name value pairs of calculated charges for the line. Eg: if order line has 3 Qty, this will have a shipping charge = 3 * shipping charge per unit (This is present in the line level charges).
@@ -121,10 +121,10 @@ export interface ChargeTotal {
     name: string;
     /**
      * 
-     * @type {InlineResponse2001TotalRefundAmount}
+     * @type {InlineResponse200TotalRefundAmount}
      * @memberof ChargeTotal
      */
-    value: InlineResponse2001TotalRefundAmount;
+    value: InlineResponse200TotalRefundAmount;
 }
 /**
  * Customer information
@@ -166,16 +166,16 @@ export interface FeedId {
 export interface GetReturnOrdersResponse {
     /**
      * 
-     * @type {InlineResponse2001Meta}
+     * @type {InlineResponse200Meta}
      * @memberof GetReturnOrdersResponse
      */
-    meta: InlineResponse2001Meta;
+    meta: InlineResponse200Meta;
     /**
      * List of returns for the seller.
-     * @type {Array<InlineResponse2001ReturnOrders>}
+     * @type {Array<InlineResponse200ReturnOrders>}
      * @memberof GetReturnOrdersResponse
      */
-    returnOrders: Array<InlineResponse2001ReturnOrders>;
+    returnOrders: Array<InlineResponse200ReturnOrders>;
 }
 /**
  * 
@@ -203,23 +203,17 @@ export interface InlineObject {
  */
 export interface InlineResponse200 {
     /**
-     * The return order id
-     * @type {string}
+     * 
+     * @type {InlineResponse200Meta}
      * @memberof InlineResponse200
      */
-    returnOrderId?: string;
+    meta: InlineResponse200Meta;
     /**
-     * A unique ID associated with the sales order for specified customer
-     * @type {string}
+     * List of returns for the seller.
+     * @type {Array<InlineResponse200ReturnOrders>}
      * @memberof InlineResponse200
      */
-    customerOrderId?: string;
-    /**
-     * Array of refund lines
-     * @type {Array<V3ReturnsReturnOrderIdRefundRefundLines>}
-     * @memberof InlineResponse200
-     */
-    refundLines?: Array<V3ReturnsReturnOrderIdRefundRefundLines>;
+    returnOrders: Array<InlineResponse200ReturnOrders>;
 }
 /**
  * 
@@ -228,652 +222,23 @@ export interface InlineResponse200 {
  */
 export interface InlineResponse2001 {
     /**
-     * 
-     * @type {InlineResponse2001Meta}
+     * The return order id
+     * @type {string}
      * @memberof InlineResponse2001
-     */
-    meta: InlineResponse2001Meta;
-    /**
-     * List of returns for the seller.
-     * @type {Array<InlineResponse2001ReturnOrders>}
-     * @memberof InlineResponse2001
-     */
-    returnOrders: Array<InlineResponse2001ReturnOrders>;
-}
-/**
- * Carrier information for the return
- * @export
- * @interface InlineResponse2001CarrierInfoList
- */
-export interface InlineResponse2001CarrierInfoList {
-    /**
-     * ID of the carrier used for the return
-     * @type {string}
-     * @memberof InlineResponse2001CarrierInfoList
-     */
-    carrierId?: string;
-    /**
-     * Name of the carrier used
-     * @type {string}
-     * @memberof InlineResponse2001CarrierInfoList
-     */
-    carrierName?: string;
-    /**
-     * the type of service used
-     * @type {string}
-     * @memberof InlineResponse2001CarrierInfoList
-     */
-    serviceType?: string;
-    /**
-     * Tracking number of the order
-     * @type {string}
-     * @memberof InlineResponse2001CarrierInfoList
-     */
-    trackingNo?: string;
-}
-/**
- * Contains name value pairs of calculated charges for the line. Eg: if order line has 3 Qty, this will have a shipping charge = 3 * shipping charge per unit (This is present in the line level charges).
- * @export
- * @interface InlineResponse2001ChargeTotals
- */
-export interface InlineResponse2001ChargeTotals {
-    /**
-     * Charge Names: lineUnitPrice, lineProductTaxes, lineTotalTaxes, lineRestockingFee, lineShippingFee, lineSubTotal, lineTotal.
-     * @type {string}
-     * @memberof InlineResponse2001ChargeTotals
-     */
-    name: string;
-    /**
-     * 
-     * @type {InlineResponse2001TotalRefundAmount}
-     * @memberof InlineResponse2001ChargeTotals
-     */
-    value: InlineResponse2001TotalRefundAmount;
-}
-/**
- * Information relating to the charge for the orderLine
- * @export
- * @interface InlineResponse2001Charges
- */
-export interface InlineResponse2001Charges {
-    /**
-     * The category type. (e.g., \'PRODUCT\' or \'FEE\')
-     * @type {string}
-     * @memberof InlineResponse2001Charges
-     */
-    chargeCategory?: string;
-    /**
-     * If chargeType is PRODUCT, chargeName is Item Price. If chargeType is SHIPPING, chargeName is Shipping
-     * @type {string}
-     * @memberof InlineResponse2001Charges
-     */
-    chargeName?: string;
-    /**
-     * 
-     * @type {InlineResponse2001TotalRefundAmount}
-     * @memberof InlineResponse2001Charges
-     */
-    chargePerUnit?: InlineResponse2001TotalRefundAmount;
-    /**
-     * Is this charge a discount, which then needs to be subtracted from the refund
-     * @type {boolean}
-     * @memberof InlineResponse2001Charges
-     */
-    isDiscount?: boolean;
-    /**
-     * Should this charge be included in the refund computation 
-     * @type {boolean}
-     * @memberof InlineResponse2001Charges
-     */
-    isBillable?: boolean;
-    /**
-     * Taxes for each charge
-     * @type {Array<InlineResponse2001Tax>}
-     * @memberof InlineResponse2001Charges
-     */
-    tax?: Array<InlineResponse2001Tax>;
-    /**
-     * 
-     * @type {InlineResponse2001TotalRefundAmount}
-     * @memberof InlineResponse2001Charges
-     */
-    excessCharge?: InlineResponse2001TotalRefundAmount;
-    /**
-     * Used only for OG
-     * @type {Array<InlineResponse2001References>}
-     * @memberof InlineResponse2001Charges
-     */
-    references?: Array<InlineResponse2001References>;
-}
-/**
- * Customer information
- * @export
- * @interface InlineResponse2001CustomerName
- */
-export interface InlineResponse2001CustomerName {
-    /**
-     * Customer first name
-     * @type {string}
-     * @memberof InlineResponse2001CustomerName
-     */
-    firstName?: string;
-    /**
-     * Customer last name
-     * @type {string}
-     * @memberof InlineResponse2001CustomerName
-     */
-    lastName?: string;
-}
-/**
- * Details of the item to be returned
- * @export
- * @interface InlineResponse2001Item
- */
-export interface InlineResponse2001Item {
-    /**
-     * An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item.
-     * @type {string}
-     * @memberof InlineResponse2001Item
-     */
-    sku?: string;
-    /**
-     * The name of the product associated with the line item. Example: \'Kenmore CF1\' or \'2086883 Canister Secondary Filter Generic 2 Pack\'
-     * @type {string}
-     * @memberof InlineResponse2001Item
-     */
-    productName?: string;
-    /**
-     * 
-     * @type {InlineResponse2001ItemItemWeight}
-     * @memberof InlineResponse2001Item
-     */
-    itemWeight?: InlineResponse2001ItemItemWeight;
-}
-/**
- * Total quantity returned in this return line
- * @export
- * @interface InlineResponse2001ItemItemWeight
- */
-export interface InlineResponse2001ItemItemWeight {
-    /**
-     * The unit of measure in the item\'s weight (e.g., \'POUND\' or \'OUNCE\')
-     * @type {string}
-     * @memberof InlineResponse2001ItemItemWeight
-     */
-    unitOfMeasure: string;
-    /**
-     * The quantity of the unit of measure for the item
-     * @type {number}
-     * @memberof InlineResponse2001ItemItemWeight
-     */
-    measurementValue: number;
-}
-/**
- * Array of labels
- * @export
- * @interface InlineResponse2001Labels
- */
-export interface InlineResponse2001Labels {
-    /**
-     * Url to get the return label
-     * @type {string}
-     * @memberof InlineResponse2001Labels
-     */
-    labelImageURL?: string;
-    /**
-     * Carrier information for the return
-     * @type {Array<InlineResponse2001CarrierInfoList>}
-     * @memberof InlineResponse2001Labels
-     */
-    carrierInfoList?: Array<InlineResponse2001CarrierInfoList>;
-}
-/**
- * 
- * @export
- * @interface InlineResponse2001Meta
- */
-export interface InlineResponse2001Meta {
-    /**
-     * 
-     * @type {number}
-     * @memberof InlineResponse2001Meta
-     */
-    totalCount: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof InlineResponse2001Meta
-     */
-    limit: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2001Meta
-     */
-    nextCursor: string;
-}
-/**
- * Used only for 1P
- * @export
- * @interface InlineResponse2001References
- */
-export interface InlineResponse2001References {
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2001References
-     */
-    name: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2001References
-     */
-    value: string;
-}
-/**
- * The channel via order return got initiated
- * @export
- * @interface InlineResponse2001ReturnChannel
- */
-export interface InlineResponse2001ReturnChannel {
-    /**
-     * Valid values are: ONLINE, IN_STORE, and CUSTOMER_CARE
-     * @type {string}
-     * @memberof InlineResponse2001ReturnChannel
-     */
-    channelName?: string;
-}
-/**
- * These groups are created per label or type of carrier service required. (e.g., If order has some lines that can be clubbed and mailed together as a smart post then they belong to one return group. If a line is bulky and needs a different type of carrier service, then that line will be part of different group. Customer gets multiple labels depending on how many groups are created for the entire order.)
- * @export
- * @interface InlineResponse2001ReturnLineGroups
- */
-export interface InlineResponse2001ReturnLineGroups {
-    /**
-     * Sequence of group numbers where each returnLineGroups will represent one or more return lines
-     * @type {number}
-     * @memberof InlineResponse2001ReturnLineGroups
-     */
-    groupNo?: number;
-    /**
-     * Array of return lines
-     * @type {Array<InlineResponse2001ReturnLines>}
-     * @memberof InlineResponse2001ReturnLineGroups
-     */
-    returnLines?: Array<InlineResponse2001ReturnLines>;
-    /**
-     * Array of labels
-     * @type {Array<InlineResponse2001Labels>}
-     * @memberof InlineResponse2001ReturnLineGroups
-     */
-    labels?: Array<InlineResponse2001Labels>;
-    /**
-     * Is customer required to send this item back to return center
-     * @type {boolean}
-     * @memberof InlineResponse2001ReturnLineGroups
-     */
-    returnExpectedFlag?: boolean;
-}
-/**
- * Array of return lines
- * @export
- * @interface InlineResponse2001ReturnLines
- */
-export interface InlineResponse2001ReturnLines {
-    /**
-     * Identifier of the return label
-     * @type {number}
-     * @memberof InlineResponse2001ReturnLines
-     */
-    returnOrderLineNumber?: number;
-}
-/**
- * A list of order lines in the return order
- * @export
- * @interface InlineResponse2001ReturnOrderLines
- */
-export interface InlineResponse2001ReturnOrderLines {
-    /**
-     * The returns order line number for that return
-     * @type {number}
-     * @memberof InlineResponse2001ReturnOrderLines
-     */
-    returnOrderLineNumber?: number;
-    /**
-     * The sales order line number for the return created
-     * @type {number}
-     * @memberof InlineResponse2001ReturnOrderLines
-     */
-    salesOrderLineNumber?: number;
-    /**
-     * A unique ID associated with the sales order for specified Seller; gives Sellers the ability to print their own custom order ID on the return label; limit of 30 characters
-     * @type {string}
-     * @memberof InlineResponse2001ReturnOrderLines
-     */
-    sellerOrderId?: string;
-    /**
-     * Gives the reason that was selected during the return creation. Reason codes are: ARRIVED_LATE, AUTO_RETURN, BOUGHT_ANOTHER_SIZE_OR_COLOR, BOUGHT_SOMEWHERE_ELSE, DAMAGED, DEFECTIVE, DUPLICATE_ITEM, INADEQUATE_QUALITY, INCORRECT_ITEM, LOST_AFTER_DELIVERY, LOST_IN_TRANSIT, LOWER_PRICE, MISSING_PARTS, NOT_AS_DESCRIBED, NO_LONGER_WANTED, RETURN_TO_SENDER, SHIPPING_BOX_DAMAGED, TRIED_TO_CANCEL and WRONG_SIZE/POOR_FIT
-     * @type {string}
-     * @memberof InlineResponse2001ReturnOrderLines
-     */
-    returnReason?: string;
-    /**
-     * The purchase order ID for the return created
-     * @type {string}
-     * @memberof InlineResponse2001ReturnOrderLines
-     */
-    purchaseOrderId?: string;
-    /**
-     * The purchase order line number for the return created
-     * @type {number}
-     * @memberof InlineResponse2001ReturnOrderLines
-     */
-    purchaseOrderLineNumber?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2001ReturnOrderLines
-     */
-    exceptionItemType?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof InlineResponse2001ReturnOrderLines
-     */
-    isReturnForException?: boolean;
-    /**
-     * reason for recharging the customer for replacement
-     * @type {string}
-     * @memberof InlineResponse2001ReturnOrderLines
-     */
-    rechargeReason?: string;
-    /**
-     * reason for cancelling the return
-     * @type {string}
-     * @memberof InlineResponse2001ReturnOrderLines
-     */
-    returnCancellationReason?: string;
-    /**
-     * 
-     * @type {InlineResponse2001Item}
-     * @memberof InlineResponse2001ReturnOrderLines
-     */
-    item?: InlineResponse2001Item;
-    /**
-     * Information relating to the charge for the orderLine
-     * @type {Array<InlineResponse2001Charges>}
-     * @memberof InlineResponse2001ReturnOrderLines
-     */
-    charges?: Array<InlineResponse2001Charges>;
-    /**
-     * 
-     * @type {InlineResponse2001TotalRefundAmount}
-     * @memberof InlineResponse2001ReturnOrderLines
-     */
-    unitPrice?: InlineResponse2001TotalRefundAmount;
-    /**
-     * Contains name value pairs of calculated charges for the line. Eg: if order line has 3 Qty, this will have a shipping charge = 3 * shipping charge per unit (This is present in the line level charges).
-     * @type {Array<InlineResponse2001References>}
-     * @memberof InlineResponse2001ReturnOrderLines
-     */
-    itemReturnSettings?: Array<InlineResponse2001References>;
-    /**
-     * Contains name value pairs of calculated charges for the line. Eg: if order line has 3 Qty, this will have a shipping charge = 3 * shipping charge per unit (This is present in the line level charges).
-     * @type {Array<InlineResponse2001ChargeTotals>}
-     * @memberof InlineResponse2001ReturnOrderLines
-     */
-    chargeTotals?: Array<InlineResponse2001ChargeTotals>;
-    /**
-     * How much quantity of this order line can be cancelled
-     * @type {number}
-     * @memberof InlineResponse2001ReturnOrderLines
-     */
-    cancellableQty?: number;
-    /**
-     * 
-     * @type {InlineResponse2001ItemItemWeight}
-     * @memberof InlineResponse2001ReturnOrderLines
-     */
-    quantity?: InlineResponse2001ItemItemWeight;
-    /**
-     * Is customer required to send this item back to return center.
-     * @type {boolean}
-     * @memberof InlineResponse2001ReturnOrderLines
-     */
-    returnExpectedFlag?: boolean;
-    /**
-     * Applicable only for 1P.
-     * @type {boolean}
-     * @memberof InlineResponse2001ReturnOrderLines
-     */
-    isFastReplacement?: boolean;
-    /**
-     * Is customer allowed to keep the product and not required to send it back to return center. This flag is determined by making a call to fraud system.
-     * @type {boolean}
-     * @memberof InlineResponse2001ReturnOrderLines
-     */
-    isKeepIt?: boolean;
-    /**
-     * This return is the last item on the sales order line and all other sales order line items are already returned. Helps in last penny calculations.
-     * @type {boolean}
-     * @memberof InlineResponse2001ReturnOrderLines
-     */
-    lastItem?: boolean;
-    /**
-     * The quantity for which customer was refunded
-     * @type {number}
-     * @memberof InlineResponse2001ReturnOrderLines
-     */
-    refundedQty?: number;
-    /**
-     * The quantity for which customer can be charged again for
-     * @type {number}
-     * @memberof InlineResponse2001ReturnOrderLines
-     */
-    rechargeableQty?: number;
-    /**
-     * Determines the mode of refund initiation. Valid values are: WALMART_SETTLED_REFUND, SELLER_AUTO_REFUND, SELLER_MANUAL_REFUND, SELLER_SYSTEM_REFUND, and WALMART_TRIGGERED_REFUND.
-     * @type {string}
-     * @memberof InlineResponse2001ReturnOrderLines
-     */
-    refundChannel?: string;
-    /**
-     * Informational blocks added as the return order completes its journey from return creation to received and refunded.
-     * @type {Array<InlineResponse2001ReturnTrackingDetail>}
-     * @memberof InlineResponse2001ReturnOrderLines
-     */
-    returnTrackingDetail?: Array<InlineResponse2001ReturnTrackingDetail>;
-    /**
-     * Current status of return. (e.g., \'INITIATED\')
-     * @type {string}
-     * @memberof InlineResponse2001ReturnOrderLines
-     */
-    status?: string;
-    /**
-     * Timestamp of listed status change
-     * @type {string}
-     * @memberof InlineResponse2001ReturnOrderLines
-     */
-    statusTime?: string;
-    /**
-     * Determines the current carrier tracking status of the return.
-     * @type {string}
-     * @memberof InlineResponse2001ReturnOrderLines
-     */
-    currentDeliveryStatus?: string;
-    /**
-     * Determines the current refund status of the return.
-     * @type {string}
-     * @memberof InlineResponse2001ReturnOrderLines
-     */
-    currentRefundStatus?: string;
-}
-/**
- * List of returns for the seller.
- * @export
- * @interface InlineResponse2001ReturnOrders
- */
-export interface InlineResponse2001ReturnOrders {
-    /**
-     * Return order identifier of the return order. This is the same as RMA number.
-     * @type {string}
-     * @memberof InlineResponse2001ReturnOrders
      */
     returnOrderId?: string;
     /**
-     * Customer email address
-     * @type {string}
-     * @memberof InlineResponse2001ReturnOrders
-     */
-    customerEmailId?: string;
-    /**
-     * Specifies if the return order is a replacement return or a regular (refund) return. Possible values are REPLACEMENT or REFUND.
-     * @type {string}
-     * @memberof InlineResponse2001ReturnOrders
-     */
-    returnType?: string;
-    /**
-     * customer order ID of the original return order on which the replacement is created.
-     * @type {string}
-     * @memberof InlineResponse2001ReturnOrders
-     */
-    replacementCustomerOrderId?: string;
-    /**
-     * 
-     * @type {InlineResponse2001CustomerName}
-     * @memberof InlineResponse2001ReturnOrders
-     */
-    customerName?: InlineResponse2001CustomerName;
-    /**
      * A unique ID associated with the sales order for specified customer
      * @type {string}
-     * @memberof InlineResponse2001ReturnOrders
+     * @memberof InlineResponse2001
      */
     customerOrderId?: string;
     /**
-     * Date format for return order date
-     * @type {string}
-     * @memberof InlineResponse2001ReturnOrders
+     * Array of refund lines
+     * @type {Array<V3ReturnsReturnOrderIdRefundRefundLines>}
+     * @memberof InlineResponse2001
      */
-    returnOrderDate?: string;
-    /**
-     * Date format for return by order date
-     * @type {string}
-     * @memberof InlineResponse2001ReturnOrders
-     */
-    returnByDate?: string;
-    /**
-     * Determines when the refund was/will be issued to the customer
-     * @type {string}
-     * @memberof InlineResponse2001ReturnOrders
-     */
-    refundMode?: string;
-    /**
-     * 
-     * @type {InlineResponse2001TotalRefundAmount}
-     * @memberof InlineResponse2001ReturnOrders
-     */
-    totalRefundAmount?: InlineResponse2001TotalRefundAmount;
-    /**
-     * These groups are created per label or type of carrier service required. (e.g., If order has some lines that can be clubbed and mailed together as a smart post then they belong to one return group. If a line is bulky and needs a different type of carrier service, then that line will be part of different group. Customer gets multiple labels depending on how many groups are created for the entire order.)
-     * @type {Array<InlineResponse2001ReturnLineGroups>}
-     * @memberof InlineResponse2001ReturnOrders
-     */
-    returnLineGroups?: Array<InlineResponse2001ReturnLineGroups>;
-    /**
-     * A list of order lines in the return order
-     * @type {Array<InlineResponse2001ReturnOrderLines>}
-     * @memberof InlineResponse2001ReturnOrders
-     */
-    returnOrderLines?: Array<InlineResponse2001ReturnOrderLines>;
-    /**
-     * 
-     * @type {InlineResponse2001ReturnChannel}
-     * @memberof InlineResponse2001ReturnOrders
-     */
-    returnChannel?: InlineResponse2001ReturnChannel;
-}
-/**
- * Informational blocks added as the return order completes its journey from return creation to received and refunded.
- * @export
- * @interface InlineResponse2001ReturnTrackingDetail
- */
-export interface InlineResponse2001ReturnTrackingDetail {
-    /**
-     * The stage the return is in. (e.g., \'1\' is an initiated return)
-     * @type {number}
-     * @memberof InlineResponse2001ReturnTrackingDetail
-     */
-    sequenceNo?: number;
-    /**
-     * The last completed return event. (e.g., \'RETURN_IN_TRANSIT\')
-     * @type {string}
-     * @memberof InlineResponse2001ReturnTrackingDetail
-     */
-    eventTag?: string;
-    /**
-     * Description of current return status event. (e.g., \'A MARKET_PLACE Return in Transit\')
-     * @type {string}
-     * @memberof InlineResponse2001ReturnTrackingDetail
-     */
-    eventDescription?: string;
-    /**
-     * Timestamp of listed event
-     * @type {string}
-     * @memberof InlineResponse2001ReturnTrackingDetail
-     */
-    eventTime?: string;
-    /**
-     * Used only for 1P
-     * @type {Array<InlineResponse2001References>}
-     * @memberof InlineResponse2001ReturnTrackingDetail
-     */
-    references?: Array<InlineResponse2001References>;
-}
-/**
- * Taxes for each charge
- * @export
- * @interface InlineResponse2001Tax
- */
-export interface InlineResponse2001Tax {
-    /**
-     * Name of the tax
-     * @type {string}
-     * @memberof InlineResponse2001Tax
-     */
-    taxName?: string;
-    /**
-     * 
-     * @type {InlineResponse2001TotalRefundAmount}
-     * @memberof InlineResponse2001Tax
-     */
-    excessTax?: InlineResponse2001TotalRefundAmount;
-    /**
-     * 
-     * @type {InlineResponse2001TotalRefundAmount}
-     * @memberof InlineResponse2001Tax
-     */
-    taxPerUnit?: InlineResponse2001TotalRefundAmount;
-}
-/**
- * Price of One unit of item, in this order line
- * @export
- * @interface InlineResponse2001TotalRefundAmount
- */
-export interface InlineResponse2001TotalRefundAmount {
-    /**
-     * Amount to be refunded. It can be upto two decimal points.
-     * @type {number}
-     * @memberof InlineResponse2001TotalRefundAmount
-     */
-    currencyAmount: number;
-    /**
-     * Currency information
-     * @type {string}
-     * @memberof InlineResponse2001TotalRefundAmount
-     */
-    currencyUnit: string;
+    refundLines?: Array<V3ReturnsReturnOrderIdRefundRefundLines>;
 }
 /**
  * 
@@ -887,6 +252,641 @@ export interface InlineResponse2002 {
      * @memberof InlineResponse2002
      */
     feedId?: string;
+}
+/**
+ * Carrier information for the return
+ * @export
+ * @interface InlineResponse200CarrierInfoList
+ */
+export interface InlineResponse200CarrierInfoList {
+    /**
+     * ID of the carrier used for the return
+     * @type {string}
+     * @memberof InlineResponse200CarrierInfoList
+     */
+    carrierId?: string;
+    /**
+     * Name of the carrier used
+     * @type {string}
+     * @memberof InlineResponse200CarrierInfoList
+     */
+    carrierName?: string;
+    /**
+     * the type of service used
+     * @type {string}
+     * @memberof InlineResponse200CarrierInfoList
+     */
+    serviceType?: string;
+    /**
+     * Tracking number of the order
+     * @type {string}
+     * @memberof InlineResponse200CarrierInfoList
+     */
+    trackingNo?: string;
+}
+/**
+ * Contains name value pairs of calculated charges for the line. Eg: if order line has 3 Qty, this will have a shipping charge = 3 * shipping charge per unit (This is present in the line level charges).
+ * @export
+ * @interface InlineResponse200ChargeTotals
+ */
+export interface InlineResponse200ChargeTotals {
+    /**
+     * Charge Names: lineUnitPrice, lineProductTaxes, lineTotalTaxes, lineRestockingFee, lineShippingFee, lineSubTotal, lineTotal.
+     * @type {string}
+     * @memberof InlineResponse200ChargeTotals
+     */
+    name: string;
+    /**
+     * 
+     * @type {InlineResponse200TotalRefundAmount}
+     * @memberof InlineResponse200ChargeTotals
+     */
+    value: InlineResponse200TotalRefundAmount;
+}
+/**
+ * Information relating to the charge for the orderLine
+ * @export
+ * @interface InlineResponse200Charges
+ */
+export interface InlineResponse200Charges {
+    /**
+     * The category type. (e.g., \'PRODUCT\' or \'FEE\')
+     * @type {string}
+     * @memberof InlineResponse200Charges
+     */
+    chargeCategory?: string;
+    /**
+     * If chargeType is PRODUCT, chargeName is Item Price. If chargeType is SHIPPING, chargeName is Shipping
+     * @type {string}
+     * @memberof InlineResponse200Charges
+     */
+    chargeName?: string;
+    /**
+     * 
+     * @type {InlineResponse200TotalRefundAmount}
+     * @memberof InlineResponse200Charges
+     */
+    chargePerUnit?: InlineResponse200TotalRefundAmount;
+    /**
+     * Is this charge a discount, which then needs to be subtracted from the refund
+     * @type {boolean}
+     * @memberof InlineResponse200Charges
+     */
+    isDiscount?: boolean;
+    /**
+     * Should this charge be included in the refund computation 
+     * @type {boolean}
+     * @memberof InlineResponse200Charges
+     */
+    isBillable?: boolean;
+    /**
+     * Taxes for each charge
+     * @type {Array<InlineResponse200Tax>}
+     * @memberof InlineResponse200Charges
+     */
+    tax?: Array<InlineResponse200Tax>;
+    /**
+     * 
+     * @type {InlineResponse200TotalRefundAmount}
+     * @memberof InlineResponse200Charges
+     */
+    excessCharge?: InlineResponse200TotalRefundAmount;
+    /**
+     * Used only for OG
+     * @type {Array<InlineResponse200References>}
+     * @memberof InlineResponse200Charges
+     */
+    references?: Array<InlineResponse200References>;
+}
+/**
+ * Customer information
+ * @export
+ * @interface InlineResponse200CustomerName
+ */
+export interface InlineResponse200CustomerName {
+    /**
+     * Customer first name
+     * @type {string}
+     * @memberof InlineResponse200CustomerName
+     */
+    firstName?: string;
+    /**
+     * Customer last name
+     * @type {string}
+     * @memberof InlineResponse200CustomerName
+     */
+    lastName?: string;
+}
+/**
+ * Details of the item to be returned
+ * @export
+ * @interface InlineResponse200Item
+ */
+export interface InlineResponse200Item {
+    /**
+     * An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item.
+     * @type {string}
+     * @memberof InlineResponse200Item
+     */
+    sku?: string;
+    /**
+     * The name of the product associated with the line item. Example: \'Kenmore CF1\' or \'2086883 Canister Secondary Filter Generic 2 Pack\'
+     * @type {string}
+     * @memberof InlineResponse200Item
+     */
+    productName?: string;
+    /**
+     * 
+     * @type {InlineResponse200ItemItemWeight}
+     * @memberof InlineResponse200Item
+     */
+    itemWeight?: InlineResponse200ItemItemWeight;
+}
+/**
+ * Total quantity returned in this return line
+ * @export
+ * @interface InlineResponse200ItemItemWeight
+ */
+export interface InlineResponse200ItemItemWeight {
+    /**
+     * The unit of measure in the item\'s weight (e.g., \'POUND\' or \'OUNCE\')
+     * @type {string}
+     * @memberof InlineResponse200ItemItemWeight
+     */
+    unitOfMeasure: string;
+    /**
+     * The quantity of the unit of measure for the item
+     * @type {number}
+     * @memberof InlineResponse200ItemItemWeight
+     */
+    measurementValue: number;
+}
+/**
+ * Array of labels
+ * @export
+ * @interface InlineResponse200Labels
+ */
+export interface InlineResponse200Labels {
+    /**
+     * Url to get the return label
+     * @type {string}
+     * @memberof InlineResponse200Labels
+     */
+    labelImageURL?: string;
+    /**
+     * Carrier information for the return
+     * @type {Array<InlineResponse200CarrierInfoList>}
+     * @memberof InlineResponse200Labels
+     */
+    carrierInfoList?: Array<InlineResponse200CarrierInfoList>;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse200Meta
+ */
+export interface InlineResponse200Meta {
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse200Meta
+     */
+    totalCount: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse200Meta
+     */
+    limit: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse200Meta
+     */
+    nextCursor: string;
+}
+/**
+ * Used only for 1P
+ * @export
+ * @interface InlineResponse200References
+ */
+export interface InlineResponse200References {
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse200References
+     */
+    name: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse200References
+     */
+    value: string;
+}
+/**
+ * The channel via order return got initiated
+ * @export
+ * @interface InlineResponse200ReturnChannel
+ */
+export interface InlineResponse200ReturnChannel {
+    /**
+     * Valid values are: ONLINE, IN_STORE, and CUSTOMER_CARE
+     * @type {string}
+     * @memberof InlineResponse200ReturnChannel
+     */
+    channelName?: string;
+}
+/**
+ * These groups are created per label or type of carrier service required. (e.g., If order has some lines that can be clubbed and mailed together as a smart post then they belong to one return group. If a line is bulky and needs a different type of carrier service, then that line will be part of different group. Customer gets multiple labels depending on how many groups are created for the entire order.)
+ * @export
+ * @interface InlineResponse200ReturnLineGroups
+ */
+export interface InlineResponse200ReturnLineGroups {
+    /**
+     * Sequence of group numbers where each returnLineGroups will represent one or more return lines
+     * @type {number}
+     * @memberof InlineResponse200ReturnLineGroups
+     */
+    groupNo?: number;
+    /**
+     * Array of return lines
+     * @type {Array<InlineResponse200ReturnLines>}
+     * @memberof InlineResponse200ReturnLineGroups
+     */
+    returnLines?: Array<InlineResponse200ReturnLines>;
+    /**
+     * Array of labels
+     * @type {Array<InlineResponse200Labels>}
+     * @memberof InlineResponse200ReturnLineGroups
+     */
+    labels?: Array<InlineResponse200Labels>;
+    /**
+     * Is customer required to send this item back to return center
+     * @type {boolean}
+     * @memberof InlineResponse200ReturnLineGroups
+     */
+    returnExpectedFlag?: boolean;
+}
+/**
+ * Array of return lines
+ * @export
+ * @interface InlineResponse200ReturnLines
+ */
+export interface InlineResponse200ReturnLines {
+    /**
+     * Identifier of the return label
+     * @type {number}
+     * @memberof InlineResponse200ReturnLines
+     */
+    returnOrderLineNumber?: number;
+}
+/**
+ * A list of order lines in the return order
+ * @export
+ * @interface InlineResponse200ReturnOrderLines
+ */
+export interface InlineResponse200ReturnOrderLines {
+    /**
+     * The returns order line number for that return
+     * @type {number}
+     * @memberof InlineResponse200ReturnOrderLines
+     */
+    returnOrderLineNumber?: number;
+    /**
+     * The sales order line number for the return created
+     * @type {number}
+     * @memberof InlineResponse200ReturnOrderLines
+     */
+    salesOrderLineNumber?: number;
+    /**
+     * A unique ID associated with the sales order for specified Seller; gives Sellers the ability to print their own custom order ID on the return label; limit of 30 characters
+     * @type {string}
+     * @memberof InlineResponse200ReturnOrderLines
+     */
+    sellerOrderId?: string;
+    /**
+     * Gives the reason that was selected during the return creation. Reason codes are: ARRIVED_LATE, AUTO_RETURN, BOUGHT_ANOTHER_SIZE_OR_COLOR, BOUGHT_SOMEWHERE_ELSE, DAMAGED, DEFECTIVE, DUPLICATE_ITEM, INADEQUATE_QUALITY, INCORRECT_ITEM, LOST_AFTER_DELIVERY, LOST_IN_TRANSIT, LOWER_PRICE, MISSING_PARTS, NOT_AS_DESCRIBED, NO_LONGER_WANTED, RETURN_TO_SENDER, SHIPPING_BOX_DAMAGED, TRIED_TO_CANCEL and WRONG_SIZE/POOR_FIT
+     * @type {string}
+     * @memberof InlineResponse200ReturnOrderLines
+     */
+    returnReason?: string;
+    /**
+     * The purchase order ID for the return created
+     * @type {string}
+     * @memberof InlineResponse200ReturnOrderLines
+     */
+    purchaseOrderId?: string;
+    /**
+     * The purchase order line number for the return created
+     * @type {number}
+     * @memberof InlineResponse200ReturnOrderLines
+     */
+    purchaseOrderLineNumber?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse200ReturnOrderLines
+     */
+    exceptionItemType?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof InlineResponse200ReturnOrderLines
+     */
+    isReturnForException?: boolean;
+    /**
+     * reason for recharging the customer for replacement
+     * @type {string}
+     * @memberof InlineResponse200ReturnOrderLines
+     */
+    rechargeReason?: string;
+    /**
+     * reason for cancelling the return
+     * @type {string}
+     * @memberof InlineResponse200ReturnOrderLines
+     */
+    returnCancellationReason?: string;
+    /**
+     * 
+     * @type {InlineResponse200Item}
+     * @memberof InlineResponse200ReturnOrderLines
+     */
+    item?: InlineResponse200Item;
+    /**
+     * Information relating to the charge for the orderLine
+     * @type {Array<InlineResponse200Charges>}
+     * @memberof InlineResponse200ReturnOrderLines
+     */
+    charges?: Array<InlineResponse200Charges>;
+    /**
+     * 
+     * @type {InlineResponse200TotalRefundAmount}
+     * @memberof InlineResponse200ReturnOrderLines
+     */
+    unitPrice?: InlineResponse200TotalRefundAmount;
+    /**
+     * Contains name value pairs of calculated charges for the line. Eg: if order line has 3 Qty, this will have a shipping charge = 3 * shipping charge per unit (This is present in the line level charges).
+     * @type {Array<InlineResponse200References>}
+     * @memberof InlineResponse200ReturnOrderLines
+     */
+    itemReturnSettings?: Array<InlineResponse200References>;
+    /**
+     * Contains name value pairs of calculated charges for the line. Eg: if order line has 3 Qty, this will have a shipping charge = 3 * shipping charge per unit (This is present in the line level charges).
+     * @type {Array<InlineResponse200ChargeTotals>}
+     * @memberof InlineResponse200ReturnOrderLines
+     */
+    chargeTotals?: Array<InlineResponse200ChargeTotals>;
+    /**
+     * How much quantity of this order line can be cancelled
+     * @type {number}
+     * @memberof InlineResponse200ReturnOrderLines
+     */
+    cancellableQty?: number;
+    /**
+     * 
+     * @type {InlineResponse200ItemItemWeight}
+     * @memberof InlineResponse200ReturnOrderLines
+     */
+    quantity?: InlineResponse200ItemItemWeight;
+    /**
+     * Is customer required to send this item back to return center.
+     * @type {boolean}
+     * @memberof InlineResponse200ReturnOrderLines
+     */
+    returnExpectedFlag?: boolean;
+    /**
+     * Applicable only for 1P.
+     * @type {boolean}
+     * @memberof InlineResponse200ReturnOrderLines
+     */
+    isFastReplacement?: boolean;
+    /**
+     * Is customer allowed to keep the product and not required to send it back to return center. This flag is determined by making a call to fraud system.
+     * @type {boolean}
+     * @memberof InlineResponse200ReturnOrderLines
+     */
+    isKeepIt?: boolean;
+    /**
+     * This return is the last item on the sales order line and all other sales order line items are already returned. Helps in last penny calculations.
+     * @type {boolean}
+     * @memberof InlineResponse200ReturnOrderLines
+     */
+    lastItem?: boolean;
+    /**
+     * The quantity for which customer was refunded
+     * @type {number}
+     * @memberof InlineResponse200ReturnOrderLines
+     */
+    refundedQty?: number;
+    /**
+     * The quantity for which customer can be charged again for
+     * @type {number}
+     * @memberof InlineResponse200ReturnOrderLines
+     */
+    rechargeableQty?: number;
+    /**
+     * Determines the mode of refund initiation. Valid values are: WALMART_SETTLED_REFUND, SELLER_AUTO_REFUND, SELLER_MANUAL_REFUND, SELLER_SYSTEM_REFUND, and WALMART_TRIGGERED_REFUND.
+     * @type {string}
+     * @memberof InlineResponse200ReturnOrderLines
+     */
+    refundChannel?: string;
+    /**
+     * Informational blocks added as the return order completes its journey from return creation to received and refunded.
+     * @type {Array<InlineResponse200ReturnTrackingDetail>}
+     * @memberof InlineResponse200ReturnOrderLines
+     */
+    returnTrackingDetail?: Array<InlineResponse200ReturnTrackingDetail>;
+    /**
+     * Current status of return. (e.g., \'INITIATED\')
+     * @type {string}
+     * @memberof InlineResponse200ReturnOrderLines
+     */
+    status?: string;
+    /**
+     * Timestamp of listed status change
+     * @type {string}
+     * @memberof InlineResponse200ReturnOrderLines
+     */
+    statusTime?: string;
+    /**
+     * Determines the current carrier tracking status of the return.
+     * @type {string}
+     * @memberof InlineResponse200ReturnOrderLines
+     */
+    currentDeliveryStatus?: string;
+    /**
+     * Determines the current refund status of the return.
+     * @type {string}
+     * @memberof InlineResponse200ReturnOrderLines
+     */
+    currentRefundStatus?: string;
+}
+/**
+ * List of returns for the seller.
+ * @export
+ * @interface InlineResponse200ReturnOrders
+ */
+export interface InlineResponse200ReturnOrders {
+    /**
+     * Return order identifier of the return order. This is the same as RMA number.
+     * @type {string}
+     * @memberof InlineResponse200ReturnOrders
+     */
+    returnOrderId?: string;
+    /**
+     * Customer email address
+     * @type {string}
+     * @memberof InlineResponse200ReturnOrders
+     */
+    customerEmailId?: string;
+    /**
+     * Specifies if the return order is a replacement return or a regular (refund) return. Possible values are REPLACEMENT or REFUND.
+     * @type {string}
+     * @memberof InlineResponse200ReturnOrders
+     */
+    returnType?: string;
+    /**
+     * customer order ID of the original return order on which the replacement is created.
+     * @type {string}
+     * @memberof InlineResponse200ReturnOrders
+     */
+    replacementCustomerOrderId?: string;
+    /**
+     * 
+     * @type {InlineResponse200CustomerName}
+     * @memberof InlineResponse200ReturnOrders
+     */
+    customerName?: InlineResponse200CustomerName;
+    /**
+     * A unique ID associated with the sales order for specified customer
+     * @type {string}
+     * @memberof InlineResponse200ReturnOrders
+     */
+    customerOrderId?: string;
+    /**
+     * Date format for return order date
+     * @type {string}
+     * @memberof InlineResponse200ReturnOrders
+     */
+    returnOrderDate?: string;
+    /**
+     * Date format for return by order date
+     * @type {string}
+     * @memberof InlineResponse200ReturnOrders
+     */
+    returnByDate?: string;
+    /**
+     * Determines when the refund was/will be issued to the customer
+     * @type {string}
+     * @memberof InlineResponse200ReturnOrders
+     */
+    refundMode?: string;
+    /**
+     * 
+     * @type {InlineResponse200TotalRefundAmount}
+     * @memberof InlineResponse200ReturnOrders
+     */
+    totalRefundAmount?: InlineResponse200TotalRefundAmount;
+    /**
+     * These groups are created per label or type of carrier service required. (e.g., If order has some lines that can be clubbed and mailed together as a smart post then they belong to one return group. If a line is bulky and needs a different type of carrier service, then that line will be part of different group. Customer gets multiple labels depending on how many groups are created for the entire order.)
+     * @type {Array<InlineResponse200ReturnLineGroups>}
+     * @memberof InlineResponse200ReturnOrders
+     */
+    returnLineGroups?: Array<InlineResponse200ReturnLineGroups>;
+    /**
+     * A list of order lines in the return order
+     * @type {Array<InlineResponse200ReturnOrderLines>}
+     * @memberof InlineResponse200ReturnOrders
+     */
+    returnOrderLines?: Array<InlineResponse200ReturnOrderLines>;
+    /**
+     * 
+     * @type {InlineResponse200ReturnChannel}
+     * @memberof InlineResponse200ReturnOrders
+     */
+    returnChannel?: InlineResponse200ReturnChannel;
+}
+/**
+ * Informational blocks added as the return order completes its journey from return creation to received and refunded.
+ * @export
+ * @interface InlineResponse200ReturnTrackingDetail
+ */
+export interface InlineResponse200ReturnTrackingDetail {
+    /**
+     * The stage the return is in. (e.g., \'1\' is an initiated return)
+     * @type {number}
+     * @memberof InlineResponse200ReturnTrackingDetail
+     */
+    sequenceNo?: number;
+    /**
+     * The last completed return event. (e.g., \'RETURN_IN_TRANSIT\')
+     * @type {string}
+     * @memberof InlineResponse200ReturnTrackingDetail
+     */
+    eventTag?: string;
+    /**
+     * Description of current return status event. (e.g., \'A MARKET_PLACE Return in Transit\')
+     * @type {string}
+     * @memberof InlineResponse200ReturnTrackingDetail
+     */
+    eventDescription?: string;
+    /**
+     * Timestamp of listed event
+     * @type {string}
+     * @memberof InlineResponse200ReturnTrackingDetail
+     */
+    eventTime?: string;
+    /**
+     * Used only for 1P
+     * @type {Array<InlineResponse200References>}
+     * @memberof InlineResponse200ReturnTrackingDetail
+     */
+    references?: Array<InlineResponse200References>;
+}
+/**
+ * Taxes for each charge
+ * @export
+ * @interface InlineResponse200Tax
+ */
+export interface InlineResponse200Tax {
+    /**
+     * Name of the tax
+     * @type {string}
+     * @memberof InlineResponse200Tax
+     */
+    taxName?: string;
+    /**
+     * 
+     * @type {InlineResponse200TotalRefundAmount}
+     * @memberof InlineResponse200Tax
+     */
+    excessTax?: InlineResponse200TotalRefundAmount;
+    /**
+     * 
+     * @type {InlineResponse200TotalRefundAmount}
+     * @memberof InlineResponse200Tax
+     */
+    taxPerUnit?: InlineResponse200TotalRefundAmount;
+}
+/**
+ * Price of One unit of item, in this order line
+ * @export
+ * @interface InlineResponse200TotalRefundAmount
+ */
+export interface InlineResponse200TotalRefundAmount {
+    /**
+     * Amount to be refunded. It can be upto two decimal points.
+     * @type {number}
+     * @memberof InlineResponse200TotalRefundAmount
+     */
+    currencyAmount: number;
+    /**
+     * Currency information
+     * @type {string}
+     * @memberof InlineResponse200TotalRefundAmount
+     */
+    currencyUnit: string;
 }
 /**
  * Details of the item to be returned
@@ -908,10 +908,10 @@ export interface Item {
     productName?: string;
     /**
      * 
-     * @type {InlineResponse2001ItemItemWeight}
+     * @type {InlineResponse200ItemItemWeight}
      * @memberof Item
      */
-    itemWeight?: InlineResponse2001ItemItemWeight;
+    itemWeight?: InlineResponse200ItemItemWeight;
 }
 /**
  * Array of labels
@@ -927,10 +927,10 @@ export interface Label {
     labelImageURL?: string;
     /**
      * Carrier information for the return
-     * @type {Array<InlineResponse2001CarrierInfoList>}
+     * @type {Array<InlineResponse200CarrierInfoList>}
      * @memberof Label
      */
-    carrierInfoList?: Array<InlineResponse2001CarrierInfoList>;
+    carrierInfoList?: Array<InlineResponse200CarrierInfoList>;
 }
 /**
  * 
@@ -1111,16 +1111,16 @@ export interface ReturnLineGroup {
     groupNo?: number;
     /**
      * Array of return lines
-     * @type {Array<InlineResponse2001ReturnLines>}
+     * @type {Array<InlineResponse200ReturnLines>}
      * @memberof ReturnLineGroup
      */
-    returnLines?: Array<InlineResponse2001ReturnLines>;
+    returnLines?: Array<InlineResponse200ReturnLines>;
     /**
      * Array of labels
-     * @type {Array<InlineResponse2001Labels>}
+     * @type {Array<InlineResponse200Labels>}
      * @memberof ReturnLineGroup
      */
-    labels?: Array<InlineResponse2001Labels>;
+    labels?: Array<InlineResponse200Labels>;
     /**
      * Is customer required to send this item back to return center
      * @type {boolean}
@@ -1160,10 +1160,10 @@ export interface ReturnOrder {
     replacementCustomerOrderId?: string;
     /**
      * 
-     * @type {InlineResponse2001CustomerName}
+     * @type {InlineResponse200CustomerName}
      * @memberof ReturnOrder
      */
-    customerName?: InlineResponse2001CustomerName;
+    customerName?: InlineResponse200CustomerName;
     /**
      * A unique ID associated with the sales order for specified customer
      * @type {string}
@@ -1190,28 +1190,28 @@ export interface ReturnOrder {
     refundMode?: string;
     /**
      * 
-     * @type {InlineResponse2001TotalRefundAmount}
+     * @type {InlineResponse200TotalRefundAmount}
      * @memberof ReturnOrder
      */
-    totalRefundAmount?: InlineResponse2001TotalRefundAmount;
+    totalRefundAmount?: InlineResponse200TotalRefundAmount;
     /**
      * These groups are created per label or type of carrier service required. (e.g., If order has some lines that can be clubbed and mailed together as a smart post then they belong to one return group. If a line is bulky and needs a different type of carrier service, then that line will be part of different group. Customer gets multiple labels depending on how many groups are created for the entire order.)
-     * @type {Array<InlineResponse2001ReturnLineGroups>}
+     * @type {Array<InlineResponse200ReturnLineGroups>}
      * @memberof ReturnOrder
      */
-    returnLineGroups?: Array<InlineResponse2001ReturnLineGroups>;
+    returnLineGroups?: Array<InlineResponse200ReturnLineGroups>;
     /**
      * A list of order lines in the return order
-     * @type {Array<InlineResponse2001ReturnOrderLines>}
+     * @type {Array<InlineResponse200ReturnOrderLines>}
      * @memberof ReturnOrder
      */
-    returnOrderLines?: Array<InlineResponse2001ReturnOrderLines>;
+    returnOrderLines?: Array<InlineResponse200ReturnOrderLines>;
     /**
      * 
-     * @type {InlineResponse2001ReturnChannel}
+     * @type {InlineResponse200ReturnChannel}
      * @memberof ReturnOrder
      */
-    returnChannel?: InlineResponse2001ReturnChannel;
+    returnChannel?: InlineResponse200ReturnChannel;
 }
 /**
  * A list of order lines in the return order
@@ -1281,34 +1281,34 @@ export interface ReturnOrderLine {
     returnCancellationReason?: string;
     /**
      * 
-     * @type {InlineResponse2001Item}
+     * @type {InlineResponse200Item}
      * @memberof ReturnOrderLine
      */
-    item?: InlineResponse2001Item;
+    item?: InlineResponse200Item;
     /**
      * Information relating to the charge for the orderLine
-     * @type {Array<InlineResponse2001Charges>}
+     * @type {Array<InlineResponse200Charges>}
      * @memberof ReturnOrderLine
      */
-    charges?: Array<InlineResponse2001Charges>;
+    charges?: Array<InlineResponse200Charges>;
     /**
      * 
-     * @type {InlineResponse2001TotalRefundAmount}
+     * @type {InlineResponse200TotalRefundAmount}
      * @memberof ReturnOrderLine
      */
-    unitPrice?: InlineResponse2001TotalRefundAmount;
+    unitPrice?: InlineResponse200TotalRefundAmount;
     /**
      * Contains name value pairs of calculated charges for the line. Eg: if order line has 3 Qty, this will have a shipping charge = 3 * shipping charge per unit (This is present in the line level charges).
-     * @type {Array<InlineResponse2001References>}
+     * @type {Array<InlineResponse200References>}
      * @memberof ReturnOrderLine
      */
-    itemReturnSettings?: Array<InlineResponse2001References>;
+    itemReturnSettings?: Array<InlineResponse200References>;
     /**
      * Contains name value pairs of calculated charges for the line. Eg: if order line has 3 Qty, this will have a shipping charge = 3 * shipping charge per unit (This is present in the line level charges).
-     * @type {Array<InlineResponse2001ChargeTotals>}
+     * @type {Array<InlineResponse200ChargeTotals>}
      * @memberof ReturnOrderLine
      */
-    chargeTotals?: Array<InlineResponse2001ChargeTotals>;
+    chargeTotals?: Array<InlineResponse200ChargeTotals>;
     /**
      * How much quantity of this order line can be cancelled
      * @type {number}
@@ -1317,10 +1317,10 @@ export interface ReturnOrderLine {
     cancellableQty?: number;
     /**
      * 
-     * @type {InlineResponse2001ItemItemWeight}
+     * @type {InlineResponse200ItemItemWeight}
      * @memberof ReturnOrderLine
      */
-    quantity?: InlineResponse2001ItemItemWeight;
+    quantity?: InlineResponse200ItemItemWeight;
     /**
      * Is customer required to send this item back to return center.
      * @type {boolean}
@@ -1365,10 +1365,10 @@ export interface ReturnOrderLine {
     refundChannel?: string;
     /**
      * Informational blocks added as the return order completes its journey from return creation to received and refunded.
-     * @type {Array<InlineResponse2001ReturnTrackingDetail>}
+     * @type {Array<InlineResponse200ReturnTrackingDetail>}
      * @memberof ReturnOrderLine
      */
-    returnTrackingDetail?: Array<InlineResponse2001ReturnTrackingDetail>;
+    returnTrackingDetail?: Array<InlineResponse200ReturnTrackingDetail>;
     /**
      * Current status of return. (e.g., \'INITIATED\')
      * @type {string}
@@ -1426,10 +1426,10 @@ export interface ReturnTrackingDetail {
     eventTime?: string;
     /**
      * Used only for 1P
-     * @type {Array<InlineResponse2001References>}
+     * @type {Array<InlineResponse200References>}
      * @memberof ReturnTrackingDetail
      */
-    references?: Array<InlineResponse2001References>;
+    references?: Array<InlineResponse200References>;
 }
 /**
  * Taxes for each charge
@@ -1445,16 +1445,16 @@ export interface Tax {
     taxName?: string;
     /**
      * 
-     * @type {InlineResponse2001TotalRefundAmount}
+     * @type {InlineResponse200TotalRefundAmount}
      * @memberof Tax
      */
-    excessTax?: InlineResponse2001TotalRefundAmount;
+    excessTax?: InlineResponse200TotalRefundAmount;
     /**
      * 
-     * @type {InlineResponse2001TotalRefundAmount}
+     * @type {InlineResponse200TotalRefundAmount}
      * @memberof Tax
      */
-    taxPerUnit?: InlineResponse2001TotalRefundAmount;
+    taxPerUnit?: InlineResponse200TotalRefundAmount;
 }
 /**
  * Array of refund lines.
@@ -1809,7 +1809,7 @@ export const ReturnsRefundsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getReturns(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, returnOrderId?: string, customerOrderId?: string, status?: string, replacementInfo?: string, returnType?: string, returnCreationStartDate?: string, returnCreationEndDate?: string, returnLastModifiedStartDate?: string, returnLastModifiedEndDate?: string, limit?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
+        async getReturns(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, returnOrderId?: string, customerOrderId?: string, status?: string, replacementInfo?: string, returnType?: string, returnCreationStartDate?: string, returnCreationEndDate?: string, returnLastModifiedStartDate?: string, returnLastModifiedEndDate?: string, limit?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getReturns(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, returnOrderId, customerOrderId, status, replacementInfo, returnType, returnCreationStartDate, returnCreationEndDate, returnLastModifiedStartDate, returnLastModifiedEndDate, limit, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -1826,7 +1826,7 @@ export const ReturnsRefundsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async issueRefund(returnOrderId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
+        async issueRefund(returnOrderId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.issueRefund(returnOrderId, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -1877,7 +1877,7 @@ export const ReturnsRefundsApiFactory = function (configuration?: Configuration,
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getReturns(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, returnOrderId?: string, customerOrderId?: string, status?: string, replacementInfo?: string, returnType?: string, returnCreationStartDate?: string, returnCreationEndDate?: string, returnLastModifiedStartDate?: string, returnLastModifiedEndDate?: string, limit?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2001> {
+        getReturns(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, returnOrderId?: string, customerOrderId?: string, status?: string, replacementInfo?: string, returnType?: string, returnCreationStartDate?: string, returnCreationEndDate?: string, returnLastModifiedStartDate?: string, returnLastModifiedEndDate?: string, limit?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse200> {
             return localVarFp.getReturns(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, returnOrderId, customerOrderId, status, replacementInfo, returnType, returnCreationStartDate, returnCreationEndDate, returnLastModifiedStartDate, returnLastModifiedEndDate, limit, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1893,7 +1893,7 @@ export const ReturnsRefundsApiFactory = function (configuration?: Configuration,
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        issueRefund(returnOrderId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse200> {
+        issueRefund(returnOrderId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2001> {
             return localVarFp.issueRefund(returnOrderId, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
     };
