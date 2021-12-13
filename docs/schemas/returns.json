@@ -20,176 +20,6 @@
     }
   ],
   "paths": {
-    "/v3/returns/{returnOrderId}/refund": {
-      "post": {
-        "tags": [
-          "Returns/Refunds"
-        ],
-        "summary": "Issue refund",
-        "description": "This API allows sellers to issue refund against a return order. Multiple return order lines can be refunded in one request.\n\nNote: Sellers can use the Refund Order Lines API for all non-exception category items, including adjustments that seller needs to determine a partial refund amount. Especially for exception category items: HAZMAT, OTHER and FREIGHT that are not eligible for the Marketplace Returns Program. ",
-        "externalDocs": {
-          "description": "View Guide",
-          "url": "/doc/us/mp/us-mp-returns/#4438"
-        },
-        "operationId": "issueRefund",
-        "parameters": [
-          {
-            "name": "returnOrderId",
-            "in": "path",
-            "description": "The return order ID",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
-          },
-          {
-            "in": "header",
-            "name": "WM_SEC.ACCESS_TOKEN",
-            "description": "The access token retrieved in the Token API call",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
-          },
-          {
-            "in": "header",
-            "name": "WM_CONSUMER.CHANNEL.TYPE",
-            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "header",
-            "name": "WM_QOS.CORRELATION_ID",
-            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
-          },
-          {
-            "in": "header",
-            "name": "WM_SVC.NAME",
-            "description": "Walmart Service Name",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Walmart Service Name"
-          }
-        ],
-        "requestBody": {
-          "description": "File fields",
-          "content": {
-            "application/json": {
-              "schema": {
-                "required": [
-                  "customerOrderId",
-                  "refundLines"
-                ],
-                "type": "object",
-                "properties": {
-                  "customerOrderId": {
-                    "type": "string",
-                    "description": "A unique ID associated with the sales order for specified customer"
-                  },
-                  "refundLines": {
-                    "type": "array",
-                    "description": "Array of refund lines.",
-                    "items": {
-                      "required": [
-                        "returnOrderLineNumber"
-                      ],
-                      "type": "object",
-                      "properties": {
-                        "returnOrderLineNumber": {
-                          "type": "integer",
-                          "description": "A line number associated with each individual line in the return order. If return order has only one return order line and it is not provided in the request, the only available return order line is auto-selected. If return order has multiple return order lines, the required return order line must be provided in the request. If not provided in the request, it will result in data-error.",
-                          "format": "int64"
-                        }
-                      },
-                      "description": "Array of refund lines."
-                    }
-                  }
-                }
-              },
-              "example": {
-                "customerOrderId": "1535274411287",
-                "refundLines": [
-                  {
-                    "returnOrderLineNumber": 1
-                  }
-                ]
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "returnOrderId": {
-                      "type": "string",
-                      "description": "The return order id"
-                    },
-                    "customerOrderId": {
-                      "type": "string",
-                      "description": "A unique ID associated with the sales order for specified customer"
-                    },
-                    "refundLines": {
-                      "type": "array",
-                      "description": "Array of refund lines",
-                      "items": {
-                        "required": [
-                          "returnOrderLineNumber"
-                        ],
-                        "type": "object",
-                        "properties": {
-                          "returnOrderLineNumber": {
-                            "type": "integer",
-                            "description": "A line number associated with each individual line in the return order. If return order has only one return order line and it is not provided in the request, the only available return order line is auto-selected. If return order has multiple return order lines, the required return order line must be provided in the request. If not provided in the request, it will result in data-error.",
-                            "format": "int64"
-                          }
-                        },
-                        "description": "Array of refund lines."
-                      }
-                    }
-                  }
-                },
-                "example": {
-                  "returnOrderId": "106152711271982880",
-                  "customerOrderId": "1535274411287",
-                  "refundLines": [
-                    {
-                      "returnOrderLineNumber": 1
-                    }
-                  ]
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/v3/returns": {
       "get": {
         "tags": [
@@ -1167,6 +997,176 @@
         }
       }
     },
+    "/v3/returns/{returnOrderId}/refund": {
+      "post": {
+        "tags": [
+          "Returns/Refunds"
+        ],
+        "summary": "Issue refund",
+        "description": "This API allows sellers to issue refund against a return order. Multiple return order lines can be refunded in one request.\n\nNote: Sellers can use the Refund Order Lines API for all non-exception category items, including adjustments that seller needs to determine a partial refund amount. Especially for exception category items: HAZMAT, OTHER and FREIGHT that are not eligible for the Marketplace Returns Program. ",
+        "externalDocs": {
+          "description": "View Guide",
+          "url": "/doc/us/mp/us-mp-returns/#4438"
+        },
+        "operationId": "issueRefund",
+        "parameters": [
+          {
+            "name": "returnOrderId",
+            "in": "path",
+            "description": "The return order ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Basic YzcyOTFjNmItNzI5MC00...."
+          },
+          {
+            "in": "header",
+            "name": "WM_SEC.ACCESS_TOKEN",
+            "description": "The access token retrieved in the Token API call",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
+          },
+          {
+            "in": "header",
+            "name": "WM_CONSUMER.CHANNEL.TYPE",
+            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "WM_QOS.CORRELATION_ID",
+            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
+          },
+          {
+            "in": "header",
+            "name": "WM_SVC.NAME",
+            "description": "Walmart Service Name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Walmart Service Name"
+          }
+        ],
+        "requestBody": {
+          "description": "File fields",
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "customerOrderId",
+                  "refundLines"
+                ],
+                "type": "object",
+                "properties": {
+                  "customerOrderId": {
+                    "type": "string",
+                    "description": "A unique ID associated with the sales order for specified customer"
+                  },
+                  "refundLines": {
+                    "type": "array",
+                    "description": "Array of refund lines.",
+                    "items": {
+                      "required": [
+                        "returnOrderLineNumber"
+                      ],
+                      "type": "object",
+                      "properties": {
+                        "returnOrderLineNumber": {
+                          "type": "integer",
+                          "description": "A line number associated with each individual line in the return order. If return order has only one return order line and it is not provided in the request, the only available return order line is auto-selected. If return order has multiple return order lines, the required return order line must be provided in the request. If not provided in the request, it will result in data-error.",
+                          "format": "int64"
+                        }
+                      },
+                      "description": "Array of refund lines."
+                    }
+                  }
+                }
+              },
+              "example": {
+                "customerOrderId": "1535274411287",
+                "refundLines": [
+                  {
+                    "returnOrderLineNumber": 1
+                  }
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "returnOrderId": {
+                      "type": "string",
+                      "description": "The return order id"
+                    },
+                    "customerOrderId": {
+                      "type": "string",
+                      "description": "A unique ID associated with the sales order for specified customer"
+                    },
+                    "refundLines": {
+                      "type": "array",
+                      "description": "Array of refund lines",
+                      "items": {
+                        "required": [
+                          "returnOrderLineNumber"
+                        ],
+                        "type": "object",
+                        "properties": {
+                          "returnOrderLineNumber": {
+                            "type": "integer",
+                            "description": "A line number associated with each individual line in the return order. If return order has only one return order line and it is not provided in the request, the only available return order line is auto-selected. If return order has multiple return order lines, the required return order line must be provided in the request. If not provided in the request, it will result in data-error.",
+                            "format": "int64"
+                          }
+                        },
+                        "description": "Array of refund lines."
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "returnOrderId": "106152711271982880",
+                  "customerOrderId": "1535274411287",
+                  "refundLines": [
+                    {
+                      "returnOrderLineNumber": 1
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v3/feeds": {
       "post": {
         "tags": [
@@ -1341,82 +1341,6 @@
   },
   "components": {
     "schemas": {
-      "RefundLine": {
-        "required": [
-          "returnOrderLineNumber"
-        ],
-        "type": "object",
-        "properties": {
-          "returnOrderLineNumber": {
-            "type": "integer",
-            "description": "A line number associated with each individual line in the return order. If return order has only one return order line and it is not provided in the request, the only available return order line is auto-selected. If return order has multiple return order lines, the required return order line must be provided in the request. If not provided in the request, it will result in data-error.",
-            "format": "int64"
-          }
-        },
-        "description": "Array of refund lines."
-      },
-      "RefundResponse": {
-        "type": "object",
-        "properties": {
-          "returnOrderId": {
-            "type": "string",
-            "description": "The return order id"
-          },
-          "customerOrderId": {
-            "type": "string",
-            "description": "A unique ID associated with the sales order for specified customer"
-          },
-          "refundLines": {
-            "type": "array",
-            "description": "Array of refund lines",
-            "items": {
-              "required": [
-                "returnOrderLineNumber"
-              ],
-              "type": "object",
-              "properties": {
-                "returnOrderLineNumber": {
-                  "type": "integer",
-                  "description": "A line number associated with each individual line in the return order. If return order has only one return order line and it is not provided in the request, the only available return order line is auto-selected. If return order has multiple return order lines, the required return order line must be provided in the request. If not provided in the request, it will result in data-error.",
-                  "format": "int64"
-                }
-              },
-              "description": "Array of refund lines."
-            }
-          }
-        }
-      },
-      "RefundRequest": {
-        "required": [
-          "customerOrderId",
-          "refundLines"
-        ],
-        "type": "object",
-        "properties": {
-          "customerOrderId": {
-            "type": "string",
-            "description": "A unique ID associated with the sales order for specified customer"
-          },
-          "refundLines": {
-            "type": "array",
-            "description": "Array of refund lines.",
-            "items": {
-              "required": [
-                "returnOrderLineNumber"
-              ],
-              "type": "object",
-              "properties": {
-                "returnOrderLineNumber": {
-                  "type": "integer",
-                  "description": "A line number associated with each individual line in the return order. If return order has only one return order line and it is not provided in the request, the only available return order line is auto-selected. If return order has multiple return order lines, the required return order line must be provided in the request. If not provided in the request, it will result in data-error.",
-                  "format": "int64"
-                }
-              },
-              "description": "Array of refund lines."
-            }
-          }
-        }
-      },
       "CarrierInfoList": {
         "type": "object",
         "properties": {
@@ -3533,6 +3457,82 @@
           }
         },
         "description": "Taxes for each charge"
+      },
+      "RefundLine": {
+        "required": [
+          "returnOrderLineNumber"
+        ],
+        "type": "object",
+        "properties": {
+          "returnOrderLineNumber": {
+            "type": "integer",
+            "description": "A line number associated with each individual line in the return order. If return order has only one return order line and it is not provided in the request, the only available return order line is auto-selected. If return order has multiple return order lines, the required return order line must be provided in the request. If not provided in the request, it will result in data-error.",
+            "format": "int64"
+          }
+        },
+        "description": "Array of refund lines."
+      },
+      "RefundResponse": {
+        "type": "object",
+        "properties": {
+          "returnOrderId": {
+            "type": "string",
+            "description": "The return order id"
+          },
+          "customerOrderId": {
+            "type": "string",
+            "description": "A unique ID associated with the sales order for specified customer"
+          },
+          "refundLines": {
+            "type": "array",
+            "description": "Array of refund lines",
+            "items": {
+              "required": [
+                "returnOrderLineNumber"
+              ],
+              "type": "object",
+              "properties": {
+                "returnOrderLineNumber": {
+                  "type": "integer",
+                  "description": "A line number associated with each individual line in the return order. If return order has only one return order line and it is not provided in the request, the only available return order line is auto-selected. If return order has multiple return order lines, the required return order line must be provided in the request. If not provided in the request, it will result in data-error.",
+                  "format": "int64"
+                }
+              },
+              "description": "Array of refund lines."
+            }
+          }
+        }
+      },
+      "RefundRequest": {
+        "required": [
+          "customerOrderId",
+          "refundLines"
+        ],
+        "type": "object",
+        "properties": {
+          "customerOrderId": {
+            "type": "string",
+            "description": "A unique ID associated with the sales order for specified customer"
+          },
+          "refundLines": {
+            "type": "array",
+            "description": "Array of refund lines.",
+            "items": {
+              "required": [
+                "returnOrderLineNumber"
+              ],
+              "type": "object",
+              "properties": {
+                "returnOrderLineNumber": {
+                  "type": "integer",
+                  "description": "A line number associated with each individual line in the return order. If return order has only one return order line and it is not provided in the request, the only available return order line is auto-selected. If return order has multiple return order lines, the required return order line must be provided in the request. If not provided in the request, it will result in data-error.",
+                  "format": "int64"
+                }
+              },
+              "description": "Array of refund lines."
+            }
+          }
+        }
       },
       "FeedId": {
         "type": "object",

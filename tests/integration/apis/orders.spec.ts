@@ -1,7 +1,7 @@
 import * as env from '../../environment';
 import walmartApi, { OrdersApi, defaultParams } from '../../../src/index';
 import { addInterceptor, removeInterceptor } from '../../../utils/payload-interceptors';
-import { InlineResponse200ListElementsOrderLinesOrderLineStatusesOrderLineStatusStatusEnum } from '../../../src/apis/orders';
+import { InlineResponse200OrderOrderLinesOrderLineStatusesOrderLineStatusStatusEnum } from '../../../src/apis/orders';
 import { getAllRecursively } from '../../../src/util/requestHelpers';
 
 /**
@@ -18,7 +18,7 @@ const convertOrderLines = (multiLineOrder) => {
 				orderLineStatus: orderLine.orderLineStatuses.orderLineStatus.map((orderLineStatus) => {
 					const duplicateOrderLineStatus = { ...orderLineStatus };
 					duplicateOrderLineStatus.status =
-						InlineResponse200ListElementsOrderLinesOrderLineStatusesOrderLineStatusStatusEnum.Shipped;
+						InlineResponse200OrderOrderLinesOrderLineStatusesOrderLineStatusStatusEnum.Shipped;
 					delete duplicateOrderLineStatus.cancellationReason;
 					return duplicateOrderLineStatus;
 				}),
@@ -169,7 +169,7 @@ describe(`${OrdersApi.name}`, () => {
 			const shipOrderResponse = await ordersApi.shippingUpdates({
 				...defaultParams,
 				purchaseOrderId: multiLineOrders[0]?.purchaseOrderId,
-				inlineObject: {
+				inlineObject2: {
 					orderShipment: {
 						orderLines: {
 							orderLine: shippingOrderOrderLines as any,
@@ -208,7 +208,7 @@ describe(`${OrdersApi.name}`, () => {
 			const shipOrderResponse = await ordersApi.shippingUpdates({
 				...defaultParams,
 				purchaseOrderId: multiLineOrders[0]?.purchaseOrderId,
-				inlineObject: {
+				inlineObject2: {
 					orderShipment: {
 						orderLines: {
 							orderLine: [shippingOrderOrderLines[0]] as any,

@@ -244,9 +244,35 @@ the `src/apis` directory.
 ## Model Generation
 
 Walmart uses a bunch of JSON Schema files that define how data should be formatted for bulk creations and updates.
-These all use JSON schemas specific to each operation. These schemas are available on Walmart's Developer site but we also download and keep them in the `./docs/` directory.
+These all use JSON schemas specific to each operation. These schemas are available on Walmart's Developer site but we
+also download and keep them in the `./docs/` directory.
 
 Each schema is generated into types using `quicktype` and saved in their respective `src/model` folders.
+
+**Please Note:**
+
+In certain instances (bulk file uploads) we had to modify request headers to contain Header Parameters that are not
+included in the auto generation. This is clearly a problem with the Schemas provided by Walmart.
+
+In order to submit a proper request when using binary file data the following was added to the following classes:
+
+-   Inventory
+-   Items
+-   Orders
+-   Price
+
+```typescript
+localVarHeaderParameter['Accept'] = 'application/json';
+localVarRequestOptions.headers = {
+	...localVarHeaderParameter,
+	...headersFromBaseOptions,
+	...options.headers,
+	...localVarFormParams.getHeaders(),
+};
+```
+
+When generation is complete you will most likely need to revert the changes that the generation overrides until Walmart
+fixes their API Schema. Failure to do so will result in 520 errors.
 
 ### Item Model Generation
 

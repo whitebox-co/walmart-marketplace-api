@@ -106,7 +106,7 @@ describe(`${ItemsApi.name}`, () => {
 					locale: Locale.En,
 					processMode: ProcessMode.Merge,
 					sellingChannel: SellingChannel.Marketplace,
-					subCategory: SubCategory.BabyFood,
+					subCategory: SubCategory.BabyClothing,
 					subset: Subset.External,
 					version: SpecVersion.The13,
 				},

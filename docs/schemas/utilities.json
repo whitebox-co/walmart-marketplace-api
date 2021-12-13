@@ -20,6 +20,215 @@
     }
   ],
   "paths": {
+    "/v3/utilities/taxonomy/departments": {
+      "get": {
+        "tags": [
+          "Utilities"
+        ],
+        "summary": "All Departments",
+        "description": "Get list of departments",
+        "operationId": "getDepartmentList",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Basic YzcyOTFjNmItNzI5MC00...."
+          },
+          {
+            "in": "header",
+            "name": "WM_SEC.ACCESS_TOKEN",
+            "description": "The access token retrieved in the Token API call",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
+          },
+          {
+            "in": "header",
+            "name": "WM_CONSUMER.CHANNEL.TYPE",
+            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "WM_QOS.CORRELATION_ID",
+            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
+          },
+          {
+            "in": "header",
+            "name": "WM_SVC.NAME",
+            "description": "Walmart Service Name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Walmart Service Name"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "payload": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "superDepartment": {
+                            "type": "string",
+                            "description": "The super-department name for which the department have to be fetched"
+                          },
+                          "superDepartmentId": {
+                            "type": "string",
+                            "description": "The super-department id for which the department have to be fetched"
+                          },
+                          "departments": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "departmentName": {
+                                  "type": "string",
+                                  "description": "The department name for which the categories have to be fetched"
+                                },
+                                "departmentId": {
+                                  "type": "string",
+                                  "description": "The department id for which the categories have to be fetched"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "status": "SUCCESS",
+                  "payload": [
+                    {
+                      "superDepartment": "13 HOUSEHOLD CHEMICALS",
+                      "superDepartmentId": "44000",
+                      "departments": [
+                        {
+                          "departmentName": "LAUNDRY AND HOUSEHOLD CHEMICALS",
+                          "departmentId": "44003"
+                        },
+                        {
+                          "departmentName": "HOUSEHOLD CHEMICALS MISC L2",
+                          "departmentId": "44004"
+                        }
+                      ]
+                    },
+                    {
+                      "superDepartment": "94 PRODUCE",
+                      "superDepartmentId": "80100",
+                      "departments": [
+                        {
+                          "departmentName": "PRODUCE L2",
+                          "departmentId": "1080100"
+                        }
+                      ]
+                    },
+                    {
+                      "superDepartment": "01 CANDY AND TOBACCO",
+                      "superDepartmentId": "86000",
+                      "departments": [
+                        {
+                          "departmentName": "CANDY AND TOBACCO L2",
+                          "departmentId": "1086000"
+                        }
+                      ]
+                    },
+                    {
+                      "superDepartment": "34 LADIES APPAREL",
+                      "superDepartmentId": "56000",
+                      "departments": [
+                        {
+                          "departmentName": "WOMENS SEASONAL",
+                          "departmentId": "56007"
+                        },
+                        {
+                          "departmentName": "WOMENS",
+                          "departmentId": "56004"
+                        },
+                        {
+                          "departmentName": "JUNIORS",
+                          "departmentId": "56002"
+                        },
+                        {
+                          "departmentName": "WOMENS PLUS",
+                          "departmentId": "56006"
+                        },
+                        {
+                          "departmentName": "OUTDOOR WOMENS HIKE AND ALPINE APPAREL",
+                          "departmentId": "1056114"
+                        },
+                        {
+                          "departmentName": "WOMENS ACTIVEWEAR",
+                          "departmentId": "56146"
+                        },
+                        {
+                          "departmentName": "MATERNITY",
+                          "departmentId": "56003"
+                        },
+                        {
+                          "departmentName": "LADIES APPAREL MISC L2",
+                          "departmentId": "1056125"
+                        }
+                      ]
+                    },
+                    {
+                      "superDepartment": "08 PETS AND SUPPLIES",
+                      "superDepartmentId": "47000",
+                      "departments": [
+                        {
+                          "departmentName": "PETS L2",
+                          "departmentId": "1047022"
+                        },
+                        {
+                          "departmentName": "CAT",
+                          "departmentId": "47012"
+                        },
+                        {
+                          "departmentName": "BIRD AQUATICS SMALL ANIMAL",
+                          "departmentId": "47014"
+                        },
+                        {
+                          "departmentName": "DOG",
+                          "departmentId": "47010"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v3/utilities/taxonomy": {
       "get": {
         "tags": [
@@ -337,219 +546,92 @@
           }
         }
       }
-    },
-    "/v3/utilities/taxonomy/departments": {
-      "get": {
-        "tags": [
-          "Utilities"
-        ],
-        "summary": "All Departments",
-        "description": "Get list of departments",
-        "operationId": "getDepartmentList",
-        "parameters": [
-          {
-            "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
+    }
+  },
+  "components": {
+    "schemas": {
+      "Department": {
+        "type": "object",
+        "properties": {
+          "departmentName": {
+            "type": "string",
+            "description": "The department name for which the categories have to be fetched"
           },
-          {
-            "in": "header",
-            "name": "WM_SEC.ACCESS_TOKEN",
-            "description": "The access token retrieved in the Token API call",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
-          },
-          {
-            "in": "header",
-            "name": "WM_CONSUMER.CHANNEL.TYPE",
-            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "header",
-            "name": "WM_QOS.CORRELATION_ID",
-            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
-          },
-          {
-            "in": "header",
-            "name": "WM_SVC.NAME",
-            "description": "Walmart Service Name",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Walmart Service Name"
+          "departmentId": {
+            "type": "string",
+            "description": "The department id for which the categories have to be fetched"
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string"
-                    },
-                    "payload": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "superDepartment": {
-                            "type": "string",
-                            "description": "The super-department name for which the department have to be fetched"
-                          },
-                          "superDepartmentId": {
-                            "type": "string",
-                            "description": "The super-department id for which the department have to be fetched"
-                          },
-                          "departments": {
-                            "type": "array",
-                            "items": {
-                              "type": "object",
-                              "properties": {
-                                "departmentName": {
-                                  "type": "string",
-                                  "description": "The department name for which the categories have to be fetched"
-                                },
-                                "departmentId": {
-                                  "type": "string",
-                                  "description": "The department id for which the categories have to be fetched"
-                                }
-                              }
-                            }
-                          }
-                        }
+        }
+      },
+      "GetDepartmentList": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "payload": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "superDepartment": {
+                  "type": "string",
+                  "description": "The super-department name for which the department have to be fetched"
+                },
+                "superDepartmentId": {
+                  "type": "string",
+                  "description": "The super-department id for which the department have to be fetched"
+                },
+                "departments": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "departmentName": {
+                        "type": "string",
+                        "description": "The department name for which the categories have to be fetched"
+                      },
+                      "departmentId": {
+                        "type": "string",
+                        "description": "The department id for which the categories have to be fetched"
                       }
                     }
                   }
-                },
-                "example": {
-                  "status": "SUCCESS",
-                  "payload": [
-                    {
-                      "superDepartment": "13 HOUSEHOLD CHEMICALS",
-                      "superDepartmentId": "44000",
-                      "departments": [
-                        {
-                          "departmentName": "LAUNDRY AND HOUSEHOLD CHEMICALS",
-                          "departmentId": "44003"
-                        },
-                        {
-                          "departmentName": "HOUSEHOLD CHEMICALS MISC L2",
-                          "departmentId": "44004"
-                        }
-                      ]
-                    },
-                    {
-                      "superDepartment": "94 PRODUCE",
-                      "superDepartmentId": "80100",
-                      "departments": [
-                        {
-                          "departmentName": "PRODUCE L2",
-                          "departmentId": "1080100"
-                        }
-                      ]
-                    },
-                    {
-                      "superDepartment": "01 CANDY AND TOBACCO",
-                      "superDepartmentId": "86000",
-                      "departments": [
-                        {
-                          "departmentName": "CANDY AND TOBACCO L2",
-                          "departmentId": "1086000"
-                        }
-                      ]
-                    },
-                    {
-                      "superDepartment": "34 LADIES APPAREL",
-                      "superDepartmentId": "56000",
-                      "departments": [
-                        {
-                          "departmentName": "WOMENS SEASONAL",
-                          "departmentId": "56007"
-                        },
-                        {
-                          "departmentName": "WOMENS",
-                          "departmentId": "56004"
-                        },
-                        {
-                          "departmentName": "JUNIORS",
-                          "departmentId": "56002"
-                        },
-                        {
-                          "departmentName": "WOMENS PLUS",
-                          "departmentId": "56006"
-                        },
-                        {
-                          "departmentName": "OUTDOOR WOMENS HIKE AND ALPINE APPAREL",
-                          "departmentId": "1056114"
-                        },
-                        {
-                          "departmentName": "WOMENS ACTIVEWEAR",
-                          "departmentId": "56146"
-                        },
-                        {
-                          "departmentName": "MATERNITY",
-                          "departmentId": "56003"
-                        },
-                        {
-                          "departmentName": "LADIES APPAREL MISC L2",
-                          "departmentId": "1056125"
-                        }
-                      ]
-                    },
-                    {
-                      "superDepartment": "08 PETS AND SUPPLIES",
-                      "superDepartmentId": "47000",
-                      "departments": [
-                        {
-                          "departmentName": "PETS L2",
-                          "departmentId": "1047022"
-                        },
-                        {
-                          "departmentName": "CAT",
-                          "departmentId": "47012"
-                        },
-                        {
-                          "departmentName": "BIRD AQUATICS SMALL ANIMAL",
-                          "departmentId": "47014"
-                        },
-                        {
-                          "departmentName": "DOG",
-                          "departmentId": "47010"
-                        }
-                      ]
-                    }
-                  ]
                 }
               }
             }
           }
         }
-      }
-    }
-  },
-  "components": {
-    "schemas": {
+      },
+      "Payload": {
+        "type": "object",
+        "properties": {
+          "superDepartment": {
+            "type": "string",
+            "description": "The super-department name for which the department have to be fetched"
+          },
+          "superDepartmentId": {
+            "type": "string",
+            "description": "The super-department id for which the department have to be fetched"
+          },
+          "departments": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "departmentName": {
+                  "type": "string",
+                  "description": "The department name for which the categories have to be fetched"
+                },
+                "departmentId": {
+                  "type": "string",
+                  "description": "The department id for which the categories have to be fetched"
+                }
+              }
+            }
+          }
+        }
+      },
       "CategoryPayload": {
         "type": "object",
         "properties": {
@@ -702,88 +784,6 @@
                 "categoryId": {
                   "type": "string",
                   "description": "The category id for which the top trending items have to be fetched"
-                }
-              }
-            }
-          }
-        }
-      },
-      "Department": {
-        "type": "object",
-        "properties": {
-          "departmentName": {
-            "type": "string",
-            "description": "The department name for which the categories have to be fetched"
-          },
-          "departmentId": {
-            "type": "string",
-            "description": "The department id for which the categories have to be fetched"
-          }
-        }
-      },
-      "GetDepartmentList": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "string"
-          },
-          "payload": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "superDepartment": {
-                  "type": "string",
-                  "description": "The super-department name for which the department have to be fetched"
-                },
-                "superDepartmentId": {
-                  "type": "string",
-                  "description": "The super-department id for which the department have to be fetched"
-                },
-                "departments": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "departmentName": {
-                        "type": "string",
-                        "description": "The department name for which the categories have to be fetched"
-                      },
-                      "departmentId": {
-                        "type": "string",
-                        "description": "The department id for which the categories have to be fetched"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "Payload": {
-        "type": "object",
-        "properties": {
-          "superDepartment": {
-            "type": "string",
-            "description": "The super-department name for which the department have to be fetched"
-          },
-          "superDepartmentId": {
-            "type": "string",
-            "description": "The super-department id for which the department have to be fetched"
-          },
-          "departments": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "departmentName": {
-                  "type": "string",
-                  "description": "The department name for which the categories have to be fetched"
-                },
-                "departmentId": {
-                  "type": "string",
-                  "description": "The department id for which the categories have to be fetched"
                 }
               }
             }

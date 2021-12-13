@@ -54,10 +54,10 @@ export interface CategoryPayload {
     category?: string;
     /**
      * Specific kind of category
-     * @type {Array<InlineResponse200Subcategory>}
+     * @type {Array<InlineResponse2001Subcategory>}
      * @memberof CategoryPayload
      */
-    subcategory?: Array<InlineResponse200Subcategory>;
+    subcategory?: Array<InlineResponse2001Subcategory>;
 }
 /**
  * 
@@ -92,10 +92,10 @@ export interface GetCategories {
     status?: string;
     /**
      * 
-     * @type {InlineResponse2001Response}
+     * @type {InlineResponse2002Response}
      * @memberof GetCategories
      */
-    response?: InlineResponse2001Response;
+    response?: InlineResponse2002Response;
 }
 /**
  * 
@@ -111,10 +111,10 @@ export interface GetDepartmentList {
     status?: string;
     /**
      * 
-     * @type {Array<InlineResponse2002Payload>}
+     * @type {Array<InlineResponse200Payload>}
      * @memberof GetDepartmentList
      */
-    payload?: Array<InlineResponse2002Payload>;
+    payload?: Array<InlineResponse200Payload>;
 }
 /**
  * 
@@ -149,54 +149,48 @@ export interface InlineResponse2001 {
     status?: string;
     /**
      * 
-     * @type {InlineResponse2001Response}
+     * @type {Array<InlineResponse2001Payload>}
      * @memberof InlineResponse2001
      */
-    response?: InlineResponse2001Response;
+    payload?: Array<InlineResponse2001Payload>;
 }
 /**
  * 
  * @export
- * @interface InlineResponse2001Response
+ * @interface InlineResponse2001Payload
  */
-export interface InlineResponse2001Response {
+export interface InlineResponse2001Payload {
     /**
-     * The department name for which the categories have to be fetched
+     * Type of item
      * @type {string}
-     * @memberof InlineResponse2001Response
+     * @memberof InlineResponse2001Payload
      */
-    departmentName?: string;
+    category?: string;
     /**
-     * The department id for which the categories have to be fetched
-     * @type {string}
-     * @memberof InlineResponse2001Response
+     * Specific kind of category
+     * @type {Array<InlineResponse2001Subcategory>}
+     * @memberof InlineResponse2001Payload
      */
-    departmentId?: string;
-    /**
-     * 
-     * @type {Array<InlineResponse2001ResponseCategory>}
-     * @memberof InlineResponse2001Response
-     */
-    category?: Array<InlineResponse2001ResponseCategory>;
+    subcategory?: Array<InlineResponse2001Subcategory>;
 }
 /**
- * 
+ * Specific kind of category
  * @export
- * @interface InlineResponse2001ResponseCategory
+ * @interface InlineResponse2001Subcategory
  */
-export interface InlineResponse2001ResponseCategory {
+export interface InlineResponse2001Subcategory {
     /**
-     * The category name for which the top trending items have to be fetched
+     * Name of specific kind of category
      * @type {string}
-     * @memberof InlineResponse2001ResponseCategory
+     * @memberof InlineResponse2001Subcategory
      */
-    categoryName?: string;
+    subCategoryName?: string;
     /**
-     * The category id for which the top trending items have to be fetched
+     * ID of specific kind of category
      * @type {string}
-     * @memberof InlineResponse2001ResponseCategory
+     * @memberof InlineResponse2001Subcategory
      */
-    categoryId?: string;
+    subCategoryId?: string;
 }
 /**
  * 
@@ -212,54 +206,73 @@ export interface InlineResponse2002 {
     status?: string;
     /**
      * 
-     * @type {Array<InlineResponse2002Payload>}
+     * @type {InlineResponse2002Response}
      * @memberof InlineResponse2002
      */
-    payload?: Array<InlineResponse2002Payload>;
+    response?: InlineResponse2002Response;
 }
 /**
  * 
  * @export
- * @interface InlineResponse2002Departments
+ * @interface InlineResponse2002Response
  */
-export interface InlineResponse2002Departments {
+export interface InlineResponse2002Response {
     /**
      * The department name for which the categories have to be fetched
      * @type {string}
-     * @memberof InlineResponse2002Departments
+     * @memberof InlineResponse2002Response
      */
     departmentName?: string;
     /**
      * The department id for which the categories have to be fetched
      * @type {string}
-     * @memberof InlineResponse2002Departments
+     * @memberof InlineResponse2002Response
      */
     departmentId?: string;
+    /**
+     * 
+     * @type {Array<InlineResponse2002ResponseCategory>}
+     * @memberof InlineResponse2002Response
+     */
+    category?: Array<InlineResponse2002ResponseCategory>;
 }
 /**
  * 
  * @export
- * @interface InlineResponse2002Payload
+ * @interface InlineResponse2002ResponseCategory
  */
-export interface InlineResponse2002Payload {
+export interface InlineResponse2002ResponseCategory {
     /**
-     * The super-department name for which the department have to be fetched
+     * The category name for which the top trending items have to be fetched
      * @type {string}
-     * @memberof InlineResponse2002Payload
+     * @memberof InlineResponse2002ResponseCategory
      */
-    superDepartment?: string;
+    categoryName?: string;
     /**
-     * The super-department id for which the department have to be fetched
+     * The category id for which the top trending items have to be fetched
      * @type {string}
-     * @memberof InlineResponse2002Payload
+     * @memberof InlineResponse2002ResponseCategory
      */
-    superDepartmentId?: string;
+    categoryId?: string;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse200Departments
+ */
+export interface InlineResponse200Departments {
     /**
-     * 
-     * @type {Array<InlineResponse2002Departments>}
-     * @memberof InlineResponse2002Payload
+     * The department name for which the categories have to be fetched
+     * @type {string}
+     * @memberof InlineResponse200Departments
      */
-    departments?: Array<InlineResponse2002Departments>;
+    departmentName?: string;
+    /**
+     * The department id for which the categories have to be fetched
+     * @type {string}
+     * @memberof InlineResponse200Departments
+     */
+    departmentId?: string;
 }
 /**
  * 
@@ -268,36 +281,23 @@ export interface InlineResponse2002Payload {
  */
 export interface InlineResponse200Payload {
     /**
-     * Type of item
+     * The super-department name for which the department have to be fetched
      * @type {string}
      * @memberof InlineResponse200Payload
      */
-    category?: string;
+    superDepartment?: string;
     /**
-     * Specific kind of category
-     * @type {Array<InlineResponse200Subcategory>}
+     * The super-department id for which the department have to be fetched
+     * @type {string}
      * @memberof InlineResponse200Payload
      */
-    subcategory?: Array<InlineResponse200Subcategory>;
-}
-/**
- * Specific kind of category
- * @export
- * @interface InlineResponse200Subcategory
- */
-export interface InlineResponse200Subcategory {
+    superDepartmentId?: string;
     /**
-     * Name of specific kind of category
-     * @type {string}
-     * @memberof InlineResponse200Subcategory
+     * 
+     * @type {Array<InlineResponse200Departments>}
+     * @memberof InlineResponse200Payload
      */
-    subCategoryName?: string;
-    /**
-     * ID of specific kind of category
-     * @type {string}
-     * @memberof InlineResponse200Subcategory
-     */
-    subCategoryId?: string;
+    departments?: Array<InlineResponse200Departments>;
 }
 /**
  * 
@@ -319,10 +319,10 @@ export interface Payload {
     superDepartmentId?: string;
     /**
      * 
-     * @type {Array<InlineResponse2002Departments>}
+     * @type {Array<InlineResponse200Departments>}
      * @memberof Payload
      */
-    departments?: Array<InlineResponse2002Departments>;
+    departments?: Array<InlineResponse200Departments>;
 }
 /**
  * 
@@ -344,10 +344,10 @@ export interface Response {
     departmentId?: string;
     /**
      * 
-     * @type {Array<InlineResponse2001ResponseCategory>}
+     * @type {Array<InlineResponse2002ResponseCategory>}
      * @memberof Response
      */
-    category?: Array<InlineResponse2001ResponseCategory>;
+    category?: Array<InlineResponse2002ResponseCategory>;
 }
 /**
  * Specific kind of category
@@ -382,10 +382,10 @@ export interface TaxonomyResponseDTO {
     status?: string;
     /**
      * 
-     * @type {Array<InlineResponse200Payload>}
+     * @type {Array<InlineResponse2001Payload>}
      * @memberof TaxonomyResponseDTO
      */
-    payload?: Array<InlineResponse200Payload>;
+    payload?: Array<InlineResponse2001Payload>;
 }
 
 /**
@@ -631,7 +631,7 @@ export const UtilitiesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getCategories(departmentId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
+        async getCategories(departmentId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2002>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getCategories(departmentId, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -646,7 +646,7 @@ export const UtilitiesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getDepartmentList(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2002>> {
+        async getDepartmentList(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getDepartmentList(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -663,7 +663,7 @@ export const UtilitiesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getTaxonomyResponse(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, feedType?: 'item' | 'MP_ITEM' | 'MP_WFS_ITEM' | 'MP_MAINTENANCE', version?: '3.2' | '4.0' | '4.1' | '4.2', wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
+        async getTaxonomyResponse(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, feedType?: 'item' | 'MP_ITEM' | 'MP_WFS_ITEM' | 'MP_MAINTENANCE', version?: '3.2' | '4.0' | '4.1' | '4.2', wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getTaxonomyResponse(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, feedType, version, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -689,7 +689,7 @@ export const UtilitiesApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCategories(departmentId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2001> {
+        getCategories(departmentId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2002> {
             return localVarFp.getCategories(departmentId, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
@@ -703,7 +703,7 @@ export const UtilitiesApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getDepartmentList(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2002> {
+        getDepartmentList(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse200> {
             return localVarFp.getDepartmentList(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
@@ -719,7 +719,7 @@ export const UtilitiesApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getTaxonomyResponse(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, feedType?: 'item' | 'MP_ITEM' | 'MP_WFS_ITEM' | 'MP_MAINTENANCE', version?: '3.2' | '4.0' | '4.1' | '4.2', wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse200> {
+        getTaxonomyResponse(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, feedType?: 'item' | 'MP_ITEM' | 'MP_WFS_ITEM' | 'MP_MAINTENANCE', version?: '3.2' | '4.0' | '4.1' | '4.2', wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2001> {
             return localVarFp.getTaxonomyResponse(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, feedType, version, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
     };
