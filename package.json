@@ -60,7 +60,7 @@
   },
   "devDependencies": {
     "@commitlint/cli": "^13.1.0",
-    "@commitlint/config-conventional": "^13.1.0",
+    "@commitlint/config-conventional": "^15.0.0",
     "@openapitools/openapi-generator-cli": "^2.3.10",
     "@semantic-release/changelog": "^5.0.1",
     "@semantic-release/git": "^9.0.1",
