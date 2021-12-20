@@ -50,7 +50,7 @@
     "test:watch": "jest tests --watchAll",
     "postversion": "ts-node --transpile-only --pretty utils/bump-version.ts"
   },
-  "types": "lib/index.d.ts",
+  "types": "lib/src/index.d.ts",
   "dependencies": {
     "axios": "^0.21.2",
     "bunyan": "^1.8.15",
