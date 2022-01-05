@@ -77,3 +77,4 @@ jobs:
                   committer: Whitebox Bot <whitebox-bot@whitebox.com>
                   branch: chore/update-generated-api
                   delete-branch: true
+                  base: develop
