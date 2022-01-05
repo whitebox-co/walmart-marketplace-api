@@ -6,9 +6,9 @@
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/whitebox-co/walmart-marketplace-api/Develop?label=develop)
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/whitebox-co/walmart-marketplace-api/Generate%20API?label=api-generator)
 ![GitHub Workflow Status](https://img.shields.io/snyk/vulnerabilities/github/whitebox-co/walmart-marketplace-api?label=snyk%20vulnerbilities)
-![GitHub Workflow Status](https://img.shields.io/maintenance/yes/2021)
+![GitHub Workflow Status](https://img.shields.io/maintenance/yes/2022)
 
-A fully typed and auto generated [TypeScript](https://www.typescriptlang.org) library for the
+A fully typed and auto-generated [TypeScript](https://www.typescriptlang.org) library for the
 [Walmart Marketplace Rest API](https://developer.walmart.com/doc/us/mp/us-mp-intro/).
 
 This library automatically generates typescript types, classes, interfaces, integration tests, and UI documentation
@@ -16,23 +16,23 @@ based directly off of the Walmart Marketplace OpenAPI specification.
 
 ## Why?
 
-TLDR: It did not exist and we really needed it!
+TL;DR: It did not exist, and we needed it!
 
--   [Walmart](https://github.com/walmartlabs) does not provide an easy way to download their swagger and openapi docs to
+-   [Walmart](https://github.com/walmartlabs) does not provide an easy way to download their swagger and OpenAPI docs to
     generate projects.
 -   They do not provide a [Typescript library](https://github.com/orgs/walmartlabs/repositories?q=&type=&language=typescript&sort=)
     to access their endpoints
 -   Their [javascript library](https://github.com/walmartlabs/walmart-api) is deprecated.
--   Existing implementations did not include full walmart REST implementation and did not meet our needs.
+-   Existing implementations did not include full Walmart REST implementation and did not meet our needs.
 
 ## How it works
 
--   An [OpenAPI Schema](https://spec.openapis.org/oas/latest.html) is downloaded from Walmart for each section of a
-    the Walmart Marketplace API.
+-   An [OpenAPI Schema](https://spec.openapis.org/oas/latest.html) is downloaded from Walmart for each section of the
+    Walmart Marketplace API.
 -   API Classes are generated using the amazing [openapi-generator](https://github.com/OpenAPITools/openapi-generator)
     against each schema.
--   Integration Test stubs are auto generated for every generated api class and function.
--   Documentation is auto generated and updated based on the latest openapi schemas changes.
+-   Integration Test stubs are auto-generated for every generated API class and function.
+-   Documentation is auto-generated and updated based on the latest OpenAPI schemas changes.
 
 ## Installation
 
@@ -43,7 +43,7 @@ Packages are maintained on both [Github](https://github.com/whitebox-co/walmart-
 npm install @whitebox-co/walmart-marketplace-api
 ```
 
-For development assuming all prerequisites are met.
+For development assuming all prerequisites have been satisfied.
 
 ```sh
 npm install
@@ -55,12 +55,12 @@ Due to how Walmart has structured its OpenApi schema, the auto API generation re
 authorization details on each API method call. This can become quite tedious and can create a lot of
 repetitive and duplicated code.
 
-To try and resolve this issue, our approach was to create convenience methods that will configure every API
+To try and resolve this issue our approach was to create convenience methods that will configure every API
 and return a fully configured instance of the API with token caching built-in. These convenience methods
 intercept all API methods to prevent the user from having to input the same auth credentials for each call.
 
-Until Walmart changes their OpenApi schema so that auto-generation does not require these parameters, this
-the approach will greatly simplify making API calls.
+Until Walmart changes their OpenApi schema so that auto-generation does not require these parameters,
+this approach should hopefully help in simplifying API requests.
 
 ### Preferred Usage
 
@@ -68,10 +68,10 @@ the approach will greatly simplify making API calls.
 import walmartMarketplaceApi, { OrdersApi, defaultParams } from '@whitebox-co/walmart-marketplace-api';
 
 /**
- * Init the marketplace api with client credentials and get back a fully
- * configured instance of the api with token caching built in.
+ * Init the marketplace API with client credentials and get back a fully
+ * configured instance of the API with token caching built in.
  *
- * Any subsequent call using the same credentials but a different api
+ * Any subsequent call using the same credentials but a different API
  * will use cached credentials until they expire.
  */
 const ordersApi = await walmartMarketplaceApi.getConfiguredApi(OrdersApi, {
@@ -81,15 +81,15 @@ const ordersApi = await walmartMarketplaceApi.getConfiguredApi(OrdersApi, {
 });
 
 /**
- * defaultParams are necessary due to ts typing. When using the convenience methods,
+ * `defaultParams` are necessary due to ts typing. When using the convenience methods,
  * the method calls are intercepted and the default params are automatically filled
  * out. These can effectively be ignored if using js or by using es-lint ignore
  * statements if you so choose.
  *
- * customParams in this example are anything part of the getAnOrder
- * request that is required but not part of the defaultParams walmart
- * requires for authorization. See each api's individual documentation
- * for all acceptable params.
+ * `customParams` in this example are anything part of the `getAnOrder`
+ * request that is required but not part of the `defaultParams` Walmart
+ * requires authorization. See each API's documentation for all possible
+ * params.
  */
 const exampleOrder = await ordersApi.getAnOrder({
 	...defaultParams,
@@ -97,7 +97,7 @@ const exampleOrder = await ordersApi.getAnOrder({
 });
 ```
 
-### Class Based Alternative
+### Class-Based Alternative
 
 ```typescript
 import { WalmartApi, OrdersApi, defaultParams } from '@whitebox-co/walmart-marketplace-api';
@@ -172,16 +172,17 @@ const orders = await getAllRecursively(ordersApi, ordersApi.getAllOrders.name, r
 
 There are three different types of documentation included for this repo.
 
-1. **Redoc** - Used as an alternative to visiting the walmart developer site (which is based off of redoc).
-2. **SwaggerUI** - Used as an alternative to visiting the walmart sandbox documentation. (which is based of of swaggerui).
+1. **Redoc** - Used as an alternative to visiting the Walmart developer site (which is based off of redoc).
+2. **SwaggerUI** - Used as an alternative to visiting the Walmart sandbox documentation. (which is based off of swaggerui).
 3. **TypeDoc** - Typescript type and class documentation of the main library.
 
-Redoc and SwaggerUI are included as an alternative to having to visit Walmart's developer website, which we have
-found often times become unresponsive in certain browsers.
+Redoc and SwaggerUI are included as an alternative to having to visit Walmart's developer website, which at times,
+can become a little too slow and unresponsive.
 
 ### Viewing Docs
 
-We have packaged [http-server](https://github.com/http-party/http-server) as a dev dependency as a way to quickly view the docs. Issue any one of the following commands to build and view any of the docs.
+We have packaged [http-server](https://github.com/http-party/http-server) as a dev dependency as a way to quickly view
+the docs. Issue any one of the following commands to build and view any of the docs.
 
 ```sh
 npm run docs # or `npm run docs:typedoc`
@@ -189,7 +190,7 @@ npm run docs:redoc
 npm run docs:swaggerui
 ```
 
-**Note:** `http-server` will try and serve the docs on port `8080` and will auto launch your browser to the
+**Note:** `http-server` will try and serve the docs on port `8080` and will auto-launch your browser to the
 specified documentation.
 
 ## Development
@@ -206,33 +207,33 @@ specified documentation.
 ```sh
 npm run build       # build the project (output to ./lib)
 npm run dev         # run ts-node-dev to watch and rebuild project while in development.
-npm run start       # runs ts-node to compile project.
+npm run start       # runs ts-node to compile the project.
 npm run lint        # runs eslint linter
 ```
 
 ### API Generation
 
-API Generation is handled automatically by github actions. We perform a task daily to check if the Walmart API has
-been updated and if it has we perform the schema downloads and subsequent API Generation. From there we automatically
-generate the new docs and a new version of the library is built and deployed to npm.
+API Generation is handled automatically by Github actions. We perform a task daily to check if the Walmart API has
+been updated, and if it has, we perform the schema downloads and subsequent API Generation. From there, we automatically
+generate the new docs, and a new version of the library is built and deployed to npm.
 
 If you wish to manually perform those steps see the sections below.
 
 #### Manual Schema Download
 
-Walmart exposes and endpoint that allows for the download of the openapi json. To pull down all of those models simply
+Walmart exposes an endpoint that allows for the download of the OpenAPI JSON. To pull down all of those models, simply
 run the following:
 
 ```sh
 npm run download-schemas
 ```
 
-If any changed have occurred to the api the new updates will overwrite the existing schemas in the `./docs/schemas`
+If any changes have occurred to the API, the new updates will overwrite the existing schemas in the `./docs/schemas`
 directory.
 
 #### Manual API Generation
 
-Once you have the schemas downloaded you can run the api generation by running the following:
+Once you have the schemas downloaded, you can run the API generation by running the following:
 
 ```sh
 npm run generate-apis
@@ -251,10 +252,10 @@ Each schema is generated into types using `quicktype` and saved in their respect
 
 **Please Note:**
 
-In certain instances (bulk file uploads) we had to modify request headers to contain Header Parameters that are not
-included in the auto generation. This is clearly a problem with the Schemas provided by Walmart.
+In certain instances, in bulk file uploads, we had to modify request headers to contain Header Parameters that are not
+included in the auto-generation. This is clearly a problem with the Schemas provided by Walmart.
 
-In order to submit a proper request when using binary file data the following was added to the following classes:
+In order to submit a proper request when using binary file data, the following was added to the following classes:
 
 -   Inventory
 -   Items
@@ -295,7 +296,7 @@ quicktype -s schema ./docs/item-schemas/V3-Spec-Marketplace-Items-3.2-JSON/ -o .
 ```
 
 [MP_MAINTENANCE_SPEC_4.3.json](./docs/item-schemas/MP_MAINTENANCE_SPEC_4.3.json) will fail to generate as
-is not a complete schema. It is missing at the end of the file. Complain to walmart!
+is not a complete schema. It is missing at the end of the file. Complain to Walmart!
 
 ### Inventory Model Generation
 
@@ -354,25 +355,25 @@ should be:
 
 This seems like a bug with the schema but will leave that up to Walmart to decide.
 
-We have changed this in our downloaded schema doc but you should be aware if you download the schema from walmart
+We have changed this in our downloaded schema doc but you should be aware if you download the schema from Walmart
 directly.
 
 ## Token Authorization and Caching
 
-Tokens are retrieved from walmart during the authorization process and then get cached until they expire. When they
-expire another call to the getToken endpoint is sent to walmart.
+Tokens are retrieved from Walmart during the authorization process and then get cached until they expire. When they
+expire another call to the getToken endpoint is sent to Walmart.
 
-Any time you request a new api from the walmartMarketplaceApi using the same clientID, the cached credential token
+Any time you request a new API from the `walmartMarketplaceApi` using the same `clientID`, the cached credential token
 will be used to authorize the request.
 
 ## Issues
 
-Please report any issues you find in the github issues section. We will do our best to address any issue in a timely
+Please report any issues you find in the Github issues section. We will do our best to address any issue in a timely
 manner.
 
 ### Known Issues
 
-These need to be moved over to github issues.
+These need to be moved over to Github issues.
 
 -   Generation is only including the first schema response example. In some cases that is the xml response only.
 -   There are some differences in received responses vs expected response. These are documented as TODO in the code.
@@ -387,7 +388,7 @@ These need to be moved over to github issues.
 ## Contributing
 
 Feel free to open PR's. [Whitebox](https://whitebox.com/) is currently using this in our production code and we will
-evaluate changes on a case by case basis.
+evaluate changes on a case-by-case basis.
 
 See the [Contributing](CONTRIBUTING.md) documentation for further details.
 
