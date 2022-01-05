@@ -261,7 +261,7 @@ export interface InlineResponse2001Causes {
     description?: string;
 }
 /**
- * 
+ * Node Update Error description.
  * @export
  * @interface InlineResponse2001Errors
  */
@@ -743,7 +743,7 @@ export interface Meta {
     nextCursor?: string;
 }
 /**
- * 
+ * Node Update Error description.
  * @export
  * @interface ModelError
  */
@@ -1498,11 +1498,10 @@ export const InventoryApiAxiosParamCreator = function (configuration?: Configura
     
     
             localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
-            localVarHeaderParameter['Accept'] = 'application/json';
     
             setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers, ...localVarFormParams.getHeaders()};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = localVarFormParams;
 
             return {

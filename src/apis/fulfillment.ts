@@ -437,16 +437,16 @@ export interface GetRateQuoteInfoResponseWrapper {
 export interface GetShipmentItemsDTO {
     /**
      * 
-     * @type {InlineResponse2001Headers}
+     * @type {InlineResponse200Headers}
      * @memberof GetShipmentItemsDTO
      */
-    headers?: InlineResponse2001Headers;
+    headers?: InlineResponse200Headers;
     /**
      * response payload
-     * @type {Array<InlineResponse2004Payload>}
+     * @type {Array<InlineResponse2003Payload>}
      * @memberof GetShipmentItemsDTO
      */
-    payload?: Array<InlineResponse2004Payload>;
+    payload?: Array<InlineResponse2003Payload>;
 }
 /**
  * 
@@ -456,16 +456,16 @@ export interface GetShipmentItemsDTO {
 export interface GetShipmentPlanDTO {
     /**
      * 
-     * @type {InlineResponse2001Headers}
+     * @type {InlineResponse200Headers}
      * @memberof GetShipmentPlanDTO
      */
-    headers?: InlineResponse2001Headers;
+    headers?: InlineResponse200Headers;
     /**
      * response payload
-     * @type {Array<InlineResponse2002Payload>}
+     * @type {Array<InlineResponse200Payload>}
      * @memberof GetShipmentPlanDTO
      */
-    payload?: Array<InlineResponse2002Payload>;
+    payload?: Array<InlineResponse200Payload>;
 }
 /**
  * 
@@ -506,16 +506,16 @@ export interface InboundShipmentCreateResponseWrapper {
     shipmentId?: string;
     /**
      * 
-     * @type {InlineResponse2002ShipToAddress}
+     * @type {InlineResponse200ShipToAddress}
      * @memberof InboundShipmentCreateResponseWrapper
      */
-    shipToAddress?: InlineResponse2002ShipToAddress;
+    shipToAddress?: InlineResponse200ShipToAddress;
     /**
      * The items which needs to be send in the shipment
-     * @type {Array<InlineResponse2003ShipmentItems>}
+     * @type {Array<InlineResponse2001ShipmentItems>}
      * @memberof InboundShipmentCreateResponseWrapper
      */
-    shipmentItems?: Array<InlineResponse2003ShipmentItems>;
+    shipmentItems?: Array<InlineResponse2001ShipmentItems>;
     /**
      * expected delivery date for inbounding shipment. Can be different from provided in the rquest based on network capacity
      * @type {string}
@@ -537,10 +537,10 @@ export interface InboundShipmentCreateResponseWrapperDTO {
     status?: string;
     /**
      * response payload
-     * @type {Array<InlineResponse2003Payload>}
+     * @type {Array<InlineResponse2001Payload>}
      * @memberof InboundShipmentCreateResponseWrapperDTO
      */
-    payload?: Array<InlineResponse2003Payload>;
+    payload?: Array<InlineResponse2001Payload>;
 }
 /**
  * 
@@ -550,16 +550,16 @@ export interface InboundShipmentCreateResponseWrapperDTO {
 export interface InboundShipmentErrorResponseWrapperDTO {
     /**
      * 
-     * @type {InlineResponse2001Headers}
+     * @type {InlineResponse200Headers}
      * @memberof InboundShipmentErrorResponseWrapperDTO
      */
-    headers?: InlineResponse2001Headers;
+    headers?: InlineResponse200Headers;
     /**
      * response payload
-     * @type {Array<InlineResponse2001Payload>}
+     * @type {Array<InlineResponse2002Payload>}
      * @memberof InboundShipmentErrorResponseWrapperDTO
      */
-    payload?: Array<InlineResponse2001Payload>;
+    payload?: Array<InlineResponse2002Payload>;
 }
 /**
  * response payload
@@ -581,22 +581,22 @@ export interface InboundShipmentErrorsResponseWrapper {
     createdDate?: string;
     /**
      * 
-     * @type {InlineResponse2001ReturnAddress}
+     * @type {InlineResponse200ReturnAddress}
      * @memberof InboundShipmentErrorsResponseWrapper
      */
-    returnAddress?: InlineResponse2001ReturnAddress;
+    returnAddress?: InlineResponse200ReturnAddress;
     /**
      * inbound shipment request line items
-     * @type {Array<InlineResponse2001OrderItems>}
+     * @type {Array<V3FulfillmentInboundShipmentsOrderItems>}
      * @memberof InboundShipmentErrorsResponseWrapper
      */
-    orderItems?: Array<InlineResponse2001OrderItems>;
+    orderItems?: Array<V3FulfillmentInboundShipmentsOrderItems>;
     /**
      * Error in inbound shipment creation
-     * @type {Array<InlineResponse200Errors>}
+     * @type {Array<InlineResponse2002Errors>}
      * @memberof InboundShipmentErrorsResponseWrapper
      */
-    errors?: Array<InlineResponse200Errors>;
+    errors?: Array<InlineResponse2002Errors>;
 }
 /**
  * 
@@ -612,16 +612,16 @@ export interface InboundShipmentRequestWrapper {
     inboundOrderId: string;
     /**
      * 
-     * @type {InlineResponse2001ReturnAddress}
+     * @type {InlineResponse200ReturnAddress}
      * @memberof InboundShipmentRequestWrapper
      */
-    returnAddress: InlineResponse2001ReturnAddress;
+    returnAddress: InlineResponse200ReturnAddress;
     /**
      * inbound shipment request line items
-     * @type {Array<InlineResponse2001OrderItems>}
+     * @type {Array<V3FulfillmentInboundShipmentsOrderItems>}
      * @memberof InboundShipmentRequestWrapper
      */
-    orderItems?: Array<InlineResponse2001OrderItems>;
+    orderItems?: Array<V3FulfillmentInboundShipmentsOrderItems>;
 }
 /**
  * 
@@ -655,23 +655,23 @@ export interface InboundShipmentUpdateQtyWrapper {
  */
 export interface InlineObject {
     /**
-     * 
-     * @type {V3ItemsOnholdSearchQuery}
+     * Unique ID identifying inbound shipment request
+     * @type {string}
      * @memberof InlineObject
      */
-    query?: V3ItemsOnholdSearchQuery;
+    inboundOrderId: string;
     /**
      * 
-     * @type {Array<V3ItemsOnholdSearchFilters>}
+     * @type {InlineResponse200ReturnAddress}
      * @memberof InlineObject
      */
-    filters?: Array<V3ItemsOnholdSearchFilters>;
+    returnAddress: InlineResponse200ReturnAddress;
     /**
-     * 
-     * @type {V3ItemsOnholdSearchSort}
+     * inbound shipment request line items
+     * @type {Array<V3FulfillmentInboundShipmentsOrderItems>}
      * @memberof InlineObject
      */
-    sort?: V3ItemsOnholdSearchSort;
+    orderItems?: Array<V3FulfillmentInboundShipmentsOrderItems>;
 }
 /**
  * 
@@ -686,17 +686,17 @@ export interface InlineObject1 {
      */
     inboundOrderId: string;
     /**
-     * 
-     * @type {InlineResponse2001ReturnAddress}
+     * Unique ID identifying inbound shipment
+     * @type {string}
      * @memberof InlineObject1
      */
-    returnAddress: InlineResponse2001ReturnAddress;
+    shipmentId: string;
     /**
-     * inbound shipment request line items
-     * @type {Array<InlineResponse2001OrderItems>}
+     * update shipment qty line items
+     * @type {Array<V3FulfillmentShipmentQuantitiesOrderItems>}
      * @memberof InlineObject1
      */
-    orderItems?: Array<InlineResponse2001OrderItems>;
+    orderItems?: Array<V3FulfillmentShipmentQuantitiesOrderItems>;
 }
 /**
  * 
@@ -705,23 +705,29 @@ export interface InlineObject1 {
  */
 export interface InlineObject2 {
     /**
-     * Unique ID identifying inbound shipment request
-     * @type {string}
-     * @memberof InlineObject2
-     */
-    inboundOrderId: string;
-    /**
-     * Unique ID identifying inbound shipment
+     * 
      * @type {string}
      * @memberof InlineObject2
      */
     shipmentId: string;
     /**
-     * update shipment qty line items
-     * @type {Array<V3FulfillmentShipmentQuantitiesOrderItems>}
+     * 
+     * @type {string}
      * @memberof InlineObject2
      */
-    orderItems?: Array<V3FulfillmentShipmentQuantitiesOrderItems>;
+    labelSize?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineObject2
+     */
+    labelFormat?: string;
+    /**
+     * 
+     * @type {Array<V3FulfillmentShipmentLabelLoadTypes>}
+     * @memberof InlineObject2
+     */
+    loadTypes?: Array<V3FulfillmentShipmentLabelLoadTypes>;
 }
 /**
  * 
@@ -740,19 +746,13 @@ export interface InlineObject3 {
      * @type {string}
      * @memberof InlineObject3
      */
-    labelSize?: string;
+    carrierName: string;
     /**
      * 
-     * @type {string}
+     * @type {Array<string>}
      * @memberof InlineObject3
      */
-    labelFormat?: string;
-    /**
-     * 
-     * @type {Array<V3FulfillmentShipmentLabelLoadTypes>}
-     * @memberof InlineObject3
-     */
-    loadTypes?: Array<V3FulfillmentShipmentLabelLoadTypes>;
+    trackingInfo?: Array<string>;
 }
 /**
  * 
@@ -762,22 +762,10 @@ export interface InlineObject3 {
 export interface InlineObject4 {
     /**
      * 
-     * @type {string}
+     * @type {any}
      * @memberof InlineObject4
      */
-    shipmentId: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineObject4
-     */
-    carrierName: string;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof InlineObject4
-     */
-    trackingInfo?: Array<string>;
+    file?: any;
 }
 /**
  * 
@@ -787,10 +775,22 @@ export interface InlineObject4 {
 export interface InlineObject5 {
     /**
      * 
-     * @type {any}
+     * @type {V3ItemsOnholdSearchQuery}
      * @memberof InlineObject5
      */
-    file?: any;
+    query?: V3ItemsOnholdSearchQuery;
+    /**
+     * 
+     * @type {Array<V3ItemsOnholdSearchFilters>}
+     * @memberof InlineObject5
+     */
+    filters?: Array<V3ItemsOnholdSearchFilters>;
+    /**
+     * 
+     * @type {V3ItemsOnholdSearchSort}
+     * @memberof InlineObject5
+     */
+    sort?: V3ItemsOnholdSearchSort;
 }
 /**
  * 
@@ -923,26 +923,381 @@ export interface InlineObject8 {
 export interface InlineResponse200 {
     /**
      * 
+     * @type {InlineResponse200Headers}
+     * @memberof InlineResponse200
+     */
+    headers?: InlineResponse200Headers;
+    /**
+     * response payload
+     * @type {Array<InlineResponse200Payload>}
+     * @memberof InlineResponse200
+     */
+    payload?: Array<InlineResponse200Payload>;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse2001
+ */
+export interface InlineResponse2001 {
+    /**
+     * 
      * @type {string}
-     * @memberof InlineResponse200
+     * @memberof InlineResponse2001
      */
-    status: InlineResponse200StatusEnum;
+    status?: string;
+    /**
+     * response payload
+     * @type {Array<InlineResponse2001Payload>}
+     * @memberof InlineResponse2001
+     */
+    payload?: Array<InlineResponse2001Payload>;
+}
+/**
+ * response payload
+ * @export
+ * @interface InlineResponse2001Payload
+ */
+export interface InlineResponse2001Payload {
+    /**
+     * Unique ID identifying each shipment
+     * @type {string}
+     * @memberof InlineResponse2001Payload
+     */
+    shipmentId?: string;
     /**
      * 
-     * @type {InlineResponse200Header}
-     * @memberof InlineResponse200
+     * @type {InlineResponse200ShipToAddress}
+     * @memberof InlineResponse2001Payload
      */
-    header?: InlineResponse200Header;
+    shipToAddress?: InlineResponse200ShipToAddress;
+    /**
+     * The items which needs to be send in the shipment
+     * @type {Array<InlineResponse2001ShipmentItems>}
+     * @memberof InlineResponse2001Payload
+     */
+    shipmentItems?: Array<InlineResponse2001ShipmentItems>;
+    /**
+     * expected delivery date for inbounding shipment. Can be different from provided in the rquest based on network capacity
+     * @type {string}
+     * @memberof InlineResponse2001Payload
+     */
+    expectedDeliveryDate?: string;
+}
+/**
+ * The items which needs to be send in the shipment
+ * @export
+ * @interface InlineResponse2001ShipmentItems
+ */
+export interface InlineResponse2001ShipmentItems {
+    /**
+     * Seller Item ID
+     * @type {string}
+     * @memberof InlineResponse2001ShipmentItems
+     */
+    vendorSku?: string;
+    /**
+     * Total number of sellable units
+     * @type {number}
+     * @memberof InlineResponse2001ShipmentItems
+     */
+    itemQty?: number;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse2002
+ */
+export interface InlineResponse2002 {
     /**
      * 
-     * @type {Array<InlineResponse200Errors>}
-     * @memberof InlineResponse200
+     * @type {InlineResponse200Headers}
+     * @memberof InlineResponse2002
      */
-    errors?: Array<InlineResponse200Errors>;
+    headers?: InlineResponse200Headers;
+    /**
+     * response payload
+     * @type {Array<InlineResponse2002Payload>}
+     * @memberof InlineResponse2002
+     */
+    payload?: Array<InlineResponse2002Payload>;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse2002Causes
+ */
+export interface InlineResponse2002Causes {
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2002Causes
+     */
+    code?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2002Causes
+     */
+    field?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2002Causes
+     */
+    type?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2002Causes
+     */
+    description?: string;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse2002Errors
+ */
+export interface InlineResponse2002Errors {
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2002Errors
+     */
+    code: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2002Errors
+     */
+    field?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2002Errors
+     */
+    description?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2002Errors
+     */
+    info?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2002Errors
+     */
+    severity?: InlineResponse2002ErrorsSeverityEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2002Errors
+     */
+    category?: InlineResponse2002ErrorsCategoryEnum;
+    /**
+     * 
+     * @type {Array<InlineResponse2002Causes>}
+     * @memberof InlineResponse2002Errors
+     */
+    causes?: Array<InlineResponse2002Causes>;
+}
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum InlineResponse2002ErrorsSeverityEnum {
+    Info = 'INFO',
+    Warn = 'WARN',
+    Error = 'ERROR'
+}
+/**
+    * @export
+    * @enum {string}
+    */
+export enum InlineResponse2002ErrorsCategoryEnum {
+    Application = 'APPLICATION',
+    System = 'SYSTEM',
+    Request = 'REQUEST',
+    Data = 'DATA'
+}
+
+/**
+ * response payload
+ * @export
+ * @interface InlineResponse2002Payload
+ */
+export interface InlineResponse2002Payload {
+    /**
+     * Unique ID identifying inbound shipment requests
+     * @type {string}
+     * @memberof InlineResponse2002Payload
+     */
+    inboundOrderId?: string;
+    /**
+     * created date for the request
+     * @type {string}
+     * @memberof InlineResponse2002Payload
+     */
+    createdDate?: string;
+    /**
+     * 
+     * @type {InlineResponse200ReturnAddress}
+     * @memberof InlineResponse2002Payload
+     */
+    returnAddress?: InlineResponse200ReturnAddress;
+    /**
+     * inbound shipment request line items
+     * @type {Array<V3FulfillmentInboundShipmentsOrderItems>}
+     * @memberof InlineResponse2002Payload
+     */
+    orderItems?: Array<V3FulfillmentInboundShipmentsOrderItems>;
+    /**
+     * Error in inbound shipment creation
+     * @type {Array<InlineResponse2002Errors>}
+     * @memberof InlineResponse2002Payload
+     */
+    errors?: Array<InlineResponse2002Errors>;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse2003
+ */
+export interface InlineResponse2003 {
+    /**
+     * 
+     * @type {InlineResponse200Headers}
+     * @memberof InlineResponse2003
+     */
+    headers?: InlineResponse200Headers;
+    /**
+     * response payload
+     * @type {Array<InlineResponse2003Payload>}
+     * @memberof InlineResponse2003
+     */
+    payload?: Array<InlineResponse2003Payload>;
+}
+/**
+ * response payload
+ * @export
+ * @interface InlineResponse2003Payload
+ */
+export interface InlineResponse2003Payload {
+    /**
+     * Unique ID identifying inbound shipment request
+     * @type {string}
+     * @memberof InlineResponse2003Payload
+     */
+    inboundOrderId?: string;
+    /**
+     * Unique ID identifying each shipment
+     * @type {string}
+     * @memberof InlineResponse2003Payload
+     */
+    shipmentId?: string;
+    /**
+     * Item barcode
+     * @type {string}
+     * @memberof InlineResponse2003Payload
+     */
+    gtin?: string;
+    /**
+     * Seller Item ID
+     * @type {string}
+     * @memberof InlineResponse2003Payload
+     */
+    sku?: string;
+    /**
+     * Item description
+     * @type {string}
+     * @memberof InlineResponse2003Payload
+     */
+    itemDesc?: string;
+    /**
+     * Total number of sellable units
+     * @type {number}
+     * @memberof InlineResponse2003Payload
+     */
+    itemQty?: number;
+    /**
+     * Total number of cases
+     * @type {number}
+     * @memberof InlineResponse2003Payload
+     */
+    vendorPackQty?: number;
+    /**
+     * Total number of sellable units per case
+     * @type {number}
+     * @memberof InlineResponse2003Payload
+     */
+    innerPackQty?: number;
+    /**
+     * Qty received in FC
+     * @type {number}
+     * @memberof InlineResponse2003Payload
+     */
+    receivedQty?: number;
+    /**
+     * Qty damaged while receiving in FC
+     * @type {number}
+     * @memberof InlineResponse2003Payload
+     */
+    damagedQty?: number;
+    /**
+     * Fill rate for this shipment item
+     * @type {number}
+     * @memberof InlineResponse2003Payload
+     */
+    fillRate?: number;
+    /**
+     * expected delivery date provided by seller
+     * @type {string}
+     * @memberof InlineResponse2003Payload
+     */
+    expectedDeliveryDate?: string;
+    /**
+     * update expected delivery date based on network capacity
+     * @type {string}
+     * @memberof InlineResponse2003Payload
+     */
+    updatedExpectedDeliveryDate?: string;
+    /**
+     * FC name
+     * @type {string}
+     * @memberof InlineResponse2003Payload
+     */
+    shipNodeName?: string;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse2004
+ */
+export interface InlineResponse2004 {
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2004
+     */
+    status: InlineResponse2004StatusEnum;
+    /**
+     * 
+     * @type {InlineResponse2004Header}
+     * @memberof InlineResponse2004
+     */
+    header?: InlineResponse2004Header;
+    /**
+     * 
+     * @type {Array<InlineResponse2002Errors>}
+     * @memberof InlineResponse2004
+     */
+    errors?: Array<InlineResponse2002Errors>;
     /**
      * 
      * @type {object}
-     * @memberof InlineResponse200
+     * @memberof InlineResponse2004
      */
     payload?: object;
 }
@@ -951,7 +1306,7 @@ export interface InlineResponse200 {
     * @export
     * @enum {string}
     */
-export enum InlineResponse200StatusEnum {
+export enum InlineResponse2004StatusEnum {
     Ok = 'OK',
     Created = 'CREATED',
     Accepted = 'ACCEPTED',
@@ -982,543 +1337,15 @@ export enum InlineResponse200StatusEnum {
 /**
  * 
  * @export
- * @interface InlineResponse2001
+ * @interface InlineResponse2004Header
  */
-export interface InlineResponse2001 {
+export interface InlineResponse2004Header {
     /**
      * 
-     * @type {InlineResponse2001Headers}
-     * @memberof InlineResponse2001
+     * @type {{ [key: string]: object; }}
+     * @memberof InlineResponse2004Header
      */
-    headers?: InlineResponse2001Headers;
-    /**
-     * response payload
-     * @type {Array<InlineResponse2001Payload>}
-     * @memberof InlineResponse2001
-     */
-    payload?: Array<InlineResponse2001Payload>;
-}
-/**
- * 
- * @export
- * @interface InlineResponse2001Headers
- */
-export interface InlineResponse2001Headers {
-    /**
-     * total number of POs for provided GET request.
-     * @type {number}
-     * @memberof InlineResponse2001Headers
-     */
-    totalCount?: number;
-    /**
-     * provided limit value in the request
-     * @type {number}
-     * @memberof InlineResponse2001Headers
-     */
-    limit?: number;
-    /**
-     * provided offset value in the request.
-     * @type {number}
-     * @memberof InlineResponse2001Headers
-     */
-    offset?: number;
-}
-/**
- * inbound shipment request line items
- * @export
- * @interface InlineResponse2001OrderItems
- */
-export interface InlineResponse2001OrderItems {
-    /**
-     * Unique ID identifying product
-     * @type {string}
-     * @memberof InlineResponse2001OrderItems
-     */
-    productId: string;
-    /**
-     * Supported product types are GTIN,UPC,EAN
-     * @type {string}
-     * @memberof InlineResponse2001OrderItems
-     */
-    productType: string;
-    /**
-     * Seller Item ID
-     * @type {string}
-     * @memberof InlineResponse2001OrderItems
-     */
-    sku: string;
-    /**
-     * Item description
-     * @type {string}
-     * @memberof InlineResponse2001OrderItems
-     */
-    itemDesc: string;
-    /**
-     * Total number of sellable units
-     * @type {number}
-     * @memberof InlineResponse2001OrderItems
-     */
-    itemQty: number;
-    /**
-     * Total number of cases
-     * @type {number}
-     * @memberof InlineResponse2001OrderItems
-     */
-    vendorPackQty: number;
-    /**
-     * Total number of sellable units per case
-     * @type {number}
-     * @memberof InlineResponse2001OrderItems
-     */
-    innerPackQty: number;
-    /**
-     * expected delivery date for shipment
-     * @type {string}
-     * @memberof InlineResponse2001OrderItems
-     */
-    expectedDeliveryDate: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof InlineResponse2001OrderItems
-     */
-    itemNbr?: number;
-    /**
-     * 
-     * @type {Array<number>}
-     * @memberof InlineResponse2001OrderItems
-     */
-    dimensions?: Array<number>;
-    /**
-     * 
-     * @type {number}
-     * @memberof InlineResponse2001OrderItems
-     */
-    itemWeightQty?: number;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof InlineResponse2001OrderItems
-     */
-    nonSortItem?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2001OrderItems
-     */
-    shipNode?: string;
-}
-/**
- * response payload
- * @export
- * @interface InlineResponse2001Payload
- */
-export interface InlineResponse2001Payload {
-    /**
-     * Unique ID identifying inbound shipment requests
-     * @type {string}
-     * @memberof InlineResponse2001Payload
-     */
-    inboundOrderId?: string;
-    /**
-     * created date for the request
-     * @type {string}
-     * @memberof InlineResponse2001Payload
-     */
-    createdDate?: string;
-    /**
-     * 
-     * @type {InlineResponse2001ReturnAddress}
-     * @memberof InlineResponse2001Payload
-     */
-    returnAddress?: InlineResponse2001ReturnAddress;
-    /**
-     * inbound shipment request line items
-     * @type {Array<InlineResponse2001OrderItems>}
-     * @memberof InlineResponse2001Payload
-     */
-    orderItems?: Array<InlineResponse2001OrderItems>;
-    /**
-     * Error in inbound shipment creation
-     * @type {Array<InlineResponse200Errors>}
-     * @memberof InlineResponse2001Payload
-     */
-    errors?: Array<InlineResponse200Errors>;
-}
-/**
- * Seller return address
- * @export
- * @interface InlineResponse2001ReturnAddress
- */
-export interface InlineResponse2001ReturnAddress {
-    /**
-     * Address details
-     * @type {string}
-     * @memberof InlineResponse2001ReturnAddress
-     */
-    addressLine1: string;
-    /**
-     * Address details continuation
-     * @type {string}
-     * @memberof InlineResponse2001ReturnAddress
-     */
-    addressLine2?: string;
-    /**
-     * City name
-     * @type {string}
-     * @memberof InlineResponse2001ReturnAddress
-     */
-    city: string;
-    /**
-     * State Code
-     * @type {string}
-     * @memberof InlineResponse2001ReturnAddress
-     */
-    stateCode: string;
-    /**
-     * Country code
-     * @type {string}
-     * @memberof InlineResponse2001ReturnAddress
-     */
-    countryCode: string;
-    /**
-     * Zip code
-     * @type {string}
-     * @memberof InlineResponse2001ReturnAddress
-     */
-    postalCode: string;
-}
-/**
- * 
- * @export
- * @interface InlineResponse2002
- */
-export interface InlineResponse2002 {
-    /**
-     * 
-     * @type {InlineResponse2001Headers}
-     * @memberof InlineResponse2002
-     */
-    headers?: InlineResponse2001Headers;
-    /**
-     * response payload
-     * @type {Array<InlineResponse2002Payload>}
-     * @memberof InlineResponse2002
-     */
-    payload?: Array<InlineResponse2002Payload>;
-}
-/**
- * response payload
- * @export
- * @interface InlineResponse2002Payload
- */
-export interface InlineResponse2002Payload {
-    /**
-     * Unique ID identifying inbound shipment request
-     * @type {string}
-     * @memberof InlineResponse2002Payload
-     */
-    inboundOrderId?: string;
-    /**
-     * Unique ID identifying inbound shipment
-     * @type {string}
-     * @memberof InlineResponse2002Payload
-     */
-    shipmentId?: string;
-    /**
-     * 
-     * @type {InlineResponse2002ShipToAddress}
-     * @memberof InlineResponse2002Payload
-     */
-    shipToAddress?: InlineResponse2002ShipToAddress;
-    /**
-     * 
-     * @type {InlineResponse2001ReturnAddress}
-     * @memberof InlineResponse2002Payload
-     */
-    returnAddress?: InlineResponse2001ReturnAddress;
-    /**
-     * Current status of the shipment
-     * @type {string}
-     * @memberof InlineResponse2002Payload
-     */
-    status?: string;
-    /**
-     * creation date for shipment
-     * @type {string}
-     * @memberof InlineResponse2002Payload
-     */
-    createdDate?: string;
-    /**
-     * Total number of units in the shipment
-     * @type {number}
-     * @memberof InlineResponse2002Payload
-     */
-    shipmentUnits?: number;
-    /**
-     * Total number of units recived in FC for the shipment
-     * @type {number}
-     * @memberof InlineResponse2002Payload
-     */
-    receivedUnits?: number;
-    /**
-     * expected delivery date provided by seller
-     * @type {string}
-     * @memberof InlineResponse2002Payload
-     */
-    expectedDeliveryDate?: string;
-    /**
-     * update expected delivery date based on network capacity
-     * @type {string}
-     * @memberof InlineResponse2002Payload
-     */
-    updatedExpectedDeliveryDate?: string;
-    /**
-     * Actual delivery date of the shipment at FC
-     * @type {string}
-     * @memberof InlineResponse2002Payload
-     */
-    actualDeliveryDate?: string;
-    /**
-     * Tracking info for the shipment
-     * @type {Array<string>}
-     * @memberof InlineResponse2002Payload
-     */
-    trackingNo?: Array<string>;
-    /**
-     * Carrier of the shipment
-     * @type {string}
-     * @memberof InlineResponse2002Payload
-     */
-    carrierName?: string;
-}
-/**
- * The address to which sellers need to inbound items
- * @export
- * @interface InlineResponse2002ShipToAddress
- */
-export interface InlineResponse2002ShipToAddress {
-    /**
-     * Facility name
-     * @type {string}
-     * @memberof InlineResponse2002ShipToAddress
-     */
-    fcName?: string;
-    /**
-     * Address details 
-     * @type {string}
-     * @memberof InlineResponse2002ShipToAddress
-     */
-    addressLine1?: string;
-    /**
-     * Address details continuation
-     * @type {string}
-     * @memberof InlineResponse2002ShipToAddress
-     */
-    addressLine2?: string;
-    /**
-     * City name
-     * @type {string}
-     * @memberof InlineResponse2002ShipToAddress
-     */
-    city?: string;
-    /**
-     * State code
-     * @type {string}
-     * @memberof InlineResponse2002ShipToAddress
-     */
-    stateCode?: string;
-    /**
-     * Country code
-     * @type {string}
-     * @memberof InlineResponse2002ShipToAddress
-     */
-    countryCode?: string;
-    /**
-     * Zip code
-     * @type {string}
-     * @memberof InlineResponse2002ShipToAddress
-     */
-    postalCode?: string;
-}
-/**
- * 
- * @export
- * @interface InlineResponse2003
- */
-export interface InlineResponse2003 {
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2003
-     */
-    status?: string;
-    /**
-     * response payload
-     * @type {Array<InlineResponse2003Payload>}
-     * @memberof InlineResponse2003
-     */
-    payload?: Array<InlineResponse2003Payload>;
-}
-/**
- * response payload
- * @export
- * @interface InlineResponse2003Payload
- */
-export interface InlineResponse2003Payload {
-    /**
-     * Unique ID identifying each shipment
-     * @type {string}
-     * @memberof InlineResponse2003Payload
-     */
-    shipmentId?: string;
-    /**
-     * 
-     * @type {InlineResponse2002ShipToAddress}
-     * @memberof InlineResponse2003Payload
-     */
-    shipToAddress?: InlineResponse2002ShipToAddress;
-    /**
-     * The items which needs to be send in the shipment
-     * @type {Array<InlineResponse2003ShipmentItems>}
-     * @memberof InlineResponse2003Payload
-     */
-    shipmentItems?: Array<InlineResponse2003ShipmentItems>;
-    /**
-     * expected delivery date for inbounding shipment. Can be different from provided in the rquest based on network capacity
-     * @type {string}
-     * @memberof InlineResponse2003Payload
-     */
-    expectedDeliveryDate?: string;
-}
-/**
- * The items which needs to be send in the shipment
- * @export
- * @interface InlineResponse2003ShipmentItems
- */
-export interface InlineResponse2003ShipmentItems {
-    /**
-     * Seller Item ID
-     * @type {string}
-     * @memberof InlineResponse2003ShipmentItems
-     */
-    vendorSku?: string;
-    /**
-     * Total number of sellable units
-     * @type {number}
-     * @memberof InlineResponse2003ShipmentItems
-     */
-    itemQty?: number;
-}
-/**
- * 
- * @export
- * @interface InlineResponse2004
- */
-export interface InlineResponse2004 {
-    /**
-     * 
-     * @type {InlineResponse2001Headers}
-     * @memberof InlineResponse2004
-     */
-    headers?: InlineResponse2001Headers;
-    /**
-     * response payload
-     * @type {Array<InlineResponse2004Payload>}
-     * @memberof InlineResponse2004
-     */
-    payload?: Array<InlineResponse2004Payload>;
-}
-/**
- * response payload
- * @export
- * @interface InlineResponse2004Payload
- */
-export interface InlineResponse2004Payload {
-    /**
-     * Unique ID identifying inbound shipment request
-     * @type {string}
-     * @memberof InlineResponse2004Payload
-     */
-    inboundOrderId?: string;
-    /**
-     * Unique ID identifying each shipment
-     * @type {string}
-     * @memberof InlineResponse2004Payload
-     */
-    shipmentId?: string;
-    /**
-     * Item barcode
-     * @type {string}
-     * @memberof InlineResponse2004Payload
-     */
-    gtin?: string;
-    /**
-     * Seller Item ID
-     * @type {string}
-     * @memberof InlineResponse2004Payload
-     */
-    sku?: string;
-    /**
-     * Item description
-     * @type {string}
-     * @memberof InlineResponse2004Payload
-     */
-    itemDesc?: string;
-    /**
-     * Total number of sellable units
-     * @type {number}
-     * @memberof InlineResponse2004Payload
-     */
-    itemQty?: number;
-    /**
-     * Total number of cases
-     * @type {number}
-     * @memberof InlineResponse2004Payload
-     */
-    vendorPackQty?: number;
-    /**
-     * Total number of sellable units per case
-     * @type {number}
-     * @memberof InlineResponse2004Payload
-     */
-    innerPackQty?: number;
-    /**
-     * Qty received in FC
-     * @type {number}
-     * @memberof InlineResponse2004Payload
-     */
-    receivedQty?: number;
-    /**
-     * Qty damaged while receiving in FC
-     * @type {number}
-     * @memberof InlineResponse2004Payload
-     */
-    damagedQty?: number;
-    /**
-     * Fill rate for this shipment item
-     * @type {number}
-     * @memberof InlineResponse2004Payload
-     */
-    fillRate?: number;
-    /**
-     * expected delivery date provided by seller
-     * @type {string}
-     * @memberof InlineResponse2004Payload
-     */
-    expectedDeliveryDate?: string;
-    /**
-     * update expected delivery date based on network capacity
-     * @type {string}
-     * @memberof InlineResponse2004Payload
-     */
-    updatedExpectedDeliveryDate?: string;
-    /**
-     * FC name
-     * @type {string}
-     * @memberof InlineResponse2004Payload
-     */
-    shipNodeName?: string;
+    headerAttributes?: { [key: string]: object; };
 }
 /**
  * 
@@ -2103,116 +1930,204 @@ export interface InlineResponse2007 {
 /**
  * 
  * @export
- * @interface InlineResponse200Causes
+ * @interface InlineResponse200Headers
  */
-export interface InlineResponse200Causes {
+export interface InlineResponse200Headers {
     /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse200Causes
+     * total number of POs for provided GET request.
+     * @type {number}
+     * @memberof InlineResponse200Headers
      */
-    code?: string;
+    totalCount?: number;
     /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse200Causes
+     * provided limit value in the request
+     * @type {number}
+     * @memberof InlineResponse200Headers
      */
-    field?: string;
+    limit?: number;
     /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse200Causes
+     * provided offset value in the request.
+     * @type {number}
+     * @memberof InlineResponse200Headers
      */
-    type?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse200Causes
-     */
-    description?: string;
+    offset?: number;
 }
 /**
- * 
+ * response payload
  * @export
- * @interface InlineResponse200Errors
+ * @interface InlineResponse200Payload
  */
-export interface InlineResponse200Errors {
+export interface InlineResponse200Payload {
     /**
-     * 
+     * Unique ID identifying inbound shipment request
      * @type {string}
-     * @memberof InlineResponse200Errors
+     * @memberof InlineResponse200Payload
      */
-    code: string;
+    inboundOrderId?: string;
     /**
-     * 
+     * Unique ID identifying inbound shipment
      * @type {string}
-     * @memberof InlineResponse200Errors
+     * @memberof InlineResponse200Payload
      */
-    field?: string;
+    shipmentId?: string;
     /**
      * 
+     * @type {InlineResponse200ShipToAddress}
+     * @memberof InlineResponse200Payload
+     */
+    shipToAddress?: InlineResponse200ShipToAddress;
+    /**
+     * 
+     * @type {InlineResponse200ReturnAddress}
+     * @memberof InlineResponse200Payload
+     */
+    returnAddress?: InlineResponse200ReturnAddress;
+    /**
+     * Current status of the shipment
      * @type {string}
-     * @memberof InlineResponse200Errors
+     * @memberof InlineResponse200Payload
      */
-    description?: string;
+    status?: string;
     /**
-     * 
+     * creation date for shipment
      * @type {string}
-     * @memberof InlineResponse200Errors
+     * @memberof InlineResponse200Payload
      */
-    info?: string;
+    createdDate?: string;
     /**
-     * 
+     * Total number of units in the shipment
+     * @type {number}
+     * @memberof InlineResponse200Payload
+     */
+    shipmentUnits?: number;
+    /**
+     * Total number of units recived in FC for the shipment
+     * @type {number}
+     * @memberof InlineResponse200Payload
+     */
+    receivedUnits?: number;
+    /**
+     * expected delivery date provided by seller
      * @type {string}
-     * @memberof InlineResponse200Errors
+     * @memberof InlineResponse200Payload
      */
-    severity?: InlineResponse200ErrorsSeverityEnum;
+    expectedDeliveryDate?: string;
     /**
-     * 
+     * update expected delivery date based on network capacity
      * @type {string}
-     * @memberof InlineResponse200Errors
+     * @memberof InlineResponse200Payload
      */
-    category?: InlineResponse200ErrorsCategoryEnum;
+    updatedExpectedDeliveryDate?: string;
     /**
-     * 
-     * @type {Array<InlineResponse200Causes>}
-     * @memberof InlineResponse200Errors
+     * Actual delivery date of the shipment at FC
+     * @type {string}
+     * @memberof InlineResponse200Payload
      */
-    causes?: Array<InlineResponse200Causes>;
+    actualDeliveryDate?: string;
+    /**
+     * Tracking info for the shipment
+     * @type {Array<string>}
+     * @memberof InlineResponse200Payload
+     */
+    trackingNo?: Array<string>;
+    /**
+     * Carrier of the shipment
+     * @type {string}
+     * @memberof InlineResponse200Payload
+     */
+    carrierName?: string;
 }
-
 /**
-    * @export
-    * @enum {string}
-    */
-export enum InlineResponse200ErrorsSeverityEnum {
-    Info = 'INFO',
-    Warn = 'WARN',
-    Error = 'ERROR'
-}
-/**
-    * @export
-    * @enum {string}
-    */
-export enum InlineResponse200ErrorsCategoryEnum {
-    Application = 'APPLICATION',
-    System = 'SYSTEM',
-    Request = 'REQUEST',
-    Data = 'DATA'
-}
-
-/**
- * 
+ * Retrun address for seller
  * @export
- * @interface InlineResponse200Header
+ * @interface InlineResponse200ReturnAddress
  */
-export interface InlineResponse200Header {
+export interface InlineResponse200ReturnAddress {
     /**
-     * 
-     * @type {{ [key: string]: object; }}
-     * @memberof InlineResponse200Header
+     * Address details
+     * @type {string}
+     * @memberof InlineResponse200ReturnAddress
      */
-    headerAttributes?: { [key: string]: object; };
+    addressLine1: string;
+    /**
+     * Address details continuation
+     * @type {string}
+     * @memberof InlineResponse200ReturnAddress
+     */
+    addressLine2?: string;
+    /**
+     * City name
+     * @type {string}
+     * @memberof InlineResponse200ReturnAddress
+     */
+    city: string;
+    /**
+     * State Code
+     * @type {string}
+     * @memberof InlineResponse200ReturnAddress
+     */
+    stateCode: string;
+    /**
+     * Country code
+     * @type {string}
+     * @memberof InlineResponse200ReturnAddress
+     */
+    countryCode: string;
+    /**
+     * Zip code
+     * @type {string}
+     * @memberof InlineResponse200ReturnAddress
+     */
+    postalCode: string;
+}
+/**
+ * The address to which sellers need to inbound items
+ * @export
+ * @interface InlineResponse200ShipToAddress
+ */
+export interface InlineResponse200ShipToAddress {
+    /**
+     * Facility name
+     * @type {string}
+     * @memberof InlineResponse200ShipToAddress
+     */
+    fcName?: string;
+    /**
+     * Address details 
+     * @type {string}
+     * @memberof InlineResponse200ShipToAddress
+     */
+    addressLine1?: string;
+    /**
+     * Address details continuation
+     * @type {string}
+     * @memberof InlineResponse200ShipToAddress
+     */
+    addressLine2?: string;
+    /**
+     * City name
+     * @type {string}
+     * @memberof InlineResponse200ShipToAddress
+     */
+    city?: string;
+    /**
+     * State code
+     * @type {string}
+     * @memberof InlineResponse200ShipToAddress
+     */
+    stateCode?: string;
+    /**
+     * Country code
+     * @type {string}
+     * @memberof InlineResponse200ShipToAddress
+     */
+    countryCode?: string;
+    /**
+     * Zip code
+     * @type {string}
+     * @memberof InlineResponse200ShipToAddress
+     */
+    postalCode?: string;
 }
 /**
  * 
@@ -2388,10 +2303,10 @@ export interface ModelError {
     category?: ModelErrorCategoryEnum;
     /**
      * 
-     * @type {Array<InlineResponse200Causes>}
+     * @type {Array<InlineResponse2002Causes>}
      * @memberof ModelError
      */
-    causes?: Array<InlineResponse200Causes>;
+    causes?: Array<InlineResponse2002Causes>;
 }
 
 /**
@@ -2785,7 +2700,7 @@ export interface RateQuoteV2 {
     freightReadyDate?: string;
 }
 /**
- * Seller return address
+ * Retrun address for seller
  * @export
  * @interface ReturnAddress
  */
@@ -2873,16 +2788,16 @@ export interface ServiceResponse {
     status: ServiceResponseStatusEnum;
     /**
      * 
-     * @type {InlineResponse200Header}
+     * @type {InlineResponse2004Header}
      * @memberof ServiceResponse
      */
-    header?: InlineResponse200Header;
+    header?: InlineResponse2004Header;
     /**
      * 
-     * @type {Array<InlineResponse200Errors>}
+     * @type {Array<InlineResponse2002Errors>}
      * @memberof ServiceResponse
      */
-    errors?: Array<InlineResponse200Errors>;
+    errors?: Array<InlineResponse2002Errors>;
     /**
      * 
      * @type {object}
@@ -3205,16 +3120,16 @@ export interface ShipmentPlanDetails {
     shipmentId?: string;
     /**
      * 
-     * @type {InlineResponse2002ShipToAddress}
+     * @type {InlineResponse200ShipToAddress}
      * @memberof ShipmentPlanDetails
      */
-    shipToAddress?: InlineResponse2002ShipToAddress;
+    shipToAddress?: InlineResponse200ShipToAddress;
     /**
      * 
-     * @type {InlineResponse2001ReturnAddress}
+     * @type {InlineResponse200ReturnAddress}
      * @memberof ShipmentPlanDetails
      */
-    returnAddress?: InlineResponse2001ReturnAddress;
+    returnAddress?: InlineResponse200ReturnAddress;
     /**
      * Current status of the shipment
      * @type {string}
@@ -3369,6 +3284,91 @@ export interface V3FulfillmentCarrierRateQuotesLoadTypes {
      * @memberof V3FulfillmentCarrierRateQuotesLoadTypes
      */
     loadType: string;
+}
+/**
+ * inbound shipment request line items
+ * @export
+ * @interface V3FulfillmentInboundShipmentsOrderItems
+ */
+export interface V3FulfillmentInboundShipmentsOrderItems {
+    /**
+     * Unique ID identifying product
+     * @type {string}
+     * @memberof V3FulfillmentInboundShipmentsOrderItems
+     */
+    productId: string;
+    /**
+     * Supported product types are GTIN,UPC,EAN
+     * @type {string}
+     * @memberof V3FulfillmentInboundShipmentsOrderItems
+     */
+    productType: string;
+    /**
+     * Seller Item ID
+     * @type {string}
+     * @memberof V3FulfillmentInboundShipmentsOrderItems
+     */
+    sku: string;
+    /**
+     * Item description
+     * @type {string}
+     * @memberof V3FulfillmentInboundShipmentsOrderItems
+     */
+    itemDesc: string;
+    /**
+     * Total number of sellable units
+     * @type {number}
+     * @memberof V3FulfillmentInboundShipmentsOrderItems
+     */
+    itemQty: number;
+    /**
+     * Total number of cases
+     * @type {number}
+     * @memberof V3FulfillmentInboundShipmentsOrderItems
+     */
+    vendorPackQty: number;
+    /**
+     * Total number of sellable units per case
+     * @type {number}
+     * @memberof V3FulfillmentInboundShipmentsOrderItems
+     */
+    innerPackQty: number;
+    /**
+     * expected delivery date for shipment
+     * @type {string}
+     * @memberof V3FulfillmentInboundShipmentsOrderItems
+     */
+    expectedDeliveryDate: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof V3FulfillmentInboundShipmentsOrderItems
+     */
+    itemNbr?: number;
+    /**
+     * 
+     * @type {Array<number>}
+     * @memberof V3FulfillmentInboundShipmentsOrderItems
+     */
+    dimensions?: Array<number>;
+    /**
+     * 
+     * @type {number}
+     * @memberof V3FulfillmentInboundShipmentsOrderItems
+     */
+    itemWeightQty?: number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof V3FulfillmentInboundShipmentsOrderItems
+     */
+    nonSortItem?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof V3FulfillmentInboundShipmentsOrderItems
+     */
+    shipNode?: string;
 }
 /**
  * 
@@ -3934,12 +3934,12 @@ export const FulfillmentApiAxiosParamCreator = function (configuration?: Configu
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
-         * @param {InlineObject3} inlineObject3 
+         * @param {InlineObject2} inlineObject2 
          * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createInboundShipmentLabelV2: async (authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject3: InlineObject3, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
+        createInboundShipmentLabelV2: async (authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject2: InlineObject2, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'authorization' is not null or undefined
             assertParamExists('createInboundShipmentLabelV2', 'authorization', authorization)
             // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
@@ -3948,8 +3948,8 @@ export const FulfillmentApiAxiosParamCreator = function (configuration?: Configu
             assertParamExists('createInboundShipmentLabelV2', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID)
             // verify required parameter 'wMSVCNAME' is not null or undefined
             assertParamExists('createInboundShipmentLabelV2', 'wMSVCNAME', wMSVCNAME)
-            // verify required parameter 'inlineObject3' is not null or undefined
-            assertParamExists('createInboundShipmentLabelV2', 'inlineObject3', inlineObject3)
+            // verify required parameter 'inlineObject2' is not null or undefined
+            assertParamExists('createInboundShipmentLabelV2', 'inlineObject2', inlineObject2)
             const localVarPath = `/v3/fulfillment/shipment-label`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -3993,7 +3993,7 @@ export const FulfillmentApiAxiosParamCreator = function (configuration?: Configu
             setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(inlineObject3, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(inlineObject2, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -4007,12 +4007,12 @@ export const FulfillmentApiAxiosParamCreator = function (configuration?: Configu
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
-         * @param {InlineObject1} inlineObject1 
+         * @param {InlineObject} inlineObject 
          * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createShipment: async (authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject1: InlineObject1, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
+        createShipment: async (authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'authorization' is not null or undefined
             assertParamExists('createShipment', 'authorization', authorization)
             // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
@@ -4021,8 +4021,8 @@ export const FulfillmentApiAxiosParamCreator = function (configuration?: Configu
             assertParamExists('createShipment', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID)
             // verify required parameter 'wMSVCNAME' is not null or undefined
             assertParamExists('createShipment', 'wMSVCNAME', wMSVCNAME)
-            // verify required parameter 'inlineObject1' is not null or undefined
-            assertParamExists('createShipment', 'inlineObject1', inlineObject1)
+            // verify required parameter 'inlineObject' is not null or undefined
+            assertParamExists('createShipment', 'inlineObject', inlineObject)
             const localVarPath = `/v3/fulfillment/inbound-shipments`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -4066,7 +4066,7 @@ export const FulfillmentApiAxiosParamCreator = function (configuration?: Configu
             setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(inlineObject1, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(inlineObject, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -4565,12 +4565,12 @@ export const FulfillmentApiAxiosParamCreator = function (configuration?: Configu
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
-         * @param {InlineObject2} inlineObject2 
+         * @param {InlineObject1} inlineObject1 
          * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateShipmentQuantity: async (authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject2: InlineObject2, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
+        updateShipmentQuantity: async (authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject1: InlineObject1, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'authorization' is not null or undefined
             assertParamExists('updateShipmentQuantity', 'authorization', authorization)
             // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
@@ -4579,8 +4579,8 @@ export const FulfillmentApiAxiosParamCreator = function (configuration?: Configu
             assertParamExists('updateShipmentQuantity', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID)
             // verify required parameter 'wMSVCNAME' is not null or undefined
             assertParamExists('updateShipmentQuantity', 'wMSVCNAME', wMSVCNAME)
-            // verify required parameter 'inlineObject2' is not null or undefined
-            assertParamExists('updateShipmentQuantity', 'inlineObject2', inlineObject2)
+            // verify required parameter 'inlineObject1' is not null or undefined
+            assertParamExists('updateShipmentQuantity', 'inlineObject1', inlineObject1)
             const localVarPath = `/v3/fulfillment/shipment-quantities`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -4624,7 +4624,7 @@ export const FulfillmentApiAxiosParamCreator = function (configuration?: Configu
             setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(inlineObject2, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(inlineObject1, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -4638,12 +4638,12 @@ export const FulfillmentApiAxiosParamCreator = function (configuration?: Configu
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
-         * @param {InlineObject4} inlineObject4 
+         * @param {InlineObject3} inlineObject3 
          * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateShipmentTrackingDetails: async (authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject4: InlineObject4, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
+        updateShipmentTrackingDetails: async (authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject3: InlineObject3, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'authorization' is not null or undefined
             assertParamExists('updateShipmentTrackingDetails', 'authorization', authorization)
             // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
@@ -4652,8 +4652,8 @@ export const FulfillmentApiAxiosParamCreator = function (configuration?: Configu
             assertParamExists('updateShipmentTrackingDetails', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID)
             // verify required parameter 'wMSVCNAME' is not null or undefined
             assertParamExists('updateShipmentTrackingDetails', 'wMSVCNAME', wMSVCNAME)
-            // verify required parameter 'inlineObject4' is not null or undefined
-            assertParamExists('updateShipmentTrackingDetails', 'inlineObject4', inlineObject4)
+            // verify required parameter 'inlineObject3' is not null or undefined
+            assertParamExists('updateShipmentTrackingDetails', 'inlineObject3', inlineObject3)
             const localVarPath = `/v3/fulfillment/shipment-tracking`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -4697,7 +4697,7 @@ export const FulfillmentApiAxiosParamCreator = function (configuration?: Configu
             setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(inlineObject4, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(inlineObject3, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -4783,12 +4783,12 @@ export const FulfillmentApiAxiosParamCreator = function (configuration?: Configu
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
          * @param {string} accept Only supported Media Type : application/json
-         * @param {InlineObject} inlineObject 
+         * @param {InlineObject5} inlineObject5 
          * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        wercsFeedback: async (authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, accept: string, inlineObject: InlineObject, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
+        wercsFeedback: async (authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, accept: string, inlineObject5: InlineObject5, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'authorization' is not null or undefined
             assertParamExists('wercsFeedback', 'authorization', authorization)
             // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
@@ -4799,8 +4799,8 @@ export const FulfillmentApiAxiosParamCreator = function (configuration?: Configu
             assertParamExists('wercsFeedback', 'wMSVCNAME', wMSVCNAME)
             // verify required parameter 'accept' is not null or undefined
             assertParamExists('wercsFeedback', 'accept', accept)
-            // verify required parameter 'inlineObject' is not null or undefined
-            assertParamExists('wercsFeedback', 'inlineObject', inlineObject)
+            // verify required parameter 'inlineObject5' is not null or undefined
+            assertParamExists('wercsFeedback', 'inlineObject5', inlineObject5)
             const localVarPath = `/v3/items/onhold/search`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -4848,7 +4848,7 @@ export const FulfillmentApiAxiosParamCreator = function (configuration?: Configu
             setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(inlineObject, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(inlineObject5, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -4877,7 +4877,7 @@ export const FulfillmentApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async cancelShipment(inboundOrderId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
+        async cancelShipment(inboundOrderId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2004>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.cancelShipment(inboundOrderId, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -4893,7 +4893,7 @@ export const FulfillmentApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async confirmCarrierRateQuote(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject7: InlineObject7, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
+        async confirmCarrierRateQuote(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject7: InlineObject7, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2004>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.confirmCarrierRateQuote(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject7, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -4953,13 +4953,13 @@ export const FulfillmentApiFp = function(configuration?: Configuration) {
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
-         * @param {InlineObject3} inlineObject3 
+         * @param {InlineObject2} inlineObject2 
          * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createInboundShipmentLabelV2(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject3: InlineObject3, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.createInboundShipmentLabelV2(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject3, wMCONSUMERCHANNELTYPE, options);
+        async createInboundShipmentLabelV2(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject2: InlineObject2, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createInboundShipmentLabelV2(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject2, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -4969,13 +4969,13 @@ export const FulfillmentApiFp = function(configuration?: Configuration) {
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
-         * @param {InlineObject1} inlineObject1 
+         * @param {InlineObject} inlineObject 
          * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createShipment(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject1: InlineObject1, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2003>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.createShipment(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject1, wMCONSUMERCHANNELTYPE, options);
+        async createShipment(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createShipment(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -5009,7 +5009,7 @@ export const FulfillmentApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getInboundOrderErrors(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, offset?: string, limit?: string, shipmentId?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
+        async getInboundOrderErrors(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, offset?: string, limit?: string, shipmentId?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2002>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getInboundOrderErrors(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, offset, limit, shipmentId, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -5027,7 +5027,7 @@ export const FulfillmentApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getInboundShipmentItems(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, offset?: string, limit?: string, shipmentId?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2004>> {
+        async getInboundShipmentItems(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, offset?: string, limit?: string, shipmentId?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2003>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getInboundShipmentItems(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, offset, limit, shipmentId, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -5049,7 +5049,7 @@ export const FulfillmentApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getInboundShipments(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, offset?: string, limit?: string, inboundOrderId?: string, shipmentId?: string, status?: string, fromCreateDate?: string, toCreateDate?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2002>> {
+        async getInboundShipments(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, offset?: string, limit?: string, inboundOrderId?: string, shipmentId?: string, status?: string, fromCreateDate?: string, toCreateDate?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getInboundShipments(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, offset, limit, inboundOrderId, shipmentId, status, fromCreateDate, toCreateDate, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -5081,7 +5081,7 @@ export const FulfillmentApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async printCarrierLabel(shipmentId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject8: InlineObject8, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
+        async printCarrierLabel(shipmentId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject8: InlineObject8, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2004>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.printCarrierLabel(shipmentId, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject8, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -5092,13 +5092,13 @@ export const FulfillmentApiFp = function(configuration?: Configuration) {
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
-         * @param {InlineObject2} inlineObject2 
+         * @param {InlineObject1} inlineObject1 
          * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateShipmentQuantity(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject2: InlineObject2, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.updateShipmentQuantity(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject2, wMCONSUMERCHANNELTYPE, options);
+        async updateShipmentQuantity(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject1: InlineObject1, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2004>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateShipmentQuantity(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject1, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -5108,13 +5108,13 @@ export const FulfillmentApiFp = function(configuration?: Configuration) {
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
-         * @param {InlineObject4} inlineObject4 
+         * @param {InlineObject3} inlineObject3 
          * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateShipmentTrackingDetails(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject4: InlineObject4, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.updateShipmentTrackingDetails(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject4, wMCONSUMERCHANNELTYPE, options);
+        async updateShipmentTrackingDetails(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject3: InlineObject3, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2004>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateShipmentTrackingDetails(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject3, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -5129,7 +5129,7 @@ export const FulfillmentApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async voidCarrierRateQuote(shipmentId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
+        async voidCarrierRateQuote(shipmentId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2004>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.voidCarrierRateQuote(shipmentId, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -5141,13 +5141,13 @@ export const FulfillmentApiFp = function(configuration?: Configuration) {
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
          * @param {string} accept Only supported Media Type : application/json
-         * @param {InlineObject} inlineObject 
+         * @param {InlineObject5} inlineObject5 
          * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async wercsFeedback(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, accept: string, inlineObject: InlineObject, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.wercsFeedback(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, accept, inlineObject, wMCONSUMERCHANNELTYPE, options);
+        async wercsFeedback(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, accept: string, inlineObject5: InlineObject5, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2004>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.wercsFeedback(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, accept, inlineObject5, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -5172,7 +5172,7 @@ export const FulfillmentApiFactory = function (configuration?: Configuration, ba
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        cancelShipment(inboundOrderId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse200> {
+        cancelShipment(inboundOrderId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2004> {
             return localVarFp.cancelShipment(inboundOrderId, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
@@ -5187,7 +5187,7 @@ export const FulfillmentApiFactory = function (configuration?: Configuration, ba
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        confirmCarrierRateQuote(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject7: InlineObject7, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse200> {
+        confirmCarrierRateQuote(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject7: InlineObject7, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2004> {
             return localVarFp.confirmCarrierRateQuote(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject7, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
@@ -5243,13 +5243,13 @@ export const FulfillmentApiFactory = function (configuration?: Configuration, ba
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
-         * @param {InlineObject3} inlineObject3 
+         * @param {InlineObject2} inlineObject2 
          * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createInboundShipmentLabelV2(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject3: InlineObject3, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<string> {
-            return localVarFp.createInboundShipmentLabelV2(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject3, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        createInboundShipmentLabelV2(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject2: InlineObject2, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<string> {
+            return localVarFp.createInboundShipmentLabelV2(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject2, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
          * Once you’ve converted items to WFS, you are ready to start shipping items inbound to Walmart. To do this, you will submit an Inbound shipment request. The Inbound shipment details when you expect to ship product, as well as the items and quantities which will be shipped.  Each shipment you send in to WFS should have a corresponding Inbound shipment. In this case, a shipment would be considered a direct truckload, LTL shipment, or set of items shipped via parcel on a given day.
@@ -5258,13 +5258,13 @@ export const FulfillmentApiFactory = function (configuration?: Configuration, ba
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
-         * @param {InlineObject1} inlineObject1 
+         * @param {InlineObject} inlineObject 
          * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createShipment(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject1: InlineObject1, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2003> {
-            return localVarFp.createShipment(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject1, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        createShipment(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2001> {
+            return localVarFp.createShipment(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
          * The purpose of this service is for seller to void the carrier shipping charges, within 24 hours after the estimated carrier charges have been accepted by the seller.
@@ -5296,7 +5296,7 @@ export const FulfillmentApiFactory = function (configuration?: Configuration, ba
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getInboundOrderErrors(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, offset?: string, limit?: string, shipmentId?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2001> {
+        getInboundOrderErrors(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, offset?: string, limit?: string, shipmentId?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2002> {
             return localVarFp.getInboundOrderErrors(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, offset, limit, shipmentId, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
@@ -5313,7 +5313,7 @@ export const FulfillmentApiFactory = function (configuration?: Configuration, ba
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getInboundShipmentItems(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, offset?: string, limit?: string, shipmentId?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2004> {
+        getInboundShipmentItems(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, offset?: string, limit?: string, shipmentId?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2003> {
             return localVarFp.getInboundShipmentItems(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, offset, limit, shipmentId, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
@@ -5334,7 +5334,7 @@ export const FulfillmentApiFactory = function (configuration?: Configuration, ba
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getInboundShipments(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, offset?: string, limit?: string, inboundOrderId?: string, shipmentId?: string, status?: string, fromCreateDate?: string, toCreateDate?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2002> {
+        getInboundShipments(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, offset?: string, limit?: string, inboundOrderId?: string, shipmentId?: string, status?: string, fromCreateDate?: string, toCreateDate?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse200> {
             return localVarFp.getInboundShipments(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, offset, limit, inboundOrderId, shipmentId, status, fromCreateDate, toCreateDate, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
@@ -5364,7 +5364,7 @@ export const FulfillmentApiFactory = function (configuration?: Configuration, ba
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        printCarrierLabel(shipmentId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject8: InlineObject8, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse200> {
+        printCarrierLabel(shipmentId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject8: InlineObject8, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2004> {
             return localVarFp.printCarrierLabel(shipmentId, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject8, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
@@ -5374,13 +5374,13 @@ export const FulfillmentApiFactory = function (configuration?: Configuration, ba
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
-         * @param {InlineObject2} inlineObject2 
+         * @param {InlineObject1} inlineObject1 
          * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateShipmentQuantity(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject2: InlineObject2, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse200> {
-            return localVarFp.updateShipmentQuantity(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject2, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        updateShipmentQuantity(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject1: InlineObject1, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2004> {
+            return localVarFp.updateShipmentQuantity(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject1, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
          * The purpose of this service is to capture tracking information from sellers. For small parcel shipments, sellers must provide the tracking info including carrier name and tracking numbers. WFS will use the data to capture updated expected delivery date to adjust the fulfillment inbound capacity to avoid any receiving delays.  Seller will also be able to view the updated expected delivery date through the Seller Center UI or calling the Get Inbound Shipment Items API.
@@ -5389,13 +5389,13 @@ export const FulfillmentApiFactory = function (configuration?: Configuration, ba
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
-         * @param {InlineObject4} inlineObject4 
+         * @param {InlineObject3} inlineObject3 
          * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateShipmentTrackingDetails(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject4: InlineObject4, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse200> {
-            return localVarFp.updateShipmentTrackingDetails(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject4, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        updateShipmentTrackingDetails(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject3: InlineObject3, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2004> {
+            return localVarFp.updateShipmentTrackingDetails(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject3, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
          * The purpose of this service is for seller to void the carrier shipping charges, within 24 hours after the estimated carrier charges have been accepted by the seller.
@@ -5409,7 +5409,7 @@ export const FulfillmentApiFactory = function (configuration?: Configuration, ba
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        voidCarrierRateQuote(shipmentId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse200> {
+        voidCarrierRateQuote(shipmentId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2004> {
             return localVarFp.voidCarrierRateQuote(shipmentId, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
@@ -5420,13 +5420,13 @@ export const FulfillmentApiFactory = function (configuration?: Configuration, ba
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
          * @param {string} accept Only supported Media Type : application/json
-         * @param {InlineObject} inlineObject 
+         * @param {InlineObject5} inlineObject5 
          * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        wercsFeedback(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, accept: string, inlineObject: InlineObject, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse200> {
-            return localVarFp.wercsFeedback(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, accept, inlineObject, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        wercsFeedback(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, accept: string, inlineObject5: InlineObject5, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2004> {
+            return localVarFp.wercsFeedback(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, accept, inlineObject5, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -5719,10 +5719,10 @@ export interface FulfillmentApiCreateInboundShipmentLabelV2Request {
 
     /**
      * 
-     * @type {InlineObject3}
+     * @type {InlineObject2}
      * @memberof FulfillmentApiCreateInboundShipmentLabelV2
      */
-    readonly inlineObject3: InlineObject3
+    readonly inlineObject2: InlineObject2
 
     /**
      * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
@@ -5768,10 +5768,10 @@ export interface FulfillmentApiCreateShipmentRequest {
 
     /**
      * 
-     * @type {InlineObject1}
+     * @type {InlineObject}
      * @memberof FulfillmentApiCreateShipment
      */
-    readonly inlineObject1: InlineObject1
+    readonly inlineObject: InlineObject
 
     /**
      * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
@@ -6188,10 +6188,10 @@ export interface FulfillmentApiUpdateShipmentQuantityRequest {
 
     /**
      * 
-     * @type {InlineObject2}
+     * @type {InlineObject1}
      * @memberof FulfillmentApiUpdateShipmentQuantity
      */
-    readonly inlineObject2: InlineObject2
+    readonly inlineObject1: InlineObject1
 
     /**
      * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
@@ -6237,10 +6237,10 @@ export interface FulfillmentApiUpdateShipmentTrackingDetailsRequest {
 
     /**
      * 
-     * @type {InlineObject4}
+     * @type {InlineObject3}
      * @memberof FulfillmentApiUpdateShipmentTrackingDetails
      */
-    readonly inlineObject4: InlineObject4
+    readonly inlineObject3: InlineObject3
 
     /**
      * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
@@ -6342,10 +6342,10 @@ export interface FulfillmentApiWercsFeedbackRequest {
 
     /**
      * 
-     * @type {InlineObject}
+     * @type {InlineObject5}
      * @memberof FulfillmentApiWercsFeedback
      */
-    readonly inlineObject: InlineObject
+    readonly inlineObject5: InlineObject5
 
     /**
      * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
@@ -6431,7 +6431,7 @@ export class FulfillmentApi extends BaseAPI {
      * @memberof FulfillmentApi
      */
     public createInboundShipmentLabelV2(requestParameters: FulfillmentApiCreateInboundShipmentLabelV2Request, options?: any) {
-        return FulfillmentApiFp(this.configuration).createInboundShipmentLabelV2(requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.inlineObject3, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+        return FulfillmentApiFp(this.configuration).createInboundShipmentLabelV2(requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.inlineObject2, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -6443,7 +6443,7 @@ export class FulfillmentApi extends BaseAPI {
      * @memberof FulfillmentApi
      */
     public createShipment(requestParameters: FulfillmentApiCreateShipmentRequest, options?: any) {
-        return FulfillmentApiFp(this.configuration).createShipment(requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.inlineObject1, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+        return FulfillmentApiFp(this.configuration).createShipment(requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.inlineObject, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -6527,7 +6527,7 @@ export class FulfillmentApi extends BaseAPI {
      * @memberof FulfillmentApi
      */
     public updateShipmentQuantity(requestParameters: FulfillmentApiUpdateShipmentQuantityRequest, options?: any) {
-        return FulfillmentApiFp(this.configuration).updateShipmentQuantity(requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.inlineObject2, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+        return FulfillmentApiFp(this.configuration).updateShipmentQuantity(requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.inlineObject1, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -6539,7 +6539,7 @@ export class FulfillmentApi extends BaseAPI {
      * @memberof FulfillmentApi
      */
     public updateShipmentTrackingDetails(requestParameters: FulfillmentApiUpdateShipmentTrackingDetailsRequest, options?: any) {
-        return FulfillmentApiFp(this.configuration).updateShipmentTrackingDetails(requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.inlineObject4, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+        return FulfillmentApiFp(this.configuration).updateShipmentTrackingDetails(requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.inlineObject3, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -6563,7 +6563,7 @@ export class FulfillmentApi extends BaseAPI {
      * @memberof FulfillmentApi
      */
     public wercsFeedback(requestParameters: FulfillmentApiWercsFeedbackRequest, options?: any) {
-        return FulfillmentApiFp(this.configuration).wercsFeedback(requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.accept, requestParameters.inlineObject, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+        return FulfillmentApiFp(this.configuration).wercsFeedback(requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.accept, requestParameters.inlineObject5, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

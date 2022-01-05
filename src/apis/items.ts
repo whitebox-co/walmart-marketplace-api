@@ -60,10 +60,10 @@ export interface CategoryPayload {
     category?: string;
     /**
      * Specific kind of category
-     * @type {Array<InlineResponse200Subcategory>}
+     * @type {Array<InlineResponse2001Subcategory>}
      * @memberof CategoryPayload
      */
-    subcategory?: Array<InlineResponse200Subcategory>;
+    subcategory?: Array<InlineResponse2001Subcategory>;
 }
 /**
  * 
@@ -216,10 +216,10 @@ export interface GatewayError {
     category?: GatewayErrorCategoryEnum;
     /**
      * 
-     * @type {Array<InlineResponse2004Causes>}
+     * @type {Array<InlineResponse200Causes>}
      * @memberof GatewayError
      */
-    causes?: Array<InlineResponse2004Causes>;
+    causes?: Array<InlineResponse200Causes>;
     /**
      * 
      * @type {{ [key: string]: object; }}
@@ -377,16 +377,34 @@ export interface InlineObject1 {
 export interface InlineResponse200 {
     /**
      * 
+     * @type {Array<InlineResponse200Errors>}
+     * @memberof InlineResponse200
+     */
+    errors?: Array<InlineResponse200Errors>;
+    /**
+     * Items included in the response list
+     * @type {Array<InlineResponse200ItemResponse>}
+     * @memberof InlineResponse200
+     */
+    ItemResponse: Array<InlineResponse200ItemResponse>;
+    /**
+     * 
+     * @type {InlineResponse200AdditionalAttributes}
+     * @memberof InlineResponse200
+     */
+    additionalAttributes?: InlineResponse200AdditionalAttributes;
+    /**
+     * Total items for the query
+     * @type {number}
+     * @memberof InlineResponse200
+     */
+    totalItems?: number;
+    /**
+     * Used for pagination to fetch the next set of items
      * @type {string}
      * @memberof InlineResponse200
      */
-    status?: string;
-    /**
-     * 
-     * @type {Array<InlineResponse200Payload>}
-     * @memberof InlineResponse200
-     */
-    payload?: Array<InlineResponse200Payload>;
+    nextCursor?: string;
 }
 /**
  * 
@@ -395,17 +413,55 @@ export interface InlineResponse200 {
  */
 export interface InlineResponse2001 {
     /**
-     * An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item.
+     * 
      * @type {string}
      * @memberof InlineResponse2001
      */
-    sku: string;
+    status?: string;
     /**
-     * Message confirming the deletion or retirement of an item from the Walmart Catalog
-     * @type {string}
+     * 
+     * @type {Array<InlineResponse2001Payload>}
      * @memberof InlineResponse2001
      */
-    message?: string;
+    payload?: Array<InlineResponse2001Payload>;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse2001Payload
+ */
+export interface InlineResponse2001Payload {
+    /**
+     * Type of item
+     * @type {string}
+     * @memberof InlineResponse2001Payload
+     */
+    category?: string;
+    /**
+     * Specific kind of category
+     * @type {Array<InlineResponse2001Subcategory>}
+     * @memberof InlineResponse2001Payload
+     */
+    subcategory?: Array<InlineResponse2001Subcategory>;
+}
+/**
+ * Specific kind of category
+ * @export
+ * @interface InlineResponse2001Subcategory
+ */
+export interface InlineResponse2001Subcategory {
+    /**
+     * Name of specific kind of category
+     * @type {string}
+     * @memberof InlineResponse2001Subcategory
+     */
+    subCategoryName?: string;
+    /**
+     * ID of specific kind of category
+     * @type {string}
+     * @memberof InlineResponse2001Subcategory
+     */
+    subCategoryId?: string;
 }
 /**
  * 
@@ -688,184 +744,203 @@ export interface InlineResponse2002RelatedQueries {
  */
 export interface InlineResponse2003 {
     /**
-     * Response Status
+     * An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item.
      * @type {string}
      * @memberof InlineResponse2003
+     */
+    sku: string;
+    /**
+     * Message confirming the deletion or retirement of an item from the Walmart Catalog
+     * @type {string}
+     * @memberof InlineResponse2003
+     */
+    message?: string;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse2004
+ */
+export interface InlineResponse2004 {
+    /**
+     * Response Status
+     * @type {string}
+     * @memberof InlineResponse2004
      */
     status?: string;
     /**
      * Items included in the response list
-     * @type {Array<InlineResponse2003Payload>}
-     * @memberof InlineResponse2003
+     * @type {Array<InlineResponse2004Payload>}
+     * @memberof InlineResponse2004
      */
-    payload?: Array<InlineResponse2003Payload>;
+    payload?: Array<InlineResponse2004Payload>;
     /**
      * Total items for the query
      * @type {number}
-     * @memberof InlineResponse2003
+     * @memberof InlineResponse2004
      */
     totalItems?: number;
     /**
      * Number of items shown in this page
      * @type {number}
-     * @memberof InlineResponse2003
+     * @memberof InlineResponse2004
      */
     limit?: number;
     /**
      * Used for pagination to fetch the next set of items
      * @type {string}
-     * @memberof InlineResponse2003
+     * @memberof InlineResponse2004
      */
     nextCursor?: string;
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse2003
+     * @memberof InlineResponse2004
      */
     statuss?: string;
 }
 /**
  * Items included in the response list
  * @export
- * @interface InlineResponse2003Payload
+ * @interface InlineResponse2004Payload
  */
-export interface InlineResponse2003Payload {
+export interface InlineResponse2004Payload {
     /**
      * The marketplace name. Example: Walmart_US
      * @type {string}
-     * @memberof InlineResponse2003Payload
+     * @memberof InlineResponse2004Payload
      */
-    mart?: InlineResponse2003PayloadMartEnum;
+    mart?: InlineResponse2004PayloadMartEnum;
     /**
      * An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item.
      * @type {string}
-     * @memberof InlineResponse2003Payload
+     * @memberof InlineResponse2004Payload
      */
     sku?: string;
     /**
      * The Walmart Product ID assigned by Walmart to the item when listed on Walmart.com
      * @type {string}
-     * @memberof InlineResponse2003Payload
+     * @memberof InlineResponse2004Payload
      */
     wpid?: string;
     /**
      * The 12-digit bar code used extensively for retail packaging in the United States
      * @type {string}
-     * @memberof InlineResponse2003Payload
+     * @memberof InlineResponse2004Payload
      */
     upc?: string;
     /**
      * International Standard Book Number
      * @type {string}
-     * @memberof InlineResponse2003Payload
+     * @memberof InlineResponse2004Payload
      */
     isbn?: string;
     /**
      * Product ID, EANs must be 13 digits in length.
      * @type {string}
-     * @memberof InlineResponse2003Payload
+     * @memberof InlineResponse2004Payload
      */
     ean?: string;
     /**
      * The GTIN-compatible Product ID (i.e. UPC or EAN). UPCs must be 12 or 14 digitis in length. EANs must be 13 digits in length.
      * @type {string}
-     * @memberof InlineResponse2003Payload
+     * @memberof InlineResponse2004Payload
      */
     gtin?: string;
     /**
      * A unique Id which identifies the item.
      * @type {string}
-     * @memberof InlineResponse2003Payload
+     * @memberof InlineResponse2004Payload
      */
     itemId?: string;
     /**
      * A seller-specified, alphanumeric string uniquely identifying the product name. Example: \'Sterling Silver Blue Diamond Heart Pendant with 18in Chain\'
      * @type {string}
-     * @memberof InlineResponse2003Payload
+     * @memberof InlineResponse2004Payload
      */
     productName?: string;
     /**
      * Walmart assigned an item shelf name
      * @type {string}
-     * @memberof InlineResponse2003Payload
+     * @memberof InlineResponse2004Payload
      */
     shelf?: string;
     /**
      * A seller-specified, alphanumeric string uniquely identifying the Product Type. Example: \'Diamond\'
      * @type {string}
-     * @memberof InlineResponse2003Payload
+     * @memberof InlineResponse2004Payload
      */
     productType?: string;
     /**
      * 
-     * @type {InlineResponse2003Price}
-     * @memberof InlineResponse2003Payload
+     * @type {InlineResponse2004Price}
+     * @memberof InlineResponse2004Payload
      */
-    price?: InlineResponse2003Price;
+    price?: InlineResponse2004Price;
     /**
      * Brand of Item.
      * @type {string}
-     * @memberof InlineResponse2003Payload
+     * @memberof InlineResponse2004Payload
      */
     brand?: string;
     /**
      * The reviewed times for Items.
      * @type {string}
-     * @memberof InlineResponse2003Payload
+     * @memberof InlineResponse2004Payload
      */
     num_reviews?: string;
     /**
      * Customer rating.
      * @type {string}
-     * @memberof InlineResponse2003Payload
+     * @memberof InlineResponse2004Payload
      */
     customerRating?: string;
     /**
      * manufacturer of Item.
      * @type {string}
-     * @memberof InlineResponse2003Payload
+     * @memberof InlineResponse2004Payload
      */
     manufacturer?: string;
     /**
      * Fulfillment information.
      * @type {string}
-     * @memberof InlineResponse2003Payload
+     * @memberof InlineResponse2004Payload
      */
     fulfillmentType?: string;
     /**
      * 
-     * @type {InlineResponse2003PublishedStatus}
-     * @memberof InlineResponse2003Payload
+     * @type {InlineResponse2004PublishedStatus}
+     * @memberof InlineResponse2004Payload
      */
-    publishedStatus?: InlineResponse2003PublishedStatus;
+    publishedStatus?: InlineResponse2004PublishedStatus;
     /**
      * It indicates whether the product is in stock or not.
      * @type {string}
-     * @memberof InlineResponse2003Payload
+     * @memberof InlineResponse2004Payload
      */
     inventoryStatus?: string;
     /**
      * The lifecycle status of an item describes where the item listing is in the overall lifecycle. Examples of allowed values are ACTIVE , ARCHIVED, RETIRED.
      * @type {string}
-     * @memberof InlineResponse2003Payload
+     * @memberof InlineResponse2004Payload
      */
     lifecycleStatus?: string;
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse2003Payload
+     * @memberof InlineResponse2004Payload
      */
     shop_ref?: string;
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse2003Payload
+     * @memberof InlineResponse2004Payload
      */
     shop_product_id?: string;
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse2003Payload
+     * @memberof InlineResponse2004Payload
      */
     shop_variant_id?: string;
 }
@@ -874,7 +949,7 @@ export interface InlineResponse2003Payload {
     * @export
     * @enum {string}
     */
-export enum InlineResponse2003PayloadMartEnum {
+export enum InlineResponse2004PayloadMartEnum {
     WalmartUs = 'WALMART_US',
     WalmartCa = 'WALMART_CA',
     AsdaGm = 'ASDA_GM',
@@ -884,19 +959,19 @@ export enum InlineResponse2003PayloadMartEnum {
 /**
  * Specifies item purchase price information, including currency and amount.
  * @export
- * @interface InlineResponse2003Price
+ * @interface InlineResponse2004Price
  */
-export interface InlineResponse2003Price {
+export interface InlineResponse2004Price {
     /**
      * The currency type. Example: USD for US Dollars
      * @type {string}
-     * @memberof InlineResponse2003Price
+     * @memberof InlineResponse2004Price
      */
-    unit?: InlineResponse2003PriceUnitEnum;
+    unit?: InlineResponse2004PriceUnitEnum;
     /**
      * The numerical amount of the price. Example: 9.99
      * @type {number}
-     * @memberof InlineResponse2003Price
+     * @memberof InlineResponse2004Price
      */
     amount?: number;
 }
@@ -905,7 +980,7 @@ export interface InlineResponse2003Price {
     * @export
     * @enum {string}
     */
-export enum InlineResponse2003PriceUnitEnum {
+export enum InlineResponse2004PriceUnitEnum {
     Aed = 'AED',
     Afn = 'AFN',
     All = 'ALL',
@@ -1080,115 +1155,278 @@ export enum InlineResponse2003PriceUnitEnum {
 /**
  * The status of an item when the item is in the submission process. The status can be one of the following: PUBLISHED, READY_TO_PUBLISH, IN_PROGRESS, UNPUBLISHED, STAGE, or SYSTEM_PROBLEM.
  * @export
- * @interface InlineResponse2003PublishedStatus
+ * @interface InlineResponse2004PublishedStatus
  */
-export interface InlineResponse2003PublishedStatus {
+export interface InlineResponse2004PublishedStatus {
     /**
      * An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item.
      * @type {string}
-     * @memberof InlineResponse2003PublishedStatus
+     * @memberof InlineResponse2004PublishedStatus
      */
     status?: string;
     /**
      * The Walmart Product ID assigned by Walmart to the item when listed on Walmart.com
      * @type {Array<string>}
-     * @memberof InlineResponse2003PublishedStatus
+     * @memberof InlineResponse2004PublishedStatus
      */
     reasons?: Array<string>;
 }
 /**
  * 
  * @export
- * @interface InlineResponse2004
+ * @interface InlineResponse2005
  */
-export interface InlineResponse2004 {
+export interface InlineResponse2005 {
     /**
      * 
-     * @type {Array<InlineResponse2004Errors>}
-     * @memberof InlineResponse2004
+     * @type {Array<InlineResponse2005Items>}
+     * @memberof InlineResponse2005
      */
-    errors?: Array<InlineResponse2004Errors>;
-    /**
-     * Items included in the response list
-     * @type {Array<InlineResponse2004ItemResponse>}
-     * @memberof InlineResponse2004
-     */
-    ItemResponse: Array<InlineResponse2004ItemResponse>;
-    /**
-     * 
-     * @type {InlineResponse2004AdditionalAttributes}
-     * @memberof InlineResponse2004
-     */
-    additionalAttributes?: InlineResponse2004AdditionalAttributes;
-    /**
-     * Total items for the query
-     * @type {number}
-     * @memberof InlineResponse2004
-     */
-    totalItems?: number;
-    /**
-     * Used for pagination to fetch the next set of items
-     * @type {string}
-     * @memberof InlineResponse2004
-     */
-    nextCursor?: string;
+    items: Array<InlineResponse2005Items>;
 }
 /**
- * Bag of additional attributes
+ * Item Associations like shippingTemplate, shipNode.
  * @export
- * @interface InlineResponse2004AdditionalAttributes
+ * @interface InlineResponse2005Associations
  */
-export interface InlineResponse2004AdditionalAttributes {
+export interface InlineResponse2005Associations {
     /**
      * 
-     * @type {Array<InlineResponse2004AdditionalAttributesNameValueAttribute>}
-     * @memberof InlineResponse2004AdditionalAttributes
+     * @type {InlineResponse2005ShippingTemplate}
+     * @memberof InlineResponse2005Associations
      */
-    nameValueAttribute?: Array<InlineResponse2004AdditionalAttributesNameValueAttribute>;
+    shippingTemplate?: InlineResponse2005ShippingTemplate;
+    /**
+     * Name of the fulfillment center.
+     * @type {string}
+     * @memberof InlineResponse2005Associations
+     */
+    shipNodeName?: string;
+    /**
+     * The fulfillment center or ship node Id which uniquely identifies each facility and is autogenerated during the creation of fulfillment center. Every time a facility is added, a new ship node id is generated.
+     * @type {string}
+     * @memberof InlineResponse2005Associations
+     */
+    shipNode?: string;
 }
 /**
  * 
  * @export
- * @interface InlineResponse2004AdditionalAttributesNameValueAttribute
+ * @interface InlineResponse2005Errors
  */
-export interface InlineResponse2004AdditionalAttributesNameValueAttribute {
+export interface InlineResponse2005Errors {
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse2004AdditionalAttributesNameValueAttribute
+     * @memberof InlineResponse2005Errors
      */
-    name: string;
+    code: string;
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse2004AdditionalAttributesNameValueAttribute
+     * @memberof InlineResponse2005Errors
      */
-    type: InlineResponse2004AdditionalAttributesNameValueAttributeTypeEnum;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof InlineResponse2004AdditionalAttributesNameValueAttribute
-     */
-    isVariant?: boolean;
+    field?: string;
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse2004AdditionalAttributesNameValueAttribute
+     * @memberof InlineResponse2005Errors
      */
-    variantResourceType?: string;
+    description?: string;
     /**
      * 
-     * @type {Array<InlineResponse2004AdditionalAttributesValue>}
-     * @memberof InlineResponse2004AdditionalAttributesNameValueAttribute
+     * @type {string}
+     * @memberof InlineResponse2005Errors
      */
-    value: Array<InlineResponse2004AdditionalAttributesValue>;
+    info?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2005Errors
+     */
+    severity?: InlineResponse2005ErrorsSeverityEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2005Errors
+     */
+    category?: InlineResponse2005ErrorsCategoryEnum;
+    /**
+     * 
+     * @type {Array<InlineResponse200Causes>}
+     * @memberof InlineResponse2005Errors
+     */
+    causes?: Array<InlineResponse200Causes>;
+    /**
+     * 
+     * @type {{ [key: string]: object; }}
+     * @memberof InlineResponse2005Errors
+     */
+    errorIdentifiers?: { [key: string]: object; };
 }
 
 /**
     * @export
     * @enum {string}
     */
-export enum InlineResponse2004AdditionalAttributesNameValueAttributeTypeEnum {
+export enum InlineResponse2005ErrorsSeverityEnum {
+    Info = 'INFO',
+    Warn = 'WARN',
+    Error = 'ERROR'
+}
+/**
+    * @export
+    * @enum {string}
+    */
+export enum InlineResponse2005ErrorsCategoryEnum {
+    Application = 'APPLICATION',
+    System = 'SYSTEM',
+    Request = 'REQUEST',
+    Data = 'DATA'
+}
+
+/**
+ * 
+ * @export
+ * @interface InlineResponse2005Items
+ */
+export interface InlineResponse2005Items {
+    /**
+     * An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item.
+     * @type {string}
+     * @memberof InlineResponse2005Items
+     */
+    sku: string;
+    /**
+     * Item Associations like shippingTemplate, shipNode.
+     * @type {Array<InlineResponse2005Associations>}
+     * @memberof InlineResponse2005Items
+     */
+    associations?: Array<InlineResponse2005Associations>;
+    /**
+     * 
+     * @type {Array<InlineResponse2005Errors>}
+     * @memberof InlineResponse2005Items
+     */
+    errors?: Array<InlineResponse2005Errors>;
+}
+/**
+ * Information about Shipping Template
+ * @export
+ * @interface InlineResponse2005ShippingTemplate
+ */
+export interface InlineResponse2005ShippingTemplate {
+    /**
+     * Shipping Template Name
+     * @type {string}
+     * @memberof InlineResponse2005ShippingTemplate
+     */
+    name?: string;
+    /**
+     * Shipping Template Type
+     * @type {string}
+     * @memberof InlineResponse2005ShippingTemplate
+     */
+    type?: InlineResponse2005ShippingTemplateTypeEnum;
+    /**
+     * Shipping Template ID
+     * @type {string}
+     * @memberof InlineResponse2005ShippingTemplate
+     */
+    id?: string;
+}
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum InlineResponse2005ShippingTemplateTypeEnum {
+    Default = 'DEFAULT',
+    Custom = 'CUSTOM',
+    Deliverr = 'DELIVERR'
+}
+
+/**
+ * 
+ * @export
+ * @interface InlineResponse2006
+ */
+export interface InlineResponse2006 {
+    /**
+     * A unique ID, returned from the Bulk Upload API, used for tracking the feed file
+     * @type {string}
+     * @memberof InlineResponse2006
+     */
+    feedId?: string;
+    /**
+     * 
+     * @type {object}
+     * @memberof InlineResponse2006
+     */
+    additionalAttributes?: object | null;
+    /**
+     * 
+     * @type {object}
+     * @memberof InlineResponse2006
+     */
+    errors?: object | null;
+}
+/**
+ * Bag of additional attributes
+ * @export
+ * @interface InlineResponse200AdditionalAttributes
+ */
+export interface InlineResponse200AdditionalAttributes {
+    /**
+     * 
+     * @type {Array<InlineResponse200AdditionalAttributesNameValueAttribute>}
+     * @memberof InlineResponse200AdditionalAttributes
+     */
+    nameValueAttribute?: Array<InlineResponse200AdditionalAttributesNameValueAttribute>;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse200AdditionalAttributesNameValueAttribute
+ */
+export interface InlineResponse200AdditionalAttributesNameValueAttribute {
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse200AdditionalAttributesNameValueAttribute
+     */
+    name: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse200AdditionalAttributesNameValueAttribute
+     */
+    type: InlineResponse200AdditionalAttributesNameValueAttributeTypeEnum;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof InlineResponse200AdditionalAttributesNameValueAttribute
+     */
+    isVariant?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse200AdditionalAttributesNameValueAttribute
+     */
+    variantResourceType?: string;
+    /**
+     * 
+     * @type {Array<InlineResponse200AdditionalAttributesValue>}
+     * @memberof InlineResponse200AdditionalAttributesNameValueAttribute
+     */
+    value: Array<InlineResponse200AdditionalAttributesValue>;
+}
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum InlineResponse200AdditionalAttributesNameValueAttributeTypeEnum {
     LocalizableText = 'LOCALIZABLE_TEXT',
     String = 'STRING',
     Boolean = 'BOOLEAN',
@@ -1201,156 +1439,156 @@ export enum InlineResponse2004AdditionalAttributesNameValueAttributeTypeEnum {
 /**
  * 
  * @export
- * @interface InlineResponse2004AdditionalAttributesValue
+ * @interface InlineResponse200AdditionalAttributesValue
  */
-export interface InlineResponse2004AdditionalAttributesValue {
+export interface InlineResponse200AdditionalAttributesValue {
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse2004AdditionalAttributesValue
+     * @memberof InlineResponse200AdditionalAttributesValue
      */
     value: string;
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse2004AdditionalAttributesValue
+     * @memberof InlineResponse200AdditionalAttributesValue
      */
     group?: string;
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse2004AdditionalAttributesValue
+     * @memberof InlineResponse200AdditionalAttributesValue
      */
     source?: string;
     /**
      * 
      * @type {number}
-     * @memberof InlineResponse2004AdditionalAttributesValue
+     * @memberof InlineResponse200AdditionalAttributesValue
      */
     rank?: number;
     /**
      * 
      * @type {boolean}
-     * @memberof InlineResponse2004AdditionalAttributesValue
+     * @memberof InlineResponse200AdditionalAttributesValue
      */
     isVariant?: boolean;
 }
 /**
  * 
  * @export
- * @interface InlineResponse2004Causes
+ * @interface InlineResponse200Causes
  */
-export interface InlineResponse2004Causes {
+export interface InlineResponse200Causes {
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse2004Causes
+     * @memberof InlineResponse200Causes
      */
     code?: string;
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse2004Causes
+     * @memberof InlineResponse200Causes
      */
     field?: string;
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse2004Causes
+     * @memberof InlineResponse200Causes
      */
     type?: string;
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse2004Causes
+     * @memberof InlineResponse200Causes
      */
     description?: string;
 }
 /**
  * 
  * @export
- * @interface InlineResponse2004Errors
+ * @interface InlineResponse200Errors
  */
-export interface InlineResponse2004Errors {
+export interface InlineResponse200Errors {
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse2004Errors
+     * @memberof InlineResponse200Errors
      */
     code: string;
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse2004Errors
+     * @memberof InlineResponse200Errors
      */
     field?: string;
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse2004Errors
+     * @memberof InlineResponse200Errors
      */
     description?: string;
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse2004Errors
+     * @memberof InlineResponse200Errors
      */
     info?: string;
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse2004Errors
+     * @memberof InlineResponse200Errors
      */
-    severity?: InlineResponse2004ErrorsSeverityEnum;
+    severity?: InlineResponse200ErrorsSeverityEnum;
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse2004Errors
+     * @memberof InlineResponse200Errors
      */
-    category?: InlineResponse2004ErrorsCategoryEnum;
+    category?: InlineResponse200ErrorsCategoryEnum;
     /**
      * 
-     * @type {Array<InlineResponse2004Causes>}
-     * @memberof InlineResponse2004Errors
+     * @type {Array<InlineResponse200Causes>}
+     * @memberof InlineResponse200Errors
      */
-    causes?: Array<InlineResponse2004Causes>;
+    causes?: Array<InlineResponse200Causes>;
     /**
      * 
      * @type {{ [key: string]: object; }}
-     * @memberof InlineResponse2004Errors
+     * @memberof InlineResponse200Errors
      */
     errorIdentifiers?: { [key: string]: object; };
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse2004Errors
+     * @memberof InlineResponse200Errors
      */
     component?: string;
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse2004Errors
+     * @memberof InlineResponse200Errors
      */
     type?: string;
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse2004Errors
+     * @memberof InlineResponse200Errors
      */
     serviceName?: string;
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse2004Errors
+     * @memberof InlineResponse200Errors
      */
-    gatewayErrorCategory?: InlineResponse2004ErrorsGatewayErrorCategoryEnum;
+    gatewayErrorCategory?: InlineResponse200ErrorsGatewayErrorCategoryEnum;
 }
 
 /**
     * @export
     * @enum {string}
     */
-export enum InlineResponse2004ErrorsSeverityEnum {
+export enum InlineResponse200ErrorsSeverityEnum {
     Info = 'INFO',
     Warn = 'WARN',
     Error = 'ERROR'
@@ -1359,7 +1597,7 @@ export enum InlineResponse2004ErrorsSeverityEnum {
     * @export
     * @enum {string}
     */
-export enum InlineResponse2004ErrorsCategoryEnum {
+export enum InlineResponse200ErrorsCategoryEnum {
     Application = 'APPLICATION',
     System = 'SYSTEM',
     Request = 'REQUEST',
@@ -1369,7 +1607,7 @@ export enum InlineResponse2004ErrorsCategoryEnum {
     * @export
     * @enum {string}
     */
-export enum InlineResponse2004ErrorsGatewayErrorCategoryEnum {
+export enum InlineResponse200ErrorsGatewayErrorCategoryEnum {
     InternalDataError = 'INTERNAL_DATA_ERROR',
     ExternalDataError = 'EXTERNAL_DATA_ERROR',
     SystemError = 'SYSTEM_ERROR'
@@ -1378,85 +1616,85 @@ export enum InlineResponse2004ErrorsGatewayErrorCategoryEnum {
 /**
  * 
  * @export
- * @interface InlineResponse2004ItemResponse
+ * @interface InlineResponse200ItemResponse
  */
-export interface InlineResponse2004ItemResponse {
+export interface InlineResponse200ItemResponse {
     /**
      * The marketplace name. Example: Walmart_US
      * @type {string}
-     * @memberof InlineResponse2004ItemResponse
+     * @memberof InlineResponse200ItemResponse
      */
-    mart?: InlineResponse2004ItemResponseMartEnum;
+    mart?: InlineResponse200ItemResponseMartEnum;
     /**
      * An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item.
      * @type {string}
-     * @memberof InlineResponse2004ItemResponse
+     * @memberof InlineResponse200ItemResponse
      */
     sku: string;
     /**
      * The Walmart Product ID assigned by Walmart to the item when listed on Walmart.com
      * @type {string}
-     * @memberof InlineResponse2004ItemResponse
+     * @memberof InlineResponse200ItemResponse
      */
     wpid?: string;
     /**
      * The 12-digit bar code used extensively for retail packaging in the United States
      * @type {string}
-     * @memberof InlineResponse2004ItemResponse
+     * @memberof InlineResponse200ItemResponse
      */
     upc?: string;
     /**
      * The GTIN-compatible Product ID (i.e. UPC or EAN). UPCs must be 12 or 14 digitis in length. EANs must be 13 digits in length.
      * @type {string}
-     * @memberof InlineResponse2004ItemResponse
+     * @memberof InlineResponse200ItemResponse
      */
     gtin?: string;
     /**
      * A seller-specified, alphanumeric string uniquely identifying the product name. Example: \'Sterling Silver Blue Diamond Heart Pendant with 18in Chain\'
      * @type {string}
-     * @memberof InlineResponse2004ItemResponse
+     * @memberof InlineResponse200ItemResponse
      */
     productName?: string;
     /**
      * Walmart assigned an item shelf name
      * @type {string}
-     * @memberof InlineResponse2004ItemResponse
+     * @memberof InlineResponse200ItemResponse
      */
     shelf?: string;
     /**
      * A seller-specified, alphanumeric string uniquely identifying the Product Type. Example: \'Diamond\'
      * @type {string}
-     * @memberof InlineResponse2004ItemResponse
+     * @memberof InlineResponse200ItemResponse
      */
     productType?: string;
     /**
      * 
-     * @type {InlineResponse2004Price}
-     * @memberof InlineResponse2004ItemResponse
+     * @type {InlineResponse200Price}
+     * @memberof InlineResponse200ItemResponse
      */
-    price?: InlineResponse2004Price;
+    price?: InlineResponse200Price;
     /**
      * The status of an item when the item is in the submission process. The status can be one of the following: PUBLISHED, READY_TO_PUBLISH, IN_PROGRESS, UNPUBLISHED, STAGE, or SYSTEM_PROBLEM.
      * @type {string}
-     * @memberof InlineResponse2004ItemResponse
+     * @memberof InlineResponse200ItemResponse
      */
     publishedStatus?: string;
     /**
      * 
-     * @type {InlineResponse2004AdditionalAttributes}
-     * @memberof InlineResponse2004ItemResponse
+     * @type {InlineResponse200AdditionalAttributes}
+     * @memberof InlineResponse200ItemResponse
      */
-    additionalAttributes?: InlineResponse2004AdditionalAttributes;
+    additionalAttributes?: InlineResponse200AdditionalAttributes;
     /**
      * 
-     * @type {InlineResponse2004UnpublishedReasons}
-     * @memberof InlineResponse2004ItemResponse
+     * @type {InlineResponse200UnpublishedReasons}
+     * @memberof InlineResponse200ItemResponse
      */
-    unpublishedReasons?: InlineResponse2004UnpublishedReasons;
+    unpublishedReasons?: InlineResponse200UnpublishedReasons;
     /**
      * The lifecycle status of an item describes where the item listing is in the overall lifecycle. Examples of allowed values are ACTIVE , ARCHIVED, RETIRED.
      * @type {string}
-     * @memberof InlineResponse2004ItemResponse
+     * @memberof InlineResponse200ItemResponse
      */
     lifecycleStatus?: string;
 }
@@ -1465,7 +1703,7 @@ export interface InlineResponse2004ItemResponse {
     * @export
     * @enum {string}
     */
-export enum InlineResponse2004ItemResponseMartEnum {
+export enum InlineResponse200ItemResponseMartEnum {
     WalmartUs = 'WALMART_US',
     WalmartCa = 'WALMART_CA',
     AsdaGm = 'ASDA_GM',
@@ -1475,19 +1713,19 @@ export enum InlineResponse2004ItemResponseMartEnum {
 /**
  * Specifies item purchase price information, including currency and amount.
  * @export
- * @interface InlineResponse2004Price
+ * @interface InlineResponse200Price
  */
-export interface InlineResponse2004Price {
+export interface InlineResponse200Price {
     /**
      * The currency type. Example: USD for US Dollars
      * @type {string}
-     * @memberof InlineResponse2004Price
+     * @memberof InlineResponse200Price
      */
-    currency?: InlineResponse2004PriceCurrencyEnum;
+    currency?: InlineResponse200PriceCurrencyEnum;
     /**
      * The numerical amount of the price. Example: 9.99
      * @type {number}
-     * @memberof InlineResponse2004Price
+     * @memberof InlineResponse200Price
      */
     amount?: number;
 }
@@ -1496,7 +1734,7 @@ export interface InlineResponse2004Price {
     * @export
     * @enum {string}
     */
-export enum InlineResponse2004PriceCurrencyEnum {
+export enum InlineResponse200PriceCurrencyEnum {
     Aed = 'AED',
     Afn = 'AFN',
     All = 'ALL',
@@ -1671,253 +1909,15 @@ export enum InlineResponse2004PriceCurrencyEnum {
 /**
  * It outlines the reason for an item when unpublished ,that is, when \'publishedStatus\' is set to \'UNPUBLISHED\'.
  * @export
- * @interface InlineResponse2004UnpublishedReasons
+ * @interface InlineResponse200UnpublishedReasons
  */
-export interface InlineResponse2004UnpublishedReasons {
+export interface InlineResponse200UnpublishedReasons {
     /**
      * 
      * @type {Array<string>}
-     * @memberof InlineResponse2004UnpublishedReasons
+     * @memberof InlineResponse200UnpublishedReasons
      */
     reason?: Array<string>;
-}
-/**
- * 
- * @export
- * @interface InlineResponse2005
- */
-export interface InlineResponse2005 {
-    /**
-     * 
-     * @type {Array<InlineResponse2005Items>}
-     * @memberof InlineResponse2005
-     */
-    items: Array<InlineResponse2005Items>;
-}
-/**
- * Item Associations like shippingTemplate, shipNode.
- * @export
- * @interface InlineResponse2005Associations
- */
-export interface InlineResponse2005Associations {
-    /**
-     * 
-     * @type {InlineResponse2005ShippingTemplate}
-     * @memberof InlineResponse2005Associations
-     */
-    shippingTemplate?: InlineResponse2005ShippingTemplate;
-    /**
-     * Name of the fulfillment center.
-     * @type {string}
-     * @memberof InlineResponse2005Associations
-     */
-    shipNodeName?: string;
-    /**
-     * The fulfillment center or ship node Id which uniquely identifies each facility and is autogenerated during the creation of fulfillment center. Every time a facility is added, a new ship node id is generated.
-     * @type {string}
-     * @memberof InlineResponse2005Associations
-     */
-    shipNode?: string;
-}
-/**
- * 
- * @export
- * @interface InlineResponse2005Errors
- */
-export interface InlineResponse2005Errors {
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2005Errors
-     */
-    code: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2005Errors
-     */
-    field?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2005Errors
-     */
-    description?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2005Errors
-     */
-    info?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2005Errors
-     */
-    severity?: InlineResponse2005ErrorsSeverityEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2005Errors
-     */
-    category?: InlineResponse2005ErrorsCategoryEnum;
-    /**
-     * 
-     * @type {Array<InlineResponse2004Causes>}
-     * @memberof InlineResponse2005Errors
-     */
-    causes?: Array<InlineResponse2004Causes>;
-    /**
-     * 
-     * @type {{ [key: string]: object; }}
-     * @memberof InlineResponse2005Errors
-     */
-    errorIdentifiers?: { [key: string]: object; };
-}
-
-/**
-    * @export
-    * @enum {string}
-    */
-export enum InlineResponse2005ErrorsSeverityEnum {
-    Info = 'INFO',
-    Warn = 'WARN',
-    Error = 'ERROR'
-}
-/**
-    * @export
-    * @enum {string}
-    */
-export enum InlineResponse2005ErrorsCategoryEnum {
-    Application = 'APPLICATION',
-    System = 'SYSTEM',
-    Request = 'REQUEST',
-    Data = 'DATA'
-}
-
-/**
- * 
- * @export
- * @interface InlineResponse2005Items
- */
-export interface InlineResponse2005Items {
-    /**
-     * An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item.
-     * @type {string}
-     * @memberof InlineResponse2005Items
-     */
-    sku: string;
-    /**
-     * Item Associations like shippingTemplate, shipNode.
-     * @type {Array<InlineResponse2005Associations>}
-     * @memberof InlineResponse2005Items
-     */
-    associations?: Array<InlineResponse2005Associations>;
-    /**
-     * 
-     * @type {Array<InlineResponse2005Errors>}
-     * @memberof InlineResponse2005Items
-     */
-    errors?: Array<InlineResponse2005Errors>;
-}
-/**
- * Information about Shipping Template
- * @export
- * @interface InlineResponse2005ShippingTemplate
- */
-export interface InlineResponse2005ShippingTemplate {
-    /**
-     * Shipping Template Name
-     * @type {string}
-     * @memberof InlineResponse2005ShippingTemplate
-     */
-    name?: string;
-    /**
-     * Shipping Template Type
-     * @type {string}
-     * @memberof InlineResponse2005ShippingTemplate
-     */
-    type?: InlineResponse2005ShippingTemplateTypeEnum;
-    /**
-     * Shipping Template ID
-     * @type {string}
-     * @memberof InlineResponse2005ShippingTemplate
-     */
-    id?: string;
-}
-
-/**
-    * @export
-    * @enum {string}
-    */
-export enum InlineResponse2005ShippingTemplateTypeEnum {
-    Default = 'DEFAULT',
-    Custom = 'CUSTOM',
-    Deliverr = 'DELIVERR'
-}
-
-/**
- * 
- * @export
- * @interface InlineResponse2006
- */
-export interface InlineResponse2006 {
-    /**
-     * A unique ID, returned from the Bulk Upload API, used for tracking the feed file
-     * @type {string}
-     * @memberof InlineResponse2006
-     */
-    feedId?: string;
-    /**
-     * 
-     * @type {object}
-     * @memberof InlineResponse2006
-     */
-    additionalAttributes?: object | null;
-    /**
-     * 
-     * @type {object}
-     * @memberof InlineResponse2006
-     */
-    errors?: object | null;
-}
-/**
- * 
- * @export
- * @interface InlineResponse200Payload
- */
-export interface InlineResponse200Payload {
-    /**
-     * Type of item
-     * @type {string}
-     * @memberof InlineResponse200Payload
-     */
-    category?: string;
-    /**
-     * Specific kind of category
-     * @type {Array<InlineResponse200Subcategory>}
-     * @memberof InlineResponse200Payload
-     */
-    subcategory?: Array<InlineResponse200Subcategory>;
-}
-/**
- * Specific kind of category
- * @export
- * @interface InlineResponse200Subcategory
- */
-export interface InlineResponse200Subcategory {
-    /**
-     * Name of specific kind of category
-     * @type {string}
-     * @memberof InlineResponse200Subcategory
-     */
-    subCategoryName?: string;
-    /**
-     * ID of specific kind of category
-     * @type {string}
-     * @memberof InlineResponse200Subcategory
-     */
-    subCategoryId?: string;
 }
 /**
  * 
@@ -2072,10 +2072,10 @@ export interface ItemCatalogResponse {
     productType?: string;
     /**
      * 
-     * @type {InlineResponse2003Price}
+     * @type {InlineResponse2004Price}
      * @memberof ItemCatalogResponse
      */
-    price?: InlineResponse2003Price;
+    price?: InlineResponse2004Price;
     /**
      * Brand of Item.
      * @type {string}
@@ -2108,10 +2108,10 @@ export interface ItemCatalogResponse {
     fulfillmentType?: string;
     /**
      * 
-     * @type {InlineResponse2003PublishedStatus}
+     * @type {InlineResponse2004PublishedStatus}
      * @memberof ItemCatalogResponse
      */
-    publishedStatus?: InlineResponse2003PublishedStatus;
+    publishedStatus?: InlineResponse2004PublishedStatus;
     /**
      * It indicates whether the product is in stock or not.
      * @type {string}
@@ -2169,10 +2169,10 @@ export interface ItemCatalogResponses {
     status?: string;
     /**
      * Items included in the response list
-     * @type {Array<InlineResponse2003Payload>}
+     * @type {Array<InlineResponse2004Payload>}
      * @memberof ItemCatalogResponses
      */
-    payload?: Array<InlineResponse2003Payload>;
+    payload?: Array<InlineResponse2004Payload>;
     /**
      * Total items for the query
      * @type {number}
@@ -2279,10 +2279,10 @@ export interface ItemResponse {
     productType?: string;
     /**
      * 
-     * @type {InlineResponse2004Price}
+     * @type {InlineResponse200Price}
      * @memberof ItemResponse
      */
-    price?: InlineResponse2004Price;
+    price?: InlineResponse200Price;
     /**
      * The status of an item when the item is in the submission process. The status can be one of the following: PUBLISHED, READY_TO_PUBLISH, IN_PROGRESS, UNPUBLISHED, STAGE, or SYSTEM_PROBLEM.
      * @type {string}
@@ -2291,16 +2291,16 @@ export interface ItemResponse {
     publishedStatus?: string;
     /**
      * 
-     * @type {InlineResponse2004AdditionalAttributes}
+     * @type {InlineResponse200AdditionalAttributes}
      * @memberof ItemResponse
      */
-    additionalAttributes?: InlineResponse2004AdditionalAttributes;
+    additionalAttributes?: InlineResponse200AdditionalAttributes;
     /**
      * 
-     * @type {InlineResponse2004UnpublishedReasons}
+     * @type {InlineResponse200UnpublishedReasons}
      * @memberof ItemResponse
      */
-    unpublishedReasons?: InlineResponse2004UnpublishedReasons;
+    unpublishedReasons?: InlineResponse200UnpublishedReasons;
     /**
      * The lifecycle status of an item describes where the item listing is in the overall lifecycle. Examples of allowed values are ACTIVE , ARCHIVED, RETIRED.
      * @type {string}
@@ -2328,10 +2328,10 @@ export enum ItemResponseMartEnum {
 export interface ItemResponseJson {
     /**
      * 
-     * @type {InlineResponse2004ItemResponse}
+     * @type {InlineResponse200ItemResponse}
      * @memberof ItemResponseJson
      */
-    responseRecord?: InlineResponse2004ItemResponse;
+    responseRecord?: InlineResponse200ItemResponse;
 }
 /**
  * 
@@ -2389,10 +2389,10 @@ export interface ItemResponseRecord {
     productType?: string;
     /**
      * 
-     * @type {InlineResponse2004Price}
+     * @type {InlineResponse200Price}
      * @memberof ItemResponseRecord
      */
-    price?: InlineResponse2004Price;
+    price?: InlineResponse200Price;
     /**
      * The status of an item when the item is in the submission process. The status can be one of the following: PUBLISHED, READY_TO_PUBLISH, IN_PROGRESS, UNPUBLISHED, STAGE, or SYSTEM_PROBLEM.
      * @type {string}
@@ -2401,16 +2401,16 @@ export interface ItemResponseRecord {
     publishedStatus?: string;
     /**
      * 
-     * @type {InlineResponse2004AdditionalAttributes}
+     * @type {InlineResponse200AdditionalAttributes}
      * @memberof ItemResponseRecord
      */
-    additionalAttributes?: InlineResponse2004AdditionalAttributes;
+    additionalAttributes?: InlineResponse200AdditionalAttributes;
     /**
      * 
-     * @type {InlineResponse2004UnpublishedReasons}
+     * @type {InlineResponse200UnpublishedReasons}
      * @memberof ItemResponseRecord
      */
-    unpublishedReasons?: InlineResponse2004UnpublishedReasons;
+    unpublishedReasons?: InlineResponse200UnpublishedReasons;
     /**
      * The lifecycle status of an item describes where the item listing is in the overall lifecycle. Examples of allowed values are ACTIVE , ARCHIVED, RETIRED.
      * @type {string}
@@ -2438,22 +2438,22 @@ export enum ItemResponseRecordMartEnum {
 export interface ItemResponses {
     /**
      * 
-     * @type {Array<InlineResponse2004Errors>}
+     * @type {Array<InlineResponse200Errors>}
      * @memberof ItemResponses
      */
-    errors?: Array<InlineResponse2004Errors>;
+    errors?: Array<InlineResponse200Errors>;
     /**
      * Items included in the response list
-     * @type {Array<InlineResponse2004ItemResponse>}
+     * @type {Array<InlineResponse200ItemResponse>}
      * @memberof ItemResponses
      */
-    ItemResponse: Array<InlineResponse2004ItemResponse>;
+    ItemResponse: Array<InlineResponse200ItemResponse>;
     /**
      * 
-     * @type {InlineResponse2004AdditionalAttributes}
+     * @type {InlineResponse200AdditionalAttributes}
      * @memberof ItemResponses
      */
-    additionalAttributes?: InlineResponse2004AdditionalAttributes;
+    additionalAttributes?: InlineResponse200AdditionalAttributes;
     /**
      * Total items for the query
      * @type {number}
@@ -2594,10 +2594,10 @@ export interface ModelError {
     category?: ModelErrorCategoryEnum;
     /**
      * 
-     * @type {Array<InlineResponse2004Causes>}
+     * @type {Array<InlineResponse200Causes>}
      * @memberof ModelError
      */
-    causes?: Array<InlineResponse2004Causes>;
+    causes?: Array<InlineResponse200Causes>;
     /**
      * 
      * @type {{ [key: string]: object; }}
@@ -2854,10 +2854,10 @@ export interface NameValueAttribute {
     variantResourceType?: string;
     /**
      * 
-     * @type {Array<InlineResponse2004AdditionalAttributesValue>}
+     * @type {Array<InlineResponse200AdditionalAttributesValue>}
      * @memberof NameValueAttribute
      */
-    value: Array<InlineResponse2004AdditionalAttributesValue>;
+    value: Array<InlineResponse200AdditionalAttributesValue>;
 }
 
 /**
@@ -2882,10 +2882,10 @@ export enum NameValueAttributeTypeEnum {
 export interface NameValueAttributes {
     /**
      * 
-     * @type {Array<InlineResponse2004AdditionalAttributesNameValueAttribute>}
+     * @type {Array<InlineResponse200AdditionalAttributesNameValueAttribute>}
      * @memberof NameValueAttributes
      */
-    nameValueAttribute?: Array<InlineResponse2004AdditionalAttributesNameValueAttribute>;
+    nameValueAttribute?: Array<InlineResponse200AdditionalAttributesNameValueAttribute>;
 }
 /**
  * Specifies item purchase price information, including currency and amount.
@@ -3341,10 +3341,10 @@ export interface TaxonomyResponseDTO {
     status?: string;
     /**
      * 
-     * @type {Array<InlineResponse200Payload>}
+     * @type {Array<InlineResponse2001Payload>}
      * @memberof TaxonomyResponseDTO
      */
-    payload?: Array<InlineResponse200Payload>;
+    payload?: Array<InlineResponse2001Payload>;
 }
 /**
  * It outlines the reason for an item when unpublished ,that is, when \'publishedStatus\' is set to \'UNPUBLISHED\'.
@@ -4223,11 +4223,10 @@ export const ItemsApiAxiosParamCreator = function (configuration?: Configuration
     
     
             localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
-            localVarHeaderParameter['Accept'] = 'application/json';
     
             setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers, ...localVarFormParams.getHeaders()};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = localVarFormParams;
 
             return {
@@ -4333,7 +4332,7 @@ export const ItemsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getAllItems(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, nextCursor?: string, sku?: string, offset?: string, limit?: string, lifecycleStatus?: string, publishedStatus?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2004>> {
+        async getAllItems(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, nextCursor?: string, sku?: string, offset?: string, limit?: string, lifecycleStatus?: string, publishedStatus?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getAllItems(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, nextCursor, sku, offset, limit, lifecycleStatus, publishedStatus, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -4350,7 +4349,7 @@ export const ItemsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getAnItem(id: string, productIdType: 'GTIN' | 'UPC' | 'ISBN' | 'EAN' | 'SKU' | 'ITEM_ID', authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2004ItemResponse>> {
+        async getAnItem(id: string, productIdType: 'GTIN' | 'UPC' | 'ISBN' | 'EAN' | 'SKU' | 'ITEM_ID', authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200ItemResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getAnItem(id, productIdType, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -4369,7 +4368,7 @@ export const ItemsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getCatalogSearch(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, page?: number, limit?: number, nextCursor?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2003>> {
+        async getCatalogSearch(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, page?: number, limit?: number, nextCursor?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2004>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getCatalogSearch(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject, page, limit, nextCursor, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -4434,7 +4433,7 @@ export const ItemsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getTaxonomyResponse(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
+        async getTaxonomyResponse(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getTaxonomyResponse(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -4467,7 +4466,7 @@ export const ItemsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async retireAnItem(sKU: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
+        async retireAnItem(sKU: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2003>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.retireAnItem(sKU, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -4498,7 +4497,7 @@ export const ItemsApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAllItems(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, nextCursor?: string, sku?: string, offset?: string, limit?: string, lifecycleStatus?: string, publishedStatus?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2004> {
+        getAllItems(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, nextCursor?: string, sku?: string, offset?: string, limit?: string, lifecycleStatus?: string, publishedStatus?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse200> {
             return localVarFp.getAllItems(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, nextCursor, sku, offset, limit, lifecycleStatus, publishedStatus, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
@@ -4514,7 +4513,7 @@ export const ItemsApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAnItem(id: string, productIdType: 'GTIN' | 'UPC' | 'ISBN' | 'EAN' | 'SKU' | 'ITEM_ID', authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2004ItemResponse> {
+        getAnItem(id: string, productIdType: 'GTIN' | 'UPC' | 'ISBN' | 'EAN' | 'SKU' | 'ITEM_ID', authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse200ItemResponse> {
             return localVarFp.getAnItem(id, productIdType, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
@@ -4532,7 +4531,7 @@ export const ItemsApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCatalogSearch(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, page?: number, limit?: number, nextCursor?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2003> {
+        getCatalogSearch(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, page?: number, limit?: number, nextCursor?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2004> {
             return localVarFp.getCatalogSearch(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject, page, limit, nextCursor, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
@@ -4593,7 +4592,7 @@ export const ItemsApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getTaxonomyResponse(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse200> {
+        getTaxonomyResponse(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2001> {
             return localVarFp.getTaxonomyResponse(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
@@ -4624,7 +4623,7 @@ export const ItemsApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        retireAnItem(sKU: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2001> {
+        retireAnItem(sKU: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2003> {
             return localVarFp.retireAnItem(sKU, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
     };

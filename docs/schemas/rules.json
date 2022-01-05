@@ -20,101 +20,14 @@
     }
   ],
   "paths": {
-    "/v3/rules/{ruleId}/status/{ruleStatus}/simulation": {
-      "get": {
+    "/v3/rules/{ruleId}/status/{ruleStatus}/": {
+      "delete": {
         "tags": [
           "Rules"
         ],
-        "summary": "Download simulation result",
-        "description": "You can use this API to download the count of items shortlisted for two-day shipping for a specific rule defined by ruleId and ruleStatus",
-        "operationId": "downloadSimulationResult",
-        "parameters": [
-          {
-            "name": "ruleId",
-            "in": "path",
-            "description": "Unique identifier of the rule created for custom rule assortment.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "ruleStatus",
-            "in": "path",
-            "description": "Status of the rule post the rule creation. Allowed values are Active, Inactive, Submitted.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
-          },
-          {
-            "in": "header",
-            "name": "WM_SEC.ACCESS_TOKEN",
-            "description": "The access token retrieved in the Token API call",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
-          },
-          {
-            "in": "header",
-            "name": "WM_CONSUMER.CHANNEL.TYPE",
-            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "header",
-            "name": "WM_QOS.CORRELATION_ID",
-            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
-          },
-          {
-            "in": "header",
-            "name": "WM_SVC.NAME",
-            "description": "Walmart Service Name",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Walmart Service Name"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Operation",
-            "content": {
-              "application/octet-stream": {}
-            }
-          }
-        }
-      }
-    },
-    "/v3/rules/{ruleId}/status/{ruleStatus}/simulationcount": {
-      "get": {
-        "tags": [
-          "Rules"
-        ],
-        "summary": "Get simulation result",
-        "description": "You can use this API to get the count of items shortlisted for two-day shipping for a specific rule defined by ruleId and ruleStatus",
-        "operationId": "getSimulationResult",
+        "summary": "Delete rule",
+        "description": "This API is used to delete a rule for a specific ruleId and ruleStatus",
+        "operationId": "deleteRule",
         "parameters": [
           {
             "name": "ruleId",
@@ -192,24 +105,19 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "ruleId": {
+                    "message": {
                       "type": "string",
-                      "description": "Unique identifier of the rule created for custom rule assortment."
+                      "description": "Message and status of deletion"
                     },
-                    "ruleStatus": {
+                    "status": {
                       "type": "string",
-                      "description": "Status of the rule post the rule creation. Allowed values are Active, Inactive, Submitted."
-                    },
-                    "simulationCount": {
-                      "type": "string",
-                      "description": "Number of items that would be set for two-day if the rule gets activated."
+                      "description": "status"
                     }
                   }
                 },
                 "example": {
-                  "ruleId": "677",
-                  "ruleStatus": "Active",
-                  "simulationCount": "0"
+                  "status": "SUCCESS",
+                  "message": "Rule is deleted, ruleId: 327"
                 }
               }
             }
@@ -217,14 +125,244 @@
         }
       }
     },
-    "/v3/rules/actions": {
+    "/v3/rules/inactivate": {
       "put": {
         "tags": [
           "Rules"
         ],
-        "summary": "Update shipping area to rules",
-        "description": "This API helps you define coverage areas for your items that are held outside of the fulfillment centers defined by your shipNode management API's.",
-        "operationId": "updateShippingAreaToRule",
+        "summary": "Inactivate rule",
+        "description": "You can use this API to inactivate one or more rules for a specific ruleId and ruleStatus.",
+        "operationId": "inactivateRule",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Basic YzcyOTFjNmItNzI5MC00...."
+          },
+          {
+            "in": "header",
+            "name": "WM_SEC.ACCESS_TOKEN",
+            "description": "The access token retrieved in the Token API call",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
+          },
+          {
+            "in": "header",
+            "name": "WM_CONSUMER.CHANNEL.TYPE",
+            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "WM_QOS.CORRELATION_ID",
+            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
+          },
+          {
+            "in": "header",
+            "name": "WM_SVC.NAME",
+            "description": "Walmart Service Name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Walmart Service Name"
+          }
+        ],
+        "requestBody": {
+          "description": "Request fields",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "ruleHeader": {
+                    "type": "object",
+                    "properties": {
+                      "version": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "rules": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "ruleId": {
+                          "type": "string",
+                          "description": "Unique identifier of the rule created for custom rule assortment."
+                        },
+                        "ruleStatus": {
+                          "type": "string",
+                          "description": "Status of the rule post the rule creation. Allowed values are Active, Inactive, Submitted."
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "example": {
+                "ruleHeader": {
+                  "version": "1.2"
+                },
+                "rules": [
+                  {
+                    "ruleId": "39",
+                    "ruleStatus": "Submitted"
+                  },
+                  {
+                    "ruleId": "44",
+                    "ruleStatus": "Active"
+                  }
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Message and status of inactivation of rule"
+                    },
+                    "status": {
+                      "type": "string",
+                      "description": "status"
+                    }
+                  }
+                },
+                "example": {
+                  "message": "Rules are inactivated: [39, 44]",
+                  "status": "SUCCESS"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/rules/exceptions": {
+      "get": {
+        "tags": [
+          "Rules"
+        ],
+        "summary": "Gets all exceptions",
+        "description": "This API retrieves all the items which has been defined as exceptions using \"Create Override Exception\" API.",
+        "operationId": "getAllExceptions",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Basic YzcyOTFjNmItNzI5MC00...."
+          },
+          {
+            "in": "header",
+            "name": "WM_SEC.ACCESS_TOKEN",
+            "description": "The access token retrieved in the Token API call",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
+          },
+          {
+            "in": "header",
+            "name": "WM_CONSUMER.CHANNEL.TYPE",
+            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "WM_QOS.CORRELATION_ID",
+            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
+          },
+          {
+            "in": "header",
+            "name": "WM_SVC.NAME",
+            "description": "Walmart Service Name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Walmart Service Name"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "skuIds": {
+                      "type": "array",
+                      "description": "A seller-provided Product ID.",
+                      "items": {
+                        "type": "string",
+                        "description": "A seller-provided Product ID."
+                      }
+                    },
+                    "status": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "skuIds": [
+                    "123456",
+                    "789065"
+                  ],
+                  "status": "SUCCESS"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Rules"
+        ],
+        "summary": "Delete exceptions",
+        "description": "This API is used to bring back any SKU to Two-day Delivery settings.",
+        "operationId": "deleteExceptions",
         "parameters": [
           {
             "in": "header",
@@ -294,48 +432,16 @@
                   "rules": {
                     "type": "object",
                     "properties": {
-                      "ruleId": {
-                        "type": "string",
-                        "description": "Unique identifier of the rule created for custom rule assortment."
-                      },
-                      "ruleStatus": {
-                        "type": "string",
-                        "description": "Status of the rule post the rule creation. Allowed values are Active, Inactive, Submitted."
-                      },
-                      "actions": {
+                      "skus": {
                         "type": "array",
-                        "description": "Defines the two day state coverage areas.",
                         "items": {
                           "type": "object",
                           "properties": {
-                            "twoDayShippingRegions": {
-                              "type": "array",
-                              "description": "List of two-day regions.",
-                              "items": {
-                                "type": "object",
-                                "properties": {
-                                  "regionCode": {
-                                    "type": "string",
-                                    "description": "regionCode"
-                                  },
-                                  "subRegions": {
-                                    "type": "array",
-                                    "items": {
-                                      "type": "object",
-                                      "properties": {
-                                        "subRegionCode": {
-                                          "type": "string",
-                                          "description": "subRegionCode"
-                                        }
-                                      }
-                                    }
-                                  }
-                                },
-                                "description": "List of two-day regions."
-                              }
+                            "sku": {
+                              "type": "string",
+                              "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: ':', '/', '?', '#', '[', ']', '@', '!', '$', '&', \"'\", '(', ')', '*', '+', ',', ';', '=', as well as '%' itself. Other characters don't need to be encoded."
                             }
-                          },
-                          "description": "Defines the two day state coverage areas."
+                          }
                         }
                       }
                     }
@@ -347,23 +453,12 @@
                   "version": "1.2"
                 },
                 "rules": {
-                  "ruleId": "612",
-                  "ruleStatus": "Submitted",
-                  "actions": [
+                  "skus": [
                     {
-                      "twoDayShippingRegions": [
-                        {
-                          "regionCode": "NE",
-                          "subRegions": [
-                            {
-                              "subRegionCode": "NY1"
-                            },
-                            {
-                              "subRegionCode": "NY2"
-                            }
-                          ]
-                        }
-                      ]
+                      "sku": "sku-1234"
+                    },
+                    {
+                      "sku": "sku-2323"
                     }
                   ]
                 }
@@ -380,91 +475,9 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "rules": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "conditions": {
-                            "type": "array",
-                            "description": "Seller creates conditions while defining the custom rule assortment.There are three condition which a seller can use : subCategories, price, weight.",
-                            "items": {
-                              "type": "object",
-                              "properties": {
-                                "name": {
-                                  "type": "string",
-                                  "description": "Name of the rule created for custom rule assortment."
-                                },
-                                "operator": {
-                                  "type": "string",
-                                  "description": "Seller uses operator while defining conditions in the rule. Operators allowed for condition price and weight: EQUALS, GREATER_THAN, LESS_THAN,GREATER_THAN_OR_EQUALS,LESS_THAN_OR_EQUALS. and for condition subcategories : IN ."
-                                },
-                                "value": {
-                                  "type": "string",
-                                  "description": "Values for each condition. Value can be a comma separated strings for subcategories and numerical value for price and weight."
-                                }
-                              },
-                              "description": "Seller creates conditions while defining the custom rule assortment.There are three condition which a seller can use : subCategories, price, weight."
-                            }
-                          },
-                          "description": {
-                            "type": "string",
-                            "description": "Description of the rule created for custom rule assortment."
-                          },
-                          "name": {
-                            "type": "string",
-                            "description": "Name of the rule created for custom rule assortment."
-                          },
-                          "priority": {
-                            "type": "string",
-                            "description": "Priority of the rule created for custom rule assortment."
-                          },
-                          "ruleId": {
-                            "type": "string",
-                            "description": "Unique identifier of the rule created for custom rule assortment."
-                          },
-                          "ruleStatus": {
-                            "type": "string",
-                            "description": "Status of the rule post the rule creation. Allowed values are Active, Inactive, Submitted."
-                          },
-                          "skuProcessingStatus": {
-                            "type": "string",
-                            "description": "When the rule gets activated, skuProcessingStatus represents the state of all items being processed for two-day. The two values for skuProcessingStatus are Processing and Completed."
-                          },
-                          "ruleAction": {
-                            "type": "object",
-                            "properties": {
-                              "twoDayShippingRegions": {
-                                "type": "array",
-                                "description": "List of two-day regions.",
-                                "items": {
-                                  "type": "object",
-                                  "properties": {
-                                    "regionCode": {
-                                      "type": "string",
-                                      "description": "regionCode"
-                                    },
-                                    "subRegions": {
-                                      "type": "array",
-                                      "items": {
-                                        "type": "object",
-                                        "properties": {
-                                          "subRegionCode": {
-                                            "type": "string",
-                                            "description": "subRegionCode"
-                                          }
-                                        }
-                                      }
-                                    }
-                                  },
-                                  "description": "List of two-day regions."
-                                }
-                              }
-                            },
-                            "description": "Defines the two day state coverage areas."
-                          }
-                        }
-                      }
+                    "feedId": {
+                      "type": "string",
+                      "description": "A unique ID, returned from the Create Override Exception API, used for tracking a feed file"
                     },
                     "status": {
                       "type": "string",
@@ -473,43 +486,1065 @@
                   }
                 },
                 "example": {
-                  "rules": [
-                    {
-                      "conditions": [
-                        {
-                          "name": "price",
-                          "operator": "EQUALS",
-                          "value": "20"
-                        },
-                        {
-                          "name": "subCategories",
-                          "operator": "IN",
-                          "value": "571fdff7208f9a0cdb760a7f,56f2eb65208f9a0612c3adbd"
+                  "feedId": "5ED712C698FD43B999EC5EEFD5C63655@ATgBAQA",
+                  "status": "OK"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Rules"
+        ],
+        "summary": "Create override exceptions",
+        "description": "This API is used if any SKU is required to be removed from Two-day delivery settings",
+        "operationId": "createOverrideExceptions",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Basic YzcyOTFjNmItNzI5MC00...."
+          },
+          {
+            "in": "header",
+            "name": "WM_SEC.ACCESS_TOKEN",
+            "description": "The access token retrieved in the Token API call",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
+          },
+          {
+            "in": "header",
+            "name": "WM_CONSUMER.CHANNEL.TYPE",
+            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "WM_QOS.CORRELATION_ID",
+            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
+          },
+          {
+            "in": "header",
+            "name": "WM_SVC.NAME",
+            "description": "Walmart Service Name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Walmart Service Name"
+          }
+        ],
+        "requestBody": {
+          "description": "Request fields",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "ruleHeader": {
+                    "type": "object",
+                    "properties": {
+                      "version": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "rules": {
+                    "type": "object",
+                    "properties": {
+                      "skus": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "sku": {
+                              "type": "string",
+                              "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: ':', '/', '?', '#', '[', ']', '@', '!', '$', '&', \"'\", '(', ')', '*', '+', ',', ';', '=', as well as '%' itself. Other characters don't need to be encoded."
+                            }
+                          }
                         }
-                      ],
-                      "description": "testing-new-510",
-                      "name": "testing-new-510",
-                      "priority": "21",
-                      "ruleAction": {
-                        "twoDayShippingRegions": [
+                      }
+                    }
+                  }
+                }
+              },
+              "example": {
+                "ruleHeader": {
+                  "version": "1.2"
+                },
+                "rules": {
+                  "skus": [
+                    {
+                      "sku": "sku-1234"
+                    },
+                    {
+                      "sku": "sku-2323"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "feedId": {
+                      "type": "string",
+                      "description": "A unique ID, returned from the Create Override Exception API, used for tracking a feed file"
+                    },
+                    "status": {
+                      "type": "string",
+                      "description": "status"
+                    }
+                  }
+                },
+                "example": {
+                  "feedId": "5ED712C698FD43B999EC5EEFD5C63655@ATgBAQA",
+                  "status": "OK"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/rules/areas": {
+      "get": {
+        "tags": [
+          "Rules"
+        ],
+        "summary": "Get all areas",
+        "description": "This API provides you the list of states on which you can provide two-day shipping of an item.",
+        "operationId": "getAllAreas",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Basic YzcyOTFjNmItNzI5MC00...."
+          },
+          {
+            "in": "header",
+            "name": "WM_SEC.ACCESS_TOKEN",
+            "description": "The access token retrieved in the Token API call",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
+          },
+          {
+            "in": "header",
+            "name": "WM_CONSUMER.CHANNEL.TYPE",
+            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "WM_QOS.CORRELATION_ID",
+            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
+          },
+          {
+            "in": "header",
+            "name": "WM_SVC.NAME",
+            "description": "Walmart Service Name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Walmart Service Name"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Status of the rule post the rule creation."
+                    },
+                    "payload": {
+                      "type": "object",
+                      "properties": {
+                        "entities": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "states": {
+                                "type": "array",
+                                "description": "states.",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "stateSubregions": {
+                                      "type": "array",
+                                      "description": "statesubregions",
+                                      "items": {
+                                        "type": "object",
+                                        "properties": {
+                                          "stateSubregionCode": {
+                                            "type": "string",
+                                            "description": "stateSubregionCode"
+                                          },
+                                          "stateSubregionName": {
+                                            "type": "string",
+                                            "description": "stateSubregionName"
+                                          }
+                                        },
+                                        "description": "statesubregions"
+                                      }
+                                    }
+                                  },
+                                  "description": "states."
+                                }
+                              },
+                              "regionCode": {
+                                "type": "string",
+                                "description": "regionCode"
+                              },
+                              "regionName": {
+                                "type": "string",
+                                "description": "regionName"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "status": "OK",
+                  "payload": {
+                    "entities": [
+                      {
+                        "states": [
                           {
-                            "regionCode": "NE",
-                            "subRegions": [
+                            "stateSubregions": [
                               {
-                                "subRegionCode": "NY1"
+                                "stateSubregionCode": "CT1",
+                                "stateSubregionName": "CT_REST_ALL"
                               },
                               {
-                                "subRegionCode": "NY2"
+                                "stateSubregionCode": "CT2",
+                                "stateSubregionName": "CT_SOUTH_WEST"
+                              }
+                            ]
+                          },
+                          {
+                            "stateSubregions": [
+                              {
+                                "stateSubregionCode": "PA3",
+                                "stateSubregionName": "PA_NORTH_EAST"
+                              },
+                              {
+                                "stateSubregionCode": "PA1",
+                                "stateSubregionName": "PA_CENTRAL"
+                              },
+                              {
+                                "stateSubregionCode": "PA2",
+                                "stateSubregionName": "PA_CENTRAL_NORTH"
+                              },
+                              {
+                                "stateSubregionCode": "PA5",
+                                "stateSubregionName": "PA_WEST"
+                              },
+                              {
+                                "stateSubregionCode": "PA4",
+                                "stateSubregionName": "PA_SOUTH"
+                              }
+                            ]
+                          },
+                          {
+                            "stateSubregions": [
+                              {
+                                "stateSubregionCode": "MA1",
+                                "stateSubregionName": "MA_EAST"
+                              },
+                              {
+                                "stateSubregionCode": "MA2",
+                                "stateSubregionName": "MA_WEST"
+                              }
+                            ]
+                          },
+                          {
+                            "stateSubregions": [
+                              {
+                                "stateSubregionCode": "RI",
+                                "stateSubregionName": "RI"
+                              }
+                            ]
+                          },
+                          {
+                            "stateSubregions": [
+                              {
+                                "stateSubregionCode": "ME1",
+                                "stateSubregionName": "ME_EAST"
+                              },
+                              {
+                                "stateSubregionCode": "ME2",
+                                "stateSubregionName": "ME_WEST"
+                              }
+                            ]
+                          },
+                          {
+                            "stateSubregions": [
+                              {
+                                "stateSubregionCode": "NH",
+                                "stateSubregionName": "NH"
+                              }
+                            ]
+                          },
+                          {
+                            "stateSubregions": [
+                              {
+                                "stateSubregionCode": "NY3",
+                                "stateSubregionName": "NY_NORTH_CENTRAL"
+                              },
+                              {
+                                "stateSubregionCode": "NY5",
+                                "stateSubregionName": "NY_SOUTH"
+                              },
+                              {
+                                "stateSubregionCode": "NY1",
+                                "stateSubregionName": "NY_BROOKLYN"
+                              },
+                              {
+                                "stateSubregionCode": "NY2",
+                                "stateSubregionName": "NY_CENTRAL"
+                              },
+                              {
+                                "stateSubregionCode": "NY4",
+                                "stateSubregionName": "NY_NORTH_WEST"
+                              }
+                            ]
+                          },
+                          {
+                            "stateSubregions": [
+                              {
+                                "stateSubregionCode": "NJ3",
+                                "stateSubregionName": "NJ_SOUTH"
+                              },
+                              {
+                                "stateSubregionCode": "NJ2",
+                                "stateSubregionName": "NJ_NORTH"
+                              },
+                              {
+                                "stateSubregionCode": "NJ4",
+                                "stateSubregionName": "NJ_KEARNY"
+                              },
+                              {
+                                "stateSubregionCode": "NJ1",
+                                "stateSubregionName": "NJ_CENTRAL"
+                              }
+                            ]
+                          },
+                          {
+                            "stateSubregions": [
+                              {
+                                "stateSubregionCode": "VT",
+                                "stateSubregionName": "VT"
                               }
                             ]
                           }
-                        ]
+                        ],
+                        "regionCode": "NE",
+                        "regionName": "Northeast"
                       },
-                      "ruleId": "612",
-                      "ruleStatus": "Submitted"
-                    }
-                  ],
-                  "status": "OK"
+                      {
+                        "states": [
+                          {
+                            "stateSubregions": [
+                              {
+                                "stateSubregionCode": "SD2",
+                                "stateSubregionName": "SD_WEST"
+                              },
+                              {
+                                "stateSubregionCode": "SD1",
+                                "stateSubregionName": "SD_EAST"
+                              }
+                            ]
+                          },
+                          {
+                            "stateSubregions": [
+                              {
+                                "stateSubregionCode": "MN2",
+                                "stateSubregionName": "MN_REST_ALL"
+                              },
+                              {
+                                "stateSubregionCode": "MN1",
+                                "stateSubregionName": "MN_CENTRAL_EAST"
+                              }
+                            ]
+                          },
+                          {
+                            "stateSubregions": [
+                              {
+                                "stateSubregionCode": "MO3",
+                                "stateSubregionName": "MO_WEST"
+                              },
+                              {
+                                "stateSubregionCode": "MO1",
+                                "stateSubregionName": "MO_EAST"
+                              },
+                              {
+                                "stateSubregionCode": "MO2",
+                                "stateSubregionName": "MO_SOUTH"
+                              }
+                            ]
+                          },
+                          {
+                            "stateSubregions": [
+                              {
+                                "stateSubregionCode": "WI2",
+                                "stateSubregionName": "WI_WEST"
+                              },
+                              {
+                                "stateSubregionCode": "WI1",
+                                "stateSubregionName": "WI_EAST"
+                              }
+                            ]
+                          },
+                          {
+                            "stateSubregions": [
+                              {
+                                "stateSubregionCode": "IL1",
+                                "stateSubregionName": "IL_CHICAGO"
+                              },
+                              {
+                                "stateSubregionCode": "IL3",
+                                "stateSubregionName": "IL_NORTH_WEST"
+                              },
+                              {
+                                "stateSubregionCode": "IL4",
+                                "stateSubregionName": "IL_SOUTHEAST"
+                              },
+                              {
+                                "stateSubregionCode": "IL5",
+                                "stateSubregionName": "IL_SOUTHWEST"
+                              },
+                              {
+                                "stateSubregionCode": "IL2",
+                                "stateSubregionName": "IL_NORTH_EAST"
+                              }
+                            ]
+                          },
+                          {
+                            "stateSubregions": [
+                              {
+                                "stateSubregionCode": "IN1",
+                                "stateSubregionName": "IN_CENTRAL_AND_EAST"
+                              },
+                              {
+                                "stateSubregionCode": "IN3",
+                                "stateSubregionName": "IN_SOUTH"
+                              },
+                              {
+                                "stateSubregionCode": "IN2",
+                                "stateSubregionName": "IN_NORTH"
+                              },
+                              {
+                                "stateSubregionCode": "IN4",
+                                "stateSubregionName": "IN_WEST"
+                              }
+                            ]
+                          },
+                          {
+                            "stateSubregions": [
+                              {
+                                "stateSubregionCode": "ND",
+                                "stateSubregionName": "ND"
+                              }
+                            ]
+                          },
+                          {
+                            "stateSubregions": [
+                              {
+                                "stateSubregionCode": "NE",
+                                "stateSubregionName": "NE"
+                              }
+                            ]
+                          },
+                          {
+                            "stateSubregions": [
+                              {
+                                "stateSubregionCode": "IA1",
+                                "stateSubregionName": "IA_CENTRAL"
+                              },
+                              {
+                                "stateSubregionCode": "IA2",
+                                "stateSubregionName": "IA_REST"
+                              }
+                            ]
+                          },
+                          {
+                            "stateSubregions": [
+                              {
+                                "stateSubregionCode": "KS1",
+                                "stateSubregionName": "KS_EAST"
+                              },
+                              {
+                                "stateSubregionCode": "KS2",
+                                "stateSubregionName": "KS_WEST"
+                              }
+                            ]
+                          },
+                          {
+                            "stateSubregions": [
+                              {
+                                "stateSubregionCode": "OH3",
+                                "stateSubregionName": "OH_SOUTH_EAST"
+                              },
+                              {
+                                "stateSubregionCode": "OH1",
+                                "stateSubregionName": "OH_CENTRAL"
+                              },
+                              {
+                                "stateSubregionCode": "OH2",
+                                "stateSubregionName": "OH_NORTH"
+                              },
+                              {
+                                "stateSubregionCode": "OH4",
+                                "stateSubregionName": "OH_WEST"
+                              }
+                            ]
+                          },
+                          {
+                            "stateSubregions": [
+                              {
+                                "stateSubregionCode": "MI2",
+                                "stateSubregionName": "MI_NORTH"
+                              },
+                              {
+                                "stateSubregionCode": "MI3",
+                                "stateSubregionName": "MI_SOUTH_EAST"
+                              },
+                              {
+                                "stateSubregionCode": "MI1",
+                                "stateSubregionName": "MI_CENTRAL"
+                              }
+                            ]
+                          }
+                        ],
+                        "regionCode": "MW",
+                        "regionName": "Midwest"
+                      },
+                      {
+                        "states": [
+                          {
+                            "stateSubregions": [
+                              {
+                                "stateSubregionCode": "DE",
+                                "stateSubregionName": "DE"
+                              }
+                            ]
+                          },
+                          {
+                            "stateSubregions": [
+                              {
+                                "stateSubregionCode": "TX2",
+                                "stateSubregionName": "TX_CENTRAL_NORTH"
+                              },
+                              {
+                                "stateSubregionCode": "TX3",
+                                "stateSubregionName": "TX_CENTRAL_WEST"
+                              },
+                              {
+                                "stateSubregionCode": "TX6",
+                                "stateSubregionName": "TX_NORTH_EAST"
+                              },
+                              {
+                                "stateSubregionCode": "TX7",
+                                "stateSubregionName": "TX_NORTH_WEST"
+                              },
+                              {
+                                "stateSubregionCode": "TX4",
+                                "stateSubregionName": "TX_DALLAS"
+                              },
+                              {
+                                "stateSubregionCode": "TX5",
+                                "stateSubregionName": "TX_HOUSTON"
+                              },
+                              {
+                                "stateSubregionCode": "TX1",
+                                "stateSubregionName": "TX_CENTRAL"
+                              },
+                              {
+                                "stateSubregionCode": "TX9",
+                                "stateSubregionName": "TX_SOUTH_EAST"
+                              },
+                              {
+                                "stateSubregionCode": "TX8",
+                                "stateSubregionName": "TX_SOUTH"
+                              },
+                              {
+                                "stateSubregionCode": "TX10",
+                                "stateSubregionName": "TX_SOUTH_WEST"
+                              }
+                            ]
+                          },
+                          {
+                            "stateSubregions": [
+                              {
+                                "stateSubregionCode": "FL6",
+                                "stateSubregionName": "FL_SOUTH_WEST"
+                              },
+                              {
+                                "stateSubregionCode": "FL4",
+                                "stateSubregionName": "FL_NORTH"
+                              },
+                              {
+                                "stateSubregionCode": "FL3",
+                                "stateSubregionName": "FL_MIAMI"
+                              },
+                              {
+                                "stateSubregionCode": "FL1",
+                                "stateSubregionName": "FL_CENTRAL_EAST"
+                              },
+                              {
+                                "stateSubregionCode": "FL5",
+                                "stateSubregionName": "FL_SOUTH_EAST"
+                              },
+                              {
+                                "stateSubregionCode": "FL2",
+                                "stateSubregionName": "FL_CENTRAL_WEST"
+                              }
+                            ]
+                          },
+                          {
+                            "stateSubregions": [
+                              {
+                                "stateSubregionCode": "MS2",
+                                "stateSubregionName": "MS_SOUTH"
+                              },
+                              {
+                                "stateSubregionCode": "MS1",
+                                "stateSubregionName": "MS_NORTH"
+                              }
+                            ]
+                          },
+                          {
+                            "stateSubregions": [
+                              {
+                                "stateSubregionCode": "VA4",
+                                "stateSubregionName": "VA_SOUTH_WEST"
+                              },
+                              {
+                                "stateSubregionCode": "VA1",
+                                "stateSubregionName": "VA_CENTRAL"
+                              },
+                              {
+                                "stateSubregionCode": "VA2",
+                                "stateSubregionName": "VA_NORTH"
+                              },
+                              {
+                                "stateSubregionCode": "VA3",
+                                "stateSubregionName": "VA_SOUTH_EAST"
+                              }
+                            ]
+                          },
+                          {
+                            "stateSubregions": [
+                              {
+                                "stateSubregionCode": "AL2",
+                                "stateSubregionName": "AL_SOUTH"
+                              },
+                              {
+                                "stateSubregionCode": "AL1",
+                                "stateSubregionName": "AL_NORTH"
+                              }
+                            ]
+                          },
+                          {
+                            "stateSubregions": [
+                              {
+                                "stateSubregionCode": "KY1",
+                                "stateSubregionName": "KY_EAST"
+                              },
+                              {
+                                "stateSubregionCode": "KY2",
+                                "stateSubregionName": "KY_WEST"
+                              }
+                            ]
+                          },
+                          {
+                            "stateSubregions": [
+                              {
+                                "stateSubregionCode": "SC1",
+                                "stateSubregionName": "SC_CENTRAL"
+                              },
+                              {
+                                "stateSubregionCode": "SC2",
+                                "stateSubregionName": "SC_NORTH"
+                              },
+                              {
+                                "stateSubregionCode": "SC3",
+                                "stateSubregionName": "SC_SOUTH"
+                              }
+                            ]
+                          },
+                          {
+                            "stateSubregions": [
+                              {
+                                "stateSubregionCode": "AR2",
+                                "stateSubregionName": "AR_WEST"
+                              },
+                              {
+                                "stateSubregionCode": "AR1",
+                                "stateSubregionName": "AR_EAST"
+                              }
+                            ]
+                          },
+                          {
+                            "stateSubregions": [
+                              {
+                                "stateSubregionCode": "NC3",
+                                "stateSubregionName": "NC_SOUTH"
+                              },
+                              {
+                                "stateSubregionCode": "NC2",
+                                "stateSubregionName": "NC_NORTH"
+                              },
+                              {
+                                "stateSubregionCode": "NC4",
+                                "stateSubregionName": "NC_WEST"
+                              },
+                              {
+                                "stateSubregionCode": "NC1",
+                                "stateSubregionName": "NC_EAST"
+                              }
+                            ]
+                          },
+                          {
+                            "stateSubregions": [
+                              {
+                                "stateSubregionCode": "LA2",
+                                "stateSubregionName": "LA_SOUTH"
+                              },
+                              {
+                                "stateSubregionCode": "LA1",
+                                "stateSubregionName": "LA_NORTH"
+                              }
+                            ]
+                          },
+                          {
+                            "stateSubregions": [
+                              {
+                                "stateSubregionCode": "MD1",
+                                "stateSubregionName": "MD_CENTRAL"
+                              },
+                              {
+                                "stateSubregionCode": "MD2",
+                                "stateSubregionName": "MD_REST_ALL"
+                              }
+                            ]
+                          },
+                          {
+                            "stateSubregions": [
+                              {
+                                "stateSubregionCode": "TN3",
+                                "stateSubregionName": "TN_WEST"
+                              },
+                              {
+                                "stateSubregionCode": "TN2",
+                                "stateSubregionName": "TN_EAST"
+                              },
+                              {
+                                "stateSubregionCode": "TN1",
+                                "stateSubregionName": "TN_CENTRAL"
+                              }
+                            ]
+                          },
+                          {
+                            "stateSubregions": [
+                              {
+                                "stateSubregionCode": "GA5",
+                                "stateSubregionName": "GA_SOUTH"
+                              },
+                              {
+                                "stateSubregionCode": "GA2",
+                                "stateSubregionName": "GA_CENTRAL"
+                              },
+                              {
+                                "stateSubregionCode": "GA3",
+                                "stateSubregionName": "GA_NORTH_EAST"
+                              },
+                              {
+                                "stateSubregionCode": "GA4",
+                                "stateSubregionName": "GA_NORTH_WEST"
+                              },
+                              {
+                                "stateSubregionCode": "GA1",
+                                "stateSubregionName": "GA_ATLANTA"
+                              }
+                            ]
+                          },
+                          {
+                            "stateSubregions": [
+                              {
+                                "stateSubregionCode": "OK2",
+                                "stateSubregionName": "OK_REST_ALL"
+                              },
+                              {
+                                "stateSubregionCode": "OK1",
+                                "stateSubregionName": "OK_NORTH_EAST"
+                              }
+                            ]
+                          },
+                          {
+                            "stateSubregions": [
+                              {
+                                "stateSubregionCode": "DC",
+                                "stateSubregionName": "DC"
+                              }
+                            ]
+                          },
+                          {
+                            "stateSubregions": [
+                              {
+                                "stateSubregionCode": "WV2",
+                                "stateSubregionName": "WV_WEST"
+                              },
+                              {
+                                "stateSubregionCode": "WV1",
+                                "stateSubregionName": "WV_EAST"
+                              }
+                            ]
+                          }
+                        ],
+                        "regionCode": "SO",
+                        "regionName": "South"
+                      },
+                      {
+                        "states": [
+                          {
+                            "stateSubregions": [
+                              {
+                                "stateSubregionCode": "WY",
+                                "stateSubregionName": "WY"
+                              }
+                            ]
+                          },
+                          {
+                            "stateSubregions": [
+                              {
+                                "stateSubregionCode": "OR2",
+                                "stateSubregionName": "OR_NORTH_WEST"
+                              },
+                              {
+                                "stateSubregionCode": "OR1",
+                                "stateSubregionName": "OR_CENTRAL"
+                              }
+                            ]
+                          },
+                          {
+                            "stateSubregions": [
+                              {
+                                "stateSubregionCode": "MT",
+                                "stateSubregionName": "MT"
+                              }
+                            ]
+                          },
+                          {
+                            "stateSubregions": [
+                              {
+                                "stateSubregionCode": "NV2",
+                                "stateSubregionName": "NV_NORTH"
+                              },
+                              {
+                                "stateSubregionCode": "NV3",
+                                "stateSubregionName": "NV_SOUTH"
+                              },
+                              {
+                                "stateSubregionCode": "NV1",
+                                "stateSubregionName": "NV_LAS_VEGAS"
+                              }
+                            ]
+                          },
+                          {
+                            "stateSubregions": [
+                              {
+                                "stateSubregionCode": "AZ3",
+                                "stateSubregionName": "AZ_SOUTH"
+                              },
+                              {
+                                "stateSubregionCode": "AZ2",
+                                "stateSubregionName": "AZ_PHOENIX"
+                              },
+                              {
+                                "stateSubregionCode": "AZ1",
+                                "stateSubregionName": "AZ_NORTH"
+                              }
+                            ]
+                          },
+                          {
+                            "stateSubregions": [
+                              {
+                                "stateSubregionCode": "WA",
+                                "stateSubregionName": "WA"
+                              }
+                            ]
+                          },
+                          {
+                            "stateSubregions": [
+                              {
+                                "stateSubregionCode": "ID2",
+                                "stateSubregionName": "ID_NORTH_AND_EAST"
+                              },
+                              {
+                                "stateSubregionCode": "ID1",
+                                "stateSubregionName": "ID_BOISE_AND_NAMPA"
+                              }
+                            ]
+                          },
+                          {
+                            "stateSubregions": [
+                              {
+                                "stateSubregionCode": "CO2",
+                                "stateSubregionName": "CO_REST_ALL"
+                              },
+                              {
+                                "stateSubregionCode": "CO1",
+                                "stateSubregionName": "CO_CENTRAL"
+                              }
+                            ]
+                          },
+                          {
+                            "stateSubregions": [
+                              {
+                                "stateSubregionCode": "CA8",
+                                "stateSubregionName": "CA_NORTH"
+                              },
+                              {
+                                "stateSubregionCode": "CA10",
+                                "stateSubregionName": "CA_RIVERSIDE_IMPERIAL\t"
+                              },
+                              {
+                                "stateSubregionCode": "CA4",
+                                "stateSubregionName": "CA_CENTRAL_WEST"
+                              },
+                              {
+                                "stateSubregionCode": "CA5",
+                                "stateSubregionName": "CA_LONG_BEACH"
+                              },
+                              {
+                                "stateSubregionCode": "CA1",
+                                "stateSubregionName": "CA_CENTRAL"
+                              },
+                              {
+                                "stateSubregionCode": "CA9",
+                                "stateSubregionName": "CA_ONTARIO"
+                              },
+                              {
+                                "stateSubregionCode": "CA13",
+                                "stateSubregionName": "CA_SAN_DIEGO_COUNTY"
+                              },
+                              {
+                                "stateSubregionCode": "CA11",
+                                "stateSubregionName": "CA_SAN_BERNARDINO"
+                              },
+                              {
+                                "stateSubregionCode": "CA15",
+                                "stateSubregionName": "CA_SANTA_ANA"
+                              },
+                              {
+                                "stateSubregionCode": "CA14",
+                                "stateSubregionName": "CA_SAN_FRANCISCO"
+                              },
+                              {
+                                "stateSubregionCode": "CA3",
+                                "stateSubregionName": "CA_CENTRAL_SOUTH"
+                              },
+                              {
+                                "stateSubregionCode": "CA12",
+                                "stateSubregionName": "CA_SAN_DIEGO"
+                              },
+                              {
+                                "stateSubregionCode": "CA2",
+                                "stateSubregionName": "CA_CENTRAL_NORTH"
+                              },
+                              {
+                                "stateSubregionCode": "CA7",
+                                "stateSubregionName": "CA_LOS_ANGELES_VENTURA_COUNTY"
+                              },
+                              {
+                                "stateSubregionCode": "CA6",
+                                "stateSubregionName": "CA_LOS_ANGELES"
+                              }
+                            ]
+                          },
+                          {
+                            "stateSubregions": [
+                              {
+                                "stateSubregionCode": "NM2",
+                                "stateSubregionName": "NM_REST_ALL"
+                              },
+                              {
+                                "stateSubregionCode": "NM1",
+                                "stateSubregionName": "NM_CENTRAL"
+                              }
+                            ]
+                          },
+                          {
+                            "stateSubregions": [
+                              {
+                                "stateSubregionCode": "UT2",
+                                "stateSubregionName": "UT_SOUTH"
+                              },
+                              {
+                                "stateSubregionCode": "UT1",
+                                "stateSubregionName": "UT_NORTH"
+                              }
+                            ]
+                          }
+                        ],
+                        "regionCode": "WE",
+                        "regionName": "West"
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -1668,619 +2703,6 @@
         }
       }
     },
-    "/v3/rules/{ruleId}/status/{ruleStatus}/": {
-      "delete": {
-        "tags": [
-          "Rules"
-        ],
-        "summary": "Delete rule",
-        "description": "This API is used to delete a rule for a specific ruleId and ruleStatus",
-        "operationId": "deleteRule",
-        "parameters": [
-          {
-            "name": "ruleId",
-            "in": "path",
-            "description": "Unique identifier of the rule created for custom rule assortment.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "ruleStatus",
-            "in": "path",
-            "description": "Status of the rule post the rule creation. Allowed values are Active, Inactive, Submitted.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
-          },
-          {
-            "in": "header",
-            "name": "WM_SEC.ACCESS_TOKEN",
-            "description": "The access token retrieved in the Token API call",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
-          },
-          {
-            "in": "header",
-            "name": "WM_CONSUMER.CHANNEL.TYPE",
-            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "header",
-            "name": "WM_QOS.CORRELATION_ID",
-            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
-          },
-          {
-            "in": "header",
-            "name": "WM_SVC.NAME",
-            "description": "Walmart Service Name",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Walmart Service Name"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string",
-                      "description": "Message and status of deletion"
-                    },
-                    "status": {
-                      "type": "string",
-                      "description": "status"
-                    }
-                  }
-                },
-                "example": {
-                  "status": "SUCCESS",
-                  "message": "Rule is deleted, ruleId: 327"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v3/rules/inactivate": {
-      "put": {
-        "tags": [
-          "Rules"
-        ],
-        "summary": "Inactivate rule",
-        "description": "You can use this API to inactivate one or more rules for a specific ruleId and ruleStatus.",
-        "operationId": "inactivateRule",
-        "parameters": [
-          {
-            "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
-          },
-          {
-            "in": "header",
-            "name": "WM_SEC.ACCESS_TOKEN",
-            "description": "The access token retrieved in the Token API call",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
-          },
-          {
-            "in": "header",
-            "name": "WM_CONSUMER.CHANNEL.TYPE",
-            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "header",
-            "name": "WM_QOS.CORRELATION_ID",
-            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
-          },
-          {
-            "in": "header",
-            "name": "WM_SVC.NAME",
-            "description": "Walmart Service Name",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Walmart Service Name"
-          }
-        ],
-        "requestBody": {
-          "description": "Request fields",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "ruleHeader": {
-                    "type": "object",
-                    "properties": {
-                      "version": {
-                        "type": "string"
-                      }
-                    }
-                  },
-                  "rules": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "ruleId": {
-                          "type": "string",
-                          "description": "Unique identifier of the rule created for custom rule assortment."
-                        },
-                        "ruleStatus": {
-                          "type": "string",
-                          "description": "Status of the rule post the rule creation. Allowed values are Active, Inactive, Submitted."
-                        }
-                      }
-                    }
-                  }
-                }
-              },
-              "example": {
-                "ruleHeader": {
-                  "version": "1.2"
-                },
-                "rules": [
-                  {
-                    "ruleId": "39",
-                    "ruleStatus": "Submitted"
-                  },
-                  {
-                    "ruleId": "44",
-                    "ruleStatus": "Active"
-                  }
-                ]
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string",
-                      "description": "Message and status of inactivation of rule"
-                    },
-                    "status": {
-                      "type": "string",
-                      "description": "status"
-                    }
-                  }
-                },
-                "example": {
-                  "message": "Rules are inactivated: [39, 44]",
-                  "status": "SUCCESS"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v3/rules/exceptions": {
-      "get": {
-        "tags": [
-          "Rules"
-        ],
-        "summary": "Gets all exceptions",
-        "description": "This API retrieves all the items which has been defined as exceptions using \"Create Override Exception\" API.",
-        "operationId": "getAllExceptions",
-        "parameters": [
-          {
-            "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
-          },
-          {
-            "in": "header",
-            "name": "WM_SEC.ACCESS_TOKEN",
-            "description": "The access token retrieved in the Token API call",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
-          },
-          {
-            "in": "header",
-            "name": "WM_CONSUMER.CHANNEL.TYPE",
-            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "header",
-            "name": "WM_QOS.CORRELATION_ID",
-            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
-          },
-          {
-            "in": "header",
-            "name": "WM_SVC.NAME",
-            "description": "Walmart Service Name",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Walmart Service Name"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "skuIds": {
-                      "type": "array",
-                      "description": "A seller-provided Product ID.",
-                      "items": {
-                        "type": "string",
-                        "description": "A seller-provided Product ID."
-                      }
-                    },
-                    "status": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "example": {
-                  "skuIds": [
-                    "123456",
-                    "789065"
-                  ],
-                  "status": "SUCCESS"
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Rules"
-        ],
-        "summary": "Delete exceptions",
-        "description": "This API is used to bring back any SKU to Two-day Delivery settings.",
-        "operationId": "deleteExceptions",
-        "parameters": [
-          {
-            "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
-          },
-          {
-            "in": "header",
-            "name": "WM_SEC.ACCESS_TOKEN",
-            "description": "The access token retrieved in the Token API call",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
-          },
-          {
-            "in": "header",
-            "name": "WM_CONSUMER.CHANNEL.TYPE",
-            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "header",
-            "name": "WM_QOS.CORRELATION_ID",
-            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
-          },
-          {
-            "in": "header",
-            "name": "WM_SVC.NAME",
-            "description": "Walmart Service Name",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Walmart Service Name"
-          }
-        ],
-        "requestBody": {
-          "description": "Request fields",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "ruleHeader": {
-                    "type": "object",
-                    "properties": {
-                      "version": {
-                        "type": "string"
-                      }
-                    }
-                  },
-                  "rules": {
-                    "type": "object",
-                    "properties": {
-                      "skus": {
-                        "type": "array",
-                        "items": {
-                          "type": "object",
-                          "properties": {
-                            "sku": {
-                              "type": "string",
-                              "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: ':', '/', '?', '#', '[', ']', '@', '!', '$', '&', \"'\", '(', ')', '*', '+', ',', ';', '=', as well as '%' itself. Other characters don't need to be encoded."
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              },
-              "example": {
-                "ruleHeader": {
-                  "version": "1.2"
-                },
-                "rules": {
-                  "skus": [
-                    {
-                      "sku": "sku-1234"
-                    },
-                    {
-                      "sku": "sku-2323"
-                    }
-                  ]
-                }
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "feedId": {
-                      "type": "string",
-                      "description": "A unique ID, returned from the Create Override Exception API, used for tracking a feed file"
-                    },
-                    "status": {
-                      "type": "string",
-                      "description": "status"
-                    }
-                  }
-                },
-                "example": {
-                  "feedId": "5ED712C698FD43B999EC5EEFD5C63655@ATgBAQA",
-                  "status": "OK"
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Rules"
-        ],
-        "summary": "Create override exceptions",
-        "description": "This API is used if any SKU is required to be removed from Two-day delivery settings",
-        "operationId": "createOverrideExceptions",
-        "parameters": [
-          {
-            "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
-          },
-          {
-            "in": "header",
-            "name": "WM_SEC.ACCESS_TOKEN",
-            "description": "The access token retrieved in the Token API call",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
-          },
-          {
-            "in": "header",
-            "name": "WM_CONSUMER.CHANNEL.TYPE",
-            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "header",
-            "name": "WM_QOS.CORRELATION_ID",
-            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
-          },
-          {
-            "in": "header",
-            "name": "WM_SVC.NAME",
-            "description": "Walmart Service Name",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Walmart Service Name"
-          }
-        ],
-        "requestBody": {
-          "description": "Request fields",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "ruleHeader": {
-                    "type": "object",
-                    "properties": {
-                      "version": {
-                        "type": "string"
-                      }
-                    }
-                  },
-                  "rules": {
-                    "type": "object",
-                    "properties": {
-                      "skus": {
-                        "type": "array",
-                        "items": {
-                          "type": "object",
-                          "properties": {
-                            "sku": {
-                              "type": "string",
-                              "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: ':', '/', '?', '#', '[', ']', '@', '!', '$', '&', \"'\", '(', ')', '*', '+', ',', ';', '=', as well as '%' itself. Other characters don't need to be encoded."
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              },
-              "example": {
-                "ruleHeader": {
-                  "version": "1.2"
-                },
-                "rules": {
-                  "skus": [
-                    {
-                      "sku": "sku-1234"
-                    },
-                    {
-                      "sku": "sku-2323"
-                    }
-                  ]
-                }
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "feedId": {
-                      "type": "string",
-                      "description": "A unique ID, returned from the Create Override Exception API, used for tracking a feed file"
-                    },
-                    "status": {
-                      "type": "string",
-                      "description": "status"
-                    }
-                  }
-                },
-                "example": {
-                  "feedId": "5ED712C698FD43B999EC5EEFD5C63655@ATgBAQA",
-                  "status": "OK"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/v3/rules/downloadexceptions": {
       "get": {
         "tags": [
@@ -2610,15 +3032,33 @@
         }
       }
     },
-    "/v3/rules/areas": {
+    "/v3/rules/{ruleId}/status/{ruleStatus}/simulationcount": {
       "get": {
         "tags": [
           "Rules"
         ],
-        "summary": "Get all areas",
-        "description": "This API provides you the list of states on which you can provide two-day shipping of an item.",
-        "operationId": "getAllAreas",
+        "summary": "Get simulation result",
+        "description": "You can use this API to get the count of items shortlisted for two-day shipping for a specific rule defined by ruleId and ruleStatus",
+        "operationId": "getSimulationResult",
         "parameters": [
+          {
+            "name": "ruleId",
+            "in": "path",
+            "description": "Unique identifier of the rule created for custom rule assortment.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ruleStatus",
+            "in": "path",
+            "description": "Status of the rule post the rule creation. Allowed values are Active, Inactive, Submitted.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "in": "header",
             "name": "Authorization",
@@ -2677,851 +3117,411 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "status": {
+                    "ruleId": {
                       "type": "string",
-                      "description": "Status of the rule post the rule creation."
+                      "description": "Unique identifier of the rule created for custom rule assortment."
                     },
-                    "payload": {
-                      "type": "object",
-                      "properties": {
-                        "entities": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "states": {
-                                "type": "array",
-                                "description": "states.",
-                                "items": {
-                                  "type": "object",
-                                  "properties": {
-                                    "stateSubregions": {
-                                      "type": "array",
-                                      "description": "statesubregions",
-                                      "items": {
-                                        "type": "object",
-                                        "properties": {
-                                          "stateSubregionCode": {
-                                            "type": "string",
-                                            "description": "stateSubregionCode"
-                                          },
-                                          "stateSubregionName": {
-                                            "type": "string",
-                                            "description": "stateSubregionName"
-                                          }
-                                        },
-                                        "description": "statesubregions"
-                                      }
-                                    }
-                                  },
-                                  "description": "states."
-                                }
-                              },
-                              "regionCode": {
-                                "type": "string",
-                                "description": "regionCode"
-                              },
-                              "regionName": {
-                                "type": "string",
-                                "description": "regionName"
-                              }
-                            }
-                          }
-                        }
-                      }
+                    "ruleStatus": {
+                      "type": "string",
+                      "description": "Status of the rule post the rule creation. Allowed values are Active, Inactive, Submitted."
+                    },
+                    "simulationCount": {
+                      "type": "string",
+                      "description": "Number of items that would be set for two-day if the rule gets activated."
                     }
                   }
                 },
                 "example": {
-                  "status": "OK",
-                  "payload": {
-                    "entities": [
-                      {
-                        "states": [
-                          {
-                            "stateSubregions": [
-                              {
-                                "stateSubregionCode": "CT1",
-                                "stateSubregionName": "CT_REST_ALL"
-                              },
-                              {
-                                "stateSubregionCode": "CT2",
-                                "stateSubregionName": "CT_SOUTH_WEST"
-                              }
-                            ]
-                          },
-                          {
-                            "stateSubregions": [
-                              {
-                                "stateSubregionCode": "PA3",
-                                "stateSubregionName": "PA_NORTH_EAST"
-                              },
-                              {
-                                "stateSubregionCode": "PA1",
-                                "stateSubregionName": "PA_CENTRAL"
-                              },
-                              {
-                                "stateSubregionCode": "PA2",
-                                "stateSubregionName": "PA_CENTRAL_NORTH"
-                              },
-                              {
-                                "stateSubregionCode": "PA5",
-                                "stateSubregionName": "PA_WEST"
-                              },
-                              {
-                                "stateSubregionCode": "PA4",
-                                "stateSubregionName": "PA_SOUTH"
-                              }
-                            ]
-                          },
-                          {
-                            "stateSubregions": [
-                              {
-                                "stateSubregionCode": "MA1",
-                                "stateSubregionName": "MA_EAST"
-                              },
-                              {
-                                "stateSubregionCode": "MA2",
-                                "stateSubregionName": "MA_WEST"
-                              }
-                            ]
-                          },
-                          {
-                            "stateSubregions": [
-                              {
-                                "stateSubregionCode": "RI",
-                                "stateSubregionName": "RI"
-                              }
-                            ]
-                          },
-                          {
-                            "stateSubregions": [
-                              {
-                                "stateSubregionCode": "ME1",
-                                "stateSubregionName": "ME_EAST"
-                              },
-                              {
-                                "stateSubregionCode": "ME2",
-                                "stateSubregionName": "ME_WEST"
-                              }
-                            ]
-                          },
-                          {
-                            "stateSubregions": [
-                              {
-                                "stateSubregionCode": "NH",
-                                "stateSubregionName": "NH"
-                              }
-                            ]
-                          },
-                          {
-                            "stateSubregions": [
-                              {
-                                "stateSubregionCode": "NY3",
-                                "stateSubregionName": "NY_NORTH_CENTRAL"
-                              },
-                              {
-                                "stateSubregionCode": "NY5",
-                                "stateSubregionName": "NY_SOUTH"
-                              },
-                              {
-                                "stateSubregionCode": "NY1",
-                                "stateSubregionName": "NY_BROOKLYN"
-                              },
-                              {
-                                "stateSubregionCode": "NY2",
-                                "stateSubregionName": "NY_CENTRAL"
-                              },
-                              {
-                                "stateSubregionCode": "NY4",
-                                "stateSubregionName": "NY_NORTH_WEST"
-                              }
-                            ]
-                          },
-                          {
-                            "stateSubregions": [
-                              {
-                                "stateSubregionCode": "NJ3",
-                                "stateSubregionName": "NJ_SOUTH"
-                              },
-                              {
-                                "stateSubregionCode": "NJ2",
-                                "stateSubregionName": "NJ_NORTH"
-                              },
-                              {
-                                "stateSubregionCode": "NJ4",
-                                "stateSubregionName": "NJ_KEARNY"
-                              },
-                              {
-                                "stateSubregionCode": "NJ1",
-                                "stateSubregionName": "NJ_CENTRAL"
-                              }
-                            ]
-                          },
-                          {
-                            "stateSubregions": [
-                              {
-                                "stateSubregionCode": "VT",
-                                "stateSubregionName": "VT"
-                              }
-                            ]
-                          }
-                        ],
-                        "regionCode": "NE",
-                        "regionName": "Northeast"
-                      },
-                      {
-                        "states": [
-                          {
-                            "stateSubregions": [
-                              {
-                                "stateSubregionCode": "SD2",
-                                "stateSubregionName": "SD_WEST"
-                              },
-                              {
-                                "stateSubregionCode": "SD1",
-                                "stateSubregionName": "SD_EAST"
-                              }
-                            ]
-                          },
-                          {
-                            "stateSubregions": [
-                              {
-                                "stateSubregionCode": "MN2",
-                                "stateSubregionName": "MN_REST_ALL"
-                              },
-                              {
-                                "stateSubregionCode": "MN1",
-                                "stateSubregionName": "MN_CENTRAL_EAST"
-                              }
-                            ]
-                          },
-                          {
-                            "stateSubregions": [
-                              {
-                                "stateSubregionCode": "MO3",
-                                "stateSubregionName": "MO_WEST"
-                              },
-                              {
-                                "stateSubregionCode": "MO1",
-                                "stateSubregionName": "MO_EAST"
-                              },
-                              {
-                                "stateSubregionCode": "MO2",
-                                "stateSubregionName": "MO_SOUTH"
-                              }
-                            ]
-                          },
-                          {
-                            "stateSubregions": [
-                              {
-                                "stateSubregionCode": "WI2",
-                                "stateSubregionName": "WI_WEST"
-                              },
-                              {
-                                "stateSubregionCode": "WI1",
-                                "stateSubregionName": "WI_EAST"
-                              }
-                            ]
-                          },
-                          {
-                            "stateSubregions": [
-                              {
-                                "stateSubregionCode": "IL1",
-                                "stateSubregionName": "IL_CHICAGO"
-                              },
-                              {
-                                "stateSubregionCode": "IL3",
-                                "stateSubregionName": "IL_NORTH_WEST"
-                              },
-                              {
-                                "stateSubregionCode": "IL4",
-                                "stateSubregionName": "IL_SOUTHEAST"
-                              },
-                              {
-                                "stateSubregionCode": "IL5",
-                                "stateSubregionName": "IL_SOUTHWEST"
-                              },
-                              {
-                                "stateSubregionCode": "IL2",
-                                "stateSubregionName": "IL_NORTH_EAST"
-                              }
-                            ]
-                          },
-                          {
-                            "stateSubregions": [
-                              {
-                                "stateSubregionCode": "IN1",
-                                "stateSubregionName": "IN_CENTRAL_AND_EAST"
-                              },
-                              {
-                                "stateSubregionCode": "IN3",
-                                "stateSubregionName": "IN_SOUTH"
-                              },
-                              {
-                                "stateSubregionCode": "IN2",
-                                "stateSubregionName": "IN_NORTH"
-                              },
-                              {
-                                "stateSubregionCode": "IN4",
-                                "stateSubregionName": "IN_WEST"
-                              }
-                            ]
-                          },
-                          {
-                            "stateSubregions": [
-                              {
-                                "stateSubregionCode": "ND",
-                                "stateSubregionName": "ND"
-                              }
-                            ]
-                          },
-                          {
-                            "stateSubregions": [
-                              {
-                                "stateSubregionCode": "NE",
-                                "stateSubregionName": "NE"
-                              }
-                            ]
-                          },
-                          {
-                            "stateSubregions": [
-                              {
-                                "stateSubregionCode": "IA1",
-                                "stateSubregionName": "IA_CENTRAL"
-                              },
-                              {
-                                "stateSubregionCode": "IA2",
-                                "stateSubregionName": "IA_REST"
-                              }
-                            ]
-                          },
-                          {
-                            "stateSubregions": [
-                              {
-                                "stateSubregionCode": "KS1",
-                                "stateSubregionName": "KS_EAST"
-                              },
-                              {
-                                "stateSubregionCode": "KS2",
-                                "stateSubregionName": "KS_WEST"
-                              }
-                            ]
-                          },
-                          {
-                            "stateSubregions": [
-                              {
-                                "stateSubregionCode": "OH3",
-                                "stateSubregionName": "OH_SOUTH_EAST"
-                              },
-                              {
-                                "stateSubregionCode": "OH1",
-                                "stateSubregionName": "OH_CENTRAL"
-                              },
-                              {
-                                "stateSubregionCode": "OH2",
-                                "stateSubregionName": "OH_NORTH"
-                              },
-                              {
-                                "stateSubregionCode": "OH4",
-                                "stateSubregionName": "OH_WEST"
-                              }
-                            ]
-                          },
-                          {
-                            "stateSubregions": [
-                              {
-                                "stateSubregionCode": "MI2",
-                                "stateSubregionName": "MI_NORTH"
-                              },
-                              {
-                                "stateSubregionCode": "MI3",
-                                "stateSubregionName": "MI_SOUTH_EAST"
-                              },
-                              {
-                                "stateSubregionCode": "MI1",
-                                "stateSubregionName": "MI_CENTRAL"
-                              }
-                            ]
-                          }
-                        ],
-                        "regionCode": "MW",
-                        "regionName": "Midwest"
-                      },
-                      {
-                        "states": [
-                          {
-                            "stateSubregions": [
-                              {
-                                "stateSubregionCode": "DE",
-                                "stateSubregionName": "DE"
-                              }
-                            ]
-                          },
-                          {
-                            "stateSubregions": [
-                              {
-                                "stateSubregionCode": "TX2",
-                                "stateSubregionName": "TX_CENTRAL_NORTH"
-                              },
-                              {
-                                "stateSubregionCode": "TX3",
-                                "stateSubregionName": "TX_CENTRAL_WEST"
-                              },
-                              {
-                                "stateSubregionCode": "TX6",
-                                "stateSubregionName": "TX_NORTH_EAST"
-                              },
-                              {
-                                "stateSubregionCode": "TX7",
-                                "stateSubregionName": "TX_NORTH_WEST"
-                              },
-                              {
-                                "stateSubregionCode": "TX4",
-                                "stateSubregionName": "TX_DALLAS"
-                              },
-                              {
-                                "stateSubregionCode": "TX5",
-                                "stateSubregionName": "TX_HOUSTON"
-                              },
-                              {
-                                "stateSubregionCode": "TX1",
-                                "stateSubregionName": "TX_CENTRAL"
-                              },
-                              {
-                                "stateSubregionCode": "TX9",
-                                "stateSubregionName": "TX_SOUTH_EAST"
-                              },
-                              {
-                                "stateSubregionCode": "TX8",
-                                "stateSubregionName": "TX_SOUTH"
-                              },
-                              {
-                                "stateSubregionCode": "TX10",
-                                "stateSubregionName": "TX_SOUTH_WEST"
-                              }
-                            ]
-                          },
-                          {
-                            "stateSubregions": [
-                              {
-                                "stateSubregionCode": "FL6",
-                                "stateSubregionName": "FL_SOUTH_WEST"
-                              },
-                              {
-                                "stateSubregionCode": "FL4",
-                                "stateSubregionName": "FL_NORTH"
-                              },
-                              {
-                                "stateSubregionCode": "FL3",
-                                "stateSubregionName": "FL_MIAMI"
-                              },
-                              {
-                                "stateSubregionCode": "FL1",
-                                "stateSubregionName": "FL_CENTRAL_EAST"
-                              },
-                              {
-                                "stateSubregionCode": "FL5",
-                                "stateSubregionName": "FL_SOUTH_EAST"
-                              },
-                              {
-                                "stateSubregionCode": "FL2",
-                                "stateSubregionName": "FL_CENTRAL_WEST"
-                              }
-                            ]
-                          },
-                          {
-                            "stateSubregions": [
-                              {
-                                "stateSubregionCode": "MS2",
-                                "stateSubregionName": "MS_SOUTH"
-                              },
-                              {
-                                "stateSubregionCode": "MS1",
-                                "stateSubregionName": "MS_NORTH"
-                              }
-                            ]
-                          },
-                          {
-                            "stateSubregions": [
-                              {
-                                "stateSubregionCode": "VA4",
-                                "stateSubregionName": "VA_SOUTH_WEST"
-                              },
-                              {
-                                "stateSubregionCode": "VA1",
-                                "stateSubregionName": "VA_CENTRAL"
-                              },
-                              {
-                                "stateSubregionCode": "VA2",
-                                "stateSubregionName": "VA_NORTH"
-                              },
-                              {
-                                "stateSubregionCode": "VA3",
-                                "stateSubregionName": "VA_SOUTH_EAST"
-                              }
-                            ]
-                          },
-                          {
-                            "stateSubregions": [
-                              {
-                                "stateSubregionCode": "AL2",
-                                "stateSubregionName": "AL_SOUTH"
-                              },
-                              {
-                                "stateSubregionCode": "AL1",
-                                "stateSubregionName": "AL_NORTH"
-                              }
-                            ]
-                          },
-                          {
-                            "stateSubregions": [
-                              {
-                                "stateSubregionCode": "KY1",
-                                "stateSubregionName": "KY_EAST"
-                              },
-                              {
-                                "stateSubregionCode": "KY2",
-                                "stateSubregionName": "KY_WEST"
-                              }
-                            ]
-                          },
-                          {
-                            "stateSubregions": [
-                              {
-                                "stateSubregionCode": "SC1",
-                                "stateSubregionName": "SC_CENTRAL"
-                              },
-                              {
-                                "stateSubregionCode": "SC2",
-                                "stateSubregionName": "SC_NORTH"
-                              },
-                              {
-                                "stateSubregionCode": "SC3",
-                                "stateSubregionName": "SC_SOUTH"
-                              }
-                            ]
-                          },
-                          {
-                            "stateSubregions": [
-                              {
-                                "stateSubregionCode": "AR2",
-                                "stateSubregionName": "AR_WEST"
-                              },
-                              {
-                                "stateSubregionCode": "AR1",
-                                "stateSubregionName": "AR_EAST"
-                              }
-                            ]
-                          },
-                          {
-                            "stateSubregions": [
-                              {
-                                "stateSubregionCode": "NC3",
-                                "stateSubregionName": "NC_SOUTH"
-                              },
-                              {
-                                "stateSubregionCode": "NC2",
-                                "stateSubregionName": "NC_NORTH"
-                              },
-                              {
-                                "stateSubregionCode": "NC4",
-                                "stateSubregionName": "NC_WEST"
-                              },
-                              {
-                                "stateSubregionCode": "NC1",
-                                "stateSubregionName": "NC_EAST"
-                              }
-                            ]
-                          },
-                          {
-                            "stateSubregions": [
-                              {
-                                "stateSubregionCode": "LA2",
-                                "stateSubregionName": "LA_SOUTH"
-                              },
-                              {
-                                "stateSubregionCode": "LA1",
-                                "stateSubregionName": "LA_NORTH"
-                              }
-                            ]
-                          },
-                          {
-                            "stateSubregions": [
-                              {
-                                "stateSubregionCode": "MD1",
-                                "stateSubregionName": "MD_CENTRAL"
-                              },
-                              {
-                                "stateSubregionCode": "MD2",
-                                "stateSubregionName": "MD_REST_ALL"
-                              }
-                            ]
-                          },
-                          {
-                            "stateSubregions": [
-                              {
-                                "stateSubregionCode": "TN3",
-                                "stateSubregionName": "TN_WEST"
-                              },
-                              {
-                                "stateSubregionCode": "TN2",
-                                "stateSubregionName": "TN_EAST"
-                              },
-                              {
-                                "stateSubregionCode": "TN1",
-                                "stateSubregionName": "TN_CENTRAL"
-                              }
-                            ]
-                          },
-                          {
-                            "stateSubregions": [
-                              {
-                                "stateSubregionCode": "GA5",
-                                "stateSubregionName": "GA_SOUTH"
-                              },
-                              {
-                                "stateSubregionCode": "GA2",
-                                "stateSubregionName": "GA_CENTRAL"
-                              },
-                              {
-                                "stateSubregionCode": "GA3",
-                                "stateSubregionName": "GA_NORTH_EAST"
-                              },
-                              {
-                                "stateSubregionCode": "GA4",
-                                "stateSubregionName": "GA_NORTH_WEST"
-                              },
-                              {
-                                "stateSubregionCode": "GA1",
-                                "stateSubregionName": "GA_ATLANTA"
-                              }
-                            ]
-                          },
-                          {
-                            "stateSubregions": [
-                              {
-                                "stateSubregionCode": "OK2",
-                                "stateSubregionName": "OK_REST_ALL"
-                              },
-                              {
-                                "stateSubregionCode": "OK1",
-                                "stateSubregionName": "OK_NORTH_EAST"
-                              }
-                            ]
-                          },
-                          {
-                            "stateSubregions": [
-                              {
-                                "stateSubregionCode": "DC",
-                                "stateSubregionName": "DC"
-                              }
-                            ]
-                          },
-                          {
-                            "stateSubregions": [
-                              {
-                                "stateSubregionCode": "WV2",
-                                "stateSubregionName": "WV_WEST"
-                              },
-                              {
-                                "stateSubregionCode": "WV1",
-                                "stateSubregionName": "WV_EAST"
-                              }
-                            ]
-                          }
-                        ],
-                        "regionCode": "SO",
-                        "regionName": "South"
-                      },
-                      {
-                        "states": [
-                          {
-                            "stateSubregions": [
-                              {
-                                "stateSubregionCode": "WY",
-                                "stateSubregionName": "WY"
-                              }
-                            ]
-                          },
-                          {
-                            "stateSubregions": [
-                              {
-                                "stateSubregionCode": "OR2",
-                                "stateSubregionName": "OR_NORTH_WEST"
-                              },
-                              {
-                                "stateSubregionCode": "OR1",
-                                "stateSubregionName": "OR_CENTRAL"
-                              }
-                            ]
-                          },
-                          {
-                            "stateSubregions": [
-                              {
-                                "stateSubregionCode": "MT",
-                                "stateSubregionName": "MT"
-                              }
-                            ]
-                          },
-                          {
-                            "stateSubregions": [
-                              {
-                                "stateSubregionCode": "NV2",
-                                "stateSubregionName": "NV_NORTH"
-                              },
-                              {
-                                "stateSubregionCode": "NV3",
-                                "stateSubregionName": "NV_SOUTH"
-                              },
-                              {
-                                "stateSubregionCode": "NV1",
-                                "stateSubregionName": "NV_LAS_VEGAS"
-                              }
-                            ]
-                          },
-                          {
-                            "stateSubregions": [
-                              {
-                                "stateSubregionCode": "AZ3",
-                                "stateSubregionName": "AZ_SOUTH"
-                              },
-                              {
-                                "stateSubregionCode": "AZ2",
-                                "stateSubregionName": "AZ_PHOENIX"
-                              },
-                              {
-                                "stateSubregionCode": "AZ1",
-                                "stateSubregionName": "AZ_NORTH"
-                              }
-                            ]
-                          },
-                          {
-                            "stateSubregions": [
-                              {
-                                "stateSubregionCode": "WA",
-                                "stateSubregionName": "WA"
-                              }
-                            ]
-                          },
-                          {
-                            "stateSubregions": [
-                              {
-                                "stateSubregionCode": "ID2",
-                                "stateSubregionName": "ID_NORTH_AND_EAST"
-                              },
-                              {
-                                "stateSubregionCode": "ID1",
-                                "stateSubregionName": "ID_BOISE_AND_NAMPA"
-                              }
-                            ]
-                          },
-                          {
-                            "stateSubregions": [
-                              {
-                                "stateSubregionCode": "CO2",
-                                "stateSubregionName": "CO_REST_ALL"
-                              },
-                              {
-                                "stateSubregionCode": "CO1",
-                                "stateSubregionName": "CO_CENTRAL"
-                              }
-                            ]
-                          },
-                          {
-                            "stateSubregions": [
-                              {
-                                "stateSubregionCode": "CA8",
-                                "stateSubregionName": "CA_NORTH"
-                              },
-                              {
-                                "stateSubregionCode": "CA10",
-                                "stateSubregionName": "CA_RIVERSIDE_IMPERIAL\t"
-                              },
-                              {
-                                "stateSubregionCode": "CA4",
-                                "stateSubregionName": "CA_CENTRAL_WEST"
-                              },
-                              {
-                                "stateSubregionCode": "CA5",
-                                "stateSubregionName": "CA_LONG_BEACH"
-                              },
-                              {
-                                "stateSubregionCode": "CA1",
-                                "stateSubregionName": "CA_CENTRAL"
-                              },
-                              {
-                                "stateSubregionCode": "CA9",
-                                "stateSubregionName": "CA_ONTARIO"
-                              },
-                              {
-                                "stateSubregionCode": "CA13",
-                                "stateSubregionName": "CA_SAN_DIEGO_COUNTY"
-                              },
-                              {
-                                "stateSubregionCode": "CA11",
-                                "stateSubregionName": "CA_SAN_BERNARDINO"
-                              },
-                              {
-                                "stateSubregionCode": "CA15",
-                                "stateSubregionName": "CA_SANTA_ANA"
-                              },
-                              {
-                                "stateSubregionCode": "CA14",
-                                "stateSubregionName": "CA_SAN_FRANCISCO"
-                              },
-                              {
-                                "stateSubregionCode": "CA3",
-                                "stateSubregionName": "CA_CENTRAL_SOUTH"
-                              },
-                              {
-                                "stateSubregionCode": "CA12",
-                                "stateSubregionName": "CA_SAN_DIEGO"
-                              },
-                              {
-                                "stateSubregionCode": "CA2",
-                                "stateSubregionName": "CA_CENTRAL_NORTH"
-                              },
-                              {
-                                "stateSubregionCode": "CA7",
-                                "stateSubregionName": "CA_LOS_ANGELES_VENTURA_COUNTY"
-                              },
-                              {
-                                "stateSubregionCode": "CA6",
-                                "stateSubregionName": "CA_LOS_ANGELES"
-                              }
-                            ]
-                          },
-                          {
-                            "stateSubregions": [
-                              {
-                                "stateSubregionCode": "NM2",
-                                "stateSubregionName": "NM_REST_ALL"
-                              },
-                              {
-                                "stateSubregionCode": "NM1",
-                                "stateSubregionName": "NM_CENTRAL"
-                              }
-                            ]
-                          },
-                          {
-                            "stateSubregions": [
-                              {
-                                "stateSubregionCode": "UT2",
-                                "stateSubregionName": "UT_SOUTH"
-                              },
-                              {
-                                "stateSubregionCode": "UT1",
-                                "stateSubregionName": "UT_NORTH"
-                              }
-                            ]
-                          }
-                        ],
-                        "regionCode": "WE",
-                        "regionName": "West"
+                  "ruleId": "677",
+                  "ruleStatus": "Active",
+                  "simulationCount": "0"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/rules/{ruleId}/status/{ruleStatus}/simulation": {
+      "get": {
+        "tags": [
+          "Rules"
+        ],
+        "summary": "Download simulation result",
+        "description": "You can use this API to download the count of items shortlisted for two-day shipping for a specific rule defined by ruleId and ruleStatus",
+        "operationId": "downloadSimulationResult",
+        "parameters": [
+          {
+            "name": "ruleId",
+            "in": "path",
+            "description": "Unique identifier of the rule created for custom rule assortment.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ruleStatus",
+            "in": "path",
+            "description": "Status of the rule post the rule creation. Allowed values are Active, Inactive, Submitted.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Basic YzcyOTFjNmItNzI5MC00...."
+          },
+          {
+            "in": "header",
+            "name": "WM_SEC.ACCESS_TOKEN",
+            "description": "The access token retrieved in the Token API call",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
+          },
+          {
+            "in": "header",
+            "name": "WM_CONSUMER.CHANNEL.TYPE",
+            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "WM_QOS.CORRELATION_ID",
+            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
+          },
+          {
+            "in": "header",
+            "name": "WM_SVC.NAME",
+            "description": "Walmart Service Name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Walmart Service Name"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/octet-stream": {}
+            }
+          }
+        }
+      }
+    },
+    "/v3/rules/actions": {
+      "put": {
+        "tags": [
+          "Rules"
+        ],
+        "summary": "Update shipping area to rules",
+        "description": "This API helps you define coverage areas for your items that are held outside of the fulfillment centers defined by your shipNode management API's.",
+        "operationId": "updateShippingAreaToRule",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Basic YzcyOTFjNmItNzI5MC00...."
+          },
+          {
+            "in": "header",
+            "name": "WM_SEC.ACCESS_TOKEN",
+            "description": "The access token retrieved in the Token API call",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
+          },
+          {
+            "in": "header",
+            "name": "WM_CONSUMER.CHANNEL.TYPE",
+            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "WM_QOS.CORRELATION_ID",
+            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
+          },
+          {
+            "in": "header",
+            "name": "WM_SVC.NAME",
+            "description": "Walmart Service Name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Walmart Service Name"
+          }
+        ],
+        "requestBody": {
+          "description": "Request fields",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "ruleHeader": {
+                    "type": "object",
+                    "properties": {
+                      "version": {
+                        "type": "string"
                       }
-                    ]
+                    }
+                  },
+                  "rules": {
+                    "type": "object",
+                    "properties": {
+                      "ruleId": {
+                        "type": "string",
+                        "description": "Unique identifier of the rule created for custom rule assortment."
+                      },
+                      "ruleStatus": {
+                        "type": "string",
+                        "description": "Status of the rule post the rule creation. Allowed values are Active, Inactive, Submitted."
+                      },
+                      "actions": {
+                        "type": "array",
+                        "description": "Defines the two day state coverage areas.",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "twoDayShippingRegions": {
+                              "type": "array",
+                              "description": "List of two-day regions.",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "regionCode": {
+                                    "type": "string",
+                                    "description": "regionCode"
+                                  },
+                                  "subRegions": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "object",
+                                      "properties": {
+                                        "subRegionCode": {
+                                          "type": "string",
+                                          "description": "subRegionCode"
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "description": "List of two-day regions."
+                              }
+                            }
+                          },
+                          "description": "Defines the two day state coverage areas."
+                        }
+                      }
+                    }
                   }
+                }
+              },
+              "example": {
+                "ruleHeader": {
+                  "version": "1.2"
+                },
+                "rules": {
+                  "ruleId": "612",
+                  "ruleStatus": "Submitted",
+                  "actions": [
+                    {
+                      "twoDayShippingRegions": [
+                        {
+                          "regionCode": "NE",
+                          "subRegions": [
+                            {
+                              "subRegionCode": "NY1"
+                            },
+                            {
+                              "subRegionCode": "NY2"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "rules": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "conditions": {
+                            "type": "array",
+                            "description": "Seller creates conditions while defining the custom rule assortment.There are three condition which a seller can use : subCategories, price, weight.",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "name": {
+                                  "type": "string",
+                                  "description": "Name of the rule created for custom rule assortment."
+                                },
+                                "operator": {
+                                  "type": "string",
+                                  "description": "Seller uses operator while defining conditions in the rule. Operators allowed for condition price and weight: EQUALS, GREATER_THAN, LESS_THAN,GREATER_THAN_OR_EQUALS,LESS_THAN_OR_EQUALS. and for condition subcategories : IN ."
+                                },
+                                "value": {
+                                  "type": "string",
+                                  "description": "Values for each condition. Value can be a comma separated strings for subcategories and numerical value for price and weight."
+                                }
+                              },
+                              "description": "Seller creates conditions while defining the custom rule assortment.There are three condition which a seller can use : subCategories, price, weight."
+                            }
+                          },
+                          "description": {
+                            "type": "string",
+                            "description": "Description of the rule created for custom rule assortment."
+                          },
+                          "name": {
+                            "type": "string",
+                            "description": "Name of the rule created for custom rule assortment."
+                          },
+                          "priority": {
+                            "type": "string",
+                            "description": "Priority of the rule created for custom rule assortment."
+                          },
+                          "ruleId": {
+                            "type": "string",
+                            "description": "Unique identifier of the rule created for custom rule assortment."
+                          },
+                          "ruleStatus": {
+                            "type": "string",
+                            "description": "Status of the rule post the rule creation. Allowed values are Active, Inactive, Submitted."
+                          },
+                          "skuProcessingStatus": {
+                            "type": "string",
+                            "description": "When the rule gets activated, skuProcessingStatus represents the state of all items being processed for two-day. The two values for skuProcessingStatus are Processing and Completed."
+                          },
+                          "ruleAction": {
+                            "type": "object",
+                            "properties": {
+                              "twoDayShippingRegions": {
+                                "type": "array",
+                                "description": "List of two-day regions.",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "regionCode": {
+                                      "type": "string",
+                                      "description": "regionCode"
+                                    },
+                                    "subRegions": {
+                                      "type": "array",
+                                      "items": {
+                                        "type": "object",
+                                        "properties": {
+                                          "subRegionCode": {
+                                            "type": "string",
+                                            "description": "subRegionCode"
+                                          }
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "description": "List of two-day regions."
+                                }
+                              }
+                            },
+                            "description": "Defines the two day state coverage areas."
+                          }
+                        }
+                      }
+                    },
+                    "status": {
+                      "type": "string",
+                      "description": "status"
+                    }
+                  }
+                },
+                "example": {
+                  "rules": [
+                    {
+                      "conditions": [
+                        {
+                          "name": "price",
+                          "operator": "EQUALS",
+                          "value": "20"
+                        },
+                        {
+                          "name": "subCategories",
+                          "operator": "IN",
+                          "value": "571fdff7208f9a0cdb760a7f,56f2eb65208f9a0612c3adbd"
+                        }
+                      ],
+                      "description": "testing-new-510",
+                      "name": "testing-new-510",
+                      "priority": "21",
+                      "ruleAction": {
+                        "twoDayShippingRegions": [
+                          {
+                            "regionCode": "NE",
+                            "subRegions": [
+                              {
+                                "subRegionCode": "NY1"
+                              },
+                              {
+                                "subRegionCode": "NY2"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      "ruleId": "612",
+                      "ruleStatus": "Submitted"
+                    }
+                  ],
+                  "status": "OK"
                 }
               }
             }
@@ -3532,7 +3532,33 @@
   },
   "components": {
     "schemas": {
-      "GetSimulationCountResponse": {
+      "DeleteRuleResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Message and status of deletion"
+          },
+          "status": {
+            "type": "string",
+            "description": "status"
+          }
+        }
+      },
+      "InactivateRuleResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Message and status of inactivation of rule"
+          },
+          "status": {
+            "type": "string",
+            "description": "status"
+          }
+        }
+      },
+      "ActivateDeactivateRuleInfo": {
         "type": "object",
         "properties": {
           "ruleId": {
@@ -3542,12 +3568,316 @@
           "ruleStatus": {
             "type": "string",
             "description": "Status of the rule post the rule creation. Allowed values are Active, Inactive, Submitted."
-          },
-          "simulationCount": {
-            "type": "string",
-            "description": "Number of items that would be set for two-day if the rule gets activated."
           }
         }
+      },
+      "InactivateRuleRequest": {
+        "type": "object",
+        "properties": {
+          "ruleHeader": {
+            "type": "object",
+            "properties": {
+              "version": {
+                "type": "string"
+              }
+            }
+          },
+          "rules": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "ruleId": {
+                  "type": "string",
+                  "description": "Unique identifier of the rule created for custom rule assortment."
+                },
+                "ruleStatus": {
+                  "type": "string",
+                  "description": "Status of the rule post the rule creation. Allowed values are Active, Inactive, Submitted."
+                }
+              }
+            }
+          }
+        }
+      },
+      "RuleHeader": {
+        "type": "object",
+        "properties": {
+          "version": {
+            "type": "string"
+          }
+        }
+      },
+      "DeleteExceptionResponse": {
+        "type": "object",
+        "properties": {
+          "feedId": {
+            "type": "string",
+            "description": "A unique ID, returned from the Create Override Exception API, used for tracking a feed file"
+          },
+          "status": {
+            "type": "string",
+            "description": "status"
+          }
+        }
+      },
+      "DeleteExceptionRequest": {
+        "type": "object",
+        "properties": {
+          "ruleHeader": {
+            "type": "object",
+            "properties": {
+              "version": {
+                "type": "string"
+              }
+            }
+          },
+          "rules": {
+            "type": "object",
+            "properties": {
+              "skus": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "sku": {
+                      "type": "string",
+                      "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: ':', '/', '?', '#', '[', ']', '@', '!', '$', '&', \"'\", '(', ')', '*', '+', ',', ';', '=', as well as '%' itself. Other characters don't need to be encoded."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "ExceptionInfo": {
+        "type": "object",
+        "properties": {
+          "skus": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "sku": {
+                  "type": "string",
+                  "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: ':', '/', '?', '#', '[', ']', '@', '!', '$', '&', \"'\", '(', ')', '*', '+', ',', ';', '=', as well as '%' itself. Other characters don't need to be encoded."
+                }
+              }
+            }
+          }
+        }
+      },
+      "OverrideItem": {
+        "type": "object",
+        "properties": {
+          "sku": {
+            "type": "string",
+            "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: ':', '/', '?', '#', '[', ']', '@', '!', '$', '&', \"'\", '(', ')', '*', '+', ',', ';', '=', as well as '%' itself. Other characters don't need to be encoded."
+          }
+        }
+      },
+      "GetAllExceptionsResponse": {
+        "type": "object",
+        "properties": {
+          "skuIds": {
+            "type": "array",
+            "description": "A seller-provided Product ID.",
+            "items": {
+              "type": "string",
+              "description": "A seller-provided Product ID."
+            }
+          },
+          "status": {
+            "type": "string"
+          }
+        }
+      },
+      "AreaEntity": {
+        "type": "object",
+        "properties": {
+          "states": {
+            "type": "array",
+            "description": "states.",
+            "items": {
+              "type": "object",
+              "properties": {
+                "stateSubregions": {
+                  "type": "array",
+                  "description": "statesubregions",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "stateSubregionCode": {
+                        "type": "string",
+                        "description": "stateSubregionCode"
+                      },
+                      "stateSubregionName": {
+                        "type": "string",
+                        "description": "stateSubregionName"
+                      }
+                    },
+                    "description": "statesubregions"
+                  }
+                }
+              },
+              "description": "states."
+            }
+          },
+          "regionCode": {
+            "type": "string",
+            "description": "regionCode"
+          },
+          "regionName": {
+            "type": "string",
+            "description": "regionName"
+          }
+        }
+      },
+      "GetAllAreasPayload": {
+        "type": "object",
+        "properties": {
+          "entities": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "states": {
+                  "type": "array",
+                  "description": "states.",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "stateSubregions": {
+                        "type": "array",
+                        "description": "statesubregions",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "stateSubregionCode": {
+                              "type": "string",
+                              "description": "stateSubregionCode"
+                            },
+                            "stateSubregionName": {
+                              "type": "string",
+                              "description": "stateSubregionName"
+                            }
+                          },
+                          "description": "statesubregions"
+                        }
+                      }
+                    },
+                    "description": "states."
+                  }
+                },
+                "regionCode": {
+                  "type": "string",
+                  "description": "regionCode"
+                },
+                "regionName": {
+                  "type": "string",
+                  "description": "regionName"
+                }
+              }
+            }
+          }
+        }
+      },
+      "GetAllAreasResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "Status of the rule post the rule creation."
+          },
+          "payload": {
+            "type": "object",
+            "properties": {
+              "entities": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "states": {
+                      "type": "array",
+                      "description": "states.",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "stateSubregions": {
+                            "type": "array",
+                            "description": "statesubregions",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "stateSubregionCode": {
+                                  "type": "string",
+                                  "description": "stateSubregionCode"
+                                },
+                                "stateSubregionName": {
+                                  "type": "string",
+                                  "description": "stateSubregionName"
+                                }
+                              },
+                              "description": "statesubregions"
+                            }
+                          }
+                        },
+                        "description": "states."
+                      }
+                    },
+                    "regionCode": {
+                      "type": "string",
+                      "description": "regionCode"
+                    },
+                    "regionName": {
+                      "type": "string",
+                      "description": "regionName"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "State": {
+        "type": "object",
+        "properties": {
+          "stateSubregions": {
+            "type": "array",
+            "description": "statesubregions",
+            "items": {
+              "type": "object",
+              "properties": {
+                "stateSubregionCode": {
+                  "type": "string",
+                  "description": "stateSubregionCode"
+                },
+                "stateSubregionName": {
+                  "type": "string",
+                  "description": "stateSubregionName"
+                }
+              },
+              "description": "statesubregions"
+            }
+          }
+        },
+        "description": "states."
+      },
+      "StateSubRegion": {
+        "type": "object",
+        "properties": {
+          "stateSubregionCode": {
+            "type": "string",
+            "description": "stateSubregionCode"
+          },
+          "stateSubregionName": {
+            "type": "string",
+            "description": "stateSubregionName"
+          }
+        },
+        "description": "statesubregions"
       },
       "Condition": {
         "type": "object",
@@ -3566,6 +3896,216 @@
           }
         },
         "description": "Seller creates conditions while defining the custom rule assortment.There are three condition which a seller can use : subCategories, price, weight."
+      },
+      "CreateRuleResponse": {
+        "type": "object",
+        "properties": {
+          "rules": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "conditions": {
+                  "type": "array",
+                  "description": "Seller creates conditions while defining the custom rule assortment.There are three condition which a seller can use : subCategories, price, weight.",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "description": "Name of the rule created for custom rule assortment."
+                      },
+                      "operator": {
+                        "type": "string",
+                        "description": "Seller uses operator while defining conditions in the rule. Operators allowed for condition price and weight: EQUALS, GREATER_THAN, LESS_THAN,GREATER_THAN_OR_EQUALS,LESS_THAN_OR_EQUALS. and for condition subcategories : IN ."
+                      },
+                      "value": {
+                        "type": "string",
+                        "description": "Values for each condition. Value can be a comma separated strings for subcategories and numerical value for price and weight."
+                      }
+                    },
+                    "description": "Seller creates conditions while defining the custom rule assortment.There are three condition which a seller can use : subCategories, price, weight."
+                  }
+                },
+                "description": {
+                  "type": "string",
+                  "description": "Description of the rule created for custom rule assortment."
+                },
+                "name": {
+                  "type": "string",
+                  "description": "Name of the rule created for custom rule assortment."
+                },
+                "priority": {
+                  "type": "string",
+                  "description": "Priority of the rule created for custom rule assortment."
+                },
+                "ruleAction": {
+                  "type": "string",
+                  "description": "Defines the two day state coverage areas."
+                },
+                "ruleId": {
+                  "type": "string",
+                  "description": "Unique identifier of the rule created for custom rule assortment."
+                },
+                "ruleStatus": {
+                  "type": "string",
+                  "description": "Status of the rule post the rule creation. Allowed values are Active, Inactive, Submitted."
+                },
+                "skuProcessingStatus": {
+                  "type": "string",
+                  "description": "When the rule gets activated, skuProcessingStatus represents the state of all items being processed for two-day. The two values for skuProcessingStatus are Processing and Completed."
+                }
+              }
+            }
+          },
+          "status": {
+            "type": "string"
+          }
+        }
+      },
+      "RuleResponse": {
+        "type": "object",
+        "properties": {
+          "conditions": {
+            "type": "array",
+            "description": "Seller creates conditions while defining the custom rule assortment.There are three condition which a seller can use : subCategories, price, weight.",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Name of the rule created for custom rule assortment."
+                },
+                "operator": {
+                  "type": "string",
+                  "description": "Seller uses operator while defining conditions in the rule. Operators allowed for condition price and weight: EQUALS, GREATER_THAN, LESS_THAN,GREATER_THAN_OR_EQUALS,LESS_THAN_OR_EQUALS. and for condition subcategories : IN ."
+                },
+                "value": {
+                  "type": "string",
+                  "description": "Values for each condition. Value can be a comma separated strings for subcategories and numerical value for price and weight."
+                }
+              },
+              "description": "Seller creates conditions while defining the custom rule assortment.There are three condition which a seller can use : subCategories, price, weight."
+            }
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the rule created for custom rule assortment."
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the rule created for custom rule assortment."
+          },
+          "priority": {
+            "type": "string",
+            "description": "Priority of the rule created for custom rule assortment."
+          },
+          "ruleAction": {
+            "type": "string",
+            "description": "Defines the two day state coverage areas."
+          },
+          "ruleId": {
+            "type": "string",
+            "description": "Unique identifier of the rule created for custom rule assortment."
+          },
+          "ruleStatus": {
+            "type": "string",
+            "description": "Status of the rule post the rule creation. Allowed values are Active, Inactive, Submitted."
+          },
+          "skuProcessingStatus": {
+            "type": "string",
+            "description": "When the rule gets activated, skuProcessingStatus represents the state of all items being processed for two-day. The two values for skuProcessingStatus are Processing and Completed."
+          }
+        }
+      },
+      "CreateRuleRequest": {
+        "type": "object",
+        "properties": {
+          "ruleHeader": {
+            "type": "object",
+            "properties": {
+              "version": {
+                "type": "string"
+              }
+            }
+          },
+          "rules": {
+            "type": "object",
+            "properties": {
+              "conditions": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "Name of the rule created for custom rule assortment."
+                    },
+                    "operator": {
+                      "type": "string",
+                      "description": "Seller uses operator while defining conditions in the rule. Operators allowed for condition price and weight: EQUALS, GREATER_THAN, LESS_THAN,GREATER_THAN_OR_EQUALS,LESS_THAN_OR_EQUALS. and for condition subcategories : IN ."
+                    },
+                    "value": {
+                      "type": "string",
+                      "description": "Values for each condition. Value can be a comma separated strings for subcategories and numerical value for price and weight."
+                    }
+                  },
+                  "description": "Seller creates conditions while defining the custom rule assortment.There are three condition which a seller can use : subCategories, price, weight."
+                }
+              },
+              "description": {
+                "type": "string",
+                "description": "Description of the rule created for custom rule assortment."
+              },
+              "name": {
+                "type": "string",
+                "description": "Name of the rule created for custom rule assortment."
+              },
+              "priority": {
+                "type": "string",
+                "description": "Priority of the rule created for custom rule assortment."
+              }
+            }
+          }
+        }
+      },
+      "RuleRequest": {
+        "type": "object",
+        "properties": {
+          "conditions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Name of the rule created for custom rule assortment."
+                },
+                "operator": {
+                  "type": "string",
+                  "description": "Seller uses operator while defining conditions in the rule. Operators allowed for condition price and weight: EQUALS, GREATER_THAN, LESS_THAN,GREATER_THAN_OR_EQUALS,LESS_THAN_OR_EQUALS. and for condition subcategories : IN ."
+                },
+                "value": {
+                  "type": "string",
+                  "description": "Values for each condition. Value can be a comma separated strings for subcategories and numerical value for price and weight."
+                }
+              },
+              "description": "Seller creates conditions while defining the custom rule assortment.There are three condition which a seller can use : subCategories, price, weight."
+            }
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the rule created for custom rule assortment."
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the rule created for custom rule assortment."
+          },
+          "priority": {
+            "type": "string",
+            "description": "Priority of the rule created for custom rule assortment."
+          }
+        }
       },
       "GetAllRulesResponse": {
         "type": "object",
@@ -3808,335 +4348,6 @@
         },
         "description": "List of two-day regions."
       },
-      "RuleHeader": {
-        "type": "object",
-        "properties": {
-          "version": {
-            "type": "string"
-          }
-        }
-      },
-      "RuleToUpdate": {
-        "type": "object",
-        "properties": {
-          "ruleId": {
-            "type": "string",
-            "description": "Unique identifier of the rule created for custom rule assortment."
-          },
-          "ruleStatus": {
-            "type": "string",
-            "description": "Status of the rule post the rule creation. Allowed values are Active, Inactive, Submitted."
-          },
-          "actions": {
-            "type": "array",
-            "description": "Defines the two day state coverage areas.",
-            "items": {
-              "type": "object",
-              "properties": {
-                "twoDayShippingRegions": {
-                  "type": "array",
-                  "description": "List of two-day regions.",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "regionCode": {
-                        "type": "string",
-                        "description": "regionCode"
-                      },
-                      "subRegions": {
-                        "type": "array",
-                        "items": {
-                          "type": "object",
-                          "properties": {
-                            "subRegionCode": {
-                              "type": "string",
-                              "description": "subRegionCode"
-                            }
-                          }
-                        }
-                      }
-                    },
-                    "description": "List of two-day regions."
-                  }
-                }
-              },
-              "description": "Defines the two day state coverage areas."
-            }
-          }
-        }
-      },
-      "UpdateShippingAreaToRulesRequest": {
-        "type": "object",
-        "properties": {
-          "ruleHeader": {
-            "type": "object",
-            "properties": {
-              "version": {
-                "type": "string"
-              }
-            }
-          },
-          "rules": {
-            "type": "object",
-            "properties": {
-              "ruleId": {
-                "type": "string",
-                "description": "Unique identifier of the rule created for custom rule assortment."
-              },
-              "ruleStatus": {
-                "type": "string",
-                "description": "Status of the rule post the rule creation. Allowed values are Active, Inactive, Submitted."
-              },
-              "actions": {
-                "type": "array",
-                "description": "Defines the two day state coverage areas.",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "twoDayShippingRegions": {
-                      "type": "array",
-                      "description": "List of two-day regions.",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "regionCode": {
-                            "type": "string",
-                            "description": "regionCode"
-                          },
-                          "subRegions": {
-                            "type": "array",
-                            "items": {
-                              "type": "object",
-                              "properties": {
-                                "subRegionCode": {
-                                  "type": "string",
-                                  "description": "subRegionCode"
-                                }
-                              }
-                            }
-                          }
-                        },
-                        "description": "List of two-day regions."
-                      }
-                    }
-                  },
-                  "description": "Defines the two day state coverage areas."
-                }
-              }
-            }
-          }
-        }
-      },
-      "CreateRuleResponse": {
-        "type": "object",
-        "properties": {
-          "rules": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "conditions": {
-                  "type": "array",
-                  "description": "Seller creates conditions while defining the custom rule assortment.There are three condition which a seller can use : subCategories, price, weight.",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "name": {
-                        "type": "string",
-                        "description": "Name of the rule created for custom rule assortment."
-                      },
-                      "operator": {
-                        "type": "string",
-                        "description": "Seller uses operator while defining conditions in the rule. Operators allowed for condition price and weight: EQUALS, GREATER_THAN, LESS_THAN,GREATER_THAN_OR_EQUALS,LESS_THAN_OR_EQUALS. and for condition subcategories : IN ."
-                      },
-                      "value": {
-                        "type": "string",
-                        "description": "Values for each condition. Value can be a comma separated strings for subcategories and numerical value for price and weight."
-                      }
-                    },
-                    "description": "Seller creates conditions while defining the custom rule assortment.There are three condition which a seller can use : subCategories, price, weight."
-                  }
-                },
-                "description": {
-                  "type": "string",
-                  "description": "Description of the rule created for custom rule assortment."
-                },
-                "name": {
-                  "type": "string",
-                  "description": "Name of the rule created for custom rule assortment."
-                },
-                "priority": {
-                  "type": "string",
-                  "description": "Priority of the rule created for custom rule assortment."
-                },
-                "ruleAction": {
-                  "type": "string",
-                  "description": "Defines the two day state coverage areas."
-                },
-                "ruleId": {
-                  "type": "string",
-                  "description": "Unique identifier of the rule created for custom rule assortment."
-                },
-                "ruleStatus": {
-                  "type": "string",
-                  "description": "Status of the rule post the rule creation. Allowed values are Active, Inactive, Submitted."
-                },
-                "skuProcessingStatus": {
-                  "type": "string",
-                  "description": "When the rule gets activated, skuProcessingStatus represents the state of all items being processed for two-day. The two values for skuProcessingStatus are Processing and Completed."
-                }
-              }
-            }
-          },
-          "status": {
-            "type": "string"
-          }
-        }
-      },
-      "RuleResponse": {
-        "type": "object",
-        "properties": {
-          "conditions": {
-            "type": "array",
-            "description": "Seller creates conditions while defining the custom rule assortment.There are three condition which a seller can use : subCategories, price, weight.",
-            "items": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "type": "string",
-                  "description": "Name of the rule created for custom rule assortment."
-                },
-                "operator": {
-                  "type": "string",
-                  "description": "Seller uses operator while defining conditions in the rule. Operators allowed for condition price and weight: EQUALS, GREATER_THAN, LESS_THAN,GREATER_THAN_OR_EQUALS,LESS_THAN_OR_EQUALS. and for condition subcategories : IN ."
-                },
-                "value": {
-                  "type": "string",
-                  "description": "Values for each condition. Value can be a comma separated strings for subcategories and numerical value for price and weight."
-                }
-              },
-              "description": "Seller creates conditions while defining the custom rule assortment.There are three condition which a seller can use : subCategories, price, weight."
-            }
-          },
-          "description": {
-            "type": "string",
-            "description": "Description of the rule created for custom rule assortment."
-          },
-          "name": {
-            "type": "string",
-            "description": "Name of the rule created for custom rule assortment."
-          },
-          "priority": {
-            "type": "string",
-            "description": "Priority of the rule created for custom rule assortment."
-          },
-          "ruleAction": {
-            "type": "string",
-            "description": "Defines the two day state coverage areas."
-          },
-          "ruleId": {
-            "type": "string",
-            "description": "Unique identifier of the rule created for custom rule assortment."
-          },
-          "ruleStatus": {
-            "type": "string",
-            "description": "Status of the rule post the rule creation. Allowed values are Active, Inactive, Submitted."
-          },
-          "skuProcessingStatus": {
-            "type": "string",
-            "description": "When the rule gets activated, skuProcessingStatus represents the state of all items being processed for two-day. The two values for skuProcessingStatus are Processing and Completed."
-          }
-        }
-      },
-      "CreateRuleRequest": {
-        "type": "object",
-        "properties": {
-          "ruleHeader": {
-            "type": "object",
-            "properties": {
-              "version": {
-                "type": "string"
-              }
-            }
-          },
-          "rules": {
-            "type": "object",
-            "properties": {
-              "conditions": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "name": {
-                      "type": "string",
-                      "description": "Name of the rule created for custom rule assortment."
-                    },
-                    "operator": {
-                      "type": "string",
-                      "description": "Seller uses operator while defining conditions in the rule. Operators allowed for condition price and weight: EQUALS, GREATER_THAN, LESS_THAN,GREATER_THAN_OR_EQUALS,LESS_THAN_OR_EQUALS. and for condition subcategories : IN ."
-                    },
-                    "value": {
-                      "type": "string",
-                      "description": "Values for each condition. Value can be a comma separated strings for subcategories and numerical value for price and weight."
-                    }
-                  },
-                  "description": "Seller creates conditions while defining the custom rule assortment.There are three condition which a seller can use : subCategories, price, weight."
-                }
-              },
-              "description": {
-                "type": "string",
-                "description": "Description of the rule created for custom rule assortment."
-              },
-              "name": {
-                "type": "string",
-                "description": "Name of the rule created for custom rule assortment."
-              },
-              "priority": {
-                "type": "string",
-                "description": "Priority of the rule created for custom rule assortment."
-              }
-            }
-          }
-        }
-      },
-      "RuleRequest": {
-        "type": "object",
-        "properties": {
-          "conditions": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "type": "string",
-                  "description": "Name of the rule created for custom rule assortment."
-                },
-                "operator": {
-                  "type": "string",
-                  "description": "Seller uses operator while defining conditions in the rule. Operators allowed for condition price and weight: EQUALS, GREATER_THAN, LESS_THAN,GREATER_THAN_OR_EQUALS,LESS_THAN_OR_EQUALS. and for condition subcategories : IN ."
-                },
-                "value": {
-                  "type": "string",
-                  "description": "Values for each condition. Value can be a comma separated strings for subcategories and numerical value for price and weight."
-                }
-              },
-              "description": "Seller creates conditions while defining the custom rule assortment.There are three condition which a seller can use : subCategories, price, weight."
-            }
-          },
-          "description": {
-            "type": "string",
-            "description": "Description of the rule created for custom rule assortment."
-          },
-          "name": {
-            "type": "string",
-            "description": "Name of the rule created for custom rule assortment."
-          },
-          "priority": {
-            "type": "string",
-            "description": "Priority of the rule created for custom rule assortment."
-          }
-        }
-      },
       "ActivateRuleResponse": {
         "type": "object",
         "properties": {
@@ -4147,19 +4358,6 @@
           "status": {
             "type": "string",
             "description": "status"
-          }
-        }
-      },
-      "ActivateDeactivateRuleInfo": {
-        "type": "object",
-        "properties": {
-          "ruleId": {
-            "type": "string",
-            "description": "Unique identifier of the rule created for custom rule assortment."
-          },
-          "ruleStatus": {
-            "type": "string",
-            "description": "Status of the rule post the rule creation. Allowed values are Active, Inactive, Submitted."
           }
         }
       },
@@ -4299,146 +4497,6 @@
                 }
               }
             }
-          }
-        }
-      },
-      "DeleteRuleResponse": {
-        "type": "object",
-        "properties": {
-          "message": {
-            "type": "string",
-            "description": "Message and status of deletion"
-          },
-          "status": {
-            "type": "string",
-            "description": "status"
-          }
-        }
-      },
-      "InactivateRuleResponse": {
-        "type": "object",
-        "properties": {
-          "message": {
-            "type": "string",
-            "description": "Message and status of inactivation of rule"
-          },
-          "status": {
-            "type": "string",
-            "description": "status"
-          }
-        }
-      },
-      "InactivateRuleRequest": {
-        "type": "object",
-        "properties": {
-          "ruleHeader": {
-            "type": "object",
-            "properties": {
-              "version": {
-                "type": "string"
-              }
-            }
-          },
-          "rules": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "ruleId": {
-                  "type": "string",
-                  "description": "Unique identifier of the rule created for custom rule assortment."
-                },
-                "ruleStatus": {
-                  "type": "string",
-                  "description": "Status of the rule post the rule creation. Allowed values are Active, Inactive, Submitted."
-                }
-              }
-            }
-          }
-        }
-      },
-      "DeleteExceptionResponse": {
-        "type": "object",
-        "properties": {
-          "feedId": {
-            "type": "string",
-            "description": "A unique ID, returned from the Create Override Exception API, used for tracking a feed file"
-          },
-          "status": {
-            "type": "string",
-            "description": "status"
-          }
-        }
-      },
-      "DeleteExceptionRequest": {
-        "type": "object",
-        "properties": {
-          "ruleHeader": {
-            "type": "object",
-            "properties": {
-              "version": {
-                "type": "string"
-              }
-            }
-          },
-          "rules": {
-            "type": "object",
-            "properties": {
-              "skus": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "sku": {
-                      "type": "string",
-                      "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: ':', '/', '?', '#', '[', ']', '@', '!', '$', '&', \"'\", '(', ')', '*', '+', ',', ';', '=', as well as '%' itself. Other characters don't need to be encoded."
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "ExceptionInfo": {
-        "type": "object",
-        "properties": {
-          "skus": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "sku": {
-                  "type": "string",
-                  "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: ':', '/', '?', '#', '[', ']', '@', '!', '$', '&', \"'\", '(', ')', '*', '+', ',', ';', '=', as well as '%' itself. Other characters don't need to be encoded."
-                }
-              }
-            }
-          }
-        }
-      },
-      "OverrideItem": {
-        "type": "object",
-        "properties": {
-          "sku": {
-            "type": "string",
-            "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: ':', '/', '?', '#', '[', ']', '@', '!', '$', '&', \"'\", '(', ')', '*', '+', ',', ';', '=', as well as '%' itself. Other characters don't need to be encoded."
-          }
-        }
-      },
-      "GetAllExceptionsResponse": {
-        "type": "object",
-        "properties": {
-          "skuIds": {
-            "type": "array",
-            "description": "A seller-provided Product ID.",
-            "items": {
-              "type": "string",
-              "description": "A seller-provided Product ID."
-            }
-          },
-          "status": {
-            "type": "string"
           }
         }
       },
@@ -4590,191 +4648,133 @@
           }
         }
       },
-      "AreaEntity": {
+      "GetSimulationCountResponse": {
         "type": "object",
         "properties": {
-          "states": {
-            "type": "array",
-            "description": "states.",
-            "items": {
-              "type": "object",
-              "properties": {
-                "stateSubregions": {
-                  "type": "array",
-                  "description": "statesubregions",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "stateSubregionCode": {
-                        "type": "string",
-                        "description": "stateSubregionCode"
-                      },
-                      "stateSubregionName": {
-                        "type": "string",
-                        "description": "stateSubregionName"
-                      }
-                    },
-                    "description": "statesubregions"
-                  }
-                }
-              },
-              "description": "states."
-            }
-          },
-          "regionCode": {
+          "ruleId": {
             "type": "string",
-            "description": "regionCode"
+            "description": "Unique identifier of the rule created for custom rule assortment."
           },
-          "regionName": {
+          "ruleStatus": {
             "type": "string",
-            "description": "regionName"
+            "description": "Status of the rule post the rule creation. Allowed values are Active, Inactive, Submitted."
+          },
+          "simulationCount": {
+            "type": "string",
+            "description": "Number of items that would be set for two-day if the rule gets activated."
           }
         }
       },
-      "GetAllAreasPayload": {
+      "RuleToUpdate": {
         "type": "object",
         "properties": {
-          "entities": {
+          "ruleId": {
+            "type": "string",
+            "description": "Unique identifier of the rule created for custom rule assortment."
+          },
+          "ruleStatus": {
+            "type": "string",
+            "description": "Status of the rule post the rule creation. Allowed values are Active, Inactive, Submitted."
+          },
+          "actions": {
             "type": "array",
+            "description": "Defines the two day state coverage areas.",
             "items": {
               "type": "object",
               "properties": {
-                "states": {
+                "twoDayShippingRegions": {
                   "type": "array",
-                  "description": "states.",
+                  "description": "List of two-day regions.",
                   "items": {
                     "type": "object",
                     "properties": {
-                      "stateSubregions": {
+                      "regionCode": {
+                        "type": "string",
+                        "description": "regionCode"
+                      },
+                      "subRegions": {
                         "type": "array",
-                        "description": "statesubregions",
                         "items": {
                           "type": "object",
                           "properties": {
-                            "stateSubregionCode": {
+                            "subRegionCode": {
                               "type": "string",
-                              "description": "stateSubregionCode"
-                            },
-                            "stateSubregionName": {
-                              "type": "string",
-                              "description": "stateSubregionName"
+                              "description": "subRegionCode"
                             }
-                          },
-                          "description": "statesubregions"
+                          }
                         }
                       }
                     },
-                    "description": "states."
+                    "description": "List of two-day regions."
                   }
-                },
-                "regionCode": {
-                  "type": "string",
-                  "description": "regionCode"
-                },
-                "regionName": {
-                  "type": "string",
-                  "description": "regionName"
                 }
-              }
+              },
+              "description": "Defines the two day state coverage areas."
             }
           }
         }
       },
-      "GetAllAreasResponse": {
+      "UpdateShippingAreaToRulesRequest": {
         "type": "object",
         "properties": {
-          "status": {
-            "type": "string",
-            "description": "Status of the rule post the rule creation."
-          },
-          "payload": {
+          "ruleHeader": {
             "type": "object",
             "properties": {
-              "entities": {
+              "version": {
+                "type": "string"
+              }
+            }
+          },
+          "rules": {
+            "type": "object",
+            "properties": {
+              "ruleId": {
+                "type": "string",
+                "description": "Unique identifier of the rule created for custom rule assortment."
+              },
+              "ruleStatus": {
+                "type": "string",
+                "description": "Status of the rule post the rule creation. Allowed values are Active, Inactive, Submitted."
+              },
+              "actions": {
                 "type": "array",
+                "description": "Defines the two day state coverage areas.",
                 "items": {
                   "type": "object",
                   "properties": {
-                    "states": {
+                    "twoDayShippingRegions": {
                       "type": "array",
-                      "description": "states.",
+                      "description": "List of two-day regions.",
                       "items": {
                         "type": "object",
                         "properties": {
-                          "stateSubregions": {
+                          "regionCode": {
+                            "type": "string",
+                            "description": "regionCode"
+                          },
+                          "subRegions": {
                             "type": "array",
-                            "description": "statesubregions",
                             "items": {
                               "type": "object",
                               "properties": {
-                                "stateSubregionCode": {
+                                "subRegionCode": {
                                   "type": "string",
-                                  "description": "stateSubregionCode"
-                                },
-                                "stateSubregionName": {
-                                  "type": "string",
-                                  "description": "stateSubregionName"
+                                  "description": "subRegionCode"
                                 }
-                              },
-                              "description": "statesubregions"
+                              }
                             }
                           }
                         },
-                        "description": "states."
+                        "description": "List of two-day regions."
                       }
-                    },
-                    "regionCode": {
-                      "type": "string",
-                      "description": "regionCode"
-                    },
-                    "regionName": {
-                      "type": "string",
-                      "description": "regionName"
                     }
-                  }
+                  },
+                  "description": "Defines the two day state coverage areas."
                 }
               }
             }
           }
         }
-      },
-      "State": {
-        "type": "object",
-        "properties": {
-          "stateSubregions": {
-            "type": "array",
-            "description": "statesubregions",
-            "items": {
-              "type": "object",
-              "properties": {
-                "stateSubregionCode": {
-                  "type": "string",
-                  "description": "stateSubregionCode"
-                },
-                "stateSubregionName": {
-                  "type": "string",
-                  "description": "stateSubregionName"
-                }
-              },
-              "description": "statesubregions"
-            }
-          }
-        },
-        "description": "states."
-      },
-      "StateSubRegion": {
-        "type": "object",
-        "properties": {
-          "stateSubregionCode": {
-            "type": "string",
-            "description": "stateSubregionCode"
-          },
-          "stateSubregionName": {
-            "type": "string",
-            "description": "stateSubregionName"
-          }
-        },
-        "description": "statesubregions"
       }
     },
     "parameters": {
