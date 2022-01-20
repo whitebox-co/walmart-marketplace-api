@@ -59,7 +59,7 @@
     "uuid": "^8.3.2"
   },
   "devDependencies": {
-    "@commitlint/cli": "^13.1.0",
+    "@commitlint/cli": "^16.0.3",
     "@commitlint/config-conventional": "^15.0.0",
     "@openapitools/openapi-generator-cli": "^2.4.18",
     "@semantic-release/changelog": "^6.0.1",
