@@ -159,10 +159,10 @@
                                         },
                                         "amount": {
                                           "type": "number",
-                                          "description": "The number available in the inventory"
+                                          "description": "Inventory Count"
                                         }
                                       },
-                                      "description": "Information about the quantity in inventory"
+                                      "description": "Quantity of an item that is input by the seller"
                                     },
                                     "availToSellQty": {
                                       "required": [
@@ -180,10 +180,31 @@
                                         },
                                         "amount": {
                                           "type": "number",
-                                          "description": "The number available in the inventory"
+                                          "description": "Inventory Count"
                                         }
                                       },
-                                      "description": "Information about the quantity in inventory"
+                                      "description": "Quantity of an item that is available to be allocated to orders"
+                                    },
+                                    "reservedQty": {
+                                      "required": [
+                                        "amount",
+                                        "unit"
+                                      ],
+                                      "type": "object",
+                                      "properties": {
+                                        "unit": {
+                                          "type": "string",
+                                          "description": "The unit of measurement. Example: 'EACH'",
+                                          "enum": [
+                                            "EACH"
+                                          ]
+                                        },
+                                        "amount": {
+                                          "type": "number",
+                                          "description": "Inventory Count"
+                                        }
+                                      },
+                                      "description": "Quantity that has been ordered by the customers but not yet shipped"
                                     }
                                   }
                                 }
@@ -198,12 +219,47 @@
                 "example": {
                   "meta": {
                     "totalCount": 123,
-                    "nextCursor": "37b56ddb-a949-4d9f-91e2-a6d56dda3c47&limit=50"
+                    "nextCursor": "NTVmZjIxOWEtZjRkMy00MGIwLThkOGYtYzFkNzI1NGZlYmQxIDEw"
                   },
                   "elements": {
                     "inventories": [
                       {
                         "sku": "AI-IGH4-5509",
+                        "nodes": [
+                          {
+                            "shipNode": "361451354333223041",
+                            "inputQty": {
+                              "unit": "EACH",
+                              "amount": 93
+                            },
+                            "availToSellQty": {
+                              "unit": "EACH",
+                              "amount": 93
+                            },
+                            "reservedQty": {
+                              "unit": "EACH",
+                              "amount": 0
+                            }
+                          },
+                          {
+                            "shipNode": "100009",
+                            "inputQty": {
+                              "unit": "EACH",
+                              "amount": 436
+                            },
+                            "availToSellQty": {
+                              "unit": "EACH",
+                              "amount": 433
+                            },
+                            "reservedQty": {
+                              "unit": "EACH",
+                              "amount": 3
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "sku": "06397309545443",
                         "nodes": [
                           {
                             "shipNode": "100009",
@@ -213,7 +269,11 @@
                             },
                             "availToSellQty": {
                               "unit": "EACH",
-                              "amount": 3
+                              "amount": 0
+                            },
+                            "reservedQty": {
+                              "unit": "EACH",
+                              "amount": 5
                             }
                           }
                         ]
@@ -341,10 +401,10 @@
                               },
                               "amount": {
                                 "type": "number",
-                                "description": "The number available in the inventory"
+                                "description": "Inventory Count"
                               }
                             },
-                            "description": "Information about the quantity in inventory"
+                            "description": "Quantity of an item that is input by the seller"
                           },
                           "availToSellQty": {
                             "required": [
@@ -362,10 +422,10 @@
                               },
                               "amount": {
                                 "type": "number",
-                                "description": "The number available in the inventory"
+                                "description": "Inventory Count"
                               }
                             },
-                            "description": "Information about the quantity in inventory"
+                            "description": "Quantity of an item that is available to be allocated to orders"
                           },
                           "errors": {
                             "type": "array",
@@ -437,10 +497,32 @@
                                   }
                                 }
                               },
+                              "description": "Node Update Error description.",
                               "xml": {
                                 "name": "Error"
                               }
                             }
+                          },
+                          "reservedQty": {
+                            "required": [
+                              "amount",
+                              "unit"
+                            ],
+                            "type": "object",
+                            "properties": {
+                              "unit": {
+                                "type": "string",
+                                "description": "The unit of measurement. Example: 'EACH'",
+                                "enum": [
+                                  "EACH"
+                                ]
+                              },
+                              "amount": {
+                                "type": "number",
+                                "description": "Inventory Count"
+                              }
+                            },
+                            "description": "Quantity that has been ordered by the customers but not yet shipped"
                           }
                         }
                       }
@@ -459,6 +541,10 @@
                       "availToSellQty": {
                         "unit": "EACH",
                         "amount": 3
+                      },
+                      "reservedQty": {
+                        "unit": "EACH",
+                        "amount": 2
                       }
                     }
                   ]
@@ -580,7 +666,7 @@
                                 },
                                 "amount": {
                                   "type": "number",
-                                  "description": "The number available in the inventory"
+                                  "description": "Inventory Count"
                                 }
                               },
                               "description": "Information about the quantity in inventory"
@@ -712,6 +798,7 @@
                                   }
                                 }
                               },
+                              "description": "Node Update Error description.",
                               "xml": {
                                 "name": "Error"
                               }
@@ -850,7 +937,7 @@
                         },
                         "amount": {
                           "type": "number",
-                          "description": "The number available in the inventory"
+                          "description": "Inventory Count"
                         }
                       },
                       "description": "Information about the quantity in inventory"
@@ -890,7 +977,7 @@
                         },
                         "amount": {
                           "type": "number",
-                          "description": "The number available in the inventory"
+                          "description": "Inventory Count"
                         }
                       },
                       "description": "Information about the quantity in inventory"
@@ -1019,7 +1106,7 @@
                       },
                       "amount": {
                         "type": "number",
-                        "description": "The number available in the inventory"
+                        "description": "Inventory Count"
                       }
                     },
                     "description": "Information about the quantity in inventory"
@@ -1059,7 +1146,7 @@
                       },
                       "amount": {
                         "type": "number",
-                        "description": "The number available in the inventory"
+                        "description": "Inventory Count"
                       }
                     },
                     "description": "Information about the quantity in inventory"
@@ -1112,7 +1199,7 @@
                         },
                         "amount": {
                           "type": "number",
-                          "description": "The number available in the inventory"
+                          "description": "Inventory Count"
                         }
                       },
                       "description": "Information about the quantity in inventory"
@@ -1152,7 +1239,7 @@
                         },
                         "amount": {
                           "type": "number",
-                          "description": "The number available in the inventory"
+                          "description": "Inventory Count"
                         }
                       },
                       "description": "Information about the quantity in inventory"
@@ -1672,10 +1759,10 @@
                           },
                           "amount": {
                             "type": "number",
-                            "description": "The number available in the inventory"
+                            "description": "Inventory Count"
                           }
                         },
-                        "description": "Information about the quantity in inventory"
+                        "description": "Quantity of an item that is input by the seller"
                       },
                       "availToSellQty": {
                         "required": [
@@ -1693,10 +1780,31 @@
                           },
                           "amount": {
                             "type": "number",
-                            "description": "The number available in the inventory"
+                            "description": "Inventory Count"
                           }
                         },
-                        "description": "Information about the quantity in inventory"
+                        "description": "Quantity of an item that is available to be allocated to orders"
+                      },
+                      "reservedQty": {
+                        "required": [
+                          "amount",
+                          "unit"
+                        ],
+                        "type": "object",
+                        "properties": {
+                          "unit": {
+                            "type": "string",
+                            "description": "The unit of measurement. Example: 'EACH'",
+                            "enum": [
+                              "EACH"
+                            ]
+                          },
+                          "amount": {
+                            "type": "number",
+                            "description": "Inventory Count"
+                          }
+                        },
+                        "description": "Quantity that has been ordered by the customers but not yet shipped"
                       }
                     }
                   }
@@ -1738,10 +1846,10 @@
                     },
                     "amount": {
                       "type": "number",
-                      "description": "The number available in the inventory"
+                      "description": "Inventory Count"
                     }
                   },
-                  "description": "Information about the quantity in inventory"
+                  "description": "Quantity of an item that is input by the seller"
                 },
                 "availToSellQty": {
                   "required": [
@@ -1759,10 +1867,31 @@
                     },
                     "amount": {
                       "type": "number",
-                      "description": "The number available in the inventory"
+                      "description": "Inventory Count"
                     }
                   },
-                  "description": "Information about the quantity in inventory"
+                  "description": "Quantity of an item that is available to be allocated to orders"
+                },
+                "reservedQty": {
+                  "required": [
+                    "amount",
+                    "unit"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "unit": {
+                      "type": "string",
+                      "description": "The unit of measurement. Example: 'EACH'",
+                      "enum": [
+                        "EACH"
+                      ]
+                    },
+                    "amount": {
+                      "type": "number",
+                      "description": "Inventory Count"
+                    }
+                  },
+                  "description": "Quantity that has been ordered by the customers but not yet shipped"
                 }
               }
             }
@@ -1792,10 +1921,10 @@
               },
               "amount": {
                 "type": "number",
-                "description": "The number available in the inventory"
+                "description": "Inventory Count"
               }
             },
-            "description": "Information about the quantity in inventory"
+            "description": "Quantity of an item that is input by the seller"
           },
           "availToSellQty": {
             "required": [
@@ -1813,10 +1942,31 @@
               },
               "amount": {
                 "type": "number",
-                "description": "The number available in the inventory"
+                "description": "Inventory Count"
               }
             },
-            "description": "Information about the quantity in inventory"
+            "description": "Quantity of an item that is available to be allocated to orders"
+          },
+          "reservedQty": {
+            "required": [
+              "amount",
+              "unit"
+            ],
+            "type": "object",
+            "properties": {
+              "unit": {
+                "type": "string",
+                "description": "The unit of measurement. Example: 'EACH'",
+                "enum": [
+                  "EACH"
+                ]
+              },
+              "amount": {
+                "type": "number",
+                "description": "Inventory Count"
+              }
+            },
+            "description": "Quantity that has been ordered by the customers but not yet shipped"
           }
         }
       },
@@ -1892,10 +2042,10 @@
                               },
                               "amount": {
                                 "type": "number",
-                                "description": "The number available in the inventory"
+                                "description": "Inventory Count"
                               }
                             },
-                            "description": "Information about the quantity in inventory"
+                            "description": "Quantity of an item that is input by the seller"
                           },
                           "availToSellQty": {
                             "required": [
@@ -1913,10 +2063,31 @@
                               },
                               "amount": {
                                 "type": "number",
-                                "description": "The number available in the inventory"
+                                "description": "Inventory Count"
                               }
                             },
-                            "description": "Information about the quantity in inventory"
+                            "description": "Quantity of an item that is available to be allocated to orders"
+                          },
+                          "reservedQty": {
+                            "required": [
+                              "amount",
+                              "unit"
+                            ],
+                            "type": "object",
+                            "properties": {
+                              "unit": {
+                                "type": "string",
+                                "description": "The unit of measurement. Example: 'EACH'",
+                                "enum": [
+                                  "EACH"
+                                ]
+                              },
+                              "amount": {
+                                "type": "number",
+                                "description": "Inventory Count"
+                              }
+                            },
+                            "description": "Quantity that has been ordered by the customers but not yet shipped"
                           }
                         }
                       }
@@ -1944,7 +2115,7 @@
           },
           "amount": {
             "type": "number",
-            "description": "The number available in the inventory"
+            "description": "Inventory Count"
           }
         },
         "description": "Information about the quantity in inventory"
@@ -2037,8 +2208,354 @@
             }
           }
         },
+        "description": "Node Update Error description.",
         "xml": {
           "name": "Error"
+        }
+      },
+      "InventoriesDTO": {
+        "type": "object",
+        "properties": {
+          "sku": {
+            "type": "string",
+            "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
+          },
+          "nodes": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "shipNode": {
+                  "type": "string",
+                  "description": "ShipNode Id of the ship node for which the inventory is requested"
+                },
+                "inputQty": {
+                  "required": [
+                    "amount",
+                    "unit"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "unit": {
+                      "type": "string",
+                      "description": "The unit of measurement. Example: 'EACH'",
+                      "enum": [
+                        "EACH"
+                      ]
+                    },
+                    "amount": {
+                      "type": "number",
+                      "description": "Inventory Count"
+                    }
+                  },
+                  "description": "Quantity of an item that is input by the seller"
+                },
+                "availToSellQty": {
+                  "required": [
+                    "amount",
+                    "unit"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "unit": {
+                      "type": "string",
+                      "description": "The unit of measurement. Example: 'EACH'",
+                      "enum": [
+                        "EACH"
+                      ]
+                    },
+                    "amount": {
+                      "type": "number",
+                      "description": "Inventory Count"
+                    }
+                  },
+                  "description": "Quantity of an item that is available to be allocated to orders"
+                },
+                "errors": {
+                  "type": "array",
+                  "items": {
+                    "required": [
+                      "code"
+                    ],
+                    "type": "object",
+                    "properties": {
+                      "code": {
+                        "type": "string"
+                      },
+                      "field": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "info": {
+                        "type": "string"
+                      },
+                      "severity": {
+                        "type": "string",
+                        "enum": [
+                          "INFO",
+                          "WARN",
+                          "ERROR"
+                        ]
+                      },
+                      "category": {
+                        "type": "string",
+                        "enum": [
+                          "APPLICATION",
+                          "SYSTEM",
+                          "REQUEST",
+                          "DATA"
+                        ]
+                      },
+                      "causes": {
+                        "type": "array",
+                        "xml": {
+                          "wrapped": true
+                        },
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "code": {
+                              "type": "string"
+                            },
+                            "field": {
+                              "type": "string"
+                            },
+                            "type": {
+                              "type": "string"
+                            },
+                            "description": {
+                              "type": "string"
+                            }
+                          },
+                          "xml": {
+                            "name": "Cause"
+                          }
+                        }
+                      },
+                      "errorIdentifiers": {
+                        "type": "object",
+                        "additionalProperties": {
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "description": "Node Update Error description.",
+                    "xml": {
+                      "name": "Error"
+                    }
+                  }
+                },
+                "reservedQty": {
+                  "required": [
+                    "amount",
+                    "unit"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "unit": {
+                      "type": "string",
+                      "description": "The unit of measurement. Example: 'EACH'",
+                      "enum": [
+                        "EACH"
+                      ]
+                    },
+                    "amount": {
+                      "type": "number",
+                      "description": "Inventory Count"
+                    }
+                  },
+                  "description": "Quantity that has been ordered by the customers but not yet shipped"
+                }
+              }
+            }
+          }
+        }
+      },
+      "NodeDTO": {
+        "type": "object",
+        "properties": {
+          "shipNode": {
+            "type": "string",
+            "description": "ShipNode Id of the ship node for which the inventory is requested"
+          },
+          "inputQty": {
+            "required": [
+              "amount",
+              "unit"
+            ],
+            "type": "object",
+            "properties": {
+              "unit": {
+                "type": "string",
+                "description": "The unit of measurement. Example: 'EACH'",
+                "enum": [
+                  "EACH"
+                ]
+              },
+              "amount": {
+                "type": "number",
+                "description": "Inventory Count"
+              }
+            },
+            "description": "Quantity of an item that is input by the seller"
+          },
+          "availToSellQty": {
+            "required": [
+              "amount",
+              "unit"
+            ],
+            "type": "object",
+            "properties": {
+              "unit": {
+                "type": "string",
+                "description": "The unit of measurement. Example: 'EACH'",
+                "enum": [
+                  "EACH"
+                ]
+              },
+              "amount": {
+                "type": "number",
+                "description": "Inventory Count"
+              }
+            },
+            "description": "Quantity of an item that is available to be allocated to orders"
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "required": [
+                "code"
+              ],
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string"
+                },
+                "field": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "info": {
+                  "type": "string"
+                },
+                "severity": {
+                  "type": "string",
+                  "enum": [
+                    "INFO",
+                    "WARN",
+                    "ERROR"
+                  ]
+                },
+                "category": {
+                  "type": "string",
+                  "enum": [
+                    "APPLICATION",
+                    "SYSTEM",
+                    "REQUEST",
+                    "DATA"
+                  ]
+                },
+                "causes": {
+                  "type": "array",
+                  "xml": {
+                    "wrapped": true
+                  },
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "code": {
+                        "type": "string"
+                      },
+                      "field": {
+                        "type": "string"
+                      },
+                      "type": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      }
+                    },
+                    "xml": {
+                      "name": "Cause"
+                    }
+                  }
+                },
+                "errorIdentifiers": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "object"
+                  }
+                }
+              },
+              "description": "Node Update Error description.",
+              "xml": {
+                "name": "Error"
+              }
+            }
+          },
+          "reservedQty": {
+            "required": [
+              "amount",
+              "unit"
+            ],
+            "type": "object",
+            "properties": {
+              "unit": {
+                "type": "string",
+                "description": "The unit of measurement. Example: 'EACH'",
+                "enum": [
+                  "EACH"
+                ]
+              },
+              "amount": {
+                "type": "number",
+                "description": "Inventory Count"
+              }
+            },
+            "description": "Quantity that has been ordered by the customers but not yet shipped"
+          }
+        }
+      },
+      "Inventory": {
+        "required": [
+          "quantity",
+          "sku"
+        ],
+        "type": "object",
+        "properties": {
+          "sku": {
+            "type": "string",
+            "description": "A seller-provided Product ID. Response will have decoded value."
+          },
+          "quantity": {
+            "required": [
+              "amount",
+              "unit"
+            ],
+            "type": "object",
+            "properties": {
+              "unit": {
+                "type": "string",
+                "description": "The unit of measurement. Example: 'EACH'",
+                "enum": [
+                  "EACH"
+                ]
+              },
+              "amount": {
+                "type": "number",
+                "description": "Inventory Count"
+              }
+            },
+            "description": "Information about the quantity in inventory"
+          }
+        },
+        "xml": {
+          "name": "inventory"
         }
       },
       "MultiNodeInventoryUpdateResponseDTO": {
@@ -2132,6 +2649,7 @@
                         }
                       }
                     },
+                    "description": "Node Update Error description.",
                     "xml": {
                       "name": "Error"
                     }
@@ -2224,6 +2742,7 @@
                   }
                 }
               },
+              "description": "Node Update Error description.",
               "xml": {
                 "name": "Error"
               }
@@ -2272,7 +2791,7 @@
                         },
                         "amount": {
                           "type": "number",
-                          "description": "The number available in the inventory"
+                          "description": "Inventory Count"
                         }
                       },
                       "description": "Information about the quantity in inventory"
@@ -2319,7 +2838,7 @@
                     },
                     "amount": {
                       "type": "number",
-                      "description": "The number available in the inventory"
+                      "description": "Inventory Count"
                     }
                   },
                   "description": "Information about the quantity in inventory"
@@ -2356,312 +2875,11 @@
               },
               "amount": {
                 "type": "number",
-                "description": "The number available in the inventory"
+                "description": "Inventory Count"
               }
             },
             "description": "Information about the quantity in inventory"
           }
-        }
-      },
-      "InventoriesDTO": {
-        "type": "object",
-        "properties": {
-          "sku": {
-            "type": "string",
-            "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
-          },
-          "nodes": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "shipNode": {
-                  "type": "string",
-                  "description": "ShipNode Id of the ship node for which the inventory is requested"
-                },
-                "inputQty": {
-                  "required": [
-                    "amount",
-                    "unit"
-                  ],
-                  "type": "object",
-                  "properties": {
-                    "unit": {
-                      "type": "string",
-                      "description": "The unit of measurement. Example: 'EACH'",
-                      "enum": [
-                        "EACH"
-                      ]
-                    },
-                    "amount": {
-                      "type": "number",
-                      "description": "The number available in the inventory"
-                    }
-                  },
-                  "description": "Information about the quantity in inventory"
-                },
-                "availToSellQty": {
-                  "required": [
-                    "amount",
-                    "unit"
-                  ],
-                  "type": "object",
-                  "properties": {
-                    "unit": {
-                      "type": "string",
-                      "description": "The unit of measurement. Example: 'EACH'",
-                      "enum": [
-                        "EACH"
-                      ]
-                    },
-                    "amount": {
-                      "type": "number",
-                      "description": "The number available in the inventory"
-                    }
-                  },
-                  "description": "Information about the quantity in inventory"
-                },
-                "errors": {
-                  "type": "array",
-                  "items": {
-                    "required": [
-                      "code"
-                    ],
-                    "type": "object",
-                    "properties": {
-                      "code": {
-                        "type": "string"
-                      },
-                      "field": {
-                        "type": "string"
-                      },
-                      "description": {
-                        "type": "string"
-                      },
-                      "info": {
-                        "type": "string"
-                      },
-                      "severity": {
-                        "type": "string",
-                        "enum": [
-                          "INFO",
-                          "WARN",
-                          "ERROR"
-                        ]
-                      },
-                      "category": {
-                        "type": "string",
-                        "enum": [
-                          "APPLICATION",
-                          "SYSTEM",
-                          "REQUEST",
-                          "DATA"
-                        ]
-                      },
-                      "causes": {
-                        "type": "array",
-                        "xml": {
-                          "wrapped": true
-                        },
-                        "items": {
-                          "type": "object",
-                          "properties": {
-                            "code": {
-                              "type": "string"
-                            },
-                            "field": {
-                              "type": "string"
-                            },
-                            "type": {
-                              "type": "string"
-                            },
-                            "description": {
-                              "type": "string"
-                            }
-                          },
-                          "xml": {
-                            "name": "Cause"
-                          }
-                        }
-                      },
-                      "errorIdentifiers": {
-                        "type": "object",
-                        "additionalProperties": {
-                          "type": "object"
-                        }
-                      }
-                    },
-                    "xml": {
-                      "name": "Error"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "NodeDTO": {
-        "type": "object",
-        "properties": {
-          "shipNode": {
-            "type": "string",
-            "description": "ShipNode Id of the ship node for which the inventory is requested"
-          },
-          "inputQty": {
-            "required": [
-              "amount",
-              "unit"
-            ],
-            "type": "object",
-            "properties": {
-              "unit": {
-                "type": "string",
-                "description": "The unit of measurement. Example: 'EACH'",
-                "enum": [
-                  "EACH"
-                ]
-              },
-              "amount": {
-                "type": "number",
-                "description": "The number available in the inventory"
-              }
-            },
-            "description": "Information about the quantity in inventory"
-          },
-          "availToSellQty": {
-            "required": [
-              "amount",
-              "unit"
-            ],
-            "type": "object",
-            "properties": {
-              "unit": {
-                "type": "string",
-                "description": "The unit of measurement. Example: 'EACH'",
-                "enum": [
-                  "EACH"
-                ]
-              },
-              "amount": {
-                "type": "number",
-                "description": "The number available in the inventory"
-              }
-            },
-            "description": "Information about the quantity in inventory"
-          },
-          "errors": {
-            "type": "array",
-            "items": {
-              "required": [
-                "code"
-              ],
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "string"
-                },
-                "field": {
-                  "type": "string"
-                },
-                "description": {
-                  "type": "string"
-                },
-                "info": {
-                  "type": "string"
-                },
-                "severity": {
-                  "type": "string",
-                  "enum": [
-                    "INFO",
-                    "WARN",
-                    "ERROR"
-                  ]
-                },
-                "category": {
-                  "type": "string",
-                  "enum": [
-                    "APPLICATION",
-                    "SYSTEM",
-                    "REQUEST",
-                    "DATA"
-                  ]
-                },
-                "causes": {
-                  "type": "array",
-                  "xml": {
-                    "wrapped": true
-                  },
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "code": {
-                        "type": "string"
-                      },
-                      "field": {
-                        "type": "string"
-                      },
-                      "type": {
-                        "type": "string"
-                      },
-                      "description": {
-                        "type": "string"
-                      }
-                    },
-                    "xml": {
-                      "name": "Cause"
-                    }
-                  }
-                },
-                "errorIdentifiers": {
-                  "type": "object",
-                  "additionalProperties": {
-                    "type": "object"
-                  }
-                }
-              },
-              "xml": {
-                "name": "Error"
-              }
-            }
-          }
-        }
-      },
-      "Inventory": {
-        "required": [
-          "quantity",
-          "sku"
-        ],
-        "type": "object",
-        "properties": {
-          "sku": {
-            "type": "string",
-            "description": "A seller-provided Product ID. Response will have decoded value."
-          },
-          "quantity": {
-            "required": [
-              "amount",
-              "unit"
-            ],
-            "type": "object",
-            "properties": {
-              "unit": {
-                "type": "string",
-                "description": "The unit of measurement. Example: 'EACH'",
-                "enum": [
-                  "EACH"
-                ]
-              },
-              "amount": {
-                "type": "number",
-                "description": "The number available in the inventory"
-              }
-            },
-            "description": "Information about the quantity in inventory"
-          }
-        },
-        "xml": {
-          "name": "inventory"
         }
       },
       "Headers": {
@@ -2869,6 +3087,69 @@
             "nullable": true
           }
         }
+      },
+      "InputQty": {
+        "required": [
+          "amount",
+          "unit"
+        ],
+        "type": "object",
+        "properties": {
+          "unit": {
+            "type": "string",
+            "description": "The unit of measurement. Example: 'EACH'",
+            "enum": [
+              "EACH"
+            ]
+          },
+          "amount": {
+            "type": "number",
+            "description": "Inventory Count"
+          }
+        },
+        "description": "Quantity of an item that is input by the seller"
+      },
+      "AvailToSellQty": {
+        "required": [
+          "amount",
+          "unit"
+        ],
+        "type": "object",
+        "properties": {
+          "unit": {
+            "type": "string",
+            "description": "The unit of measurement. Example: 'EACH'",
+            "enum": [
+              "EACH"
+            ]
+          },
+          "amount": {
+            "type": "number",
+            "description": "Inventory Count"
+          }
+        },
+        "description": "Quantity of an item that is available to be allocated to orders"
+      },
+      "ReservedQty": {
+        "required": [
+          "amount",
+          "unit"
+        ],
+        "type": "object",
+        "properties": {
+          "unit": {
+            "type": "string",
+            "description": "The unit of measurement. Example: 'EACH'",
+            "enum": [
+              "EACH"
+            ]
+          },
+          "amount": {
+            "type": "number",
+            "description": "Inventory Count"
+          }
+        },
+        "description": "Quantity that has been ordered by the customers but not yet shipped"
       }
     },
     "parameters": {

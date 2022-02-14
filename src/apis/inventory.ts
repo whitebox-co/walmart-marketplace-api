@@ -22,6 +22,34 @@ import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObj
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from './base';
 
 /**
+ * Quantity of an item that is available to be allocated to orders
+ * @export
+ * @interface AvailToSellQty
+ */
+export interface AvailToSellQty {
+    /**
+     * The unit of measurement. Example: \'EACH\'
+     * @type {string}
+     * @memberof AvailToSellQty
+     */
+    unit: AvailToSellQtyUnitEnum;
+    /**
+     * Inventory Count
+     * @type {number}
+     * @memberof AvailToSellQty
+     */
+    amount: number;
+}
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum AvailToSellQtyUnitEnum {
+    Each = 'EACH'
+}
+
+/**
  * 
  * @export
  * @interface Cause
@@ -129,10 +157,16 @@ export interface GetAllInventoriesNodeDTO {
     inputQty?: InlineResponse200ElementsInputQty;
     /**
      * 
-     * @type {InlineResponse200ElementsInputQty}
+     * @type {InlineResponse200ElementsAvailToSellQty}
      * @memberof GetAllInventoriesNodeDTO
      */
-    availToSellQty?: InlineResponse200ElementsInputQty;
+    availToSellQty?: InlineResponse200ElementsAvailToSellQty;
+    /**
+     * 
+     * @type {InlineResponse200ElementsReservedQty}
+     * @memberof GetAllInventoriesNodeDTO
+     */
+    reservedQty?: InlineResponse200ElementsReservedQty;
 }
 /**
  * 
@@ -186,10 +220,10 @@ export interface InlineObject1 {
     sku: string;
     /**
      * 
-     * @type {InlineResponse200ElementsInputQty}
+     * @type {V3InventoriesSkuInventoriesInputQty}
      * @memberof InlineObject1
      */
-    quantity: InlineResponse200ElementsInputQty;
+    quantity: V3InventoriesSkuInventoriesInputQty;
 }
 /**
  * 
@@ -261,7 +295,7 @@ export interface InlineResponse2001Causes {
     description?: string;
 }
 /**
- * 
+ * Node Update Error description.
  * @export
  * @interface InlineResponse2001Errors
  */
@@ -356,16 +390,22 @@ export interface InlineResponse2001Nodes {
     inputQty?: InlineResponse200ElementsInputQty;
     /**
      * 
-     * @type {InlineResponse200ElementsInputQty}
+     * @type {InlineResponse200ElementsAvailToSellQty}
      * @memberof InlineResponse2001Nodes
      */
-    availToSellQty?: InlineResponse200ElementsInputQty;
+    availToSellQty?: InlineResponse200ElementsAvailToSellQty;
     /**
      * 
      * @type {Array<InlineResponse2001Errors>}
      * @memberof InlineResponse2001Nodes
      */
     errors?: Array<InlineResponse2001Errors>;
+    /**
+     * 
+     * @type {InlineResponse200ElementsReservedQty}
+     * @memberof InlineResponse2001Nodes
+     */
+    reservedQty?: InlineResponse200ElementsReservedQty;
 }
 /**
  * 
@@ -425,10 +465,10 @@ export interface InlineResponse2003 {
     sku: string;
     /**
      * 
-     * @type {InlineResponse200ElementsInputQty}
+     * @type {V3InventoriesSkuInventoriesInputQty}
      * @memberof InlineResponse2003
      */
-    quantity: InlineResponse200ElementsInputQty;
+    quantity: V3InventoriesSkuInventoriesInputQty;
 }
 /**
  * 
@@ -576,7 +616,35 @@ export interface InlineResponse200Elements {
     inventories?: Array<InlineResponse200ElementsInventories>;
 }
 /**
- * Information about the quantity in inventory
+ * Quantity of an item that is available to be allocated to orders
+ * @export
+ * @interface InlineResponse200ElementsAvailToSellQty
+ */
+export interface InlineResponse200ElementsAvailToSellQty {
+    /**
+     * The unit of measurement. Example: \'EACH\'
+     * @type {string}
+     * @memberof InlineResponse200ElementsAvailToSellQty
+     */
+    unit: InlineResponse200ElementsAvailToSellQtyUnitEnum;
+    /**
+     * Inventory Count
+     * @type {number}
+     * @memberof InlineResponse200ElementsAvailToSellQty
+     */
+    amount: number;
+}
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum InlineResponse200ElementsAvailToSellQtyUnitEnum {
+    Each = 'EACH'
+}
+
+/**
+ * Quantity of an item that is input by the seller
  * @export
  * @interface InlineResponse200ElementsInputQty
  */
@@ -588,7 +656,7 @@ export interface InlineResponse200ElementsInputQty {
      */
     unit: InlineResponse200ElementsInputQtyUnitEnum;
     /**
-     * The number available in the inventory
+     * Inventory Count
      * @type {number}
      * @memberof InlineResponse200ElementsInputQty
      */
@@ -642,11 +710,45 @@ export interface InlineResponse200ElementsNodes {
     inputQty?: InlineResponse200ElementsInputQty;
     /**
      * 
-     * @type {InlineResponse200ElementsInputQty}
+     * @type {InlineResponse200ElementsAvailToSellQty}
      * @memberof InlineResponse200ElementsNodes
      */
-    availToSellQty?: InlineResponse200ElementsInputQty;
+    availToSellQty?: InlineResponse200ElementsAvailToSellQty;
+    /**
+     * 
+     * @type {InlineResponse200ElementsReservedQty}
+     * @memberof InlineResponse200ElementsNodes
+     */
+    reservedQty?: InlineResponse200ElementsReservedQty;
 }
+/**
+ * Quantity that has been ordered by the customers but not yet shipped
+ * @export
+ * @interface InlineResponse200ElementsReservedQty
+ */
+export interface InlineResponse200ElementsReservedQty {
+    /**
+     * The unit of measurement. Example: \'EACH\'
+     * @type {string}
+     * @memberof InlineResponse200ElementsReservedQty
+     */
+    unit: InlineResponse200ElementsReservedQtyUnitEnum;
+    /**
+     * Inventory Count
+     * @type {number}
+     * @memberof InlineResponse200ElementsReservedQty
+     */
+    amount: number;
+}
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum InlineResponse200ElementsReservedQtyUnitEnum {
+    Each = 'EACH'
+}
+
 /**
  * 
  * @export
@@ -666,6 +768,34 @@ export interface InlineResponse200Meta {
      */
     nextCursor?: string;
 }
+/**
+ * Quantity of an item that is input by the seller
+ * @export
+ * @interface InputQty
+ */
+export interface InputQty {
+    /**
+     * The unit of measurement. Example: \'EACH\'
+     * @type {string}
+     * @memberof InputQty
+     */
+    unit: InputQtyUnitEnum;
+    /**
+     * Inventory Count
+     * @type {number}
+     * @memberof InputQty
+     */
+    amount: number;
+}
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum InputQtyUnitEnum {
+    Each = 'EACH'
+}
+
 /**
  * 
  * @export
@@ -699,10 +829,10 @@ export interface Inventory {
     sku: string;
     /**
      * 
-     * @type {InlineResponse200ElementsInputQty}
+     * @type {V3InventoriesSkuInventoriesInputQty}
      * @memberof Inventory
      */
-    quantity: InlineResponse200ElementsInputQty;
+    quantity: V3InventoriesSkuInventoriesInputQty;
 }
 /**
  * 
@@ -743,7 +873,7 @@ export interface Meta {
     nextCursor?: string;
 }
 /**
- * 
+ * Node Update Error description.
  * @export
  * @interface ModelError
  */
@@ -889,16 +1019,22 @@ export interface NodeDTO {
     inputQty?: InlineResponse200ElementsInputQty;
     /**
      * 
-     * @type {InlineResponse200ElementsInputQty}
+     * @type {InlineResponse200ElementsAvailToSellQty}
      * @memberof NodeDTO
      */
-    availToSellQty?: InlineResponse200ElementsInputQty;
+    availToSellQty?: InlineResponse200ElementsAvailToSellQty;
     /**
      * 
      * @type {Array<InlineResponse2001Errors>}
      * @memberof NodeDTO
      */
     errors?: Array<InlineResponse2001Errors>;
+    /**
+     * 
+     * @type {InlineResponse200ElementsReservedQty}
+     * @memberof NodeDTO
+     */
+    reservedQty?: InlineResponse200ElementsReservedQty;
 }
 /**
  * 
@@ -913,6 +1049,34 @@ export interface Payload {
      */
     inventory?: Array<InlineResponse2004PayloadInventory>;
 }
+/**
+ * Quantity that has been ordered by the customers but not yet shipped
+ * @export
+ * @interface ReservedQty
+ */
+export interface ReservedQty {
+    /**
+     * The unit of measurement. Example: \'EACH\'
+     * @type {string}
+     * @memberof ReservedQty
+     */
+    unit: ReservedQtyUnitEnum;
+    /**
+     * Inventory Count
+     * @type {number}
+     * @memberof ReservedQty
+     */
+    amount: number;
+}
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum ReservedQtyUnitEnum {
+    Each = 'EACH'
+}
+
 /**
  * 
  * @export
@@ -957,7 +1121,7 @@ export interface SupplyQuantity {
      */
     unit: SupplyQuantityUnitEnum;
     /**
-     * The number available in the inventory
+     * Inventory Count
      * @type {number}
      * @memberof SupplyQuantity
      */
@@ -999,10 +1163,10 @@ export interface UpdateInventoriesRequestNodeDTO {
     shipNode: string;
     /**
      * 
-     * @type {InlineResponse200ElementsInputQty}
+     * @type {V3InventoriesSkuInventoriesInputQty}
      * @memberof UpdateInventoriesRequestNodeDTO
      */
-    inputQty: InlineResponse200ElementsInputQty;
+    inputQty: V3InventoriesSkuInventoriesInputQty;
 }
 /**
  * 
@@ -1043,6 +1207,34 @@ export interface V3InventoriesSkuInventories {
     nodes: Array<V3InventoriesSkuInventoriesNodes>;
 }
 /**
+ * Information about the quantity in inventory
+ * @export
+ * @interface V3InventoriesSkuInventoriesInputQty
+ */
+export interface V3InventoriesSkuInventoriesInputQty {
+    /**
+     * The unit of measurement. Example: \'EACH\'
+     * @type {string}
+     * @memberof V3InventoriesSkuInventoriesInputQty
+     */
+    unit: V3InventoriesSkuInventoriesInputQtyUnitEnum;
+    /**
+     * Inventory Count
+     * @type {number}
+     * @memberof V3InventoriesSkuInventoriesInputQty
+     */
+    amount: number;
+}
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum V3InventoriesSkuInventoriesInputQtyUnitEnum {
+    Each = 'EACH'
+}
+
+/**
  * 
  * @export
  * @interface V3InventoriesSkuInventoriesNodes
@@ -1056,10 +1248,10 @@ export interface V3InventoriesSkuInventoriesNodes {
     shipNode: string;
     /**
      * 
-     * @type {InlineResponse200ElementsInputQty}
+     * @type {V3InventoriesSkuInventoriesInputQty}
      * @memberof V3InventoriesSkuInventoriesNodes
      */
-    inputQty: InlineResponse200ElementsInputQty;
+    inputQty: V3InventoriesSkuInventoriesInputQty;
 }
 /**
  * 
@@ -1498,11 +1690,10 @@ export const InventoryApiAxiosParamCreator = function (configuration?: Configura
     
     
             localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
-            localVarHeaderParameter['Accept'] = 'application/json';
     
             setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers, ...localVarFormParams.getHeaders()};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = localVarFormParams;
 
             return {

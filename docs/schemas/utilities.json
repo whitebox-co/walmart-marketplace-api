@@ -20,6 +20,151 @@
     }
   ],
   "paths": {
+    "/v3/utilities/taxonomy/departments/{departmentId}": {
+      "get": {
+        "tags": [
+          "Utilities"
+        ],
+        "summary": "All Categories",
+        "description": "Get list of categories for a specific department",
+        "operationId": "getCategories",
+        "parameters": [
+          {
+            "name": "departmentId",
+            "in": "path",
+            "description": "departmentId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Basic YzcyOTFjNmItNzI5MC00...."
+          },
+          {
+            "in": "header",
+            "name": "WM_SEC.ACCESS_TOKEN",
+            "description": "The access token retrieved in the Token API call",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
+          },
+          {
+            "in": "header",
+            "name": "WM_CONSUMER.CHANNEL.TYPE",
+            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "WM_QOS.CORRELATION_ID",
+            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
+          },
+          {
+            "in": "header",
+            "name": "WM_SVC.NAME",
+            "description": "Walmart Service Name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Walmart Service Name"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "response": {
+                      "type": "object",
+                      "properties": {
+                        "departmentName": {
+                          "type": "string",
+                          "description": "The department name for which the categories have to be fetched"
+                        },
+                        "departmentId": {
+                          "type": "string",
+                          "description": "The department id for which the categories have to be fetched"
+                        },
+                        "category": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "categoryName": {
+                                "type": "string",
+                                "description": "The category name for which the top trending items have to be fetched"
+                              },
+                              "categoryId": {
+                                "type": "string",
+                                "description": "The category id for which the top trending items have to be fetched"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "status": "SUCCESS",
+                  "response": {
+                    "departmentName": "LAUNDRY AND HOUSEHOLD CHEMICALS",
+                    "departmentId": "44003",
+                    "category": [
+                      {
+                        "categoryName": "CLEANING PRODUCTS",
+                        "categoryId": "44106"
+                      },
+                      {
+                        "categoryName": "LAUNDRY CARE",
+                        "categoryId": "44108"
+                      },
+                      {
+                        "categoryName": "HOUSEHOLD CHEMICALS L3",
+                        "categoryId": "1044076"
+                      },
+                      {
+                        "categoryName": "HOME FRAGRANCE",
+                        "categoryId": "44107"
+                      },
+                      {
+                        "categoryName": "CLEANING TOOLS",
+                        "categoryId": "1044080"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v3/utilities/taxonomy/departments": {
       "get": {
         "tags": [
@@ -402,24 +547,15 @@
         }
       }
     },
-    "/v3/utilities/taxonomy/departments/{departmentId}": {
+    "/v3/utilities/apiStatus": {
       "get": {
         "tags": [
           "Utilities"
         ],
-        "summary": "All Categories",
-        "description": "Get list of categories for a specific department",
-        "operationId": "getCategories",
+        "summary": "API Platform Status",
+        "description": "Get all marketplace Apis status",
+        "operationId": "getApiPlatformStatus",
         "parameters": [
-          {
-            "name": "departmentId",
-            "in": "path",
-            "description": "departmentId",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "in": "header",
             "name": "Authorization",
@@ -478,68 +614,107 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "status": {
-                      "type": "string"
-                    },
-                    "response": {
-                      "type": "object",
-                      "properties": {
-                        "departmentName": {
-                          "type": "string",
-                          "description": "The department name for which the categories have to be fetched"
-                        },
-                        "departmentId": {
-                          "type": "string",
-                          "description": "The department id for which the categories have to be fetched"
-                        },
-                        "category": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "categoryName": {
-                                "type": "string",
-                                "description": "The category name for which the top trending items have to be fetched"
-                              },
-                              "categoryId": {
-                                "type": "string",
-                                "description": "The category id for which the top trending items have to be fetched"
-                              }
-                            }
+                    "apiStatuses": {
+                      "type": "array",
+                      "description": "A-List of all API statuses",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "apiGroup": {
+                            "type": "string",
+                            "description": "The marketplace api group",
+                            "enum": [
+                              "Returns",
+                              "Items",
+                              "Sandbox",
+                              "Lagtime",
+                              "Promos",
+                              "Orders",
+                              "Authentication",
+                              "Price",
+                              "Refunds",
+                              "Authorization",
+                              "Inventory"
+                            ]
+                          },
+                          "status": {
+                            "type": "string",
+                            "description": "The current status of marketplace api group",
+                            "enum": [
+                              "OPERATIONAL",
+                              "SERVICE_DEGRADATION",
+                              "SERVICE_OUTAGE",
+                              "UNKNOWN"
+                            ]
+                          },
+                          "lastUpdatedTime": {
+                            "type": "string",
+                            "description": "The time at which the status of api group collected. This datetime field is in the ISO 8601 format."
                           }
-                        }
+                        },
+                        "description": "A-List of all API statuses"
                       }
                     }
                   }
                 },
                 "example": {
-                  "status": "SUCCESS",
-                  "response": {
-                    "departmentName": "LAUNDRY AND HOUSEHOLD CHEMICALS",
-                    "departmentId": "44003",
-                    "category": [
-                      {
-                        "categoryName": "CLEANING PRODUCTS",
-                        "categoryId": "44106"
-                      },
-                      {
-                        "categoryName": "LAUNDRY CARE",
-                        "categoryId": "44108"
-                      },
-                      {
-                        "categoryName": "HOUSEHOLD CHEMICALS L3",
-                        "categoryId": "1044076"
-                      },
-                      {
-                        "categoryName": "HOME FRAGRANCE",
-                        "categoryId": "44107"
-                      },
-                      {
-                        "categoryName": "CLEANING TOOLS",
-                        "categoryId": "1044080"
-                      }
-                    ]
-                  }
+                  "apiStatuses": [
+                    {
+                      "apiGroup": "Returns",
+                      "status": "OPERATIONAL",
+                      "lastUpdatedTime": "2022-01-12T07:30:48.611Z"
+                    },
+                    {
+                      "apiGroup": "Items",
+                      "status": "OPERATIONAL",
+                      "lastUpdatedTime": "2022-01-12T07:30:48.611Z"
+                    },
+                    {
+                      "apiGroup": "Sandbox",
+                      "status": "OPERATIONAL",
+                      "lastUpdatedTime": "2022-01-12T07:30:48.611Z"
+                    },
+                    {
+                      "apiGroup": "Lagtime",
+                      "status": "OPERATIONAL",
+                      "lastUpdatedTime": "2022-01-12T07:30:48.611Z"
+                    },
+                    {
+                      "apiGroup": "Promos",
+                      "status": "OPERATIONAL",
+                      "lastUpdatedTime": "2022-01-12T07:30:48.611Z"
+                    },
+                    {
+                      "apiGroup": "Orders",
+                      "status": "OPERATIONAL",
+                      "lastUpdatedTime": "2022-01-12T07:30:48.611Z"
+                    },
+                    {
+                      "apiGroup": "Authentication",
+                      "status": "OPERATIONAL",
+                      "lastUpdatedTime": "2022-01-12T07:30:48.611Z"
+                    },
+                    {
+                      "apiGroup": "Price",
+                      "status": "OPERATIONAL",
+                      "lastUpdatedTime": "2022-01-12T07:30:48.611Z"
+                    },
+                    {
+                      "apiGroup": "Refunds",
+                      "status": "OPERATIONAL",
+                      "lastUpdatedTime": "2022-01-12T07:30:48.611Z"
+                    },
+                    {
+                      "apiGroup": "Authorization",
+                      "status": "OPERATIONAL",
+                      "lastUpdatedTime": "2022-01-12T07:30:48.611Z"
+                    },
+                    {
+                      "apiGroup": "Inventory",
+                      "status": "OPERATIONAL",
+                      "lastUpdatedTime": "2022-01-12T07:30:48.611Z"
+                    }
+                  ]
                 }
               }
             }
@@ -550,6 +725,85 @@
   },
   "components": {
     "schemas": {
+      "Category": {
+        "type": "object",
+        "properties": {
+          "categoryName": {
+            "type": "string",
+            "description": "The category name for which the top trending items have to be fetched"
+          },
+          "categoryId": {
+            "type": "string",
+            "description": "The category id for which the top trending items have to be fetched"
+          }
+        }
+      },
+      "GetCategories": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "response": {
+            "type": "object",
+            "properties": {
+              "departmentName": {
+                "type": "string",
+                "description": "The department name for which the categories have to be fetched"
+              },
+              "departmentId": {
+                "type": "string",
+                "description": "The department id for which the categories have to be fetched"
+              },
+              "category": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "categoryName": {
+                      "type": "string",
+                      "description": "The category name for which the top trending items have to be fetched"
+                    },
+                    "categoryId": {
+                      "type": "string",
+                      "description": "The category id for which the top trending items have to be fetched"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "Response": {
+        "type": "object",
+        "properties": {
+          "departmentName": {
+            "type": "string",
+            "description": "The department name for which the categories have to be fetched"
+          },
+          "departmentId": {
+            "type": "string",
+            "description": "The department id for which the categories have to be fetched"
+          },
+          "category": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "categoryName": {
+                  "type": "string",
+                  "description": "The category name for which the top trending items have to be fetched"
+                },
+                "categoryId": {
+                  "type": "string",
+                  "description": "The category id for which the top trending items have to be fetched"
+                }
+              }
+            }
+          }
+        }
+      },
       "Department": {
         "type": "object",
         "properties": {
@@ -711,84 +965,88 @@
           }
         }
       },
-      "Category": {
+      "StatusAPIResponse": {
         "type": "object",
         "properties": {
-          "categoryName": {
-            "type": "string",
-            "description": "The category name for which the top trending items have to be fetched"
-          },
-          "categoryId": {
-            "type": "string",
-            "description": "The category id for which the top trending items have to be fetched"
-          }
-        }
-      },
-      "GetCategories": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "string"
-          },
-          "response": {
-            "type": "object",
-            "properties": {
-              "departmentName": {
-                "type": "string",
-                "description": "The department name for which the categories have to be fetched"
-              },
-              "departmentId": {
-                "type": "string",
-                "description": "The department id for which the categories have to be fetched"
-              },
-              "category": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "categoryName": {
-                      "type": "string",
-                      "description": "The category name for which the top trending items have to be fetched"
-                    },
-                    "categoryId": {
-                      "type": "string",
-                      "description": "The category id for which the top trending items have to be fetched"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "Response": {
-        "type": "object",
-        "properties": {
-          "departmentName": {
-            "type": "string",
-            "description": "The department name for which the categories have to be fetched"
-          },
-          "departmentId": {
-            "type": "string",
-            "description": "The department id for which the categories have to be fetched"
-          },
-          "category": {
+          "apiStatuses": {
             "type": "array",
+            "description": "A-List of all API statuses",
             "items": {
               "type": "object",
               "properties": {
-                "categoryName": {
+                "apiGroup": {
                   "type": "string",
-                  "description": "The category name for which the top trending items have to be fetched"
+                  "description": "The marketplace api group",
+                  "enum": [
+                    "Returns",
+                    "Items",
+                    "Sandbox",
+                    "Lagtime",
+                    "Promos",
+                    "Orders",
+                    "Authentication",
+                    "Price",
+                    "Refunds",
+                    "Authorization",
+                    "Inventory"
+                  ]
                 },
-                "categoryId": {
+                "status": {
                   "type": "string",
-                  "description": "The category id for which the top trending items have to be fetched"
+                  "description": "The current status of marketplace api group",
+                  "enum": [
+                    "OPERATIONAL",
+                    "SERVICE_DEGRADATION",
+                    "SERVICE_OUTAGE",
+                    "UNKNOWN"
+                  ]
+                },
+                "lastUpdatedTime": {
+                  "type": "string",
+                  "description": "The time at which the status of api group collected. This datetime field is in the ISO 8601 format."
                 }
-              }
+              },
+              "description": "A-List of all API statuses"
             }
           }
         }
+      },
+      "StatusAPIResponseDTO": {
+        "type": "object",
+        "properties": {
+          "apiGroup": {
+            "type": "string",
+            "description": "The marketplace api group",
+            "enum": [
+              "Returns",
+              "Items",
+              "Sandbox",
+              "Lagtime",
+              "Promos",
+              "Orders",
+              "Authentication",
+              "Price",
+              "Refunds",
+              "Authorization",
+              "Inventory"
+            ]
+          },
+          "status": {
+            "type": "string",
+            "description": "The current status of marketplace api group",
+            "enum": [
+              "OPERATIONAL",
+              "SERVICE_DEGRADATION",
+              "SERVICE_OUTAGE",
+              "UNKNOWN"
+            ]
+          },
+          "lastUpdatedTime": {
+            "type": "string",
+            "description": "The time at which the status of api group collected. This datetime field is in the ISO 8601 format."
+          }
+        },
+        "description": "A-List of all API statuses"
       }
     },
     "parameters": {

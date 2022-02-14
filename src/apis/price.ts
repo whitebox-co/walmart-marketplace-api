@@ -35,10 +35,10 @@ export interface CapProgramResponse {
     martId?: string;
     /**
      * 
-     * @type {InlineObject}
+     * @type {InlineObject1}
      * @memberof CapProgramResponse
      */
-    statusInfo?: InlineObject;
+    statusInfo?: InlineObject1;
 }
 /**
  * 
@@ -198,10 +198,10 @@ export interface GatewayError {
     category?: GatewayErrorCategoryEnum;
     /**
      * 
-     * @type {Array<InlineResponse2001Causes>}
+     * @type {Array<InlineResponse200Causes>}
      * @memberof GatewayError
      */
-    causes?: Array<InlineResponse2001Causes>;
+    causes?: Array<InlineResponse200Causes>;
     /**
      * 
      * @type {{ [key: string]: object; }}
@@ -270,52 +270,33 @@ export enum GatewayErrorGatewayErrorCategoryEnum {
  */
 export interface InlineObject {
     /**
-     * A Boolean parameter that allows all sellers to completely enroll in or out of the Competitive Price Adjustment program
-     * @type {boolean}
-     * @memberof InlineObject
-     */
-    subsidyEnrolled?: boolean;
-    /**
-     * A Boolean parameter that determines whether offer level subsidy setting override seller level subsidy setting
-     * @type {boolean}
-     * @memberof InlineObject
-     */
-    subsidyPreference?: boolean;
-}
-/**
- * 
- * @export
- * @interface InlineObject1
- */
-export interface InlineObject1 {
-    /**
      * This is applicable only for promotions
      * @type {string}
-     * @memberof InlineObject1
+     * @memberof InlineObject
      */
     offerId?: string;
     /**
      * 
      * @type {string}
-     * @memberof InlineObject1
+     * @memberof InlineObject
      */
     sku: string;
     /**
      * This is applicable only for promotions
      * @type {string}
-     * @memberof InlineObject1
+     * @memberof InlineObject
      */
-    replaceAll?: InlineObject1ReplaceAllEnum;
+    replaceAll?: InlineObjectReplaceAllEnum;
     /**
      * 
      * @type {Array<V3PricePricing>}
-     * @memberof InlineObject1
+     * @memberof InlineObject
      */
     pricing: Array<V3PricePricing>;
     /**
      * 
      * @type {object}
-     * @memberof InlineObject1
+     * @memberof InlineObject
      */
     definitions?: object;
 }
@@ -324,7 +305,7 @@ export interface InlineObject1 {
     * @export
     * @enum {string}
     */
-export enum InlineObject1ReplaceAllEnum {
+export enum InlineObjectReplaceAllEnum {
     True = 'true',
     False = 'false'
 }
@@ -332,21 +313,58 @@ export enum InlineObject1ReplaceAllEnum {
 /**
  * 
  * @export
+ * @interface InlineObject1
+ */
+export interface InlineObject1 {
+    /**
+     * A Boolean parameter that allows all sellers to completely enroll in or out of the Competitive Price Adjustment program
+     * @type {boolean}
+     * @memberof InlineObject1
+     */
+    subsidyEnrolled?: boolean;
+    /**
+     * A Boolean parameter that determines whether offer level subsidy setting override seller level subsidy setting
+     * @type {boolean}
+     * @memberof InlineObject1
+     */
+    subsidyPreference?: boolean;
+}
+/**
+ * 
+ * @export
  * @interface InlineResponse200
  */
 export interface InlineResponse200 {
     /**
-     * A unique ID that a user or seller uses for a marketplace.
+     * 
+     * @type {Array<InlineResponse200Errors>}
+     * @memberof InlineResponse200
+     */
+    errors?: Array<InlineResponse200Errors>;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse200
+     */
+    statusCode?: number;
+    /**
+     * Marketplace name. Example: Walmart-US
      * @type {string}
      * @memberof InlineResponse200
      */
-    martId?: string;
+    mart?: string;
     /**
-     * 
-     * @type {InlineObject}
+     * An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item.
+     * @type {string}
      * @memberof InlineResponse200
      */
-    statusInfo?: InlineObject;
+    sku?: string;
+    /**
+     * A message of acknowledgement for a price update
+     * @type {string}
+     * @memberof InlineResponse200
+     */
+    message?: string;
 }
 /**
  * 
@@ -355,176 +373,18 @@ export interface InlineResponse200 {
  */
 export interface InlineResponse2001 {
     /**
-     * 
-     * @type {Array<InlineResponse2001Errors>}
-     * @memberof InlineResponse2001
-     */
-    errors?: Array<InlineResponse2001Errors>;
-    /**
-     * 
-     * @type {number}
-     * @memberof InlineResponse2001
-     */
-    statusCode?: number;
-    /**
-     * Marketplace name. Example: Walmart-US
+     * A unique ID that a user or seller uses for a marketplace.
      * @type {string}
      * @memberof InlineResponse2001
      */
-    mart?: string;
+    martId?: string;
     /**
-     * An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item.
-     * @type {string}
+     * 
+     * @type {InlineObject1}
      * @memberof InlineResponse2001
      */
-    sku?: string;
-    /**
-     * A message of acknowledgement for a price update
-     * @type {string}
-     * @memberof InlineResponse2001
-     */
-    message?: string;
+    statusInfo?: InlineObject1;
 }
-/**
- * 
- * @export
- * @interface InlineResponse2001Causes
- */
-export interface InlineResponse2001Causes {
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2001Causes
-     */
-    code?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2001Causes
-     */
-    field?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2001Causes
-     */
-    type?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2001Causes
-     */
-    description?: string;
-}
-/**
- * 
- * @export
- * @interface InlineResponse2001Errors
- */
-export interface InlineResponse2001Errors {
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2001Errors
-     */
-    code: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2001Errors
-     */
-    field?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2001Errors
-     */
-    description?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2001Errors
-     */
-    info?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2001Errors
-     */
-    severity?: InlineResponse2001ErrorsSeverityEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2001Errors
-     */
-    category?: InlineResponse2001ErrorsCategoryEnum;
-    /**
-     * 
-     * @type {Array<InlineResponse2001Causes>}
-     * @memberof InlineResponse2001Errors
-     */
-    causes?: Array<InlineResponse2001Causes>;
-    /**
-     * 
-     * @type {{ [key: string]: object; }}
-     * @memberof InlineResponse2001Errors
-     */
-    errorIdentifiers?: { [key: string]: object; };
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2001Errors
-     */
-    component?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2001Errors
-     */
-    type?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2001Errors
-     */
-    serviceName?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2001Errors
-     */
-    gatewayErrorCategory?: InlineResponse2001ErrorsGatewayErrorCategoryEnum;
-}
-
-/**
-    * @export
-    * @enum {string}
-    */
-export enum InlineResponse2001ErrorsSeverityEnum {
-    Info = 'INFO',
-    Warn = 'WARN',
-    Error = 'ERROR'
-}
-/**
-    * @export
-    * @enum {string}
-    */
-export enum InlineResponse2001ErrorsCategoryEnum {
-    Application = 'APPLICATION',
-    System = 'SYSTEM',
-    Request = 'REQUEST',
-    Data = 'DATA'
-}
-/**
-    * @export
-    * @enum {string}
-    */
-export enum InlineResponse2001ErrorsGatewayErrorCategoryEnum {
-    InternalDataError = 'INTERNAL_DATA_ERROR',
-    ExternalDataError = 'EXTERNAL_DATA_ERROR',
-    SystemError = 'SYSTEM_ERROR'
-}
-
 /**
  * 
  * @export
@@ -553,15 +413,155 @@ export interface InlineResponse2002 {
 /**
  * 
  * @export
+ * @interface InlineResponse200Causes
+ */
+export interface InlineResponse200Causes {
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse200Causes
+     */
+    code?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse200Causes
+     */
+    field?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse200Causes
+     */
+    type?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse200Causes
+     */
+    description?: string;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse200Errors
+ */
+export interface InlineResponse200Errors {
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse200Errors
+     */
+    code: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse200Errors
+     */
+    field?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse200Errors
+     */
+    description?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse200Errors
+     */
+    info?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse200Errors
+     */
+    severity?: InlineResponse200ErrorsSeverityEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse200Errors
+     */
+    category?: InlineResponse200ErrorsCategoryEnum;
+    /**
+     * 
+     * @type {Array<InlineResponse200Causes>}
+     * @memberof InlineResponse200Errors
+     */
+    causes?: Array<InlineResponse200Causes>;
+    /**
+     * 
+     * @type {{ [key: string]: object; }}
+     * @memberof InlineResponse200Errors
+     */
+    errorIdentifiers?: { [key: string]: object; };
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse200Errors
+     */
+    component?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse200Errors
+     */
+    type?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse200Errors
+     */
+    serviceName?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse200Errors
+     */
+    gatewayErrorCategory?: InlineResponse200ErrorsGatewayErrorCategoryEnum;
+}
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum InlineResponse200ErrorsSeverityEnum {
+    Info = 'INFO',
+    Warn = 'WARN',
+    Error = 'ERROR'
+}
+/**
+    * @export
+    * @enum {string}
+    */
+export enum InlineResponse200ErrorsCategoryEnum {
+    Application = 'APPLICATION',
+    System = 'SYSTEM',
+    Request = 'REQUEST',
+    Data = 'DATA'
+}
+/**
+    * @export
+    * @enum {string}
+    */
+export enum InlineResponse200ErrorsGatewayErrorCategoryEnum {
+    InternalDataError = 'INTERNAL_DATA_ERROR',
+    ExternalDataError = 'EXTERNAL_DATA_ERROR',
+    SystemError = 'SYSTEM_ERROR'
+}
+
+/**
+ * 
+ * @export
  * @interface ItemPriceResponse
  */
 export interface ItemPriceResponse {
     /**
      * 
-     * @type {Array<InlineResponse2001Errors>}
+     * @type {Array<InlineResponse200Errors>}
      * @memberof ItemPriceResponse
      */
-    errors?: Array<InlineResponse2001Errors>;
+    errors?: Array<InlineResponse200Errors>;
     /**
      * 
      * @type {number}
@@ -915,12 +915,12 @@ export const PricesApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
-         * @param {InlineObject} inlineObject 
+         * @param {InlineObject1} inlineObject1 
          * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        optCapProgramInPrice: async (authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
+        optCapProgramInPrice: async (authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject1: InlineObject1, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'authorization' is not null or undefined
             assertParamExists('optCapProgramInPrice', 'authorization', authorization)
             // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
@@ -929,8 +929,8 @@ export const PricesApiAxiosParamCreator = function (configuration?: Configuratio
             assertParamExists('optCapProgramInPrice', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID)
             // verify required parameter 'wMSVCNAME' is not null or undefined
             assertParamExists('optCapProgramInPrice', 'wMSVCNAME', wMSVCNAME)
-            // verify required parameter 'inlineObject' is not null or undefined
-            assertParamExists('optCapProgramInPrice', 'inlineObject', inlineObject)
+            // verify required parameter 'inlineObject1' is not null or undefined
+            assertParamExists('optCapProgramInPrice', 'inlineObject1', inlineObject1)
             const localVarPath = `/v3/cppreference`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -974,7 +974,7 @@ export const PricesApiAxiosParamCreator = function (configuration?: Configuratio
             setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(inlineObject, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(inlineObject1, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -1053,11 +1053,10 @@ export const PricesApiAxiosParamCreator = function (configuration?: Configuratio
     
     
             localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
-             localVarHeaderParameter['Accept'] = 'application/json';
     
             setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers, ...localVarFormParams.getHeaders()};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = localVarFormParams;
 
             return {
@@ -1072,12 +1071,12 @@ export const PricesApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
-         * @param {InlineObject1} inlineObject1 
+         * @param {InlineObject} inlineObject 
          * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updatePrice: async (authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject1: InlineObject1, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
+        updatePrice: async (authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'authorization' is not null or undefined
             assertParamExists('updatePrice', 'authorization', authorization)
             // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
@@ -1086,8 +1085,8 @@ export const PricesApiAxiosParamCreator = function (configuration?: Configuratio
             assertParamExists('updatePrice', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID)
             // verify required parameter 'wMSVCNAME' is not null or undefined
             assertParamExists('updatePrice', 'wMSVCNAME', wMSVCNAME)
-            // verify required parameter 'inlineObject1' is not null or undefined
-            assertParamExists('updatePrice', 'inlineObject1', inlineObject1)
+            // verify required parameter 'inlineObject' is not null or undefined
+            assertParamExists('updatePrice', 'inlineObject', inlineObject)
             const localVarPath = `/v3/price`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -1131,7 +1130,7 @@ export const PricesApiAxiosParamCreator = function (configuration?: Configuratio
             setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(inlineObject1, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(inlineObject, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -1155,13 +1154,13 @@ export const PricesApiFp = function(configuration?: Configuration) {
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
-         * @param {InlineObject} inlineObject 
+         * @param {InlineObject1} inlineObject1 
          * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async optCapProgramInPrice(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.optCapProgramInPrice(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject, wMCONSUMERCHANNELTYPE, options);
+        async optCapProgramInPrice(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject1: InlineObject1, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.optCapProgramInPrice(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject1, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -1188,13 +1187,13 @@ export const PricesApiFp = function(configuration?: Configuration) {
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
-         * @param {InlineObject1} inlineObject1 
+         * @param {InlineObject} inlineObject 
          * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updatePrice(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject1: InlineObject1, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.updatePrice(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject1, wMCONSUMERCHANNELTYPE, options);
+        async updatePrice(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updatePrice(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -1214,13 +1213,13 @@ export const PricesApiFactory = function (configuration?: Configuration, basePat
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
-         * @param {InlineObject} inlineObject 
+         * @param {InlineObject1} inlineObject1 
          * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        optCapProgramInPrice(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse200> {
-            return localVarFp.optCapProgramInPrice(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        optCapProgramInPrice(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject1: InlineObject1, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2001> {
+            return localVarFp.optCapProgramInPrice(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject1, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
          * Updates prices in bulk.  In one Feed you can update up to 10,000 items in bulk. To ensure optimal Feed processing time, we recommend sending no more than 1000 items in one Feed and keeping the Feed sizes below 10 MB.  The price sequence guarantee is observed by the bulk price update functionality, subject to the following rules:  The timestamp used to determine precedence is passed in the request headers. All price updates in the feed are considered to have the same timestamp. The timestamp in the XML file is used only for auditing. You can send a single SKU multiple times in one Feed. If a SKU is repeated in a Feed, the price will be set for that SKU on Walmart.com, but there is no guarantee as to which SKU\'s price within that feed will be used. This API should be used in preference to the update a price. It should be called no sooner than 24 hours after a new item is set up and a wpid (Walmart Part ID) is available. Thereafter, the bulk price update has an service level agreement (SLA) of 15 minutes.  After the update is submitted, wait for at least five minutes before verifying whether the bulk price update was successful. Individual SKU price update success or failure is only available after the entire feed is processed.  If a SKU\'s price update fails (for example, multiple price updates were sent for the same SKU in a single feed), an error will be returned.
@@ -1245,13 +1244,13 @@ export const PricesApiFactory = function (configuration?: Configuration, basePat
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
-         * @param {InlineObject1} inlineObject1 
+         * @param {InlineObject} inlineObject 
          * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updatePrice(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject1: InlineObject1, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2001> {
-            return localVarFp.updatePrice(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject1, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        updatePrice(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse200> {
+            return localVarFp.updatePrice(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -1292,10 +1291,10 @@ export interface PricesApiOptCapProgramInPriceRequest {
 
     /**
      * 
-     * @type {InlineObject}
+     * @type {InlineObject1}
      * @memberof PricesApiOptCapProgramInPrice
      */
-    readonly inlineObject: InlineObject
+    readonly inlineObject1: InlineObject1
 
     /**
      * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
@@ -1397,10 +1396,10 @@ export interface PricesApiUpdatePriceRequest {
 
     /**
      * 
-     * @type {InlineObject1}
+     * @type {InlineObject}
      * @memberof PricesApiUpdatePrice
      */
-    readonly inlineObject1: InlineObject1
+    readonly inlineObject: InlineObject
 
     /**
      * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
@@ -1426,7 +1425,7 @@ export class PricesApi extends BaseAPI {
      * @memberof PricesApi
      */
     public optCapProgramInPrice(requestParameters: PricesApiOptCapProgramInPriceRequest, options?: any) {
-        return PricesApiFp(this.configuration).optCapProgramInPrice(requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.inlineObject, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+        return PricesApiFp(this.configuration).optCapProgramInPrice(requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.inlineObject1, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -1450,7 +1449,7 @@ export class PricesApi extends BaseAPI {
      * @memberof PricesApi
      */
     public updatePrice(requestParameters: PricesApiUpdatePriceRequest, options?: any) {
-        return PricesApiFp(this.configuration).updatePrice(requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.inlineObject1, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+        return PricesApiFp(this.configuration).updatePrice(requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.inlineObject, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

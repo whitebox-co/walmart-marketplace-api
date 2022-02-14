@@ -117,10 +117,10 @@ export interface CategoryInfo {
     category?: string;
     /**
      * subCategory
-     * @type {Array<InlineResponse2008Subcategory>}
+     * @type {Array<InlineResponse2002Subcategory>}
      * @memberof CategoryInfo
      */
-    subcategory?: Array<InlineResponse2008Subcategory>;
+    subcategory?: Array<InlineResponse2002Subcategory>;
 }
 /**
  * 
@@ -149,10 +149,10 @@ export interface ChangeAssortmentResponse {
     status?: string;
     /**
      * 
-     * @type {InlineResponse2009Payload}
+     * @type {InlineResponse2003Payload}
      * @memberof ChangeAssortmentResponse
      */
-    payload?: InlineResponse2009Payload;
+    payload?: InlineResponse2003Payload;
 }
 /**
  * Seller creates conditions while defining the custom rule assortment.There are three condition which a seller can use : subCategories, price, weight.
@@ -244,10 +244,10 @@ export interface CreateRuleRequest {
 export interface CreateRuleResponse {
     /**
      * 
-     * @type {Array<InlineResponse2002Rules>}
+     * @type {Array<InlineResponse2004Rules>}
      * @memberof CreateRuleResponse
      */
-    rules?: Array<InlineResponse2002Rules>;
+    rules?: Array<InlineResponse2004Rules>;
     /**
      * 
      * @type {string}
@@ -409,10 +409,10 @@ export interface GetAllSubCategoriesResponse {
     status?: string;
     /**
      * 
-     * @type {Array<InlineResponse2008Payload>}
+     * @type {Array<InlineResponse2002Payload>}
      * @memberof GetAllSubCategoriesResponse
      */
-    payload?: Array<InlineResponse2008Payload>;
+    payload?: Array<InlineResponse2002Payload>;
 }
 /**
  * 
@@ -831,71 +831,54 @@ export interface InlineResponse2001Rules {
 export interface InlineResponse2002 {
     /**
      * 
-     * @type {Array<InlineResponse2002Rules>}
-     * @memberof InlineResponse2002
-     */
-    rules?: Array<InlineResponse2002Rules>;
-    /**
-     * 
      * @type {string}
      * @memberof InlineResponse2002
      */
     status?: string;
+    /**
+     * 
+     * @type {Array<InlineResponse2002Payload>}
+     * @memberof InlineResponse2002
+     */
+    payload?: Array<InlineResponse2002Payload>;
 }
 /**
  * 
  * @export
- * @interface InlineResponse2002Rules
+ * @interface InlineResponse2002Payload
  */
-export interface InlineResponse2002Rules {
+export interface InlineResponse2002Payload {
     /**
-     * Seller creates conditions while defining the custom rule assortment.There are three condition which a seller can use : subCategories, price, weight.
-     * @type {Array<InlineResponse2001Conditions>}
-     * @memberof InlineResponse2002Rules
-     */
-    conditions?: Array<InlineResponse2001Conditions>;
-    /**
-     * Description of the rule created for custom rule assortment.
+     * category
      * @type {string}
-     * @memberof InlineResponse2002Rules
+     * @memberof InlineResponse2002Payload
      */
-    description?: string;
+    category?: string;
     /**
-     * Name of the rule created for custom rule assortment.
-     * @type {string}
-     * @memberof InlineResponse2002Rules
+     * subCategory
+     * @type {Array<InlineResponse2002Subcategory>}
+     * @memberof InlineResponse2002Payload
      */
-    name?: string;
+    subcategory?: Array<InlineResponse2002Subcategory>;
+}
+/**
+ * subCategory
+ * @export
+ * @interface InlineResponse2002Subcategory
+ */
+export interface InlineResponse2002Subcategory {
     /**
-     * Priority of the rule created for custom rule assortment.
+     * Name of specific kind of category
      * @type {string}
-     * @memberof InlineResponse2002Rules
+     * @memberof InlineResponse2002Subcategory
      */
-    priority?: string;
+    subCategoryName?: string;
     /**
-     * Defines the two day state coverage areas.
+     * ID of specific kind of category
      * @type {string}
-     * @memberof InlineResponse2002Rules
+     * @memberof InlineResponse2002Subcategory
      */
-    ruleAction?: string;
-    /**
-     * Unique identifier of the rule created for custom rule assortment.
-     * @type {string}
-     * @memberof InlineResponse2002Rules
-     */
-    ruleId?: string;
-    /**
-     * Status of the rule post the rule creation. Allowed values are Active, Inactive, Submitted.
-     * @type {string}
-     * @memberof InlineResponse2002Rules
-     */
-    ruleStatus?: string;
-    /**
-     * When the rule gets activated, skuProcessingStatus represents the state of all items being processed for two-day. The two values for skuProcessingStatus are Processing and Completed.
-     * @type {string}
-     * @memberof InlineResponse2002Rules
-     */
-    skuProcessingStatus?: string;
+    subCategoryId?: string;
 }
 /**
  * 
@@ -904,17 +887,30 @@ export interface InlineResponse2002Rules {
  */
 export interface InlineResponse2003 {
     /**
-     * Message and ruleId
-     * @type {string}
-     * @memberof InlineResponse2003
-     */
-    message?: string;
-    /**
-     * status
+     * 
      * @type {string}
      * @memberof InlineResponse2003
      */
     status?: string;
+    /**
+     * 
+     * @type {InlineResponse2003Payload}
+     * @memberof InlineResponse2003
+     */
+    payload?: InlineResponse2003Payload;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse2003Payload
+ */
+export interface InlineResponse2003Payload {
+    /**
+     * Unique identifier of the rule created for custom rule assortment.
+     * @type {string}
+     * @memberof InlineResponse2003Payload
+     */
+    id?: string;
 }
 /**
  * 
@@ -923,13 +919,13 @@ export interface InlineResponse2003 {
  */
 export interface InlineResponse2004 {
     /**
-     * Message and status of deletion
-     * @type {string}
+     * 
+     * @type {Array<InlineResponse2004Rules>}
      * @memberof InlineResponse2004
      */
-    message?: string;
+    rules?: Array<InlineResponse2004Rules>;
     /**
-     * status
+     * 
      * @type {string}
      * @memberof InlineResponse2004
      */
@@ -938,11 +934,66 @@ export interface InlineResponse2004 {
 /**
  * 
  * @export
+ * @interface InlineResponse2004Rules
+ */
+export interface InlineResponse2004Rules {
+    /**
+     * Seller creates conditions while defining the custom rule assortment.There are three condition which a seller can use : subCategories, price, weight.
+     * @type {Array<InlineResponse2001Conditions>}
+     * @memberof InlineResponse2004Rules
+     */
+    conditions?: Array<InlineResponse2001Conditions>;
+    /**
+     * Description of the rule created for custom rule assortment.
+     * @type {string}
+     * @memberof InlineResponse2004Rules
+     */
+    description?: string;
+    /**
+     * Name of the rule created for custom rule assortment.
+     * @type {string}
+     * @memberof InlineResponse2004Rules
+     */
+    name?: string;
+    /**
+     * Priority of the rule created for custom rule assortment.
+     * @type {string}
+     * @memberof InlineResponse2004Rules
+     */
+    priority?: string;
+    /**
+     * Defines the two day state coverage areas.
+     * @type {string}
+     * @memberof InlineResponse2004Rules
+     */
+    ruleAction?: string;
+    /**
+     * Unique identifier of the rule created for custom rule assortment.
+     * @type {string}
+     * @memberof InlineResponse2004Rules
+     */
+    ruleId?: string;
+    /**
+     * Status of the rule post the rule creation. Allowed values are Active, Inactive, Submitted.
+     * @type {string}
+     * @memberof InlineResponse2004Rules
+     */
+    ruleStatus?: string;
+    /**
+     * When the rule gets activated, skuProcessingStatus represents the state of all items being processed for two-day. The two values for skuProcessingStatus are Processing and Completed.
+     * @type {string}
+     * @memberof InlineResponse2004Rules
+     */
+    skuProcessingStatus?: string;
+}
+/**
+ * 
+ * @export
  * @interface InlineResponse2005
  */
 export interface InlineResponse2005 {
     /**
-     * Message and status of inactivation of rule
+     * Message and ruleId
      * @type {string}
      * @memberof InlineResponse2005
      */
@@ -961,13 +1012,13 @@ export interface InlineResponse2005 {
  */
 export interface InlineResponse2006 {
     /**
-     * A seller-provided Product ID.
-     * @type {Array<string>}
+     * Message and status of deletion
+     * @type {string}
      * @memberof InlineResponse2006
      */
-    skuIds?: Array<string>;
+    message?: string;
     /**
-     * 
+     * status
      * @type {string}
      * @memberof InlineResponse2006
      */
@@ -980,11 +1031,11 @@ export interface InlineResponse2006 {
  */
 export interface InlineResponse2007 {
     /**
-     * A unique ID, returned from the Create Override Exception API, used for tracking a feed file
+     * Message and status of inactivation of rule
      * @type {string}
      * @memberof InlineResponse2007
      */
-    feedId?: string;
+    message?: string;
     /**
      * status
      * @type {string}
@@ -999,55 +1050,17 @@ export interface InlineResponse2007 {
  */
 export interface InlineResponse2008 {
     /**
+     * A seller-provided Product ID.
+     * @type {Array<string>}
+     * @memberof InlineResponse2008
+     */
+    skuIds?: Array<string>;
+    /**
      * 
      * @type {string}
      * @memberof InlineResponse2008
      */
     status?: string;
-    /**
-     * 
-     * @type {Array<InlineResponse2008Payload>}
-     * @memberof InlineResponse2008
-     */
-    payload?: Array<InlineResponse2008Payload>;
-}
-/**
- * 
- * @export
- * @interface InlineResponse2008Payload
- */
-export interface InlineResponse2008Payload {
-    /**
-     * category
-     * @type {string}
-     * @memberof InlineResponse2008Payload
-     */
-    category?: string;
-    /**
-     * subCategory
-     * @type {Array<InlineResponse2008Subcategory>}
-     * @memberof InlineResponse2008Payload
-     */
-    subcategory?: Array<InlineResponse2008Subcategory>;
-}
-/**
- * subCategory
- * @export
- * @interface InlineResponse2008Subcategory
- */
-export interface InlineResponse2008Subcategory {
-    /**
-     * Name of specific kind of category
-     * @type {string}
-     * @memberof InlineResponse2008Subcategory
-     */
-    subCategoryName?: string;
-    /**
-     * ID of specific kind of category
-     * @type {string}
-     * @memberof InlineResponse2008Subcategory
-     */
-    subCategoryId?: string;
 }
 /**
  * 
@@ -1056,30 +1069,17 @@ export interface InlineResponse2008Subcategory {
  */
 export interface InlineResponse2009 {
     /**
-     * 
+     * A unique ID, returned from the Create Override Exception API, used for tracking a feed file
+     * @type {string}
+     * @memberof InlineResponse2009
+     */
+    feedId?: string;
+    /**
+     * status
      * @type {string}
      * @memberof InlineResponse2009
      */
     status?: string;
-    /**
-     * 
-     * @type {InlineResponse2009Payload}
-     * @memberof InlineResponse2009
-     */
-    payload?: InlineResponse2009Payload;
-}
-/**
- * 
- * @export
- * @interface InlineResponse2009Payload
- */
-export interface InlineResponse2009Payload {
-    /**
-     * Unique identifier of the rule created for custom rule assortment.
-     * @type {string}
-     * @memberof InlineResponse2009Payload
-     */
-    id?: string;
 }
 /**
  * 
@@ -2907,7 +2907,7 @@ export const RulesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async activateRule(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject3: InlineObject3, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2003>> {
+        async activateRule(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject3: InlineObject3, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2005>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.activateRule(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject3, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -2924,7 +2924,7 @@ export const RulesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async changeAssortmentType(enable: boolean, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, body: object, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2009>> {
+        async changeAssortmentType(enable: boolean, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, body: object, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2003>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.changeAssortmentType(enable, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, body, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -2940,7 +2940,7 @@ export const RulesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createItemRule(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject1: InlineObject1, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2002>> {
+        async createItemRule(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject1: InlineObject1, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2004>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.createItemRule(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject1, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -2956,7 +2956,7 @@ export const RulesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createOverrideExceptions(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject6: InlineObject6, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2007>> {
+        async createOverrideExceptions(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject6: InlineObject6, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2009>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.createOverrideExceptions(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject6, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -2972,7 +2972,7 @@ export const RulesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deleteExceptions(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject5: InlineObject5, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2007>> {
+        async deleteExceptions(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject5: InlineObject5, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2009>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.deleteExceptions(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject5, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -2989,7 +2989,7 @@ export const RulesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deleteRule(ruleId: string, ruleStatus: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2004>> {
+        async deleteRule(ruleId: string, ruleStatus: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2006>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.deleteRule(ruleId, ruleStatus, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -3068,7 +3068,7 @@ export const RulesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getAllExceptions(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2006>> {
+        async getAllExceptions(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2008>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getAllExceptions(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -3098,7 +3098,7 @@ export const RulesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getAllSubCategories(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2008>> {
+        async getAllSubCategories(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2002>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getAllSubCategories(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -3131,7 +3131,7 @@ export const RulesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async inactivateRule(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject4: InlineObject4, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2005>> {
+        async inactivateRule(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject4: InlineObject4, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2007>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.inactivateRule(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject4, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -3189,7 +3189,7 @@ export const RulesApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        activateRule(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject3: InlineObject3, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2003> {
+        activateRule(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject3: InlineObject3, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2005> {
             return localVarFp.activateRule(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject3, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
@@ -3205,7 +3205,7 @@ export const RulesApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        changeAssortmentType(enable: boolean, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, body: object, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2009> {
+        changeAssortmentType(enable: boolean, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, body: object, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2003> {
             return localVarFp.changeAssortmentType(enable, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, body, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
@@ -3220,7 +3220,7 @@ export const RulesApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createItemRule(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject1: InlineObject1, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2002> {
+        createItemRule(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject1: InlineObject1, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2004> {
             return localVarFp.createItemRule(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject1, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
@@ -3235,7 +3235,7 @@ export const RulesApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createOverrideExceptions(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject6: InlineObject6, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2007> {
+        createOverrideExceptions(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject6: InlineObject6, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2009> {
             return localVarFp.createOverrideExceptions(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject6, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
@@ -3250,7 +3250,7 @@ export const RulesApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteExceptions(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject5: InlineObject5, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2007> {
+        deleteExceptions(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject5: InlineObject5, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2009> {
             return localVarFp.deleteExceptions(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject5, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
@@ -3266,7 +3266,7 @@ export const RulesApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteRule(ruleId: string, ruleStatus: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2004> {
+        deleteRule(ruleId: string, ruleStatus: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2006> {
             return localVarFp.deleteRule(ruleId, ruleStatus, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
@@ -3340,7 +3340,7 @@ export const RulesApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAllExceptions(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2006> {
+        getAllExceptions(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2008> {
             return localVarFp.getAllExceptions(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
@@ -3368,7 +3368,7 @@ export const RulesApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAllSubCategories(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2008> {
+        getAllSubCategories(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2002> {
             return localVarFp.getAllSubCategories(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
@@ -3399,7 +3399,7 @@ export const RulesApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        inactivateRule(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject4: InlineObject4, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2005> {
+        inactivateRule(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject4: InlineObject4, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2007> {
             return localVarFp.inactivateRule(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject4, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**

@@ -54,10 +54,10 @@ export interface CategoryPayload {
     category?: string;
     /**
      * Specific kind of category
-     * @type {Array<InlineResponse2001Subcategory>}
+     * @type {Array<InlineResponse2002Subcategory>}
      * @memberof CategoryPayload
      */
-    subcategory?: Array<InlineResponse2001Subcategory>;
+    subcategory?: Array<InlineResponse2002Subcategory>;
 }
 /**
  * 
@@ -92,10 +92,10 @@ export interface GetCategories {
     status?: string;
     /**
      * 
-     * @type {InlineResponse2002Response}
+     * @type {InlineResponse200Response}
      * @memberof GetCategories
      */
-    response?: InlineResponse2002Response;
+    response?: InlineResponse200Response;
 }
 /**
  * 
@@ -111,10 +111,10 @@ export interface GetDepartmentList {
     status?: string;
     /**
      * 
-     * @type {Array<InlineResponse200Payload>}
+     * @type {Array<InlineResponse2001Payload>}
      * @memberof GetDepartmentList
      */
-    payload?: Array<InlineResponse200Payload>;
+    payload?: Array<InlineResponse2001Payload>;
 }
 /**
  * 
@@ -130,10 +130,10 @@ export interface InlineResponse200 {
     status?: string;
     /**
      * 
-     * @type {Array<InlineResponse200Payload>}
+     * @type {InlineResponse200Response}
      * @memberof InlineResponse200
      */
-    payload?: Array<InlineResponse200Payload>;
+    response?: InlineResponse200Response;
 }
 /**
  * 
@@ -157,40 +157,46 @@ export interface InlineResponse2001 {
 /**
  * 
  * @export
+ * @interface InlineResponse2001Departments
+ */
+export interface InlineResponse2001Departments {
+    /**
+     * The department name for which the categories have to be fetched
+     * @type {string}
+     * @memberof InlineResponse2001Departments
+     */
+    departmentName?: string;
+    /**
+     * The department id for which the categories have to be fetched
+     * @type {string}
+     * @memberof InlineResponse2001Departments
+     */
+    departmentId?: string;
+}
+/**
+ * 
+ * @export
  * @interface InlineResponse2001Payload
  */
 export interface InlineResponse2001Payload {
     /**
-     * Type of item
+     * The super-department name for which the department have to be fetched
      * @type {string}
      * @memberof InlineResponse2001Payload
      */
-    category?: string;
+    superDepartment?: string;
     /**
-     * Specific kind of category
-     * @type {Array<InlineResponse2001Subcategory>}
+     * The super-department id for which the department have to be fetched
+     * @type {string}
      * @memberof InlineResponse2001Payload
      */
-    subcategory?: Array<InlineResponse2001Subcategory>;
-}
-/**
- * Specific kind of category
- * @export
- * @interface InlineResponse2001Subcategory
- */
-export interface InlineResponse2001Subcategory {
+    superDepartmentId?: string;
     /**
-     * Name of specific kind of category
-     * @type {string}
-     * @memberof InlineResponse2001Subcategory
+     * 
+     * @type {Array<InlineResponse2001Departments>}
+     * @memberof InlineResponse2001Payload
      */
-    subCategoryName?: string;
-    /**
-     * ID of specific kind of category
-     * @type {string}
-     * @memberof InlineResponse2001Subcategory
-     */
-    subCategoryId?: string;
+    departments?: Array<InlineResponse2001Departments>;
 }
 /**
  * 
@@ -206,98 +212,159 @@ export interface InlineResponse2002 {
     status?: string;
     /**
      * 
-     * @type {InlineResponse2002Response}
+     * @type {Array<InlineResponse2002Payload>}
      * @memberof InlineResponse2002
      */
-    response?: InlineResponse2002Response;
+    payload?: Array<InlineResponse2002Payload>;
 }
 /**
  * 
  * @export
- * @interface InlineResponse2002Response
+ * @interface InlineResponse2002Payload
  */
-export interface InlineResponse2002Response {
+export interface InlineResponse2002Payload {
+    /**
+     * Type of item
+     * @type {string}
+     * @memberof InlineResponse2002Payload
+     */
+    category?: string;
+    /**
+     * Specific kind of category
+     * @type {Array<InlineResponse2002Subcategory>}
+     * @memberof InlineResponse2002Payload
+     */
+    subcategory?: Array<InlineResponse2002Subcategory>;
+}
+/**
+ * Specific kind of category
+ * @export
+ * @interface InlineResponse2002Subcategory
+ */
+export interface InlineResponse2002Subcategory {
+    /**
+     * Name of specific kind of category
+     * @type {string}
+     * @memberof InlineResponse2002Subcategory
+     */
+    subCategoryName?: string;
+    /**
+     * ID of specific kind of category
+     * @type {string}
+     * @memberof InlineResponse2002Subcategory
+     */
+    subCategoryId?: string;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse2003
+ */
+export interface InlineResponse2003 {
+    /**
+     * A-List of all API statuses
+     * @type {Array<InlineResponse2003ApiStatuses>}
+     * @memberof InlineResponse2003
+     */
+    apiStatuses?: Array<InlineResponse2003ApiStatuses>;
+}
+/**
+ * A-List of all API statuses
+ * @export
+ * @interface InlineResponse2003ApiStatuses
+ */
+export interface InlineResponse2003ApiStatuses {
+    /**
+     * The marketplace api group
+     * @type {string}
+     * @memberof InlineResponse2003ApiStatuses
+     */
+    apiGroup?: InlineResponse2003ApiStatusesApiGroupEnum;
+    /**
+     * The current status of marketplace api group
+     * @type {string}
+     * @memberof InlineResponse2003ApiStatuses
+     */
+    status?: InlineResponse2003ApiStatusesStatusEnum;
+    /**
+     * The time at which the status of api group collected. This datetime field is in the ISO 8601 format.
+     * @type {string}
+     * @memberof InlineResponse2003ApiStatuses
+     */
+    lastUpdatedTime?: string;
+}
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum InlineResponse2003ApiStatusesApiGroupEnum {
+    Returns = 'Returns',
+    Items = 'Items',
+    Sandbox = 'Sandbox',
+    Lagtime = 'Lagtime',
+    Promos = 'Promos',
+    Orders = 'Orders',
+    Authentication = 'Authentication',
+    Price = 'Price',
+    Refunds = 'Refunds',
+    Authorization = 'Authorization',
+    Inventory = 'Inventory'
+}
+/**
+    * @export
+    * @enum {string}
+    */
+export enum InlineResponse2003ApiStatusesStatusEnum {
+    Operational = 'OPERATIONAL',
+    ServiceDegradation = 'SERVICE_DEGRADATION',
+    ServiceOutage = 'SERVICE_OUTAGE',
+    Unknown = 'UNKNOWN'
+}
+
+/**
+ * 
+ * @export
+ * @interface InlineResponse200Response
+ */
+export interface InlineResponse200Response {
     /**
      * The department name for which the categories have to be fetched
      * @type {string}
-     * @memberof InlineResponse2002Response
+     * @memberof InlineResponse200Response
      */
     departmentName?: string;
     /**
      * The department id for which the categories have to be fetched
      * @type {string}
-     * @memberof InlineResponse2002Response
+     * @memberof InlineResponse200Response
      */
     departmentId?: string;
     /**
      * 
-     * @type {Array<InlineResponse2002ResponseCategory>}
-     * @memberof InlineResponse2002Response
+     * @type {Array<InlineResponse200ResponseCategory>}
+     * @memberof InlineResponse200Response
      */
-    category?: Array<InlineResponse2002ResponseCategory>;
+    category?: Array<InlineResponse200ResponseCategory>;
 }
 /**
  * 
  * @export
- * @interface InlineResponse2002ResponseCategory
+ * @interface InlineResponse200ResponseCategory
  */
-export interface InlineResponse2002ResponseCategory {
+export interface InlineResponse200ResponseCategory {
     /**
      * The category name for which the top trending items have to be fetched
      * @type {string}
-     * @memberof InlineResponse2002ResponseCategory
+     * @memberof InlineResponse200ResponseCategory
      */
     categoryName?: string;
     /**
      * The category id for which the top trending items have to be fetched
      * @type {string}
-     * @memberof InlineResponse2002ResponseCategory
+     * @memberof InlineResponse200ResponseCategory
      */
     categoryId?: string;
-}
-/**
- * 
- * @export
- * @interface InlineResponse200Departments
- */
-export interface InlineResponse200Departments {
-    /**
-     * The department name for which the categories have to be fetched
-     * @type {string}
-     * @memberof InlineResponse200Departments
-     */
-    departmentName?: string;
-    /**
-     * The department id for which the categories have to be fetched
-     * @type {string}
-     * @memberof InlineResponse200Departments
-     */
-    departmentId?: string;
-}
-/**
- * 
- * @export
- * @interface InlineResponse200Payload
- */
-export interface InlineResponse200Payload {
-    /**
-     * The super-department name for which the department have to be fetched
-     * @type {string}
-     * @memberof InlineResponse200Payload
-     */
-    superDepartment?: string;
-    /**
-     * The super-department id for which the department have to be fetched
-     * @type {string}
-     * @memberof InlineResponse200Payload
-     */
-    superDepartmentId?: string;
-    /**
-     * 
-     * @type {Array<InlineResponse200Departments>}
-     * @memberof InlineResponse200Payload
-     */
-    departments?: Array<InlineResponse200Departments>;
 }
 /**
  * 
@@ -319,10 +386,10 @@ export interface Payload {
     superDepartmentId?: string;
     /**
      * 
-     * @type {Array<InlineResponse200Departments>}
+     * @type {Array<InlineResponse2001Departments>}
      * @memberof Payload
      */
-    departments?: Array<InlineResponse200Departments>;
+    departments?: Array<InlineResponse2001Departments>;
 }
 /**
  * 
@@ -344,11 +411,78 @@ export interface Response {
     departmentId?: string;
     /**
      * 
-     * @type {Array<InlineResponse2002ResponseCategory>}
+     * @type {Array<InlineResponse200ResponseCategory>}
      * @memberof Response
      */
-    category?: Array<InlineResponse2002ResponseCategory>;
+    category?: Array<InlineResponse200ResponseCategory>;
 }
+/**
+ * 
+ * @export
+ * @interface StatusAPIResponse
+ */
+export interface StatusAPIResponse {
+    /**
+     * A-List of all API statuses
+     * @type {Array<InlineResponse2003ApiStatuses>}
+     * @memberof StatusAPIResponse
+     */
+    apiStatuses?: Array<InlineResponse2003ApiStatuses>;
+}
+/**
+ * A-List of all API statuses
+ * @export
+ * @interface StatusAPIResponseDTO
+ */
+export interface StatusAPIResponseDTO {
+    /**
+     * The marketplace api group
+     * @type {string}
+     * @memberof StatusAPIResponseDTO
+     */
+    apiGroup?: StatusAPIResponseDTOApiGroupEnum;
+    /**
+     * The current status of marketplace api group
+     * @type {string}
+     * @memberof StatusAPIResponseDTO
+     */
+    status?: StatusAPIResponseDTOStatusEnum;
+    /**
+     * The time at which the status of api group collected. This datetime field is in the ISO 8601 format.
+     * @type {string}
+     * @memberof StatusAPIResponseDTO
+     */
+    lastUpdatedTime?: string;
+}
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum StatusAPIResponseDTOApiGroupEnum {
+    Returns = 'Returns',
+    Items = 'Items',
+    Sandbox = 'Sandbox',
+    Lagtime = 'Lagtime',
+    Promos = 'Promos',
+    Orders = 'Orders',
+    Authentication = 'Authentication',
+    Price = 'Price',
+    Refunds = 'Refunds',
+    Authorization = 'Authorization',
+    Inventory = 'Inventory'
+}
+/**
+    * @export
+    * @enum {string}
+    */
+export enum StatusAPIResponseDTOStatusEnum {
+    Operational = 'OPERATIONAL',
+    ServiceDegradation = 'SERVICE_DEGRADATION',
+    ServiceOutage = 'SERVICE_OUTAGE',
+    Unknown = 'UNKNOWN'
+}
+
 /**
  * Specific kind of category
  * @export
@@ -382,10 +516,10 @@ export interface TaxonomyResponseDTO {
     status?: string;
     /**
      * 
-     * @type {Array<InlineResponse2001Payload>}
+     * @type {Array<InlineResponse2002Payload>}
      * @memberof TaxonomyResponseDTO
      */
-    payload?: Array<InlineResponse2001Payload>;
+    payload?: Array<InlineResponse2002Payload>;
 }
 
 /**
@@ -394,6 +528,73 @@ export interface TaxonomyResponseDTO {
  */
 export const UtilitiesApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
+        /**
+         * Get all marketplace Apis status
+         * @summary API Platform Status
+         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+         * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+         * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+         * @param {string} wMSVCNAME Walmart Service Name
+         * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getApiPlatformStatus: async (authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'authorization' is not null or undefined
+            assertParamExists('getApiPlatformStatus', 'authorization', authorization)
+            // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
+            assertParamExists('getApiPlatformStatus', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN)
+            // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
+            assertParamExists('getApiPlatformStatus', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID)
+            // verify required parameter 'wMSVCNAME' is not null or undefined
+            assertParamExists('getApiPlatformStatus', 'wMSVCNAME', wMSVCNAME)
+            const localVarPath = `/v3/utilities/apiStatus`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication basicScheme required
+            // http basic authentication required
+            setBasicAuthToObject(localVarRequestOptions, configuration)
+
+            if (authorization !== undefined && authorization !== null) {
+                localVarHeaderParameter['Authorization'] = String(authorization);
+            }
+
+            if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
+                localVarHeaderParameter['WM_SEC.ACCESS_TOKEN'] = String(wMSECACCESSTOKEN);
+            }
+
+            if (wMCONSUMERCHANNELTYPE !== undefined && wMCONSUMERCHANNELTYPE !== null) {
+                localVarHeaderParameter['WM_CONSUMER.CHANNEL.TYPE'] = String(wMCONSUMERCHANNELTYPE);
+            }
+
+            if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
+                localVarHeaderParameter['WM_QOS.CORRELATION_ID'] = String(wMQOSCORRELATIONID);
+            }
+
+            if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
+                localVarHeaderParameter['WM_SVC.NAME'] = String(wMSVCNAME);
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
         /**
          * Get list of categories for a specific department
          * @summary All Categories
@@ -620,6 +821,21 @@ export const UtilitiesApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = UtilitiesApiAxiosParamCreator(configuration)
     return {
         /**
+         * Get all marketplace Apis status
+         * @summary API Platform Status
+         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+         * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+         * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+         * @param {string} wMSVCNAME Walmart Service Name
+         * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getApiPlatformStatus(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2003>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getApiPlatformStatus(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
          * Get list of categories for a specific department
          * @summary All Categories
          * @param {string} departmentId departmentId
@@ -631,7 +847,7 @@ export const UtilitiesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getCategories(departmentId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2002>> {
+        async getCategories(departmentId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getCategories(departmentId, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -646,7 +862,7 @@ export const UtilitiesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getDepartmentList(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
+        async getDepartmentList(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getDepartmentList(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -663,7 +879,7 @@ export const UtilitiesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getTaxonomyResponse(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, feedType?: 'item' | 'MP_ITEM' | 'MP_WFS_ITEM' | 'MP_MAINTENANCE', version?: '3.2' | '4.0' | '4.1' | '4.2', wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
+        async getTaxonomyResponse(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, feedType?: 'item' | 'MP_ITEM' | 'MP_WFS_ITEM' | 'MP_MAINTENANCE', version?: '3.2' | '4.0' | '4.1' | '4.2', wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2002>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getTaxonomyResponse(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, feedType, version, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -678,6 +894,20 @@ export const UtilitiesApiFactory = function (configuration?: Configuration, base
     const localVarFp = UtilitiesApiFp(configuration)
     return {
         /**
+         * Get all marketplace Apis status
+         * @summary API Platform Status
+         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+         * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+         * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+         * @param {string} wMSVCNAME Walmart Service Name
+         * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getApiPlatformStatus(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2003> {
+            return localVarFp.getApiPlatformStatus(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Get list of categories for a specific department
          * @summary All Categories
          * @param {string} departmentId departmentId
@@ -689,7 +919,7 @@ export const UtilitiesApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCategories(departmentId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2002> {
+        getCategories(departmentId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse200> {
             return localVarFp.getCategories(departmentId, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
@@ -703,7 +933,7 @@ export const UtilitiesApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getDepartmentList(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse200> {
+        getDepartmentList(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2001> {
             return localVarFp.getDepartmentList(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
@@ -719,11 +949,53 @@ export const UtilitiesApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getTaxonomyResponse(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, feedType?: 'item' | 'MP_ITEM' | 'MP_WFS_ITEM' | 'MP_MAINTENANCE', version?: '3.2' | '4.0' | '4.1' | '4.2', wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2001> {
+        getTaxonomyResponse(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, feedType?: 'item' | 'MP_ITEM' | 'MP_WFS_ITEM' | 'MP_MAINTENANCE', version?: '3.2' | '4.0' | '4.1' | '4.2', wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2002> {
             return localVarFp.getTaxonomyResponse(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, feedType, version, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
     };
 };
+
+/**
+ * Request parameters for getApiPlatformStatus operation in UtilitiesApi.
+ * @export
+ * @interface UtilitiesApiGetApiPlatformStatusRequest
+ */
+export interface UtilitiesApiGetApiPlatformStatusRequest {
+    /**
+     * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+     * @type {string}
+     * @memberof UtilitiesApiGetApiPlatformStatus
+     */
+    readonly authorization: string
+
+    /**
+     * The access token retrieved in the Token API call
+     * @type {string}
+     * @memberof UtilitiesApiGetApiPlatformStatus
+     */
+    readonly wMSECACCESSTOKEN: string
+
+    /**
+     * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+     * @type {string}
+     * @memberof UtilitiesApiGetApiPlatformStatus
+     */
+    readonly wMQOSCORRELATIONID: string
+
+    /**
+     * Walmart Service Name
+     * @type {string}
+     * @memberof UtilitiesApiGetApiPlatformStatus
+     */
+    readonly wMSVCNAME: string
+
+    /**
+     * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+     * @type {string}
+     * @memberof UtilitiesApiGetApiPlatformStatus
+     */
+    readonly wMCONSUMERCHANNELTYPE?: string
+}
 
 /**
  * Request parameters for getCategories operation in UtilitiesApi.
@@ -879,6 +1151,18 @@ export interface UtilitiesApiGetTaxonomyResponseRequest {
  * @extends {BaseAPI}
  */
 export class UtilitiesApi extends BaseAPI {
+    /**
+     * Get all marketplace Apis status
+     * @summary API Platform Status
+     * @param {UtilitiesApiGetApiPlatformStatusRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UtilitiesApi
+     */
+    public getApiPlatformStatus(requestParameters: UtilitiesApiGetApiPlatformStatusRequest, options?: any) {
+        return UtilitiesApiFp(this.configuration).getApiPlatformStatus(requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+    }
+
     /**
      * Get list of categories for a specific department
      * @summary All Categories

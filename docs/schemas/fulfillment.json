@@ -20,712 +20,6 @@
     }
   ],
   "paths": {
-    "/v3/items/onhold/search": {
-      "post": {
-        "tags": [
-          "Fulfillment"
-        ],
-        "summary": "Hazmat Items On hold",
-        "description": "Use this API to see a list of items that are on hold for hazmat compliance review, including items with an In Review, Action Needed, and Prohibited status. Also use this API to review your Action Needed error descriptions and understand how to correct them for further assessment.",
-        "operationId": "wercsFeedback",
-        "parameters": [
-          {
-            "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
-          },
-          {
-            "in": "header",
-            "name": "WM_SEC.ACCESS_TOKEN",
-            "description": "The access token retrieved in the Token API call",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
-          },
-          {
-            "in": "header",
-            "name": "WM_CONSUMER.CHANNEL.TYPE",
-            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "header",
-            "name": "WM_QOS.CORRELATION_ID",
-            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
-          },
-          {
-            "in": "header",
-            "name": "WM_SVC.NAME",
-            "description": "Walmart Service Name",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Walmart Service Name"
-          },
-          {
-            "in": "header",
-            "name": "Accept",
-            "description": "Only supported Media Type : application/json",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "application/json"
-          }
-        ],
-        "requestBody": {
-          "description": "Request fields",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "query": {
-                    "type": "object",
-                    "properties": {
-                      "field": {
-                        "type": "string",
-                        "description": "| Attribute | Description | Data Type\n| --- | ----------- | -------\n| sku | An arbitrary alphanumeric unique ID, seller-specified, identifying each item | string\n| gtin | Specifies a Global Trade Item Number (GTIN) search. GTIN must be 14 digits. | string",
-                        "enum": [
-                          "sku",
-                          "gtin"
-                        ]
-                      },
-                      "value": {
-                        "type": "string"
-                      }
-                    }
-                  },
-                  "filters": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "field": {
-                          "type": "string",
-                          "description": "| Attribute | Description | Data Type\n| --- | ----------- | -------\n| status | Item status | string",
-                          "enum": [
-                            "status"
-                          ]
-                        },
-                        "op": {
-                          "type": "string",
-                          "enum": [
-                            "equals"
-                          ]
-                        },
-                        "values": {
-                          "type": "array",
-                          "items": {
-                            "type": "string",
-                            "enum": [
-                              "PROHIBITED",
-                              "IN_REVIEW",
-                              "ACTION_NEEDED"
-                            ]
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "sort": {
-                    "type": "object",
-                    "properties": {
-                      "field": {
-                        "type": "string",
-                        "description": "| Attribute | Description | Data Type\n| --- | ----------- | -------\n| createdAt | when the item is last submitted/updated by Seller | string\n| updatedAt | when the item is last updated by Seller/Walmart | string |",
-                        "enum": [
-                          "createdAt",
-                          "updatedAt"
-                        ]
-                      },
-                      "order": {
-                        "type": "string",
-                        "enum": [
-                          "ASC",
-                          "DESC"
-                        ]
-                      }
-                    }
-                  }
-                }
-              },
-              "example": {
-                "query": {
-                  "field": "gtin",
-                  "value": "06154035330299"
-                },
-                "filters": [
-                  {
-                    "field": "status",
-                    "op": "equals",
-                    "values": [
-                      "PROHIBITED",
-                      "IN_REVIEW",
-                      "ACTION_NEEDED"
-                    ]
-                  }
-                ],
-                "sort": {
-                  "field": "updatedAt",
-                  "order": "DESC"
-                }
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "required": [
-                    "status"
-                  ],
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "OK",
-                        "CREATED",
-                        "ACCEPTED",
-                        "NO_CONTENT",
-                        "PARTIAL",
-                        "MOVED_PERMANENT",
-                        "FOUND",
-                        "SEE_OTHER",
-                        "NOT_MODIFIED",
-                        "TEMPORARY_REDIRECT",
-                        "BAD_REQUEST",
-                        "UNAUTHORIZED",
-                        "FORBIDDEN",
-                        "NOT_FOUND",
-                        "METHOD_NOT_ALLOWED",
-                        "NOT_ACCEPTABLE",
-                        "REQUEST_TIMEOUT",
-                        "CONFLICT",
-                        "REQUEST_ENTITY_TOO_LARGE",
-                        "UNSUPPORTED_MEDIA_TYPE",
-                        "UNPROCESSABLE_ENTITY",
-                        "FAIL",
-                        "BAD_GATEWAY",
-                        "SERVICE_UNAVAILABLE",
-                        "GATEWAY_TIMEOUT"
-                      ]
-                    },
-                    "header": {
-                      "type": "object",
-                      "properties": {
-                        "headerAttributes": {
-                          "type": "object",
-                          "additionalProperties": {
-                            "type": "object"
-                          }
-                        }
-                      },
-                      "xml": {
-                        "name": "ServiceHeader"
-                      }
-                    },
-                    "errors": {
-                      "type": "array",
-                      "xml": {
-                        "wrapped": true
-                      },
-                      "items": {
-                        "required": [
-                          "code"
-                        ],
-                        "type": "object",
-                        "properties": {
-                          "code": {
-                            "type": "string"
-                          },
-                          "field": {
-                            "type": "string"
-                          },
-                          "description": {
-                            "type": "string"
-                          },
-                          "info": {
-                            "type": "string"
-                          },
-                          "severity": {
-                            "type": "string",
-                            "enum": [
-                              "INFO",
-                              "WARN",
-                              "ERROR"
-                            ]
-                          },
-                          "category": {
-                            "type": "string",
-                            "enum": [
-                              "APPLICATION",
-                              "SYSTEM",
-                              "REQUEST",
-                              "DATA"
-                            ]
-                          },
-                          "causes": {
-                            "type": "array",
-                            "xml": {
-                              "wrapped": true
-                            },
-                            "items": {
-                              "type": "object",
-                              "properties": {
-                                "code": {
-                                  "type": "string"
-                                },
-                                "field": {
-                                  "type": "string"
-                                },
-                                "type": {
-                                  "type": "string"
-                                },
-                                "description": {
-                                  "type": "string"
-                                }
-                              },
-                              "xml": {
-                                "name": "Cause"
-                              }
-                            }
-                          }
-                        },
-                        "xml": {
-                          "name": "Error"
-                        }
-                      }
-                    },
-                    "payload": {
-                      "type": "object"
-                    }
-                  },
-                  "xml": {
-                    "name": "ServiceResponse"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v3/fulfillment/inbound-shipment-errors": {
-      "get": {
-        "tags": [
-          "Fulfillment"
-        ],
-        "summary": "Get Inbound Shipment errors",
-        "description": "After Sellers request to create an Inbound Order, WFS may return error responses with error codes. Type of errors: \n- \tSKUs not in WFS catalog: Sellers need to make sure all SKUs have already been converted and added to the WFS catalog\n- \tMissing required information; \n- \tInvalid Product ID (incorrect number of digits); \n- \tDuplicated Inbound Order ID: Inbound Order ID has already been used before\n- \tDuplicated Product IDs\nMost of these errors can be prevented with a robust API integration that does not allow the mistakes to be made. Seller should update the request based on the error message and re-submit the request.\nPlease note, once the Inbound Order is created successfully after the re-submission, historical errors under the same Inbound Order ID will be removed and no longer accessible. ",
-        "externalDocs": {
-          "description": "View Guide",
-          "url": "/doc/us/mp/us-mp-fulfillment/#2839"
-        },
-        "operationId": "getInboundOrderErrors",
-        "parameters": [
-          {
-            "name": "offset",
-            "in": "query",
-            "description": "offset is the number of records you wish to skip before selecting records.",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "default": "0"
-            }
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "The number of Purchase Orders to be returned.",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "default": "10"
-            }
-          },
-          {
-            "name": "shipmentId",
-            "in": "query",
-            "description": "Unique ID identifying each shipment.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
-          },
-          {
-            "in": "header",
-            "name": "WM_SEC.ACCESS_TOKEN",
-            "description": "The access token retrieved in the Token API call",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
-          },
-          {
-            "in": "header",
-            "name": "WM_CONSUMER.CHANNEL.TYPE",
-            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "header",
-            "name": "WM_QOS.CORRELATION_ID",
-            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
-          },
-          {
-            "in": "header",
-            "name": "WM_SVC.NAME",
-            "description": "Walmart Service Name",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Walmart Service Name"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "headers": {
-                      "type": "object",
-                      "properties": {
-                        "totalCount": {
-                          "type": "integer",
-                          "description": "total number of POs for provided GET request.",
-                          "format": "int32"
-                        },
-                        "limit": {
-                          "type": "integer",
-                          "description": "provided limit value in the request",
-                          "format": "int32"
-                        },
-                        "offset": {
-                          "type": "integer",
-                          "description": "provided offset value in the request.",
-                          "format": "int32"
-                        }
-                      }
-                    },
-                    "payload": {
-                      "type": "array",
-                      "description": "response payload",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "inboundOrderId": {
-                            "type": "string",
-                            "description": "Unique ID identifying inbound shipment requests"
-                          },
-                          "createdDate": {
-                            "type": "string",
-                            "description": "created date for the request",
-                            "format": "date-time"
-                          },
-                          "returnAddress": {
-                            "required": [
-                              "addressLine1",
-                              "city",
-                              "countryCode",
-                              "postalCode",
-                              "stateCode"
-                            ],
-                            "type": "object",
-                            "properties": {
-                              "addressLine1": {
-                                "type": "string",
-                                "description": "Address details"
-                              },
-                              "addressLine2": {
-                                "type": "string",
-                                "description": "Address details continuation"
-                              },
-                              "city": {
-                                "type": "string",
-                                "description": "City name"
-                              },
-                              "stateCode": {
-                                "type": "string",
-                                "description": "State Code"
-                              },
-                              "countryCode": {
-                                "type": "string",
-                                "description": "Country code"
-                              },
-                              "postalCode": {
-                                "type": "string",
-                                "description": "Zip code"
-                              }
-                            },
-                            "description": "Seller return address"
-                          },
-                          "orderItems": {
-                            "type": "array",
-                            "description": "inbound shipment request line items",
-                            "items": {
-                              "required": [
-                                "expectedDeliveryDate",
-                                "innerPackQty",
-                                "itemDesc",
-                                "itemQty",
-                                "productId",
-                                "productType",
-                                "sku",
-                                "vendorPackQty"
-                              ],
-                              "type": "object",
-                              "properties": {
-                                "productId": {
-                                  "type": "string",
-                                  "description": "Unique ID identifying product"
-                                },
-                                "productType": {
-                                  "type": "string",
-                                  "description": "Supported product types are GTIN,UPC,EAN"
-                                },
-                                "sku": {
-                                  "type": "string",
-                                  "description": "Seller Item ID"
-                                },
-                                "itemDesc": {
-                                  "type": "string",
-                                  "description": "Item description"
-                                },
-                                "itemQty": {
-                                  "minimum": 1,
-                                  "type": "integer",
-                                  "description": "Total number of sellable units",
-                                  "format": "int32"
-                                },
-                                "vendorPackQty": {
-                                  "minimum": 1,
-                                  "type": "integer",
-                                  "description": "Total number of cases",
-                                  "format": "int32"
-                                },
-                                "innerPackQty": {
-                                  "minimum": 1,
-                                  "type": "integer",
-                                  "description": "Total number of sellable units per case",
-                                  "format": "int32"
-                                },
-                                "expectedDeliveryDate": {
-                                  "type": "string",
-                                  "description": "expected delivery date for shipment",
-                                  "format": "date-time"
-                                },
-                                "itemNbr": {
-                                  "type": "integer",
-                                  "format": "int32"
-                                },
-                                "dimensions": {
-                                  "type": "array",
-                                  "items": {
-                                    "type": "number",
-                                    "format": "float"
-                                  }
-                                },
-                                "itemWeightQty": {
-                                  "type": "number",
-                                  "format": "float"
-                                },
-                                "nonSortItem": {
-                                  "type": "boolean"
-                                },
-                                "shipNode": {
-                                  "type": "string"
-                                }
-                              },
-                              "description": "inbound shipment request line items"
-                            }
-                          },
-                          "errors": {
-                            "type": "array",
-                            "description": "Error in inbound shipment creation",
-                            "items": {
-                              "required": [
-                                "code"
-                              ],
-                              "type": "object",
-                              "properties": {
-                                "code": {
-                                  "type": "string"
-                                },
-                                "field": {
-                                  "type": "string"
-                                },
-                                "description": {
-                                  "type": "string"
-                                },
-                                "info": {
-                                  "type": "string"
-                                },
-                                "severity": {
-                                  "type": "string",
-                                  "enum": [
-                                    "INFO",
-                                    "WARN",
-                                    "ERROR"
-                                  ]
-                                },
-                                "category": {
-                                  "type": "string",
-                                  "enum": [
-                                    "APPLICATION",
-                                    "SYSTEM",
-                                    "REQUEST",
-                                    "DATA"
-                                  ]
-                                },
-                                "causes": {
-                                  "type": "array",
-                                  "xml": {
-                                    "wrapped": true
-                                  },
-                                  "items": {
-                                    "type": "object",
-                                    "properties": {
-                                      "code": {
-                                        "type": "string"
-                                      },
-                                      "field": {
-                                        "type": "string"
-                                      },
-                                      "type": {
-                                        "type": "string"
-                                      },
-                                      "description": {
-                                        "type": "string"
-                                      }
-                                    },
-                                    "xml": {
-                                      "name": "Cause"
-                                    }
-                                  }
-                                }
-                              },
-                              "xml": {
-                                "name": "Error"
-                              }
-                            }
-                          }
-                        },
-                        "description": "response payload"
-                      }
-                    }
-                  }
-                },
-                "example": {
-                  "headers": {
-                    "limit": 10,
-                    "offset": 0,
-                    "totalCount": 1
-                  },
-                  "payload": [
-                    {
-                      "inboundOrderId": "test-shipment-1",
-                      "createdDate": "2020-10-19T01:06:24.207Z",
-                      "returnAddress": {
-                        "addressLine1": "address line 1",
-                        "city": "Sunnyvale",
-                        "stateCode": "CA",
-                        "countryCode": "US",
-                        "postalCode": "94087"
-                      },
-                      "orderItems": [
-                        {
-                          "productId": "7036848676 ",
-                          "productType": "UPC",
-                          "sku": "sku1",
-                          "itemDesc": "product 1",
-                          "itemQty": 20,
-                          "vendorPackQty": 2,
-                          "innerPackQty": 10,
-                          "expectedDeliveryDate": "2020-10-27T16:00:00.000Z"
-                        },
-                        {
-                          "productId": "703684867 ",
-                          "productType": "UPC",
-                          "sku": "sku2",
-                          "itemDesc": "product 2",
-                          "itemQty": 30,
-                          "vendorPackQty": 3,
-                          "innerPackQty": 30,
-                          "expectedDeliveryDate": "2020-10-27T16:00:00.000Z"
-                        }
-                      ],
-                      "errors": [
-                        {
-                          "code": "400.WSAAS.100",
-                          "field": "orderItems[0].productId",
-                          "description": "Product ID with Product Type UPC should be 12 digit",
-                          "info": "Product ID with Product Type UPC should be 12 digit:703684867609 ",
-                          "severity": "ERROR",
-                          "category": "REQUEST"
-                        },
-                        {
-                          "code": "400.WSAAS.100",
-                          "field": "orderItems[1].productId",
-                          "description": "Product ID with Product Type UPC should be 12 digit",
-                          "info": "Product ID with Product Type UPC should be 12 digit:703684867661 ",
-                          "severity": "ERROR",
-                          "category": "REQUEST"
-                        }
-                      ]
-                    }
-                  ]
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/v3/fulfillment/inbound-shipments": {
       "get": {
         "tags": [
@@ -965,7 +259,7 @@
                                 "description": "Zip code"
                               }
                             },
-                            "description": "Seller return address"
+                            "description": "return address of seller"
                           },
                           "status": {
                             "type": "string",
@@ -1411,7 +705,7 @@
                         "description": "Zip code"
                       }
                     },
-                    "description": "Seller return address"
+                    "description": "return address of seller"
                   },
                   "orderItems": {
                     "maxItems": 5000,
@@ -1640,44 +934,24 @@
         }
       }
     },
-    "/v3/fulfillment/inbound-shipment-items": {
-      "get": {
+    "/v3/fulfillment/inbound-shipments/{inboundOrderId}": {
+      "delete": {
         "tags": [
           "Fulfillment"
         ],
-        "summary": "Get Inbound Shipment Items",
-        "description": "After Sellers create an Inbound Order successfully, the response from Create Inbound Shipments API will tell whether the order can be sent in a single shipment to one WFS fulfillment center or needs to be split into multiple shipments to different fulfillment centers. \nTo retrieve the Shipment level info, please call the Get Inbound Shipments API and to get what needs to be in a specific shipment and SKU level receipt situation, please call the Get Inbound Shipment Items API",
+        "summary": "Cancel Inbound Shipment",
+        "description": "The purpose of this service is to cancel an inbound order.\nSeller can cancel an Inbound Order before any of its Shipment arrives at the WFS FCs. Seller cannot cancel an Inbound Order if any of its Shipment’s status = Receiving in Progress, Closed, or Cancelled \nSeller can only cancel at the Inbound Order level, not the Shipment level: if an Inbound Order is cancelled, all Shipments on that order will be cancelled.",
         "externalDocs": {
           "description": "View Guide",
-          "url": "/doc/us/mp/us-mp-fulfillment/#2862"
+          "url": "/doc/us/mp/us-mp-fulfillment/#2946"
         },
-        "operationId": "getInboundShipmentItems",
+        "operationId": "cancelShipment",
         "parameters": [
           {
-            "name": "offset",
-            "in": "query",
-            "description": "offset is the number of records you wish to skip before selecting records.",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "default": "0"
-            }
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "The number of Purchase Orders to be returned.",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "default": "10"
-            }
-          },
-          {
-            "name": "shipmentId",
-            "in": "query",
-            "description": "Unique ID identifying each shipment.",
-            "required": false,
+            "name": "inboundOrderId",
+            "in": "path",
+            "description": "Unique ID identifying inbound shipment request",
+            "required": true,
             "schema": {
               "type": "string"
             }
@@ -1738,172 +1012,138 @@
             "content": {
               "application/json": {
                 "schema": {
+                  "required": [
+                    "status"
+                  ],
                   "type": "object",
                   "properties": {
-                    "headers": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "OK",
+                        "CREATED",
+                        "ACCEPTED",
+                        "NO_CONTENT",
+                        "PARTIAL",
+                        "MOVED_PERMANENT",
+                        "FOUND",
+                        "SEE_OTHER",
+                        "NOT_MODIFIED",
+                        "TEMPORARY_REDIRECT",
+                        "BAD_REQUEST",
+                        "UNAUTHORIZED",
+                        "FORBIDDEN",
+                        "NOT_FOUND",
+                        "METHOD_NOT_ALLOWED",
+                        "NOT_ACCEPTABLE",
+                        "REQUEST_TIMEOUT",
+                        "CONFLICT",
+                        "REQUEST_ENTITY_TOO_LARGE",
+                        "UNSUPPORTED_MEDIA_TYPE",
+                        "UNPROCESSABLE_ENTITY",
+                        "FAIL",
+                        "BAD_GATEWAY",
+                        "SERVICE_UNAVAILABLE",
+                        "GATEWAY_TIMEOUT"
+                      ]
+                    },
+                    "header": {
                       "type": "object",
                       "properties": {
-                        "totalCount": {
-                          "type": "integer",
-                          "description": "total number of POs for provided GET request.",
-                          "format": "int32"
+                        "headerAttributes": {
+                          "type": "object",
+                          "additionalProperties": {
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "xml": {
+                        "name": "ServiceHeader"
+                      }
+                    },
+                    "errors": {
+                      "type": "array",
+                      "xml": {
+                        "wrapped": true
+                      },
+                      "items": {
+                        "required": [
+                          "code"
+                        ],
+                        "type": "object",
+                        "properties": {
+                          "code": {
+                            "type": "string"
+                          },
+                          "field": {
+                            "type": "string"
+                          },
+                          "description": {
+                            "type": "string"
+                          },
+                          "info": {
+                            "type": "string"
+                          },
+                          "severity": {
+                            "type": "string",
+                            "enum": [
+                              "INFO",
+                              "WARN",
+                              "ERROR"
+                            ]
+                          },
+                          "category": {
+                            "type": "string",
+                            "enum": [
+                              "APPLICATION",
+                              "SYSTEM",
+                              "REQUEST",
+                              "DATA"
+                            ]
+                          },
+                          "causes": {
+                            "type": "array",
+                            "xml": {
+                              "wrapped": true
+                            },
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "code": {
+                                  "type": "string"
+                                },
+                                "field": {
+                                  "type": "string"
+                                },
+                                "type": {
+                                  "type": "string"
+                                },
+                                "description": {
+                                  "type": "string"
+                                }
+                              },
+                              "xml": {
+                                "name": "Cause"
+                              }
+                            }
+                          }
                         },
-                        "limit": {
-                          "type": "integer",
-                          "description": "provided limit value in the request",
-                          "format": "int32"
-                        },
-                        "offset": {
-                          "type": "integer",
-                          "description": "provided offset value in the request.",
-                          "format": "int32"
+                        "description": "Error in inbound shipment creation",
+                        "xml": {
+                          "name": "Error"
                         }
                       }
                     },
                     "payload": {
-                      "type": "array",
-                      "description": "response payload",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "inboundOrderId": {
-                            "type": "string",
-                            "description": "Unique ID identifying inbound shipment request"
-                          },
-                          "shipmentId": {
-                            "type": "string",
-                            "description": "Unique ID identifying each shipment"
-                          },
-                          "gtin": {
-                            "type": "string",
-                            "description": "Item barcode"
-                          },
-                          "sku": {
-                            "type": "string",
-                            "description": "Seller Item ID"
-                          },
-                          "itemDesc": {
-                            "type": "string",
-                            "description": "Item description"
-                          },
-                          "itemQty": {
-                            "type": "integer",
-                            "description": "Total number of sellable units",
-                            "format": "int32"
-                          },
-                          "vendorPackQty": {
-                            "type": "integer",
-                            "description": "Total number of cases",
-                            "format": "int32"
-                          },
-                          "innerPackQty": {
-                            "type": "integer",
-                            "description": "Total number of sellable units per case",
-                            "format": "int32"
-                          },
-                          "receivedQty": {
-                            "type": "integer",
-                            "description": "Qty received in FC",
-                            "format": "int32"
-                          },
-                          "damagedQty": {
-                            "type": "integer",
-                            "description": "Qty damaged while receiving in FC",
-                            "format": "int32"
-                          },
-                          "fillRate": {
-                            "type": "number",
-                            "description": "Fill rate for this shipment item",
-                            "format": "float"
-                          },
-                          "expectedDeliveryDate": {
-                            "type": "string",
-                            "description": "expected delivery date provided by seller",
-                            "format": "date-time"
-                          },
-                          "updatedExpectedDeliveryDate": {
-                            "type": "string",
-                            "description": "update expected delivery date based on network capacity",
-                            "format": "date-time"
-                          },
-                          "shipNodeName": {
-                            "type": "string",
-                            "description": "FC name"
-                          }
-                        },
-                        "description": "response payload"
-                      }
+                      "type": "object"
                     }
+                  },
+                  "xml": {
+                    "name": "ServiceResponse"
                   }
                 },
                 "example": {
-                  "headers": {
-                    "limit": 10,
-                    "offset": 0,
-                    "totalCount": 4
-                  },
-                  "payload": [
-                    {
-                      "inboundOrderId": "1235113",
-                      "shipmentId": "4846GDM",
-                      "gtin": "00634482736852",
-                      "sku": "ACDD-WZK73685",
-                      "itemDesc": "Blue Jeans",
-                      "itemQty": 10,
-                      "vendorPackQty": 0,
-                      "innerPackQty": 0,
-                      "receivedQty": 0,
-                      "damagedQty": 0,
-                      "fillRate": 0,
-                      "expectedDeliveryDate": "2020-09-24T00:00:00.000Z",
-                      "updatedExpectedDeliveryDate": "2020-09-24T00:00:00.000Z"
-                    },
-                    {
-                      "inboundOrderId": "1235113",
-                      "shipmentId": "4846GDM",
-                      "gtin": "00812040019191",
-                      "sku": "KALA-WFS-KA-SWG-BL",
-                      "itemDesc": "Google mini",
-                      "itemQty": 16,
-                      "vendorPackQty": 0,
-                      "innerPackQty": 0,
-                      "receivedQty": 0,
-                      "damagedQty": 0,
-                      "fillRate": 0,
-                      "expectedDeliveryDate": "2020-09-24T00:00:00.000Z",
-                      "updatedExpectedDeliveryDate": "2020-09-24T00:00:00.000Z"
-                    },
-                    {
-                      "inboundOrderId": "1235113",
-                      "shipmentId": "4846GDM",
-                      "gtin": "00077540052578",
-                      "sku": "NOTN-WFS-10480",
-                      "itemDesc": "Blue Jeans",
-                      "itemQty": 12,
-                      "vendorPackQty": 0,
-                      "innerPackQty": 0,
-                      "receivedQty": 0,
-                      "damagedQty": 0,
-                      "fillRate": 0,
-                      "expectedDeliveryDate": "2020-09-24T00:00:00.000Z",
-                      "updatedExpectedDeliveryDate": "2020-09-24T00:00:00.000Z"
-                    },
-                    {
-                      "inboundOrderId": "1235113",
-                      "shipmentId": "4846GDM",
-                      "gtin": "00636047311207",
-                      "sku": "GLHF-GL1304WMST",
-                      "itemDesc": "Blue Jeans",
-                      "itemQty": 14,
-                      "vendorPackQty": 0,
-                      "innerPackQty": 0,
-                      "receivedQty": 0,
-                      "damagedQty": 0,
-                      "fillRate": 0,
-                      "expectedDeliveryDate": "2020-09-24T00:00:00.000Z",
-                      "updatedExpectedDeliveryDate": "2020-09-24T00:00:00.000Z"
-                    }
-                  ]
+                  "status": "OK"
                 }
               }
             }
@@ -1911,18 +1151,14 @@
         }
       }
     },
-    "/v3/fulfillment/shipment-quantities": {
-      "put": {
+    "/v3/items/onhold/search": {
+      "post": {
         "tags": [
           "Fulfillment"
         ],
-        "summary": "Update Shipment Quantities ",
-        "description": "Seller can modify the shipment quantity before the Shipment arrives at the WFS FCs. Seller cannot modify the shipment quantity when Shipment Status = Receiving in Progress, Closed, and Cancelled. \n Seller will need to provide new quantities for each SKU to update. Seller will only be able to add up to 6 units per SKU but can reduce to 0 units to remove any SKU from a shipment. Seller cannot change all SKUs’ quantity to 0 – they must cancel the entire Inbound Order. ",
-        "externalDocs": {
-          "description": "View Guide",
-          "url": "/doc/us/mp/us-mp-fulfillment/#2885"
-        },
-        "operationId": "updateShipmentQuantity",
+        "summary": "Hazmat Items On hold",
+        "description": "Use this API to see a list of items that are on hold for hazmat compliance review, including items with an In Review, Action Needed, and Prohibited status. Also use this API to review your Action Needed error descriptions and understand how to correct them for further assessment.",
+        "operationId": "wercsFeedback",
         "parameters": [
           {
             "in": "header",
@@ -1972,6 +1208,16 @@
               "type": "string"
             },
             "example": "Walmart Service Name"
+          },
+          {
+            "in": "header",
+            "name": "Accept",
+            "description": "Only supported Media Type : application/json",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/json"
           }
         ],
         "requestBody": {
@@ -1979,60 +1225,98 @@
           "content": {
             "application/json": {
               "schema": {
-                "required": [
-                  "inboundOrderId",
-                  "shipmentId"
-                ],
                 "type": "object",
                 "properties": {
-                  "inboundOrderId": {
-                    "type": "string",
-                    "description": "Unique ID identifying inbound shipment request"
+                  "query": {
+                    "type": "object",
+                    "properties": {
+                      "field": {
+                        "type": "string",
+                        "description": "| Attribute | Description | Data Type\n| --- | ----------- | -------\n| sku | An arbitrary alphanumeric unique ID, seller-specified, identifying each item | string\n| gtin | Specifies a Global Trade Item Number (GTIN) search. GTIN must be 14 digits. | string",
+                        "enum": [
+                          "sku",
+                          "gtin"
+                        ]
+                      },
+                      "value": {
+                        "type": "string"
+                      }
+                    }
                   },
-                  "shipmentId": {
-                    "type": "string",
-                    "description": "Unique ID identifying inbound shipment"
-                  },
-                  "orderItems": {
-                    "maxItems": 5000,
-                    "minItems": 1,
+                  "filters": {
                     "type": "array",
-                    "description": "update shipment qty line items",
-                    "xml": {
-                      "wrapped": true
-                    },
                     "items": {
-                      "required": [
-                        "sku",
-                        "updatedShipmentQty"
-                      ],
                       "type": "object",
                       "properties": {
-                        "sku": {
+                        "field": {
                           "type": "string",
-                          "description": "Seller Item ID"
+                          "description": "| Attribute | Description | Data Type\n| --- | ----------- | -------\n| status | Item status | string",
+                          "enum": [
+                            "status"
+                          ]
                         },
-                        "updatedShipmentQty": {
-                          "minimum": 0,
-                          "type": "integer",
-                          "description": "updated quantity",
-                          "format": "int32"
+                        "op": {
+                          "type": "string",
+                          "enum": [
+                            "equals"
+                          ]
+                        },
+                        "values": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "enum": [
+                              "PROHIBITED",
+                              "IN_REVIEW",
+                              "ACTION_NEEDED"
+                            ]
+                          }
                         }
+                      }
+                    }
+                  },
+                  "sort": {
+                    "type": "object",
+                    "properties": {
+                      "field": {
+                        "type": "string",
+                        "description": "| Attribute | Description | Data Type\n| --- | ----------- | -------\n| createdAt | when the item is last submitted/updated by Seller | string\n| updatedAt | when the item is last updated by Seller/Walmart | string |",
+                        "enum": [
+                          "createdAt",
+                          "updatedAt"
+                        ]
                       },
-                      "description": "update shipment qty line items"
+                      "order": {
+                        "type": "string",
+                        "enum": [
+                          "ASC",
+                          "DESC"
+                        ]
+                      }
                     }
                   }
                 }
               },
               "example": {
-                "inboundOrderId": "123543",
-                "shipmentId": "1234",
-                "orderItems": [
+                "query": {
+                  "field": "gtin",
+                  "value": "06154035330299"
+                },
+                "filters": [
                   {
-                    "sku": "WILL-SL969",
-                    "updatedShipmentQty": 11
+                    "field": "status",
+                    "op": "equals",
+                    "values": [
+                      "PROHIBITED",
+                      "IN_REVIEW",
+                      "ACTION_NEEDED"
+                    ]
                   }
-                ]
+                ],
+                "sort": {
+                  "field": "updatedAt",
+                  "order": "DESC"
+                }
               }
             }
           },
@@ -2160,6 +1444,7 @@
                             }
                           }
                         },
+                        "description": "Error in inbound shipment creation",
                         "xml": {
                           "name": "Error"
                         }
@@ -2174,89 +1459,37 @@
                   }
                 },
                 "example": {
-                  "status": "OK"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v3/fulfillment/label/{shipmentId}": {
-      "get": {
-        "tags": [
-          "Fulfillment"
-        ],
-        "summary": "Create Inbound Shipment label (deprecated)",
-        "description": "The purpose of this service is to generate WFS shipping labels in pdf format for receiving purpose. Please note this is not a carrier label; these labels are required for the FC to identify the Inbound Order and Shipment ID they are receiving against. After requesting the shipping label, sellers must work with warehouse/ supplier to follow these steps before sending any Shipments to WFS FCs: \n1. \tPrint the WFS shipping label.\n2. \tFill out the FILL OUT section based on seller’s packing situation. For example, if a seller plans to ship 3 boxes to the WFS fulfillment center, print out 3 labels and fill out BOX 1 of 3, 2 of 3, and 3 of 3 in the FILL OUT section.\n3. \tCircle one shipment type in the CIRCLE ONE section. For example, if there are different SKUs in the box, circle MIXED SKUS in the CIRCLE ONE section.\n4. \tAffix the WFS shipping labels to the boxes/ pallets.\n",
-        "operationId": "createInboundShipmentLabel",
-        "parameters": [
-          {
-            "name": "shipmentId",
-            "in": "path",
-            "description": "Unique ID identifying inbound shipment",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
-          },
-          {
-            "in": "header",
-            "name": "WM_SEC.ACCESS_TOKEN",
-            "description": "The access token retrieved in the Token API call",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
-          },
-          {
-            "in": "header",
-            "name": "WM_CONSUMER.CHANNEL.TYPE",
-            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "header",
-            "name": "WM_QOS.CORRELATION_ID",
-            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
-          },
-          {
-            "in": "header",
-            "name": "WM_SVC.NAME",
-            "description": "Walmart Service Name",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Walmart Service Name"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Operation",
-            "content": {
-              "application/pdf": {
-                "schema": {
-                  "type": "string"
+                  "status": "OK",
+                  "header": {},
+                  "payload": {
+                    "nextCursor": "?limit=1&offset=1",
+                    "totalItems": 207,
+                    "actionNeeded": 4,
+                    "inReview": 203,
+                    "prohibited": 0,
+                    "items": [
+                      {
+                        "gtin": "00051494401255",
+                        "productName": "INNATE Response Formulas, Men Over 40 One Daily Iron Free, Multivitamin, Vegetarian, Non-GMO, 60 tablets (60 Servings",
+                        "category": "Medicine & Supplements",
+                        "subCategory": "medicine_and_supplements",
+                        "status": "ACTION_NEEDED",
+                        "sku": "SD-IR-40125",
+                        "createdAt": 1611140177328,
+                        "updatedAt": 1629992924901,
+                        "primaryImage": "http://images.salsify.com/image/upload/s--7e1VLU2_--/otf4q0dplsg9yjzkxkfe.jpg",
+                        "errors": [
+                          {
+                            "code": "ERR_EXT_DATA_4001029",
+                            "field": "batteryTechnologyType",
+                            "description": "This item may contain a lithium or lead acid battery that requires additional compliance information, please check the 'Battery Type' field.",
+                            "severity": "ERROR",
+                            "category": "REQUEST"
+                          }
+                        ]
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -2608,6 +1841,7 @@
                             }
                           }
                         },
+                        "description": "Error in inbound shipment creation",
                         "xml": {
                           "name": "Error"
                         }
@@ -4133,6 +3367,7 @@
                             }
                           }
                         },
+                        "description": "Error in inbound shipment creation",
                         "xml": {
                           "name": "Error"
                         }
@@ -4342,6 +3577,7 @@
                             }
                           }
                         },
+                        "description": "Error in inbound shipment creation",
                         "xml": {
                           "name": "Error"
                         }
@@ -4570,6 +3806,7 @@
                             }
                           }
                         },
+                        "description": "Error in inbound shipment creation",
                         "xml": {
                           "name": "Error"
                         }
@@ -4667,24 +3904,44 @@
         }
       }
     },
-    "/v3/fulfillment/inbound-shipments/{inboundOrderId}": {
-      "delete": {
+    "/v3/fulfillment/inbound-shipment-items": {
+      "get": {
         "tags": [
           "Fulfillment"
         ],
-        "summary": "Cancel Inbound Shipment",
-        "description": "The purpose of this service is to cancel an inbound order.\nSeller can cancel an Inbound Order before any of its Shipment arrives at the WFS FCs. Seller cannot cancel an Inbound Order if any of its Shipment’s status = Receiving in Progress, Closed, or Cancelled \nSeller can only cancel at the Inbound Order level, not the Shipment level: if an Inbound Order is cancelled, all Shipments on that order will be cancelled.",
+        "summary": "Get Inbound Shipment Items",
+        "description": "After Sellers create an Inbound Order successfully, the response from Create Inbound Shipments API will tell whether the order can be sent in a single shipment to one WFS fulfillment center or needs to be split into multiple shipments to different fulfillment centers. \nTo retrieve the Shipment level info, please call the Get Inbound Shipments API and to get what needs to be in a specific shipment and SKU level receipt situation, please call the Get Inbound Shipment Items API",
         "externalDocs": {
           "description": "View Guide",
-          "url": "/doc/us/mp/us-mp-fulfillment/#2946"
+          "url": "/doc/us/mp/us-mp-fulfillment/#2862"
         },
-        "operationId": "cancelShipment",
+        "operationId": "getInboundShipmentItems",
         "parameters": [
           {
-            "name": "inboundOrderId",
-            "in": "path",
-            "description": "Unique ID identifying inbound shipment request",
-            "required": true,
+            "name": "offset",
+            "in": "query",
+            "description": "offset is the number of records you wish to skip before selecting records.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "0"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The number of Purchase Orders to be returned.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "10"
+            }
+          },
+          {
+            "name": "shipmentId",
+            "in": "query",
+            "description": "Unique ID identifying each shipment.",
+            "required": false,
             "schema": {
               "type": "string"
             }
@@ -4739,6 +3996,312 @@
             "example": "Walmart Service Name"
           }
         ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "headers": {
+                      "type": "object",
+                      "properties": {
+                        "totalCount": {
+                          "type": "integer",
+                          "description": "total number of POs for provided GET request.",
+                          "format": "int32"
+                        },
+                        "limit": {
+                          "type": "integer",
+                          "description": "provided limit value in the request",
+                          "format": "int32"
+                        },
+                        "offset": {
+                          "type": "integer",
+                          "description": "provided offset value in the request.",
+                          "format": "int32"
+                        }
+                      }
+                    },
+                    "payload": {
+                      "type": "array",
+                      "description": "response payload",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "inboundOrderId": {
+                            "type": "string",
+                            "description": "Unique ID identifying inbound shipment request"
+                          },
+                          "shipmentId": {
+                            "type": "string",
+                            "description": "Unique ID identifying each shipment"
+                          },
+                          "gtin": {
+                            "type": "string",
+                            "description": "Item barcode"
+                          },
+                          "sku": {
+                            "type": "string",
+                            "description": "Seller Item ID"
+                          },
+                          "itemDesc": {
+                            "type": "string",
+                            "description": "Item description"
+                          },
+                          "itemQty": {
+                            "type": "integer",
+                            "description": "Total number of sellable units",
+                            "format": "int32"
+                          },
+                          "vendorPackQty": {
+                            "type": "integer",
+                            "description": "Total number of cases",
+                            "format": "int32"
+                          },
+                          "innerPackQty": {
+                            "type": "integer",
+                            "description": "Total number of sellable units per case",
+                            "format": "int32"
+                          },
+                          "receivedQty": {
+                            "type": "integer",
+                            "description": "Qty received in FC",
+                            "format": "int32"
+                          },
+                          "damagedQty": {
+                            "type": "integer",
+                            "description": "Qty damaged while receiving in FC",
+                            "format": "int32"
+                          },
+                          "fillRate": {
+                            "type": "number",
+                            "description": "Fill rate for this shipment item",
+                            "format": "float"
+                          },
+                          "expectedDeliveryDate": {
+                            "type": "string",
+                            "description": "expected delivery date provided by seller",
+                            "format": "date-time"
+                          },
+                          "updatedExpectedDeliveryDate": {
+                            "type": "string",
+                            "description": "update expected delivery date based on network capacity",
+                            "format": "date-time"
+                          },
+                          "shipNodeName": {
+                            "type": "string",
+                            "description": "FC name"
+                          }
+                        },
+                        "description": "response payload"
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "headers": {
+                    "limit": 10,
+                    "offset": 0,
+                    "totalCount": 4
+                  },
+                  "payload": [
+                    {
+                      "inboundOrderId": "1235113",
+                      "shipmentId": "4846GDM",
+                      "gtin": "00634482736852",
+                      "sku": "ACDD-WZK73685",
+                      "itemDesc": "Blue Jeans",
+                      "itemQty": 10,
+                      "vendorPackQty": 0,
+                      "innerPackQty": 0,
+                      "receivedQty": 0,
+                      "damagedQty": 0,
+                      "fillRate": 0,
+                      "expectedDeliveryDate": "2020-09-24T00:00:00.000Z",
+                      "updatedExpectedDeliveryDate": "2020-09-24T00:00:00.000Z"
+                    },
+                    {
+                      "inboundOrderId": "1235113",
+                      "shipmentId": "4846GDM",
+                      "gtin": "00812040019191",
+                      "sku": "KALA-WFS-KA-SWG-BL",
+                      "itemDesc": "Google mini",
+                      "itemQty": 16,
+                      "vendorPackQty": 0,
+                      "innerPackQty": 0,
+                      "receivedQty": 0,
+                      "damagedQty": 0,
+                      "fillRate": 0,
+                      "expectedDeliveryDate": "2020-09-24T00:00:00.000Z",
+                      "updatedExpectedDeliveryDate": "2020-09-24T00:00:00.000Z"
+                    },
+                    {
+                      "inboundOrderId": "1235113",
+                      "shipmentId": "4846GDM",
+                      "gtin": "00077540052578",
+                      "sku": "NOTN-WFS-10480",
+                      "itemDesc": "Blue Jeans",
+                      "itemQty": 12,
+                      "vendorPackQty": 0,
+                      "innerPackQty": 0,
+                      "receivedQty": 0,
+                      "damagedQty": 0,
+                      "fillRate": 0,
+                      "expectedDeliveryDate": "2020-09-24T00:00:00.000Z",
+                      "updatedExpectedDeliveryDate": "2020-09-24T00:00:00.000Z"
+                    },
+                    {
+                      "inboundOrderId": "1235113",
+                      "shipmentId": "4846GDM",
+                      "gtin": "00636047311207",
+                      "sku": "GLHF-GL1304WMST",
+                      "itemDesc": "Blue Jeans",
+                      "itemQty": 14,
+                      "vendorPackQty": 0,
+                      "innerPackQty": 0,
+                      "receivedQty": 0,
+                      "damagedQty": 0,
+                      "fillRate": 0,
+                      "expectedDeliveryDate": "2020-09-24T00:00:00.000Z",
+                      "updatedExpectedDeliveryDate": "2020-09-24T00:00:00.000Z"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/fulfillment/shipment-quantities": {
+      "put": {
+        "tags": [
+          "Fulfillment"
+        ],
+        "summary": "Update Shipment Quantities ",
+        "description": "Seller can modify the shipment quantity before the Shipment arrives at the WFS FCs. Seller cannot modify the shipment quantity when Shipment Status = Receiving in Progress, Closed, and Cancelled. \n Seller will need to provide new quantities for each SKU to update. Seller will only be able to add up to 6 units per SKU but can reduce to 0 units to remove any SKU from a shipment. Seller cannot change all SKUs’ quantity to 0 – they must cancel the entire Inbound Order. ",
+        "externalDocs": {
+          "description": "View Guide",
+          "url": "/doc/us/mp/us-mp-fulfillment/#2885"
+        },
+        "operationId": "updateShipmentQuantity",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Basic YzcyOTFjNmItNzI5MC00...."
+          },
+          {
+            "in": "header",
+            "name": "WM_SEC.ACCESS_TOKEN",
+            "description": "The access token retrieved in the Token API call",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
+          },
+          {
+            "in": "header",
+            "name": "WM_CONSUMER.CHANNEL.TYPE",
+            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "WM_QOS.CORRELATION_ID",
+            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
+          },
+          {
+            "in": "header",
+            "name": "WM_SVC.NAME",
+            "description": "Walmart Service Name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Walmart Service Name"
+          }
+        ],
+        "requestBody": {
+          "description": "Request fields",
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "inboundOrderId",
+                  "shipmentId"
+                ],
+                "type": "object",
+                "properties": {
+                  "inboundOrderId": {
+                    "type": "string",
+                    "description": "Unique ID identifying inbound shipment request"
+                  },
+                  "shipmentId": {
+                    "type": "string",
+                    "description": "Unique ID identifying inbound shipment"
+                  },
+                  "orderItems": {
+                    "maxItems": 5000,
+                    "minItems": 1,
+                    "type": "array",
+                    "description": "update shipment qty line items",
+                    "xml": {
+                      "wrapped": true
+                    },
+                    "items": {
+                      "required": [
+                        "sku",
+                        "updatedShipmentQty"
+                      ],
+                      "type": "object",
+                      "properties": {
+                        "sku": {
+                          "type": "string",
+                          "description": "Seller Item ID"
+                        },
+                        "updatedShipmentQty": {
+                          "minimum": 0,
+                          "type": "integer",
+                          "description": "updated quantity",
+                          "format": "int32"
+                        }
+                      },
+                      "description": "update shipment qty line items"
+                    }
+                  }
+                }
+              },
+              "example": {
+                "inboundOrderId": "123543",
+                "shipmentId": "1234",
+                "orderItems": [
+                  {
+                    "sku": "WILL-SL969",
+                    "updatedShipmentQty": 11
+                  }
+                ]
+              }
+            }
+          },
+          "required": true
+        },
         "responses": {
           "200": {
             "description": "Successful Operation",
@@ -4861,6 +4424,7 @@
                             }
                           }
                         },
+                        "description": "Error in inbound shipment creation",
                         "xml": {
                           "name": "Error"
                         }
@@ -4882,10 +4446,934 @@
           }
         }
       }
+    },
+    "/v3/fulfillment/label/{shipmentId}": {
+      "get": {
+        "tags": [
+          "Fulfillment"
+        ],
+        "summary": "Create Inbound Shipment label (deprecated)",
+        "description": "The purpose of this service is to generate WFS shipping labels in pdf format for receiving purpose. Please note this is not a carrier label; these labels are required for the FC to identify the Inbound Order and Shipment ID they are receiving against. After requesting the shipping label, sellers must work with warehouse/ supplier to follow these steps before sending any Shipments to WFS FCs: \n1. \tPrint the WFS shipping label.\n2. \tFill out the FILL OUT section based on seller’s packing situation. For example, if a seller plans to ship 3 boxes to the WFS fulfillment center, print out 3 labels and fill out BOX 1 of 3, 2 of 3, and 3 of 3 in the FILL OUT section.\n3. \tCircle one shipment type in the CIRCLE ONE section. For example, if there are different SKUs in the box, circle MIXED SKUS in the CIRCLE ONE section.\n4. \tAffix the WFS shipping labels to the boxes/ pallets.\n",
+        "operationId": "createInboundShipmentLabel",
+        "parameters": [
+          {
+            "name": "shipmentId",
+            "in": "path",
+            "description": "Unique ID identifying inbound shipment",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Basic YzcyOTFjNmItNzI5MC00...."
+          },
+          {
+            "in": "header",
+            "name": "WM_SEC.ACCESS_TOKEN",
+            "description": "The access token retrieved in the Token API call",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
+          },
+          {
+            "in": "header",
+            "name": "WM_CONSUMER.CHANNEL.TYPE",
+            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "WM_QOS.CORRELATION_ID",
+            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
+          },
+          {
+            "in": "header",
+            "name": "WM_SVC.NAME",
+            "description": "Walmart Service Name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Walmart Service Name"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/pdf": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/fulfillment/inbound-shipment-errors": {
+      "get": {
+        "tags": [
+          "Fulfillment"
+        ],
+        "summary": "Get Inbound Shipment errors",
+        "description": "After Sellers request to create an Inbound Order, WFS may return error responses with error codes. Type of errors: \n- \tSKUs not in WFS catalog: Sellers need to make sure all SKUs have already been converted and added to the WFS catalog\n- \tMissing required information; \n- \tInvalid Product ID (incorrect number of digits); \n- \tDuplicated Inbound Order ID: Inbound Order ID has already been used before\n- \tDuplicated Product IDs\nMost of these errors can be prevented with a robust API integration that does not allow the mistakes to be made. Seller should update the request based on the error message and re-submit the request.\nPlease note, once the Inbound Order is created successfully after the re-submission, historical errors under the same Inbound Order ID will be removed and no longer accessible. ",
+        "externalDocs": {
+          "description": "View Guide",
+          "url": "/doc/us/mp/us-mp-fulfillment/#2839"
+        },
+        "operationId": "getInboundOrderErrors",
+        "parameters": [
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "offset is the number of records you wish to skip before selecting records.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "0"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The number of Purchase Orders to be returned.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "10"
+            }
+          },
+          {
+            "name": "shipmentId",
+            "in": "query",
+            "description": "Unique ID identifying each shipment.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Basic YzcyOTFjNmItNzI5MC00...."
+          },
+          {
+            "in": "header",
+            "name": "WM_SEC.ACCESS_TOKEN",
+            "description": "The access token retrieved in the Token API call",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
+          },
+          {
+            "in": "header",
+            "name": "WM_CONSUMER.CHANNEL.TYPE",
+            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "WM_QOS.CORRELATION_ID",
+            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
+          },
+          {
+            "in": "header",
+            "name": "WM_SVC.NAME",
+            "description": "Walmart Service Name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Walmart Service Name"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "headers": {
+                      "type": "object",
+                      "properties": {
+                        "totalCount": {
+                          "type": "integer",
+                          "description": "total number of POs for provided GET request.",
+                          "format": "int32"
+                        },
+                        "limit": {
+                          "type": "integer",
+                          "description": "provided limit value in the request",
+                          "format": "int32"
+                        },
+                        "offset": {
+                          "type": "integer",
+                          "description": "provided offset value in the request.",
+                          "format": "int32"
+                        }
+                      }
+                    },
+                    "payload": {
+                      "type": "array",
+                      "description": "response payload",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "inboundOrderId": {
+                            "type": "string",
+                            "description": "Unique ID identifying inbound shipment requests"
+                          },
+                          "createdDate": {
+                            "type": "string",
+                            "description": "created date for the request",
+                            "format": "date-time"
+                          },
+                          "returnAddress": {
+                            "required": [
+                              "addressLine1",
+                              "city",
+                              "countryCode",
+                              "postalCode",
+                              "stateCode"
+                            ],
+                            "type": "object",
+                            "properties": {
+                              "addressLine1": {
+                                "type": "string",
+                                "description": "Address details"
+                              },
+                              "addressLine2": {
+                                "type": "string",
+                                "description": "Address details continuation"
+                              },
+                              "city": {
+                                "type": "string",
+                                "description": "City name"
+                              },
+                              "stateCode": {
+                                "type": "string",
+                                "description": "State Code"
+                              },
+                              "countryCode": {
+                                "type": "string",
+                                "description": "Country code"
+                              },
+                              "postalCode": {
+                                "type": "string",
+                                "description": "Zip code"
+                              }
+                            },
+                            "description": "return address of seller"
+                          },
+                          "orderItems": {
+                            "type": "array",
+                            "description": "inbound shipment request line items",
+                            "items": {
+                              "required": [
+                                "expectedDeliveryDate",
+                                "innerPackQty",
+                                "itemDesc",
+                                "itemQty",
+                                "productId",
+                                "productType",
+                                "sku",
+                                "vendorPackQty"
+                              ],
+                              "type": "object",
+                              "properties": {
+                                "productId": {
+                                  "type": "string",
+                                  "description": "Unique ID identifying product"
+                                },
+                                "productType": {
+                                  "type": "string",
+                                  "description": "Supported product types are GTIN,UPC,EAN"
+                                },
+                                "sku": {
+                                  "type": "string",
+                                  "description": "Seller Item ID"
+                                },
+                                "itemDesc": {
+                                  "type": "string",
+                                  "description": "Item description"
+                                },
+                                "itemQty": {
+                                  "minimum": 1,
+                                  "type": "integer",
+                                  "description": "Total number of sellable units",
+                                  "format": "int32"
+                                },
+                                "vendorPackQty": {
+                                  "minimum": 1,
+                                  "type": "integer",
+                                  "description": "Total number of cases",
+                                  "format": "int32"
+                                },
+                                "innerPackQty": {
+                                  "minimum": 1,
+                                  "type": "integer",
+                                  "description": "Total number of sellable units per case",
+                                  "format": "int32"
+                                },
+                                "expectedDeliveryDate": {
+                                  "type": "string",
+                                  "description": "expected delivery date for shipment",
+                                  "format": "date-time"
+                                },
+                                "itemNbr": {
+                                  "type": "integer",
+                                  "format": "int32"
+                                },
+                                "dimensions": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "number",
+                                    "format": "float"
+                                  }
+                                },
+                                "itemWeightQty": {
+                                  "type": "number",
+                                  "format": "float"
+                                },
+                                "nonSortItem": {
+                                  "type": "boolean"
+                                },
+                                "shipNode": {
+                                  "type": "string"
+                                }
+                              },
+                              "description": "inbound shipment request line items"
+                            }
+                          },
+                          "errors": {
+                            "type": "array",
+                            "description": "Error in inbound shipment creation",
+                            "items": {
+                              "required": [
+                                "code"
+                              ],
+                              "type": "object",
+                              "properties": {
+                                "code": {
+                                  "type": "string"
+                                },
+                                "field": {
+                                  "type": "string"
+                                },
+                                "description": {
+                                  "type": "string"
+                                },
+                                "info": {
+                                  "type": "string"
+                                },
+                                "severity": {
+                                  "type": "string",
+                                  "enum": [
+                                    "INFO",
+                                    "WARN",
+                                    "ERROR"
+                                  ]
+                                },
+                                "category": {
+                                  "type": "string",
+                                  "enum": [
+                                    "APPLICATION",
+                                    "SYSTEM",
+                                    "REQUEST",
+                                    "DATA"
+                                  ]
+                                },
+                                "causes": {
+                                  "type": "array",
+                                  "xml": {
+                                    "wrapped": true
+                                  },
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "code": {
+                                        "type": "string"
+                                      },
+                                      "field": {
+                                        "type": "string"
+                                      },
+                                      "type": {
+                                        "type": "string"
+                                      },
+                                      "description": {
+                                        "type": "string"
+                                      }
+                                    },
+                                    "xml": {
+                                      "name": "Cause"
+                                    }
+                                  }
+                                }
+                              },
+                              "description": "Error in inbound shipment creation",
+                              "xml": {
+                                "name": "Error"
+                              }
+                            }
+                          }
+                        },
+                        "description": "response payload"
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "headers": {
+                    "limit": 10,
+                    "offset": 0,
+                    "totalCount": 1
+                  },
+                  "payload": [
+                    {
+                      "inboundOrderId": "test-shipment-1",
+                      "createdDate": "2020-10-19T01:06:24.207Z",
+                      "returnAddress": {
+                        "addressLine1": "address line 1",
+                        "city": "Sunnyvale",
+                        "stateCode": "CA",
+                        "countryCode": "US",
+                        "postalCode": "94087"
+                      },
+                      "orderItems": [
+                        {
+                          "productId": "7036848676 ",
+                          "productType": "UPC",
+                          "sku": "sku1",
+                          "itemDesc": "product 1",
+                          "itemQty": 20,
+                          "vendorPackQty": 2,
+                          "innerPackQty": 10,
+                          "expectedDeliveryDate": "2020-10-27T16:00:00.000Z"
+                        },
+                        {
+                          "productId": "703684867 ",
+                          "productType": "UPC",
+                          "sku": "sku2",
+                          "itemDesc": "product 2",
+                          "itemQty": 30,
+                          "vendorPackQty": 3,
+                          "innerPackQty": 30,
+                          "expectedDeliveryDate": "2020-10-27T16:00:00.000Z"
+                        }
+                      ],
+                      "errors": [
+                        {
+                          "code": "400.WSAAS.100",
+                          "field": "orderItems[0].productId",
+                          "description": "Product ID with Product Type UPC should be 12 digit",
+                          "info": "Product ID with Product Type UPC should be 12 digit:703684867609 ",
+                          "severity": "ERROR",
+                          "category": "REQUEST"
+                        },
+                        {
+                          "code": "400.WSAAS.100",
+                          "field": "orderItems[1].productId",
+                          "description": "Product ID with Product Type UPC should be 12 digit",
+                          "info": "Product ID with Product Type UPC should be 12 digit:703684867661 ",
+                          "severity": "ERROR",
+                          "category": "REQUEST"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
     "schemas": {
+      "InboundShipmentCreateResponseWrapper": {
+        "type": "object",
+        "properties": {
+          "shipmentId": {
+            "type": "string",
+            "description": "Unique ID identifying each shipment"
+          },
+          "shipToAddress": {
+            "type": "object",
+            "properties": {
+              "fcName": {
+                "type": "string",
+                "description": "Facility name"
+              },
+              "addressLine1": {
+                "type": "string",
+                "description": "Address details "
+              },
+              "addressLine2": {
+                "type": "string",
+                "description": "Address details continuation"
+              },
+              "city": {
+                "type": "string",
+                "description": "City name"
+              },
+              "stateCode": {
+                "type": "string",
+                "description": "State code"
+              },
+              "countryCode": {
+                "type": "string",
+                "description": "Country code"
+              },
+              "postalCode": {
+                "type": "string",
+                "description": "Zip code"
+              }
+            },
+            "description": "The address to which sellers need to inbound items"
+          },
+          "shipmentItems": {
+            "type": "array",
+            "description": "The items which needs to be send in the shipment",
+            "items": {
+              "type": "object",
+              "properties": {
+                "vendorSku": {
+                  "type": "string",
+                  "description": "Seller Item ID"
+                },
+                "itemQty": {
+                  "type": "integer",
+                  "description": "Total number of sellable units",
+                  "format": "int32"
+                }
+              },
+              "description": "The items which needs to be send in the shipment"
+            }
+          },
+          "expectedDeliveryDate": {
+            "type": "string",
+            "description": "expected delivery date for inbounding shipment. Can be different from provided in the rquest based on network capacity",
+            "format": "date-time"
+          }
+        },
+        "description": "response payload"
+      },
+      "InboundShipmentCreateResponseWrapperDTO": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "payload": {
+            "type": "array",
+            "description": "response payload",
+            "items": {
+              "type": "object",
+              "properties": {
+                "shipmentId": {
+                  "type": "string",
+                  "description": "Unique ID identifying each shipment"
+                },
+                "shipToAddress": {
+                  "type": "object",
+                  "properties": {
+                    "fcName": {
+                      "type": "string",
+                      "description": "Facility name"
+                    },
+                    "addressLine1": {
+                      "type": "string",
+                      "description": "Address details "
+                    },
+                    "addressLine2": {
+                      "type": "string",
+                      "description": "Address details continuation"
+                    },
+                    "city": {
+                      "type": "string",
+                      "description": "City name"
+                    },
+                    "stateCode": {
+                      "type": "string",
+                      "description": "State code"
+                    },
+                    "countryCode": {
+                      "type": "string",
+                      "description": "Country code"
+                    },
+                    "postalCode": {
+                      "type": "string",
+                      "description": "Zip code"
+                    }
+                  },
+                  "description": "The address to which sellers need to inbound items"
+                },
+                "shipmentItems": {
+                  "type": "array",
+                  "description": "The items which needs to be send in the shipment",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "vendorSku": {
+                        "type": "string",
+                        "description": "Seller Item ID"
+                      },
+                      "itemQty": {
+                        "type": "integer",
+                        "description": "Total number of sellable units",
+                        "format": "int32"
+                      }
+                    },
+                    "description": "The items which needs to be send in the shipment"
+                  }
+                },
+                "expectedDeliveryDate": {
+                  "type": "string",
+                  "description": "expected delivery date for inbounding shipment. Can be different from provided in the rquest based on network capacity",
+                  "format": "date-time"
+                }
+              },
+              "description": "response payload"
+            }
+          }
+        }
+      },
+      "ShipToAddress": {
+        "type": "object",
+        "properties": {
+          "fcName": {
+            "type": "string",
+            "description": "Facility name"
+          },
+          "addressLine1": {
+            "type": "string",
+            "description": "Address details "
+          },
+          "addressLine2": {
+            "type": "string",
+            "description": "Address details continuation"
+          },
+          "city": {
+            "type": "string",
+            "description": "City name"
+          },
+          "stateCode": {
+            "type": "string",
+            "description": "State code"
+          },
+          "countryCode": {
+            "type": "string",
+            "description": "Country code"
+          },
+          "postalCode": {
+            "type": "string",
+            "description": "Zip code"
+          }
+        },
+        "description": "The address to which sellers need to inbound items"
+      },
+      "ShipmentItem": {
+        "type": "object",
+        "properties": {
+          "vendorSku": {
+            "type": "string",
+            "description": "Seller Item ID"
+          },
+          "itemQty": {
+            "type": "integer",
+            "description": "Total number of sellable units",
+            "format": "int32"
+          }
+        },
+        "description": "The items which needs to be send in the shipment"
+      },
+      "InboundShipmentRequestWrapper": {
+        "required": [
+          "inboundOrderId",
+          "returnAddress"
+        ],
+        "type": "object",
+        "properties": {
+          "inboundOrderId": {
+            "maxLength": 100,
+            "minLength": 0,
+            "type": "string",
+            "description": "Unique ID identifying inbound shipment request"
+          },
+          "returnAddress": {
+            "required": [
+              "addressLine1",
+              "city",
+              "countryCode",
+              "postalCode",
+              "stateCode"
+            ],
+            "type": "object",
+            "properties": {
+              "addressLine1": {
+                "type": "string",
+                "description": "Address details"
+              },
+              "addressLine2": {
+                "type": "string",
+                "description": "Address details continuation"
+              },
+              "city": {
+                "type": "string",
+                "description": "City name"
+              },
+              "stateCode": {
+                "type": "string",
+                "description": "State Code"
+              },
+              "countryCode": {
+                "type": "string",
+                "description": "Country code"
+              },
+              "postalCode": {
+                "type": "string",
+                "description": "Zip code"
+              }
+            },
+            "description": "return address of seller"
+          },
+          "orderItems": {
+            "maxItems": 5000,
+            "minItems": 1,
+            "type": "array",
+            "description": "inbound shipment request line items",
+            "xml": {
+              "wrapped": true
+            },
+            "items": {
+              "required": [
+                "expectedDeliveryDate",
+                "innerPackQty",
+                "itemDesc",
+                "itemQty",
+                "productId",
+                "productType",
+                "sku",
+                "vendorPackQty"
+              ],
+              "type": "object",
+              "properties": {
+                "productId": {
+                  "type": "string",
+                  "description": "Unique ID identifying product"
+                },
+                "productType": {
+                  "type": "string",
+                  "description": "Supported product types are GTIN,UPC,EAN"
+                },
+                "sku": {
+                  "type": "string",
+                  "description": "Seller Item ID"
+                },
+                "itemDesc": {
+                  "type": "string",
+                  "description": "Item description"
+                },
+                "itemQty": {
+                  "minimum": 1,
+                  "type": "integer",
+                  "description": "Total number of sellable units",
+                  "format": "int32"
+                },
+                "vendorPackQty": {
+                  "minimum": 1,
+                  "type": "integer",
+                  "description": "Total number of cases",
+                  "format": "int32"
+                },
+                "innerPackQty": {
+                  "minimum": 1,
+                  "type": "integer",
+                  "description": "Total number of sellable units per case",
+                  "format": "int32"
+                },
+                "expectedDeliveryDate": {
+                  "type": "string",
+                  "description": "expected delivery date for shipment",
+                  "format": "date-time"
+                },
+                "itemNbr": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "dimensions": {
+                  "type": "array",
+                  "items": {
+                    "type": "number",
+                    "format": "float"
+                  }
+                },
+                "itemWeightQty": {
+                  "type": "number",
+                  "format": "float"
+                },
+                "nonSortItem": {
+                  "type": "boolean"
+                },
+                "shipNode": {
+                  "type": "string"
+                }
+              },
+              "description": "inbound shipment request line items"
+            }
+          }
+        }
+      },
+      "OrderItem": {
+        "required": [
+          "expectedDeliveryDate",
+          "innerPackQty",
+          "itemDesc",
+          "itemQty",
+          "productId",
+          "productType",
+          "sku",
+          "vendorPackQty"
+        ],
+        "type": "object",
+        "properties": {
+          "productId": {
+            "type": "string",
+            "description": "Unique ID identifying product"
+          },
+          "productType": {
+            "type": "string",
+            "description": "Supported product types are GTIN,UPC,EAN"
+          },
+          "sku": {
+            "type": "string",
+            "description": "Seller Item ID"
+          },
+          "itemDesc": {
+            "type": "string",
+            "description": "Item description"
+          },
+          "itemQty": {
+            "minimum": 1,
+            "type": "integer",
+            "description": "Total number of sellable units",
+            "format": "int32"
+          },
+          "vendorPackQty": {
+            "minimum": 1,
+            "type": "integer",
+            "description": "Total number of cases",
+            "format": "int32"
+          },
+          "innerPackQty": {
+            "minimum": 1,
+            "type": "integer",
+            "description": "Total number of sellable units per case",
+            "format": "int32"
+          },
+          "expectedDeliveryDate": {
+            "type": "string",
+            "description": "expected delivery date for shipment",
+            "format": "date-time"
+          },
+          "itemNbr": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "dimensions": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "format": "float"
+            }
+          },
+          "itemWeightQty": {
+            "type": "number",
+            "format": "float"
+          },
+          "nonSortItem": {
+            "type": "boolean"
+          },
+          "shipNode": {
+            "type": "string"
+          }
+        },
+        "description": "inbound shipment request line items"
+      },
+      "ReturnAddress": {
+        "required": [
+          "addressLine1",
+          "city",
+          "countryCode",
+          "postalCode",
+          "stateCode"
+        ],
+        "type": "object",
+        "properties": {
+          "addressLine1": {
+            "type": "string",
+            "description": "Address details"
+          },
+          "addressLine2": {
+            "type": "string",
+            "description": "Address details continuation"
+          },
+          "city": {
+            "type": "string",
+            "description": "City name"
+          },
+          "stateCode": {
+            "type": "string",
+            "description": "State Code"
+          },
+          "countryCode": {
+            "type": "string",
+            "description": "Country code"
+          },
+          "postalCode": {
+            "type": "string",
+            "description": "Zip code"
+          }
+        },
+        "description": "return address of seller"
+      },
       "Cause": {
         "type": "object",
         "properties": {
@@ -4968,6 +5456,7 @@
             }
           }
         },
+        "description": "Error in inbound shipment creation",
         "xml": {
           "name": "Error"
         }
@@ -5103,6 +5592,7 @@
                   }
                 }
               },
+              "description": "Error in inbound shipment creation",
               "xml": {
                 "name": "Error"
               }
@@ -5253,1132 +5743,6 @@
             }
           }
         }
-      },
-      "Headers": {
-        "type": "object",
-        "properties": {
-          "totalCount": {
-            "type": "integer",
-            "description": "total number of POs for provided GET request.",
-            "format": "int32"
-          },
-          "limit": {
-            "type": "integer",
-            "description": "provided limit value in the request",
-            "format": "int32"
-          },
-          "offset": {
-            "type": "integer",
-            "description": "provided offset value in the request.",
-            "format": "int32"
-          }
-        }
-      },
-      "InboundShipmentErrorResponseWrapperDTO": {
-        "type": "object",
-        "properties": {
-          "headers": {
-            "type": "object",
-            "properties": {
-              "totalCount": {
-                "type": "integer",
-                "description": "total number of POs for provided GET request.",
-                "format": "int32"
-              },
-              "limit": {
-                "type": "integer",
-                "description": "provided limit value in the request",
-                "format": "int32"
-              },
-              "offset": {
-                "type": "integer",
-                "description": "provided offset value in the request.",
-                "format": "int32"
-              }
-            }
-          },
-          "payload": {
-            "type": "array",
-            "description": "response payload",
-            "items": {
-              "type": "object",
-              "properties": {
-                "inboundOrderId": {
-                  "type": "string",
-                  "description": "Unique ID identifying inbound shipment requests"
-                },
-                "createdDate": {
-                  "type": "string",
-                  "description": "created date for the request",
-                  "format": "date-time"
-                },
-                "returnAddress": {
-                  "required": [
-                    "addressLine1",
-                    "city",
-                    "countryCode",
-                    "postalCode",
-                    "stateCode"
-                  ],
-                  "type": "object",
-                  "properties": {
-                    "addressLine1": {
-                      "type": "string",
-                      "description": "Address details"
-                    },
-                    "addressLine2": {
-                      "type": "string",
-                      "description": "Address details continuation"
-                    },
-                    "city": {
-                      "type": "string",
-                      "description": "City name"
-                    },
-                    "stateCode": {
-                      "type": "string",
-                      "description": "State Code"
-                    },
-                    "countryCode": {
-                      "type": "string",
-                      "description": "Country code"
-                    },
-                    "postalCode": {
-                      "type": "string",
-                      "description": "Zip code"
-                    }
-                  },
-                  "description": "Seller return address"
-                },
-                "orderItems": {
-                  "type": "array",
-                  "description": "inbound shipment request line items",
-                  "items": {
-                    "required": [
-                      "expectedDeliveryDate",
-                      "innerPackQty",
-                      "itemDesc",
-                      "itemQty",
-                      "productId",
-                      "productType",
-                      "sku",
-                      "vendorPackQty"
-                    ],
-                    "type": "object",
-                    "properties": {
-                      "productId": {
-                        "type": "string",
-                        "description": "Unique ID identifying product"
-                      },
-                      "productType": {
-                        "type": "string",
-                        "description": "Supported product types are GTIN,UPC,EAN"
-                      },
-                      "sku": {
-                        "type": "string",
-                        "description": "Seller Item ID"
-                      },
-                      "itemDesc": {
-                        "type": "string",
-                        "description": "Item description"
-                      },
-                      "itemQty": {
-                        "minimum": 1,
-                        "type": "integer",
-                        "description": "Total number of sellable units",
-                        "format": "int32"
-                      },
-                      "vendorPackQty": {
-                        "minimum": 1,
-                        "type": "integer",
-                        "description": "Total number of cases",
-                        "format": "int32"
-                      },
-                      "innerPackQty": {
-                        "minimum": 1,
-                        "type": "integer",
-                        "description": "Total number of sellable units per case",
-                        "format": "int32"
-                      },
-                      "expectedDeliveryDate": {
-                        "type": "string",
-                        "description": "expected delivery date for shipment",
-                        "format": "date-time"
-                      },
-                      "itemNbr": {
-                        "type": "integer",
-                        "format": "int32"
-                      },
-                      "dimensions": {
-                        "type": "array",
-                        "items": {
-                          "type": "number",
-                          "format": "float"
-                        }
-                      },
-                      "itemWeightQty": {
-                        "type": "number",
-                        "format": "float"
-                      },
-                      "nonSortItem": {
-                        "type": "boolean"
-                      },
-                      "shipNode": {
-                        "type": "string"
-                      }
-                    },
-                    "description": "inbound shipment request line items"
-                  }
-                },
-                "errors": {
-                  "type": "array",
-                  "description": "Error in inbound shipment creation",
-                  "items": {
-                    "required": [
-                      "code"
-                    ],
-                    "type": "object",
-                    "properties": {
-                      "code": {
-                        "type": "string"
-                      },
-                      "field": {
-                        "type": "string"
-                      },
-                      "description": {
-                        "type": "string"
-                      },
-                      "info": {
-                        "type": "string"
-                      },
-                      "severity": {
-                        "type": "string",
-                        "enum": [
-                          "INFO",
-                          "WARN",
-                          "ERROR"
-                        ]
-                      },
-                      "category": {
-                        "type": "string",
-                        "enum": [
-                          "APPLICATION",
-                          "SYSTEM",
-                          "REQUEST",
-                          "DATA"
-                        ]
-                      },
-                      "causes": {
-                        "type": "array",
-                        "xml": {
-                          "wrapped": true
-                        },
-                        "items": {
-                          "type": "object",
-                          "properties": {
-                            "code": {
-                              "type": "string"
-                            },
-                            "field": {
-                              "type": "string"
-                            },
-                            "type": {
-                              "type": "string"
-                            },
-                            "description": {
-                              "type": "string"
-                            }
-                          },
-                          "xml": {
-                            "name": "Cause"
-                          }
-                        }
-                      }
-                    },
-                    "xml": {
-                      "name": "Error"
-                    }
-                  }
-                }
-              },
-              "description": "response payload"
-            }
-          }
-        }
-      },
-      "InboundShipmentErrorsResponseWrapper": {
-        "type": "object",
-        "properties": {
-          "inboundOrderId": {
-            "type": "string",
-            "description": "Unique ID identifying inbound shipment requests"
-          },
-          "createdDate": {
-            "type": "string",
-            "description": "created date for the request",
-            "format": "date-time"
-          },
-          "returnAddress": {
-            "required": [
-              "addressLine1",
-              "city",
-              "countryCode",
-              "postalCode",
-              "stateCode"
-            ],
-            "type": "object",
-            "properties": {
-              "addressLine1": {
-                "type": "string",
-                "description": "Address details"
-              },
-              "addressLine2": {
-                "type": "string",
-                "description": "Address details continuation"
-              },
-              "city": {
-                "type": "string",
-                "description": "City name"
-              },
-              "stateCode": {
-                "type": "string",
-                "description": "State Code"
-              },
-              "countryCode": {
-                "type": "string",
-                "description": "Country code"
-              },
-              "postalCode": {
-                "type": "string",
-                "description": "Zip code"
-              }
-            },
-            "description": "Seller return address"
-          },
-          "orderItems": {
-            "type": "array",
-            "description": "inbound shipment request line items",
-            "items": {
-              "required": [
-                "expectedDeliveryDate",
-                "innerPackQty",
-                "itemDesc",
-                "itemQty",
-                "productId",
-                "productType",
-                "sku",
-                "vendorPackQty"
-              ],
-              "type": "object",
-              "properties": {
-                "productId": {
-                  "type": "string",
-                  "description": "Unique ID identifying product"
-                },
-                "productType": {
-                  "type": "string",
-                  "description": "Supported product types are GTIN,UPC,EAN"
-                },
-                "sku": {
-                  "type": "string",
-                  "description": "Seller Item ID"
-                },
-                "itemDesc": {
-                  "type": "string",
-                  "description": "Item description"
-                },
-                "itemQty": {
-                  "minimum": 1,
-                  "type": "integer",
-                  "description": "Total number of sellable units",
-                  "format": "int32"
-                },
-                "vendorPackQty": {
-                  "minimum": 1,
-                  "type": "integer",
-                  "description": "Total number of cases",
-                  "format": "int32"
-                },
-                "innerPackQty": {
-                  "minimum": 1,
-                  "type": "integer",
-                  "description": "Total number of sellable units per case",
-                  "format": "int32"
-                },
-                "expectedDeliveryDate": {
-                  "type": "string",
-                  "description": "expected delivery date for shipment",
-                  "format": "date-time"
-                },
-                "itemNbr": {
-                  "type": "integer",
-                  "format": "int32"
-                },
-                "dimensions": {
-                  "type": "array",
-                  "items": {
-                    "type": "number",
-                    "format": "float"
-                  }
-                },
-                "itemWeightQty": {
-                  "type": "number",
-                  "format": "float"
-                },
-                "nonSortItem": {
-                  "type": "boolean"
-                },
-                "shipNode": {
-                  "type": "string"
-                }
-              },
-              "description": "inbound shipment request line items"
-            }
-          },
-          "errors": {
-            "type": "array",
-            "description": "Error in inbound shipment creation",
-            "items": {
-              "required": [
-                "code"
-              ],
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "string"
-                },
-                "field": {
-                  "type": "string"
-                },
-                "description": {
-                  "type": "string"
-                },
-                "info": {
-                  "type": "string"
-                },
-                "severity": {
-                  "type": "string",
-                  "enum": [
-                    "INFO",
-                    "WARN",
-                    "ERROR"
-                  ]
-                },
-                "category": {
-                  "type": "string",
-                  "enum": [
-                    "APPLICATION",
-                    "SYSTEM",
-                    "REQUEST",
-                    "DATA"
-                  ]
-                },
-                "causes": {
-                  "type": "array",
-                  "xml": {
-                    "wrapped": true
-                  },
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "code": {
-                        "type": "string"
-                      },
-                      "field": {
-                        "type": "string"
-                      },
-                      "type": {
-                        "type": "string"
-                      },
-                      "description": {
-                        "type": "string"
-                      }
-                    },
-                    "xml": {
-                      "name": "Cause"
-                    }
-                  }
-                }
-              },
-              "xml": {
-                "name": "Error"
-              }
-            }
-          }
-        },
-        "description": "response payload"
-      },
-      "OrderItem": {
-        "required": [
-          "expectedDeliveryDate",
-          "innerPackQty",
-          "itemDesc",
-          "itemQty",
-          "productId",
-          "productType",
-          "sku",
-          "vendorPackQty"
-        ],
-        "type": "object",
-        "properties": {
-          "productId": {
-            "type": "string",
-            "description": "Unique ID identifying product"
-          },
-          "productType": {
-            "type": "string",
-            "description": "Supported product types are GTIN,UPC,EAN"
-          },
-          "sku": {
-            "type": "string",
-            "description": "Seller Item ID"
-          },
-          "itemDesc": {
-            "type": "string",
-            "description": "Item description"
-          },
-          "itemQty": {
-            "minimum": 1,
-            "type": "integer",
-            "description": "Total number of sellable units",
-            "format": "int32"
-          },
-          "vendorPackQty": {
-            "minimum": 1,
-            "type": "integer",
-            "description": "Total number of cases",
-            "format": "int32"
-          },
-          "innerPackQty": {
-            "minimum": 1,
-            "type": "integer",
-            "description": "Total number of sellable units per case",
-            "format": "int32"
-          },
-          "expectedDeliveryDate": {
-            "type": "string",
-            "description": "expected delivery date for shipment",
-            "format": "date-time"
-          },
-          "itemNbr": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "dimensions": {
-            "type": "array",
-            "items": {
-              "type": "number",
-              "format": "float"
-            }
-          },
-          "itemWeightQty": {
-            "type": "number",
-            "format": "float"
-          },
-          "nonSortItem": {
-            "type": "boolean"
-          },
-          "shipNode": {
-            "type": "string"
-          }
-        },
-        "description": "inbound shipment request line items"
-      },
-      "ReturnAddress": {
-        "required": [
-          "addressLine1",
-          "city",
-          "countryCode",
-          "postalCode",
-          "stateCode"
-        ],
-        "type": "object",
-        "properties": {
-          "addressLine1": {
-            "type": "string",
-            "description": "Address details"
-          },
-          "addressLine2": {
-            "type": "string",
-            "description": "Address details continuation"
-          },
-          "city": {
-            "type": "string",
-            "description": "City name"
-          },
-          "stateCode": {
-            "type": "string",
-            "description": "State Code"
-          },
-          "countryCode": {
-            "type": "string",
-            "description": "Country code"
-          },
-          "postalCode": {
-            "type": "string",
-            "description": "Zip code"
-          }
-        },
-        "description": "Seller return address"
-      },
-      "GetShipmentPlanDTO": {
-        "type": "object",
-        "properties": {
-          "headers": {
-            "type": "object",
-            "properties": {
-              "totalCount": {
-                "type": "integer",
-                "description": "total number of POs for provided GET request.",
-                "format": "int32"
-              },
-              "limit": {
-                "type": "integer",
-                "description": "provided limit value in the request",
-                "format": "int32"
-              },
-              "offset": {
-                "type": "integer",
-                "description": "provided offset value in the request.",
-                "format": "int32"
-              }
-            }
-          },
-          "payload": {
-            "type": "array",
-            "description": "response payload",
-            "items": {
-              "type": "object",
-              "properties": {
-                "inboundOrderId": {
-                  "type": "string",
-                  "description": "Unique ID identifying inbound shipment request"
-                },
-                "shipmentId": {
-                  "type": "string",
-                  "description": "Unique ID identifying inbound shipment"
-                },
-                "shipToAddress": {
-                  "type": "object",
-                  "properties": {
-                    "fcName": {
-                      "type": "string",
-                      "description": "Facility name"
-                    },
-                    "addressLine1": {
-                      "type": "string",
-                      "description": "Address details "
-                    },
-                    "addressLine2": {
-                      "type": "string",
-                      "description": "Address details continuation"
-                    },
-                    "city": {
-                      "type": "string",
-                      "description": "City name"
-                    },
-                    "stateCode": {
-                      "type": "string",
-                      "description": "State code"
-                    },
-                    "countryCode": {
-                      "type": "string",
-                      "description": "Country code"
-                    },
-                    "postalCode": {
-                      "type": "string",
-                      "description": "Zip code"
-                    }
-                  },
-                  "description": "The address to which sellers need to inbound items"
-                },
-                "returnAddress": {
-                  "required": [
-                    "addressLine1",
-                    "city",
-                    "countryCode",
-                    "postalCode",
-                    "stateCode"
-                  ],
-                  "type": "object",
-                  "properties": {
-                    "addressLine1": {
-                      "type": "string",
-                      "description": "Address details"
-                    },
-                    "addressLine2": {
-                      "type": "string",
-                      "description": "Address details continuation"
-                    },
-                    "city": {
-                      "type": "string",
-                      "description": "City name"
-                    },
-                    "stateCode": {
-                      "type": "string",
-                      "description": "State Code"
-                    },
-                    "countryCode": {
-                      "type": "string",
-                      "description": "Country code"
-                    },
-                    "postalCode": {
-                      "type": "string",
-                      "description": "Zip code"
-                    }
-                  },
-                  "description": "Seller return address"
-                },
-                "status": {
-                  "type": "string",
-                  "description": "Current status of the shipment"
-                },
-                "createdDate": {
-                  "type": "string",
-                  "description": "creation date for shipment",
-                  "format": "date-time"
-                },
-                "shipmentUnits": {
-                  "type": "integer",
-                  "description": "Total number of units in the shipment",
-                  "format": "int32"
-                },
-                "receivedUnits": {
-                  "type": "integer",
-                  "description": "Total number of units recived in FC for the shipment",
-                  "format": "int32"
-                },
-                "expectedDeliveryDate": {
-                  "type": "string",
-                  "description": "expected delivery date provided by seller",
-                  "format": "date-time"
-                },
-                "updatedExpectedDeliveryDate": {
-                  "type": "string",
-                  "description": "update expected delivery date based on network capacity",
-                  "format": "date-time"
-                },
-                "actualDeliveryDate": {
-                  "type": "string",
-                  "description": "Actual delivery date of the shipment at FC",
-                  "format": "date-time"
-                },
-                "trackingNo": {
-                  "type": "array",
-                  "description": "Tracking info for the shipment",
-                  "items": {
-                    "type": "string",
-                    "description": "Tracking info for the shipment"
-                  }
-                },
-                "carrierName": {
-                  "type": "string",
-                  "description": "Carrier of the shipment"
-                }
-              },
-              "description": "response payload"
-            }
-          }
-        }
-      },
-      "ShipToAddress": {
-        "type": "object",
-        "properties": {
-          "fcName": {
-            "type": "string",
-            "description": "Facility name"
-          },
-          "addressLine1": {
-            "type": "string",
-            "description": "Address details "
-          },
-          "addressLine2": {
-            "type": "string",
-            "description": "Address details continuation"
-          },
-          "city": {
-            "type": "string",
-            "description": "City name"
-          },
-          "stateCode": {
-            "type": "string",
-            "description": "State code"
-          },
-          "countryCode": {
-            "type": "string",
-            "description": "Country code"
-          },
-          "postalCode": {
-            "type": "string",
-            "description": "Zip code"
-          }
-        },
-        "description": "The address to which sellers need to inbound items"
-      },
-      "ShipmentPlanDetails": {
-        "type": "object",
-        "properties": {
-          "inboundOrderId": {
-            "type": "string",
-            "description": "Unique ID identifying inbound shipment request"
-          },
-          "shipmentId": {
-            "type": "string",
-            "description": "Unique ID identifying inbound shipment"
-          },
-          "shipToAddress": {
-            "type": "object",
-            "properties": {
-              "fcName": {
-                "type": "string",
-                "description": "Facility name"
-              },
-              "addressLine1": {
-                "type": "string",
-                "description": "Address details "
-              },
-              "addressLine2": {
-                "type": "string",
-                "description": "Address details continuation"
-              },
-              "city": {
-                "type": "string",
-                "description": "City name"
-              },
-              "stateCode": {
-                "type": "string",
-                "description": "State code"
-              },
-              "countryCode": {
-                "type": "string",
-                "description": "Country code"
-              },
-              "postalCode": {
-                "type": "string",
-                "description": "Zip code"
-              }
-            },
-            "description": "The address to which sellers need to inbound items"
-          },
-          "returnAddress": {
-            "required": [
-              "addressLine1",
-              "city",
-              "countryCode",
-              "postalCode",
-              "stateCode"
-            ],
-            "type": "object",
-            "properties": {
-              "addressLine1": {
-                "type": "string",
-                "description": "Address details"
-              },
-              "addressLine2": {
-                "type": "string",
-                "description": "Address details continuation"
-              },
-              "city": {
-                "type": "string",
-                "description": "City name"
-              },
-              "stateCode": {
-                "type": "string",
-                "description": "State Code"
-              },
-              "countryCode": {
-                "type": "string",
-                "description": "Country code"
-              },
-              "postalCode": {
-                "type": "string",
-                "description": "Zip code"
-              }
-            },
-            "description": "Seller return address"
-          },
-          "status": {
-            "type": "string",
-            "description": "Current status of the shipment"
-          },
-          "createdDate": {
-            "type": "string",
-            "description": "creation date for shipment",
-            "format": "date-time"
-          },
-          "shipmentUnits": {
-            "type": "integer",
-            "description": "Total number of units in the shipment",
-            "format": "int32"
-          },
-          "receivedUnits": {
-            "type": "integer",
-            "description": "Total number of units recived in FC for the shipment",
-            "format": "int32"
-          },
-          "expectedDeliveryDate": {
-            "type": "string",
-            "description": "expected delivery date provided by seller",
-            "format": "date-time"
-          },
-          "updatedExpectedDeliveryDate": {
-            "type": "string",
-            "description": "update expected delivery date based on network capacity",
-            "format": "date-time"
-          },
-          "actualDeliveryDate": {
-            "type": "string",
-            "description": "Actual delivery date of the shipment at FC",
-            "format": "date-time"
-          },
-          "trackingNo": {
-            "type": "array",
-            "description": "Tracking info for the shipment",
-            "items": {
-              "type": "string",
-              "description": "Tracking info for the shipment"
-            }
-          },
-          "carrierName": {
-            "type": "string",
-            "description": "Carrier of the shipment"
-          }
-        },
-        "description": "response payload"
-      },
-      "GetShipmentItemsDTO": {
-        "type": "object",
-        "properties": {
-          "headers": {
-            "type": "object",
-            "properties": {
-              "totalCount": {
-                "type": "integer",
-                "description": "total number of POs for provided GET request.",
-                "format": "int32"
-              },
-              "limit": {
-                "type": "integer",
-                "description": "provided limit value in the request",
-                "format": "int32"
-              },
-              "offset": {
-                "type": "integer",
-                "description": "provided offset value in the request.",
-                "format": "int32"
-              }
-            }
-          },
-          "payload": {
-            "type": "array",
-            "description": "response payload",
-            "items": {
-              "type": "object",
-              "properties": {
-                "inboundOrderId": {
-                  "type": "string",
-                  "description": "Unique ID identifying inbound shipment request"
-                },
-                "shipmentId": {
-                  "type": "string",
-                  "description": "Unique ID identifying each shipment"
-                },
-                "gtin": {
-                  "type": "string",
-                  "description": "Item barcode"
-                },
-                "sku": {
-                  "type": "string",
-                  "description": "Seller Item ID"
-                },
-                "itemDesc": {
-                  "type": "string",
-                  "description": "Item description"
-                },
-                "itemQty": {
-                  "type": "integer",
-                  "description": "Total number of sellable units",
-                  "format": "int32"
-                },
-                "vendorPackQty": {
-                  "type": "integer",
-                  "description": "Total number of cases",
-                  "format": "int32"
-                },
-                "innerPackQty": {
-                  "type": "integer",
-                  "description": "Total number of sellable units per case",
-                  "format": "int32"
-                },
-                "receivedQty": {
-                  "type": "integer",
-                  "description": "Qty received in FC",
-                  "format": "int32"
-                },
-                "damagedQty": {
-                  "type": "integer",
-                  "description": "Qty damaged while receiving in FC",
-                  "format": "int32"
-                },
-                "fillRate": {
-                  "type": "number",
-                  "description": "Fill rate for this shipment item",
-                  "format": "float"
-                },
-                "expectedDeliveryDate": {
-                  "type": "string",
-                  "description": "expected delivery date provided by seller",
-                  "format": "date-time"
-                },
-                "updatedExpectedDeliveryDate": {
-                  "type": "string",
-                  "description": "update expected delivery date based on network capacity",
-                  "format": "date-time"
-                },
-                "shipNodeName": {
-                  "type": "string",
-                  "description": "FC name"
-                }
-              },
-              "description": "response payload"
-            }
-          }
-        }
-      },
-      "ShipmentItemDetails": {
-        "type": "object",
-        "properties": {
-          "inboundOrderId": {
-            "type": "string",
-            "description": "Unique ID identifying inbound shipment request"
-          },
-          "shipmentId": {
-            "type": "string",
-            "description": "Unique ID identifying each shipment"
-          },
-          "gtin": {
-            "type": "string",
-            "description": "Item barcode"
-          },
-          "sku": {
-            "type": "string",
-            "description": "Seller Item ID"
-          },
-          "itemDesc": {
-            "type": "string",
-            "description": "Item description"
-          },
-          "itemQty": {
-            "type": "integer",
-            "description": "Total number of sellable units",
-            "format": "int32"
-          },
-          "vendorPackQty": {
-            "type": "integer",
-            "description": "Total number of cases",
-            "format": "int32"
-          },
-          "innerPackQty": {
-            "type": "integer",
-            "description": "Total number of sellable units per case",
-            "format": "int32"
-          },
-          "receivedQty": {
-            "type": "integer",
-            "description": "Qty received in FC",
-            "format": "int32"
-          },
-          "damagedQty": {
-            "type": "integer",
-            "description": "Qty damaged while receiving in FC",
-            "format": "int32"
-          },
-          "fillRate": {
-            "type": "number",
-            "description": "Fill rate for this shipment item",
-            "format": "float"
-          },
-          "expectedDeliveryDate": {
-            "type": "string",
-            "description": "expected delivery date provided by seller",
-            "format": "date-time"
-          },
-          "updatedExpectedDeliveryDate": {
-            "type": "string",
-            "description": "update expected delivery date based on network capacity",
-            "format": "date-time"
-          },
-          "shipNodeName": {
-            "type": "string",
-            "description": "FC name"
-          }
-        },
-        "description": "response payload"
-      },
-      "InboundShipmentUpdateQtyWrapper": {
-        "required": [
-          "inboundOrderId",
-          "shipmentId"
-        ],
-        "type": "object",
-        "properties": {
-          "inboundOrderId": {
-            "type": "string",
-            "description": "Unique ID identifying inbound shipment request"
-          },
-          "shipmentId": {
-            "type": "string",
-            "description": "Unique ID identifying inbound shipment"
-          },
-          "orderItems": {
-            "maxItems": 5000,
-            "minItems": 1,
-            "type": "array",
-            "description": "update shipment qty line items",
-            "xml": {
-              "wrapped": true
-            },
-            "items": {
-              "required": [
-                "sku",
-                "updatedShipmentQty"
-              ],
-              "type": "object",
-              "properties": {
-                "sku": {
-                  "type": "string",
-                  "description": "Seller Item ID"
-                },
-                "updatedShipmentQty": {
-                  "minimum": 0,
-                  "type": "integer",
-                  "description": "updated quantity",
-                  "format": "int32"
-                }
-              },
-              "description": "update shipment qty line items"
-            }
-          }
-        }
-      },
-      "OrderItemUpdate": {
-        "required": [
-          "sku",
-          "updatedShipmentQty"
-        ],
-        "type": "object",
-        "properties": {
-          "sku": {
-            "type": "string",
-            "description": "Seller Item ID"
-          },
-          "updatedShipmentQty": {
-            "minimum": 0,
-            "type": "integer",
-            "description": "updated quantity",
-            "format": "int32"
-          }
-        },
-        "description": "update shipment qty line items"
       },
       "LabelV2RequestWrapper": {
         "required": [
@@ -7423,306 +6787,6 @@
           }
         }
       },
-      "InboundShipmentCreateResponseWrapper": {
-        "type": "object",
-        "properties": {
-          "shipmentId": {
-            "type": "string",
-            "description": "Unique ID identifying each shipment"
-          },
-          "shipToAddress": {
-            "type": "object",
-            "properties": {
-              "fcName": {
-                "type": "string",
-                "description": "Facility name"
-              },
-              "addressLine1": {
-                "type": "string",
-                "description": "Address details "
-              },
-              "addressLine2": {
-                "type": "string",
-                "description": "Address details continuation"
-              },
-              "city": {
-                "type": "string",
-                "description": "City name"
-              },
-              "stateCode": {
-                "type": "string",
-                "description": "State code"
-              },
-              "countryCode": {
-                "type": "string",
-                "description": "Country code"
-              },
-              "postalCode": {
-                "type": "string",
-                "description": "Zip code"
-              }
-            },
-            "description": "The address to which sellers need to inbound items"
-          },
-          "shipmentItems": {
-            "type": "array",
-            "description": "The items which needs to be send in the shipment",
-            "items": {
-              "type": "object",
-              "properties": {
-                "vendorSku": {
-                  "type": "string",
-                  "description": "Seller Item ID"
-                },
-                "itemQty": {
-                  "type": "integer",
-                  "description": "Total number of sellable units",
-                  "format": "int32"
-                }
-              },
-              "description": "The items which needs to be send in the shipment"
-            }
-          },
-          "expectedDeliveryDate": {
-            "type": "string",
-            "description": "expected delivery date for inbounding shipment. Can be different from provided in the rquest based on network capacity",
-            "format": "date-time"
-          }
-        },
-        "description": "response payload"
-      },
-      "InboundShipmentCreateResponseWrapperDTO": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "string"
-          },
-          "payload": {
-            "type": "array",
-            "description": "response payload",
-            "items": {
-              "type": "object",
-              "properties": {
-                "shipmentId": {
-                  "type": "string",
-                  "description": "Unique ID identifying each shipment"
-                },
-                "shipToAddress": {
-                  "type": "object",
-                  "properties": {
-                    "fcName": {
-                      "type": "string",
-                      "description": "Facility name"
-                    },
-                    "addressLine1": {
-                      "type": "string",
-                      "description": "Address details "
-                    },
-                    "addressLine2": {
-                      "type": "string",
-                      "description": "Address details continuation"
-                    },
-                    "city": {
-                      "type": "string",
-                      "description": "City name"
-                    },
-                    "stateCode": {
-                      "type": "string",
-                      "description": "State code"
-                    },
-                    "countryCode": {
-                      "type": "string",
-                      "description": "Country code"
-                    },
-                    "postalCode": {
-                      "type": "string",
-                      "description": "Zip code"
-                    }
-                  },
-                  "description": "The address to which sellers need to inbound items"
-                },
-                "shipmentItems": {
-                  "type": "array",
-                  "description": "The items which needs to be send in the shipment",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "vendorSku": {
-                        "type": "string",
-                        "description": "Seller Item ID"
-                      },
-                      "itemQty": {
-                        "type": "integer",
-                        "description": "Total number of sellable units",
-                        "format": "int32"
-                      }
-                    },
-                    "description": "The items which needs to be send in the shipment"
-                  }
-                },
-                "expectedDeliveryDate": {
-                  "type": "string",
-                  "description": "expected delivery date for inbounding shipment. Can be different from provided in the rquest based on network capacity",
-                  "format": "date-time"
-                }
-              },
-              "description": "response payload"
-            }
-          }
-        }
-      },
-      "ShipmentItem": {
-        "type": "object",
-        "properties": {
-          "vendorSku": {
-            "type": "string",
-            "description": "Seller Item ID"
-          },
-          "itemQty": {
-            "type": "integer",
-            "description": "Total number of sellable units",
-            "format": "int32"
-          }
-        },
-        "description": "The items which needs to be send in the shipment"
-      },
-      "InboundShipmentRequestWrapper": {
-        "required": [
-          "inboundOrderId",
-          "returnAddress"
-        ],
-        "type": "object",
-        "properties": {
-          "inboundOrderId": {
-            "maxLength": 100,
-            "minLength": 0,
-            "type": "string",
-            "description": "Unique ID identifying inbound shipment request"
-          },
-          "returnAddress": {
-            "required": [
-              "addressLine1",
-              "city",
-              "countryCode",
-              "postalCode",
-              "stateCode"
-            ],
-            "type": "object",
-            "properties": {
-              "addressLine1": {
-                "type": "string",
-                "description": "Address details"
-              },
-              "addressLine2": {
-                "type": "string",
-                "description": "Address details continuation"
-              },
-              "city": {
-                "type": "string",
-                "description": "City name"
-              },
-              "stateCode": {
-                "type": "string",
-                "description": "State Code"
-              },
-              "countryCode": {
-                "type": "string",
-                "description": "Country code"
-              },
-              "postalCode": {
-                "type": "string",
-                "description": "Zip code"
-              }
-            },
-            "description": "Seller return address"
-          },
-          "orderItems": {
-            "maxItems": 5000,
-            "minItems": 1,
-            "type": "array",
-            "description": "inbound shipment request line items",
-            "xml": {
-              "wrapped": true
-            },
-            "items": {
-              "required": [
-                "expectedDeliveryDate",
-                "innerPackQty",
-                "itemDesc",
-                "itemQty",
-                "productId",
-                "productType",
-                "sku",
-                "vendorPackQty"
-              ],
-              "type": "object",
-              "properties": {
-                "productId": {
-                  "type": "string",
-                  "description": "Unique ID identifying product"
-                },
-                "productType": {
-                  "type": "string",
-                  "description": "Supported product types are GTIN,UPC,EAN"
-                },
-                "sku": {
-                  "type": "string",
-                  "description": "Seller Item ID"
-                },
-                "itemDesc": {
-                  "type": "string",
-                  "description": "Item description"
-                },
-                "itemQty": {
-                  "minimum": 1,
-                  "type": "integer",
-                  "description": "Total number of sellable units",
-                  "format": "int32"
-                },
-                "vendorPackQty": {
-                  "minimum": 1,
-                  "type": "integer",
-                  "description": "Total number of cases",
-                  "format": "int32"
-                },
-                "innerPackQty": {
-                  "minimum": 1,
-                  "type": "integer",
-                  "description": "Total number of sellable units per case",
-                  "format": "int32"
-                },
-                "expectedDeliveryDate": {
-                  "type": "string",
-                  "description": "expected delivery date for shipment",
-                  "format": "date-time"
-                },
-                "itemNbr": {
-                  "type": "integer",
-                  "format": "int32"
-                },
-                "dimensions": {
-                  "type": "array",
-                  "items": {
-                    "type": "number",
-                    "format": "float"
-                  }
-                },
-                "itemWeightQty": {
-                  "type": "number",
-                  "format": "float"
-                },
-                "nonSortItem": {
-                  "type": "boolean"
-                },
-                "shipNode": {
-                  "type": "string"
-                }
-              },
-              "description": "inbound shipment request line items"
-            }
-          }
-        }
-      },
       "GetRateQuoteInfoResponseWrapper": {
         "type": "object",
         "properties": {
@@ -8135,6 +7199,987 @@
             "format": "date-time"
           }
         }
+      },
+      "GetShipmentPlanDTO": {
+        "type": "object",
+        "properties": {
+          "headers": {
+            "type": "object",
+            "properties": {
+              "totalCount": {
+                "type": "integer",
+                "description": "total number of POs for provided GET request.",
+                "format": "int32"
+              },
+              "limit": {
+                "type": "integer",
+                "description": "provided limit value in the request",
+                "format": "int32"
+              },
+              "offset": {
+                "type": "integer",
+                "description": "provided offset value in the request.",
+                "format": "int32"
+              }
+            }
+          },
+          "payload": {
+            "type": "array",
+            "description": "response payload",
+            "items": {
+              "type": "object",
+              "properties": {
+                "inboundOrderId": {
+                  "type": "string",
+                  "description": "Unique ID identifying inbound shipment request"
+                },
+                "shipmentId": {
+                  "type": "string",
+                  "description": "Unique ID identifying inbound shipment"
+                },
+                "shipToAddress": {
+                  "type": "object",
+                  "properties": {
+                    "fcName": {
+                      "type": "string",
+                      "description": "Facility name"
+                    },
+                    "addressLine1": {
+                      "type": "string",
+                      "description": "Address details "
+                    },
+                    "addressLine2": {
+                      "type": "string",
+                      "description": "Address details continuation"
+                    },
+                    "city": {
+                      "type": "string",
+                      "description": "City name"
+                    },
+                    "stateCode": {
+                      "type": "string",
+                      "description": "State code"
+                    },
+                    "countryCode": {
+                      "type": "string",
+                      "description": "Country code"
+                    },
+                    "postalCode": {
+                      "type": "string",
+                      "description": "Zip code"
+                    }
+                  },
+                  "description": "The address to which sellers need to inbound items"
+                },
+                "returnAddress": {
+                  "required": [
+                    "addressLine1",
+                    "city",
+                    "countryCode",
+                    "postalCode",
+                    "stateCode"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "addressLine1": {
+                      "type": "string",
+                      "description": "Address details"
+                    },
+                    "addressLine2": {
+                      "type": "string",
+                      "description": "Address details continuation"
+                    },
+                    "city": {
+                      "type": "string",
+                      "description": "City name"
+                    },
+                    "stateCode": {
+                      "type": "string",
+                      "description": "State Code"
+                    },
+                    "countryCode": {
+                      "type": "string",
+                      "description": "Country code"
+                    },
+                    "postalCode": {
+                      "type": "string",
+                      "description": "Zip code"
+                    }
+                  },
+                  "description": "return address of seller"
+                },
+                "status": {
+                  "type": "string",
+                  "description": "Current status of the shipment"
+                },
+                "createdDate": {
+                  "type": "string",
+                  "description": "creation date for shipment",
+                  "format": "date-time"
+                },
+                "shipmentUnits": {
+                  "type": "integer",
+                  "description": "Total number of units in the shipment",
+                  "format": "int32"
+                },
+                "receivedUnits": {
+                  "type": "integer",
+                  "description": "Total number of units recived in FC for the shipment",
+                  "format": "int32"
+                },
+                "expectedDeliveryDate": {
+                  "type": "string",
+                  "description": "expected delivery date provided by seller",
+                  "format": "date-time"
+                },
+                "updatedExpectedDeliveryDate": {
+                  "type": "string",
+                  "description": "update expected delivery date based on network capacity",
+                  "format": "date-time"
+                },
+                "actualDeliveryDate": {
+                  "type": "string",
+                  "description": "Actual delivery date of the shipment at FC",
+                  "format": "date-time"
+                },
+                "trackingNo": {
+                  "type": "array",
+                  "description": "Tracking info for the shipment",
+                  "items": {
+                    "type": "string",
+                    "description": "Tracking info for the shipment"
+                  }
+                },
+                "carrierName": {
+                  "type": "string",
+                  "description": "Carrier of the shipment"
+                }
+              },
+              "description": "response payload"
+            }
+          }
+        }
+      },
+      "Headers": {
+        "type": "object",
+        "properties": {
+          "totalCount": {
+            "type": "integer",
+            "description": "total number of POs for provided GET request.",
+            "format": "int32"
+          },
+          "limit": {
+            "type": "integer",
+            "description": "provided limit value in the request",
+            "format": "int32"
+          },
+          "offset": {
+            "type": "integer",
+            "description": "provided offset value in the request.",
+            "format": "int32"
+          }
+        }
+      },
+      "ShipmentPlanDetails": {
+        "type": "object",
+        "properties": {
+          "inboundOrderId": {
+            "type": "string",
+            "description": "Unique ID identifying inbound shipment request"
+          },
+          "shipmentId": {
+            "type": "string",
+            "description": "Unique ID identifying inbound shipment"
+          },
+          "shipToAddress": {
+            "type": "object",
+            "properties": {
+              "fcName": {
+                "type": "string",
+                "description": "Facility name"
+              },
+              "addressLine1": {
+                "type": "string",
+                "description": "Address details "
+              },
+              "addressLine2": {
+                "type": "string",
+                "description": "Address details continuation"
+              },
+              "city": {
+                "type": "string",
+                "description": "City name"
+              },
+              "stateCode": {
+                "type": "string",
+                "description": "State code"
+              },
+              "countryCode": {
+                "type": "string",
+                "description": "Country code"
+              },
+              "postalCode": {
+                "type": "string",
+                "description": "Zip code"
+              }
+            },
+            "description": "The address to which sellers need to inbound items"
+          },
+          "returnAddress": {
+            "required": [
+              "addressLine1",
+              "city",
+              "countryCode",
+              "postalCode",
+              "stateCode"
+            ],
+            "type": "object",
+            "properties": {
+              "addressLine1": {
+                "type": "string",
+                "description": "Address details"
+              },
+              "addressLine2": {
+                "type": "string",
+                "description": "Address details continuation"
+              },
+              "city": {
+                "type": "string",
+                "description": "City name"
+              },
+              "stateCode": {
+                "type": "string",
+                "description": "State Code"
+              },
+              "countryCode": {
+                "type": "string",
+                "description": "Country code"
+              },
+              "postalCode": {
+                "type": "string",
+                "description": "Zip code"
+              }
+            },
+            "description": "return address of seller"
+          },
+          "status": {
+            "type": "string",
+            "description": "Current status of the shipment"
+          },
+          "createdDate": {
+            "type": "string",
+            "description": "creation date for shipment",
+            "format": "date-time"
+          },
+          "shipmentUnits": {
+            "type": "integer",
+            "description": "Total number of units in the shipment",
+            "format": "int32"
+          },
+          "receivedUnits": {
+            "type": "integer",
+            "description": "Total number of units recived in FC for the shipment",
+            "format": "int32"
+          },
+          "expectedDeliveryDate": {
+            "type": "string",
+            "description": "expected delivery date provided by seller",
+            "format": "date-time"
+          },
+          "updatedExpectedDeliveryDate": {
+            "type": "string",
+            "description": "update expected delivery date based on network capacity",
+            "format": "date-time"
+          },
+          "actualDeliveryDate": {
+            "type": "string",
+            "description": "Actual delivery date of the shipment at FC",
+            "format": "date-time"
+          },
+          "trackingNo": {
+            "type": "array",
+            "description": "Tracking info for the shipment",
+            "items": {
+              "type": "string",
+              "description": "Tracking info for the shipment"
+            }
+          },
+          "carrierName": {
+            "type": "string",
+            "description": "Carrier of the shipment"
+          }
+        },
+        "description": "response payload"
+      },
+      "GetShipmentItemsDTO": {
+        "type": "object",
+        "properties": {
+          "headers": {
+            "type": "object",
+            "properties": {
+              "totalCount": {
+                "type": "integer",
+                "description": "total number of POs for provided GET request.",
+                "format": "int32"
+              },
+              "limit": {
+                "type": "integer",
+                "description": "provided limit value in the request",
+                "format": "int32"
+              },
+              "offset": {
+                "type": "integer",
+                "description": "provided offset value in the request.",
+                "format": "int32"
+              }
+            }
+          },
+          "payload": {
+            "type": "array",
+            "description": "response payload",
+            "items": {
+              "type": "object",
+              "properties": {
+                "inboundOrderId": {
+                  "type": "string",
+                  "description": "Unique ID identifying inbound shipment request"
+                },
+                "shipmentId": {
+                  "type": "string",
+                  "description": "Unique ID identifying each shipment"
+                },
+                "gtin": {
+                  "type": "string",
+                  "description": "Item barcode"
+                },
+                "sku": {
+                  "type": "string",
+                  "description": "Seller Item ID"
+                },
+                "itemDesc": {
+                  "type": "string",
+                  "description": "Item description"
+                },
+                "itemQty": {
+                  "type": "integer",
+                  "description": "Total number of sellable units",
+                  "format": "int32"
+                },
+                "vendorPackQty": {
+                  "type": "integer",
+                  "description": "Total number of cases",
+                  "format": "int32"
+                },
+                "innerPackQty": {
+                  "type": "integer",
+                  "description": "Total number of sellable units per case",
+                  "format": "int32"
+                },
+                "receivedQty": {
+                  "type": "integer",
+                  "description": "Qty received in FC",
+                  "format": "int32"
+                },
+                "damagedQty": {
+                  "type": "integer",
+                  "description": "Qty damaged while receiving in FC",
+                  "format": "int32"
+                },
+                "fillRate": {
+                  "type": "number",
+                  "description": "Fill rate for this shipment item",
+                  "format": "float"
+                },
+                "expectedDeliveryDate": {
+                  "type": "string",
+                  "description": "expected delivery date provided by seller",
+                  "format": "date-time"
+                },
+                "updatedExpectedDeliveryDate": {
+                  "type": "string",
+                  "description": "update expected delivery date based on network capacity",
+                  "format": "date-time"
+                },
+                "shipNodeName": {
+                  "type": "string",
+                  "description": "FC name"
+                }
+              },
+              "description": "response payload"
+            }
+          }
+        }
+      },
+      "ShipmentItemDetails": {
+        "type": "object",
+        "properties": {
+          "inboundOrderId": {
+            "type": "string",
+            "description": "Unique ID identifying inbound shipment request"
+          },
+          "shipmentId": {
+            "type": "string",
+            "description": "Unique ID identifying each shipment"
+          },
+          "gtin": {
+            "type": "string",
+            "description": "Item barcode"
+          },
+          "sku": {
+            "type": "string",
+            "description": "Seller Item ID"
+          },
+          "itemDesc": {
+            "type": "string",
+            "description": "Item description"
+          },
+          "itemQty": {
+            "type": "integer",
+            "description": "Total number of sellable units",
+            "format": "int32"
+          },
+          "vendorPackQty": {
+            "type": "integer",
+            "description": "Total number of cases",
+            "format": "int32"
+          },
+          "innerPackQty": {
+            "type": "integer",
+            "description": "Total number of sellable units per case",
+            "format": "int32"
+          },
+          "receivedQty": {
+            "type": "integer",
+            "description": "Qty received in FC",
+            "format": "int32"
+          },
+          "damagedQty": {
+            "type": "integer",
+            "description": "Qty damaged while receiving in FC",
+            "format": "int32"
+          },
+          "fillRate": {
+            "type": "number",
+            "description": "Fill rate for this shipment item",
+            "format": "float"
+          },
+          "expectedDeliveryDate": {
+            "type": "string",
+            "description": "expected delivery date provided by seller",
+            "format": "date-time"
+          },
+          "updatedExpectedDeliveryDate": {
+            "type": "string",
+            "description": "update expected delivery date based on network capacity",
+            "format": "date-time"
+          },
+          "shipNodeName": {
+            "type": "string",
+            "description": "FC name"
+          }
+        },
+        "description": "response payload"
+      },
+      "InboundShipmentUpdateQtyWrapper": {
+        "required": [
+          "inboundOrderId",
+          "shipmentId"
+        ],
+        "type": "object",
+        "properties": {
+          "inboundOrderId": {
+            "type": "string",
+            "description": "Unique ID identifying inbound shipment request"
+          },
+          "shipmentId": {
+            "type": "string",
+            "description": "Unique ID identifying inbound shipment"
+          },
+          "orderItems": {
+            "maxItems": 5000,
+            "minItems": 1,
+            "type": "array",
+            "description": "update shipment qty line items",
+            "xml": {
+              "wrapped": true
+            },
+            "items": {
+              "required": [
+                "sku",
+                "updatedShipmentQty"
+              ],
+              "type": "object",
+              "properties": {
+                "sku": {
+                  "type": "string",
+                  "description": "Seller Item ID"
+                },
+                "updatedShipmentQty": {
+                  "minimum": 0,
+                  "type": "integer",
+                  "description": "updated quantity",
+                  "format": "int32"
+                }
+              },
+              "description": "update shipment qty line items"
+            }
+          }
+        }
+      },
+      "OrderItemUpdate": {
+        "required": [
+          "sku",
+          "updatedShipmentQty"
+        ],
+        "type": "object",
+        "properties": {
+          "sku": {
+            "type": "string",
+            "description": "Seller Item ID"
+          },
+          "updatedShipmentQty": {
+            "minimum": 0,
+            "type": "integer",
+            "description": "updated quantity",
+            "format": "int32"
+          }
+        },
+        "description": "update shipment qty line items"
+      },
+      "InboundShipmentErrorResponseWrapperDTO": {
+        "type": "object",
+        "properties": {
+          "headers": {
+            "type": "object",
+            "properties": {
+              "totalCount": {
+                "type": "integer",
+                "description": "total number of POs for provided GET request.",
+                "format": "int32"
+              },
+              "limit": {
+                "type": "integer",
+                "description": "provided limit value in the request",
+                "format": "int32"
+              },
+              "offset": {
+                "type": "integer",
+                "description": "provided offset value in the request.",
+                "format": "int32"
+              }
+            }
+          },
+          "payload": {
+            "type": "array",
+            "description": "response payload",
+            "items": {
+              "type": "object",
+              "properties": {
+                "inboundOrderId": {
+                  "type": "string",
+                  "description": "Unique ID identifying inbound shipment requests"
+                },
+                "createdDate": {
+                  "type": "string",
+                  "description": "created date for the request",
+                  "format": "date-time"
+                },
+                "returnAddress": {
+                  "required": [
+                    "addressLine1",
+                    "city",
+                    "countryCode",
+                    "postalCode",
+                    "stateCode"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "addressLine1": {
+                      "type": "string",
+                      "description": "Address details"
+                    },
+                    "addressLine2": {
+                      "type": "string",
+                      "description": "Address details continuation"
+                    },
+                    "city": {
+                      "type": "string",
+                      "description": "City name"
+                    },
+                    "stateCode": {
+                      "type": "string",
+                      "description": "State Code"
+                    },
+                    "countryCode": {
+                      "type": "string",
+                      "description": "Country code"
+                    },
+                    "postalCode": {
+                      "type": "string",
+                      "description": "Zip code"
+                    }
+                  },
+                  "description": "return address of seller"
+                },
+                "orderItems": {
+                  "type": "array",
+                  "description": "inbound shipment request line items",
+                  "items": {
+                    "required": [
+                      "expectedDeliveryDate",
+                      "innerPackQty",
+                      "itemDesc",
+                      "itemQty",
+                      "productId",
+                      "productType",
+                      "sku",
+                      "vendorPackQty"
+                    ],
+                    "type": "object",
+                    "properties": {
+                      "productId": {
+                        "type": "string",
+                        "description": "Unique ID identifying product"
+                      },
+                      "productType": {
+                        "type": "string",
+                        "description": "Supported product types are GTIN,UPC,EAN"
+                      },
+                      "sku": {
+                        "type": "string",
+                        "description": "Seller Item ID"
+                      },
+                      "itemDesc": {
+                        "type": "string",
+                        "description": "Item description"
+                      },
+                      "itemQty": {
+                        "minimum": 1,
+                        "type": "integer",
+                        "description": "Total number of sellable units",
+                        "format": "int32"
+                      },
+                      "vendorPackQty": {
+                        "minimum": 1,
+                        "type": "integer",
+                        "description": "Total number of cases",
+                        "format": "int32"
+                      },
+                      "innerPackQty": {
+                        "minimum": 1,
+                        "type": "integer",
+                        "description": "Total number of sellable units per case",
+                        "format": "int32"
+                      },
+                      "expectedDeliveryDate": {
+                        "type": "string",
+                        "description": "expected delivery date for shipment",
+                        "format": "date-time"
+                      },
+                      "itemNbr": {
+                        "type": "integer",
+                        "format": "int32"
+                      },
+                      "dimensions": {
+                        "type": "array",
+                        "items": {
+                          "type": "number",
+                          "format": "float"
+                        }
+                      },
+                      "itemWeightQty": {
+                        "type": "number",
+                        "format": "float"
+                      },
+                      "nonSortItem": {
+                        "type": "boolean"
+                      },
+                      "shipNode": {
+                        "type": "string"
+                      }
+                    },
+                    "description": "inbound shipment request line items"
+                  }
+                },
+                "errors": {
+                  "type": "array",
+                  "description": "Error in inbound shipment creation",
+                  "items": {
+                    "required": [
+                      "code"
+                    ],
+                    "type": "object",
+                    "properties": {
+                      "code": {
+                        "type": "string"
+                      },
+                      "field": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "info": {
+                        "type": "string"
+                      },
+                      "severity": {
+                        "type": "string",
+                        "enum": [
+                          "INFO",
+                          "WARN",
+                          "ERROR"
+                        ]
+                      },
+                      "category": {
+                        "type": "string",
+                        "enum": [
+                          "APPLICATION",
+                          "SYSTEM",
+                          "REQUEST",
+                          "DATA"
+                        ]
+                      },
+                      "causes": {
+                        "type": "array",
+                        "xml": {
+                          "wrapped": true
+                        },
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "code": {
+                              "type": "string"
+                            },
+                            "field": {
+                              "type": "string"
+                            },
+                            "type": {
+                              "type": "string"
+                            },
+                            "description": {
+                              "type": "string"
+                            }
+                          },
+                          "xml": {
+                            "name": "Cause"
+                          }
+                        }
+                      }
+                    },
+                    "description": "Error in inbound shipment creation",
+                    "xml": {
+                      "name": "Error"
+                    }
+                  }
+                }
+              },
+              "description": "response payload"
+            }
+          }
+        }
+      },
+      "InboundShipmentErrorsResponseWrapper": {
+        "type": "object",
+        "properties": {
+          "inboundOrderId": {
+            "type": "string",
+            "description": "Unique ID identifying inbound shipment requests"
+          },
+          "createdDate": {
+            "type": "string",
+            "description": "created date for the request",
+            "format": "date-time"
+          },
+          "returnAddress": {
+            "required": [
+              "addressLine1",
+              "city",
+              "countryCode",
+              "postalCode",
+              "stateCode"
+            ],
+            "type": "object",
+            "properties": {
+              "addressLine1": {
+                "type": "string",
+                "description": "Address details"
+              },
+              "addressLine2": {
+                "type": "string",
+                "description": "Address details continuation"
+              },
+              "city": {
+                "type": "string",
+                "description": "City name"
+              },
+              "stateCode": {
+                "type": "string",
+                "description": "State Code"
+              },
+              "countryCode": {
+                "type": "string",
+                "description": "Country code"
+              },
+              "postalCode": {
+                "type": "string",
+                "description": "Zip code"
+              }
+            },
+            "description": "return address of seller"
+          },
+          "orderItems": {
+            "type": "array",
+            "description": "inbound shipment request line items",
+            "items": {
+              "required": [
+                "expectedDeliveryDate",
+                "innerPackQty",
+                "itemDesc",
+                "itemQty",
+                "productId",
+                "productType",
+                "sku",
+                "vendorPackQty"
+              ],
+              "type": "object",
+              "properties": {
+                "productId": {
+                  "type": "string",
+                  "description": "Unique ID identifying product"
+                },
+                "productType": {
+                  "type": "string",
+                  "description": "Supported product types are GTIN,UPC,EAN"
+                },
+                "sku": {
+                  "type": "string",
+                  "description": "Seller Item ID"
+                },
+                "itemDesc": {
+                  "type": "string",
+                  "description": "Item description"
+                },
+                "itemQty": {
+                  "minimum": 1,
+                  "type": "integer",
+                  "description": "Total number of sellable units",
+                  "format": "int32"
+                },
+                "vendorPackQty": {
+                  "minimum": 1,
+                  "type": "integer",
+                  "description": "Total number of cases",
+                  "format": "int32"
+                },
+                "innerPackQty": {
+                  "minimum": 1,
+                  "type": "integer",
+                  "description": "Total number of sellable units per case",
+                  "format": "int32"
+                },
+                "expectedDeliveryDate": {
+                  "type": "string",
+                  "description": "expected delivery date for shipment",
+                  "format": "date-time"
+                },
+                "itemNbr": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "dimensions": {
+                  "type": "array",
+                  "items": {
+                    "type": "number",
+                    "format": "float"
+                  }
+                },
+                "itemWeightQty": {
+                  "type": "number",
+                  "format": "float"
+                },
+                "nonSortItem": {
+                  "type": "boolean"
+                },
+                "shipNode": {
+                  "type": "string"
+                }
+              },
+              "description": "inbound shipment request line items"
+            }
+          },
+          "errors": {
+            "type": "array",
+            "description": "Error in inbound shipment creation",
+            "items": {
+              "required": [
+                "code"
+              ],
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string"
+                },
+                "field": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "info": {
+                  "type": "string"
+                },
+                "severity": {
+                  "type": "string",
+                  "enum": [
+                    "INFO",
+                    "WARN",
+                    "ERROR"
+                  ]
+                },
+                "category": {
+                  "type": "string",
+                  "enum": [
+                    "APPLICATION",
+                    "SYSTEM",
+                    "REQUEST",
+                    "DATA"
+                  ]
+                },
+                "causes": {
+                  "type": "array",
+                  "xml": {
+                    "wrapped": true
+                  },
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "code": {
+                        "type": "string"
+                      },
+                      "field": {
+                        "type": "string"
+                      },
+                      "type": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      }
+                    },
+                    "xml": {
+                      "name": "Cause"
+                    }
+                  }
+                }
+              },
+              "description": "Error in inbound shipment creation",
+              "xml": {
+                "name": "Error"
+              }
+            }
+          }
+        },
+        "description": "response payload"
       }
     },
     "parameters": {

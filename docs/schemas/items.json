@@ -20,14 +20,14 @@
     }
   ],
   "paths": {
-    "/v3/items/taxonomy": {
-      "get": {
+    "/v3/items/associations": {
+      "post": {
         "tags": [
           "Items"
         ],
-        "summary": "Taxonomy",
-        "description": "The Taxonomy API exposes the category taxonomy that Walmart.com uses to categorize items. It describes the Departments, Categories, and Subcategories levels available on Walmart.com. You can specify the exact category as a parameter when using any of the following APIs:\n\n-   Search-   Data feeds-   Special feeds, to includePre-order, Best Sellers, Rollbacks, Clearance, and Special Buys\n\nFor example, you can restrict the Search API to search within a category by supplying the ID through the taxonomy. Similarly, you can use the Feed API to download category-specific feeds by specifying a category ID.",
-        "operationId": "getTaxonomyResponse",
+        "summary": "Get Item Associations",
+        "description": "Get Item Associations API allows you to retrieve shippingTemplate and shipNode associated with the provided items.",
+        "operationId": "getItemAssociations",
         "parameters": [
           {
             "in": "header",
@@ -79,42 +79,186 @@
             "example": "Walmart Service Name"
           }
         ],
+        "requestBody": {
+          "description": "Request fields",
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "items"
+                ],
+                "type": "object",
+                "properties": {
+                  "items": {
+                    "type": "array",
+                    "description": "List of items whose associations need to be fetched. It should not have more than 50 items.",
+                    "items": {
+                      "required": [
+                        "sku"
+                      ],
+                      "type": "object",
+                      "properties": {
+                        "sku": {
+                          "type": "string",
+                          "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
+                        }
+                      },
+                      "description": "List of items whose associations need to be fetched. It should not have more than 50 items."
+                    }
+                  }
+                }
+              },
+              "example": {
+                "items": [
+                  {
+                    "sku": "RG-IRAE-79VD"
+                  },
+                  {
+                    "sku": "AC73891"
+                  }
+                ]
+              }
+            }
+          },
+          "required": true
+        },
         "responses": {
           "200": {
             "description": "Successful Operation",
             "content": {
               "application/json": {
                 "schema": {
+                  "required": [
+                    "items"
+                  ],
                   "type": "object",
                   "properties": {
-                    "status": {
-                      "type": "string"
-                    },
-                    "payload": {
+                    "items": {
                       "type": "array",
                       "items": {
+                        "required": [
+                          "sku"
+                        ],
                         "type": "object",
                         "properties": {
-                          "category": {
+                          "sku": {
                             "type": "string",
-                            "description": "Type of item"
+                            "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
                           },
-                          "subcategory": {
+                          "associations": {
                             "type": "array",
-                            "description": "Specific kind of category",
+                            "description": "Item Associations like shippingTemplate, shipNode.",
                             "items": {
                               "type": "object",
                               "properties": {
-                                "subCategoryName": {
-                                  "type": "string",
-                                  "description": "Name of specific kind of category"
+                                "shippingTemplate": {
+                                  "type": "object",
+                                  "properties": {
+                                    "name": {
+                                      "type": "string",
+                                      "description": "Shipping Template Name"
+                                    },
+                                    "type": {
+                                      "type": "string",
+                                      "description": "Shipping Template Type",
+                                      "enum": [
+                                        "DEFAULT",
+                                        "CUSTOM",
+                                        "DELIVERR"
+                                      ]
+                                    },
+                                    "id": {
+                                      "type": "string",
+                                      "description": "Shipping Template ID"
+                                    }
+                                  },
+                                  "description": "Information about Shipping Template"
                                 },
-                                "subCategoryId": {
+                                "shipNodeName": {
                                   "type": "string",
-                                  "description": "ID of specific kind of category"
+                                  "description": "Name of the fulfillment center."
+                                },
+                                "shipNode": {
+                                  "type": "string",
+                                  "description": "The fulfillment center or ship node Id which uniquely identifies each facility and is autogenerated during the creation of fulfillment center. Every time a facility is added, a new ship node id is generated."
                                 }
                               },
-                              "description": "Specific kind of category"
+                              "description": "Item Associations like shippingTemplate, shipNode."
+                            }
+                          },
+                          "errors": {
+                            "type": "array",
+                            "items": {
+                              "required": [
+                                "code"
+                              ],
+                              "type": "object",
+                              "properties": {
+                                "code": {
+                                  "type": "string"
+                                },
+                                "field": {
+                                  "type": "string"
+                                },
+                                "description": {
+                                  "type": "string"
+                                },
+                                "info": {
+                                  "type": "string"
+                                },
+                                "severity": {
+                                  "type": "string",
+                                  "enum": [
+                                    "INFO",
+                                    "WARN",
+                                    "ERROR"
+                                  ]
+                                },
+                                "category": {
+                                  "type": "string",
+                                  "enum": [
+                                    "APPLICATION",
+                                    "SYSTEM",
+                                    "REQUEST",
+                                    "DATA"
+                                  ]
+                                },
+                                "causes": {
+                                  "type": "array",
+                                  "xml": {
+                                    "wrapped": true
+                                  },
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "code": {
+                                        "type": "string"
+                                      },
+                                      "field": {
+                                        "type": "string"
+                                      },
+                                      "type": {
+                                        "type": "string"
+                                      },
+                                      "description": {
+                                        "type": "string"
+                                      }
+                                    },
+                                    "xml": {
+                                      "name": "Cause"
+                                    }
+                                  }
+                                },
+                                "errorIdentifiers": {
+                                  "type": "object",
+                                  "additionalProperties": {
+                                    "type": "object"
+                                  }
+                                }
+                              },
+                              "xml": {
+                                "name": "Error"
+                              }
                             }
                           }
                         }
@@ -123,166 +267,55 @@
                   }
                 },
                 "example": {
-                  "status": "SUCCESS",
-                  "payload": [
+                  "items": [
                     {
-                      "category": "Animal",
-                      "subcategory": [
+                      "sku": "RG-IRAE-79VD",
+                      "associations": [
                         {
-                          "subCategoryName": "Animal Accessories",
-                          "subCategoryId": "559c5d924fff3d64de18bf45"
-                        },
-                        {
-                          "subCategoryName": "Animal Food",
-                          "subCategoryId": "559c5d8f4fff3d64de18bf3d"
-                        },
-                        {
-                          "subCategoryName": "Animal Health & Grooming",
-                          "subCategoryId": "559c5d90ed25b136f13a05df"
-                        },
-                        {
-                          "subCategoryName": "Animal Other",
-                          "subCategoryId": "56f2eb66208f9a06158f1748"
+                          "shippingTemplate": {
+                            "name": "Template 1",
+                            "type": "CUSTOM",
+                            "id": "98723284584755201"
+                          },
+                          "shipNodeName": "MP_Deliverr",
+                          "shipNode": "80991834993020929"
                         }
                       ]
                     },
                     {
-                      "category": "Art & Craft",
-                      "subcategory": [
+                      "sku": "AC73891",
+                      "associations": [
                         {
-                          "subCategoryName": "Art & Craft",
-                          "subCategoryId": "571fdff7208f9a0cdb760a7f"
+                          "shippingTemplate": {
+                            "name": "Default Shipping Template",
+                            "type": "DEFAULT",
+                            "id": "93685334451601409"
+                          },
+                          "shipNodeName": "MP Center",
+                          "shipNode": "100009"
+                        },
+                        {
+                          "shippingTemplate": {
+                            "name": "Template 1",
+                            "type": "CUSTOM",
+                            "id": "98723284584755201"
+                          },
+                          "shipNodeName": "Stark International Inc-MP",
+                          "shipNode": "10000000420"
+                        },
+                        {
+                          "shippingTemplate": {
+                            "name": "Template 1",
+                            "type": "CUSTOM",
+                            "id": "98723284584755201"
+                          },
+                          "shipNodeName": "MP_CUSTOM_1",
+                          "shipNode": "79897837271126017"
                         }
                       ]
                     }
                   ]
                 }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v3/items/{SKU}": {
-      "delete": {
-        "tags": [
-          "Items"
-        ],
-        "summary": "Retire an item",
-        "description": "Completely deactivates and un-publishes an item from the site.",
-        "operationId": "retireAnItem",
-        "parameters": [
-          {
-            "name": "SKU",
-            "in": "path",
-            "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: ':', '/', '?', '#', '[', ']', '@', '!', '$', '&', \"'\", '(', ')', '*', '+', ',', ';', '=', as well as '%' itself. Other characters don't need to be encoded.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
-          },
-          {
-            "in": "header",
-            "name": "WM_SEC.ACCESS_TOKEN",
-            "description": "The access token retrieved in the Token API call",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
-          },
-          {
-            "in": "header",
-            "name": "WM_CONSUMER.CHANNEL.TYPE",
-            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "header",
-            "name": "WM_QOS.CORRELATION_ID",
-            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
-          },
-          {
-            "in": "header",
-            "name": "WM_SVC.NAME",
-            "description": "Walmart Service Name",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Walmart Service Name"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "required": [
-                    "sku"
-                  ],
-                  "type": "object",
-                  "properties": {
-                    "sku": {
-                      "type": "string",
-                      "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
-                    },
-                    "message": {
-                      "type": "string",
-                      "description": "Message confirming the deletion or retirement of an item from the Walmart Catalog"
-                    }
-                  },
-                  "xml": {
-                    "name": "ItemRetireResponse"
-                  }
-                },
-                "example": {
-                  "sku": "97964_KFTest",
-                  "message": "Thank you.  Your item has been submitted for retirement from Walmart Catalog.  Please note that it can take up to 48 hours for items to be retired from our catalog.",
-                  "additionalAttributes": null,
-                  "errors": null
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "required": [
-                    "sku"
-                  ],
-                  "type": "object",
-                  "properties": {
-                    "sku": {
-                      "type": "string",
-                      "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
-                    },
-                    "message": {
-                      "type": "string",
-                      "description": "Message confirming the deletion or retirement of an item from the Walmart Catalog"
-                    }
-                  },
-                  "xml": {
-                    "name": "ItemRetireResponse"
-                  }
-                },
-                "example": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<ns2:ItemRetireResponse xmlns:ns2=\"http://walmart.com/\">\n    <ns2:sku>97964_KFTest</ns2:sku>\n    <ns2:message>Thank you.  Your item has been submitted for retirement from Walmart Catalog.  Please note that it can take up to 48 hours for items to be retired from our catalog.</ns2:message>\n</ns2:ItemRetireResponse>"
               }
             }
           }
@@ -1322,219 +1355,6 @@
                       "writeOnly": true
                     }
                   }
-                },
-                "example": {
-                  "status": "Success",
-                  "payload": [
-                    {
-                      "gtin": "05420529997042",
-                      "wpid": "5DTSM799JCUI",
-                      "lifecycleStatus": "RETIRED",
-                      "mart": "WALMART_US",
-                      "publishedStatus": {
-                        "reasons": [
-                          "END_DATE"
-                        ],
-                        "status": "UNPUBLISHED"
-                      },
-                      "productName": "Electronic Cables",
-                      "manufacturer": "ECManu",
-                      "shelf": "[\"UNNAV\"]",
-                      "itemId": "562433848",
-                      "price": {
-                        "amount": 70,
-                        "unit": "USD"
-                      },
-                      "sku": "88nZ6RR82XghDkd",
-                      "brand": "ECB brand",
-                      "productType": "default"
-                    },
-                    {
-                      "itemId": "458505242",
-                      "gtin": "05828079255702",
-                      "wpid": "3SNE69WWZOWX",
-                      "lifecycleStatus": "ACTIVE",
-                      "mart": "WALMART_US",
-                      "publishedStatus": {
-                        "status": "PUBLISHED"
-                      },
-                      "price": {
-                        "amount": 325,
-                        "unit": "USD"
-                      },
-                      "sku": "SDdk1BnxmLdKlqR",
-                      "productName": "Xbox 360 500GB Console with Fable Anniversary and Plants vs Zombies: Garden Warfare",
-                      "productType": "Video Game Consoles",
-                      "manufacturer": "Xbox",
-                      "shelf": "[\"Home Page\",\"Video Games\",\"Xbox 360 Consoles, Games, Accessories\",\"Xbox 360 Games\"]"
-                    },
-                    {
-                      "itemId": "923248096",
-                      "gtin": "05919650669831",
-                      "wpid": "5X7QAK7X2X0S",
-                      "lifecycleStatus": "ACTIVE",
-                      "mart": "WALMART_US",
-                      "publishedStatus": {
-                        "reasons": [
-                          "SHIPPING_INFO_MISSING",
-                          "NO_MIN_MAX_PRICE",
-                          "NO_LOGISTICS_DATA",
-                          "NO_PRICE",
-                          "NO_ACTIVE_DISTR"
-                        ],
-                        "status": "UNPUBLISHED"
-                      },
-                      "sku": "Wlju1ugimjnDyC7",
-                      "productName": "Xbox 360 500GB Console with Fable Anniversary and Plants vs Zombies: Garden Warfare",
-                      "productType": "Video Game Consoles",
-                      "manufacturer": "Xbox",
-                      "shelf": "[\"Home Page\",\"Video Games\",\"Xbox 360 Consoles, Games, Accessories\",\"Xbox 360 Games\"]"
-                    },
-                    {
-                      "gtin": "05935576685236",
-                      "wpid": "2IQ9J36SRZ3T",
-                      "lifecycleStatus": "ACTIVE",
-                      "mart": "WALMART_US",
-                      "publishedStatus": {
-                        "status": "PUBLISHED"
-                      },
-                      "productName": "Microfleece Blanket Sleeper Pajamas (Toddler Girls)",
-                      "manufacturer": "Komar Kids LLC",
-                      "shelf": "[\"UNNAV\"]",
-                      "itemId": "734690732",
-                      "price": {
-                        "amount": 8,
-                        "unit": "USD"
-                      },
-                      "sku": "sku-nrtVAYGPjdsgbviOD0mw766852",
-                      "brand": "Peas & Carrots",
-                      "productType": "Pajamas"
-                    },
-                    {
-                      "gtin": "05643842631879",
-                      "wpid": "31ZGLJXCMALD",
-                      "lifecycleStatus": "ACTIVE",
-                      "mart": "WALMART_US",
-                      "publishedStatus": {
-                        "reasons": [
-                          "PROHIBITED_TNS_RESPONSE"
-                        ],
-                        "status": "SYSTEM_PROBLEM"
-                      },
-                      "productName": "Mainstays Multifunction Kitchen Cart, Multiple Colors",
-                      "manufacturer": "Dorel Asia",
-                      "shelf": "[\"Home Page\",\"Home\",\"Furniture\",\"Kitchen & Dining Furniture\",\"Kitchen Islands & Carts\"]",
-                      "itemId": "839833087",
-                      "price": {
-                        "amount": 89,
-                        "unit": "USD"
-                      },
-                      "sku": "sku-1Zyf4nJnNoFGX8p5In6M426318",
-                      "brand": "Mainstays",
-                      "productType": "Kitchen Storage Carts"
-                    },
-                    {
-                      "itemId": "862640320",
-                      "gtin": "05040277834668",
-                      "price": {
-                        "amount": 7,
-                        "unit": "USD"
-                      },
-                      "sku": "7tdXa2Lnezu8yv1",
-                      "brand": "Levi Strauss",
-                      "productName": "Levi's - Big Men's Flat -Front Wrinkle-Resistant Pants",
-                      "productType": "Pants",
-                      "manufacturer": "Levi's company",
-                      "shelf": "[\"Home Page\",\"Clothing\",\"Men\",\"Men's Bottoms\",\"Men's Pants\"]"
-                    },
-                    {
-                      "gtin": "00080529910042",
-                      "wpid": "5X0LZVVJU89V",
-                      "lifecycleStatus": "ACTIVE",
-                      "mart": "WALMART_US",
-                      "publishedStatus": {
-                        "status": "PUBLISHED"
-                      },
-                      "upc": "080529910042",
-                      "productName": "E-A-R Classic Earplugs, Neon Yellow, 1000 / Bottle (Quantity)",
-                      "shelf": "[\"Home Page\",\"Health\",\"Ear Care\",\"Ear Plugs\"]",
-                      "itemId": "19674841",
-                      "price": {
-                        "amount": 45.1,
-                        "unit": "USD"
-                      },
-                      "sku": "SKUSafety&Emergency",
-                      "brand": "E-A-R",
-                      "productType": "Earplugs"
-                    },
-                    {
-                      "itemId": "769546740",
-                      "gtin": "05403344892488",
-                      "wpid": "5WCPNN3IUOHV",
-                      "lifecycleStatus": "ACTIVE",
-                      "mart": "WALMART_US",
-                      "publishedStatus": {
-                        "status": "PUBLISHED"
-                      },
-                      "price": {
-                        "amount": 325,
-                        "unit": "USD"
-                      },
-                      "sku": "2RSJ3i1pynYPBAf",
-                      "productName": "Xbox 360 500GB Console with Fable Anniversary and Plants vs Zombies: Garden Warfare",
-                      "productType": "default",
-                      "manufacturer": "Xbox",
-                      "shelf": "[\"Home Page\",\"Video Games\",\"Video Game Consoles\"]"
-                    },
-                    {
-                      "itemId": "988223634",
-                      "gtin": "05884984304980",
-                      "wpid": "6VBKXTHP3KMB",
-                      "lifecycleStatus": "ACTIVE",
-                      "mart": "WALMART_US",
-                      "publishedStatus": {
-                        "reasons": [
-                          "PARTNER_ITEM_DEFAULT_DISPLAY_STATUS"
-                        ],
-                        "status": "STAGE"
-                      },
-                      "price": {
-                        "amount": 4.83,
-                        "unit": "USD"
-                      },
-                      "sku": "sCOHsnCYqs1KWmd",
-                      "brand": "Crown",
-                      "productName": "Crown Camp Fuel, Quart",
-                      "productType": "Fuel Tank & Line Repairs",
-                      "shelf": "[\"Home Page\",\"Auto & Tires\",\"Automotive Replacement Parts\",\"Air Intake and Fuel Delivery\",\"Fuel Pumps and Tanks\"]"
-                    },
-                    {
-                      "gtin": "05243875323040",
-                      "wpid": "2DMH907FBZBU",
-                      "lifecycleStatus": "RETIRED",
-                      "mart": "WALMART_US",
-                      "publishedStatus": {
-                        "reasons": [
-                          "END_DATE"
-                        ],
-                        "status": "UNPUBLISHED"
-                      },
-                      "productName": "Electronic Cables",
-                      "manufacturer": "ECManu",
-                      "shelf": "[\"UNNAV\"]",
-                      "itemId": "162790217",
-                      "price": {
-                        "amount": 70,
-                        "unit": "USD"
-                      },
-                      "sku": "jiPOjG6m7NNn00f",
-                      "brand": "ECB brand",
-                      "productType": "default"
-                    }
-                  ],
-                  "limit": 10,
-                  "totalItems": 126331,
-                  "nextCursor": "DnF1ZXJ5VGhlbkZldGNoFAAAAAAFY5rZFmJYLXU3cXBtUkptLUh5Rl9SelItZmcAAAAAAyAIRRZ4Mm41WTB1UlFIUzkyUVlOSjhFWXV3AAAAAAMgCEYWeDJuNVkwdVJRSFM5MlFZTko4RVl1dwAAAAAFhKggFmswVURRXzhzUlYtQVhyRmVXTy1UN0EAAAAABYSoHxZrMFVEUV84c1JWLUFYckZlV08tVDdBAAAAAAWt5AIWTl82dF9OR09Uc2VXbVhwRUFUSk44ZwAAAAAFTM_uFk11Q04ydmlOUk1pNW1iS0paUUt6Q1EAAAAABUzP7xZNdUNOMnZpTlJNaTVtYktKWlFLekNRAAAAAAWEqCIWazBVRFFfOHNSVi1BWHJGZVdPLVQ3QQAAAAAFhKghFmswVURRXzhzUlYtQVhyRmVXTy1UN0EAAAAABWOa2hZiWC11N3FwbVJKbS1IeUZfUnpSLWZnAAAAAAVMz_EWTXVDTjJ2aU5STWk1bWJLSlpRS3pDUQAAAAADIAhHFngybjVZMHVSUUhTOTJRWU5KOEVZdXcAAAAABWOa3BZiWC11N3FwbVJKbS1IeUZfUnpSLWZnAAAAAAWt5AMWTl82dF9OR09Uc2VXbVhwRUFUSk44ZwAAAAAFY5rbFmJYLXU3cXBtUkptLUh5Rl9SelItZmcAAAAABUzP8BZNdUNOMnZpTlJNaTVtYktKWlFLekNRAAAAAAMgCEgWeDJuNVkwdVJRSFM5MlFZTko4RVl1dwAAAAAFreQFFk5fNnRfTkdPVHNlV21YcEVBVEpOOGcAAAAABa3kBBZOXzZ0X05HT1RzZVdtWHBFQVRKTjhn"
                 }
               }
             }
@@ -3928,14 +3748,14 @@
         }
       }
     },
-    "/v3/items/associations": {
-      "post": {
+    "/v3/items/taxonomy": {
+      "get": {
         "tags": [
           "Items"
         ],
-        "summary": "Get Item Associations",
-        "description": "Get Item Associations API allows you to retrieve shippingTemplate and shipNode associated with the provided items.",
-        "operationId": "getItemAssociations",
+        "summary": "Taxonomy",
+        "description": "The Taxonomy API exposes the category taxonomy that Walmart.com uses to categorize items. It describes the Departments, Categories, and Subcategories levels available on Walmart.com. You can specify the exact category as a parameter when using any of the following APIs:\n\n-   Search-   Data feeds-   Special feeds, to includePre-order, Best Sellers, Rollbacks, Clearance, and Special Buys\n\nFor example, you can restrict the Search API to search within a category by supplying the ID through the taxonomy. Similarly, you can use the Feed API to download category-specific feeds by specifying a category ID.",
+        "operationId": "getTaxonomyResponse",
         "parameters": [
           {
             "in": "header",
@@ -3987,186 +3807,42 @@
             "example": "Walmart Service Name"
           }
         ],
-        "requestBody": {
-          "description": "Request fields",
-          "content": {
-            "application/json": {
-              "schema": {
-                "required": [
-                  "items"
-                ],
-                "type": "object",
-                "properties": {
-                  "items": {
-                    "type": "array",
-                    "description": "List of items whose associations need to be fetched. It should not have more than 50 items.",
-                    "items": {
-                      "required": [
-                        "sku"
-                      ],
-                      "type": "object",
-                      "properties": {
-                        "sku": {
-                          "type": "string",
-                          "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
-                        }
-                      },
-                      "description": "List of items whose associations need to be fetched. It should not have more than 50 items."
-                    }
-                  }
-                }
-              },
-              "example": {
-                "items": [
-                  {
-                    "sku": "RG-IRAE-79VD"
-                  },
-                  {
-                    "sku": "AC73891"
-                  }
-                ]
-              }
-            }
-          },
-          "required": true
-        },
         "responses": {
           "200": {
             "description": "Successful Operation",
             "content": {
               "application/json": {
                 "schema": {
-                  "required": [
-                    "items"
-                  ],
                   "type": "object",
                   "properties": {
-                    "items": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "payload": {
                       "type": "array",
                       "items": {
-                        "required": [
-                          "sku"
-                        ],
                         "type": "object",
                         "properties": {
-                          "sku": {
+                          "category": {
                             "type": "string",
-                            "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
+                            "description": "Type of item"
                           },
-                          "associations": {
+                          "subcategory": {
                             "type": "array",
-                            "description": "Item Associations like shippingTemplate, shipNode.",
+                            "description": "Specific kind of category",
                             "items": {
                               "type": "object",
                               "properties": {
-                                "shippingTemplate": {
-                                  "type": "object",
-                                  "properties": {
-                                    "name": {
-                                      "type": "string",
-                                      "description": "Shipping Template Name"
-                                    },
-                                    "type": {
-                                      "type": "string",
-                                      "description": "Shipping Template Type",
-                                      "enum": [
-                                        "DEFAULT",
-                                        "CUSTOM",
-                                        "DELIVERR"
-                                      ]
-                                    },
-                                    "id": {
-                                      "type": "string",
-                                      "description": "Shipping Template ID"
-                                    }
-                                  },
-                                  "description": "Information about Shipping Template"
-                                },
-                                "shipNodeName": {
+                                "subCategoryName": {
                                   "type": "string",
-                                  "description": "Name of the fulfillment center."
+                                  "description": "Name of specific kind of category"
                                 },
-                                "shipNode": {
+                                "subCategoryId": {
                                   "type": "string",
-                                  "description": "The fulfillment center or ship node Id which uniquely identifies each facility and is autogenerated during the creation of fulfillment center. Every time a facility is added, a new ship node id is generated."
+                                  "description": "ID of specific kind of category"
                                 }
                               },
-                              "description": "Item Associations like shippingTemplate, shipNode."
-                            }
-                          },
-                          "errors": {
-                            "type": "array",
-                            "items": {
-                              "required": [
-                                "code"
-                              ],
-                              "type": "object",
-                              "properties": {
-                                "code": {
-                                  "type": "string"
-                                },
-                                "field": {
-                                  "type": "string"
-                                },
-                                "description": {
-                                  "type": "string"
-                                },
-                                "info": {
-                                  "type": "string"
-                                },
-                                "severity": {
-                                  "type": "string",
-                                  "enum": [
-                                    "INFO",
-                                    "WARN",
-                                    "ERROR"
-                                  ]
-                                },
-                                "category": {
-                                  "type": "string",
-                                  "enum": [
-                                    "APPLICATION",
-                                    "SYSTEM",
-                                    "REQUEST",
-                                    "DATA"
-                                  ]
-                                },
-                                "causes": {
-                                  "type": "array",
-                                  "xml": {
-                                    "wrapped": true
-                                  },
-                                  "items": {
-                                    "type": "object",
-                                    "properties": {
-                                      "code": {
-                                        "type": "string"
-                                      },
-                                      "field": {
-                                        "type": "string"
-                                      },
-                                      "type": {
-                                        "type": "string"
-                                      },
-                                      "description": {
-                                        "type": "string"
-                                      }
-                                    },
-                                    "xml": {
-                                      "name": "Cause"
-                                    }
-                                  }
-                                },
-                                "errorIdentifiers": {
-                                  "type": "object",
-                                  "additionalProperties": {
-                                    "type": "object"
-                                  }
-                                }
-                              },
-                              "xml": {
-                                "name": "Error"
-                              }
+                              "description": "Specific kind of category"
                             }
                           }
                         }
@@ -4175,55 +3851,166 @@
                   }
                 },
                 "example": {
-                  "items": [
+                  "status": "SUCCESS",
+                  "payload": [
                     {
-                      "sku": "RG-IRAE-79VD",
-                      "associations": [
+                      "category": "Animal",
+                      "subcategory": [
                         {
-                          "shippingTemplate": {
-                            "name": "Template 1",
-                            "type": "CUSTOM",
-                            "id": "98723284584755201"
-                          },
-                          "shipNodeName": "MP_Deliverr",
-                          "shipNode": "80991834993020929"
+                          "subCategoryName": "Animal Accessories",
+                          "subCategoryId": "559c5d924fff3d64de18bf45"
+                        },
+                        {
+                          "subCategoryName": "Animal Food",
+                          "subCategoryId": "559c5d8f4fff3d64de18bf3d"
+                        },
+                        {
+                          "subCategoryName": "Animal Health & Grooming",
+                          "subCategoryId": "559c5d90ed25b136f13a05df"
+                        },
+                        {
+                          "subCategoryName": "Animal Other",
+                          "subCategoryId": "56f2eb66208f9a06158f1748"
                         }
                       ]
                     },
                     {
-                      "sku": "AC73891",
-                      "associations": [
+                      "category": "Art & Craft",
+                      "subcategory": [
                         {
-                          "shippingTemplate": {
-                            "name": "Default Shipping Template",
-                            "type": "DEFAULT",
-                            "id": "93685334451601409"
-                          },
-                          "shipNodeName": "MP Center",
-                          "shipNode": "100009"
-                        },
-                        {
-                          "shippingTemplate": {
-                            "name": "Template 1",
-                            "type": "CUSTOM",
-                            "id": "98723284584755201"
-                          },
-                          "shipNodeName": "Stark International Inc-MP",
-                          "shipNode": "10000000420"
-                        },
-                        {
-                          "shippingTemplate": {
-                            "name": "Template 1",
-                            "type": "CUSTOM",
-                            "id": "98723284584755201"
-                          },
-                          "shipNodeName": "MP_CUSTOM_1",
-                          "shipNode": "79897837271126017"
+                          "subCategoryName": "Art & Craft",
+                          "subCategoryId": "571fdff7208f9a0cdb760a7f"
                         }
                       ]
                     }
                   ]
                 }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/items/{SKU}": {
+      "delete": {
+        "tags": [
+          "Items"
+        ],
+        "summary": "Retire an item",
+        "description": "Completely deactivates and un-publishes an item from the site.",
+        "operationId": "retireAnItem",
+        "parameters": [
+          {
+            "name": "SKU",
+            "in": "path",
+            "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: ':', '/', '?', '#', '[', ']', '@', '!', '$', '&', \"'\", '(', ')', '*', '+', ',', ';', '=', as well as '%' itself. Other characters don't need to be encoded.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Basic YzcyOTFjNmItNzI5MC00...."
+          },
+          {
+            "in": "header",
+            "name": "WM_SEC.ACCESS_TOKEN",
+            "description": "The access token retrieved in the Token API call",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
+          },
+          {
+            "in": "header",
+            "name": "WM_CONSUMER.CHANNEL.TYPE",
+            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "WM_QOS.CORRELATION_ID",
+            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
+          },
+          {
+            "in": "header",
+            "name": "WM_SVC.NAME",
+            "description": "Walmart Service Name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Walmart Service Name"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "required": [
+                    "sku"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "sku": {
+                      "type": "string",
+                      "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Message confirming the deletion or retirement of an item from the Walmart Catalog"
+                    }
+                  },
+                  "xml": {
+                    "name": "ItemRetireResponse"
+                  }
+                },
+                "example": {
+                  "sku": "97964_KFTest",
+                  "message": "Thank you.  Your item has been submitted for retirement from Walmart Catalog.  Please note that it can take up to 48 hours for items to be retired from our catalog.",
+                  "additionalAttributes": null,
+                  "errors": null
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "required": [
+                    "sku"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "sku": {
+                      "type": "string",
+                      "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Message confirming the deletion or retirement of an item from the Walmart Catalog"
+                    }
+                  },
+                  "xml": {
+                    "name": "ItemRetireResponse"
+                  }
+                },
+                "example": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<ns2:ItemRetireResponse xmlns:ns2=\"http://walmart.com/\">\n    <ns2:sku>97964_KFTest</ns2:sku>\n    <ns2:message>Thank you.  Your item has been submitted for retirement from Walmart Catalog.  Please note that it can take up to 48 hours for items to be retired from our catalog.</ns2:message>\n</ns2:ItemRetireResponse>"
               }
             }
           }
@@ -4236,7 +4023,7 @@
           "Items"
         ],
         "summary": "Bulk Item Setup (Multiple)",
-        "description": " Use this API for initial item setup and maintenance.\n\nThis API updates items in bulk. You can update 10,000 items at once; updates with more than 10,000 items are not supported. Keep feed sizes below 10 MB to ensure optimal feed processing time.\n\nYou can use the Bulk Item Setup API for any of the following item spec versions, just specify the corresponding feed type as a query parameter.\n\n*   Item spec version 3.2 feed type: item\n*   Item spec version 4.3 feed type: MP_ITEM\n*   WFS Item spec version 4.2 feed type: MP_WFS_ITEM \n*   WFS Maintenance spec version 4.3 feed type: MP_MAINTENANCE\n*   Set up item by match 4.0 feed type: MP_ITEM_MATCH \n*   Convert an existing item to WFS 4.4 feed type : OMNI_WFS \n",
+        "description": " Use this API for initial item setup and maintenance.\n\nThis API updates items in bulk. You can update 10,000 items at once; updates with more than 10,000 items are not supported. Keep feed sizes below 10 MB to ensure optimal feed processing time.\n\nYou can use the Bulk Item Setup API for any of the following item spec versions, just specify the corresponding feed type as a query parameter.\n\n*   Item spec version 3.2 feed type: item\n*   Item spec version 4.4 feed type: MP_ITEM\n*   WFS Item spec version 4.2 feed type: MP_WFS_ITEM \n*   WFS Maintenance spec version 4.4 feed type: MP_MAINTENANCE\n*   Set up item by match 4.0 feed type: MP_ITEM_MATCH \n*   Convert an existing item to WFS 4.4 feed type : OMNI_WFS \n",
         "externalDocs": {
           "description": "View Guide",
           "url": "/doc/us/mp/us-mp-items/#1232"
@@ -4327,53 +4114,81 @@
                 }
               },
               "examples": {
-                "V4.3 MP_ITEM": {
+                "V4.4 MP_ITEM": {
                   "value": {
                     "MPItemFeedHeader": {
-                      "subCategory": "baby_food",
                       "sellingChannel": "marketplace",
                       "processMode": "REPLACE",
+                      "subset": "EXTERNAL",
                       "locale": "en",
-                      "version": "1.3",
-                      "subset": "EXTERNAL"
+                      "version": "1.4"
                     },
                     "MPItem": [
                       {
-                        "Visible": {
-                          "Baby Food": {
-                            "shortDescription": "Site Description for the item",
-                            "keyFeatures": [
-                              "KidzStuff Baby Sun Protection Bodysuit"
-                            ],
-                            "mainImageUrl": "https://i5-qa.walmartimages.com/asr/5a3e719f-3bca-4281-8333-030c5a2756bf.62d73c2f61f929ef580fe375e3597c13.jpeg"
-                          }
-                        },
                         "Orderable": {
-                          "productIdentifiers": {
-                            "productId": "06275872578689",
-                            "productIdType": "GTIN"
-                          },
-                          "additionalOfferAttributes": [
-                            {
-                              "additionalOfferAttributeValue": "02/02/2021",
-                              "additionalOfferAttributeName": "startDate"
-                            }
-                          ],
-                          "shipsInOriginalPackaging": "No",
-                          "endDate": "2040-01-01T00:00:00.000Z",
-                          "price": 12,
-                          "externalProductIdentifier": [
-                            {
-                              "externalProductIdType": "ASIN",
-                              "externalProductId": "123"
-                            }
-                          ],
                           "sku": "skuAutomation-1627586740349",
-                          "ShippingWeight": 2,
-                          "brand": "Kidzstuff",
-                          "MustShipAlone": "No",
-                          "productName": "KidzStuff Baby Sun Protection Bodysuit",
-                          "startDate": "2021-07-29T00:00:00.000Z"
+                          "productIdentifiers": {
+                            "productIdType": "UPC",
+                            "productId": "369087530634"
+                          },
+                          "productName": "WL_Sim_verizon",
+                          "brand": "verizon",
+                          "price": 28,
+                          "fulfillmentLagTime": 2,
+                          "ShippingWeight": 1,
+                          "pricePerUnit": {
+                            "pricePerUnitQuantity": 1,
+                            "pricePerUnitUom": "Each"
+                          },
+                          "chemicalAerosolPesticide": "No",
+                          "shipsInOriginalPackaging": "No",
+                          "startDate": "2021-01-09T18:00:00Z",
+                          "endDate": "2021-08-27T18:00:00Z",
+                          "MustShipAlone": "No"
+                        },
+                        "Visible": {
+                          "Home Decor, Kitchen, & Other": {
+                            "shortDescription": "Site Description for the item",
+                            "mainImageUrl": "https://i5.walmartimages.com/asr/f3b06924-2432-4c76-9359-07f240f87109.0b72d91e2415ea0217bf6b1f20ad47ad.jpeg",
+                            "productSecondaryImageURL": [
+                              "https://i5.walmartimages.com/asr/8e517c62-b3a0-4c3f-9b62-576e4686614f.bca27434aa9bb91c79125b807c027556.jpeg"
+                            ],
+                            "keyFeatures": [
+                              "Microwave safe"
+                            ],
+                            "assembledProductWeight": {
+                              "measure": 1,
+                              "unit": "lb"
+                            },
+                            "isAssemblyRequired": "No"
+                          }
+                        }
+                      },
+                      {
+                        "Orderable": {
+                          "sku": "skuAutomation-1618948397761",
+                          "productIdentifiers": {
+                            "productIdType": "GTIN",
+                            "productId": "06189484642358"
+                          },
+                          "productName": "Single Item Creation using Automation for toys_other",
+                          "brand": "Funskool",
+                          "price": 12.34,
+                          "ShippingWeight": 33.34,
+                          "chemicalAerosolPesticide": "No",
+                          "shipsInOriginalPackaging": "No",
+                          "startDate": "2020-10-25T00:00:00Z",
+                          "endDate": "2040-01-01T00:00:00Z",
+                          "MustShipAlone": "No"
+                        },
+                        "Visible": {
+                          "Toys": {
+                            "shortDescription": "Mickey Poster created using automation under toys_other",
+                            "mainImageUrl": "https://i5-qa.walmartimages.com/asr/89dfda6e-6971-40e1-8ee2-a290db95290f.07e9cb422c594391d86203e391826813.jpeg",
+                            "keyFeatures": [
+                              "Durable"
+                            ]
+                          }
                         }
                       }
                     ]
@@ -4505,49 +4320,80 @@
                     ]
                   }
                 },
-                "V4.3 MP_MAINTENANCE": {
+                "V4.4 MP_MAINTENANCE": {
                   "value": {
                     "MPItemFeedHeader": {
-                      "subCategory": "watercraft",
                       "sellingChannel": "mpmaintenance",
                       "processMode": "REPLACE",
+                      "subset": "EXTERNAL",
                       "locale": "en",
-                      "version": "1.3",
-                      "subset": "EXTERNAL"
+                      "version": "1.4"
                     },
                     "MPItem": [
                       {
                         "Orderable": {
+                          "sku": "skuAutomation-1627586740349",
                           "productIdentifiers": {
-                            "productId": "07330717011499",
-                            "productIdType": "GTIN"
+                            "productIdType": "UPC",
+                            "productId": "369087530634"
                           },
-                          "productTaxCode": 2038710,
-                          "endDate": "2049-12-30T18:30:00Z",
-                          "shipsInOriginalPackaging": "Yes",
-                          "price": 399,
+                          "productName": "WL_Sim_verizon",
+                          "brand": "verizon",
+                          "price": 28,
+                          "fulfillmentLagTime": 2,
+                          "ShippingWeight": 1,
+                          "pricePerUnit": {
+                            "pricePerUnitQuantity": 1,
+                            "pricePerUnitUom": "Each"
+                          },
                           "chemicalAerosolPesticide": "No",
-                          "sku": "StampStageWatercraft2904_P1",
-                          "ShippingWeight": 31.9,
-                          "brand": "Johnson Pump",
-                          "MustShipAlone": "Yes",
-                          "productName": "Johnson Pump Standard Electric Comfort Macerator Style 12V",
-                          "startDate": "2018-08-08T18:30:00Z"
+                          "shipsInOriginalPackaging": "No",
+                          "startDate": "2021-01-09T18:00:00Z",
+                          "endDate": "2021-08-27T18:00:00Z",
+                          "MustShipAlone": "No"
                         },
                         "Visible": {
-                          "Watercraft": {
-                            "msrp": 405.98,
-                            "engineDisplacement": {
-                              "unit": "cc",
-                              "measure": 20
-                            },
-                            "shortDescription": "Johnson Pump Standard Electric Comfort Macerator Style 12V",
-                            "keyFeatures": [
-                              "Johnson Pump Standard Electric Comfort Macerator Style 12V"
+                          "Home Decor, Kitchen, & Other": {
+                            "shortDescription": "Site Description for the item",
+                            "mainImageUrl": "https://i5.walmartimages.com/asr/f3b06924-2432-4c76-9359-07f240f87109.0b72d91e2415ea0217bf6b1f20ad47ad.jpeg",
+                            "productSecondaryImageURL": [
+                              "https://i5.walmartimages.com/asr/8e517c62-b3a0-4c3f-9b62-576e4686614f.bca27434aa9bb91c79125b807c027556.jpeg"
                             ],
-                            "mainImageUrl": "https://i5-qa.walmartimages.com/asr/4435d94f-3611-4ec3-af63-9acf32c4107c_1.1442c1b99c1ae1be191ff8a3396a9797.jpeg",
-                            "prop65WarningText": "Required",
-                            "manufacturer": "Johnson Pump"
+                            "keyFeatures": [
+                              "Microwave safe"
+                            ],
+                            "assembledProductWeight": {
+                              "measure": 1,
+                              "unit": "lb"
+                            },
+                            "isAssemblyRequired": "No"
+                          }
+                        }
+                      },
+                      {
+                        "Orderable": {
+                          "sku": "skuAutomation-1618948397761",
+                          "productIdentifiers": {
+                            "productIdType": "GTIN",
+                            "productId": "06189484642358"
+                          },
+                          "productName": "Single Item Creation using Automation for toys_other",
+                          "brand": "Funskool",
+                          "price": 12.34,
+                          "ShippingWeight": 33.34,
+                          "chemicalAerosolPesticide": "No",
+                          "shipsInOriginalPackaging": "No",
+                          "startDate": "2020-10-25T00:00:00Z",
+                          "endDate": "2040-01-01T00:00:00Z",
+                          "MustShipAlone": "No"
+                        },
+                        "Visible": {
+                          "Toys": {
+                            "shortDescription": "Mickey Poster created using automation under toys_other",
+                            "mainImageUrl": "https://i5-qa.walmartimages.com/asr/89dfda6e-6971-40e1-8ee2-a290db95290f.07e9cb422c594391d86203e391826813.jpeg",
+                            "keyFeatures": [
+                              "Durable"
+                            ]
                           }
                         }
                       }
@@ -4795,78 +4641,267 @@
   },
   "components": {
     "schemas": {
-      "CategoryPayload": {
+      "Association": {
         "type": "object",
         "properties": {
-          "category": {
-            "type": "string",
-            "description": "Type of item"
-          },
-          "subcategory": {
-            "type": "array",
-            "description": "Specific kind of category",
-            "items": {
-              "type": "object",
-              "properties": {
-                "subCategoryName": {
-                  "type": "string",
-                  "description": "Name of specific kind of category"
-                },
-                "subCategoryId": {
-                  "type": "string",
-                  "description": "ID of specific kind of category"
-                }
+          "shippingTemplate": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Shipping Template Name"
               },
-              "description": "Specific kind of category"
-            }
-          }
-        }
-      },
-      "SubCategory": {
-        "type": "object",
-        "properties": {
-          "subCategoryName": {
-            "type": "string",
-            "description": "Name of specific kind of category"
+              "type": {
+                "type": "string",
+                "description": "Shipping Template Type",
+                "enum": [
+                  "DEFAULT",
+                  "CUSTOM",
+                  "DELIVERR"
+                ]
+              },
+              "id": {
+                "type": "string",
+                "description": "Shipping Template ID"
+              }
+            },
+            "description": "Information about Shipping Template"
           },
-          "subCategoryId": {
+          "shipNodeName": {
             "type": "string",
-            "description": "ID of specific kind of category"
+            "description": "Name of the fulfillment center."
+          },
+          "shipNode": {
+            "type": "string",
+            "description": "The fulfillment center or ship node Id which uniquely identifies each facility and is autogenerated during the creation of fulfillment center. Every time a facility is added, a new ship node id is generated."
           }
         },
-        "description": "Specific kind of category"
+        "description": "Item Associations like shippingTemplate, shipNode."
       },
-      "TaxonomyResponseDTO": {
+      "Cause": {
         "type": "object",
         "properties": {
-          "status": {
+          "code": {
             "type": "string"
           },
-          "payload": {
+          "field": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        },
+        "xml": {
+          "name": "Cause"
+        }
+      },
+      "Error": {
+        "required": [
+          "code"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "field": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "info": {
+            "type": "string"
+          },
+          "severity": {
+            "type": "string",
+            "enum": [
+              "INFO",
+              "WARN",
+              "ERROR"
+            ]
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "APPLICATION",
+              "SYSTEM",
+              "REQUEST",
+              "DATA"
+            ]
+          },
+          "causes": {
             "type": "array",
+            "xml": {
+              "wrapped": true
+            },
             "items": {
               "type": "object",
               "properties": {
-                "category": {
-                  "type": "string",
-                  "description": "Type of item"
+                "code": {
+                  "type": "string"
                 },
-                "subcategory": {
+                "field": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                }
+              },
+              "xml": {
+                "name": "Cause"
+              }
+            }
+          },
+          "errorIdentifiers": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object"
+            }
+          }
+        },
+        "xml": {
+          "name": "Error"
+        }
+      },
+      "ItemsAssociationsResponseDTO": {
+        "required": [
+          "items"
+        ],
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "required": [
+                "sku"
+              ],
+              "type": "object",
+              "properties": {
+                "sku": {
+                  "type": "string",
+                  "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
+                },
+                "associations": {
                   "type": "array",
-                  "description": "Specific kind of category",
+                  "description": "Item Associations like shippingTemplate, shipNode.",
                   "items": {
                     "type": "object",
                     "properties": {
-                      "subCategoryName": {
-                        "type": "string",
-                        "description": "Name of specific kind of category"
+                      "shippingTemplate": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string",
+                            "description": "Shipping Template Name"
+                          },
+                          "type": {
+                            "type": "string",
+                            "description": "Shipping Template Type",
+                            "enum": [
+                              "DEFAULT",
+                              "CUSTOM",
+                              "DELIVERR"
+                            ]
+                          },
+                          "id": {
+                            "type": "string",
+                            "description": "Shipping Template ID"
+                          }
+                        },
+                        "description": "Information about Shipping Template"
                       },
-                      "subCategoryId": {
+                      "shipNodeName": {
                         "type": "string",
-                        "description": "ID of specific kind of category"
+                        "description": "Name of the fulfillment center."
+                      },
+                      "shipNode": {
+                        "type": "string",
+                        "description": "The fulfillment center or ship node Id which uniquely identifies each facility and is autogenerated during the creation of fulfillment center. Every time a facility is added, a new ship node id is generated."
                       }
                     },
-                    "description": "Specific kind of category"
+                    "description": "Item Associations like shippingTemplate, shipNode."
+                  }
+                },
+                "errors": {
+                  "type": "array",
+                  "items": {
+                    "required": [
+                      "code"
+                    ],
+                    "type": "object",
+                    "properties": {
+                      "code": {
+                        "type": "string"
+                      },
+                      "field": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "info": {
+                        "type": "string"
+                      },
+                      "severity": {
+                        "type": "string",
+                        "enum": [
+                          "INFO",
+                          "WARN",
+                          "ERROR"
+                        ]
+                      },
+                      "category": {
+                        "type": "string",
+                        "enum": [
+                          "APPLICATION",
+                          "SYSTEM",
+                          "REQUEST",
+                          "DATA"
+                        ]
+                      },
+                      "causes": {
+                        "type": "array",
+                        "xml": {
+                          "wrapped": true
+                        },
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "code": {
+                              "type": "string"
+                            },
+                            "field": {
+                              "type": "string"
+                            },
+                            "type": {
+                              "type": "string"
+                            },
+                            "description": {
+                              "type": "string"
+                            }
+                          },
+                          "xml": {
+                            "name": "Cause"
+                          }
+                        }
+                      },
+                      "errorIdentifiers": {
+                        "type": "object",
+                        "additionalProperties": {
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "xml": {
+                      "name": "Error"
+                    }
                   }
                 }
               }
@@ -4874,7 +4909,7 @@
           }
         }
       },
-      "ItemRetireResponse": {
+      "ResponseItem": {
         "required": [
           "sku"
         ],
@@ -4884,14 +4919,184 @@
             "type": "string",
             "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
           },
-          "message": {
+          "associations": {
+            "type": "array",
+            "description": "Item Associations like shippingTemplate, shipNode.",
+            "items": {
+              "type": "object",
+              "properties": {
+                "shippingTemplate": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "Shipping Template Name"
+                    },
+                    "type": {
+                      "type": "string",
+                      "description": "Shipping Template Type",
+                      "enum": [
+                        "DEFAULT",
+                        "CUSTOM",
+                        "DELIVERR"
+                      ]
+                    },
+                    "id": {
+                      "type": "string",
+                      "description": "Shipping Template ID"
+                    }
+                  },
+                  "description": "Information about Shipping Template"
+                },
+                "shipNodeName": {
+                  "type": "string",
+                  "description": "Name of the fulfillment center."
+                },
+                "shipNode": {
+                  "type": "string",
+                  "description": "The fulfillment center or ship node Id which uniquely identifies each facility and is autogenerated during the creation of fulfillment center. Every time a facility is added, a new ship node id is generated."
+                }
+              },
+              "description": "Item Associations like shippingTemplate, shipNode."
+            }
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "required": [
+                "code"
+              ],
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string"
+                },
+                "field": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "info": {
+                  "type": "string"
+                },
+                "severity": {
+                  "type": "string",
+                  "enum": [
+                    "INFO",
+                    "WARN",
+                    "ERROR"
+                  ]
+                },
+                "category": {
+                  "type": "string",
+                  "enum": [
+                    "APPLICATION",
+                    "SYSTEM",
+                    "REQUEST",
+                    "DATA"
+                  ]
+                },
+                "causes": {
+                  "type": "array",
+                  "xml": {
+                    "wrapped": true
+                  },
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "code": {
+                        "type": "string"
+                      },
+                      "field": {
+                        "type": "string"
+                      },
+                      "type": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      }
+                    },
+                    "xml": {
+                      "name": "Cause"
+                    }
+                  }
+                },
+                "errorIdentifiers": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "object"
+                  }
+                }
+              },
+              "xml": {
+                "name": "Error"
+              }
+            }
+          }
+        }
+      },
+      "ShippingTemplate": {
+        "type": "object",
+        "properties": {
+          "name": {
             "type": "string",
-            "description": "Message confirming the deletion or retirement of an item from the Walmart Catalog"
+            "description": "Shipping Template Name"
+          },
+          "type": {
+            "type": "string",
+            "description": "Shipping Template Type",
+            "enum": [
+              "DEFAULT",
+              "CUSTOM",
+              "DELIVERR"
+            ]
+          },
+          "id": {
+            "type": "string",
+            "description": "Shipping Template ID"
           }
         },
-        "xml": {
-          "name": "ItemRetireResponse"
+        "description": "Information about Shipping Template"
+      },
+      "ItemsAssociationsRequestDTO": {
+        "required": [
+          "items"
+        ],
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "description": "List of items whose associations need to be fetched. It should not have more than 50 items.",
+            "items": {
+              "required": [
+                "sku"
+              ],
+              "type": "object",
+              "properties": {
+                "sku": {
+                  "type": "string",
+                  "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
+                }
+              },
+              "description": "List of items whose associations need to be fetched. It should not have more than 50 items."
+            }
+          }
         }
+      },
+      "RequestItem": {
+        "required": [
+          "sku"
+        ],
+        "type": "object",
+        "properties": {
+          "sku": {
+            "type": "string",
+            "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
+          }
+        },
+        "description": "List of items whose associations need to be fetched. It should not have more than 50 items."
       },
       "Image": {
         "type": "object",
@@ -6384,26 +6589,6 @@
               "DESC"
             ]
           }
-        }
-      },
-      "Cause": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "string"
-          },
-          "field": {
-            "type": "string"
-          },
-          "type": {
-            "type": "string"
-          },
-          "description": {
-            "type": "string"
-          }
-        },
-        "xml": {
-          "name": "Cause"
         }
       },
       "GatewayError": {
@@ -8349,442 +8534,103 @@
           }
         }
       },
-      "Association": {
+      "CategoryPayload": {
         "type": "object",
         "properties": {
-          "shippingTemplate": {
-            "type": "object",
-            "properties": {
-              "name": {
-                "type": "string",
-                "description": "Shipping Template Name"
-              },
-              "type": {
-                "type": "string",
-                "description": "Shipping Template Type",
-                "enum": [
-                  "DEFAULT",
-                  "CUSTOM",
-                  "DELIVERR"
-                ]
-              },
-              "id": {
-                "type": "string",
-                "description": "Shipping Template ID"
-              }
-            },
-            "description": "Information about Shipping Template"
-          },
-          "shipNodeName": {
-            "type": "string",
-            "description": "Name of the fulfillment center."
-          },
-          "shipNode": {
-            "type": "string",
-            "description": "The fulfillment center or ship node Id which uniquely identifies each facility and is autogenerated during the creation of fulfillment center. Every time a facility is added, a new ship node id is generated."
-          }
-        },
-        "description": "Item Associations like shippingTemplate, shipNode."
-      },
-      "Error": {
-        "required": [
-          "code"
-        ],
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "string"
-          },
-          "field": {
-            "type": "string"
-          },
-          "description": {
-            "type": "string"
-          },
-          "info": {
-            "type": "string"
-          },
-          "severity": {
-            "type": "string",
-            "enum": [
-              "INFO",
-              "WARN",
-              "ERROR"
-            ]
-          },
           "category": {
             "type": "string",
-            "enum": [
-              "APPLICATION",
-              "SYSTEM",
-              "REQUEST",
-              "DATA"
-            ]
+            "description": "Type of item"
           },
-          "causes": {
+          "subcategory": {
             "type": "array",
-            "xml": {
-              "wrapped": true
-            },
+            "description": "Specific kind of category",
             "items": {
               "type": "object",
               "properties": {
-                "code": {
-                  "type": "string"
+                "subCategoryName": {
+                  "type": "string",
+                  "description": "Name of specific kind of category"
                 },
-                "field": {
-                  "type": "string"
-                },
-                "type": {
-                  "type": "string"
-                },
-                "description": {
-                  "type": "string"
+                "subCategoryId": {
+                  "type": "string",
+                  "description": "ID of specific kind of category"
                 }
               },
-              "xml": {
-                "name": "Cause"
+              "description": "Specific kind of category"
+            }
+          }
+        }
+      },
+      "SubCategory": {
+        "type": "object",
+        "properties": {
+          "subCategoryName": {
+            "type": "string",
+            "description": "Name of specific kind of category"
+          },
+          "subCategoryId": {
+            "type": "string",
+            "description": "ID of specific kind of category"
+          }
+        },
+        "description": "Specific kind of category"
+      },
+      "TaxonomyResponseDTO": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "payload": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "category": {
+                  "type": "string",
+                  "description": "Type of item"
+                },
+                "subcategory": {
+                  "type": "array",
+                  "description": "Specific kind of category",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "subCategoryName": {
+                        "type": "string",
+                        "description": "Name of specific kind of category"
+                      },
+                      "subCategoryId": {
+                        "type": "string",
+                        "description": "ID of specific kind of category"
+                      }
+                    },
+                    "description": "Specific kind of category"
+                  }
+                }
               }
             }
+          }
+        }
+      },
+      "ItemRetireResponse": {
+        "required": [
+          "sku"
+        ],
+        "type": "object",
+        "properties": {
+          "sku": {
+            "type": "string",
+            "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
           },
-          "errorIdentifiers": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "object"
-            }
+          "message": {
+            "type": "string",
+            "description": "Message confirming the deletion or retirement of an item from the Walmart Catalog"
           }
         },
         "xml": {
-          "name": "Error"
+          "name": "ItemRetireResponse"
         }
-      },
-      "ItemsAssociationsResponseDTO": {
-        "required": [
-          "items"
-        ],
-        "type": "object",
-        "properties": {
-          "items": {
-            "type": "array",
-            "items": {
-              "required": [
-                "sku"
-              ],
-              "type": "object",
-              "properties": {
-                "sku": {
-                  "type": "string",
-                  "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
-                },
-                "associations": {
-                  "type": "array",
-                  "description": "Item Associations like shippingTemplate, shipNode.",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "shippingTemplate": {
-                        "type": "object",
-                        "properties": {
-                          "name": {
-                            "type": "string",
-                            "description": "Shipping Template Name"
-                          },
-                          "type": {
-                            "type": "string",
-                            "description": "Shipping Template Type",
-                            "enum": [
-                              "DEFAULT",
-                              "CUSTOM",
-                              "DELIVERR"
-                            ]
-                          },
-                          "id": {
-                            "type": "string",
-                            "description": "Shipping Template ID"
-                          }
-                        },
-                        "description": "Information about Shipping Template"
-                      },
-                      "shipNodeName": {
-                        "type": "string",
-                        "description": "Name of the fulfillment center."
-                      },
-                      "shipNode": {
-                        "type": "string",
-                        "description": "The fulfillment center or ship node Id which uniquely identifies each facility and is autogenerated during the creation of fulfillment center. Every time a facility is added, a new ship node id is generated."
-                      }
-                    },
-                    "description": "Item Associations like shippingTemplate, shipNode."
-                  }
-                },
-                "errors": {
-                  "type": "array",
-                  "items": {
-                    "required": [
-                      "code"
-                    ],
-                    "type": "object",
-                    "properties": {
-                      "code": {
-                        "type": "string"
-                      },
-                      "field": {
-                        "type": "string"
-                      },
-                      "description": {
-                        "type": "string"
-                      },
-                      "info": {
-                        "type": "string"
-                      },
-                      "severity": {
-                        "type": "string",
-                        "enum": [
-                          "INFO",
-                          "WARN",
-                          "ERROR"
-                        ]
-                      },
-                      "category": {
-                        "type": "string",
-                        "enum": [
-                          "APPLICATION",
-                          "SYSTEM",
-                          "REQUEST",
-                          "DATA"
-                        ]
-                      },
-                      "causes": {
-                        "type": "array",
-                        "xml": {
-                          "wrapped": true
-                        },
-                        "items": {
-                          "type": "object",
-                          "properties": {
-                            "code": {
-                              "type": "string"
-                            },
-                            "field": {
-                              "type": "string"
-                            },
-                            "type": {
-                              "type": "string"
-                            },
-                            "description": {
-                              "type": "string"
-                            }
-                          },
-                          "xml": {
-                            "name": "Cause"
-                          }
-                        }
-                      },
-                      "errorIdentifiers": {
-                        "type": "object",
-                        "additionalProperties": {
-                          "type": "object"
-                        }
-                      }
-                    },
-                    "xml": {
-                      "name": "Error"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "ResponseItem": {
-        "required": [
-          "sku"
-        ],
-        "type": "object",
-        "properties": {
-          "sku": {
-            "type": "string",
-            "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
-          },
-          "associations": {
-            "type": "array",
-            "description": "Item Associations like shippingTemplate, shipNode.",
-            "items": {
-              "type": "object",
-              "properties": {
-                "shippingTemplate": {
-                  "type": "object",
-                  "properties": {
-                    "name": {
-                      "type": "string",
-                      "description": "Shipping Template Name"
-                    },
-                    "type": {
-                      "type": "string",
-                      "description": "Shipping Template Type",
-                      "enum": [
-                        "DEFAULT",
-                        "CUSTOM",
-                        "DELIVERR"
-                      ]
-                    },
-                    "id": {
-                      "type": "string",
-                      "description": "Shipping Template ID"
-                    }
-                  },
-                  "description": "Information about Shipping Template"
-                },
-                "shipNodeName": {
-                  "type": "string",
-                  "description": "Name of the fulfillment center."
-                },
-                "shipNode": {
-                  "type": "string",
-                  "description": "The fulfillment center or ship node Id which uniquely identifies each facility and is autogenerated during the creation of fulfillment center. Every time a facility is added, a new ship node id is generated."
-                }
-              },
-              "description": "Item Associations like shippingTemplate, shipNode."
-            }
-          },
-          "errors": {
-            "type": "array",
-            "items": {
-              "required": [
-                "code"
-              ],
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "string"
-                },
-                "field": {
-                  "type": "string"
-                },
-                "description": {
-                  "type": "string"
-                },
-                "info": {
-                  "type": "string"
-                },
-                "severity": {
-                  "type": "string",
-                  "enum": [
-                    "INFO",
-                    "WARN",
-                    "ERROR"
-                  ]
-                },
-                "category": {
-                  "type": "string",
-                  "enum": [
-                    "APPLICATION",
-                    "SYSTEM",
-                    "REQUEST",
-                    "DATA"
-                  ]
-                },
-                "causes": {
-                  "type": "array",
-                  "xml": {
-                    "wrapped": true
-                  },
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "code": {
-                        "type": "string"
-                      },
-                      "field": {
-                        "type": "string"
-                      },
-                      "type": {
-                        "type": "string"
-                      },
-                      "description": {
-                        "type": "string"
-                      }
-                    },
-                    "xml": {
-                      "name": "Cause"
-                    }
-                  }
-                },
-                "errorIdentifiers": {
-                  "type": "object",
-                  "additionalProperties": {
-                    "type": "object"
-                  }
-                }
-              },
-              "xml": {
-                "name": "Error"
-              }
-            }
-          }
-        }
-      },
-      "ShippingTemplate": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "description": "Shipping Template Name"
-          },
-          "type": {
-            "type": "string",
-            "description": "Shipping Template Type",
-            "enum": [
-              "DEFAULT",
-              "CUSTOM",
-              "DELIVERR"
-            ]
-          },
-          "id": {
-            "type": "string",
-            "description": "Shipping Template ID"
-          }
-        },
-        "description": "Information about Shipping Template"
-      },
-      "ItemsAssociationsRequestDTO": {
-        "required": [
-          "items"
-        ],
-        "type": "object",
-        "properties": {
-          "items": {
-            "type": "array",
-            "description": "List of items whose associations need to be fetched. It should not have more than 50 items.",
-            "items": {
-              "required": [
-                "sku"
-              ],
-              "type": "object",
-              "properties": {
-                "sku": {
-                  "type": "string",
-                  "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
-                }
-              },
-              "description": "List of items whose associations need to be fetched. It should not have more than 50 items."
-            }
-          }
-        }
-      },
-      "RequestItem": {
-        "required": [
-          "sku"
-        ],
-        "type": "object",
-        "properties": {
-          "sku": {
-            "type": "string",
-            "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
-          }
-        },
-        "description": "List of items whose associations need to be fetched. It should not have more than 50 items."
       },
       "FeedId": {
         "type": "object",
