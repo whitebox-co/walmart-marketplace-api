@@ -171,10 +171,10 @@ export interface EventType {
 export interface EventTypes {
     /**
      * List of event types
-     * @type {Array<InlineResponse2003EventTypes>}
+     * @type {Array<InlineResponse200EventTypes>}
      * @memberof EventTypes
      */
-    eventTypes?: Array<InlineResponse2003EventTypes>;
+    eventTypes?: Array<InlineResponse200EventTypes>;
 }
 /**
  * 
@@ -184,10 +184,10 @@ export interface EventTypes {
 export interface Events {
     /**
      * List of events
-     * @type {Array<InlineResponse2001Events>}
+     * @type {Array<InlineResponse2002Events>}
      * @memberof Events
      */
-    events?: Array<InlineResponse2001Events>;
+    events?: Array<InlineResponse2002Events>;
 }
 /**
  * Headers required for accessing the destination URL
@@ -314,11 +314,11 @@ export interface InlineObject2 {
  */
 export interface InlineResponse200 {
     /**
-     * Message confirming that the eventURL is validated
-     * @type {string}
+     * List of event types
+     * @type {Array<InlineResponse200EventTypes>}
      * @memberof InlineResponse200
      */
-    message?: string;
+    eventTypes?: Array<InlineResponse200EventTypes>;
 }
 /**
  * 
@@ -327,85 +327,11 @@ export interface InlineResponse200 {
  */
 export interface InlineResponse2001 {
     /**
-     * List of events
-     * @type {Array<InlineResponse2001Events>}
+     * Message confirming that the eventURL is validated
+     * @type {string}
      * @memberof InlineResponse2001
      */
-    events?: Array<InlineResponse2001Events>;
-}
-/**
- * 
- * @export
- * @interface InlineResponse2001Event
- */
-export interface InlineResponse2001Event {
-    /**
-     * Event for which the subscription is created
-     * @type {string}
-     * @memberof InlineResponse2001Event
-     */
-    eventType?: string;
-    /**
-     * Unique ID for the subscription that can be used for fetching details, editing or deleting the subscription
-     * @type {string}
-     * @memberof InlineResponse2001Event
-     */
-    subscriptionId?: string;
-    /**
-     * Partner ID of the seller who created the subscription
-     * @type {string}
-     * @memberof InlineResponse2001Event
-     */
-    partnerId?: string;
-    /**
-     * Version of the event type for which the subscription is created
-     * @type {string}
-     * @memberof InlineResponse2001Event
-     */
-    eventVersion?: string;
-    /**
-     * Delegated access scope that event type is mapped to.
-     * @type {string}
-     * @memberof InlineResponse2001Event
-     */
-    resourceName?: string;
-    /**
-     * ACTIVE or INACTIVE status of the subscription
-     * @type {string}
-     * @memberof InlineResponse2001Event
-     */
-    status?: string;
-    /**
-     * Destination URL where notification will be received by seller
-     * @type {string}
-     * @memberof InlineResponse2001Event
-     */
-    eventUrl?: string;
-    /**
-     * 
-     * @type {V3WebhooksTestAuthDetails}
-     * @memberof InlineResponse2001Event
-     */
-    authDetails?: V3WebhooksTestAuthDetails;
-    /**
-     * 
-     * @type {V3WebhooksTestHeaders}
-     * @memberof InlineResponse2001Event
-     */
-    headers?: V3WebhooksTestHeaders;
-}
-/**
- * 
- * @export
- * @interface InlineResponse2001Events
- */
-export interface InlineResponse2001Events {
-    /**
-     * 
-     * @type {Array<InlineResponse2001Event>}
-     * @memberof InlineResponse2001Events
-     */
-    event?: Array<InlineResponse2001Event>;
+    message?: string;
 }
 /**
  * 
@@ -414,17 +340,85 @@ export interface InlineResponse2001Events {
  */
 export interface InlineResponse2002 {
     /**
-     * Subscription Id of the subscription that is deleted
-     * @type {string}
+     * List of events
+     * @type {Array<InlineResponse2002Events>}
      * @memberof InlineResponse2002
+     */
+    events?: Array<InlineResponse2002Events>;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse2002Event
+ */
+export interface InlineResponse2002Event {
+    /**
+     * Event for which the subscription is created
+     * @type {string}
+     * @memberof InlineResponse2002Event
+     */
+    eventType?: string;
+    /**
+     * Unique ID for the subscription that can be used for fetching details, editing or deleting the subscription
+     * @type {string}
+     * @memberof InlineResponse2002Event
      */
     subscriptionId?: string;
     /**
-     * Message confirming that the subscription has been deleted
+     * Partner ID of the seller who created the subscription
      * @type {string}
-     * @memberof InlineResponse2002
+     * @memberof InlineResponse2002Event
      */
-    message?: string;
+    partnerId?: string;
+    /**
+     * Version of the event type for which the subscription is created
+     * @type {string}
+     * @memberof InlineResponse2002Event
+     */
+    eventVersion?: string;
+    /**
+     * Delegated access scope that event type is mapped to.
+     * @type {string}
+     * @memberof InlineResponse2002Event
+     */
+    resourceName?: string;
+    /**
+     * ACTIVE or INACTIVE status of the subscription
+     * @type {string}
+     * @memberof InlineResponse2002Event
+     */
+    status?: string;
+    /**
+     * Destination URL where notification will be received by seller
+     * @type {string}
+     * @memberof InlineResponse2002Event
+     */
+    eventUrl?: string;
+    /**
+     * 
+     * @type {V3WebhooksTestAuthDetails}
+     * @memberof InlineResponse2002Event
+     */
+    authDetails?: V3WebhooksTestAuthDetails;
+    /**
+     * 
+     * @type {V3WebhooksTestHeaders}
+     * @memberof InlineResponse2002Event
+     */
+    headers?: V3WebhooksTestHeaders;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse2002Events
+ */
+export interface InlineResponse2002Events {
+    /**
+     * 
+     * @type {Array<InlineResponse2002Event>}
+     * @memberof InlineResponse2002Events
+     */
+    event?: Array<InlineResponse2002Event>;
 }
 /**
  * 
@@ -433,40 +427,46 @@ export interface InlineResponse2002 {
  */
 export interface InlineResponse2003 {
     /**
-     * List of event types
-     * @type {Array<InlineResponse2003EventTypes>}
+     * Subscription Id of the subscription that is deleted
+     * @type {string}
      * @memberof InlineResponse2003
      */
-    eventTypes?: Array<InlineResponse2003EventTypes>;
+    subscriptionId?: string;
+    /**
+     * Message confirming that the subscription has been deleted
+     * @type {string}
+     * @memberof InlineResponse2003
+     */
+    message?: string;
 }
 /**
  * List of event types
  * @export
- * @interface InlineResponse2003EventTypes
+ * @interface InlineResponse200EventTypes
  */
-export interface InlineResponse2003EventTypes {
+export interface InlineResponse200EventTypes {
     /**
      * Delegated access scope that event type is mapped to.
      * @type {string}
-     * @memberof InlineResponse2003EventTypes
+     * @memberof InlineResponse200EventTypes
      */
     resourceName?: string;
     /**
      * Event that you want to subscribe to.
      * @type {string}
-     * @memberof InlineResponse2003EventTypes
+     * @memberof InlineResponse200EventTypes
      */
     eventType?: string;
     /**
      * Version of the specific event type
      * @type {string}
-     * @memberof InlineResponse2003EventTypes
+     * @memberof InlineResponse200EventTypes
      */
     eventVersion?: string;
     /**
      * Description of the specific event type
      * @type {string}
-     * @memberof InlineResponse2003EventTypes
+     * @memberof InlineResponse200EventTypes
      */
     description?: string;
 }
@@ -497,10 +497,10 @@ export interface SubscriptionDeleteResponseDTO {
 export interface SubscriptionResponseDTO {
     /**
      * 
-     * @type {Array<InlineResponse2001Event>}
+     * @type {Array<InlineResponse2002Event>}
      * @memberof SubscriptionResponseDTO
      */
-    event?: Array<InlineResponse2001Event>;
+    event?: Array<InlineResponse2002Event>;
 }
 /**
  * 
@@ -1256,7 +1256,7 @@ export const NotificationsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createSubscription(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject1: InlineObject1, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001Events>> {
+        async createSubscription(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject1: InlineObject1, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2002Events>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.createSubscription(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject1, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -1272,7 +1272,7 @@ export const NotificationsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deleteSubscription(subscriptionId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2002>> {
+        async deleteSubscription(subscriptionId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2003>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.deleteSubscription(subscriptionId, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -1291,7 +1291,7 @@ export const NotificationsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getAllSubscriptions(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, subscriptionId?: string, eventType?: string, resourceName?: string, status?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
+        async getAllSubscriptions(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, subscriptionId?: string, eventType?: string, resourceName?: string, status?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2002>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getAllSubscriptions(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, subscriptionId, eventType, resourceName, status, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -1306,7 +1306,7 @@ export const NotificationsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getEventTypes(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2003>> {
+        async getEventTypes(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getEventTypes(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -1322,7 +1322,7 @@ export const NotificationsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async testNotification(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
+        async testNotification(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.testNotification(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -1339,7 +1339,7 @@ export const NotificationsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateSubscription(subscriptionId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject2: InlineObject2, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001Events>> {
+        async updateSubscription(subscriptionId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject2: InlineObject2, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2002Events>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.updateSubscription(subscriptionId, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject2, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -1365,7 +1365,7 @@ export const NotificationsApiFactory = function (configuration?: Configuration, 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createSubscription(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject1: InlineObject1, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2001Events> {
+        createSubscription(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject1: InlineObject1, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2002Events> {
             return localVarFp.createSubscription(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject1, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1380,7 +1380,7 @@ export const NotificationsApiFactory = function (configuration?: Configuration, 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteSubscription(subscriptionId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2002> {
+        deleteSubscription(subscriptionId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2003> {
             return localVarFp.deleteSubscription(subscriptionId, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1398,7 +1398,7 @@ export const NotificationsApiFactory = function (configuration?: Configuration, 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAllSubscriptions(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, subscriptionId?: string, eventType?: string, resourceName?: string, status?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2001> {
+        getAllSubscriptions(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, subscriptionId?: string, eventType?: string, resourceName?: string, status?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2002> {
             return localVarFp.getAllSubscriptions(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, subscriptionId, eventType, resourceName, status, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1412,7 +1412,7 @@ export const NotificationsApiFactory = function (configuration?: Configuration, 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getEventTypes(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2003> {
+        getEventTypes(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse200> {
             return localVarFp.getEventTypes(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1427,7 +1427,7 @@ export const NotificationsApiFactory = function (configuration?: Configuration, 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        testNotification(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse200> {
+        testNotification(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2001> {
             return localVarFp.testNotification(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1443,7 +1443,7 @@ export const NotificationsApiFactory = function (configuration?: Configuration, 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateSubscription(subscriptionId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject2: InlineObject2, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2001Events> {
+        updateSubscription(subscriptionId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject2: InlineObject2, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2002Events> {
             return localVarFp.updateSubscription(subscriptionId, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject2, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
     };
