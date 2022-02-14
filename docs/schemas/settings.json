@@ -20,251 +20,6 @@
     }
   ],
   "paths": {
-    "/v3/settings/shippingprofile": {
-      "get": {
-        "tags": [
-          "Settings"
-        ],
-        "summary": "Get Shipping Configurations",
-        "description": "<p>This API can be used to retrieve shipping configurations like Lag Time configured for seller.It returns lag time for exception categories that were configured for the Seller through <a href=\"https://sellerhelp.walmart.com/s/guide?article=000005986\">Request Lag Time Exceptions</a> process.</p>",
-        "operationId": "getShippingConfigurations",
-        "parameters": [
-          {
-            "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
-          },
-          {
-            "in": "header",
-            "name": "WM_SEC.ACCESS_TOKEN",
-            "description": "The access token retrieved in the Token API call",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
-          },
-          {
-            "in": "header",
-            "name": "WM_CONSUMER.CHANNEL.TYPE",
-            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "header",
-            "name": "WM_QOS.CORRELATION_ID",
-            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
-          },
-          {
-            "in": "header",
-            "name": "WM_SVC.NAME",
-            "description": "Walmart Service Name",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Walmart Service Name"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "partner": {
-                      "type": "object",
-                      "properties": {
-                        "partnerId": {
-                          "type": "string",
-                          "description": "The seller ID"
-                        }
-                      },
-                      "description": "Details of partner"
-                    },
-                    "configurations": {
-                      "type": "array",
-                      "description": "List of seller configurations like Lag Time",
-                      "items": {
-                        "type": "object",
-                        "description": "List of seller configurations like Lag Time",
-                        "anyOf": [
-                          {
-                            "type": "object",
-                            "properties": {
-                              "configurationName": {
-                                "type": "string",
-                                "description": "Name of the configuration",
-                                "enum": [
-                                  "LAG_TIME"
-                                ]
-                              },
-                              "configuration": {
-                                "type": "object",
-                                "properties": {
-                                  "categories": {
-                                    "type": "array",
-                                    "description": "List of item setup category level lag time exceptions configured for seller",
-                                    "items": {
-                                      "type": "object",
-                                      "properties": {
-                                        "name": {
-                                          "type": "string",
-                                          "description": "Name of the item setup category which was used to request lag time exception"
-                                        },
-                                        "fulfillmentLagTime": {
-                                          "type": "integer",
-                                          "description": "Maximum lag time configured for the item setup category",
-                                          "format": "int32"
-                                        }
-                                      },
-                                      "description": "List of item setup category level lag time exceptions configured for seller"
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        ]
-                      }
-                    }
-                  }
-                },
-                "example": {
-                  "partner": {
-                    "partnerId": "100009"
-                  },
-                  "configurations": [
-                    {
-                      "configurationName": "LAG_TIME",
-                      "configuration": {
-                        "categories": [
-                          {
-                            "name": "Art & Craft",
-                            "fulfillmentLagTime": 2
-                          },
-                          {
-                            "name": "Garden & Patio",
-                            "fulfillmentLagTime": 3
-                          }
-                        ]
-                      }
-                    }
-                  ]
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v3/settings/shipping/3plproviders": {
-      "get": {
-        "tags": [
-          "Settings"
-        ],
-        "summary": "Get all third party fulfillment providers",
-        "description": "Get a list of all third party fulfillment providers.",
-        "operationId": "get3PFulfillmentProviders",
-        "parameters": [
-          {
-            "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
-          },
-          {
-            "in": "header",
-            "name": "WM_SEC.ACCESS_TOKEN",
-            "description": "The access token retrieved in the Token API call",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
-          },
-          {
-            "in": "header",
-            "name": "WM_CONSUMER.CHANNEL.TYPE",
-            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "header",
-            "name": "WM_QOS.CORRELATION_ID",
-            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
-          },
-          {
-            "in": "header",
-            "name": "WM_SVC.NAME",
-            "description": "Walmart Service Name",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Walmart Service Name"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "shipNode": {
-                        "type": "string",
-                        "description": "The fulfillment center or ship node Id which uniquely identifies each facility and is autogenerated during the creation of fulfillment center. Every time a facility is added, a new ship node id is generated."
-                      },
-                      "shipNodeName": {
-                        "type": "string",
-                        "description": "Name of the fulfillment center."
-                      }
-                    }
-                  }
-                },
-                "example": [
-                  {
-                    "shipNode": "99351656957153281",
-                    "shipNodeName": "MP_Deliverr"
-                  }
-                ]
-              }
-            }
-          }
-        }
-      }
-    },
     "/v3/settings/shipping/3plshipnodes": {
       "post": {
         "tags": [
@@ -511,6 +266,134 @@
                     "carrierMethodName": "FEDEX",
                     "carrierMethodType": "GROUND",
                     "carrierMethodDescription": "Fedex for Marketplace"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/settings/shipping/shipnodes/coverage": {
+      "get": {
+        "tags": [
+          "Settings"
+        ],
+        "summary": "Get coverage for fulfillment centers",
+        "description": "This API provides the list of all fullfillment centers for the seller and their coverage areas defined by Walmart based on the address",
+        "operationId": "getCoverageForFulfillmentCenters",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Basic YzcyOTFjNmItNzI5MC00...."
+          },
+          {
+            "in": "header",
+            "name": "WM_SEC.ACCESS_TOKEN",
+            "description": "The access token retrieved in the Token API call",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
+          },
+          {
+            "in": "header",
+            "name": "WM_CONSUMER.CHANNEL.TYPE",
+            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "WM_QOS.CORRELATION_ID",
+            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
+          },
+          {
+            "in": "header",
+            "name": "WM_SVC.NAME",
+            "description": "Walmart Service Name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Walmart Service Name"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "shipNode": {
+                        "type": "string",
+                        "description": "The fulfillment center or ship node Id which uniquely identifies each facility and is autogenerated during the creation of fulfillment center. Every time a facility is added, a new ship node id is generated."
+                      },
+                      "shipNodeName": {
+                        "type": "string",
+                        "description": "Name of the fulfillment center."
+                      },
+                      "coverageArea": {
+                        "type": "array",
+                        "description": "Two day shipping regions defined by Walmart for sellers.",
+                        "items": {
+                          "type": "string",
+                          "description": "Two day shipping regions defined by Walmart for sellers."
+                        }
+                      }
+                    }
+                  }
+                },
+                "example": [
+                  {
+                    "shipNode": "81087939095695361",
+                    "shipNodeName": "Seller test-distributor1",
+                    "coverageArea": []
+                  },
+                  {
+                    "shipNode": "79112975786049537",
+                    "shipNodeName": "Seller test-distributor2",
+                    "coverageArea": [
+                      "AR1",
+                      "AR2",
+                      "CA1",
+                      "AR3",
+                      "PA4",
+                      "CA3",
+                      "CA2"
+                    ]
+                  },
+                  {
+                    "shipNode": "79114105970622465",
+                    "shipNodeName": "Seller test-distributor3",
+                    "coverageArea": [
+                      "PA2",
+                      "PA1",
+                      "NY1"
+                    ]
+                  },
+                  {
+                    "shipNode": "80359164518989825",
+                    "shipNodeName": "Seller test-distributor4",
+                    "coverageArea": []
                   }
                 ]
               }
@@ -2500,14 +2383,14 @@
         }
       }
     },
-    "/v3/settings/shipping/templates/activationStatus": {
+    "/v3/settings/shippingprofile": {
       "get": {
         "tags": [
           "Settings"
         ],
-        "summary": "Get Shipping Template Activation Status",
-        "description": "This api can be used to get the Activation Status of the Shipping Templates, which can be set through Walmart Seller Center. This activation status is not the same as the \"status:ACTIVE/INACTIVE\" of each shipping template.",
-        "operationId": "getShippingTemplateActivationStatus",
+        "summary": "Get Shipping Configurations",
+        "description": "<p>This API can be used to retrieve shipping configurations like Lag Time configured for seller.It returns lag time for exception categories that were configured for the Seller through <a href=\"https://sellerhelp.walmart.com/s/guide?article=000005986\">Request Lag Time Exceptions</a> process.</p>",
+        "operationId": "getShippingConfigurations",
         "parameters": [
           {
             "in": "header",
@@ -2567,24 +2450,95 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "activationStatus": {
-                      "type": "string",
-                      "description": "Shipping Template Activation Status, possible values can be NOT_ACTIVATED or ACTIVATED"
+                    "partner": {
+                      "type": "object",
+                      "properties": {
+                        "partnerId": {
+                          "type": "string",
+                          "description": "The seller ID"
+                        },
+                        "partnerName": {
+                          "type": "string",
+                          "description": "The seller's legal name"
+                        },
+                        "partnerDisplayName": {
+                          "type": "string",
+                          "description": "The seller name shown on walmart.com"
+                        }
+                      },
+                      "description": "Details of partner"
                     },
-                    "createdDate": {
-                      "type": "number",
-                      "description": "Activation Date"
-                    },
-                    "modifiedDate": {
-                      "type": "number",
-                      "description": "Activation Status Last Modified Date"
+                    "configurations": {
+                      "type": "array",
+                      "description": "List of seller configurations like Lag Time",
+                      "items": {
+                        "type": "object",
+                        "description": "List of seller configurations like Lag Time",
+                        "anyOf": [
+                          {
+                            "type": "object",
+                            "properties": {
+                              "configurationName": {
+                                "type": "string",
+                                "description": "Name of the configuration",
+                                "enum": [
+                                  "LAG_TIME"
+                                ]
+                              },
+                              "configuration": {
+                                "type": "object",
+                                "properties": {
+                                  "categories": {
+                                    "type": "array",
+                                    "description": "List of item setup category level lag time exceptions configured for seller",
+                                    "items": {
+                                      "type": "object",
+                                      "properties": {
+                                        "name": {
+                                          "type": "string",
+                                          "description": "Name of the item setup category which was used to request lag time exception"
+                                        },
+                                        "fulfillmentLagTime": {
+                                          "type": "integer",
+                                          "description": "Maximum lag time configured for the item setup category",
+                                          "format": "int32"
+                                        }
+                                      },
+                                      "description": "List of item setup category level lag time exceptions configured for seller"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
                     }
                   }
                 },
                 "example": {
-                  "activationStatus": "ACTIVATED",
-                  "modifiedDate": 1599490896997,
-                  "createdDate": 1598546424640
+                  "partner": {
+                    "partnerId": "100009",
+                    "partnerName": "The seller's legal name",
+                    "partnerDisplayName": "The seller name shown on walmart.com"
+                  },
+                  "configurations": [
+                    {
+                      "configurationName": "LAG_TIME",
+                      "configuration": {
+                        "categories": [
+                          {
+                            "name": "Art & Craft",
+                            "fulfillmentLagTime": 2
+                          },
+                          {
+                            "name": "Garden & Patio",
+                            "fulfillmentLagTime": 3
+                          }
+                        ]
+                      }
+                    }
+                  ]
                 }
               }
             }
@@ -12800,6 +12754,14 @@
                         "partnerId": {
                           "type": "string",
                           "description": "The seller ID"
+                        },
+                        "partnerName": {
+                          "type": "string",
+                          "description": "The seller's legal name"
+                        },
+                        "partnerDisplayName": {
+                          "type": "string",
+                          "description": "The seller name shown on walmart.com"
                         }
                       },
                       "description": "Details of partner"
@@ -12951,7 +12913,9 @@
                 },
                 "example": {
                   "partner": {
-                    "partnerId": "100009"
+                    "partnerId": "100009",
+                    "partnerName": "The seller's legal name",
+                    "partnerDisplayName": "The seller name shown on walmart.com"
                   },
                   "configurations": [
                     {
@@ -13013,14 +12977,106 @@
         }
       }
     },
-    "/v3/settings/shipping/shipnodes/coverage": {
+    "/v3/settings/shipping/templates/activationStatus": {
       "get": {
         "tags": [
           "Settings"
         ],
-        "summary": "Get coverage for fulfillment centers",
-        "description": "This API provides the list of all fullfillment centers for the seller and their coverage areas defined by Walmart based on the address",
-        "operationId": "getCoverageForFulfillmentCenters",
+        "summary": "Get Shipping Template Activation Status",
+        "description": "This api can be used to get the Activation Status of the Shipping Templates, which can be set through Walmart Seller Center. This activation status is not the same as the \"status:ACTIVE/INACTIVE\" of each shipping template.",
+        "operationId": "getShippingTemplateActivationStatus",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Basic YzcyOTFjNmItNzI5MC00...."
+          },
+          {
+            "in": "header",
+            "name": "WM_SEC.ACCESS_TOKEN",
+            "description": "The access token retrieved in the Token API call",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
+          },
+          {
+            "in": "header",
+            "name": "WM_CONSUMER.CHANNEL.TYPE",
+            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "WM_QOS.CORRELATION_ID",
+            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
+          },
+          {
+            "in": "header",
+            "name": "WM_SVC.NAME",
+            "description": "Walmart Service Name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Walmart Service Name"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "activationStatus": {
+                      "type": "string",
+                      "description": "Shipping Template Activation Status, possible values can be NOT_ACTIVATED or ACTIVATED"
+                    },
+                    "createdDate": {
+                      "type": "number",
+                      "description": "Activation Date"
+                    },
+                    "modifiedDate": {
+                      "type": "number",
+                      "description": "Activation Status Last Modified Date"
+                    }
+                  }
+                },
+                "example": {
+                  "activationStatus": "ACTIVATED",
+                  "modifiedDate": 1599490896997,
+                  "createdDate": 1598546424640
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/settings/shipping/3plproviders": {
+      "get": {
+        "tags": [
+          "Settings"
+        ],
+        "summary": "Get all third party fulfillment providers",
+        "description": "Get a list of all third party fulfillment providers.",
+        "operationId": "get3PFulfillmentProviders",
         "parameters": [
           {
             "in": "header",
@@ -13089,50 +13145,14 @@
                       "shipNodeName": {
                         "type": "string",
                         "description": "Name of the fulfillment center."
-                      },
-                      "coverageArea": {
-                        "type": "array",
-                        "description": "Two day shipping regions defined by Walmart for sellers.",
-                        "items": {
-                          "type": "string",
-                          "description": "Two day shipping regions defined by Walmart for sellers."
-                        }
                       }
                     }
                   }
                 },
                 "example": [
                   {
-                    "shipNode": "81087939095695361",
-                    "shipNodeName": "Seller test-distributor1",
-                    "coverageArea": []
-                  },
-                  {
-                    "shipNode": "79112975786049537",
-                    "shipNodeName": "Seller test-distributor2",
-                    "coverageArea": [
-                      "AR1",
-                      "AR2",
-                      "CA1",
-                      "AR3",
-                      "PA4",
-                      "CA3",
-                      "CA2"
-                    ]
-                  },
-                  {
-                    "shipNode": "79114105970622465",
-                    "shipNodeName": "Seller test-distributor3",
-                    "coverageArea": [
-                      "PA2",
-                      "PA1",
-                      "NY1"
-                    ]
-                  },
-                  {
-                    "shipNode": "80359164518989825",
-                    "shipNodeName": "Seller test-distributor4",
-                    "coverageArea": []
+                    "shipNode": "99351656957153281",
+                    "shipNodeName": "MP_Deliverr"
                   }
                 ]
               }
@@ -13144,207 +13164,6 @@
   },
   "components": {
     "schemas": {
-      "CategoriesLagTimeDTO": {
-        "type": "object",
-        "properties": {
-          "categories": {
-            "type": "array",
-            "description": "List of item setup category level lag time exceptions configured for seller",
-            "items": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "type": "string",
-                  "description": "Name of the item setup category which was used to request lag time exception"
-                },
-                "fulfillmentLagTime": {
-                  "type": "integer",
-                  "description": "Maximum lag time configured for the item setup category",
-                  "format": "int32"
-                }
-              },
-              "description": "List of item setup category level lag time exceptions configured for seller"
-            }
-          }
-        }
-      },
-      "CategoryLagTimeDTO": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "description": "Name of the item setup category which was used to request lag time exception"
-          },
-          "fulfillmentLagTime": {
-            "type": "integer",
-            "description": "Maximum lag time configured for the item setup category",
-            "format": "int32"
-          }
-        },
-        "description": "List of item setup category level lag time exceptions configured for seller"
-      },
-      "LagTimeConfig": {
-        "type": "object",
-        "properties": {
-          "configurationName": {
-            "type": "string",
-            "description": "Name of the configuration",
-            "enum": [
-              "LAG_TIME"
-            ]
-          },
-          "configuration": {
-            "type": "object",
-            "properties": {
-              "categories": {
-                "type": "array",
-                "description": "List of item setup category level lag time exceptions configured for seller",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "name": {
-                      "type": "string",
-                      "description": "Name of the item setup category which was used to request lag time exception"
-                    },
-                    "fulfillmentLagTime": {
-                      "type": "integer",
-                      "description": "Maximum lag time configured for the item setup category",
-                      "format": "int32"
-                    }
-                  },
-                  "description": "List of item setup category level lag time exceptions configured for seller"
-                }
-              }
-            }
-          }
-        }
-      },
-      "PartnerInfoDTO": {
-        "type": "object",
-        "properties": {
-          "partnerId": {
-            "type": "string",
-            "description": "The seller ID"
-          }
-        },
-        "description": "Details of partner"
-      },
-      "ShippingConfig": {
-        "type": "object",
-        "description": "List of seller configurations like Lag Time",
-        "anyOf": [
-          {
-            "type": "object",
-            "properties": {
-              "configurationName": {
-                "type": "string",
-                "description": "Name of the configuration",
-                "enum": [
-                  "LAG_TIME"
-                ]
-              },
-              "configuration": {
-                "type": "object",
-                "properties": {
-                  "categories": {
-                    "type": "array",
-                    "description": "List of item setup category level lag time exceptions configured for seller",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "name": {
-                          "type": "string",
-                          "description": "Name of the item setup category which was used to request lag time exception"
-                        },
-                        "fulfillmentLagTime": {
-                          "type": "integer",
-                          "description": "Maximum lag time configured for the item setup category",
-                          "format": "int32"
-                        }
-                      },
-                      "description": "List of item setup category level lag time exceptions configured for seller"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        ]
-      },
-      "ShippingConfigsResponseDTO": {
-        "type": "object",
-        "properties": {
-          "partner": {
-            "type": "object",
-            "properties": {
-              "partnerId": {
-                "type": "string",
-                "description": "The seller ID"
-              }
-            },
-            "description": "Details of partner"
-          },
-          "configurations": {
-            "type": "array",
-            "description": "List of seller configurations like Lag Time",
-            "items": {
-              "type": "object",
-              "description": "List of seller configurations like Lag Time",
-              "anyOf": [
-                {
-                  "type": "object",
-                  "properties": {
-                    "configurationName": {
-                      "type": "string",
-                      "description": "Name of the configuration",
-                      "enum": [
-                        "LAG_TIME"
-                      ]
-                    },
-                    "configuration": {
-                      "type": "object",
-                      "properties": {
-                        "categories": {
-                          "type": "array",
-                          "description": "List of item setup category level lag time exceptions configured for seller",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "name": {
-                                "type": "string",
-                                "description": "Name of the item setup category which was used to request lag time exception"
-                              },
-                              "fulfillmentLagTime": {
-                                "type": "integer",
-                                "description": "Maximum lag time configured for the item setup category",
-                                "format": "int32"
-                              }
-                            },
-                            "description": "List of item setup category level lag time exceptions configured for seller"
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              ]
-            }
-          }
-        }
-      },
-      "ThirdPartyShipNode2": {
-        "type": "object",
-        "properties": {
-          "shipNode": {
-            "type": "string",
-            "description": "The fulfillment center or ship node Id which uniquely identifies each facility and is autogenerated during the creation of fulfillment center. Every time a facility is added, a new ship node id is generated."
-          },
-          "shipNodeName": {
-            "type": "string",
-            "description": "Name of the fulfillment center."
-          }
-        }
-      },
       "ThirdPartyShipNode1": {
         "type": "object",
         "properties": {
@@ -13413,6 +13232,27 @@
           "carrierMethodDescription": {
             "type": "string",
             "description": "A description for the method carrier."
+          }
+        }
+      },
+      "FulfillmentCenterCoverageDetail": {
+        "type": "object",
+        "properties": {
+          "shipNode": {
+            "type": "string",
+            "description": "The fulfillment center or ship node Id which uniquely identifies each facility and is autogenerated during the creation of fulfillment center. Every time a facility is added, a new ship node id is generated."
+          },
+          "shipNodeName": {
+            "type": "string",
+            "description": "Name of the fulfillment center."
+          },
+          "coverageArea": {
+            "type": "array",
+            "description": "Two day shipping regions defined by Walmart for sellers.",
+            "items": {
+              "type": "string",
+              "description": "Two day shipping regions defined by Walmart for sellers."
+            }
           }
         }
       },
@@ -13929,6 +13769,210 @@
         },
         "description": "Operating Schedule for the fulfillment center"
       },
+      "CategoriesLagTimeDTO": {
+        "type": "object",
+        "properties": {
+          "categories": {
+            "type": "array",
+            "description": "List of item setup category level lag time exceptions configured for seller",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Name of the item setup category which was used to request lag time exception"
+                },
+                "fulfillmentLagTime": {
+                  "type": "integer",
+                  "description": "Maximum lag time configured for the item setup category",
+                  "format": "int32"
+                }
+              },
+              "description": "List of item setup category level lag time exceptions configured for seller"
+            }
+          }
+        }
+      },
+      "CategoryLagTimeDTO": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the item setup category which was used to request lag time exception"
+          },
+          "fulfillmentLagTime": {
+            "type": "integer",
+            "description": "Maximum lag time configured for the item setup category",
+            "format": "int32"
+          }
+        },
+        "description": "List of item setup category level lag time exceptions configured for seller"
+      },
+      "LagTimeConfig": {
+        "type": "object",
+        "properties": {
+          "configurationName": {
+            "type": "string",
+            "description": "Name of the configuration",
+            "enum": [
+              "LAG_TIME"
+            ]
+          },
+          "configuration": {
+            "type": "object",
+            "properties": {
+              "categories": {
+                "type": "array",
+                "description": "List of item setup category level lag time exceptions configured for seller",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "Name of the item setup category which was used to request lag time exception"
+                    },
+                    "fulfillmentLagTime": {
+                      "type": "integer",
+                      "description": "Maximum lag time configured for the item setup category",
+                      "format": "int32"
+                    }
+                  },
+                  "description": "List of item setup category level lag time exceptions configured for seller"
+                }
+              }
+            }
+          }
+        }
+      },
+      "PartnerInfoDTO": {
+        "type": "object",
+        "properties": {
+          "partnerId": {
+            "type": "string",
+            "description": "The seller ID"
+          },
+          "partnerName": {
+            "type": "string",
+            "description": "The seller's legal name"
+          },
+          "partnerDisplayName": {
+            "type": "string",
+            "description": "The seller name shown on walmart.com"
+          }
+        },
+        "description": "Details of partner"
+      },
+      "ShippingConfig": {
+        "type": "object",
+        "description": "List of seller configurations like Lag Time",
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "configurationName": {
+                "type": "string",
+                "description": "Name of the configuration",
+                "enum": [
+                  "LAG_TIME"
+                ]
+              },
+              "configuration": {
+                "type": "object",
+                "properties": {
+                  "categories": {
+                    "type": "array",
+                    "description": "List of item setup category level lag time exceptions configured for seller",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "description": "Name of the item setup category which was used to request lag time exception"
+                        },
+                        "fulfillmentLagTime": {
+                          "type": "integer",
+                          "description": "Maximum lag time configured for the item setup category",
+                          "format": "int32"
+                        }
+                      },
+                      "description": "List of item setup category level lag time exceptions configured for seller"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "ShippingConfigsResponseDTO": {
+        "type": "object",
+        "properties": {
+          "partner": {
+            "type": "object",
+            "properties": {
+              "partnerId": {
+                "type": "string",
+                "description": "The seller ID"
+              },
+              "partnerName": {
+                "type": "string",
+                "description": "The seller's legal name"
+              },
+              "partnerDisplayName": {
+                "type": "string",
+                "description": "The seller name shown on walmart.com"
+              }
+            },
+            "description": "Details of partner"
+          },
+          "configurations": {
+            "type": "array",
+            "description": "List of seller configurations like Lag Time",
+            "items": {
+              "type": "object",
+              "description": "List of seller configurations like Lag Time",
+              "anyOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "configurationName": {
+                      "type": "string",
+                      "description": "Name of the configuration",
+                      "enum": [
+                        "LAG_TIME"
+                      ]
+                    },
+                    "configuration": {
+                      "type": "object",
+                      "properties": {
+                        "categories": {
+                          "type": "array",
+                          "description": "List of item setup category level lag time exceptions configured for seller",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "name": {
+                                "type": "string",
+                                "description": "Name of the item setup category which was used to request lag time exception"
+                              },
+                              "fulfillmentLagTime": {
+                                "type": "integer",
+                                "description": "Maximum lag time configured for the item setup category",
+                                "format": "int32"
+                              }
+                            },
+                            "description": "List of item setup category level lag time exceptions configured for seller"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
       "CalendarDayConfiguration": {
         "required": [
           "additionalDaysOff",
@@ -14105,6 +14149,656 @@
             "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
             "format": "HH:mm",
             "default": "14:00"
+          }
+        }
+      },
+      "ShipNode": {
+        "type": "object",
+        "properties": {
+          "shipNode": {
+            "type": "string",
+            "description": "The fulfillment center or ship node Id which uniquely identifies each facility and is autogenerated during the creation of fulfillment center. Every time a facility is added, a new ship node id is generated."
+          },
+          "shipNodeName": {
+            "type": "string",
+            "description": "Name of the fulfillment center."
+          },
+          "status": {
+            "type": "string",
+            "description": "Status of fulfillment center. Allowed values: ACTIVE, INACTIVE.."
+          },
+          "timeZone": {
+            "type": "string",
+            "description": "Time zone that the seller ships from.Allowed timezones are PST, EST, CST, MST."
+          },
+          "distributorSupportedServices": {
+            "type": "array",
+            "description": "The services supported by the defined physical ship node . The allowed values: TWO_DAY_DELIVERY.",
+            "items": {
+              "type": "string",
+              "description": "The services supported by the defined physical ship node . The allowed values: TWO_DAY_DELIVERY."
+            }
+          },
+          "customNodeId": {
+            "type": "string",
+            "description": "Custom node identifier provided by seller. Allowed values are alphanumeric | String"
+          },
+          "postalAddress": {
+            "type": "object",
+            "properties": {
+              "addressLine1": {
+                "type": "string",
+                "description": "Street address of the fulfillment center."
+              },
+              "city": {
+                "type": "string",
+                "description": "City of the fulfillment center."
+              },
+              "state": {
+                "type": "string",
+                "description": "State of the fulfillment center."
+              },
+              "country": {
+                "type": "string",
+                "description": "Country of the fulfillment center."
+              },
+              "postalCode": {
+                "type": "string",
+                "description": "Postal code of the fulfillment center."
+              }
+            },
+            "description": "Postal code of the fulfillment center."
+          },
+          "shippingDetails": {
+            "type": "array",
+            "description": "Shipping Details.",
+            "items": {
+              "type": "object",
+              "properties": {
+                "twoDayShipping": {
+                  "type": "array",
+                  "description": "Shipping type provided.",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "carrierMethodName": {
+                        "type": "string",
+                        "description": "Name of the shipping carrier. Carrier names can be retrieved from the Get carrier methods API."
+                      },
+                      "carrierMethodType": {
+                        "type": "string",
+                        "description": "Shipping method."
+                      }
+                    },
+                    "description": "Shipping type provided."
+                  }
+                }
+              },
+              "description": "Shipping Details."
+            }
+          },
+          "calendarDayConfiguration": {
+            "required": [
+              "additionalDaysOff",
+              "standardProcessingSchedule"
+            ],
+            "type": "object",
+            "properties": {
+              "standardProcessingSchedule": {
+                "required": [
+                  "friday",
+                  "monday",
+                  "saturday",
+                  "sunday",
+                  "thursday",
+                  "tuesday",
+                  "wednesday"
+                ],
+                "type": "object",
+                "properties": {
+                  "sunday": {
+                    "required": [
+                      "isWorkingDay"
+                    ],
+                    "type": "object",
+                    "properties": {
+                      "isWorkingDay": {
+                        "type": "boolean",
+                        "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
+                      },
+                      "cutOffTime": {
+                        "type": "string",
+                        "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
+                        "format": "HH:mm",
+                        "default": "14:00"
+                      }
+                    }
+                  },
+                  "monday": {
+                    "required": [
+                      "isWorkingDay"
+                    ],
+                    "type": "object",
+                    "properties": {
+                      "isWorkingDay": {
+                        "type": "boolean",
+                        "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
+                      },
+                      "cutOffTime": {
+                        "type": "string",
+                        "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
+                        "format": "HH:mm",
+                        "default": "14:00"
+                      }
+                    }
+                  },
+                  "tuesday": {
+                    "required": [
+                      "isWorkingDay"
+                    ],
+                    "type": "object",
+                    "properties": {
+                      "isWorkingDay": {
+                        "type": "boolean",
+                        "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
+                      },
+                      "cutOffTime": {
+                        "type": "string",
+                        "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
+                        "format": "HH:mm",
+                        "default": "14:00"
+                      }
+                    }
+                  },
+                  "wednesday": {
+                    "required": [
+                      "isWorkingDay"
+                    ],
+                    "type": "object",
+                    "properties": {
+                      "isWorkingDay": {
+                        "type": "boolean",
+                        "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
+                      },
+                      "cutOffTime": {
+                        "type": "string",
+                        "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
+                        "format": "HH:mm",
+                        "default": "14:00"
+                      }
+                    }
+                  },
+                  "thursday": {
+                    "required": [
+                      "isWorkingDay"
+                    ],
+                    "type": "object",
+                    "properties": {
+                      "isWorkingDay": {
+                        "type": "boolean",
+                        "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
+                      },
+                      "cutOffTime": {
+                        "type": "string",
+                        "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
+                        "format": "HH:mm",
+                        "default": "14:00"
+                      }
+                    }
+                  },
+                  "friday": {
+                    "required": [
+                      "isWorkingDay"
+                    ],
+                    "type": "object",
+                    "properties": {
+                      "isWorkingDay": {
+                        "type": "boolean",
+                        "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
+                      },
+                      "cutOffTime": {
+                        "type": "string",
+                        "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
+                        "format": "HH:mm",
+                        "default": "14:00"
+                      }
+                    }
+                  },
+                  "saturday": {
+                    "required": [
+                      "isWorkingDay"
+                    ],
+                    "type": "object",
+                    "properties": {
+                      "isWorkingDay": {
+                        "type": "boolean",
+                        "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
+                      },
+                      "cutOffTime": {
+                        "type": "string",
+                        "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
+                        "format": "HH:mm",
+                        "default": "14:00"
+                      }
+                    }
+                  }
+                },
+                "description": "Operating Schedule for the fulfillment center"
+              },
+              "additionalDaysOff": {
+                "type": "array",
+                "description": "List of additional days on which the fulfillment center is closed. For example, if the fulfillment center is closed on New Year’s Day, then add the date in the list. If there are no additional off days, then this list will be empty. Use ISO 8601 format for date. For example: '2021-07-16'(yyyy-MM-dd) ",
+                "format": "yyyy-MM-dd",
+                "items": {
+                  "type": "string",
+                  "description": "List of additional days on which the fulfillment center is closed. For example, if the fulfillment center is closed on New Year’s Day, then add the date in the list. If there are no additional off days, then this list will be empty. Use ISO 8601 format for date. For example: '2021-07-16'(yyyy-MM-dd) ",
+                  "format": "yyyy-MM-dd"
+                }
+              }
+            },
+            "description": "Calendar day promise details. For examples, please refer to 'Sample 2 - Calendar Day Configurations' in request & response samples."
+          }
+        }
+      },
+      "StandardProcessingSchedule": {
+        "required": [
+          "friday",
+          "monday",
+          "saturday",
+          "sunday",
+          "thursday",
+          "tuesday",
+          "wednesday"
+        ],
+        "type": "object",
+        "properties": {
+          "sunday": {
+            "required": [
+              "isWorkingDay"
+            ],
+            "type": "object",
+            "properties": {
+              "isWorkingDay": {
+                "type": "boolean",
+                "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
+              },
+              "cutOffTime": {
+                "type": "string",
+                "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
+                "format": "HH:mm",
+                "default": "14:00"
+              }
+            }
+          },
+          "monday": {
+            "required": [
+              "isWorkingDay"
+            ],
+            "type": "object",
+            "properties": {
+              "isWorkingDay": {
+                "type": "boolean",
+                "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
+              },
+              "cutOffTime": {
+                "type": "string",
+                "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
+                "format": "HH:mm",
+                "default": "14:00"
+              }
+            }
+          },
+          "tuesday": {
+            "required": [
+              "isWorkingDay"
+            ],
+            "type": "object",
+            "properties": {
+              "isWorkingDay": {
+                "type": "boolean",
+                "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
+              },
+              "cutOffTime": {
+                "type": "string",
+                "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
+                "format": "HH:mm",
+                "default": "14:00"
+              }
+            }
+          },
+          "wednesday": {
+            "required": [
+              "isWorkingDay"
+            ],
+            "type": "object",
+            "properties": {
+              "isWorkingDay": {
+                "type": "boolean",
+                "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
+              },
+              "cutOffTime": {
+                "type": "string",
+                "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
+                "format": "HH:mm",
+                "default": "14:00"
+              }
+            }
+          },
+          "thursday": {
+            "required": [
+              "isWorkingDay"
+            ],
+            "type": "object",
+            "properties": {
+              "isWorkingDay": {
+                "type": "boolean",
+                "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
+              },
+              "cutOffTime": {
+                "type": "string",
+                "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
+                "format": "HH:mm",
+                "default": "14:00"
+              }
+            }
+          },
+          "friday": {
+            "required": [
+              "isWorkingDay"
+            ],
+            "type": "object",
+            "properties": {
+              "isWorkingDay": {
+                "type": "boolean",
+                "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
+              },
+              "cutOffTime": {
+                "type": "string",
+                "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
+                "format": "HH:mm",
+                "default": "14:00"
+              }
+            }
+          },
+          "saturday": {
+            "required": [
+              "isWorkingDay"
+            ],
+            "type": "object",
+            "properties": {
+              "isWorkingDay": {
+                "type": "boolean",
+                "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
+              },
+              "cutOffTime": {
+                "type": "string",
+                "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
+                "format": "HH:mm",
+                "default": "14:00"
+              }
+            }
+          }
+        },
+        "description": "Operating Schedule for the fulfillment center"
+      },
+      "UpdateFulfillmentCenterRequest": {
+        "type": "object",
+        "properties": {
+          "shipNodeHeader": {
+            "type": "object",
+            "properties": {
+              "version": {
+                "type": "string"
+              }
+            }
+          },
+          "shipNode": {
+            "type": "object",
+            "properties": {
+              "shipNode": {
+                "type": "string",
+                "description": "The fulfillment center or ship node Id which uniquely identifies each facility and is autogenerated during the creation of fulfillment center. Every time a facility is added, a new ship node id is generated."
+              },
+              "shipNodeName": {
+                "type": "string",
+                "description": "Name of the fulfillment center."
+              },
+              "status": {
+                "type": "string",
+                "description": "Status of fulfillment center. Allowed values: ACTIVE, INACTIVE.."
+              },
+              "timeZone": {
+                "type": "string",
+                "description": "Time zone that the seller ships from.Allowed timezones are PST, EST, CST, MST."
+              },
+              "distributorSupportedServices": {
+                "type": "array",
+                "description": "The services supported by the defined physical ship node . The allowed values: TWO_DAY_DELIVERY.",
+                "items": {
+                  "type": "string",
+                  "description": "The services supported by the defined physical ship node . The allowed values: TWO_DAY_DELIVERY."
+                }
+              },
+              "customNodeId": {
+                "type": "string",
+                "description": "Custom node identifier provided by seller. Allowed values are alphanumeric | String"
+              },
+              "postalAddress": {
+                "type": "object",
+                "properties": {
+                  "addressLine1": {
+                    "type": "string",
+                    "description": "Street address of the fulfillment center."
+                  },
+                  "city": {
+                    "type": "string",
+                    "description": "City of the fulfillment center."
+                  },
+                  "state": {
+                    "type": "string",
+                    "description": "State of the fulfillment center."
+                  },
+                  "country": {
+                    "type": "string",
+                    "description": "Country of the fulfillment center."
+                  },
+                  "postalCode": {
+                    "type": "string",
+                    "description": "Postal code of the fulfillment center."
+                  }
+                },
+                "description": "Postal code of the fulfillment center."
+              },
+              "shippingDetails": {
+                "type": "array",
+                "description": "Shipping Details.",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "twoDayShipping": {
+                      "type": "array",
+                      "description": "Shipping type provided.",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "carrierMethodName": {
+                            "type": "string",
+                            "description": "Name of the shipping carrier. Carrier names can be retrieved from the Get carrier methods API."
+                          },
+                          "carrierMethodType": {
+                            "type": "string",
+                            "description": "Shipping method."
+                          }
+                        },
+                        "description": "Shipping type provided."
+                      }
+                    }
+                  },
+                  "description": "Shipping Details."
+                }
+              },
+              "calendarDayConfiguration": {
+                "required": [
+                  "additionalDaysOff",
+                  "standardProcessingSchedule"
+                ],
+                "type": "object",
+                "properties": {
+                  "standardProcessingSchedule": {
+                    "required": [
+                      "friday",
+                      "monday",
+                      "saturday",
+                      "sunday",
+                      "thursday",
+                      "tuesday",
+                      "wednesday"
+                    ],
+                    "type": "object",
+                    "properties": {
+                      "sunday": {
+                        "required": [
+                          "isWorkingDay"
+                        ],
+                        "type": "object",
+                        "properties": {
+                          "isWorkingDay": {
+                            "type": "boolean",
+                            "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
+                          },
+                          "cutOffTime": {
+                            "type": "string",
+                            "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
+                            "format": "HH:mm",
+                            "default": "14:00"
+                          }
+                        }
+                      },
+                      "monday": {
+                        "required": [
+                          "isWorkingDay"
+                        ],
+                        "type": "object",
+                        "properties": {
+                          "isWorkingDay": {
+                            "type": "boolean",
+                            "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
+                          },
+                          "cutOffTime": {
+                            "type": "string",
+                            "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
+                            "format": "HH:mm",
+                            "default": "14:00"
+                          }
+                        }
+                      },
+                      "tuesday": {
+                        "required": [
+                          "isWorkingDay"
+                        ],
+                        "type": "object",
+                        "properties": {
+                          "isWorkingDay": {
+                            "type": "boolean",
+                            "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
+                          },
+                          "cutOffTime": {
+                            "type": "string",
+                            "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
+                            "format": "HH:mm",
+                            "default": "14:00"
+                          }
+                        }
+                      },
+                      "wednesday": {
+                        "required": [
+                          "isWorkingDay"
+                        ],
+                        "type": "object",
+                        "properties": {
+                          "isWorkingDay": {
+                            "type": "boolean",
+                            "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
+                          },
+                          "cutOffTime": {
+                            "type": "string",
+                            "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
+                            "format": "HH:mm",
+                            "default": "14:00"
+                          }
+                        }
+                      },
+                      "thursday": {
+                        "required": [
+                          "isWorkingDay"
+                        ],
+                        "type": "object",
+                        "properties": {
+                          "isWorkingDay": {
+                            "type": "boolean",
+                            "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
+                          },
+                          "cutOffTime": {
+                            "type": "string",
+                            "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
+                            "format": "HH:mm",
+                            "default": "14:00"
+                          }
+                        }
+                      },
+                      "friday": {
+                        "required": [
+                          "isWorkingDay"
+                        ],
+                        "type": "object",
+                        "properties": {
+                          "isWorkingDay": {
+                            "type": "boolean",
+                            "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
+                          },
+                          "cutOffTime": {
+                            "type": "string",
+                            "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
+                            "format": "HH:mm",
+                            "default": "14:00"
+                          }
+                        }
+                      },
+                      "saturday": {
+                        "required": [
+                          "isWorkingDay"
+                        ],
+                        "type": "object",
+                        "properties": {
+                          "isWorkingDay": {
+                            "type": "boolean",
+                            "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
+                          },
+                          "cutOffTime": {
+                            "type": "string",
+                            "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
+                            "format": "HH:mm",
+                            "default": "14:00"
+                          }
+                        }
+                      }
+                    },
+                    "description": "Operating Schedule for the fulfillment center"
+                  },
+                  "additionalDaysOff": {
+                    "type": "array",
+                    "description": "List of additional days on which the fulfillment center is closed. For example, if the fulfillment center is closed on New Year’s Day, then add the date in the list. If there are no additional off days, then this list will be empty. Use ISO 8601 format for date. For example: '2021-07-16'(yyyy-MM-dd) ",
+                    "format": "yyyy-MM-dd",
+                    "items": {
+                      "type": "string",
+                      "description": "List of additional days on which the fulfillment center is closed. For example, if the fulfillment center is closed on New Year’s Day, then add the date in the list. If there are no additional off days, then this list will be empty. Use ISO 8601 format for date. For example: '2021-07-16'(yyyy-MM-dd) ",
+                      "format": "yyyy-MM-dd"
+                    }
+                  }
+                },
+                "description": "Calendar day promise details. For examples, please refer to 'Sample 2 - Calendar Day Configurations' in request & response samples."
+              }
+            }
           }
         }
       },
@@ -14609,281 +15303,6 @@
               }
             },
             "description": "Calendar day promise details. For examples, please refer to 'Sample 2 - Calendar Day Configurations' in request & response samples."
-          }
-        }
-      },
-      "StandardProcessingSchedule": {
-        "required": [
-          "friday",
-          "monday",
-          "saturday",
-          "sunday",
-          "thursday",
-          "tuesday",
-          "wednesday"
-        ],
-        "type": "object",
-        "properties": {
-          "sunday": {
-            "required": [
-              "isWorkingDay"
-            ],
-            "type": "object",
-            "properties": {
-              "isWorkingDay": {
-                "type": "boolean",
-                "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
-              },
-              "cutOffTime": {
-                "type": "string",
-                "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
-                "format": "HH:mm",
-                "default": "14:00"
-              }
-            }
-          },
-          "monday": {
-            "required": [
-              "isWorkingDay"
-            ],
-            "type": "object",
-            "properties": {
-              "isWorkingDay": {
-                "type": "boolean",
-                "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
-              },
-              "cutOffTime": {
-                "type": "string",
-                "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
-                "format": "HH:mm",
-                "default": "14:00"
-              }
-            }
-          },
-          "tuesday": {
-            "required": [
-              "isWorkingDay"
-            ],
-            "type": "object",
-            "properties": {
-              "isWorkingDay": {
-                "type": "boolean",
-                "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
-              },
-              "cutOffTime": {
-                "type": "string",
-                "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
-                "format": "HH:mm",
-                "default": "14:00"
-              }
-            }
-          },
-          "wednesday": {
-            "required": [
-              "isWorkingDay"
-            ],
-            "type": "object",
-            "properties": {
-              "isWorkingDay": {
-                "type": "boolean",
-                "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
-              },
-              "cutOffTime": {
-                "type": "string",
-                "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
-                "format": "HH:mm",
-                "default": "14:00"
-              }
-            }
-          },
-          "thursday": {
-            "required": [
-              "isWorkingDay"
-            ],
-            "type": "object",
-            "properties": {
-              "isWorkingDay": {
-                "type": "boolean",
-                "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
-              },
-              "cutOffTime": {
-                "type": "string",
-                "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
-                "format": "HH:mm",
-                "default": "14:00"
-              }
-            }
-          },
-          "friday": {
-            "required": [
-              "isWorkingDay"
-            ],
-            "type": "object",
-            "properties": {
-              "isWorkingDay": {
-                "type": "boolean",
-                "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
-              },
-              "cutOffTime": {
-                "type": "string",
-                "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
-                "format": "HH:mm",
-                "default": "14:00"
-              }
-            }
-          },
-          "saturday": {
-            "required": [
-              "isWorkingDay"
-            ],
-            "type": "object",
-            "properties": {
-              "isWorkingDay": {
-                "type": "boolean",
-                "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
-              },
-              "cutOffTime": {
-                "type": "string",
-                "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
-                "format": "HH:mm",
-                "default": "14:00"
-              }
-            }
-          }
-        },
-        "description": "Operating Schedule for the fulfillment center"
-      },
-      "ShippingTemplateActivationStatus": {
-        "type": "object",
-        "properties": {
-          "activationStatus": {
-            "type": "string",
-            "description": "Shipping Template Activation Status, possible values can be NOT_ACTIVATED or ACTIVATED"
-          },
-          "createdDate": {
-            "type": "number",
-            "description": "Activation Date"
-          },
-          "modifiedDate": {
-            "type": "number",
-            "description": "Activation Status Last Modified Date"
-          }
-        }
-      },
-      "ShippingTemplateSummary": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "Shipping Template ID"
-          },
-          "name": {
-            "type": "string",
-            "description": "Shipping Template Name"
-          },
-          "type": {
-            "type": "string",
-            "description": "Shipping Template Type",
-            "enum": [
-              "DEFAULT",
-              "CUSTOM",
-              "DELIVERR"
-            ]
-          },
-          "status": {
-            "type": "string",
-            "description": "Shipping Template/ Configurations active or inactive status",
-            "enum": [
-              "ACTIVE",
-              "INACTIVE"
-            ]
-          },
-          "rateModelType": {
-            "type": "string",
-            "enum": [
-              "TIERED_PRICING",
-              "PER_SHIPMENT_PRICING"
-            ]
-          },
-          "createdBy": {
-            "type": "string"
-          },
-          "modifiedBy": {
-            "type": "string"
-          },
-          "createdDate": {
-            "type": "number",
-            "description": "Template Creation Date"
-          },
-          "modifiedDate": {
-            "type": "number",
-            "description": "Template Modified Date"
-          }
-        },
-        "description": "Array of Shipping Templates"
-      },
-      "ShippingTemplatesSummary": {
-        "type": "object",
-        "properties": {
-          "shippingTemplates": {
-            "type": "array",
-            "description": "Array of Shipping Templates",
-            "items": {
-              "type": "object",
-              "properties": {
-                "id": {
-                  "type": "string",
-                  "description": "Shipping Template ID"
-                },
-                "name": {
-                  "type": "string",
-                  "description": "Shipping Template Name"
-                },
-                "type": {
-                  "type": "string",
-                  "description": "Shipping Template Type",
-                  "enum": [
-                    "DEFAULT",
-                    "CUSTOM",
-                    "DELIVERR"
-                  ]
-                },
-                "status": {
-                  "type": "string",
-                  "description": "Shipping Template/ Configurations active or inactive status",
-                  "enum": [
-                    "ACTIVE",
-                    "INACTIVE"
-                  ]
-                },
-                "rateModelType": {
-                  "type": "string",
-                  "enum": [
-                    "TIERED_PRICING",
-                    "PER_SHIPMENT_PRICING"
-                  ]
-                },
-                "createdBy": {
-                  "type": "string"
-                },
-                "modifiedBy": {
-                  "type": "string"
-                },
-                "createdDate": {
-                  "type": "number",
-                  "description": "Template Creation Date"
-                },
-                "modifiedDate": {
-                  "type": "number",
-                  "description": "Template Modified Date"
-                }
-              },
-              "description": "Array of Shipping Templates"
-            }
-          },
-          "totalRecords": {
-            "type": "number",
-            "description": "Total Number of records in the response of the API"
           }
         }
       },
@@ -15763,1304 +16182,6 @@
         },
         "description": "Tiered Shipping Charges"
       },
-      "ShippingTemplateId": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "Shipping Template ID"
-          }
-        }
-      },
-      "AccountConfig": {
-        "type": "object",
-        "properties": {
-          "configurationName": {
-            "type": "string",
-            "description": "Name of the configuration. Allowed value is ACCOUNT"
-          },
-          "configuration": {
-            "type": "object",
-            "properties": {
-              "status": {
-                "type": "string",
-                "description": "Status of Seller Account",
-                "enum": [
-                  "ACTIVE",
-                  "ONBOARDING_ACTIVE",
-                  "ONBOARDING_INACTIVE",
-                  "SUSPENDED",
-                  "TNS_DECLINED",
-                  "TERMINATED"
-                ]
-              }
-            }
-          }
-        }
-      },
-      "AccountInfoDTO": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "string",
-            "description": "Status of Seller Account",
-            "enum": [
-              "ACTIVE",
-              "ONBOARDING_ACTIVE",
-              "ONBOARDING_INACTIVE",
-              "SUSPENDED",
-              "TNS_DECLINED",
-              "TERMINATED"
-            ]
-          }
-        }
-      },
-      "FeedConfig": {
-        "type": "object",
-        "properties": {
-          "configurationName": {
-            "type": "string",
-            "description": "Name of the configuration. Allowed value is FEED"
-          },
-          "configuration": {
-            "type": "object",
-            "properties": {
-              "values": {
-                "type": "array",
-                "description": "List of feed throttling configurations",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "feedType": {
-                      "type": "string",
-                      "description": "The feed Type",
-                      "enum": [
-                        "item",
-                        "RETIRE_ITEM",
-                        "MP_ITEM",
-                        "MP_WFS_ITEM",
-                        "MP_MAINTENANCE",
-                        "SKU_TEMPLATE_MAP",
-                        "SHIPPING_OVERRIDES",
-                        "price",
-                        "CPT_SELLER_ELIGIBILITY",
-                        "promo",
-                        "RETURNS_OVERRIDES",
-                        "inventory",
-                        "lagtime"
-                      ]
-                    },
-                    "throttleConfigurations": {
-                      "type": "array",
-                      "description": "Details of throttling configurations",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "type": {
-                            "type": "string",
-                            "description": "Type of the throttling configuration. Example 'SELLER' means throttling configurations at Seller level only.",
-                            "enum": [
-                              "SELLER"
-                            ]
-                          },
-                          "rate": {
-                            "type": "object",
-                            "properties": {
-                              "count": {
-                                "type": "integer",
-                                "description": "Number of API calls that can be made in every replenish time window",
-                                "format": "int64"
-                              },
-                              "replenishTimeWindow": {
-                                "type": "object",
-                                "properties": {
-                                  "value": {
-                                    "type": "integer",
-                                    "description": "The number representing size of time window",
-                                    "format": "int64"
-                                  },
-                                  "unitOfMeasurement": {
-                                    "type": "string",
-                                    "description": "The unit of measurement. Example: 'SECOND'",
-                                    "enum": [
-                                      "SECOND"
-                                    ]
-                                  }
-                                },
-                                "description": "A time period set for throttling of number of API calls"
-                              }
-                            },
-                            "description": "API call Rate"
-                          },
-                          "fileSize": {
-                            "type": "object",
-                            "properties": {
-                              "value": {
-                                "type": "integer",
-                                "description": "The number representing file size",
-                                "format": "int64"
-                              },
-                              "unitOfMeasurement": {
-                                "type": "string",
-                                "description": "The unit of measurement. Example: 'BYTES'",
-                                "enum": [
-                                  "BYTES"
-                                ]
-                              }
-                            },
-                            "description": "The maximum allowed size of the feed file"
-                          }
-                        },
-                        "description": "Details of throttling configurations"
-                      }
-                    }
-                  },
-                  "description": "List of feed throttling configurations"
-                }
-              }
-            }
-          }
-        }
-      },
-      "FeedThrottlingConfigValues": {
-        "type": "object",
-        "properties": {
-          "values": {
-            "type": "array",
-            "description": "List of feed throttling configurations",
-            "items": {
-              "type": "object",
-              "properties": {
-                "feedType": {
-                  "type": "string",
-                  "description": "The feed Type",
-                  "enum": [
-                    "item",
-                    "RETIRE_ITEM",
-                    "MP_ITEM",
-                    "MP_WFS_ITEM",
-                    "MP_MAINTENANCE",
-                    "SKU_TEMPLATE_MAP",
-                    "SHIPPING_OVERRIDES",
-                    "price",
-                    "CPT_SELLER_ELIGIBILITY",
-                    "promo",
-                    "RETURNS_OVERRIDES",
-                    "inventory",
-                    "lagtime"
-                  ]
-                },
-                "throttleConfigurations": {
-                  "type": "array",
-                  "description": "Details of throttling configurations",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "type": {
-                        "type": "string",
-                        "description": "Type of the throttling configuration. Example 'SELLER' means throttling configurations at Seller level only.",
-                        "enum": [
-                          "SELLER"
-                        ]
-                      },
-                      "rate": {
-                        "type": "object",
-                        "properties": {
-                          "count": {
-                            "type": "integer",
-                            "description": "Number of API calls that can be made in every replenish time window",
-                            "format": "int64"
-                          },
-                          "replenishTimeWindow": {
-                            "type": "object",
-                            "properties": {
-                              "value": {
-                                "type": "integer",
-                                "description": "The number representing size of time window",
-                                "format": "int64"
-                              },
-                              "unitOfMeasurement": {
-                                "type": "string",
-                                "description": "The unit of measurement. Example: 'SECOND'",
-                                "enum": [
-                                  "SECOND"
-                                ]
-                              }
-                            },
-                            "description": "A time period set for throttling of number of API calls"
-                          }
-                        },
-                        "description": "API call Rate"
-                      },
-                      "fileSize": {
-                        "type": "object",
-                        "properties": {
-                          "value": {
-                            "type": "integer",
-                            "description": "The number representing file size",
-                            "format": "int64"
-                          },
-                          "unitOfMeasurement": {
-                            "type": "string",
-                            "description": "The unit of measurement. Example: 'BYTES'",
-                            "enum": [
-                              "BYTES"
-                            ]
-                          }
-                        },
-                        "description": "The maximum allowed size of the feed file"
-                      }
-                    },
-                    "description": "Details of throttling configurations"
-                  }
-                }
-              },
-              "description": "List of feed throttling configurations"
-            }
-          }
-        }
-      },
-      "FeedThrottlingDTO": {
-        "type": "object",
-        "properties": {
-          "feedType": {
-            "type": "string",
-            "description": "The feed Type",
-            "enum": [
-              "item",
-              "RETIRE_ITEM",
-              "MP_ITEM",
-              "MP_WFS_ITEM",
-              "MP_MAINTENANCE",
-              "SKU_TEMPLATE_MAP",
-              "SHIPPING_OVERRIDES",
-              "price",
-              "CPT_SELLER_ELIGIBILITY",
-              "promo",
-              "RETURNS_OVERRIDES",
-              "inventory",
-              "lagtime"
-            ]
-          },
-          "throttleConfigurations": {
-            "type": "array",
-            "description": "Details of throttling configurations",
-            "items": {
-              "type": "object",
-              "properties": {
-                "type": {
-                  "type": "string",
-                  "description": "Type of the throttling configuration. Example 'SELLER' means throttling configurations at Seller level only.",
-                  "enum": [
-                    "SELLER"
-                  ]
-                },
-                "rate": {
-                  "type": "object",
-                  "properties": {
-                    "count": {
-                      "type": "integer",
-                      "description": "Number of API calls that can be made in every replenish time window",
-                      "format": "int64"
-                    },
-                    "replenishTimeWindow": {
-                      "type": "object",
-                      "properties": {
-                        "value": {
-                          "type": "integer",
-                          "description": "The number representing size of time window",
-                          "format": "int64"
-                        },
-                        "unitOfMeasurement": {
-                          "type": "string",
-                          "description": "The unit of measurement. Example: 'SECOND'",
-                          "enum": [
-                            "SECOND"
-                          ]
-                        }
-                      },
-                      "description": "A time period set for throttling of number of API calls"
-                    }
-                  },
-                  "description": "API call Rate"
-                },
-                "fileSize": {
-                  "type": "object",
-                  "properties": {
-                    "value": {
-                      "type": "integer",
-                      "description": "The number representing file size",
-                      "format": "int64"
-                    },
-                    "unitOfMeasurement": {
-                      "type": "string",
-                      "description": "The unit of measurement. Example: 'BYTES'",
-                      "enum": [
-                        "BYTES"
-                      ]
-                    }
-                  },
-                  "description": "The maximum allowed size of the feed file"
-                }
-              },
-              "description": "Details of throttling configurations"
-            }
-          }
-        },
-        "description": "List of feed throttling configurations"
-      },
-      "FileSize": {
-        "type": "object",
-        "properties": {
-          "value": {
-            "type": "integer",
-            "description": "The number representing file size",
-            "format": "int64"
-          },
-          "unitOfMeasurement": {
-            "type": "string",
-            "description": "The unit of measurement. Example: 'BYTES'",
-            "enum": [
-              "BYTES"
-            ]
-          }
-        },
-        "description": "The maximum allowed size of the feed file"
-      },
-      "PartnerConfig": {
-        "type": "object",
-        "description": "List of seller configurations like Seller Account & feed throttling values",
-        "anyOf": [
-          {
-            "type": "object",
-            "properties": {
-              "configurationName": {
-                "type": "string",
-                "description": "Name of the configuration. Allowed value is ACCOUNT"
-              },
-              "configuration": {
-                "type": "object",
-                "properties": {
-                  "status": {
-                    "type": "string",
-                    "description": "Status of Seller Account",
-                    "enum": [
-                      "ACTIVE",
-                      "ONBOARDING_ACTIVE",
-                      "ONBOARDING_INACTIVE",
-                      "SUSPENDED",
-                      "TNS_DECLINED",
-                      "TERMINATED"
-                    ]
-                  }
-                }
-              }
-            }
-          },
-          {
-            "type": "object",
-            "properties": {
-              "configurationName": {
-                "type": "string",
-                "description": "Name of the configuration. Allowed value is FEED"
-              },
-              "configuration": {
-                "type": "object",
-                "properties": {
-                  "values": {
-                    "type": "array",
-                    "description": "List of feed throttling configurations",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "feedType": {
-                          "type": "string",
-                          "description": "The feed Type",
-                          "enum": [
-                            "item",
-                            "RETIRE_ITEM",
-                            "MP_ITEM",
-                            "MP_WFS_ITEM",
-                            "MP_MAINTENANCE",
-                            "SKU_TEMPLATE_MAP",
-                            "SHIPPING_OVERRIDES",
-                            "price",
-                            "CPT_SELLER_ELIGIBILITY",
-                            "promo",
-                            "RETURNS_OVERRIDES",
-                            "inventory",
-                            "lagtime"
-                          ]
-                        },
-                        "throttleConfigurations": {
-                          "type": "array",
-                          "description": "Details of throttling configurations",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "type": {
-                                "type": "string",
-                                "description": "Type of the throttling configuration. Example 'SELLER' means throttling configurations at Seller level only.",
-                                "enum": [
-                                  "SELLER"
-                                ]
-                              },
-                              "rate": {
-                                "type": "object",
-                                "properties": {
-                                  "count": {
-                                    "type": "integer",
-                                    "description": "Number of API calls that can be made in every replenish time window",
-                                    "format": "int64"
-                                  },
-                                  "replenishTimeWindow": {
-                                    "type": "object",
-                                    "properties": {
-                                      "value": {
-                                        "type": "integer",
-                                        "description": "The number representing size of time window",
-                                        "format": "int64"
-                                      },
-                                      "unitOfMeasurement": {
-                                        "type": "string",
-                                        "description": "The unit of measurement. Example: 'SECOND'",
-                                        "enum": [
-                                          "SECOND"
-                                        ]
-                                      }
-                                    },
-                                    "description": "A time period set for throttling of number of API calls"
-                                  }
-                                },
-                                "description": "API call Rate"
-                              },
-                              "fileSize": {
-                                "type": "object",
-                                "properties": {
-                                  "value": {
-                                    "type": "integer",
-                                    "description": "The number representing file size",
-                                    "format": "int64"
-                                  },
-                                  "unitOfMeasurement": {
-                                    "type": "string",
-                                    "description": "The unit of measurement. Example: 'BYTES'",
-                                    "enum": [
-                                      "BYTES"
-                                    ]
-                                  }
-                                },
-                                "description": "The maximum allowed size of the feed file"
-                              }
-                            },
-                            "description": "Details of throttling configurations"
-                          }
-                        }
-                      },
-                      "description": "List of feed throttling configurations"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        ]
-      },
-      "PartnerConfigsResponseDTO": {
-        "type": "object",
-        "properties": {
-          "partner": {
-            "type": "object",
-            "properties": {
-              "partnerId": {
-                "type": "string",
-                "description": "The seller ID"
-              }
-            },
-            "description": "Details of partner"
-          },
-          "configurations": {
-            "type": "array",
-            "description": "List of seller configurations like Seller Account & feed throttling values",
-            "items": {
-              "type": "object",
-              "description": "List of seller configurations like Seller Account & feed throttling values",
-              "anyOf": [
-                {
-                  "type": "object",
-                  "properties": {
-                    "configurationName": {
-                      "type": "string",
-                      "description": "Name of the configuration. Allowed value is ACCOUNT"
-                    },
-                    "configuration": {
-                      "type": "object",
-                      "properties": {
-                        "status": {
-                          "type": "string",
-                          "description": "Status of Seller Account",
-                          "enum": [
-                            "ACTIVE",
-                            "ONBOARDING_ACTIVE",
-                            "ONBOARDING_INACTIVE",
-                            "SUSPENDED",
-                            "TNS_DECLINED",
-                            "TERMINATED"
-                          ]
-                        }
-                      }
-                    }
-                  }
-                },
-                {
-                  "type": "object",
-                  "properties": {
-                    "configurationName": {
-                      "type": "string",
-                      "description": "Name of the configuration. Allowed value is FEED"
-                    },
-                    "configuration": {
-                      "type": "object",
-                      "properties": {
-                        "values": {
-                          "type": "array",
-                          "description": "List of feed throttling configurations",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "feedType": {
-                                "type": "string",
-                                "description": "The feed Type",
-                                "enum": [
-                                  "item",
-                                  "RETIRE_ITEM",
-                                  "MP_ITEM",
-                                  "MP_WFS_ITEM",
-                                  "MP_MAINTENANCE",
-                                  "SKU_TEMPLATE_MAP",
-                                  "SHIPPING_OVERRIDES",
-                                  "price",
-                                  "CPT_SELLER_ELIGIBILITY",
-                                  "promo",
-                                  "RETURNS_OVERRIDES",
-                                  "inventory",
-                                  "lagtime"
-                                ]
-                              },
-                              "throttleConfigurations": {
-                                "type": "array",
-                                "description": "Details of throttling configurations",
-                                "items": {
-                                  "type": "object",
-                                  "properties": {
-                                    "type": {
-                                      "type": "string",
-                                      "description": "Type of the throttling configuration. Example 'SELLER' means throttling configurations at Seller level only.",
-                                      "enum": [
-                                        "SELLER"
-                                      ]
-                                    },
-                                    "rate": {
-                                      "type": "object",
-                                      "properties": {
-                                        "count": {
-                                          "type": "integer",
-                                          "description": "Number of API calls that can be made in every replenish time window",
-                                          "format": "int64"
-                                        },
-                                        "replenishTimeWindow": {
-                                          "type": "object",
-                                          "properties": {
-                                            "value": {
-                                              "type": "integer",
-                                              "description": "The number representing size of time window",
-                                              "format": "int64"
-                                            },
-                                            "unitOfMeasurement": {
-                                              "type": "string",
-                                              "description": "The unit of measurement. Example: 'SECOND'",
-                                              "enum": [
-                                                "SECOND"
-                                              ]
-                                            }
-                                          },
-                                          "description": "A time period set for throttling of number of API calls"
-                                        }
-                                      },
-                                      "description": "API call Rate"
-                                    },
-                                    "fileSize": {
-                                      "type": "object",
-                                      "properties": {
-                                        "value": {
-                                          "type": "integer",
-                                          "description": "The number representing file size",
-                                          "format": "int64"
-                                        },
-                                        "unitOfMeasurement": {
-                                          "type": "string",
-                                          "description": "The unit of measurement. Example: 'BYTES'",
-                                          "enum": [
-                                            "BYTES"
-                                          ]
-                                        }
-                                      },
-                                      "description": "The maximum allowed size of the feed file"
-                                    }
-                                  },
-                                  "description": "Details of throttling configurations"
-                                }
-                              }
-                            },
-                            "description": "List of feed throttling configurations"
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              ]
-            }
-          }
-        }
-      },
-      "Rate": {
-        "type": "object",
-        "properties": {
-          "count": {
-            "type": "integer",
-            "description": "Number of API calls that can be made in every replenish time window",
-            "format": "int64"
-          },
-          "replenishTimeWindow": {
-            "type": "object",
-            "properties": {
-              "value": {
-                "type": "integer",
-                "description": "The number representing size of time window",
-                "format": "int64"
-              },
-              "unitOfMeasurement": {
-                "type": "string",
-                "description": "The unit of measurement. Example: 'SECOND'",
-                "enum": [
-                  "SECOND"
-                ]
-              }
-            },
-            "description": "A time period set for throttling of number of API calls"
-          }
-        },
-        "description": "API call Rate"
-      },
-      "ThrottlingConfigDTO": {
-        "type": "object",
-        "properties": {
-          "type": {
-            "type": "string",
-            "description": "Type of the throttling configuration. Example 'SELLER' means throttling configurations at Seller level only.",
-            "enum": [
-              "SELLER"
-            ]
-          },
-          "rate": {
-            "type": "object",
-            "properties": {
-              "count": {
-                "type": "integer",
-                "description": "Number of API calls that can be made in every replenish time window",
-                "format": "int64"
-              },
-              "replenishTimeWindow": {
-                "type": "object",
-                "properties": {
-                  "value": {
-                    "type": "integer",
-                    "description": "The number representing size of time window",
-                    "format": "int64"
-                  },
-                  "unitOfMeasurement": {
-                    "type": "string",
-                    "description": "The unit of measurement. Example: 'SECOND'",
-                    "enum": [
-                      "SECOND"
-                    ]
-                  }
-                },
-                "description": "A time period set for throttling of number of API calls"
-              }
-            },
-            "description": "API call Rate"
-          },
-          "fileSize": {
-            "type": "object",
-            "properties": {
-              "value": {
-                "type": "integer",
-                "description": "The number representing file size",
-                "format": "int64"
-              },
-              "unitOfMeasurement": {
-                "type": "string",
-                "description": "The unit of measurement. Example: 'BYTES'",
-                "enum": [
-                  "BYTES"
-                ]
-              }
-            },
-            "description": "The maximum allowed size of the feed file"
-          }
-        },
-        "description": "Details of throttling configurations"
-      },
-      "TimeWindow": {
-        "type": "object",
-        "properties": {
-          "value": {
-            "type": "integer",
-            "description": "The number representing size of time window",
-            "format": "int64"
-          },
-          "unitOfMeasurement": {
-            "type": "string",
-            "description": "The unit of measurement. Example: 'SECOND'",
-            "enum": [
-              "SECOND"
-            ]
-          }
-        },
-        "description": "A time period set for throttling of number of API calls"
-      },
-      "FulfillmentCenterCoverageDetail": {
-        "type": "object",
-        "properties": {
-          "shipNode": {
-            "type": "string",
-            "description": "The fulfillment center or ship node Id which uniquely identifies each facility and is autogenerated during the creation of fulfillment center. Every time a facility is added, a new ship node id is generated."
-          },
-          "shipNodeName": {
-            "type": "string",
-            "description": "Name of the fulfillment center."
-          },
-          "coverageArea": {
-            "type": "array",
-            "description": "Two day shipping regions defined by Walmart for sellers.",
-            "items": {
-              "type": "string",
-              "description": "Two day shipping regions defined by Walmart for sellers."
-            }
-          }
-        }
-      },
-      "ShipNode": {
-        "type": "object",
-        "properties": {
-          "shipNode": {
-            "type": "string",
-            "description": "The fulfillment center or ship node Id which uniquely identifies each facility and is autogenerated during the creation of fulfillment center. Every time a facility is added, a new ship node id is generated."
-          },
-          "shipNodeName": {
-            "type": "string",
-            "description": "Name of the fulfillment center."
-          },
-          "status": {
-            "type": "string",
-            "description": "Status of fulfillment center. Allowed values: ACTIVE, INACTIVE.."
-          },
-          "timeZone": {
-            "type": "string",
-            "description": "Time zone that the seller ships from.Allowed timezones are PST, EST, CST, MST."
-          },
-          "distributorSupportedServices": {
-            "type": "array",
-            "description": "The services supported by the defined physical ship node . The allowed values: TWO_DAY_DELIVERY.",
-            "items": {
-              "type": "string",
-              "description": "The services supported by the defined physical ship node . The allowed values: TWO_DAY_DELIVERY."
-            }
-          },
-          "customNodeId": {
-            "type": "string",
-            "description": "Custom node identifier provided by seller. Allowed values are alphanumeric | String"
-          },
-          "postalAddress": {
-            "type": "object",
-            "properties": {
-              "addressLine1": {
-                "type": "string",
-                "description": "Street address of the fulfillment center."
-              },
-              "city": {
-                "type": "string",
-                "description": "City of the fulfillment center."
-              },
-              "state": {
-                "type": "string",
-                "description": "State of the fulfillment center."
-              },
-              "country": {
-                "type": "string",
-                "description": "Country of the fulfillment center."
-              },
-              "postalCode": {
-                "type": "string",
-                "description": "Postal code of the fulfillment center."
-              }
-            },
-            "description": "Postal code of the fulfillment center."
-          },
-          "shippingDetails": {
-            "type": "array",
-            "description": "Shipping Details.",
-            "items": {
-              "type": "object",
-              "properties": {
-                "twoDayShipping": {
-                  "type": "array",
-                  "description": "Shipping type provided.",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "carrierMethodName": {
-                        "type": "string",
-                        "description": "Name of the shipping carrier. Carrier names can be retrieved from the Get carrier methods API."
-                      },
-                      "carrierMethodType": {
-                        "type": "string",
-                        "description": "Shipping method."
-                      }
-                    },
-                    "description": "Shipping type provided."
-                  }
-                }
-              },
-              "description": "Shipping Details."
-            }
-          },
-          "calendarDayConfiguration": {
-            "required": [
-              "additionalDaysOff",
-              "standardProcessingSchedule"
-            ],
-            "type": "object",
-            "properties": {
-              "standardProcessingSchedule": {
-                "required": [
-                  "friday",
-                  "monday",
-                  "saturday",
-                  "sunday",
-                  "thursday",
-                  "tuesday",
-                  "wednesday"
-                ],
-                "type": "object",
-                "properties": {
-                  "sunday": {
-                    "required": [
-                      "isWorkingDay"
-                    ],
-                    "type": "object",
-                    "properties": {
-                      "isWorkingDay": {
-                        "type": "boolean",
-                        "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
-                      },
-                      "cutOffTime": {
-                        "type": "string",
-                        "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
-                        "format": "HH:mm",
-                        "default": "14:00"
-                      }
-                    }
-                  },
-                  "monday": {
-                    "required": [
-                      "isWorkingDay"
-                    ],
-                    "type": "object",
-                    "properties": {
-                      "isWorkingDay": {
-                        "type": "boolean",
-                        "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
-                      },
-                      "cutOffTime": {
-                        "type": "string",
-                        "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
-                        "format": "HH:mm",
-                        "default": "14:00"
-                      }
-                    }
-                  },
-                  "tuesday": {
-                    "required": [
-                      "isWorkingDay"
-                    ],
-                    "type": "object",
-                    "properties": {
-                      "isWorkingDay": {
-                        "type": "boolean",
-                        "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
-                      },
-                      "cutOffTime": {
-                        "type": "string",
-                        "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
-                        "format": "HH:mm",
-                        "default": "14:00"
-                      }
-                    }
-                  },
-                  "wednesday": {
-                    "required": [
-                      "isWorkingDay"
-                    ],
-                    "type": "object",
-                    "properties": {
-                      "isWorkingDay": {
-                        "type": "boolean",
-                        "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
-                      },
-                      "cutOffTime": {
-                        "type": "string",
-                        "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
-                        "format": "HH:mm",
-                        "default": "14:00"
-                      }
-                    }
-                  },
-                  "thursday": {
-                    "required": [
-                      "isWorkingDay"
-                    ],
-                    "type": "object",
-                    "properties": {
-                      "isWorkingDay": {
-                        "type": "boolean",
-                        "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
-                      },
-                      "cutOffTime": {
-                        "type": "string",
-                        "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
-                        "format": "HH:mm",
-                        "default": "14:00"
-                      }
-                    }
-                  },
-                  "friday": {
-                    "required": [
-                      "isWorkingDay"
-                    ],
-                    "type": "object",
-                    "properties": {
-                      "isWorkingDay": {
-                        "type": "boolean",
-                        "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
-                      },
-                      "cutOffTime": {
-                        "type": "string",
-                        "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
-                        "format": "HH:mm",
-                        "default": "14:00"
-                      }
-                    }
-                  },
-                  "saturday": {
-                    "required": [
-                      "isWorkingDay"
-                    ],
-                    "type": "object",
-                    "properties": {
-                      "isWorkingDay": {
-                        "type": "boolean",
-                        "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
-                      },
-                      "cutOffTime": {
-                        "type": "string",
-                        "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
-                        "format": "HH:mm",
-                        "default": "14:00"
-                      }
-                    }
-                  }
-                },
-                "description": "Operating Schedule for the fulfillment center"
-              },
-              "additionalDaysOff": {
-                "type": "array",
-                "description": "List of additional days on which the fulfillment center is closed. For example, if the fulfillment center is closed on New Year’s Day, then add the date in the list. If there are no additional off days, then this list will be empty. Use ISO 8601 format for date. For example: '2021-07-16'(yyyy-MM-dd) ",
-                "format": "yyyy-MM-dd",
-                "items": {
-                  "type": "string",
-                  "description": "List of additional days on which the fulfillment center is closed. For example, if the fulfillment center is closed on New Year’s Day, then add the date in the list. If there are no additional off days, then this list will be empty. Use ISO 8601 format for date. For example: '2021-07-16'(yyyy-MM-dd) ",
-                  "format": "yyyy-MM-dd"
-                }
-              }
-            },
-            "description": "Calendar day promise details. For examples, please refer to 'Sample 2 - Calendar Day Configurations' in request & response samples."
-          }
-        }
-      },
-      "UpdateFulfillmentCenterRequest": {
-        "type": "object",
-        "properties": {
-          "shipNodeHeader": {
-            "type": "object",
-            "properties": {
-              "version": {
-                "type": "string"
-              }
-            }
-          },
-          "shipNode": {
-            "type": "object",
-            "properties": {
-              "shipNode": {
-                "type": "string",
-                "description": "The fulfillment center or ship node Id which uniquely identifies each facility and is autogenerated during the creation of fulfillment center. Every time a facility is added, a new ship node id is generated."
-              },
-              "shipNodeName": {
-                "type": "string",
-                "description": "Name of the fulfillment center."
-              },
-              "status": {
-                "type": "string",
-                "description": "Status of fulfillment center. Allowed values: ACTIVE, INACTIVE.."
-              },
-              "timeZone": {
-                "type": "string",
-                "description": "Time zone that the seller ships from.Allowed timezones are PST, EST, CST, MST."
-              },
-              "distributorSupportedServices": {
-                "type": "array",
-                "description": "The services supported by the defined physical ship node . The allowed values: TWO_DAY_DELIVERY.",
-                "items": {
-                  "type": "string",
-                  "description": "The services supported by the defined physical ship node . The allowed values: TWO_DAY_DELIVERY."
-                }
-              },
-              "customNodeId": {
-                "type": "string",
-                "description": "Custom node identifier provided by seller. Allowed values are alphanumeric | String"
-              },
-              "postalAddress": {
-                "type": "object",
-                "properties": {
-                  "addressLine1": {
-                    "type": "string",
-                    "description": "Street address of the fulfillment center."
-                  },
-                  "city": {
-                    "type": "string",
-                    "description": "City of the fulfillment center."
-                  },
-                  "state": {
-                    "type": "string",
-                    "description": "State of the fulfillment center."
-                  },
-                  "country": {
-                    "type": "string",
-                    "description": "Country of the fulfillment center."
-                  },
-                  "postalCode": {
-                    "type": "string",
-                    "description": "Postal code of the fulfillment center."
-                  }
-                },
-                "description": "Postal code of the fulfillment center."
-              },
-              "shippingDetails": {
-                "type": "array",
-                "description": "Shipping Details.",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "twoDayShipping": {
-                      "type": "array",
-                      "description": "Shipping type provided.",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "carrierMethodName": {
-                            "type": "string",
-                            "description": "Name of the shipping carrier. Carrier names can be retrieved from the Get carrier methods API."
-                          },
-                          "carrierMethodType": {
-                            "type": "string",
-                            "description": "Shipping method."
-                          }
-                        },
-                        "description": "Shipping type provided."
-                      }
-                    }
-                  },
-                  "description": "Shipping Details."
-                }
-              },
-              "calendarDayConfiguration": {
-                "required": [
-                  "additionalDaysOff",
-                  "standardProcessingSchedule"
-                ],
-                "type": "object",
-                "properties": {
-                  "standardProcessingSchedule": {
-                    "required": [
-                      "friday",
-                      "monday",
-                      "saturday",
-                      "sunday",
-                      "thursday",
-                      "tuesday",
-                      "wednesday"
-                    ],
-                    "type": "object",
-                    "properties": {
-                      "sunday": {
-                        "required": [
-                          "isWorkingDay"
-                        ],
-                        "type": "object",
-                        "properties": {
-                          "isWorkingDay": {
-                            "type": "boolean",
-                            "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
-                          },
-                          "cutOffTime": {
-                            "type": "string",
-                            "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
-                            "format": "HH:mm",
-                            "default": "14:00"
-                          }
-                        }
-                      },
-                      "monday": {
-                        "required": [
-                          "isWorkingDay"
-                        ],
-                        "type": "object",
-                        "properties": {
-                          "isWorkingDay": {
-                            "type": "boolean",
-                            "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
-                          },
-                          "cutOffTime": {
-                            "type": "string",
-                            "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
-                            "format": "HH:mm",
-                            "default": "14:00"
-                          }
-                        }
-                      },
-                      "tuesday": {
-                        "required": [
-                          "isWorkingDay"
-                        ],
-                        "type": "object",
-                        "properties": {
-                          "isWorkingDay": {
-                            "type": "boolean",
-                            "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
-                          },
-                          "cutOffTime": {
-                            "type": "string",
-                            "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
-                            "format": "HH:mm",
-                            "default": "14:00"
-                          }
-                        }
-                      },
-                      "wednesday": {
-                        "required": [
-                          "isWorkingDay"
-                        ],
-                        "type": "object",
-                        "properties": {
-                          "isWorkingDay": {
-                            "type": "boolean",
-                            "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
-                          },
-                          "cutOffTime": {
-                            "type": "string",
-                            "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
-                            "format": "HH:mm",
-                            "default": "14:00"
-                          }
-                        }
-                      },
-                      "thursday": {
-                        "required": [
-                          "isWorkingDay"
-                        ],
-                        "type": "object",
-                        "properties": {
-                          "isWorkingDay": {
-                            "type": "boolean",
-                            "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
-                          },
-                          "cutOffTime": {
-                            "type": "string",
-                            "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
-                            "format": "HH:mm",
-                            "default": "14:00"
-                          }
-                        }
-                      },
-                      "friday": {
-                        "required": [
-                          "isWorkingDay"
-                        ],
-                        "type": "object",
-                        "properties": {
-                          "isWorkingDay": {
-                            "type": "boolean",
-                            "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
-                          },
-                          "cutOffTime": {
-                            "type": "string",
-                            "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
-                            "format": "HH:mm",
-                            "default": "14:00"
-                          }
-                        }
-                      },
-                      "saturday": {
-                        "required": [
-                          "isWorkingDay"
-                        ],
-                        "type": "object",
-                        "properties": {
-                          "isWorkingDay": {
-                            "type": "boolean",
-                            "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
-                          },
-                          "cutOffTime": {
-                            "type": "string",
-                            "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
-                            "format": "HH:mm",
-                            "default": "14:00"
-                          }
-                        }
-                      }
-                    },
-                    "description": "Operating Schedule for the fulfillment center"
-                  },
-                  "additionalDaysOff": {
-                    "type": "array",
-                    "description": "List of additional days on which the fulfillment center is closed. For example, if the fulfillment center is closed on New Year’s Day, then add the date in the list. If there are no additional off days, then this list will be empty. Use ISO 8601 format for date. For example: '2021-07-16'(yyyy-MM-dd) ",
-                    "format": "yyyy-MM-dd",
-                    "items": {
-                      "type": "string",
-                      "description": "List of additional days on which the fulfillment center is closed. For example, if the fulfillment center is closed on New Year’s Day, then add the date in the list. If there are no additional off days, then this list will be empty. Use ISO 8601 format for date. For example: '2021-07-16'(yyyy-MM-dd) ",
-                      "format": "yyyy-MM-dd"
-                    }
-                  }
-                },
-                "description": "Calendar day promise details. For examples, please refer to 'Sample 2 - Calendar Day Configurations' in request & response samples."
-              }
-            }
-          }
-        }
-      },
       "CreateShippingTemplateRequest": {
         "type": "object",
         "properties": {
@@ -17609,6 +16730,929 @@
               },
               "description": "Array of different ship methods of a Shipping Template"
             }
+          }
+        }
+      },
+      "ShippingTemplateSummary": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Shipping Template ID"
+          },
+          "name": {
+            "type": "string",
+            "description": "Shipping Template Name"
+          },
+          "type": {
+            "type": "string",
+            "description": "Shipping Template Type",
+            "enum": [
+              "DEFAULT",
+              "CUSTOM",
+              "DELIVERR"
+            ]
+          },
+          "status": {
+            "type": "string",
+            "description": "Shipping Template/ Configurations active or inactive status",
+            "enum": [
+              "ACTIVE",
+              "INACTIVE"
+            ]
+          },
+          "rateModelType": {
+            "type": "string",
+            "enum": [
+              "TIERED_PRICING",
+              "PER_SHIPMENT_PRICING"
+            ]
+          },
+          "createdBy": {
+            "type": "string"
+          },
+          "modifiedBy": {
+            "type": "string"
+          },
+          "createdDate": {
+            "type": "number",
+            "description": "Template Creation Date"
+          },
+          "modifiedDate": {
+            "type": "number",
+            "description": "Template Modified Date"
+          }
+        },
+        "description": "Array of Shipping Templates"
+      },
+      "ShippingTemplatesSummary": {
+        "type": "object",
+        "properties": {
+          "shippingTemplates": {
+            "type": "array",
+            "description": "Array of Shipping Templates",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "Shipping Template ID"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "Shipping Template Name"
+                },
+                "type": {
+                  "type": "string",
+                  "description": "Shipping Template Type",
+                  "enum": [
+                    "DEFAULT",
+                    "CUSTOM",
+                    "DELIVERR"
+                  ]
+                },
+                "status": {
+                  "type": "string",
+                  "description": "Shipping Template/ Configurations active or inactive status",
+                  "enum": [
+                    "ACTIVE",
+                    "INACTIVE"
+                  ]
+                },
+                "rateModelType": {
+                  "type": "string",
+                  "enum": [
+                    "TIERED_PRICING",
+                    "PER_SHIPMENT_PRICING"
+                  ]
+                },
+                "createdBy": {
+                  "type": "string"
+                },
+                "modifiedBy": {
+                  "type": "string"
+                },
+                "createdDate": {
+                  "type": "number",
+                  "description": "Template Creation Date"
+                },
+                "modifiedDate": {
+                  "type": "number",
+                  "description": "Template Modified Date"
+                }
+              },
+              "description": "Array of Shipping Templates"
+            }
+          },
+          "totalRecords": {
+            "type": "number",
+            "description": "Total Number of records in the response of the API"
+          }
+        }
+      },
+      "ShippingTemplateId": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Shipping Template ID"
+          }
+        }
+      },
+      "AccountConfig": {
+        "type": "object",
+        "properties": {
+          "configurationName": {
+            "type": "string",
+            "description": "Name of the configuration. Allowed value is ACCOUNT"
+          },
+          "configuration": {
+            "type": "object",
+            "properties": {
+              "status": {
+                "type": "string",
+                "description": "Status of Seller Account",
+                "enum": [
+                  "ACTIVE",
+                  "ONBOARDING_ACTIVE",
+                  "ONBOARDING_INACTIVE",
+                  "SUSPENDED",
+                  "TNS_DECLINED",
+                  "TERMINATED"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "AccountInfoDTO": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "Status of Seller Account",
+            "enum": [
+              "ACTIVE",
+              "ONBOARDING_ACTIVE",
+              "ONBOARDING_INACTIVE",
+              "SUSPENDED",
+              "TNS_DECLINED",
+              "TERMINATED"
+            ]
+          }
+        }
+      },
+      "FeedConfig": {
+        "type": "object",
+        "properties": {
+          "configurationName": {
+            "type": "string",
+            "description": "Name of the configuration. Allowed value is FEED"
+          },
+          "configuration": {
+            "type": "object",
+            "properties": {
+              "values": {
+                "type": "array",
+                "description": "List of feed throttling configurations",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "feedType": {
+                      "type": "string",
+                      "description": "The feed Type",
+                      "enum": [
+                        "item",
+                        "RETIRE_ITEM",
+                        "MP_ITEM",
+                        "MP_WFS_ITEM",
+                        "MP_MAINTENANCE",
+                        "SKU_TEMPLATE_MAP",
+                        "SHIPPING_OVERRIDES",
+                        "price",
+                        "CPT_SELLER_ELIGIBILITY",
+                        "promo",
+                        "RETURNS_OVERRIDES",
+                        "inventory",
+                        "lagtime"
+                      ]
+                    },
+                    "throttleConfigurations": {
+                      "type": "array",
+                      "description": "Details of throttling configurations",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "description": "Type of the throttling configuration. Example 'SELLER' means throttling configurations at Seller level only.",
+                            "enum": [
+                              "SELLER"
+                            ]
+                          },
+                          "rate": {
+                            "type": "object",
+                            "properties": {
+                              "count": {
+                                "type": "integer",
+                                "description": "Number of API calls that can be made in every replenish time window",
+                                "format": "int64"
+                              },
+                              "replenishTimeWindow": {
+                                "type": "object",
+                                "properties": {
+                                  "value": {
+                                    "type": "integer",
+                                    "description": "The number representing size of time window",
+                                    "format": "int64"
+                                  },
+                                  "unitOfMeasurement": {
+                                    "type": "string",
+                                    "description": "The unit of measurement. Example: 'SECOND'",
+                                    "enum": [
+                                      "SECOND"
+                                    ]
+                                  }
+                                },
+                                "description": "A time period set for throttling of number of API calls"
+                              }
+                            },
+                            "description": "API call Rate"
+                          },
+                          "fileSize": {
+                            "type": "object",
+                            "properties": {
+                              "value": {
+                                "type": "integer",
+                                "description": "The number representing file size",
+                                "format": "int64"
+                              },
+                              "unitOfMeasurement": {
+                                "type": "string",
+                                "description": "The unit of measurement. Example: 'BYTES'",
+                                "enum": [
+                                  "BYTES"
+                                ]
+                              }
+                            },
+                            "description": "The maximum allowed size of the feed file"
+                          }
+                        },
+                        "description": "Details of throttling configurations"
+                      }
+                    }
+                  },
+                  "description": "List of feed throttling configurations"
+                }
+              }
+            }
+          }
+        }
+      },
+      "FeedThrottlingConfigValues": {
+        "type": "object",
+        "properties": {
+          "values": {
+            "type": "array",
+            "description": "List of feed throttling configurations",
+            "items": {
+              "type": "object",
+              "properties": {
+                "feedType": {
+                  "type": "string",
+                  "description": "The feed Type",
+                  "enum": [
+                    "item",
+                    "RETIRE_ITEM",
+                    "MP_ITEM",
+                    "MP_WFS_ITEM",
+                    "MP_MAINTENANCE",
+                    "SKU_TEMPLATE_MAP",
+                    "SHIPPING_OVERRIDES",
+                    "price",
+                    "CPT_SELLER_ELIGIBILITY",
+                    "promo",
+                    "RETURNS_OVERRIDES",
+                    "inventory",
+                    "lagtime"
+                  ]
+                },
+                "throttleConfigurations": {
+                  "type": "array",
+                  "description": "Details of throttling configurations",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string",
+                        "description": "Type of the throttling configuration. Example 'SELLER' means throttling configurations at Seller level only.",
+                        "enum": [
+                          "SELLER"
+                        ]
+                      },
+                      "rate": {
+                        "type": "object",
+                        "properties": {
+                          "count": {
+                            "type": "integer",
+                            "description": "Number of API calls that can be made in every replenish time window",
+                            "format": "int64"
+                          },
+                          "replenishTimeWindow": {
+                            "type": "object",
+                            "properties": {
+                              "value": {
+                                "type": "integer",
+                                "description": "The number representing size of time window",
+                                "format": "int64"
+                              },
+                              "unitOfMeasurement": {
+                                "type": "string",
+                                "description": "The unit of measurement. Example: 'SECOND'",
+                                "enum": [
+                                  "SECOND"
+                                ]
+                              }
+                            },
+                            "description": "A time period set for throttling of number of API calls"
+                          }
+                        },
+                        "description": "API call Rate"
+                      },
+                      "fileSize": {
+                        "type": "object",
+                        "properties": {
+                          "value": {
+                            "type": "integer",
+                            "description": "The number representing file size",
+                            "format": "int64"
+                          },
+                          "unitOfMeasurement": {
+                            "type": "string",
+                            "description": "The unit of measurement. Example: 'BYTES'",
+                            "enum": [
+                              "BYTES"
+                            ]
+                          }
+                        },
+                        "description": "The maximum allowed size of the feed file"
+                      }
+                    },
+                    "description": "Details of throttling configurations"
+                  }
+                }
+              },
+              "description": "List of feed throttling configurations"
+            }
+          }
+        }
+      },
+      "FeedThrottlingDTO": {
+        "type": "object",
+        "properties": {
+          "feedType": {
+            "type": "string",
+            "description": "The feed Type",
+            "enum": [
+              "item",
+              "RETIRE_ITEM",
+              "MP_ITEM",
+              "MP_WFS_ITEM",
+              "MP_MAINTENANCE",
+              "SKU_TEMPLATE_MAP",
+              "SHIPPING_OVERRIDES",
+              "price",
+              "CPT_SELLER_ELIGIBILITY",
+              "promo",
+              "RETURNS_OVERRIDES",
+              "inventory",
+              "lagtime"
+            ]
+          },
+          "throttleConfigurations": {
+            "type": "array",
+            "description": "Details of throttling configurations",
+            "items": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "description": "Type of the throttling configuration. Example 'SELLER' means throttling configurations at Seller level only.",
+                  "enum": [
+                    "SELLER"
+                  ]
+                },
+                "rate": {
+                  "type": "object",
+                  "properties": {
+                    "count": {
+                      "type": "integer",
+                      "description": "Number of API calls that can be made in every replenish time window",
+                      "format": "int64"
+                    },
+                    "replenishTimeWindow": {
+                      "type": "object",
+                      "properties": {
+                        "value": {
+                          "type": "integer",
+                          "description": "The number representing size of time window",
+                          "format": "int64"
+                        },
+                        "unitOfMeasurement": {
+                          "type": "string",
+                          "description": "The unit of measurement. Example: 'SECOND'",
+                          "enum": [
+                            "SECOND"
+                          ]
+                        }
+                      },
+                      "description": "A time period set for throttling of number of API calls"
+                    }
+                  },
+                  "description": "API call Rate"
+                },
+                "fileSize": {
+                  "type": "object",
+                  "properties": {
+                    "value": {
+                      "type": "integer",
+                      "description": "The number representing file size",
+                      "format": "int64"
+                    },
+                    "unitOfMeasurement": {
+                      "type": "string",
+                      "description": "The unit of measurement. Example: 'BYTES'",
+                      "enum": [
+                        "BYTES"
+                      ]
+                    }
+                  },
+                  "description": "The maximum allowed size of the feed file"
+                }
+              },
+              "description": "Details of throttling configurations"
+            }
+          }
+        },
+        "description": "List of feed throttling configurations"
+      },
+      "FileSize": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "integer",
+            "description": "The number representing file size",
+            "format": "int64"
+          },
+          "unitOfMeasurement": {
+            "type": "string",
+            "description": "The unit of measurement. Example: 'BYTES'",
+            "enum": [
+              "BYTES"
+            ]
+          }
+        },
+        "description": "The maximum allowed size of the feed file"
+      },
+      "PartnerConfig": {
+        "type": "object",
+        "description": "List of seller configurations like Seller Account & feed throttling values",
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "configurationName": {
+                "type": "string",
+                "description": "Name of the configuration. Allowed value is ACCOUNT"
+              },
+              "configuration": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "type": "string",
+                    "description": "Status of Seller Account",
+                    "enum": [
+                      "ACTIVE",
+                      "ONBOARDING_ACTIVE",
+                      "ONBOARDING_INACTIVE",
+                      "SUSPENDED",
+                      "TNS_DECLINED",
+                      "TERMINATED"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "object",
+            "properties": {
+              "configurationName": {
+                "type": "string",
+                "description": "Name of the configuration. Allowed value is FEED"
+              },
+              "configuration": {
+                "type": "object",
+                "properties": {
+                  "values": {
+                    "type": "array",
+                    "description": "List of feed throttling configurations",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "feedType": {
+                          "type": "string",
+                          "description": "The feed Type",
+                          "enum": [
+                            "item",
+                            "RETIRE_ITEM",
+                            "MP_ITEM",
+                            "MP_WFS_ITEM",
+                            "MP_MAINTENANCE",
+                            "SKU_TEMPLATE_MAP",
+                            "SHIPPING_OVERRIDES",
+                            "price",
+                            "CPT_SELLER_ELIGIBILITY",
+                            "promo",
+                            "RETURNS_OVERRIDES",
+                            "inventory",
+                            "lagtime"
+                          ]
+                        },
+                        "throttleConfigurations": {
+                          "type": "array",
+                          "description": "Details of throttling configurations",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "description": "Type of the throttling configuration. Example 'SELLER' means throttling configurations at Seller level only.",
+                                "enum": [
+                                  "SELLER"
+                                ]
+                              },
+                              "rate": {
+                                "type": "object",
+                                "properties": {
+                                  "count": {
+                                    "type": "integer",
+                                    "description": "Number of API calls that can be made in every replenish time window",
+                                    "format": "int64"
+                                  },
+                                  "replenishTimeWindow": {
+                                    "type": "object",
+                                    "properties": {
+                                      "value": {
+                                        "type": "integer",
+                                        "description": "The number representing size of time window",
+                                        "format": "int64"
+                                      },
+                                      "unitOfMeasurement": {
+                                        "type": "string",
+                                        "description": "The unit of measurement. Example: 'SECOND'",
+                                        "enum": [
+                                          "SECOND"
+                                        ]
+                                      }
+                                    },
+                                    "description": "A time period set for throttling of number of API calls"
+                                  }
+                                },
+                                "description": "API call Rate"
+                              },
+                              "fileSize": {
+                                "type": "object",
+                                "properties": {
+                                  "value": {
+                                    "type": "integer",
+                                    "description": "The number representing file size",
+                                    "format": "int64"
+                                  },
+                                  "unitOfMeasurement": {
+                                    "type": "string",
+                                    "description": "The unit of measurement. Example: 'BYTES'",
+                                    "enum": [
+                                      "BYTES"
+                                    ]
+                                  }
+                                },
+                                "description": "The maximum allowed size of the feed file"
+                              }
+                            },
+                            "description": "Details of throttling configurations"
+                          }
+                        }
+                      },
+                      "description": "List of feed throttling configurations"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "PartnerConfigsResponseDTO": {
+        "type": "object",
+        "properties": {
+          "partner": {
+            "type": "object",
+            "properties": {
+              "partnerId": {
+                "type": "string",
+                "description": "The seller ID"
+              },
+              "partnerName": {
+                "type": "string",
+                "description": "The seller's legal name"
+              },
+              "partnerDisplayName": {
+                "type": "string",
+                "description": "The seller name shown on walmart.com"
+              }
+            },
+            "description": "Details of partner"
+          },
+          "configurations": {
+            "type": "array",
+            "description": "List of seller configurations like Seller Account & feed throttling values",
+            "items": {
+              "type": "object",
+              "description": "List of seller configurations like Seller Account & feed throttling values",
+              "anyOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "configurationName": {
+                      "type": "string",
+                      "description": "Name of the configuration. Allowed value is ACCOUNT"
+                    },
+                    "configuration": {
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "type": "string",
+                          "description": "Status of Seller Account",
+                          "enum": [
+                            "ACTIVE",
+                            "ONBOARDING_ACTIVE",
+                            "ONBOARDING_INACTIVE",
+                            "SUSPENDED",
+                            "TNS_DECLINED",
+                            "TERMINATED"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "configurationName": {
+                      "type": "string",
+                      "description": "Name of the configuration. Allowed value is FEED"
+                    },
+                    "configuration": {
+                      "type": "object",
+                      "properties": {
+                        "values": {
+                          "type": "array",
+                          "description": "List of feed throttling configurations",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "feedType": {
+                                "type": "string",
+                                "description": "The feed Type",
+                                "enum": [
+                                  "item",
+                                  "RETIRE_ITEM",
+                                  "MP_ITEM",
+                                  "MP_WFS_ITEM",
+                                  "MP_MAINTENANCE",
+                                  "SKU_TEMPLATE_MAP",
+                                  "SHIPPING_OVERRIDES",
+                                  "price",
+                                  "CPT_SELLER_ELIGIBILITY",
+                                  "promo",
+                                  "RETURNS_OVERRIDES",
+                                  "inventory",
+                                  "lagtime"
+                                ]
+                              },
+                              "throttleConfigurations": {
+                                "type": "array",
+                                "description": "Details of throttling configurations",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "type": {
+                                      "type": "string",
+                                      "description": "Type of the throttling configuration. Example 'SELLER' means throttling configurations at Seller level only.",
+                                      "enum": [
+                                        "SELLER"
+                                      ]
+                                    },
+                                    "rate": {
+                                      "type": "object",
+                                      "properties": {
+                                        "count": {
+                                          "type": "integer",
+                                          "description": "Number of API calls that can be made in every replenish time window",
+                                          "format": "int64"
+                                        },
+                                        "replenishTimeWindow": {
+                                          "type": "object",
+                                          "properties": {
+                                            "value": {
+                                              "type": "integer",
+                                              "description": "The number representing size of time window",
+                                              "format": "int64"
+                                            },
+                                            "unitOfMeasurement": {
+                                              "type": "string",
+                                              "description": "The unit of measurement. Example: 'SECOND'",
+                                              "enum": [
+                                                "SECOND"
+                                              ]
+                                            }
+                                          },
+                                          "description": "A time period set for throttling of number of API calls"
+                                        }
+                                      },
+                                      "description": "API call Rate"
+                                    },
+                                    "fileSize": {
+                                      "type": "object",
+                                      "properties": {
+                                        "value": {
+                                          "type": "integer",
+                                          "description": "The number representing file size",
+                                          "format": "int64"
+                                        },
+                                        "unitOfMeasurement": {
+                                          "type": "string",
+                                          "description": "The unit of measurement. Example: 'BYTES'",
+                                          "enum": [
+                                            "BYTES"
+                                          ]
+                                        }
+                                      },
+                                      "description": "The maximum allowed size of the feed file"
+                                    }
+                                  },
+                                  "description": "Details of throttling configurations"
+                                }
+                              }
+                            },
+                            "description": "List of feed throttling configurations"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      "Rate": {
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "integer",
+            "description": "Number of API calls that can be made in every replenish time window",
+            "format": "int64"
+          },
+          "replenishTimeWindow": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "integer",
+                "description": "The number representing size of time window",
+                "format": "int64"
+              },
+              "unitOfMeasurement": {
+                "type": "string",
+                "description": "The unit of measurement. Example: 'SECOND'",
+                "enum": [
+                  "SECOND"
+                ]
+              }
+            },
+            "description": "A time period set for throttling of number of API calls"
+          }
+        },
+        "description": "API call Rate"
+      },
+      "ThrottlingConfigDTO": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Type of the throttling configuration. Example 'SELLER' means throttling configurations at Seller level only.",
+            "enum": [
+              "SELLER"
+            ]
+          },
+          "rate": {
+            "type": "object",
+            "properties": {
+              "count": {
+                "type": "integer",
+                "description": "Number of API calls that can be made in every replenish time window",
+                "format": "int64"
+              },
+              "replenishTimeWindow": {
+                "type": "object",
+                "properties": {
+                  "value": {
+                    "type": "integer",
+                    "description": "The number representing size of time window",
+                    "format": "int64"
+                  },
+                  "unitOfMeasurement": {
+                    "type": "string",
+                    "description": "The unit of measurement. Example: 'SECOND'",
+                    "enum": [
+                      "SECOND"
+                    ]
+                  }
+                },
+                "description": "A time period set for throttling of number of API calls"
+              }
+            },
+            "description": "API call Rate"
+          },
+          "fileSize": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "integer",
+                "description": "The number representing file size",
+                "format": "int64"
+              },
+              "unitOfMeasurement": {
+                "type": "string",
+                "description": "The unit of measurement. Example: 'BYTES'",
+                "enum": [
+                  "BYTES"
+                ]
+              }
+            },
+            "description": "The maximum allowed size of the feed file"
+          }
+        },
+        "description": "Details of throttling configurations"
+      },
+      "TimeWindow": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "integer",
+            "description": "The number representing size of time window",
+            "format": "int64"
+          },
+          "unitOfMeasurement": {
+            "type": "string",
+            "description": "The unit of measurement. Example: 'SECOND'",
+            "enum": [
+              "SECOND"
+            ]
+          }
+        },
+        "description": "A time period set for throttling of number of API calls"
+      },
+      "ShippingTemplateActivationStatus": {
+        "type": "object",
+        "properties": {
+          "activationStatus": {
+            "type": "string",
+            "description": "Shipping Template Activation Status, possible values can be NOT_ACTIVATED or ACTIVATED"
+          },
+          "createdDate": {
+            "type": "number",
+            "description": "Activation Date"
+          },
+          "modifiedDate": {
+            "type": "number",
+            "description": "Activation Status Last Modified Date"
+          }
+        }
+      },
+      "ThirdPartyShipNode2": {
+        "type": "object",
+        "properties": {
+          "shipNode": {
+            "type": "string",
+            "description": "The fulfillment center or ship node Id which uniquely identifies each facility and is autogenerated during the creation of fulfillment center. Every time a facility is added, a new ship node id is generated."
+          },
+          "shipNodeName": {
+            "type": "string",
+            "description": "Name of the fulfillment center."
           }
         }
       }
