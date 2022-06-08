@@ -20,146 +20,6 @@
     }
   ],
   "paths": {
-    "/v3/lagtime": {
-      "get": {
-        "tags": [
-          "Lag Time"
-        ],
-        "summary": "Lag Time",
-        "description": "This API allows the retrieval of Lag Time for an item with a given SKU.\n\nLag Time is the number of days between when an item is ordered and when it is shipped. Lag time of two days or more requires approval at the item setup category level. Please refer to the Request Lag Time Exceptions article for more details on this process.\n\nDownload the Lag Time Exception XSDs from the below directory:\n\nxsd/LagTimeException.zip.\n\nDownload the Lag Time JSON schema from the below directory:\n\nxsd/LagTimeException.zip.",
-        "operationId": "getLagTime",
-        "parameters": [
-          {
-            "name": "sku",
-            "in": "query",
-            "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: ':', '/', '?', '#', '[', ']', '@', '!', '$', '&', \"'\", '(', ')', '*', '+', ',', ';', '=', ‘ ’, '{', '}' as well as '%' itself if it's a part of sku. Make sure to encode space with %20. Other characters don't need to be encoded.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
-          },
-          {
-            "in": "header",
-            "name": "WM_SEC.ACCESS_TOKEN",
-            "description": "The access token retrieved in the Token API call",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
-          },
-          {
-            "in": "header",
-            "name": "WM_CONSUMER.CHANNEL.TYPE",
-            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "header",
-            "name": "WM_QOS.CORRELATION_ID",
-            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
-          },
-          {
-            "in": "header",
-            "name": "WM_SVC.NAME",
-            "description": "Walmart Service Name",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Walmart Service Name"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Operation",
-            "content": {
-              "application/xml": {
-                "schema": {
-                  "required": [
-                    "fulfillmentLagTime",
-                    "sku"
-                  ],
-                  "type": "object",
-                  "properties": {
-                    "sku": {
-                      "type": "string",
-                      "description": "A seller-provided Product ID. Response will have decoded value.",
-                      "xml": {
-                        "namespace": "http://walmart.com/"
-                      }
-                    },
-                    "fulfillmentLagTime": {
-                      "type": "integer",
-                      "description": "The number of days between when the item is ordered and when it is shipped",
-                      "format": "int32",
-                      "xml": {
-                        "namespace": "http://walmart.com/"
-                      }
-                    }
-                  },
-                  "xml": {
-                    "name": "lagTime"
-                  }
-                },
-                "example": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<lagTime xmlns=\"http://walmart.com/\">\n    <sku>1068155</sku>\n    <fulfillmentLagTime>1</fulfillmentLagTime>\n</lagTime>"
-              },
-              "application/json": {
-                "schema": {
-                  "required": [
-                    "fulfillmentLagTime",
-                    "sku"
-                  ],
-                  "type": "object",
-                  "properties": {
-                    "sku": {
-                      "type": "string",
-                      "description": "A seller-provided Product ID. Response will have decoded value.",
-                      "xml": {
-                        "namespace": "http://walmart.com/"
-                      }
-                    },
-                    "fulfillmentLagTime": {
-                      "type": "integer",
-                      "description": "The number of days between when the item is ordered and when it is shipped",
-                      "format": "int32",
-                      "xml": {
-                        "namespace": "http://walmart.com/"
-                      }
-                    }
-                  },
-                  "xml": {
-                    "name": "lagTime"
-                  }
-                },
-                "example": {
-                  "sku": "183688",
-                  "fulfillmentLagTime": 0
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/v3/feeds": {
       "post": {
         "tags": [
@@ -454,37 +314,150 @@
           }
         }
       }
+    },
+    "/v3/lagtime": {
+      "get": {
+        "tags": [
+          "Lag Time"
+        ],
+        "summary": "Lag Time",
+        "description": "This API allows the retrieval of Lag Time for an item with a given SKU.\n\nLag Time is the number of days between when an item is ordered and when it is shipped. Lag time of two days or more requires approval at the item setup category level. Please refer to the Request Lag Time Exceptions article for more details on this process.\n\nDownload the Lag Time Exception XSDs from the below directory:\n\nxsd/LagTimeException.zip.\n\nDownload the Lag Time JSON schema from the below directory:\n\nxsd/LagTimeException.zip.",
+        "operationId": "getLagTime",
+        "parameters": [
+          {
+            "name": "sku",
+            "in": "query",
+            "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: ':', '/', '?', '#', '[', ']', '@', '!', '$', '&', \"'\", '(', ')', '*', '+', ',', ';', '=', ‘ ’, '{', '}' as well as '%' itself if it's a part of sku. Make sure to encode space with %20. Other characters don't need to be encoded.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Basic YzcyOTFjNmItNzI5MC00...."
+          },
+          {
+            "in": "header",
+            "name": "WM_SEC.ACCESS_TOKEN",
+            "description": "The access token retrieved in the Token API call",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
+          },
+          {
+            "in": "header",
+            "name": "WM_CONSUMER.CHANNEL.TYPE",
+            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "WM_QOS.CORRELATION_ID",
+            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
+          },
+          {
+            "in": "header",
+            "name": "WM_SVC.NAME",
+            "description": "Walmart Service Name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Walmart Service Name"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "required": [
+                    "fulfillmentLagTime",
+                    "sku"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "sku": {
+                      "type": "string",
+                      "description": "A seller-provided Product ID. Response will have decoded value.",
+                      "xml": {
+                        "namespace": "http://walmart.com/"
+                      }
+                    },
+                    "fulfillmentLagTime": {
+                      "type": "integer",
+                      "description": "The number of days between when the item is ordered and when it is shipped",
+                      "format": "int32",
+                      "xml": {
+                        "namespace": "http://walmart.com/"
+                      }
+                    }
+                  },
+                  "xml": {
+                    "name": "lagTime"
+                  }
+                },
+                "example": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<lagTime xmlns=\"http://walmart.com/\">\n    <sku>1068155</sku>\n    <fulfillmentLagTime>1</fulfillmentLagTime>\n</lagTime>"
+              },
+              "application/json": {
+                "schema": {
+                  "required": [
+                    "fulfillmentLagTime",
+                    "sku"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "sku": {
+                      "type": "string",
+                      "description": "A seller-provided Product ID. Response will have decoded value.",
+                      "xml": {
+                        "namespace": "http://walmart.com/"
+                      }
+                    },
+                    "fulfillmentLagTime": {
+                      "type": "integer",
+                      "description": "The number of days between when the item is ordered and when it is shipped",
+                      "format": "int32",
+                      "xml": {
+                        "namespace": "http://walmart.com/"
+                      }
+                    }
+                  },
+                  "xml": {
+                    "name": "lagTime"
+                  }
+                },
+                "example": {
+                  "sku": "183688",
+                  "fulfillmentLagTime": 0
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
     "schemas": {
-      "LagTimeResponse": {
-        "required": [
-          "fulfillmentLagTime",
-          "sku"
-        ],
-        "type": "object",
-        "properties": {
-          "sku": {
-            "type": "string",
-            "description": "A seller-provided Product ID. Response will have decoded value.",
-            "xml": {
-              "namespace": "http://walmart.com/"
-            }
-          },
-          "fulfillmentLagTime": {
-            "type": "integer",
-            "description": "The number of days between when the item is ordered and when it is shipped",
-            "format": "int32",
-            "xml": {
-              "namespace": "http://walmart.com/"
-            }
-          }
-        },
-        "xml": {
-          "name": "lagTime"
-        }
-      },
       "FeedId": {
         "type": "object",
         "properties": {
@@ -658,6 +631,33 @@
           "feedDate": {
             "type": "string"
           }
+        }
+      },
+      "LagTimeResponse": {
+        "required": [
+          "fulfillmentLagTime",
+          "sku"
+        ],
+        "type": "object",
+        "properties": {
+          "sku": {
+            "type": "string",
+            "description": "A seller-provided Product ID. Response will have decoded value.",
+            "xml": {
+              "namespace": "http://walmart.com/"
+            }
+          },
+          "fulfillmentLagTime": {
+            "type": "integer",
+            "description": "The number of days between when the item is ordered and when it is shipped",
+            "format": "int32",
+            "xml": {
+              "namespace": "http://walmart.com/"
+            }
+          }
+        },
+        "xml": {
+          "name": "lagTime"
         }
       }
     },
