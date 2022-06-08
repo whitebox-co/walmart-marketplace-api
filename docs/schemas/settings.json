@@ -20,14 +20,14 @@
     }
   ],
   "paths": {
-    "/v3/settings/shipping/3plshipnodes": {
-      "post": {
+    "/v3/settings/shipping/templates/activationStatus": {
+      "get": {
         "tags": [
           "Settings"
         ],
-        "summary": "Create third party fulfillment center",
-        "description": "This API creates a third party fulfillment center.",
-        "operationId": "create3PFulfillmentCenter",
+        "summary": "Get Shipping Template Activation Status",
+        "description": "This api can be used to get the Activation Status of the Shipping Templates, which can be set through Walmart Seller Center. This activation status is not the same as the \"status:ACTIVE/INACTIVE\" of each shipping template.",
+        "operationId": "getShippingTemplateActivationStatus",
         "parameters": [
           {
             "in": "header",
@@ -79,323 +79,33 @@
             "example": "Walmart Service Name"
           }
         ],
-        "requestBody": {
-          "description": "Request fields",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "shipNodeHeader": {
-                    "type": "object",
-                    "properties": {
-                      "version": {
-                        "type": "string"
-                      }
-                    }
-                  },
-                  "shipNode": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "shipNode": {
-                          "type": "string",
-                          "description": "The fulfillment center or ship node which uniquely identifies each facility and is retrieved from the Get all third party fulfillment providers API."
-                        },
-                        "status": {
-                          "type": "string",
-                          "description": "Status of fulfillment center. Allowed values: ACTIVE, INACTIVE."
-                        }
-                      }
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "activationStatus": {
+                      "type": "string",
+                      "description": "Shipping Template Activation Status, possible values can be NOT_ACTIVATED or ACTIVATED"
+                    },
+                    "createdDate": {
+                      "type": "number",
+                      "description": "Activation Date"
+                    },
+                    "modifiedDate": {
+                      "type": "number",
+                      "description": "Activation Status Last Modified Date"
                     }
                   }
+                },
+                "example": {
+                  "activationStatus": "ACTIVATED",
+                  "modifiedDate": 1599490896997,
+                  "createdDate": 1598546424640
                 }
-              },
-              "example": {
-                "shipNodeHeader": {
-                  "version": "1.2"
-                },
-                "shipNode": [
-                  {
-                    "shipNode": "99351656957153281",
-                    "status": "ACTIVE"
-                  }
-                ]
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "shipNode": {
-                        "type": "string",
-                        "description": "The fulfillment center or ship node which uniquely identifies each facility and is retrieved from the Get all third party fulfillment providers API."
-                      },
-                      "status": {
-                        "type": "string",
-                        "description": "Status of fulfillment center. Allowed values: ACTIVE, INACTIVE."
-                      }
-                    }
-                  }
-                },
-                "example": [
-                  {
-                    "shipNode": "99351656957153281",
-                    "status": "ACTIVE"
-                  }
-                ]
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v3/settings/shipping/carriers": {
-      "get": {
-        "tags": [
-          "Settings"
-        ],
-        "summary": "Get carrier methods",
-        "description": "Gets the available carrier methods",
-        "operationId": "getCarrierMethods",
-        "parameters": [
-          {
-            "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
-          },
-          {
-            "in": "header",
-            "name": "WM_SEC.ACCESS_TOKEN",
-            "description": "The access token retrieved in the Token API call",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
-          },
-          {
-            "in": "header",
-            "name": "WM_CONSUMER.CHANNEL.TYPE",
-            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "header",
-            "name": "WM_QOS.CORRELATION_ID",
-            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
-          },
-          {
-            "in": "header",
-            "name": "WM_SVC.NAME",
-            "description": "Walmart Service Name",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Walmart Service Name"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "carrierMethodId": {
-                        "type": "string",
-                        "description": "Carrier Id"
-                      },
-                      "carrierMethodName": {
-                        "type": "string",
-                        "description": "Carrier Name"
-                      },
-                      "carrierMethodType": {
-                        "type": "string",
-                        "description": "Shipping method. Allowed Value is GROUND."
-                      },
-                      "carrierMethodDescription": {
-                        "type": "string",
-                        "description": "A description for the method carrier."
-                      }
-                    }
-                  }
-                },
-                "example": [
-                  {
-                    "carrierMethodId": "1000014",
-                    "carrierMethodName": "USPS",
-                    "carrierMethodType": "GROUND",
-                    "carrierMethodDescription": "USPS for Marketplace"
-                  },
-                  {
-                    "carrierMethodId": "1000013",
-                    "carrierMethodName": "UPS",
-                    "carrierMethodType": "GROUND",
-                    "carrierMethodDescription": "UPS for Marketplace"
-                  },
-                  {
-                    "carrierMethodId": "1000012",
-                    "carrierMethodName": "FEDEX",
-                    "carrierMethodType": "GROUND",
-                    "carrierMethodDescription": "Fedex for Marketplace"
-                  }
-                ]
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v3/settings/shipping/shipnodes/coverage": {
-      "get": {
-        "tags": [
-          "Settings"
-        ],
-        "summary": "Get coverage for fulfillment centers",
-        "description": "This API provides the list of all fullfillment centers for the seller and their coverage areas defined by Walmart based on the address",
-        "operationId": "getCoverageForFulfillmentCenters",
-        "parameters": [
-          {
-            "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
-          },
-          {
-            "in": "header",
-            "name": "WM_SEC.ACCESS_TOKEN",
-            "description": "The access token retrieved in the Token API call",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
-          },
-          {
-            "in": "header",
-            "name": "WM_CONSUMER.CHANNEL.TYPE",
-            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "header",
-            "name": "WM_QOS.CORRELATION_ID",
-            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
-          },
-          {
-            "in": "header",
-            "name": "WM_SVC.NAME",
-            "description": "Walmart Service Name",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Walmart Service Name"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "shipNode": {
-                        "type": "string",
-                        "description": "The fulfillment center or ship node Id which uniquely identifies each facility and is autogenerated during the creation of fulfillment center. Every time a facility is added, a new ship node id is generated."
-                      },
-                      "shipNodeName": {
-                        "type": "string",
-                        "description": "Name of the fulfillment center."
-                      },
-                      "coverageArea": {
-                        "type": "array",
-                        "description": "Two day shipping regions defined by Walmart for sellers.",
-                        "items": {
-                          "type": "string",
-                          "description": "Two day shipping regions defined by Walmart for sellers."
-                        }
-                      }
-                    }
-                  }
-                },
-                "example": [
-                  {
-                    "shipNode": "81087939095695361",
-                    "shipNodeName": "Seller test-distributor1",
-                    "coverageArea": []
-                  },
-                  {
-                    "shipNode": "79112975786049537",
-                    "shipNodeName": "Seller test-distributor2",
-                    "coverageArea": [
-                      "AR1",
-                      "AR2",
-                      "CA1",
-                      "AR3",
-                      "PA4",
-                      "CA3",
-                      "CA2"
-                    ]
-                  },
-                  {
-                    "shipNode": "79114105970622465",
-                    "shipNodeName": "Seller test-distributor3",
-                    "coverageArea": [
-                      "PA2",
-                      "PA1",
-                      "NY1"
-                    ]
-                  },
-                  {
-                    "shipNode": "80359164518989825",
-                    "shipNodeName": "Seller test-distributor4",
-                    "coverageArea": []
-                  }
-                ]
               }
             }
           }
@@ -2383,14 +2093,14 @@
         }
       }
     },
-    "/v3/settings/shippingprofile": {
+    "/v3/settings/shipping/3plproviders": {
       "get": {
         "tags": [
           "Settings"
         ],
-        "summary": "Get Shipping Configurations",
-        "description": "<p>This API can be used to retrieve shipping configurations like Lag Time configured for seller.It returns lag time for exception categories that were configured for the Seller through <a href=\"https://sellerhelp.walmart.com/s/guide?article=000005986\">Request Lag Time Exceptions</a> process.</p>",
-        "operationId": "getShippingConfigurations",
+        "summary": "Get all third party fulfillment providers",
+        "description": "Get a list of all third party fulfillment providers.",
+        "operationId": "get3PFulfillmentProviders",
         "parameters": [
           {
             "in": "header",
@@ -2448,98 +2158,409 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "partner": {
-                      "type": "object",
-                      "properties": {
-                        "partnerId": {
-                          "type": "string",
-                          "description": "The seller ID"
-                        },
-                        "partnerName": {
-                          "type": "string",
-                          "description": "The seller's legal name"
-                        },
-                        "partnerDisplayName": {
-                          "type": "string",
-                          "description": "The seller name shown on walmart.com"
-                        }
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "shipNode": {
+                        "type": "string",
+                        "description": "The fulfillment center or ship node Id which uniquely identifies each facility and is autogenerated during the creation of fulfillment center. Every time a facility is added, a new ship node id is generated."
                       },
-                      "description": "Details of partner"
-                    },
-                    "configurations": {
-                      "type": "array",
-                      "description": "List of seller configurations like Lag Time",
-                      "items": {
-                        "type": "object",
-                        "description": "List of seller configurations like Lag Time",
-                        "anyOf": [
-                          {
-                            "type": "object",
-                            "properties": {
-                              "configurationName": {
-                                "type": "string",
-                                "description": "Name of the configuration",
-                                "enum": [
-                                  "LAG_TIME"
-                                ]
-                              },
-                              "configuration": {
-                                "type": "object",
-                                "properties": {
-                                  "categories": {
-                                    "type": "array",
-                                    "description": "List of item setup category level lag time exceptions configured for seller",
-                                    "items": {
-                                      "type": "object",
-                                      "properties": {
-                                        "name": {
-                                          "type": "string",
-                                          "description": "Name of the item setup category which was used to request lag time exception"
-                                        },
-                                        "fulfillmentLagTime": {
-                                          "type": "integer",
-                                          "description": "Maximum lag time configured for the item setup category",
-                                          "format": "int32"
-                                        }
-                                      },
-                                      "description": "List of item setup category level lag time exceptions configured for seller"
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        ]
+                      "shipNodeName": {
+                        "type": "string",
+                        "description": "Name of the fulfillment center."
                       }
                     }
                   }
                 },
-                "example": {
-                  "partner": {
-                    "partnerId": "100009",
-                    "partnerName": "The seller's legal name",
-                    "partnerDisplayName": "The seller name shown on walmart.com"
-                  },
-                  "configurations": [
-                    {
-                      "configurationName": "LAG_TIME",
-                      "configuration": {
-                        "categories": [
-                          {
-                            "name": "Art & Craft",
-                            "fulfillmentLagTime": 2
-                          },
-                          {
-                            "name": "Garden & Patio",
-                            "fulfillmentLagTime": 3
-                          }
-                        ]
+                "example": [
+                  {
+                    "shipNode": "99351656957153281",
+                    "shipNodeName": "MP_Deliverr"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/settings/shipping/3plshipnodes": {
+      "post": {
+        "tags": [
+          "Settings"
+        ],
+        "summary": "Create third party fulfillment center",
+        "description": "This API creates a third party fulfillment center.",
+        "operationId": "create3PFulfillmentCenter",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Basic YzcyOTFjNmItNzI5MC00...."
+          },
+          {
+            "in": "header",
+            "name": "WM_SEC.ACCESS_TOKEN",
+            "description": "The access token retrieved in the Token API call",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
+          },
+          {
+            "in": "header",
+            "name": "WM_CONSUMER.CHANNEL.TYPE",
+            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "WM_QOS.CORRELATION_ID",
+            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
+          },
+          {
+            "in": "header",
+            "name": "WM_SVC.NAME",
+            "description": "Walmart Service Name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Walmart Service Name"
+          }
+        ],
+        "requestBody": {
+          "description": "Request fields",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "shipNodeHeader": {
+                    "type": "object",
+                    "properties": {
+                      "version": {
+                        "type": "string"
                       }
                     }
-                  ]
+                  },
+                  "shipNode": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "shipNode": {
+                          "type": "string",
+                          "description": "The fulfillment center or ship node which uniquely identifies each facility and is retrieved from the Get all third party fulfillment providers API."
+                        },
+                        "status": {
+                          "type": "string",
+                          "description": "Status of fulfillment center. Allowed values: ACTIVE, INACTIVE."
+                        }
+                      }
+                    }
+                  }
                 }
+              },
+              "example": {
+                "shipNodeHeader": {
+                  "version": "1.2"
+                },
+                "shipNode": [
+                  {
+                    "shipNode": "99351656957153281",
+                    "status": "ACTIVE"
+                  }
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "shipNode": {
+                        "type": "string",
+                        "description": "The fulfillment center or ship node which uniquely identifies each facility and is retrieved from the Get all third party fulfillment providers API."
+                      },
+                      "status": {
+                        "type": "string",
+                        "description": "Status of fulfillment center. Allowed values: ACTIVE, INACTIVE."
+                      }
+                    }
+                  }
+                },
+                "example": [
+                  {
+                    "shipNode": "99351656957153281",
+                    "status": "ACTIVE"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/settings/shipping/carriers": {
+      "get": {
+        "tags": [
+          "Settings"
+        ],
+        "summary": "Get carrier methods",
+        "description": "Gets the available carrier methods",
+        "operationId": "getCarrierMethods",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Basic YzcyOTFjNmItNzI5MC00...."
+          },
+          {
+            "in": "header",
+            "name": "WM_SEC.ACCESS_TOKEN",
+            "description": "The access token retrieved in the Token API call",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
+          },
+          {
+            "in": "header",
+            "name": "WM_CONSUMER.CHANNEL.TYPE",
+            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "WM_QOS.CORRELATION_ID",
+            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
+          },
+          {
+            "in": "header",
+            "name": "WM_SVC.NAME",
+            "description": "Walmart Service Name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Walmart Service Name"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "carrierMethodId": {
+                        "type": "string",
+                        "description": "Carrier Id"
+                      },
+                      "carrierMethodName": {
+                        "type": "string",
+                        "description": "Carrier Name"
+                      },
+                      "carrierMethodType": {
+                        "type": "string",
+                        "description": "Shipping method. Allowed Value is GROUND."
+                      },
+                      "carrierMethodDescription": {
+                        "type": "string",
+                        "description": "A description for the method carrier."
+                      }
+                    }
+                  }
+                },
+                "example": [
+                  {
+                    "carrierMethodId": "1000014",
+                    "carrierMethodName": "USPS",
+                    "carrierMethodType": "GROUND",
+                    "carrierMethodDescription": "USPS for Marketplace"
+                  },
+                  {
+                    "carrierMethodId": "1000013",
+                    "carrierMethodName": "UPS",
+                    "carrierMethodType": "GROUND",
+                    "carrierMethodDescription": "UPS for Marketplace"
+                  },
+                  {
+                    "carrierMethodId": "1000012",
+                    "carrierMethodName": "FEDEX",
+                    "carrierMethodType": "GROUND",
+                    "carrierMethodDescription": "Fedex for Marketplace"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/settings/shipping/shipnodes/coverage": {
+      "get": {
+        "tags": [
+          "Settings"
+        ],
+        "summary": "Get coverage for fulfillment centers",
+        "description": "This API provides the list of all fullfillment centers for the seller and their coverage areas defined by Walmart based on the address",
+        "operationId": "getCoverageForFulfillmentCenters",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Basic YzcyOTFjNmItNzI5MC00...."
+          },
+          {
+            "in": "header",
+            "name": "WM_SEC.ACCESS_TOKEN",
+            "description": "The access token retrieved in the Token API call",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
+          },
+          {
+            "in": "header",
+            "name": "WM_CONSUMER.CHANNEL.TYPE",
+            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "WM_QOS.CORRELATION_ID",
+            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
+          },
+          {
+            "in": "header",
+            "name": "WM_SVC.NAME",
+            "description": "Walmart Service Name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Walmart Service Name"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "shipNode": {
+                        "type": "string",
+                        "description": "The fulfillment center or ship node Id which uniquely identifies each facility and is autogenerated during the creation of fulfillment center. Every time a facility is added, a new ship node id is generated."
+                      },
+                      "shipNodeName": {
+                        "type": "string",
+                        "description": "Name of the fulfillment center."
+                      },
+                      "coverageArea": {
+                        "type": "array",
+                        "description": "Two day shipping regions defined by Walmart for sellers.",
+                        "items": {
+                          "type": "string",
+                          "description": "Two day shipping regions defined by Walmart for sellers."
+                        }
+                      }
+                    }
+                  }
+                },
+                "example": [
+                  {
+                    "shipNode": "81087939095695361",
+                    "shipNodeName": "Seller test-distributor1",
+                    "coverageArea": []
+                  },
+                  {
+                    "shipNode": "79112975786049537",
+                    "shipNodeName": "Seller test-distributor2",
+                    "coverageArea": [
+                      "AR1",
+                      "AR2",
+                      "CA1",
+                      "AR3",
+                      "PA4",
+                      "CA3",
+                      "CA2"
+                    ]
+                  },
+                  {
+                    "shipNode": "79114105970622465",
+                    "shipNodeName": "Seller test-distributor3",
+                    "coverageArea": [
+                      "PA2",
+                      "PA1",
+                      "NY1"
+                    ]
+                  },
+                  {
+                    "shipNode": "80359164518989825",
+                    "shipNodeName": "Seller test-distributor4",
+                    "coverageArea": []
+                  }
+                ]
               }
             }
           }
@@ -12977,14 +12998,14 @@
         }
       }
     },
-    "/v3/settings/shipping/templates/activationStatus": {
+    "/v3/settings/shippingprofile": {
       "get": {
         "tags": [
           "Settings"
         ],
-        "summary": "Get Shipping Template Activation Status",
-        "description": "This api can be used to get the Activation Status of the Shipping Templates, which can be set through Walmart Seller Center. This activation status is not the same as the \"status:ACTIVE/INACTIVE\" of each shipping template.",
-        "operationId": "getShippingTemplateActivationStatus",
+        "summary": "Get Shipping Configurations",
+        "description": "<p>This API can be used to retrieve shipping configurations like Lag Time configured for seller.It returns lag time for exception categories that were configured for the Seller through <a href=\"https://sellerhelp.walmart.com/s/guide?article=000005986\">Request Lag Time Exceptions</a> process.</p>",
+        "operationId": "getShippingConfigurations",
         "parameters": [
           {
             "in": "header",
@@ -13044,117 +13065,96 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "activationStatus": {
-                      "type": "string",
-                      "description": "Shipping Template Activation Status, possible values can be NOT_ACTIVATED or ACTIVATED"
-                    },
-                    "createdDate": {
-                      "type": "number",
-                      "description": "Activation Date"
-                    },
-                    "modifiedDate": {
-                      "type": "number",
-                      "description": "Activation Status Last Modified Date"
-                    }
-                  }
-                },
-                "example": {
-                  "activationStatus": "ACTIVATED",
-                  "modifiedDate": 1599490896997,
-                  "createdDate": 1598546424640
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v3/settings/shipping/3plproviders": {
-      "get": {
-        "tags": [
-          "Settings"
-        ],
-        "summary": "Get all third party fulfillment providers",
-        "description": "Get a list of all third party fulfillment providers.",
-        "operationId": "get3PFulfillmentProviders",
-        "parameters": [
-          {
-            "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
-          },
-          {
-            "in": "header",
-            "name": "WM_SEC.ACCESS_TOKEN",
-            "description": "The access token retrieved in the Token API call",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
-          },
-          {
-            "in": "header",
-            "name": "WM_CONSUMER.CHANNEL.TYPE",
-            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "header",
-            "name": "WM_QOS.CORRELATION_ID",
-            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
-          },
-          {
-            "in": "header",
-            "name": "WM_SVC.NAME",
-            "description": "Walmart Service Name",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Walmart Service Name"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "shipNode": {
-                        "type": "string",
-                        "description": "The fulfillment center or ship node Id which uniquely identifies each facility and is autogenerated during the creation of fulfillment center. Every time a facility is added, a new ship node id is generated."
+                    "partner": {
+                      "type": "object",
+                      "properties": {
+                        "partnerId": {
+                          "type": "string",
+                          "description": "The seller ID"
+                        },
+                        "partnerName": {
+                          "type": "string",
+                          "description": "The seller's legal name"
+                        },
+                        "partnerDisplayName": {
+                          "type": "string",
+                          "description": "The seller name shown on walmart.com"
+                        }
                       },
-                      "shipNodeName": {
-                        "type": "string",
-                        "description": "Name of the fulfillment center."
+                      "description": "Details of partner"
+                    },
+                    "configurations": {
+                      "type": "array",
+                      "description": "List of seller configurations like Lag Time",
+                      "items": {
+                        "type": "object",
+                        "description": "List of seller configurations like Lag Time",
+                        "anyOf": [
+                          {
+                            "type": "object",
+                            "properties": {
+                              "configurationName": {
+                                "type": "string",
+                                "description": "Name of the configuration",
+                                "enum": [
+                                  "LAG_TIME"
+                                ]
+                              },
+                              "configuration": {
+                                "type": "object",
+                                "properties": {
+                                  "categories": {
+                                    "type": "array",
+                                    "description": "List of item setup category level lag time exceptions configured for seller",
+                                    "items": {
+                                      "type": "object",
+                                      "properties": {
+                                        "name": {
+                                          "type": "string",
+                                          "description": "Name of the item setup category which was used to request lag time exception"
+                                        },
+                                        "fulfillmentLagTime": {
+                                          "type": "integer",
+                                          "description": "Maximum lag time configured for the item setup category",
+                                          "format": "int32"
+                                        }
+                                      },
+                                      "description": "List of item setup category level lag time exceptions configured for seller"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
                       }
                     }
                   }
                 },
-                "example": [
-                  {
-                    "shipNode": "99351656957153281",
-                    "shipNodeName": "MP_Deliverr"
-                  }
-                ]
+                "example": {
+                  "partner": {
+                    "partnerId": "100009",
+                    "partnerName": "The seller's legal name",
+                    "partnerDisplayName": "The seller name shown on walmart.com"
+                  },
+                  "configurations": [
+                    {
+                      "configurationName": "LAG_TIME",
+                      "configuration": {
+                        "categories": [
+                          {
+                            "name": "Art & Craft",
+                            "fulfillmentLagTime": 2
+                          },
+                          {
+                            "name": "Garden & Patio",
+                            "fulfillmentLagTime": 3
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
               }
             }
           }
@@ -13164,95 +13164,20 @@
   },
   "components": {
     "schemas": {
-      "ThirdPartyShipNode1": {
+      "ShippingTemplateActivationStatus": {
         "type": "object",
         "properties": {
-          "shipNode": {
+          "activationStatus": {
             "type": "string",
-            "description": "The fulfillment center or ship node which uniquely identifies each facility and is retrieved from the Get all third party fulfillment providers API."
+            "description": "Shipping Template Activation Status, possible values can be NOT_ACTIVATED or ACTIVATED"
           },
-          "status": {
-            "type": "string",
-            "description": "Status of fulfillment center. Allowed values: ACTIVE, INACTIVE."
-          }
-        }
-      },
-      "Create3PFulfillmentCenterRequest": {
-        "type": "object",
-        "properties": {
-          "shipNodeHeader": {
-            "type": "object",
-            "properties": {
-              "version": {
-                "type": "string"
-              }
-            }
+          "createdDate": {
+            "type": "number",
+            "description": "Activation Date"
           },
-          "shipNode": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "shipNode": {
-                  "type": "string",
-                  "description": "The fulfillment center or ship node which uniquely identifies each facility and is retrieved from the Get all third party fulfillment providers API."
-                },
-                "status": {
-                  "type": "string",
-                  "description": "Status of fulfillment center. Allowed values: ACTIVE, INACTIVE."
-                }
-              }
-            }
-          }
-        }
-      },
-      "ShipNodeHeader": {
-        "type": "object",
-        "properties": {
-          "version": {
-            "type": "string"
-          }
-        }
-      },
-      "CarrierDetail2": {
-        "type": "object",
-        "properties": {
-          "carrierMethodId": {
-            "type": "string",
-            "description": "Carrier Id"
-          },
-          "carrierMethodName": {
-            "type": "string",
-            "description": "Carrier Name"
-          },
-          "carrierMethodType": {
-            "type": "string",
-            "description": "Shipping method. Allowed Value is GROUND."
-          },
-          "carrierMethodDescription": {
-            "type": "string",
-            "description": "A description for the method carrier."
-          }
-        }
-      },
-      "FulfillmentCenterCoverageDetail": {
-        "type": "object",
-        "properties": {
-          "shipNode": {
-            "type": "string",
-            "description": "The fulfillment center or ship node Id which uniquely identifies each facility and is autogenerated during the creation of fulfillment center. Every time a facility is added, a new ship node id is generated."
-          },
-          "shipNodeName": {
-            "type": "string",
-            "description": "Name of the fulfillment center."
-          },
-          "coverageArea": {
-            "type": "array",
-            "description": "Two day shipping regions defined by Walmart for sellers.",
-            "items": {
-              "type": "string",
-              "description": "Two day shipping regions defined by Walmart for sellers."
-            }
+          "modifiedDate": {
+            "type": "number",
+            "description": "Activation Status Last Modified Date"
           }
         }
       },
@@ -13769,210 +13694,6 @@
         },
         "description": "Operating Schedule for the fulfillment center"
       },
-      "CategoriesLagTimeDTO": {
-        "type": "object",
-        "properties": {
-          "categories": {
-            "type": "array",
-            "description": "List of item setup category level lag time exceptions configured for seller",
-            "items": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "type": "string",
-                  "description": "Name of the item setup category which was used to request lag time exception"
-                },
-                "fulfillmentLagTime": {
-                  "type": "integer",
-                  "description": "Maximum lag time configured for the item setup category",
-                  "format": "int32"
-                }
-              },
-              "description": "List of item setup category level lag time exceptions configured for seller"
-            }
-          }
-        }
-      },
-      "CategoryLagTimeDTO": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "description": "Name of the item setup category which was used to request lag time exception"
-          },
-          "fulfillmentLagTime": {
-            "type": "integer",
-            "description": "Maximum lag time configured for the item setup category",
-            "format": "int32"
-          }
-        },
-        "description": "List of item setup category level lag time exceptions configured for seller"
-      },
-      "LagTimeConfig": {
-        "type": "object",
-        "properties": {
-          "configurationName": {
-            "type": "string",
-            "description": "Name of the configuration",
-            "enum": [
-              "LAG_TIME"
-            ]
-          },
-          "configuration": {
-            "type": "object",
-            "properties": {
-              "categories": {
-                "type": "array",
-                "description": "List of item setup category level lag time exceptions configured for seller",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "name": {
-                      "type": "string",
-                      "description": "Name of the item setup category which was used to request lag time exception"
-                    },
-                    "fulfillmentLagTime": {
-                      "type": "integer",
-                      "description": "Maximum lag time configured for the item setup category",
-                      "format": "int32"
-                    }
-                  },
-                  "description": "List of item setup category level lag time exceptions configured for seller"
-                }
-              }
-            }
-          }
-        }
-      },
-      "PartnerInfoDTO": {
-        "type": "object",
-        "properties": {
-          "partnerId": {
-            "type": "string",
-            "description": "The seller ID"
-          },
-          "partnerName": {
-            "type": "string",
-            "description": "The seller's legal name"
-          },
-          "partnerDisplayName": {
-            "type": "string",
-            "description": "The seller name shown on walmart.com"
-          }
-        },
-        "description": "Details of partner"
-      },
-      "ShippingConfig": {
-        "type": "object",
-        "description": "List of seller configurations like Lag Time",
-        "anyOf": [
-          {
-            "type": "object",
-            "properties": {
-              "configurationName": {
-                "type": "string",
-                "description": "Name of the configuration",
-                "enum": [
-                  "LAG_TIME"
-                ]
-              },
-              "configuration": {
-                "type": "object",
-                "properties": {
-                  "categories": {
-                    "type": "array",
-                    "description": "List of item setup category level lag time exceptions configured for seller",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "name": {
-                          "type": "string",
-                          "description": "Name of the item setup category which was used to request lag time exception"
-                        },
-                        "fulfillmentLagTime": {
-                          "type": "integer",
-                          "description": "Maximum lag time configured for the item setup category",
-                          "format": "int32"
-                        }
-                      },
-                      "description": "List of item setup category level lag time exceptions configured for seller"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        ]
-      },
-      "ShippingConfigsResponseDTO": {
-        "type": "object",
-        "properties": {
-          "partner": {
-            "type": "object",
-            "properties": {
-              "partnerId": {
-                "type": "string",
-                "description": "The seller ID"
-              },
-              "partnerName": {
-                "type": "string",
-                "description": "The seller's legal name"
-              },
-              "partnerDisplayName": {
-                "type": "string",
-                "description": "The seller name shown on walmart.com"
-              }
-            },
-            "description": "Details of partner"
-          },
-          "configurations": {
-            "type": "array",
-            "description": "List of seller configurations like Lag Time",
-            "items": {
-              "type": "object",
-              "description": "List of seller configurations like Lag Time",
-              "anyOf": [
-                {
-                  "type": "object",
-                  "properties": {
-                    "configurationName": {
-                      "type": "string",
-                      "description": "Name of the configuration",
-                      "enum": [
-                        "LAG_TIME"
-                      ]
-                    },
-                    "configuration": {
-                      "type": "object",
-                      "properties": {
-                        "categories": {
-                          "type": "array",
-                          "description": "List of item setup category level lag time exceptions configured for seller",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "name": {
-                                "type": "string",
-                                "description": "Name of the item setup category which was used to request lag time exception"
-                              },
-                              "fulfillmentLagTime": {
-                                "type": "integer",
-                                "description": "Maximum lag time configured for the item setup category",
-                                "format": "int32"
-                              }
-                            },
-                            "description": "List of item setup category level lag time exceptions configured for seller"
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              ]
-            }
-          }
-        }
-      },
       "CalendarDayConfiguration": {
         "required": [
           "additionalDaysOff",
@@ -14152,13 +13873,277 @@
           }
         }
       },
-      "ShipNode": {
+      "CreateFulfillmentCenterRequest": {
         "type": "object",
         "properties": {
-          "shipNode": {
-            "type": "string",
-            "description": "The fulfillment center or ship node Id which uniquely identifies each facility and is autogenerated during the creation of fulfillment center. Every time a facility is added, a new ship node id is generated."
+          "shipNodeHeader": {
+            "type": "object",
+            "properties": {
+              "version": {
+                "type": "string"
+              }
+            }
           },
+          "shipNode": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "shipNodeName": {
+                  "type": "string",
+                  "description": "Name of the fulfillment center."
+                },
+                "status": {
+                  "type": "string",
+                  "description": "Status of fulfillment center. Allowed values: ACTIVE, INACTIVE.."
+                },
+                "timeZone": {
+                  "type": "string",
+                  "description": "Time zone that the seller ships from.Allowed timezones are PST, EST, CST, MST."
+                },
+                "distributorSupportedServices": {
+                  "type": "array",
+                  "description": "The services supported by the defined physical ship node . The allowed values: TWO_DAY_DELIVERY.",
+                  "items": {
+                    "type": "string",
+                    "description": "The services supported by the defined physical ship node . The allowed values: TWO_DAY_DELIVERY."
+                  }
+                },
+                "customNodeId": {
+                  "type": "string",
+                  "description": "Custom node identifier provided by seller. Allowed values are alphanumeric | String"
+                },
+                "postalAddress": {
+                  "type": "object",
+                  "properties": {
+                    "addressLine1": {
+                      "type": "string",
+                      "description": "Street address of the fulfillment center."
+                    },
+                    "city": {
+                      "type": "string",
+                      "description": "City of the fulfillment center."
+                    },
+                    "state": {
+                      "type": "string",
+                      "description": "State of the fulfillment center."
+                    },
+                    "country": {
+                      "type": "string",
+                      "description": "Country of the fulfillment center."
+                    },
+                    "postalCode": {
+                      "type": "string",
+                      "description": "Postal code of the fulfillment center."
+                    }
+                  },
+                  "description": "Postal code of the fulfillment center."
+                },
+                "shippingDetails": {
+                  "type": "array",
+                  "description": "Shipping Details.",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "twoDayShipping": {
+                        "type": "array",
+                        "description": "Shipping type provided.",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "carrierMethodName": {
+                              "type": "string",
+                              "description": "Name of the shipping carrier. Carrier names can be retrieved from the Get carrier methods API."
+                            },
+                            "carrierMethodType": {
+                              "type": "string",
+                              "description": "Shipping method."
+                            }
+                          },
+                          "description": "Shipping type provided."
+                        }
+                      }
+                    },
+                    "description": "Shipping Details."
+                  }
+                },
+                "calendarDayConfiguration": {
+                  "required": [
+                    "additionalDaysOff",
+                    "standardProcessingSchedule"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "standardProcessingSchedule": {
+                      "required": [
+                        "friday",
+                        "monday",
+                        "saturday",
+                        "sunday",
+                        "thursday",
+                        "tuesday",
+                        "wednesday"
+                      ],
+                      "type": "object",
+                      "properties": {
+                        "sunday": {
+                          "required": [
+                            "isWorkingDay"
+                          ],
+                          "type": "object",
+                          "properties": {
+                            "isWorkingDay": {
+                              "type": "boolean",
+                              "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
+                            },
+                            "cutOffTime": {
+                              "type": "string",
+                              "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
+                              "format": "HH:mm",
+                              "default": "14:00"
+                            }
+                          }
+                        },
+                        "monday": {
+                          "required": [
+                            "isWorkingDay"
+                          ],
+                          "type": "object",
+                          "properties": {
+                            "isWorkingDay": {
+                              "type": "boolean",
+                              "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
+                            },
+                            "cutOffTime": {
+                              "type": "string",
+                              "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
+                              "format": "HH:mm",
+                              "default": "14:00"
+                            }
+                          }
+                        },
+                        "tuesday": {
+                          "required": [
+                            "isWorkingDay"
+                          ],
+                          "type": "object",
+                          "properties": {
+                            "isWorkingDay": {
+                              "type": "boolean",
+                              "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
+                            },
+                            "cutOffTime": {
+                              "type": "string",
+                              "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
+                              "format": "HH:mm",
+                              "default": "14:00"
+                            }
+                          }
+                        },
+                        "wednesday": {
+                          "required": [
+                            "isWorkingDay"
+                          ],
+                          "type": "object",
+                          "properties": {
+                            "isWorkingDay": {
+                              "type": "boolean",
+                              "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
+                            },
+                            "cutOffTime": {
+                              "type": "string",
+                              "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
+                              "format": "HH:mm",
+                              "default": "14:00"
+                            }
+                          }
+                        },
+                        "thursday": {
+                          "required": [
+                            "isWorkingDay"
+                          ],
+                          "type": "object",
+                          "properties": {
+                            "isWorkingDay": {
+                              "type": "boolean",
+                              "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
+                            },
+                            "cutOffTime": {
+                              "type": "string",
+                              "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
+                              "format": "HH:mm",
+                              "default": "14:00"
+                            }
+                          }
+                        },
+                        "friday": {
+                          "required": [
+                            "isWorkingDay"
+                          ],
+                          "type": "object",
+                          "properties": {
+                            "isWorkingDay": {
+                              "type": "boolean",
+                              "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
+                            },
+                            "cutOffTime": {
+                              "type": "string",
+                              "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
+                              "format": "HH:mm",
+                              "default": "14:00"
+                            }
+                          }
+                        },
+                        "saturday": {
+                          "required": [
+                            "isWorkingDay"
+                          ],
+                          "type": "object",
+                          "properties": {
+                            "isWorkingDay": {
+                              "type": "boolean",
+                              "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
+                            },
+                            "cutOffTime": {
+                              "type": "string",
+                              "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
+                              "format": "HH:mm",
+                              "default": "14:00"
+                            }
+                          }
+                        }
+                      },
+                      "description": "Operating Schedule for the fulfillment center"
+                    },
+                    "additionalDaysOff": {
+                      "type": "array",
+                      "description": "List of additional days on which the fulfillment center is closed. For example, if the fulfillment center is closed on New Year’s Day, then add the date in the list. If there are no additional off days, then this list will be empty. Use ISO 8601 format for date. For example: '2021-07-16'(yyyy-MM-dd) ",
+                      "format": "yyyy-MM-dd",
+                      "items": {
+                        "type": "string",
+                        "description": "List of additional days on which the fulfillment center is closed. For example, if the fulfillment center is closed on New Year’s Day, then add the date in the list. If there are no additional off days, then this list will be empty. Use ISO 8601 format for date. For example: '2021-07-16'(yyyy-MM-dd) ",
+                        "format": "yyyy-MM-dd"
+                      }
+                    }
+                  },
+                  "description": "Calendar day promise details. For examples, please refer to 'Sample 2 - Calendar Day Configurations' in request & response samples."
+                }
+              }
+            }
+          }
+        }
+      },
+      "ShipNodeHeader": {
+        "type": "object",
+        "properties": {
+          "version": {
+            "type": "string"
+          }
+        }
+      },
+      "ShipNodeRequest": {
+        "type": "object",
+        "properties": {
           "shipNodeName": {
             "type": "string",
             "description": "Name of the fulfillment center."
@@ -14541,6 +14526,351 @@
         },
         "description": "Operating Schedule for the fulfillment center"
       },
+      "ThirdPartyShipNode2": {
+        "type": "object",
+        "properties": {
+          "shipNode": {
+            "type": "string",
+            "description": "The fulfillment center or ship node Id which uniquely identifies each facility and is autogenerated during the creation of fulfillment center. Every time a facility is added, a new ship node id is generated."
+          },
+          "shipNodeName": {
+            "type": "string",
+            "description": "Name of the fulfillment center."
+          }
+        }
+      },
+      "ThirdPartyShipNode1": {
+        "type": "object",
+        "properties": {
+          "shipNode": {
+            "type": "string",
+            "description": "The fulfillment center or ship node which uniquely identifies each facility and is retrieved from the Get all third party fulfillment providers API."
+          },
+          "status": {
+            "type": "string",
+            "description": "Status of fulfillment center. Allowed values: ACTIVE, INACTIVE."
+          }
+        }
+      },
+      "Create3PFulfillmentCenterRequest": {
+        "type": "object",
+        "properties": {
+          "shipNodeHeader": {
+            "type": "object",
+            "properties": {
+              "version": {
+                "type": "string"
+              }
+            }
+          },
+          "shipNode": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "shipNode": {
+                  "type": "string",
+                  "description": "The fulfillment center or ship node which uniquely identifies each facility and is retrieved from the Get all third party fulfillment providers API."
+                },
+                "status": {
+                  "type": "string",
+                  "description": "Status of fulfillment center. Allowed values: ACTIVE, INACTIVE."
+                }
+              }
+            }
+          }
+        }
+      },
+      "CarrierDetail2": {
+        "type": "object",
+        "properties": {
+          "carrierMethodId": {
+            "type": "string",
+            "description": "Carrier Id"
+          },
+          "carrierMethodName": {
+            "type": "string",
+            "description": "Carrier Name"
+          },
+          "carrierMethodType": {
+            "type": "string",
+            "description": "Shipping method. Allowed Value is GROUND."
+          },
+          "carrierMethodDescription": {
+            "type": "string",
+            "description": "A description for the method carrier."
+          }
+        }
+      },
+      "FulfillmentCenterCoverageDetail": {
+        "type": "object",
+        "properties": {
+          "shipNode": {
+            "type": "string",
+            "description": "The fulfillment center or ship node Id which uniquely identifies each facility and is autogenerated during the creation of fulfillment center. Every time a facility is added, a new ship node id is generated."
+          },
+          "shipNodeName": {
+            "type": "string",
+            "description": "Name of the fulfillment center."
+          },
+          "coverageArea": {
+            "type": "array",
+            "description": "Two day shipping regions defined by Walmart for sellers.",
+            "items": {
+              "type": "string",
+              "description": "Two day shipping regions defined by Walmart for sellers."
+            }
+          }
+        }
+      },
+      "ShipNode": {
+        "type": "object",
+        "properties": {
+          "shipNode": {
+            "type": "string",
+            "description": "The fulfillment center or ship node Id which uniquely identifies each facility and is autogenerated during the creation of fulfillment center. Every time a facility is added, a new ship node id is generated."
+          },
+          "shipNodeName": {
+            "type": "string",
+            "description": "Name of the fulfillment center."
+          },
+          "status": {
+            "type": "string",
+            "description": "Status of fulfillment center. Allowed values: ACTIVE, INACTIVE.."
+          },
+          "timeZone": {
+            "type": "string",
+            "description": "Time zone that the seller ships from.Allowed timezones are PST, EST, CST, MST."
+          },
+          "distributorSupportedServices": {
+            "type": "array",
+            "description": "The services supported by the defined physical ship node . The allowed values: TWO_DAY_DELIVERY.",
+            "items": {
+              "type": "string",
+              "description": "The services supported by the defined physical ship node . The allowed values: TWO_DAY_DELIVERY."
+            }
+          },
+          "customNodeId": {
+            "type": "string",
+            "description": "Custom node identifier provided by seller. Allowed values are alphanumeric | String"
+          },
+          "postalAddress": {
+            "type": "object",
+            "properties": {
+              "addressLine1": {
+                "type": "string",
+                "description": "Street address of the fulfillment center."
+              },
+              "city": {
+                "type": "string",
+                "description": "City of the fulfillment center."
+              },
+              "state": {
+                "type": "string",
+                "description": "State of the fulfillment center."
+              },
+              "country": {
+                "type": "string",
+                "description": "Country of the fulfillment center."
+              },
+              "postalCode": {
+                "type": "string",
+                "description": "Postal code of the fulfillment center."
+              }
+            },
+            "description": "Postal code of the fulfillment center."
+          },
+          "shippingDetails": {
+            "type": "array",
+            "description": "Shipping Details.",
+            "items": {
+              "type": "object",
+              "properties": {
+                "twoDayShipping": {
+                  "type": "array",
+                  "description": "Shipping type provided.",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "carrierMethodName": {
+                        "type": "string",
+                        "description": "Name of the shipping carrier. Carrier names can be retrieved from the Get carrier methods API."
+                      },
+                      "carrierMethodType": {
+                        "type": "string",
+                        "description": "Shipping method."
+                      }
+                    },
+                    "description": "Shipping type provided."
+                  }
+                }
+              },
+              "description": "Shipping Details."
+            }
+          },
+          "calendarDayConfiguration": {
+            "required": [
+              "additionalDaysOff",
+              "standardProcessingSchedule"
+            ],
+            "type": "object",
+            "properties": {
+              "standardProcessingSchedule": {
+                "required": [
+                  "friday",
+                  "monday",
+                  "saturday",
+                  "sunday",
+                  "thursday",
+                  "tuesday",
+                  "wednesday"
+                ],
+                "type": "object",
+                "properties": {
+                  "sunday": {
+                    "required": [
+                      "isWorkingDay"
+                    ],
+                    "type": "object",
+                    "properties": {
+                      "isWorkingDay": {
+                        "type": "boolean",
+                        "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
+                      },
+                      "cutOffTime": {
+                        "type": "string",
+                        "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
+                        "format": "HH:mm",
+                        "default": "14:00"
+                      }
+                    }
+                  },
+                  "monday": {
+                    "required": [
+                      "isWorkingDay"
+                    ],
+                    "type": "object",
+                    "properties": {
+                      "isWorkingDay": {
+                        "type": "boolean",
+                        "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
+                      },
+                      "cutOffTime": {
+                        "type": "string",
+                        "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
+                        "format": "HH:mm",
+                        "default": "14:00"
+                      }
+                    }
+                  },
+                  "tuesday": {
+                    "required": [
+                      "isWorkingDay"
+                    ],
+                    "type": "object",
+                    "properties": {
+                      "isWorkingDay": {
+                        "type": "boolean",
+                        "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
+                      },
+                      "cutOffTime": {
+                        "type": "string",
+                        "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
+                        "format": "HH:mm",
+                        "default": "14:00"
+                      }
+                    }
+                  },
+                  "wednesday": {
+                    "required": [
+                      "isWorkingDay"
+                    ],
+                    "type": "object",
+                    "properties": {
+                      "isWorkingDay": {
+                        "type": "boolean",
+                        "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
+                      },
+                      "cutOffTime": {
+                        "type": "string",
+                        "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
+                        "format": "HH:mm",
+                        "default": "14:00"
+                      }
+                    }
+                  },
+                  "thursday": {
+                    "required": [
+                      "isWorkingDay"
+                    ],
+                    "type": "object",
+                    "properties": {
+                      "isWorkingDay": {
+                        "type": "boolean",
+                        "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
+                      },
+                      "cutOffTime": {
+                        "type": "string",
+                        "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
+                        "format": "HH:mm",
+                        "default": "14:00"
+                      }
+                    }
+                  },
+                  "friday": {
+                    "required": [
+                      "isWorkingDay"
+                    ],
+                    "type": "object",
+                    "properties": {
+                      "isWorkingDay": {
+                        "type": "boolean",
+                        "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
+                      },
+                      "cutOffTime": {
+                        "type": "string",
+                        "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
+                        "format": "HH:mm",
+                        "default": "14:00"
+                      }
+                    }
+                  },
+                  "saturday": {
+                    "required": [
+                      "isWorkingDay"
+                    ],
+                    "type": "object",
+                    "properties": {
+                      "isWorkingDay": {
+                        "type": "boolean",
+                        "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
+                      },
+                      "cutOffTime": {
+                        "type": "string",
+                        "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
+                        "format": "HH:mm",
+                        "default": "14:00"
+                      }
+                    }
+                  }
+                },
+                "description": "Operating Schedule for the fulfillment center"
+              },
+              "additionalDaysOff": {
+                "type": "array",
+                "description": "List of additional days on which the fulfillment center is closed. For example, if the fulfillment center is closed on New Year’s Day, then add the date in the list. If there are no additional off days, then this list will be empty. Use ISO 8601 format for date. For example: '2021-07-16'(yyyy-MM-dd) ",
+                "format": "yyyy-MM-dd",
+                "items": {
+                  "type": "string",
+                  "description": "List of additional days on which the fulfillment center is closed. For example, if the fulfillment center is closed on New Year’s Day, then add the date in the list. If there are no additional off days, then this list will be empty. Use ISO 8601 format for date. For example: '2021-07-16'(yyyy-MM-dd) ",
+                  "format": "yyyy-MM-dd"
+                }
+              }
+            },
+            "description": "Calendar day promise details. For examples, please refer to 'Sample 2 - Calendar Day Configurations' in request & response samples."
+          }
+        }
+      },
       "UpdateFulfillmentCenterRequest": {
         "type": "object",
         "properties": {
@@ -14799,510 +15129,6 @@
                 "description": "Calendar day promise details. For examples, please refer to 'Sample 2 - Calendar Day Configurations' in request & response samples."
               }
             }
-          }
-        }
-      },
-      "CreateFulfillmentCenterRequest": {
-        "type": "object",
-        "properties": {
-          "shipNodeHeader": {
-            "type": "object",
-            "properties": {
-              "version": {
-                "type": "string"
-              }
-            }
-          },
-          "shipNode": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "shipNodeName": {
-                  "type": "string",
-                  "description": "Name of the fulfillment center."
-                },
-                "status": {
-                  "type": "string",
-                  "description": "Status of fulfillment center. Allowed values: ACTIVE, INACTIVE.."
-                },
-                "timeZone": {
-                  "type": "string",
-                  "description": "Time zone that the seller ships from.Allowed timezones are PST, EST, CST, MST."
-                },
-                "distributorSupportedServices": {
-                  "type": "array",
-                  "description": "The services supported by the defined physical ship node . The allowed values: TWO_DAY_DELIVERY.",
-                  "items": {
-                    "type": "string",
-                    "description": "The services supported by the defined physical ship node . The allowed values: TWO_DAY_DELIVERY."
-                  }
-                },
-                "customNodeId": {
-                  "type": "string",
-                  "description": "Custom node identifier provided by seller. Allowed values are alphanumeric | String"
-                },
-                "postalAddress": {
-                  "type": "object",
-                  "properties": {
-                    "addressLine1": {
-                      "type": "string",
-                      "description": "Street address of the fulfillment center."
-                    },
-                    "city": {
-                      "type": "string",
-                      "description": "City of the fulfillment center."
-                    },
-                    "state": {
-                      "type": "string",
-                      "description": "State of the fulfillment center."
-                    },
-                    "country": {
-                      "type": "string",
-                      "description": "Country of the fulfillment center."
-                    },
-                    "postalCode": {
-                      "type": "string",
-                      "description": "Postal code of the fulfillment center."
-                    }
-                  },
-                  "description": "Postal code of the fulfillment center."
-                },
-                "shippingDetails": {
-                  "type": "array",
-                  "description": "Shipping Details.",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "twoDayShipping": {
-                        "type": "array",
-                        "description": "Shipping type provided.",
-                        "items": {
-                          "type": "object",
-                          "properties": {
-                            "carrierMethodName": {
-                              "type": "string",
-                              "description": "Name of the shipping carrier. Carrier names can be retrieved from the Get carrier methods API."
-                            },
-                            "carrierMethodType": {
-                              "type": "string",
-                              "description": "Shipping method."
-                            }
-                          },
-                          "description": "Shipping type provided."
-                        }
-                      }
-                    },
-                    "description": "Shipping Details."
-                  }
-                },
-                "calendarDayConfiguration": {
-                  "required": [
-                    "additionalDaysOff",
-                    "standardProcessingSchedule"
-                  ],
-                  "type": "object",
-                  "properties": {
-                    "standardProcessingSchedule": {
-                      "required": [
-                        "friday",
-                        "monday",
-                        "saturday",
-                        "sunday",
-                        "thursday",
-                        "tuesday",
-                        "wednesday"
-                      ],
-                      "type": "object",
-                      "properties": {
-                        "sunday": {
-                          "required": [
-                            "isWorkingDay"
-                          ],
-                          "type": "object",
-                          "properties": {
-                            "isWorkingDay": {
-                              "type": "boolean",
-                              "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
-                            },
-                            "cutOffTime": {
-                              "type": "string",
-                              "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
-                              "format": "HH:mm",
-                              "default": "14:00"
-                            }
-                          }
-                        },
-                        "monday": {
-                          "required": [
-                            "isWorkingDay"
-                          ],
-                          "type": "object",
-                          "properties": {
-                            "isWorkingDay": {
-                              "type": "boolean",
-                              "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
-                            },
-                            "cutOffTime": {
-                              "type": "string",
-                              "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
-                              "format": "HH:mm",
-                              "default": "14:00"
-                            }
-                          }
-                        },
-                        "tuesday": {
-                          "required": [
-                            "isWorkingDay"
-                          ],
-                          "type": "object",
-                          "properties": {
-                            "isWorkingDay": {
-                              "type": "boolean",
-                              "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
-                            },
-                            "cutOffTime": {
-                              "type": "string",
-                              "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
-                              "format": "HH:mm",
-                              "default": "14:00"
-                            }
-                          }
-                        },
-                        "wednesday": {
-                          "required": [
-                            "isWorkingDay"
-                          ],
-                          "type": "object",
-                          "properties": {
-                            "isWorkingDay": {
-                              "type": "boolean",
-                              "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
-                            },
-                            "cutOffTime": {
-                              "type": "string",
-                              "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
-                              "format": "HH:mm",
-                              "default": "14:00"
-                            }
-                          }
-                        },
-                        "thursday": {
-                          "required": [
-                            "isWorkingDay"
-                          ],
-                          "type": "object",
-                          "properties": {
-                            "isWorkingDay": {
-                              "type": "boolean",
-                              "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
-                            },
-                            "cutOffTime": {
-                              "type": "string",
-                              "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
-                              "format": "HH:mm",
-                              "default": "14:00"
-                            }
-                          }
-                        },
-                        "friday": {
-                          "required": [
-                            "isWorkingDay"
-                          ],
-                          "type": "object",
-                          "properties": {
-                            "isWorkingDay": {
-                              "type": "boolean",
-                              "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
-                            },
-                            "cutOffTime": {
-                              "type": "string",
-                              "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
-                              "format": "HH:mm",
-                              "default": "14:00"
-                            }
-                          }
-                        },
-                        "saturday": {
-                          "required": [
-                            "isWorkingDay"
-                          ],
-                          "type": "object",
-                          "properties": {
-                            "isWorkingDay": {
-                              "type": "boolean",
-                              "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
-                            },
-                            "cutOffTime": {
-                              "type": "string",
-                              "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
-                              "format": "HH:mm",
-                              "default": "14:00"
-                            }
-                          }
-                        }
-                      },
-                      "description": "Operating Schedule for the fulfillment center"
-                    },
-                    "additionalDaysOff": {
-                      "type": "array",
-                      "description": "List of additional days on which the fulfillment center is closed. For example, if the fulfillment center is closed on New Year’s Day, then add the date in the list. If there are no additional off days, then this list will be empty. Use ISO 8601 format for date. For example: '2021-07-16'(yyyy-MM-dd) ",
-                      "format": "yyyy-MM-dd",
-                      "items": {
-                        "type": "string",
-                        "description": "List of additional days on which the fulfillment center is closed. For example, if the fulfillment center is closed on New Year’s Day, then add the date in the list. If there are no additional off days, then this list will be empty. Use ISO 8601 format for date. For example: '2021-07-16'(yyyy-MM-dd) ",
-                        "format": "yyyy-MM-dd"
-                      }
-                    }
-                  },
-                  "description": "Calendar day promise details. For examples, please refer to 'Sample 2 - Calendar Day Configurations' in request & response samples."
-                }
-              }
-            }
-          }
-        }
-      },
-      "ShipNodeRequest": {
-        "type": "object",
-        "properties": {
-          "shipNodeName": {
-            "type": "string",
-            "description": "Name of the fulfillment center."
-          },
-          "status": {
-            "type": "string",
-            "description": "Status of fulfillment center. Allowed values: ACTIVE, INACTIVE.."
-          },
-          "timeZone": {
-            "type": "string",
-            "description": "Time zone that the seller ships from.Allowed timezones are PST, EST, CST, MST."
-          },
-          "distributorSupportedServices": {
-            "type": "array",
-            "description": "The services supported by the defined physical ship node . The allowed values: TWO_DAY_DELIVERY.",
-            "items": {
-              "type": "string",
-              "description": "The services supported by the defined physical ship node . The allowed values: TWO_DAY_DELIVERY."
-            }
-          },
-          "customNodeId": {
-            "type": "string",
-            "description": "Custom node identifier provided by seller. Allowed values are alphanumeric | String"
-          },
-          "postalAddress": {
-            "type": "object",
-            "properties": {
-              "addressLine1": {
-                "type": "string",
-                "description": "Street address of the fulfillment center."
-              },
-              "city": {
-                "type": "string",
-                "description": "City of the fulfillment center."
-              },
-              "state": {
-                "type": "string",
-                "description": "State of the fulfillment center."
-              },
-              "country": {
-                "type": "string",
-                "description": "Country of the fulfillment center."
-              },
-              "postalCode": {
-                "type": "string",
-                "description": "Postal code of the fulfillment center."
-              }
-            },
-            "description": "Postal code of the fulfillment center."
-          },
-          "shippingDetails": {
-            "type": "array",
-            "description": "Shipping Details.",
-            "items": {
-              "type": "object",
-              "properties": {
-                "twoDayShipping": {
-                  "type": "array",
-                  "description": "Shipping type provided.",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "carrierMethodName": {
-                        "type": "string",
-                        "description": "Name of the shipping carrier. Carrier names can be retrieved from the Get carrier methods API."
-                      },
-                      "carrierMethodType": {
-                        "type": "string",
-                        "description": "Shipping method."
-                      }
-                    },
-                    "description": "Shipping type provided."
-                  }
-                }
-              },
-              "description": "Shipping Details."
-            }
-          },
-          "calendarDayConfiguration": {
-            "required": [
-              "additionalDaysOff",
-              "standardProcessingSchedule"
-            ],
-            "type": "object",
-            "properties": {
-              "standardProcessingSchedule": {
-                "required": [
-                  "friday",
-                  "monday",
-                  "saturday",
-                  "sunday",
-                  "thursday",
-                  "tuesday",
-                  "wednesday"
-                ],
-                "type": "object",
-                "properties": {
-                  "sunday": {
-                    "required": [
-                      "isWorkingDay"
-                    ],
-                    "type": "object",
-                    "properties": {
-                      "isWorkingDay": {
-                        "type": "boolean",
-                        "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
-                      },
-                      "cutOffTime": {
-                        "type": "string",
-                        "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
-                        "format": "HH:mm",
-                        "default": "14:00"
-                      }
-                    }
-                  },
-                  "monday": {
-                    "required": [
-                      "isWorkingDay"
-                    ],
-                    "type": "object",
-                    "properties": {
-                      "isWorkingDay": {
-                        "type": "boolean",
-                        "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
-                      },
-                      "cutOffTime": {
-                        "type": "string",
-                        "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
-                        "format": "HH:mm",
-                        "default": "14:00"
-                      }
-                    }
-                  },
-                  "tuesday": {
-                    "required": [
-                      "isWorkingDay"
-                    ],
-                    "type": "object",
-                    "properties": {
-                      "isWorkingDay": {
-                        "type": "boolean",
-                        "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
-                      },
-                      "cutOffTime": {
-                        "type": "string",
-                        "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
-                        "format": "HH:mm",
-                        "default": "14:00"
-                      }
-                    }
-                  },
-                  "wednesday": {
-                    "required": [
-                      "isWorkingDay"
-                    ],
-                    "type": "object",
-                    "properties": {
-                      "isWorkingDay": {
-                        "type": "boolean",
-                        "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
-                      },
-                      "cutOffTime": {
-                        "type": "string",
-                        "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
-                        "format": "HH:mm",
-                        "default": "14:00"
-                      }
-                    }
-                  },
-                  "thursday": {
-                    "required": [
-                      "isWorkingDay"
-                    ],
-                    "type": "object",
-                    "properties": {
-                      "isWorkingDay": {
-                        "type": "boolean",
-                        "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
-                      },
-                      "cutOffTime": {
-                        "type": "string",
-                        "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
-                        "format": "HH:mm",
-                        "default": "14:00"
-                      }
-                    }
-                  },
-                  "friday": {
-                    "required": [
-                      "isWorkingDay"
-                    ],
-                    "type": "object",
-                    "properties": {
-                      "isWorkingDay": {
-                        "type": "boolean",
-                        "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
-                      },
-                      "cutOffTime": {
-                        "type": "string",
-                        "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
-                        "format": "HH:mm",
-                        "default": "14:00"
-                      }
-                    }
-                  },
-                  "saturday": {
-                    "required": [
-                      "isWorkingDay"
-                    ],
-                    "type": "object",
-                    "properties": {
-                      "isWorkingDay": {
-                        "type": "boolean",
-                        "description": "Flag to specify if shipNode is operational on the specified day of each week. Allowed values are true or false."
-                      },
-                      "cutOffTime": {
-                        "type": "string",
-                        "description": "Order processing cutoff time. Please note that cutoff time is respective of the seller’s time zone. If not provided in the request body, then by default it will be set to '14:00'. Example: '09:30'(HH:mm)",
-                        "format": "HH:mm",
-                        "default": "14:00"
-                      }
-                    }
-                  }
-                },
-                "description": "Operating Schedule for the fulfillment center"
-              },
-              "additionalDaysOff": {
-                "type": "array",
-                "description": "List of additional days on which the fulfillment center is closed. For example, if the fulfillment center is closed on New Year’s Day, then add the date in the list. If there are no additional off days, then this list will be empty. Use ISO 8601 format for date. For example: '2021-07-16'(yyyy-MM-dd) ",
-                "format": "yyyy-MM-dd",
-                "items": {
-                  "type": "string",
-                  "description": "List of additional days on which the fulfillment center is closed. For example, if the fulfillment center is closed on New Year’s Day, then add the date in the list. If there are no additional off days, then this list will be empty. Use ISO 8601 format for date. For example: '2021-07-16'(yyyy-MM-dd) ",
-                  "format": "yyyy-MM-dd"
-                }
-              }
-            },
-            "description": "Calendar day promise details. For examples, please refer to 'Sample 2 - Calendar Day Configurations' in request & response samples."
           }
         }
       },
@@ -17519,6 +17345,24 @@
           }
         }
       },
+      "PartnerInfoDTO": {
+        "type": "object",
+        "properties": {
+          "partnerId": {
+            "type": "string",
+            "description": "The seller ID"
+          },
+          "partnerName": {
+            "type": "string",
+            "description": "The seller's legal name"
+          },
+          "partnerDisplayName": {
+            "type": "string",
+            "description": "The seller name shown on walmart.com"
+          }
+        },
+        "description": "Details of partner"
+      },
       "Rate": {
         "type": "object",
         "properties": {
@@ -17626,33 +17470,189 @@
         },
         "description": "A time period set for throttling of number of API calls"
       },
-      "ShippingTemplateActivationStatus": {
+      "CategoriesLagTimeDTO": {
         "type": "object",
         "properties": {
-          "activationStatus": {
-            "type": "string",
-            "description": "Shipping Template Activation Status, possible values can be NOT_ACTIVATED or ACTIVATED"
-          },
-          "createdDate": {
-            "type": "number",
-            "description": "Activation Date"
-          },
-          "modifiedDate": {
-            "type": "number",
-            "description": "Activation Status Last Modified Date"
+          "categories": {
+            "type": "array",
+            "description": "List of item setup category level lag time exceptions configured for seller",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Name of the item setup category which was used to request lag time exception"
+                },
+                "fulfillmentLagTime": {
+                  "type": "integer",
+                  "description": "Maximum lag time configured for the item setup category",
+                  "format": "int32"
+                }
+              },
+              "description": "List of item setup category level lag time exceptions configured for seller"
+            }
           }
         }
       },
-      "ThirdPartyShipNode2": {
+      "CategoryLagTimeDTO": {
         "type": "object",
         "properties": {
-          "shipNode": {
+          "name": {
             "type": "string",
-            "description": "The fulfillment center or ship node Id which uniquely identifies each facility and is autogenerated during the creation of fulfillment center. Every time a facility is added, a new ship node id is generated."
+            "description": "Name of the item setup category which was used to request lag time exception"
           },
-          "shipNodeName": {
+          "fulfillmentLagTime": {
+            "type": "integer",
+            "description": "Maximum lag time configured for the item setup category",
+            "format": "int32"
+          }
+        },
+        "description": "List of item setup category level lag time exceptions configured for seller"
+      },
+      "LagTimeConfig": {
+        "type": "object",
+        "properties": {
+          "configurationName": {
             "type": "string",
-            "description": "Name of the fulfillment center."
+            "description": "Name of the configuration",
+            "enum": [
+              "LAG_TIME"
+            ]
+          },
+          "configuration": {
+            "type": "object",
+            "properties": {
+              "categories": {
+                "type": "array",
+                "description": "List of item setup category level lag time exceptions configured for seller",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "Name of the item setup category which was used to request lag time exception"
+                    },
+                    "fulfillmentLagTime": {
+                      "type": "integer",
+                      "description": "Maximum lag time configured for the item setup category",
+                      "format": "int32"
+                    }
+                  },
+                  "description": "List of item setup category level lag time exceptions configured for seller"
+                }
+              }
+            }
+          }
+        }
+      },
+      "ShippingConfig": {
+        "type": "object",
+        "description": "List of seller configurations like Lag Time",
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "configurationName": {
+                "type": "string",
+                "description": "Name of the configuration",
+                "enum": [
+                  "LAG_TIME"
+                ]
+              },
+              "configuration": {
+                "type": "object",
+                "properties": {
+                  "categories": {
+                    "type": "array",
+                    "description": "List of item setup category level lag time exceptions configured for seller",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "description": "Name of the item setup category which was used to request lag time exception"
+                        },
+                        "fulfillmentLagTime": {
+                          "type": "integer",
+                          "description": "Maximum lag time configured for the item setup category",
+                          "format": "int32"
+                        }
+                      },
+                      "description": "List of item setup category level lag time exceptions configured for seller"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "ShippingConfigsResponseDTO": {
+        "type": "object",
+        "properties": {
+          "partner": {
+            "type": "object",
+            "properties": {
+              "partnerId": {
+                "type": "string",
+                "description": "The seller ID"
+              },
+              "partnerName": {
+                "type": "string",
+                "description": "The seller's legal name"
+              },
+              "partnerDisplayName": {
+                "type": "string",
+                "description": "The seller name shown on walmart.com"
+              }
+            },
+            "description": "Details of partner"
+          },
+          "configurations": {
+            "type": "array",
+            "description": "List of seller configurations like Lag Time",
+            "items": {
+              "type": "object",
+              "description": "List of seller configurations like Lag Time",
+              "anyOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "configurationName": {
+                      "type": "string",
+                      "description": "Name of the configuration",
+                      "enum": [
+                        "LAG_TIME"
+                      ]
+                    },
+                    "configuration": {
+                      "type": "object",
+                      "properties": {
+                        "categories": {
+                          "type": "array",
+                          "description": "List of item setup category level lag time exceptions configured for seller",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "name": {
+                                "type": "string",
+                                "description": "Name of the item setup category which was used to request lag time exception"
+                              },
+                              "fulfillmentLagTime": {
+                                "type": "integer",
+                                "description": "Maximum lag time configured for the item setup category",
+                                "format": "int32"
+                              }
+                            },
+                            "description": "List of item setup category level lag time exceptions configured for seller"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
+            }
           }
         }
       }
