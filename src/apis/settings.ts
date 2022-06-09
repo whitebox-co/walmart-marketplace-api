@@ -317,10 +317,10 @@ export interface ChargePerWeight {
 export interface Create3PFulfillmentCenterRequest {
     /**
      * 
-     * @type {V3SettingsShipping3plshipnodesShipNodeHeader}
+     * @type {V3SettingsShippingShipnodesShipNodeHeader}
      * @memberof Create3PFulfillmentCenterRequest
      */
-    shipNodeHeader?: V3SettingsShipping3plshipnodesShipNodeHeader;
+    shipNodeHeader?: V3SettingsShippingShipnodesShipNodeHeader;
     /**
      * 
      * @type {Array<V3SettingsShipping3plshipnodesShipNode>}
@@ -336,10 +336,10 @@ export interface Create3PFulfillmentCenterRequest {
 export interface CreateFulfillmentCenterRequest {
     /**
      * 
-     * @type {V3SettingsShipping3plshipnodesShipNodeHeader}
+     * @type {V3SettingsShippingShipnodesShipNodeHeader}
      * @memberof CreateFulfillmentCenterRequest
      */
-    shipNodeHeader?: V3SettingsShipping3plshipnodesShipNodeHeader;
+    shipNodeHeader?: V3SettingsShippingShipnodesShipNodeHeader;
     /**
      * 
      * @type {Array<V3SettingsShippingShipnodesShipNode1>}
@@ -679,16 +679,16 @@ export interface FulfillmentCenterCoverageDetail {
 export interface InlineObject {
     /**
      * 
-     * @type {V3SettingsShipping3plshipnodesShipNodeHeader}
+     * @type {V3SettingsShippingShipnodesShipNodeHeader}
      * @memberof InlineObject
      */
-    shipNodeHeader?: V3SettingsShipping3plshipnodesShipNodeHeader;
+    shipNodeHeader?: V3SettingsShippingShipnodesShipNodeHeader;
     /**
      * 
-     * @type {Array<V3SettingsShipping3plshipnodesShipNode>}
+     * @type {V3SettingsShippingShipnodesShipNode}
      * @memberof InlineObject
      */
-    shipNode?: Array<V3SettingsShipping3plshipnodesShipNode>;
+    shipNode?: V3SettingsShippingShipnodesShipNode;
 }
 /**
  * 
@@ -698,16 +698,16 @@ export interface InlineObject {
 export interface InlineObject1 {
     /**
      * 
-     * @type {V3SettingsShipping3plshipnodesShipNodeHeader}
+     * @type {V3SettingsShippingShipnodesShipNodeHeader}
      * @memberof InlineObject1
      */
-    shipNodeHeader?: V3SettingsShipping3plshipnodesShipNodeHeader;
+    shipNodeHeader?: V3SettingsShippingShipnodesShipNodeHeader;
     /**
      * 
-     * @type {V3SettingsShippingShipnodesShipNode}
+     * @type {Array<V3SettingsShippingShipnodesShipNode1>}
      * @memberof InlineObject1
      */
-    shipNode?: V3SettingsShippingShipnodesShipNode;
+    shipNode?: Array<V3SettingsShippingShipnodesShipNode1>;
 }
 /**
  * 
@@ -717,16 +717,16 @@ export interface InlineObject1 {
 export interface InlineObject2 {
     /**
      * 
-     * @type {V3SettingsShipping3plshipnodesShipNodeHeader}
+     * @type {V3SettingsShippingShipnodesShipNodeHeader}
      * @memberof InlineObject2
      */
-    shipNodeHeader?: V3SettingsShipping3plshipnodesShipNodeHeader;
+    shipNodeHeader?: V3SettingsShippingShipnodesShipNodeHeader;
     /**
      * 
-     * @type {Array<V3SettingsShippingShipnodesShipNode1>}
+     * @type {Array<V3SettingsShipping3plshipnodesShipNode>}
      * @memberof InlineObject2
      */
-    shipNode?: Array<V3SettingsShippingShipnodesShipNode1>;
+    shipNode?: Array<V3SettingsShipping3plshipnodesShipNode>;
 }
 /**
  * 
@@ -836,29 +836,23 @@ export enum InlineObject4StatusEnum {
  */
 export interface InlineResponse200 {
     /**
-     * Carrier Id
+     * Shipping Template Activation Status, possible values can be NOT_ACTIVATED or ACTIVATED
      * @type {string}
      * @memberof InlineResponse200
      */
-    carrierMethodId?: string;
+    activationStatus?: string;
     /**
-     * Carrier Name
-     * @type {string}
+     * Activation Date
+     * @type {number}
      * @memberof InlineResponse200
      */
-    carrierMethodName?: string;
+    createdDate?: number;
     /**
-     * Shipping method. Allowed Value is GROUND.
-     * @type {string}
+     * Activation Status Last Modified Date
+     * @type {number}
      * @memberof InlineResponse200
      */
-    carrierMethodType?: string;
-    /**
-     * A description for the method carrier.
-     * @type {string}
-     * @memberof InlineResponse200
-     */
-    carrierMethodDescription?: string;
+    modifiedDate?: number;
 }
 /**
  * 
@@ -873,17 +867,59 @@ export interface InlineResponse2001 {
      */
     shipNode?: string;
     /**
+     * Defines if the fulfillment center is virtual, seller owned or third party owned. Allowed values: PHYSICAL, VIRTUAL, 3PL.
+     * @type {string}
+     * @memberof InlineResponse2001
+     */
+    nodeType?: string;
+    /**
      * Name of the fulfillment center.
      * @type {string}
      * @memberof InlineResponse2001
      */
     shipNodeName?: string;
     /**
-     * Two day shipping regions defined by Walmart for sellers.
+     * Status of fulfillment center. Allowed values: ACTIVE, INACTIVE..
+     * @type {string}
+     * @memberof InlineResponse2001
+     */
+    status?: string;
+    /**
+     * Time zone that the seller ships from.Allowed timezones are PST, EST, CST, MST.
+     * @type {string}
+     * @memberof InlineResponse2001
+     */
+    timeZone?: string;
+    /**
+     * The services supported by the defined physical ship node . The allowed values: TWO_DAY_DELIVERY.
      * @type {Array<string>}
      * @memberof InlineResponse2001
      */
-    coverageArea?: Array<string>;
+    distributorSupportedServices?: Array<string>;
+    /**
+     * Custom node identifier provided by seller. Allowed values are alphanumeric | String
+     * @type {string}
+     * @memberof InlineResponse2001
+     */
+    customNodeId?: string;
+    /**
+     * 
+     * @type {V3SettingsShippingShipnodesPostalAddress}
+     * @memberof InlineResponse2001
+     */
+    postalAddress?: V3SettingsShippingShipnodesPostalAddress;
+    /**
+     * Shipping Details.
+     * @type {Array<V3SettingsShippingShipnodesShippingDetails>}
+     * @memberof InlineResponse2001
+     */
+    shippingDetails?: Array<V3SettingsShippingShipnodesShippingDetails>;
+    /**
+     * 
+     * @type {V3SettingsShippingShipnodesCalendarDayConfiguration}
+     * @memberof InlineResponse2001
+     */
+    calendarDayConfiguration?: V3SettingsShippingShipnodesCalendarDayConfiguration;
 }
 /**
  * 
@@ -898,59 +934,11 @@ export interface InlineResponse2002 {
      */
     shipNode?: string;
     /**
-     * Defines if the fulfillment center is virtual, seller owned or third party owned. Allowed values: PHYSICAL, VIRTUAL, 3PL.
-     * @type {string}
-     * @memberof InlineResponse2002
-     */
-    nodeType?: string;
-    /**
      * Name of the fulfillment center.
      * @type {string}
      * @memberof InlineResponse2002
      */
     shipNodeName?: string;
-    /**
-     * Status of fulfillment center. Allowed values: ACTIVE, INACTIVE..
-     * @type {string}
-     * @memberof InlineResponse2002
-     */
-    status?: string;
-    /**
-     * Time zone that the seller ships from.Allowed timezones are PST, EST, CST, MST.
-     * @type {string}
-     * @memberof InlineResponse2002
-     */
-    timeZone?: string;
-    /**
-     * The services supported by the defined physical ship node . The allowed values: TWO_DAY_DELIVERY.
-     * @type {Array<string>}
-     * @memberof InlineResponse2002
-     */
-    distributorSupportedServices?: Array<string>;
-    /**
-     * Custom node identifier provided by seller. Allowed values are alphanumeric | String
-     * @type {string}
-     * @memberof InlineResponse2002
-     */
-    customNodeId?: string;
-    /**
-     * 
-     * @type {V3SettingsShippingShipnodesPostalAddress}
-     * @memberof InlineResponse2002
-     */
-    postalAddress?: V3SettingsShippingShipnodesPostalAddress;
-    /**
-     * Shipping Details.
-     * @type {Array<V3SettingsShippingShipnodesShippingDetails>}
-     * @memberof InlineResponse2002
-     */
-    shippingDetails?: Array<V3SettingsShippingShipnodesShippingDetails>;
-    /**
-     * 
-     * @type {V3SettingsShippingShipnodesCalendarDayConfiguration}
-     * @memberof InlineResponse2002
-     */
-    calendarDayConfiguration?: V3SettingsShippingShipnodesCalendarDayConfiguration;
 }
 /**
  * 
@@ -959,42 +947,29 @@ export interface InlineResponse2002 {
  */
 export interface InlineResponse2003 {
     /**
-     * 
-     * @type {InlineResponse2003Partner}
+     * Carrier Id
+     * @type {string}
      * @memberof InlineResponse2003
      */
-    partner?: InlineResponse2003Partner;
+    carrierMethodId?: string;
     /**
-     * List of seller configurations like Lag Time
-     * @type {Array<object>}
+     * Carrier Name
+     * @type {string}
      * @memberof InlineResponse2003
      */
-    configurations?: Array<object>;
-}
-/**
- * Details of partner
- * @export
- * @interface InlineResponse2003Partner
- */
-export interface InlineResponse2003Partner {
+    carrierMethodName?: string;
     /**
-     * The seller ID
+     * Shipping method. Allowed Value is GROUND.
      * @type {string}
-     * @memberof InlineResponse2003Partner
+     * @memberof InlineResponse2003
      */
-    partnerId?: string;
+    carrierMethodType?: string;
     /**
-     * The seller\'s legal name
+     * A description for the method carrier.
      * @type {string}
-     * @memberof InlineResponse2003Partner
+     * @memberof InlineResponse2003
      */
-    partnerName?: string;
-    /**
-     * The seller name shown on walmart.com
-     * @type {string}
-     * @memberof InlineResponse2003Partner
-     */
-    partnerDisplayName?: string;
+    carrierMethodDescription?: string;
 }
 /**
  * 
@@ -1003,106 +978,24 @@ export interface InlineResponse2003Partner {
  */
 export interface InlineResponse2004 {
     /**
-     * Array of Shipping Templates
-     * @type {Array<InlineResponse2004ShippingTemplates>}
+     * The fulfillment center or ship node Id which uniquely identifies each facility and is autogenerated during the creation of fulfillment center. Every time a facility is added, a new ship node id is generated.
+     * @type {string}
      * @memberof InlineResponse2004
      */
-    shippingTemplates?: Array<InlineResponse2004ShippingTemplates>;
+    shipNode?: string;
     /**
-     * Total Number of records in the response of the API
-     * @type {number}
+     * Name of the fulfillment center.
+     * @type {string}
      * @memberof InlineResponse2004
      */
-    totalRecords?: number;
+    shipNodeName?: string;
+    /**
+     * Two day shipping regions defined by Walmart for sellers.
+     * @type {Array<string>}
+     * @memberof InlineResponse2004
+     */
+    coverageArea?: Array<string>;
 }
-/**
- * Array of Shipping Templates
- * @export
- * @interface InlineResponse2004ShippingTemplates
- */
-export interface InlineResponse2004ShippingTemplates {
-    /**
-     * Shipping Template ID
-     * @type {string}
-     * @memberof InlineResponse2004ShippingTemplates
-     */
-    id?: string;
-    /**
-     * Shipping Template Name
-     * @type {string}
-     * @memberof InlineResponse2004ShippingTemplates
-     */
-    name?: string;
-    /**
-     * Shipping Template Type
-     * @type {string}
-     * @memberof InlineResponse2004ShippingTemplates
-     */
-    type?: InlineResponse2004ShippingTemplatesTypeEnum;
-    /**
-     * Shipping Template/ Configurations active or inactive status
-     * @type {string}
-     * @memberof InlineResponse2004ShippingTemplates
-     */
-    status?: InlineResponse2004ShippingTemplatesStatusEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2004ShippingTemplates
-     */
-    rateModelType?: InlineResponse2004ShippingTemplatesRateModelTypeEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2004ShippingTemplates
-     */
-    createdBy?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2004ShippingTemplates
-     */
-    modifiedBy?: string;
-    /**
-     * Template Creation Date
-     * @type {number}
-     * @memberof InlineResponse2004ShippingTemplates
-     */
-    createdDate?: number;
-    /**
-     * Template Modified Date
-     * @type {number}
-     * @memberof InlineResponse2004ShippingTemplates
-     */
-    modifiedDate?: number;
-}
-
-/**
-    * @export
-    * @enum {string}
-    */
-export enum InlineResponse2004ShippingTemplatesTypeEnum {
-    Default = 'DEFAULT',
-    Custom = 'CUSTOM',
-    Deliverr = 'DELIVERR'
-}
-/**
-    * @export
-    * @enum {string}
-    */
-export enum InlineResponse2004ShippingTemplatesStatusEnum {
-    Active = 'ACTIVE',
-    Inactive = 'INACTIVE'
-}
-/**
-    * @export
-    * @enum {string}
-    */
-export enum InlineResponse2004ShippingTemplatesRateModelTypeEnum {
-    TieredPricing = 'TIERED_PRICING',
-    PerShipmentPricing = 'PER_SHIPMENT_PRICING'
-}
-
 /**
  * 
  * @export
@@ -1110,63 +1003,76 @@ export enum InlineResponse2004ShippingTemplatesRateModelTypeEnum {
  */
 export interface InlineResponse2005 {
     /**
+     * Array of Shipping Templates
+     * @type {Array<InlineResponse2005ShippingTemplates>}
+     * @memberof InlineResponse2005
+     */
+    shippingTemplates?: Array<InlineResponse2005ShippingTemplates>;
+    /**
+     * Total Number of records in the response of the API
+     * @type {number}
+     * @memberof InlineResponse2005
+     */
+    totalRecords?: number;
+}
+/**
+ * Array of Shipping Templates
+ * @export
+ * @interface InlineResponse2005ShippingTemplates
+ */
+export interface InlineResponse2005ShippingTemplates {
+    /**
      * Shipping Template ID
      * @type {string}
-     * @memberof InlineResponse2005
+     * @memberof InlineResponse2005ShippingTemplates
      */
     id?: string;
     /**
      * Shipping Template Name
      * @type {string}
-     * @memberof InlineResponse2005
+     * @memberof InlineResponse2005ShippingTemplates
      */
-    name: string;
+    name?: string;
     /**
-     * Shipping Template Type, should be CUSTOM or 3PL Specific
+     * Shipping Template Type
      * @type {string}
-     * @memberof InlineResponse2005
+     * @memberof InlineResponse2005ShippingTemplates
      */
-    type: InlineResponse2005TypeEnum;
+    type?: InlineResponse2005ShippingTemplatesTypeEnum;
     /**
-     * This is the shipping model type. TIERED_PRICING: This model means that you charge shipping based on the price of the item PER_SHIPMENT_PRICING: This model means that you charge shipping based on the weight of your items (per pound), or you charge shipping based on the number of items purchased in an order
+     * Shipping Template/ Configurations active or inactive status
      * @type {string}
-     * @memberof InlineResponse2005
+     * @memberof InlineResponse2005ShippingTemplates
      */
-    rateModelType: InlineResponse2005RateModelTypeEnum;
-    /**
-     * Shipping Template Status, Can be ACTIVE or INACTIVE status
-     * @type {string}
-     * @memberof InlineResponse2005
-     */
-    status: InlineResponse2005StatusEnum;
-    /**
-     * Array of different ship methods of a Shipping Template
-     * @type {Array<V3SettingsShippingTemplatesShippingMethods>}
-     * @memberof InlineResponse2005
-     */
-    shippingMethods: Array<V3SettingsShippingTemplatesShippingMethods>;
+    status?: InlineResponse2005ShippingTemplatesStatusEnum;
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse2005
+     * @memberof InlineResponse2005ShippingTemplates
+     */
+    rateModelType?: InlineResponse2005ShippingTemplatesRateModelTypeEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2005ShippingTemplates
      */
     createdBy?: string;
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse2005
+     * @memberof InlineResponse2005ShippingTemplates
      */
     modifiedBy?: string;
     /**
-     * 
+     * Template Creation Date
      * @type {number}
-     * @memberof InlineResponse2005
+     * @memberof InlineResponse2005ShippingTemplates
      */
     createdDate?: number;
     /**
-     * 
+     * Template Modified Date
      * @type {number}
-     * @memberof InlineResponse2005
+     * @memberof InlineResponse2005ShippingTemplates
      */
     modifiedDate?: number;
 }
@@ -1175,7 +1081,7 @@ export interface InlineResponse2005 {
     * @export
     * @enum {string}
     */
-export enum InlineResponse2005TypeEnum {
+export enum InlineResponse2005ShippingTemplatesTypeEnum {
     Default = 'DEFAULT',
     Custom = 'CUSTOM',
     Deliverr = 'DELIVERR'
@@ -1184,17 +1090,17 @@ export enum InlineResponse2005TypeEnum {
     * @export
     * @enum {string}
     */
-export enum InlineResponse2005RateModelTypeEnum {
-    TieredPricing = 'TIERED_PRICING',
-    PerShipmentPricing = 'PER_SHIPMENT_PRICING'
+export enum InlineResponse2005ShippingTemplatesStatusEnum {
+    Active = 'ACTIVE',
+    Inactive = 'INACTIVE'
 }
 /**
     * @export
     * @enum {string}
     */
-export enum InlineResponse2005StatusEnum {
-    Active = 'ACTIVE',
-    Inactive = 'INACTIVE'
+export enum InlineResponse2005ShippingTemplatesRateModelTypeEnum {
+    TieredPricing = 'TIERED_PRICING',
+    PerShipmentPricing = 'PER_SHIPMENT_PRICING'
 }
 
 /**
@@ -1209,7 +1115,88 @@ export interface InlineResponse2006 {
      * @memberof InlineResponse2006
      */
     id?: string;
+    /**
+     * Shipping Template Name
+     * @type {string}
+     * @memberof InlineResponse2006
+     */
+    name: string;
+    /**
+     * Shipping Template Type, should be CUSTOM or 3PL Specific
+     * @type {string}
+     * @memberof InlineResponse2006
+     */
+    type: InlineResponse2006TypeEnum;
+    /**
+     * This is the shipping model type. TIERED_PRICING: This model means that you charge shipping based on the price of the item PER_SHIPMENT_PRICING: This model means that you charge shipping based on the weight of your items (per pound), or you charge shipping based on the number of items purchased in an order
+     * @type {string}
+     * @memberof InlineResponse2006
+     */
+    rateModelType: InlineResponse2006RateModelTypeEnum;
+    /**
+     * Shipping Template Status, Can be ACTIVE or INACTIVE status
+     * @type {string}
+     * @memberof InlineResponse2006
+     */
+    status: InlineResponse2006StatusEnum;
+    /**
+     * Array of different ship methods of a Shipping Template
+     * @type {Array<V3SettingsShippingTemplatesShippingMethods>}
+     * @memberof InlineResponse2006
+     */
+    shippingMethods: Array<V3SettingsShippingTemplatesShippingMethods>;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2006
+     */
+    createdBy?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2006
+     */
+    modifiedBy?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2006
+     */
+    createdDate?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2006
+     */
+    modifiedDate?: number;
 }
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum InlineResponse2006TypeEnum {
+    Default = 'DEFAULT',
+    Custom = 'CUSTOM',
+    Deliverr = 'DELIVERR'
+}
+/**
+    * @export
+    * @enum {string}
+    */
+export enum InlineResponse2006RateModelTypeEnum {
+    TieredPricing = 'TIERED_PRICING',
+    PerShipmentPricing = 'PER_SHIPMENT_PRICING'
+}
+/**
+    * @export
+    * @enum {string}
+    */
+export enum InlineResponse2006StatusEnum {
+    Active = 'ACTIVE',
+    Inactive = 'INACTIVE'
+}
+
 /**
  * 
  * @export
@@ -1217,17 +1204,11 @@ export interface InlineResponse2006 {
  */
 export interface InlineResponse2007 {
     /**
-     * 
-     * @type {InlineResponse2003Partner}
+     * Shipping Template ID
+     * @type {string}
      * @memberof InlineResponse2007
      */
-    partner?: InlineResponse2003Partner;
-    /**
-     * List of seller configurations like Seller Account & feed throttling values
-     * @type {Array<object>}
-     * @memberof InlineResponse2007
-     */
-    configurations?: Array<object>;
+    id?: string;
 }
 /**
  * 
@@ -1236,23 +1217,42 @@ export interface InlineResponse2007 {
  */
 export interface InlineResponse2008 {
     /**
-     * Shipping Template Activation Status, possible values can be NOT_ACTIVATED or ACTIVATED
+     * 
+     * @type {InlineResponse2008Partner}
+     * @memberof InlineResponse2008
+     */
+    partner?: InlineResponse2008Partner;
+    /**
+     * List of seller configurations like Seller Account & feed throttling values
+     * @type {Array<object>}
+     * @memberof InlineResponse2008
+     */
+    configurations?: Array<object>;
+}
+/**
+ * Details of partner
+ * @export
+ * @interface InlineResponse2008Partner
+ */
+export interface InlineResponse2008Partner {
+    /**
+     * The seller ID
      * @type {string}
-     * @memberof InlineResponse2008
+     * @memberof InlineResponse2008Partner
      */
-    activationStatus?: string;
+    partnerId?: string;
     /**
-     * Activation Date
-     * @type {number}
-     * @memberof InlineResponse2008
+     * The seller\'s legal name
+     * @type {string}
+     * @memberof InlineResponse2008Partner
      */
-    createdDate?: number;
+    partnerName?: string;
     /**
-     * Activation Status Last Modified Date
-     * @type {number}
-     * @memberof InlineResponse2008
+     * The seller name shown on walmart.com
+     * @type {string}
+     * @memberof InlineResponse2008Partner
      */
-    modifiedDate?: number;
+    partnerDisplayName?: string;
 }
 /**
  * 
@@ -1261,17 +1261,17 @@ export interface InlineResponse2008 {
  */
 export interface InlineResponse2009 {
     /**
-     * The fulfillment center or ship node Id which uniquely identifies each facility and is autogenerated during the creation of fulfillment center. Every time a facility is added, a new ship node id is generated.
-     * @type {string}
+     * 
+     * @type {InlineResponse2008Partner}
      * @memberof InlineResponse2009
      */
-    shipNode?: string;
+    partner?: InlineResponse2008Partner;
     /**
-     * Name of the fulfillment center.
-     * @type {string}
+     * List of seller configurations like Lag Time
+     * @type {Array<object>}
      * @memberof InlineResponse2009
      */
-    shipNodeName?: string;
+    configurations?: Array<object>;
 }
 /**
  * 
@@ -1379,10 +1379,10 @@ export interface PartnerConfigAnyOf1 {
 export interface PartnerConfigsResponseDTO {
     /**
      * 
-     * @type {InlineResponse2003Partner}
+     * @type {InlineResponse2008Partner}
      * @memberof PartnerConfigsResponseDTO
      */
-    partner?: InlineResponse2003Partner;
+    partner?: InlineResponse2008Partner;
     /**
      * List of seller configurations like Seller Account & feed throttling values
      * @type {Array<object>}
@@ -1825,10 +1825,10 @@ export enum ShippingConfigAnyOfConfigurationNameEnum {
 export interface ShippingConfigsResponseDTO {
     /**
      * 
-     * @type {InlineResponse2003Partner}
+     * @type {InlineResponse2008Partner}
      * @memberof ShippingConfigsResponseDTO
      */
-    partner?: InlineResponse2003Partner;
+    partner?: InlineResponse2008Partner;
     /**
      * List of seller configurations like Lag Time
      * @type {Array<object>}
@@ -2123,10 +2123,10 @@ export enum ShippingTemplateSummaryRateModelTypeEnum {
 export interface ShippingTemplatesSummary {
     /**
      * Array of Shipping Templates
-     * @type {Array<InlineResponse2004ShippingTemplates>}
+     * @type {Array<InlineResponse2005ShippingTemplates>}
      * @memberof ShippingTemplatesSummary
      */
-    shippingTemplates?: Array<InlineResponse2004ShippingTemplates>;
+    shippingTemplates?: Array<InlineResponse2005ShippingTemplates>;
     /**
      * Total Number of records in the response of the API
      * @type {number}
@@ -2434,10 +2434,10 @@ export enum TimeWindowUnitOfMeasurementEnum {
 export interface UpdateFulfillmentCenterRequest {
     /**
      * 
-     * @type {V3SettingsShipping3plshipnodesShipNodeHeader}
+     * @type {V3SettingsShippingShipnodesShipNodeHeader}
      * @memberof UpdateFulfillmentCenterRequest
      */
-    shipNodeHeader?: V3SettingsShipping3plshipnodesShipNodeHeader;
+    shipNodeHeader?: V3SettingsShippingShipnodesShipNodeHeader;
     /**
      * 
      * @type {V3SettingsShippingShipnodesShipNode}
@@ -2527,19 +2527,6 @@ export interface V3SettingsShipping3plshipnodesShipNode {
      * @memberof V3SettingsShipping3plshipnodesShipNode
      */
     status?: string;
-}
-/**
- * 
- * @export
- * @interface V3SettingsShipping3plshipnodesShipNodeHeader
- */
-export interface V3SettingsShipping3plshipnodesShipNodeHeader {
-    /**
-     * 
-     * @type {string}
-     * @memberof V3SettingsShipping3plshipnodesShipNodeHeader
-     */
-    version?: string;
 }
 /**
  * Calendar day promise details. For examples, please refer to \'Sample 2 - Calendar Day Configurations\' in request & response samples.
@@ -2867,6 +2854,19 @@ export interface V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStan
      * @memberof V3SettingsShippingShipnodesShipNodeCalendarDayConfigurationStandardProcessingScheduleSunday
      */
     cutOffTime?: string;
+}
+/**
+ * 
+ * @export
+ * @interface V3SettingsShippingShipnodesShipNodeHeader
+ */
+export interface V3SettingsShippingShipnodesShipNodeHeader {
+    /**
+     * 
+     * @type {string}
+     * @memberof V3SettingsShippingShipnodesShipNodeHeader
+     */
+    version?: string;
 }
 /**
  * Shipping Details.
@@ -3234,12 +3234,12 @@ export const SettingsApiAxiosParamCreator = function (configuration?: Configurat
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
-         * @param {InlineObject} inlineObject 
+         * @param {InlineObject2} inlineObject2 
          * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        create3PFulfillmentCenter: async (authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
+        create3PFulfillmentCenter: async (authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject2: InlineObject2, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'authorization' is not null or undefined
             assertParamExists('create3PFulfillmentCenter', 'authorization', authorization)
             // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
@@ -3248,8 +3248,8 @@ export const SettingsApiAxiosParamCreator = function (configuration?: Configurat
             assertParamExists('create3PFulfillmentCenter', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID)
             // verify required parameter 'wMSVCNAME' is not null or undefined
             assertParamExists('create3PFulfillmentCenter', 'wMSVCNAME', wMSVCNAME)
-            // verify required parameter 'inlineObject' is not null or undefined
-            assertParamExists('create3PFulfillmentCenter', 'inlineObject', inlineObject)
+            // verify required parameter 'inlineObject2' is not null or undefined
+            assertParamExists('create3PFulfillmentCenter', 'inlineObject2', inlineObject2)
             const localVarPath = `/v3/settings/shipping/3plshipnodes`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -3293,7 +3293,7 @@ export const SettingsApiAxiosParamCreator = function (configuration?: Configurat
             setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(inlineObject, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(inlineObject2, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -3307,12 +3307,12 @@ export const SettingsApiAxiosParamCreator = function (configuration?: Configurat
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
-         * @param {InlineObject2} inlineObject2 
+         * @param {InlineObject1} inlineObject1 
          * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createFulfillmentCenter: async (authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject2: InlineObject2, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
+        createFulfillmentCenter: async (authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject1: InlineObject1, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'authorization' is not null or undefined
             assertParamExists('createFulfillmentCenter', 'authorization', authorization)
             // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
@@ -3321,8 +3321,8 @@ export const SettingsApiAxiosParamCreator = function (configuration?: Configurat
             assertParamExists('createFulfillmentCenter', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID)
             // verify required parameter 'wMSVCNAME' is not null or undefined
             assertParamExists('createFulfillmentCenter', 'wMSVCNAME', wMSVCNAME)
-            // verify required parameter 'inlineObject2' is not null or undefined
-            assertParamExists('createFulfillmentCenter', 'inlineObject2', inlineObject2)
+            // verify required parameter 'inlineObject1' is not null or undefined
+            assertParamExists('createFulfillmentCenter', 'inlineObject1', inlineObject1)
             const localVarPath = `/v3/settings/shipping/shipnodes`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -3366,7 +3366,7 @@ export const SettingsApiAxiosParamCreator = function (configuration?: Configurat
             setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(inlineObject2, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(inlineObject1, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -4136,12 +4136,12 @@ export const SettingsApiAxiosParamCreator = function (configuration?: Configurat
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
-         * @param {InlineObject1} inlineObject1 
+         * @param {InlineObject} inlineObject 
          * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateFulfillmentCenter: async (authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject1: InlineObject1, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
+        updateFulfillmentCenter: async (authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'authorization' is not null or undefined
             assertParamExists('updateFulfillmentCenter', 'authorization', authorization)
             // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
@@ -4150,8 +4150,8 @@ export const SettingsApiAxiosParamCreator = function (configuration?: Configurat
             assertParamExists('updateFulfillmentCenter', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID)
             // verify required parameter 'wMSVCNAME' is not null or undefined
             assertParamExists('updateFulfillmentCenter', 'wMSVCNAME', wMSVCNAME)
-            // verify required parameter 'inlineObject1' is not null or undefined
-            assertParamExists('updateFulfillmentCenter', 'inlineObject1', inlineObject1)
+            // verify required parameter 'inlineObject' is not null or undefined
+            assertParamExists('updateFulfillmentCenter', 'inlineObject', inlineObject)
             const localVarPath = `/v3/settings/shipping/shipnodes`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -4195,7 +4195,7 @@ export const SettingsApiAxiosParamCreator = function (configuration?: Configurat
             setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(inlineObject1, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(inlineObject, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -4296,13 +4296,13 @@ export const SettingsApiFp = function(configuration?: Configuration) {
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
-         * @param {InlineObject} inlineObject 
+         * @param {InlineObject2} inlineObject2 
          * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async create3PFulfillmentCenter(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<V3SettingsShipping3plshipnodesShipNode>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.create3PFulfillmentCenter(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject, wMCONSUMERCHANNELTYPE, options);
+        async create3PFulfillmentCenter(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject2: InlineObject2, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<V3SettingsShipping3plshipnodesShipNode>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.create3PFulfillmentCenter(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject2, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -4312,13 +4312,13 @@ export const SettingsApiFp = function(configuration?: Configuration) {
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
-         * @param {InlineObject2} inlineObject2 
+         * @param {InlineObject1} inlineObject1 
          * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createFulfillmentCenter(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject2: InlineObject2, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<InlineResponse2002>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.createFulfillmentCenter(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject2, wMCONSUMERCHANNELTYPE, options);
+        async createFulfillmentCenter(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject1: InlineObject1, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<InlineResponse2001>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createFulfillmentCenter(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject1, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -4333,7 +4333,7 @@ export const SettingsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createShippingTemplates(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject3: InlineObject3, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2005>> {
+        async createShippingTemplates(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject3: InlineObject3, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2006>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.createShippingTemplates(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject3, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -4349,7 +4349,7 @@ export const SettingsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deleteShippingTemplateDetails(templateId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2006>> {
+        async deleteShippingTemplateDetails(templateId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2007>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.deleteShippingTemplateDetails(templateId, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -4364,7 +4364,7 @@ export const SettingsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async get3PFulfillmentProviders(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<InlineResponse2009>>> {
+        async get3PFulfillmentProviders(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<InlineResponse2002>>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.get3PFulfillmentProviders(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -4380,7 +4380,7 @@ export const SettingsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getAllFulfillmentCenters(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, includeCalendarDayConfiguration?: boolean, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<InlineResponse2002>>> {
+        async getAllFulfillmentCenters(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, includeCalendarDayConfiguration?: boolean, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<InlineResponse2001>>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getAllFulfillmentCenters(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, includeCalendarDayConfiguration, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -4395,7 +4395,7 @@ export const SettingsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getAllShippingTemplates(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2004>> {
+        async getAllShippingTemplates(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2005>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getAllShippingTemplates(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -4410,7 +4410,7 @@ export const SettingsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getCarrierMethods(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<InlineResponse200>>> {
+        async getCarrierMethods(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<InlineResponse2003>>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getCarrierMethods(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -4425,7 +4425,7 @@ export const SettingsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getCoverageForFulfillmentCenters(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<InlineResponse2001>>> {
+        async getCoverageForFulfillmentCenters(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<InlineResponse2004>>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getCoverageForFulfillmentCenters(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -4440,7 +4440,7 @@ export const SettingsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getPartnerConfigurations(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2007>> {
+        async getPartnerConfigurations(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2008>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getPartnerConfigurations(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -4455,7 +4455,7 @@ export const SettingsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getShippingConfigurations(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2003>> {
+        async getShippingConfigurations(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2009>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getShippingConfigurations(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -4470,7 +4470,7 @@ export const SettingsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getShippingTemplateActivationStatus(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2008>> {
+        async getShippingTemplateActivationStatus(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getShippingTemplateActivationStatus(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -4486,7 +4486,7 @@ export const SettingsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getShippingTemplateDetails(templateId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2005>> {
+        async getShippingTemplateDetails(templateId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2006>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getShippingTemplateDetails(templateId, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -4497,13 +4497,13 @@ export const SettingsApiFp = function(configuration?: Configuration) {
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
-         * @param {InlineObject1} inlineObject1 
+         * @param {InlineObject} inlineObject 
          * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateFulfillmentCenter(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject1: InlineObject1, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2002>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.updateFulfillmentCenter(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject1, wMCONSUMERCHANNELTYPE, options);
+        async updateFulfillmentCenter(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateFulfillmentCenter(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -4519,7 +4519,7 @@ export const SettingsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateShippingTemplates(templateId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject4: InlineObject4, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2005>> {
+        async updateShippingTemplates(templateId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject4: InlineObject4, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2006>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.updateShippingTemplates(templateId, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject4, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -4540,13 +4540,13 @@ export const SettingsApiFactory = function (configuration?: Configuration, baseP
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
-         * @param {InlineObject} inlineObject 
+         * @param {InlineObject2} inlineObject2 
          * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        create3PFulfillmentCenter(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<Array<V3SettingsShipping3plshipnodesShipNode>> {
-            return localVarFp.create3PFulfillmentCenter(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        create3PFulfillmentCenter(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject2: InlineObject2, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<Array<V3SettingsShipping3plshipnodesShipNode>> {
+            return localVarFp.create3PFulfillmentCenter(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject2, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
          * This API creates a fulfillment center.
@@ -4555,13 +4555,13 @@ export const SettingsApiFactory = function (configuration?: Configuration, baseP
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
-         * @param {InlineObject2} inlineObject2 
+         * @param {InlineObject1} inlineObject1 
          * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createFulfillmentCenter(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject2: InlineObject2, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<Array<InlineResponse2002>> {
-            return localVarFp.createFulfillmentCenter(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject2, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        createFulfillmentCenter(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject1: InlineObject1, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<Array<InlineResponse2001>> {
+            return localVarFp.createFulfillmentCenter(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject1, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
          * Create a new shipping template
@@ -4575,7 +4575,7 @@ export const SettingsApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createShippingTemplates(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject3: InlineObject3, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2005> {
+        createShippingTemplates(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject3: InlineObject3, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2006> {
             return localVarFp.createShippingTemplates(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject3, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
@@ -4590,7 +4590,7 @@ export const SettingsApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteShippingTemplateDetails(templateId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2006> {
+        deleteShippingTemplateDetails(templateId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2007> {
             return localVarFp.deleteShippingTemplateDetails(templateId, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
@@ -4604,7 +4604,7 @@ export const SettingsApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        get3PFulfillmentProviders(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<Array<InlineResponse2009>> {
+        get3PFulfillmentProviders(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<Array<InlineResponse2002>> {
             return localVarFp.get3PFulfillmentProviders(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
@@ -4619,7 +4619,7 @@ export const SettingsApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAllFulfillmentCenters(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, includeCalendarDayConfiguration?: boolean, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<Array<InlineResponse2002>> {
+        getAllFulfillmentCenters(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, includeCalendarDayConfiguration?: boolean, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<Array<InlineResponse2001>> {
             return localVarFp.getAllFulfillmentCenters(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, includeCalendarDayConfiguration, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
@@ -4633,7 +4633,7 @@ export const SettingsApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAllShippingTemplates(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2004> {
+        getAllShippingTemplates(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2005> {
             return localVarFp.getAllShippingTemplates(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
@@ -4647,7 +4647,7 @@ export const SettingsApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCarrierMethods(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<Array<InlineResponse200>> {
+        getCarrierMethods(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<Array<InlineResponse2003>> {
             return localVarFp.getCarrierMethods(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
@@ -4661,7 +4661,7 @@ export const SettingsApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCoverageForFulfillmentCenters(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<Array<InlineResponse2001>> {
+        getCoverageForFulfillmentCenters(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<Array<InlineResponse2004>> {
             return localVarFp.getCoverageForFulfillmentCenters(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
@@ -4675,7 +4675,7 @@ export const SettingsApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getPartnerConfigurations(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2007> {
+        getPartnerConfigurations(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2008> {
             return localVarFp.getPartnerConfigurations(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
@@ -4689,7 +4689,7 @@ export const SettingsApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getShippingConfigurations(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2003> {
+        getShippingConfigurations(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2009> {
             return localVarFp.getShippingConfigurations(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
@@ -4703,7 +4703,7 @@ export const SettingsApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getShippingTemplateActivationStatus(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2008> {
+        getShippingTemplateActivationStatus(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse200> {
             return localVarFp.getShippingTemplateActivationStatus(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
@@ -4718,7 +4718,7 @@ export const SettingsApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getShippingTemplateDetails(templateId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2005> {
+        getShippingTemplateDetails(templateId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2006> {
             return localVarFp.getShippingTemplateDetails(templateId, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
@@ -4728,13 +4728,13 @@ export const SettingsApiFactory = function (configuration?: Configuration, baseP
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
-         * @param {InlineObject1} inlineObject1 
+         * @param {InlineObject} inlineObject 
          * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateFulfillmentCenter(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject1: InlineObject1, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2002> {
-            return localVarFp.updateFulfillmentCenter(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject1, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        updateFulfillmentCenter(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2001> {
+            return localVarFp.updateFulfillmentCenter(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
          * Update existing Shipping Template.
@@ -4749,7 +4749,7 @@ export const SettingsApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateShippingTemplates(templateId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject4: InlineObject4, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2005> {
+        updateShippingTemplates(templateId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject4: InlineObject4, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2006> {
             return localVarFp.updateShippingTemplates(templateId, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject4, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
     };
@@ -4791,10 +4791,10 @@ export interface SettingsApiCreate3PFulfillmentCenterRequest {
 
     /**
      * 
-     * @type {InlineObject}
+     * @type {InlineObject2}
      * @memberof SettingsApiCreate3PFulfillmentCenter
      */
-    readonly inlineObject: InlineObject
+    readonly inlineObject2: InlineObject2
 
     /**
      * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
@@ -4840,10 +4840,10 @@ export interface SettingsApiCreateFulfillmentCenterRequest {
 
     /**
      * 
-     * @type {InlineObject2}
+     * @type {InlineObject1}
      * @memberof SettingsApiCreateFulfillmentCenter
      */
-    readonly inlineObject2: InlineObject2
+    readonly inlineObject1: InlineObject1
 
     /**
      * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
@@ -5379,10 +5379,10 @@ export interface SettingsApiUpdateFulfillmentCenterRequest {
 
     /**
      * 
-     * @type {InlineObject1}
+     * @type {InlineObject}
      * @memberof SettingsApiUpdateFulfillmentCenter
      */
-    readonly inlineObject1: InlineObject1
+    readonly inlineObject: InlineObject
 
     /**
      * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
@@ -5464,7 +5464,7 @@ export class SettingsApi extends BaseAPI {
      * @memberof SettingsApi
      */
     public create3PFulfillmentCenter(requestParameters: SettingsApiCreate3PFulfillmentCenterRequest, options?: any) {
-        return SettingsApiFp(this.configuration).create3PFulfillmentCenter(requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.inlineObject, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+        return SettingsApiFp(this.configuration).create3PFulfillmentCenter(requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.inlineObject2, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -5476,7 +5476,7 @@ export class SettingsApi extends BaseAPI {
      * @memberof SettingsApi
      */
     public createFulfillmentCenter(requestParameters: SettingsApiCreateFulfillmentCenterRequest, options?: any) {
-        return SettingsApiFp(this.configuration).createFulfillmentCenter(requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.inlineObject2, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+        return SettingsApiFp(this.configuration).createFulfillmentCenter(requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.inlineObject1, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -5620,7 +5620,7 @@ export class SettingsApi extends BaseAPI {
      * @memberof SettingsApi
      */
     public updateFulfillmentCenter(requestParameters: SettingsApiUpdateFulfillmentCenterRequest, options?: any) {
-        return SettingsApiFp(this.configuration).updateFulfillmentCenter(requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.inlineObject1, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+        return SettingsApiFp(this.configuration).updateFulfillmentCenter(requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.inlineObject, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

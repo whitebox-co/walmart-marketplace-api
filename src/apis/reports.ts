@@ -1,8 +1,8 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * Pregenerated Reports
- * The Pregenerated Reports API allows you to obtain any pregenerated report that you need, including: item, item performance, buy box, CAP, promotions, reconciliation, return item override, shipping program and shipping configuration.
+ * Pregenerated Reports retiring on June 30, 2022 :
+ * Please transition ASAP to using onRequest Reports (https://developer.walmart.com/doc/us/us-mp/us-mp-onrequestreports/). On July 29th, all PreGenerated reports other than recon report will be retired and only available onRequest.  The Pregenerated Reports API allows you to obtain any pregenerated report that you need, including: item, item performance, buy box, CAP, promotions, reconciliation, return item override, shipping program and shipping configuration.
  *
  * The version of the OpenAPI document: 1.0.0
  * 

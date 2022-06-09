@@ -20,6 +20,434 @@
     }
   ],
   "paths": {
+    "/v3/inventory": {
+      "get": {
+        "tags": [
+          "Inventory"
+        ],
+        "summary": "Inventory",
+        "description": "You can use this API to get the inventory for a given item.",
+        "operationId": "getInventory",
+        "parameters": [
+          {
+            "name": "sku",
+            "in": "query",
+            "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: ':', '/', '?', '#', '[', ']', '@', '!', '$', '&', \"'\", '(', ')', '*', '+', ',', ';', '=', ‘ ’, '{', '}' as well as '%' itself if it's a part of sku. Make sure to encode space with %20. Other characters don't need to be encoded.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "shipNode",
+            "in": "query",
+            "description": "The shipNode for which the inventory is requested",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Basic YzcyOTFjNmItNzI5MC00...."
+          },
+          {
+            "in": "header",
+            "name": "WM_SEC.ACCESS_TOKEN",
+            "description": "The access token retrieved in the Token API call",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
+          },
+          {
+            "in": "header",
+            "name": "WM_CONSUMER.CHANNEL.TYPE",
+            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "WM_QOS.CORRELATION_ID",
+            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
+          },
+          {
+            "in": "header",
+            "name": "WM_SVC.NAME",
+            "description": "Walmart Service Name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Walmart Service Name"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "required": [
+                    "quantity",
+                    "sku"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "sku": {
+                      "type": "string",
+                      "description": "A seller-provided Product ID. Response will have decoded value."
+                    },
+                    "quantity": {
+                      "required": [
+                        "amount",
+                        "unit"
+                      ],
+                      "type": "object",
+                      "properties": {
+                        "unit": {
+                          "type": "string",
+                          "description": "The unit of measurement. Example: 'EACH'",
+                          "enum": [
+                            "EACH"
+                          ]
+                        },
+                        "amount": {
+                          "type": "number",
+                          "description": "Inventory Count"
+                        }
+                      }
+                    }
+                  },
+                  "xml": {
+                    "name": "inventory"
+                  }
+                },
+                "example": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<inventory xmlns=\"http://walmart.com/\">\n    <sku>97964_KFTest</sku>\n    <quantity>\n        <unit>EACH</unit>\n        <amount>10</amount>\n    </quantity>\n</inventory>"
+              },
+              "application/json": {
+                "schema": {
+                  "required": [
+                    "quantity",
+                    "sku"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "sku": {
+                      "type": "string",
+                      "description": "A seller-provided Product ID. Response will have decoded value."
+                    },
+                    "quantity": {
+                      "required": [
+                        "amount",
+                        "unit"
+                      ],
+                      "type": "object",
+                      "properties": {
+                        "unit": {
+                          "type": "string",
+                          "description": "The unit of measurement. Example: 'EACH'",
+                          "enum": [
+                            "EACH"
+                          ]
+                        },
+                        "amount": {
+                          "type": "number",
+                          "description": "Inventory Count"
+                        }
+                      }
+                    }
+                  },
+                  "xml": {
+                    "name": "inventory"
+                  }
+                },
+                "example": {
+                  "sku": "97964_KFTest",
+                  "quantity": {
+                    "unit": "EACH",
+                    "amount": 10
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Inventory"
+        ],
+        "summary": "Update inventory",
+        "description": "Updates the inventory for a given item.",
+        "operationId": "updateInventoryForAnItem",
+        "parameters": [
+          {
+            "name": "sku",
+            "in": "query",
+            "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: ':', '/', '?', '#', '[', ']', '@', '!', '$', '&', \"'\", '(', ')', '*', '+', ',', ';', '=', ‘ ’, '{', '}' as well as '%' itself if it's a part of sku. Make sure to encode space with %20. Other characters don't need to be encoded.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "shipNode",
+            "in": "query",
+            "description": "The shipNode for which the inventory is to be updated.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Basic YzcyOTFjNmItNzI5MC00...."
+          },
+          {
+            "in": "header",
+            "name": "WM_SEC.ACCESS_TOKEN",
+            "description": "The access token retrieved in the Token API call",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
+          },
+          {
+            "in": "header",
+            "name": "WM_CONSUMER.CHANNEL.TYPE",
+            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "WM_QOS.CORRELATION_ID",
+            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
+          },
+          {
+            "in": "header",
+            "name": "WM_SVC.NAME",
+            "description": "Walmart Service Name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Walmart Service Name"
+          }
+        ],
+        "requestBody": {
+          "description": "File fields",
+          "content": {
+            "application/xml": {
+              "schema": {
+                "required": [
+                  "quantity",
+                  "sku"
+                ],
+                "type": "object",
+                "properties": {
+                  "sku": {
+                    "type": "string",
+                    "description": "A seller-provided Product ID. Response will have decoded value."
+                  },
+                  "quantity": {
+                    "required": [
+                      "amount",
+                      "unit"
+                    ],
+                    "type": "object",
+                    "properties": {
+                      "unit": {
+                        "type": "string",
+                        "description": "The unit of measurement. Example: 'EACH'",
+                        "enum": [
+                          "EACH"
+                        ]
+                      },
+                      "amount": {
+                        "type": "number",
+                        "description": "Inventory Count"
+                      }
+                    }
+                  }
+                },
+                "xml": {
+                  "name": "inventory"
+                }
+              },
+              "example": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<inventory xmlns=\"http://walmart.com/\">\n    <sku>97964_KFTest</sku>\n    <quantity>\n        <unit>EACH</unit>\n        <amount>3</amount>\n    </quantity>\n</inventory>"
+            },
+            "application/json": {
+              "schema": {
+                "required": [
+                  "quantity",
+                  "sku"
+                ],
+                "type": "object",
+                "properties": {
+                  "sku": {
+                    "type": "string",
+                    "description": "A seller-provided Product ID. Response will have decoded value."
+                  },
+                  "quantity": {
+                    "required": [
+                      "amount",
+                      "unit"
+                    ],
+                    "type": "object",
+                    "properties": {
+                      "unit": {
+                        "type": "string",
+                        "description": "The unit of measurement. Example: 'EACH'",
+                        "enum": [
+                          "EACH"
+                        ]
+                      },
+                      "amount": {
+                        "type": "number",
+                        "description": "Inventory Count"
+                      }
+                    }
+                  }
+                },
+                "xml": {
+                  "name": "inventory"
+                }
+              },
+              "example": {
+                "sku": "97964_KFTest",
+                "quantity": {
+                  "unit": "EACH",
+                  "amount": 10
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "required": [
+                    "quantity",
+                    "sku"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "sku": {
+                      "type": "string",
+                      "description": "A seller-provided Product ID. Response will have decoded value."
+                    },
+                    "quantity": {
+                      "required": [
+                        "amount",
+                        "unit"
+                      ],
+                      "type": "object",
+                      "properties": {
+                        "unit": {
+                          "type": "string",
+                          "description": "The unit of measurement. Example: 'EACH'",
+                          "enum": [
+                            "EACH"
+                          ]
+                        },
+                        "amount": {
+                          "type": "number",
+                          "description": "Inventory Count"
+                        }
+                      }
+                    }
+                  },
+                  "xml": {
+                    "name": "inventory"
+                  }
+                },
+                "example": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<inventory xmlns=\"http://walmart.com/\">\n    <sku>97964_KFTest</sku>\n    <quantity>\n        <unit>EACH</unit>\n        <amount>3</amount>\n    </quantity>\n</inventory>"
+              },
+              "application/json": {
+                "schema": {
+                  "required": [
+                    "quantity",
+                    "sku"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "sku": {
+                      "type": "string",
+                      "description": "A seller-provided Product ID. Response will have decoded value."
+                    },
+                    "quantity": {
+                      "required": [
+                        "amount",
+                        "unit"
+                      ],
+                      "type": "object",
+                      "properties": {
+                        "unit": {
+                          "type": "string",
+                          "description": "The unit of measurement. Example: 'EACH'",
+                          "enum": [
+                            "EACH"
+                          ]
+                        },
+                        "amount": {
+                          "type": "number",
+                          "description": "Inventory Count"
+                        }
+                      }
+                    }
+                  },
+                  "xml": {
+                    "name": "inventory"
+                  }
+                },
+                "example": {
+                  "sku": "97964_KFTest",
+                  "quantity": {
+                    "unit": "EACH",
+                    "amount": 10
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v3/inventories": {
       "get": {
         "tags": [
@@ -72,7 +500,7 @@
             "in": "header",
             "name": "WM_CONSUMER.CHANNEL.TYPE",
             "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
-            "required": true,
+            "required": false,
             "schema": {
               "type": "string"
             }
@@ -338,7 +766,7 @@
             "in": "header",
             "name": "WM_CONSUMER.CHANNEL.TYPE",
             "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
-            "required": true,
+            "required": false,
             "schema": {
               "type": "string"
             }
@@ -595,7 +1023,7 @@
             "in": "header",
             "name": "WM_CONSUMER.CHANNEL.TYPE",
             "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
-            "required": true,
+            "required": false,
             "schema": {
               "type": "string"
             }
@@ -668,8 +1096,7 @@
                                   "type": "number",
                                   "description": "Inventory Count"
                                 }
-                              },
-                              "description": "Information about the quantity in inventory"
+                              }
                             }
                           }
                         }
@@ -828,440 +1255,6 @@
         }
       }
     },
-    "/v3/inventory": {
-      "get": {
-        "tags": [
-          "Inventory"
-        ],
-        "summary": "Inventory",
-        "description": "You can use this API to get the inventory for a given item.",
-        "operationId": "getInventory",
-        "parameters": [
-          {
-            "name": "sku",
-            "in": "query",
-            "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: ':', '/', '?', '#', '[', ']', '@', '!', '$', '&', \"'\", '(', ')', '*', '+', ',', ';', '=', ‘ ’, '{', '}' as well as '%' itself if it's a part of sku. Make sure to encode space with %20. Other characters don't need to be encoded.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "shipNode",
-            "in": "query",
-            "description": "The shipNode for which the inventory is requested",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
-          },
-          {
-            "in": "header",
-            "name": "WM_SEC.ACCESS_TOKEN",
-            "description": "The access token retrieved in the Token API call",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
-          },
-          {
-            "in": "header",
-            "name": "WM_CONSUMER.CHANNEL.TYPE",
-            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "header",
-            "name": "WM_QOS.CORRELATION_ID",
-            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
-          },
-          {
-            "in": "header",
-            "name": "WM_SVC.NAME",
-            "description": "Walmart Service Name",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Walmart Service Name"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Operation",
-            "content": {
-              "application/xml": {
-                "schema": {
-                  "required": [
-                    "quantity",
-                    "sku"
-                  ],
-                  "type": "object",
-                  "properties": {
-                    "sku": {
-                      "type": "string",
-                      "description": "A seller-provided Product ID. Response will have decoded value."
-                    },
-                    "quantity": {
-                      "required": [
-                        "amount",
-                        "unit"
-                      ],
-                      "type": "object",
-                      "properties": {
-                        "unit": {
-                          "type": "string",
-                          "description": "The unit of measurement. Example: 'EACH'",
-                          "enum": [
-                            "EACH"
-                          ]
-                        },
-                        "amount": {
-                          "type": "number",
-                          "description": "Inventory Count"
-                        }
-                      },
-                      "description": "Information about the quantity in inventory"
-                    }
-                  },
-                  "xml": {
-                    "name": "inventory"
-                  }
-                },
-                "example": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<inventory xmlns=\"http://walmart.com/\">\n    <sku>97964_KFTest</sku>\n    <quantity>\n        <unit>EACH</unit>\n        <amount>10</amount>\n    </quantity>\n</inventory>"
-              },
-              "application/json": {
-                "schema": {
-                  "required": [
-                    "quantity",
-                    "sku"
-                  ],
-                  "type": "object",
-                  "properties": {
-                    "sku": {
-                      "type": "string",
-                      "description": "A seller-provided Product ID. Response will have decoded value."
-                    },
-                    "quantity": {
-                      "required": [
-                        "amount",
-                        "unit"
-                      ],
-                      "type": "object",
-                      "properties": {
-                        "unit": {
-                          "type": "string",
-                          "description": "The unit of measurement. Example: 'EACH'",
-                          "enum": [
-                            "EACH"
-                          ]
-                        },
-                        "amount": {
-                          "type": "number",
-                          "description": "Inventory Count"
-                        }
-                      },
-                      "description": "Information about the quantity in inventory"
-                    }
-                  },
-                  "xml": {
-                    "name": "inventory"
-                  }
-                },
-                "example": {
-                  "sku": "97964_KFTest",
-                  "quantity": {
-                    "unit": "EACH",
-                    "amount": 10
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Inventory"
-        ],
-        "summary": "Update inventory",
-        "description": "Updates the inventory for a given item.",
-        "operationId": "updateInventoryForAnItem",
-        "parameters": [
-          {
-            "name": "sku",
-            "in": "query",
-            "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: ':', '/', '?', '#', '[', ']', '@', '!', '$', '&', \"'\", '(', ')', '*', '+', ',', ';', '=', ‘ ’, '{', '}' as well as '%' itself if it's a part of sku. Make sure to encode space with %20. Other characters don't need to be encoded.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "shipNode",
-            "in": "query",
-            "description": "The shipNode for which the inventory is to be updated.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
-          },
-          {
-            "in": "header",
-            "name": "WM_SEC.ACCESS_TOKEN",
-            "description": "The access token retrieved in the Token API call",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
-          },
-          {
-            "in": "header",
-            "name": "WM_CONSUMER.CHANNEL.TYPE",
-            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "header",
-            "name": "WM_QOS.CORRELATION_ID",
-            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
-          },
-          {
-            "in": "header",
-            "name": "WM_SVC.NAME",
-            "description": "Walmart Service Name",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Walmart Service Name"
-          }
-        ],
-        "requestBody": {
-          "description": "File fields",
-          "content": {
-            "application/xml": {
-              "schema": {
-                "required": [
-                  "quantity",
-                  "sku"
-                ],
-                "type": "object",
-                "properties": {
-                  "sku": {
-                    "type": "string",
-                    "description": "A seller-provided Product ID. Response will have decoded value."
-                  },
-                  "quantity": {
-                    "required": [
-                      "amount",
-                      "unit"
-                    ],
-                    "type": "object",
-                    "properties": {
-                      "unit": {
-                        "type": "string",
-                        "description": "The unit of measurement. Example: 'EACH'",
-                        "enum": [
-                          "EACH"
-                        ]
-                      },
-                      "amount": {
-                        "type": "number",
-                        "description": "Inventory Count"
-                      }
-                    },
-                    "description": "Information about the quantity in inventory"
-                  }
-                },
-                "xml": {
-                  "name": "inventory"
-                }
-              },
-              "example": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<inventory xmlns=\"http://walmart.com/\">\n    <sku>97964_KFTest</sku>\n    <quantity>\n        <unit>EACH</unit>\n        <amount>3</amount>\n    </quantity>\n</inventory>"
-            },
-            "application/json": {
-              "schema": {
-                "required": [
-                  "quantity",
-                  "sku"
-                ],
-                "type": "object",
-                "properties": {
-                  "sku": {
-                    "type": "string",
-                    "description": "A seller-provided Product ID. Response will have decoded value."
-                  },
-                  "quantity": {
-                    "required": [
-                      "amount",
-                      "unit"
-                    ],
-                    "type": "object",
-                    "properties": {
-                      "unit": {
-                        "type": "string",
-                        "description": "The unit of measurement. Example: 'EACH'",
-                        "enum": [
-                          "EACH"
-                        ]
-                      },
-                      "amount": {
-                        "type": "number",
-                        "description": "Inventory Count"
-                      }
-                    },
-                    "description": "Information about the quantity in inventory"
-                  }
-                },
-                "xml": {
-                  "name": "inventory"
-                }
-              },
-              "example": {
-                "sku": "97964_KFTest",
-                "quantity": {
-                  "unit": "EACH",
-                  "amount": 10
-                }
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Operation",
-            "content": {
-              "application/xml": {
-                "schema": {
-                  "required": [
-                    "quantity",
-                    "sku"
-                  ],
-                  "type": "object",
-                  "properties": {
-                    "sku": {
-                      "type": "string",
-                      "description": "A seller-provided Product ID. Response will have decoded value."
-                    },
-                    "quantity": {
-                      "required": [
-                        "amount",
-                        "unit"
-                      ],
-                      "type": "object",
-                      "properties": {
-                        "unit": {
-                          "type": "string",
-                          "description": "The unit of measurement. Example: 'EACH'",
-                          "enum": [
-                            "EACH"
-                          ]
-                        },
-                        "amount": {
-                          "type": "number",
-                          "description": "Inventory Count"
-                        }
-                      },
-                      "description": "Information about the quantity in inventory"
-                    }
-                  },
-                  "xml": {
-                    "name": "inventory"
-                  }
-                },
-                "example": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<inventory xmlns=\"http://walmart.com/\">\n    <sku>97964_KFTest</sku>\n    <quantity>\n        <unit>EACH</unit>\n        <amount>3</amount>\n    </quantity>\n</inventory>"
-              },
-              "application/json": {
-                "schema": {
-                  "required": [
-                    "quantity",
-                    "sku"
-                  ],
-                  "type": "object",
-                  "properties": {
-                    "sku": {
-                      "type": "string",
-                      "description": "A seller-provided Product ID. Response will have decoded value."
-                    },
-                    "quantity": {
-                      "required": [
-                        "amount",
-                        "unit"
-                      ],
-                      "type": "object",
-                      "properties": {
-                        "unit": {
-                          "type": "string",
-                          "description": "The unit of measurement. Example: 'EACH'",
-                          "enum": [
-                            "EACH"
-                          ]
-                        },
-                        "amount": {
-                          "type": "number",
-                          "description": "Inventory Count"
-                        }
-                      },
-                      "description": "Information about the quantity in inventory"
-                    }
-                  },
-                  "xml": {
-                    "name": "inventory"
-                  }
-                },
-                "example": {
-                  "sku": "97964_KFTest",
-                  "quantity": {
-                    "unit": "EACH",
-                    "amount": 10
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/v3/fulfillment/inventory": {
       "get": {
         "tags": [
@@ -1342,7 +1335,7 @@
             "in": "header",
             "name": "WM_CONSUMER.CHANNEL.TYPE",
             "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
-            "required": true,
+            "required": false,
             "schema": {
               "type": "string"
             }
@@ -1440,50 +1433,6 @@
                       }
                     }
                   }
-                },
-                "example": {
-                  "headers": {
-                    "totalCount": 20,
-                    "limit": 10,
-                    "offset": 0
-                  },
-                  "payload": {
-                    "inventory": [
-                      {
-                        "sku": "12345",
-                        "shipNodes": [
-                          {
-                            "modifiedDate": "2020-04-13T06:00:32.393Z",
-                            "availToSellQty": 37,
-                            "onHandQty": 1,
-                            "shipNodeType": "WFSFulfilled"
-                          }
-                        ]
-                      },
-                      {
-                        "sku": "12345",
-                        "shipNodes": [
-                          {
-                            "modifiedDate": "2020-04-13T06:00:32.393Z",
-                            "availToSellQty": 37,
-                            "onHandQty": 37,
-                            "shipNodeType": "WFSFulfilled"
-                          }
-                        ]
-                      },
-                      {
-                        "sku": "12347",
-                        "shipNodes": [
-                          {
-                            "modifiedDate": "2020-04-13T06:00:32.393Z",
-                            "availToSellQty": 26,
-                            "onHandQty": 26,
-                            "shipNodeType": "WFSFulfilled"
-                          }
-                        ]
-                      }
-                    ]
-                  }
                 }
               }
             }
@@ -1546,7 +1495,7 @@
             "in": "header",
             "name": "WM_CONSUMER.CHANNEL.TYPE",
             "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
-            "required": true,
+            "required": false,
             "schema": {
               "type": "string"
             }
@@ -1722,6 +1671,62 @@
   },
   "components": {
     "schemas": {
+      "Inventory": {
+        "required": [
+          "quantity",
+          "sku"
+        ],
+        "type": "object",
+        "properties": {
+          "sku": {
+            "type": "string",
+            "description": "A seller-provided Product ID. Response will have decoded value."
+          },
+          "quantity": {
+            "required": [
+              "amount",
+              "unit"
+            ],
+            "type": "object",
+            "properties": {
+              "unit": {
+                "type": "string",
+                "description": "The unit of measurement. Example: 'EACH'",
+                "enum": [
+                  "EACH"
+                ]
+              },
+              "amount": {
+                "type": "number",
+                "description": "Inventory Count"
+              }
+            }
+          }
+        },
+        "xml": {
+          "name": "inventory"
+        }
+      },
+      "SupplyQuantity": {
+        "required": [
+          "amount",
+          "unit"
+        ],
+        "type": "object",
+        "properties": {
+          "unit": {
+            "type": "string",
+            "description": "The unit of measurement. Example: 'EACH'",
+            "enum": [
+              "EACH"
+            ]
+          },
+          "amount": {
+            "type": "number",
+            "description": "Inventory Count"
+          }
+        }
+      },
       "Elements": {
         "type": "object",
         "properties": {
@@ -2098,27 +2103,6 @@
             }
           }
         }
-      },
-      "SupplyQuantity": {
-        "required": [
-          "amount",
-          "unit"
-        ],
-        "type": "object",
-        "properties": {
-          "unit": {
-            "type": "string",
-            "description": "The unit of measurement. Example: 'EACH'",
-            "enum": [
-              "EACH"
-            ]
-          },
-          "amount": {
-            "type": "number",
-            "description": "Inventory Count"
-          }
-        },
-        "description": "Information about the quantity in inventory"
       },
       "Cause": {
         "type": "object",
@@ -2521,6 +2505,195 @@
           }
         }
       },
+      "Headers": {
+        "type": "object",
+        "properties": {
+          "totalCount": {
+            "type": "integer",
+            "description": "Total number of results for query.",
+            "format": "int32"
+          },
+          "limit": {
+            "type": "integer",
+            "description": "Information about the quantity in inventory",
+            "format": "int32"
+          },
+          "offset": {
+            "type": "integer",
+            "description": "Offset is the number of records you wish to skip before selecting results.",
+            "format": "int32"
+          }
+        }
+      },
+      "InventoryWFS": {
+        "type": "object",
+        "properties": {
+          "sku": {
+            "type": "string",
+            "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
+          },
+          "shipNodes": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "modifiedDate": {
+                  "type": "string",
+                  "description": "Last changes date for the item."
+                },
+                "availToSellQty": {
+                  "type": "integer",
+                  "description": "The available quantity is the quantity of an item that is available to be allocated to orders.",
+                  "format": "int32"
+                },
+                "onHandQty": {
+                  "type": "integer",
+                  "description": "The on-hand balance is the quantity of active inventory stored at the warehouse.Active inventory is defined as the usable amount of an item that is in the warehouse.Inventory is active if it is not damaged, expired or being inspected.",
+                  "format": "int32"
+                },
+                "shipNodeType": {
+                  "type": "string",
+                  "description": "Identifies fulfillment aspect of invetory. Walmart, seller or 3PL fulfilled. Possible value is 'WFSFulfilled'. In later phase we will also add seller fulfilled inventory."
+                }
+              }
+            }
+          }
+        }
+      },
+      "Payload": {
+        "type": "object",
+        "properties": {
+          "inventory": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "sku": {
+                  "type": "string",
+                  "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
+                },
+                "shipNodes": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "modifiedDate": {
+                        "type": "string",
+                        "description": "Last changes date for the item."
+                      },
+                      "availToSellQty": {
+                        "type": "integer",
+                        "description": "The available quantity is the quantity of an item that is available to be allocated to orders.",
+                        "format": "int32"
+                      },
+                      "onHandQty": {
+                        "type": "integer",
+                        "description": "The on-hand balance is the quantity of active inventory stored at the warehouse.Active inventory is defined as the usable amount of an item that is in the warehouse.Inventory is active if it is not damaged, expired or being inspected.",
+                        "format": "int32"
+                      },
+                      "shipNodeType": {
+                        "type": "string",
+                        "description": "Identifies fulfillment aspect of invetory. Walmart, seller or 3PL fulfilled. Possible value is 'WFSFulfilled'. In later phase we will also add seller fulfilled inventory."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "ShipNodes": {
+        "type": "object",
+        "properties": {
+          "modifiedDate": {
+            "type": "string",
+            "description": "Last changes date for the item."
+          },
+          "availToSellQty": {
+            "type": "integer",
+            "description": "The available quantity is the quantity of an item that is available to be allocated to orders.",
+            "format": "int32"
+          },
+          "onHandQty": {
+            "type": "integer",
+            "description": "The on-hand balance is the quantity of active inventory stored at the warehouse.Active inventory is defined as the usable amount of an item that is in the warehouse.Inventory is active if it is not damaged, expired or being inspected.",
+            "format": "int32"
+          },
+          "shipNodeType": {
+            "type": "string",
+            "description": "Identifies fulfillment aspect of invetory. Walmart, seller or 3PL fulfilled. Possible value is 'WFSFulfilled'. In later phase we will also add seller fulfilled inventory."
+          }
+        }
+      },
+      "WfsInventoryDTO": {
+        "type": "object",
+        "properties": {
+          "headers": {
+            "type": "object",
+            "properties": {
+              "totalCount": {
+                "type": "integer",
+                "description": "Total number of results for query.",
+                "format": "int32"
+              },
+              "limit": {
+                "type": "integer",
+                "description": "Information about the quantity in inventory",
+                "format": "int32"
+              },
+              "offset": {
+                "type": "integer",
+                "description": "Offset is the number of records you wish to skip before selecting results.",
+                "format": "int32"
+              }
+            }
+          },
+          "payload": {
+            "type": "object",
+            "properties": {
+              "inventory": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "sku": {
+                      "type": "string",
+                      "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
+                    },
+                    "shipNodes": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "modifiedDate": {
+                            "type": "string",
+                            "description": "Last changes date for the item."
+                          },
+                          "availToSellQty": {
+                            "type": "integer",
+                            "description": "The available quantity is the quantity of an item that is available to be allocated to orders.",
+                            "format": "int32"
+                          },
+                          "onHandQty": {
+                            "type": "integer",
+                            "description": "The on-hand balance is the quantity of active inventory stored at the warehouse.Active inventory is defined as the usable amount of an item that is in the warehouse.Inventory is active if it is not damaged, expired or being inspected.",
+                            "format": "int32"
+                          },
+                          "shipNodeType": {
+                            "type": "string",
+                            "description": "Identifies fulfillment aspect of invetory. Walmart, seller or 3PL fulfilled. Possible value is 'WFSFulfilled'. In later phase we will also add seller fulfilled inventory."
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
       "MultiNodeInventoryUpdateResponseDTO": {
         "type": "object",
         "properties": {
@@ -2756,8 +2929,7 @@
                           "type": "number",
                           "description": "Inventory Count"
                         }
-                      },
-                      "description": "Information about the quantity in inventory"
+                      }
                     }
                   }
                 }
@@ -2803,8 +2975,7 @@
                       "type": "number",
                       "description": "Inventory Count"
                     }
-                  },
-                  "description": "Information about the quantity in inventory"
+                  }
                 }
               }
             }
@@ -2839,233 +3010,6 @@
               "amount": {
                 "type": "number",
                 "description": "Inventory Count"
-              }
-            },
-            "description": "Information about the quantity in inventory"
-          }
-        }
-      },
-      "Inventory": {
-        "required": [
-          "quantity",
-          "sku"
-        ],
-        "type": "object",
-        "properties": {
-          "sku": {
-            "type": "string",
-            "description": "A seller-provided Product ID. Response will have decoded value."
-          },
-          "quantity": {
-            "required": [
-              "amount",
-              "unit"
-            ],
-            "type": "object",
-            "properties": {
-              "unit": {
-                "type": "string",
-                "description": "The unit of measurement. Example: 'EACH'",
-                "enum": [
-                  "EACH"
-                ]
-              },
-              "amount": {
-                "type": "number",
-                "description": "Inventory Count"
-              }
-            },
-            "description": "Information about the quantity in inventory"
-          }
-        },
-        "xml": {
-          "name": "inventory"
-        }
-      },
-      "Headers": {
-        "type": "object",
-        "properties": {
-          "totalCount": {
-            "type": "integer",
-            "description": "Total number of results for query.",
-            "format": "int32"
-          },
-          "limit": {
-            "type": "integer",
-            "description": "Information about the quantity in inventory",
-            "format": "int32"
-          },
-          "offset": {
-            "type": "integer",
-            "description": "Offset is the number of records you wish to skip before selecting results.",
-            "format": "int32"
-          }
-        }
-      },
-      "InventoryWFS": {
-        "type": "object",
-        "properties": {
-          "sku": {
-            "type": "string",
-            "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
-          },
-          "shipNodes": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "modifiedDate": {
-                  "type": "string",
-                  "description": "Last changes date for the item."
-                },
-                "availToSellQty": {
-                  "type": "integer",
-                  "description": "The available quantity is the quantity of an item that is available to be allocated to orders.",
-                  "format": "int32"
-                },
-                "onHandQty": {
-                  "type": "integer",
-                  "description": "The on-hand balance is the quantity of active inventory stored at the warehouse.Active inventory is defined as the usable amount of an item that is in the warehouse.Inventory is active if it is not damaged, expired or being inspected.",
-                  "format": "int32"
-                },
-                "shipNodeType": {
-                  "type": "string",
-                  "description": "Identifies fulfillment aspect of invetory. Walmart, seller or 3PL fulfilled. Possible value is 'WFSFulfilled'. In later phase we will also add seller fulfilled inventory."
-                }
-              }
-            }
-          }
-        }
-      },
-      "Payload": {
-        "type": "object",
-        "properties": {
-          "inventory": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "sku": {
-                  "type": "string",
-                  "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
-                },
-                "shipNodes": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "modifiedDate": {
-                        "type": "string",
-                        "description": "Last changes date for the item."
-                      },
-                      "availToSellQty": {
-                        "type": "integer",
-                        "description": "The available quantity is the quantity of an item that is available to be allocated to orders.",
-                        "format": "int32"
-                      },
-                      "onHandQty": {
-                        "type": "integer",
-                        "description": "The on-hand balance is the quantity of active inventory stored at the warehouse.Active inventory is defined as the usable amount of an item that is in the warehouse.Inventory is active if it is not damaged, expired or being inspected.",
-                        "format": "int32"
-                      },
-                      "shipNodeType": {
-                        "type": "string",
-                        "description": "Identifies fulfillment aspect of invetory. Walmart, seller or 3PL fulfilled. Possible value is 'WFSFulfilled'. In later phase we will also add seller fulfilled inventory."
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "ShipNodes": {
-        "type": "object",
-        "properties": {
-          "modifiedDate": {
-            "type": "string",
-            "description": "Last changes date for the item."
-          },
-          "availToSellQty": {
-            "type": "integer",
-            "description": "The available quantity is the quantity of an item that is available to be allocated to orders.",
-            "format": "int32"
-          },
-          "onHandQty": {
-            "type": "integer",
-            "description": "The on-hand balance is the quantity of active inventory stored at the warehouse.Active inventory is defined as the usable amount of an item that is in the warehouse.Inventory is active if it is not damaged, expired or being inspected.",
-            "format": "int32"
-          },
-          "shipNodeType": {
-            "type": "string",
-            "description": "Identifies fulfillment aspect of invetory. Walmart, seller or 3PL fulfilled. Possible value is 'WFSFulfilled'. In later phase we will also add seller fulfilled inventory."
-          }
-        }
-      },
-      "WfsInventoryDTO": {
-        "type": "object",
-        "properties": {
-          "headers": {
-            "type": "object",
-            "properties": {
-              "totalCount": {
-                "type": "integer",
-                "description": "Total number of results for query.",
-                "format": "int32"
-              },
-              "limit": {
-                "type": "integer",
-                "description": "Information about the quantity in inventory",
-                "format": "int32"
-              },
-              "offset": {
-                "type": "integer",
-                "description": "Offset is the number of records you wish to skip before selecting results.",
-                "format": "int32"
-              }
-            }
-          },
-          "payload": {
-            "type": "object",
-            "properties": {
-              "inventory": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "sku": {
-                      "type": "string",
-                      "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
-                    },
-                    "shipNodes": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "modifiedDate": {
-                            "type": "string",
-                            "description": "Last changes date for the item."
-                          },
-                          "availToSellQty": {
-                            "type": "integer",
-                            "description": "The available quantity is the quantity of an item that is available to be allocated to orders.",
-                            "format": "int32"
-                          },
-                          "onHandQty": {
-                            "type": "integer",
-                            "description": "The on-hand balance is the quantity of active inventory stored at the warehouse.Active inventory is defined as the usable amount of an item that is in the warehouse.Inventory is active if it is not damaged, expired or being inspected.",
-                            "format": "int32"
-                          },
-                          "shipNodeType": {
-                            "type": "string",
-                            "description": "Identifies fulfillment aspect of invetory. Walmart, seller or 3PL fulfilled. Possible value is 'WFSFulfilled'. In later phase we will also add seller fulfilled inventory."
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
               }
             }
           }
@@ -3177,7 +3121,7 @@
         "name": "WM_CONSUMER.CHANNEL.TYPE",
         "in": "header",
         "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
-        "required": true,
+        "required": false,
         "schema": {
           "type": "string"
         }

@@ -60,10 +60,10 @@ export interface ContentAndDiscoverability {
     issueCount?: number;
     /**
      * 
-     * @type {Array<InlineResponse2003ScoreDetailsContentAndDiscoverabilityIssues1>}
+     * @type {Array<InlineResponse2004ScoreDetailsContentAndDiscoverabilityIssues1>}
      * @memberof ContentAndDiscoverability
      */
-    issues?: Array<InlineResponse2003ScoreDetailsContentAndDiscoverabilityIssues1>;
+    issues?: Array<InlineResponse2004ScoreDetailsContentAndDiscoverabilityIssues1>;
 }
 /**
  * 
@@ -109,10 +109,10 @@ export interface ContentDiscoverabilityIssue {
     issueCount?: number;
     /**
      * 
-     * @type {Array<InlineResponse2003ScoreDetailsContentAndDiscoverabilityIssues>}
+     * @type {Array<InlineResponse2004ScoreDetailsContentAndDiscoverabilityIssues>}
      * @memberof ContentDiscoverabilityIssue
      */
-    issues?: Array<InlineResponse2003ScoreDetailsContentAndDiscoverabilityIssues>;
+    issues?: Array<InlineResponse2004ScoreDetailsContentAndDiscoverabilityIssues>;
 }
 /**
  * 
@@ -177,7 +177,7 @@ export interface CriteriaData {
  */
 export interface Filter {
     /**
-     * | Attribute | Description | Data Type | --- | ----------- | ------- | contentDiscoverabilityPercentage | Item\'s content and discoverability score expressed as a percentage. | string | | qualityScorePercentage | Item\'s overall Listing Quality score, rated as a percentage. | string | | offerPercentage | Item\'s offer score, based on: item price, shipping price and speed, and in-stock rate.| string | | ratingReviewsPercentage | Rating and reviews score, as a percentage. | string | | viewTrendingItems | Indicates to return details for trending items that have non-zero page views. Acceptable values are \"true\" if pageView > 0, or \"false\" if pageView >= 0. | string | | viewPostPurchaseItems | Show items with post-purchase quality issues. If item has post-purchase value >= 1, it filters all items greater or equal based on post purchase value. | string | | wfsFlag | Show WFS-eligible items. Value of this parameter can be true or false. | string | | categoryName | Item\'s category name. | string | | hasIssues | Provides a count of item with issues. | integer | | productType | Product type to classify the item (e.g. Pants). | string| | attributeList | List of all available filter attributes. | string |
+     * | Attribute | Description | Data Type | --- | ----------- | ------- | contentDiscoverabilityPercentage | Item\'s content and discoverability score expressed as a percentage. | string | | qualityScorePercentage | Item\'s overall Listing Quality score, rated as a percentage. | string | | offerPercentage | Item\'s offer score, based on: item price, shipping price and speed, and in-stock rate.| string | | ratingReviewsPercentage | Rating and reviews score, as a percentage. | string | | viewTrendingItems | Indicates to return details for trending items that have non-zero page views. Acceptable values are \"true\" if pageView > 0, or \"false\" if pageView >= 0. | string | | viewPostPurchaseItems | Show items with post-purchase quality issues. If item has post-purchase value >= 1, it filters all items greater or equal based on post purchase value. | string | | wfsFlag | Show WFS-eligible items. Value of this parameter can be true or false. | string | | categoryName | Item\'s category name. | string | | hasIssues | Provides a count of item with issues. | integer | | productType | Product type to classify the item (e.g. Pants). | string| | attributeList | List of all available filter attributes. | string | | productTypes | List of all available product. | List<String> | | brandList | List of all available brand. | List<String> | | oos | Filter using out of stock offer based on days. Min value = 0, Max Value = 7. | integer | | fastAndFreeShipping | Possible values are 1 for offers eligible for free shipping and 0 for offers not eligible for free shipping. No value shows all the offers. | integer | | priceMeetBeatFlag | Possible values are -1 for no match, 0 for lose, 1 for meets and 2 for beats. No value shows all the offers. | integer |
      * @type {string}
      * @memberof Filter
      */
@@ -211,7 +211,12 @@ export enum FilterFieldEnum {
     CategoryName = 'categoryName',
     HasIssues = 'hasIssues',
     ProductType = 'productType',
-    AttributeList = 'attributeList'
+    AttributeList = 'attributeList',
+    ProductTypes = 'productTypes',
+    BrandList = 'brandList',
+    Oos = 'oos',
+    FastAndFreeShipping = 'fastAndFreeShipping',
+    PriceMeetBeatFlag = 'priceMeetBeatFlag'
 }
 /**
     * @export
@@ -233,19 +238,19 @@ export interface GetCategoriesPayload {
      * @type {string}
      * @memberof GetCategoriesPayload
      */
-    category?: string;
+    name?: string;
     /**
      * 
      * @type {number}
      * @memberof GetCategoriesPayload
      */
-    offerCount?: number;
+    count?: number;
     /**
-     * 
-     * @type {Array<InlineResponse2004ProductType>}
+     * productType is only applicable for categories
+     * @type {Array<InlineResponse2005ProductType>}
      * @memberof GetCategoriesPayload
      */
-    productType?: Array<InlineResponse2004ProductType>;
+    productType?: Array<InlineResponse2005ProductType>;
 }
 /**
  * 
@@ -255,10 +260,10 @@ export interface GetCategoriesPayload {
 export interface GetCategoriesResponse {
     /**
      * 
-     * @type {Array<InlineResponse2004Payload>}
+     * @type {Array<InlineResponse2005Payload>}
      * @memberof GetCategoriesResponse
      */
-    payload?: Array<InlineResponse2004Payload>;
+    payload?: Array<InlineResponse2005Payload>;
 }
 /**
  * 
@@ -268,10 +273,10 @@ export interface GetCategoriesResponse {
 export interface GetListingQualityScore {
     /**
      * 
-     * @type {InlineResponse2002Payload}
+     * @type {InlineResponse2003Payload}
      * @memberof GetListingQualityScore
      */
-    payload?: InlineResponse2002Payload;
+    payload?: InlineResponse2003Payload;
 }
 /**
  * 
@@ -281,10 +286,10 @@ export interface GetListingQualityScore {
 export interface GetTrendingResult {
     /**
      * 
-     * @type {InlineResponse2006Payload}
+     * @type {InlineResponse200Payload}
      * @memberof GetTrendingResult
      */
-    payload?: InlineResponse2006Payload;
+    payload?: InlineResponse200Payload;
     /**
      * 
      * @type {string}
@@ -306,10 +311,10 @@ export interface GetTrendingResultPayload {
     totalCount?: number;
     /**
      * List of Qualified Items
-     * @type {Array<InlineResponse2006PayloadItems>}
+     * @type {Array<InlineResponse200PayloadItems>}
      * @memberof GetTrendingResultPayload
      */
-    items?: Array<InlineResponse2006PayloadItems>;
+    items?: Array<InlineResponse200PayloadItems>;
 }
 /**
  * 
@@ -319,10 +324,10 @@ export interface GetTrendingResultPayload {
 export interface GetUnpublishedItem {
     /**
      * 
-     * @type {Array<InlineResponse2001Payload>}
+     * @type {Array<InlineResponse2002Payload>}
      * @memberof GetUnpublishedItem
      */
-    payload?: Array<InlineResponse2001Payload>;
+    payload?: Array<InlineResponse2002Payload>;
     /**
      * total number of unpublished items
      * @type {number}
@@ -331,10 +336,10 @@ export interface GetUnpublishedItem {
     totalCount?: number;
     /**
      * 
-     * @type {InlineResponse2001TotalGmvAmount}
+     * @type {InlineResponse2002TotalGmvAmount}
      * @memberof GetUnpublishedItem
      */
-    totalGmvAmount?: InlineResponse2001TotalGmvAmount;
+    totalGmvAmount?: InlineResponse2002TotalGmvAmount;
 }
 /**
  * 
@@ -344,10 +349,10 @@ export interface GetUnpublishedItem {
 export interface GetUnpublishedItemsCount {
     /**
      * 
-     * @type {Array<InlineResponse200Payload>}
+     * @type {Array<InlineResponse2001Payload>}
      * @memberof GetUnpublishedItemsCount
      */
-    payload?: Array<InlineResponse200Payload>;
+    payload?: Array<InlineResponse2001Payload>;
 }
 /**
  * 
@@ -363,10 +368,10 @@ export interface GetUnpublishedItemsPayload {
     gtin?: string;
     /**
      * 
-     * @type {InlineResponse2001MarketPrice}
+     * @type {InlineResponse2002MarketPrice}
      * @memberof GetUnpublishedItemsPayload
      */
-    marketPrice?: InlineResponse2001MarketPrice;
+    marketPrice?: InlineResponse2002MarketPrice;
     /**
      * The Date when item becomes available to sell in Walmart
      * @type {string}
@@ -405,10 +410,10 @@ export interface GetUnpublishedItemsPayload {
     productName?: string;
     /**
      * 
-     * @type {InlineResponse2001GmvAmount}
+     * @type {InlineResponse2002GmvAmount}
      * @memberof GetUnpublishedItemsPayload
      */
-    gmvAmount?: InlineResponse2001GmvAmount;
+    gmvAmount?: InlineResponse2002GmvAmount;
     /**
      * Specifies the item identifier generated by Walmart
      * @type {string}
@@ -429,10 +434,10 @@ export interface GetUnpublishedItemsPayload {
     pageViews?: number;
     /**
      * 
-     * @type {InlineResponse2001Price}
+     * @type {InlineResponse2002Price}
      * @memberof GetUnpublishedItemsPayload
      */
-    price?: InlineResponse2001Price;
+    price?: InlineResponse2002Price;
     /**
      * The Date item becomes to Unpublished
      * @type {string}
@@ -535,10 +540,16 @@ export interface InlineObject {
 export interface InlineResponse200 {
     /**
      * 
-     * @type {Array<InlineResponse200Payload>}
+     * @type {InlineResponse200Payload}
      * @memberof InlineResponse200
      */
-    payload?: Array<InlineResponse200Payload>;
+    payload?: InlineResponse200Payload;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse200
+     */
+    status?: string;
 }
 /**
  * 
@@ -552,56 +563,6 @@ export interface InlineResponse2001 {
      * @memberof InlineResponse2001
      */
     payload?: Array<InlineResponse2001Payload>;
-    /**
-     * total number of unpublished items
-     * @type {number}
-     * @memberof InlineResponse2001
-     */
-    totalCount?: number;
-    /**
-     * 
-     * @type {InlineResponse2001TotalGmvAmount}
-     * @memberof InlineResponse2001
-     */
-    totalGmvAmount?: InlineResponse2001TotalGmvAmount;
-}
-/**
- * 
- * @export
- * @interface InlineResponse2001GmvAmount
- */
-export interface InlineResponse2001GmvAmount {
-    /**
-     * The numerical value of the price
-     * @type {number}
-     * @memberof InlineResponse2001GmvAmount
-     */
-    amount?: number;
-    /**
-     * The currency type
-     * @type {string}
-     * @memberof InlineResponse2001GmvAmount
-     */
-    currency?: string;
-}
-/**
- * 
- * @export
- * @interface InlineResponse2001MarketPrice
- */
-export interface InlineResponse2001MarketPrice {
-    /**
-     * The numerical value of the price
-     * @type {string}
-     * @memberof InlineResponse2001MarketPrice
-     */
-    amount?: string;
-    /**
-     * The currency type
-     * @type {string}
-     * @memberof InlineResponse2001MarketPrice
-     */
-    currency?: string;
 }
 /**
  * 
@@ -610,193 +571,23 @@ export interface InlineResponse2001MarketPrice {
  */
 export interface InlineResponse2001Payload {
     /**
-     * The GTIN-compatible Product ID (i.e. UPC or EAN)
+     * total count for unpublished Item
      * @type {string}
      * @memberof InlineResponse2001Payload
      */
-    gtin?: string;
+    unpublishedCount?: string;
     /**
-     * 
-     * @type {InlineResponse2001MarketPrice}
-     * @memberof InlineResponse2001Payload
-     */
-    marketPrice?: InlineResponse2001MarketPrice;
-    /**
-     * The Date when item becomes available to sell in Walmart
+     * total value for unpublished Item
      * @type {string}
      * @memberof InlineResponse2001Payload
      */
-    offerStartDate?: string;
+    unpublishedValue?: string;
     /**
-     * If item is trending in walmart
+     * the reason why item is unpublished
      * @type {string}
      * @memberof InlineResponse2001Payload
      */
-    marketTrending?: string;
-    /**
-     * The lifecycle status of an item describes where the item listing is in the overall lifecycle
-     * @type {string}
-     * @memberof InlineResponse2001Payload
-     */
-    lifecycleStatus?: string;
-    /**
-     * It outlines the reason for an item when unpublished
-     * @type {string}
-     * @memberof InlineResponse2001Payload
-     */
-    unpublishReasons?: string;
-    /**
-     * Percentage of number of items that are converted into sales
-     * @type {number}
-     * @memberof InlineResponse2001Payload
-     */
-    conversionRate?: number;
-    /**
-     * A seller-specified, alphanumeric string uniquely identifying the product name
-     * @type {string}
-     * @memberof InlineResponse2001Payload
-     */
-    productName?: string;
-    /**
-     * 
-     * @type {InlineResponse2001GmvAmount}
-     * @memberof InlineResponse2001Payload
-     */
-    gmvAmount?: InlineResponse2001GmvAmount;
-    /**
-     * Specifies the item identifier generated by Walmart
-     * @type {string}
-     * @memberof InlineResponse2001Payload
-     */
-    itemId?: string;
-    /**
-     * An average rating number for the item from customers
-     * @type {string}
-     * @memberof InlineResponse2001Payload
-     */
-    customerRating?: string;
-    /**
-     * number of times this item is viewed by customers
-     * @type {number}
-     * @memberof InlineResponse2001Payload
-     */
-    pageViews?: number;
-    /**
-     * 
-     * @type {InlineResponse2001Price}
-     * @memberof InlineResponse2001Payload
-     */
-    price?: InlineResponse2001Price;
-    /**
-     * The Date item becomes to Unpublished
-     * @type {string}
-     * @memberof InlineResponse2001Payload
-     */
-    unpublishedDate?: string;
-    /**
-     * Specifies the item brand
-     * @type {string}
-     * @memberof InlineResponse2001Payload
-     */
-    brand?: string;
-    /**
-     * String of letters and/or numbers a partner uses to identify the item
-     * @type {string}
-     * @memberof InlineResponse2001Payload
-     */
-    sku?: string;
-    /**
-     * A seller-specified, alphanumeric string uniquely identifying the Product Type
-     * @type {string}
-     * @memberof InlineResponse2001Payload
-     */
-    productType?: string;
-    /**
-     * The Date when item becomes unavailable to sell in Walmart
-     * @type {string}
-     * @memberof InlineResponse2001Payload
-     */
-    offerEndDate?: string;
-    /**
-     * The status of an item when the item is in the submission process
-     * @type {string}
-     * @memberof InlineResponse2001Payload
-     */
-    publishStatus?: string;
-}
-/**
- * 
- * @export
- * @interface InlineResponse2001Price
- */
-export interface InlineResponse2001Price {
-    /**
-     * 
-     * @type {number}
-     * @memberof InlineResponse2001Price
-     */
-    price?: number;
-    /**
-     * 
-     * @type {object}
-     * @memberof InlineResponse2001Price
-     */
-    issueTitle?: object;
-    /**
-     * 
-     * @type {number}
-     * @memberof InlineResponse2001Price
-     */
-    competitorPrice?: number;
-    /**
-     * 
-     * @type {object}
-     * @memberof InlineResponse2001Price
-     */
-    walmartShipping?: object;
-    /**
-     * 
-     * @type {object}
-     * @memberof InlineResponse2001Price
-     */
-    competitorShipping?: object;
-    /**
-     * 
-     * @type {object}
-     * @memberof InlineResponse2001Price
-     */
-    score?: object;
-    /**
-     * 
-     * @type {object}
-     * @memberof InlineResponse2001Price
-     */
-    additionalDes?: object;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2001Price
-     */
-    asin?: string;
-}
-/**
- * Gross Merchandise Value of the total result set
- * @export
- * @interface InlineResponse2001TotalGmvAmount
- */
-export interface InlineResponse2001TotalGmvAmount {
-    /**
-     * The numerical value of the price
-     * @type {string}
-     * @memberof InlineResponse2001TotalGmvAmount
-     */
-    amount?: string;
-    /**
-     * The currency type
-     * @type {string}
-     * @memberof InlineResponse2001TotalGmvAmount
-     */
-    currency?: string;
+    unpublishedReasonCode?: string;
 }
 /**
  * 
@@ -806,10 +597,60 @@ export interface InlineResponse2001TotalGmvAmount {
 export interface InlineResponse2002 {
     /**
      * 
-     * @type {InlineResponse2002Payload}
+     * @type {Array<InlineResponse2002Payload>}
      * @memberof InlineResponse2002
      */
-    payload?: InlineResponse2002Payload;
+    payload?: Array<InlineResponse2002Payload>;
+    /**
+     * total number of unpublished items
+     * @type {number}
+     * @memberof InlineResponse2002
+     */
+    totalCount?: number;
+    /**
+     * 
+     * @type {InlineResponse2002TotalGmvAmount}
+     * @memberof InlineResponse2002
+     */
+    totalGmvAmount?: InlineResponse2002TotalGmvAmount;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse2002GmvAmount
+ */
+export interface InlineResponse2002GmvAmount {
+    /**
+     * The numerical value of the price
+     * @type {number}
+     * @memberof InlineResponse2002GmvAmount
+     */
+    amount?: number;
+    /**
+     * The currency type
+     * @type {string}
+     * @memberof InlineResponse2002GmvAmount
+     */
+    currency?: string;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse2002MarketPrice
+ */
+export interface InlineResponse2002MarketPrice {
+    /**
+     * The numerical value of the price
+     * @type {string}
+     * @memberof InlineResponse2002MarketPrice
+     */
+    amount?: string;
+    /**
+     * The currency type
+     * @type {string}
+     * @memberof InlineResponse2002MarketPrice
+     */
+    currency?: string;
 }
 /**
  * 
@@ -818,67 +659,193 @@ export interface InlineResponse2002 {
  */
 export interface InlineResponse2002Payload {
     /**
-     * Over All Quality 
-     * @type {number}
+     * The GTIN-compatible Product ID (i.e. UPC or EAN)
+     * @type {string}
      * @memberof InlineResponse2002Payload
      */
-    overAllQuality?: number;
+    gtin?: string;
     /**
      * 
-     * @type {InlineResponse2002PayloadScore}
+     * @type {InlineResponse2002MarketPrice}
      * @memberof InlineResponse2002Payload
      */
-    score?: InlineResponse2002PayloadScore;
+    marketPrice?: InlineResponse2002MarketPrice;
+    /**
+     * The Date when item becomes available to sell in Walmart
+     * @type {string}
+     * @memberof InlineResponse2002Payload
+     */
+    offerStartDate?: string;
+    /**
+     * If item is trending in walmart
+     * @type {string}
+     * @memberof InlineResponse2002Payload
+     */
+    marketTrending?: string;
+    /**
+     * The lifecycle status of an item describes where the item listing is in the overall lifecycle
+     * @type {string}
+     * @memberof InlineResponse2002Payload
+     */
+    lifecycleStatus?: string;
+    /**
+     * It outlines the reason for an item when unpublished
+     * @type {string}
+     * @memberof InlineResponse2002Payload
+     */
+    unpublishReasons?: string;
+    /**
+     * Percentage of number of items that are converted into sales
+     * @type {number}
+     * @memberof InlineResponse2002Payload
+     */
+    conversionRate?: number;
+    /**
+     * A seller-specified, alphanumeric string uniquely identifying the product name
+     * @type {string}
+     * @memberof InlineResponse2002Payload
+     */
+    productName?: string;
     /**
      * 
-     * @type {InlineResponse2002PayloadPostPurchaseQuality}
+     * @type {InlineResponse2002GmvAmount}
      * @memberof InlineResponse2002Payload
      */
-    postPurchaseQuality?: InlineResponse2002PayloadPostPurchaseQuality;
+    gmvAmount?: InlineResponse2002GmvAmount;
+    /**
+     * Specifies the item identifier generated by Walmart
+     * @type {string}
+     * @memberof InlineResponse2002Payload
+     */
+    itemId?: string;
+    /**
+     * An average rating number for the item from customers
+     * @type {string}
+     * @memberof InlineResponse2002Payload
+     */
+    customerRating?: string;
+    /**
+     * number of times this item is viewed by customers
+     * @type {number}
+     * @memberof InlineResponse2002Payload
+     */
+    pageViews?: number;
+    /**
+     * 
+     * @type {InlineResponse2002Price}
+     * @memberof InlineResponse2002Payload
+     */
+    price?: InlineResponse2002Price;
+    /**
+     * The Date item becomes to Unpublished
+     * @type {string}
+     * @memberof InlineResponse2002Payload
+     */
+    unpublishedDate?: string;
+    /**
+     * Specifies the item brand
+     * @type {string}
+     * @memberof InlineResponse2002Payload
+     */
+    brand?: string;
+    /**
+     * String of letters and/or numbers a partner uses to identify the item
+     * @type {string}
+     * @memberof InlineResponse2002Payload
+     */
+    sku?: string;
+    /**
+     * A seller-specified, alphanumeric string uniquely identifying the Product Type
+     * @type {string}
+     * @memberof InlineResponse2002Payload
+     */
+    productType?: string;
+    /**
+     * The Date when item becomes unavailable to sell in Walmart
+     * @type {string}
+     * @memberof InlineResponse2002Payload
+     */
+    offerEndDate?: string;
+    /**
+     * The status of an item when the item is in the submission process
+     * @type {string}
+     * @memberof InlineResponse2002Payload
+     */
+    publishStatus?: string;
 }
 /**
- * Post Purchase Quality
+ * 
  * @export
- * @interface InlineResponse2002PayloadPostPurchaseQuality
+ * @interface InlineResponse2002Price
  */
-export interface InlineResponse2002PayloadPostPurchaseQuality {
+export interface InlineResponse2002Price {
     /**
-     * Defect Ratio
+     * 
      * @type {number}
-     * @memberof InlineResponse2002PayloadPostPurchaseQuality
+     * @memberof InlineResponse2002Price
      */
-    defectRatio?: number;
+    price?: number;
     /**
-     * Item Defect Count
-     * @type {number}
-     * @memberof InlineResponse2002PayloadPostPurchaseQuality
+     * 
+     * @type {object}
+     * @memberof InlineResponse2002Price
      */
-    itemDefectCnt?: number;
+    issueTitle?: object;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2002Price
+     */
+    competitorPrice?: number;
+    /**
+     * 
+     * @type {object}
+     * @memberof InlineResponse2002Price
+     */
+    walmartShipping?: object;
+    /**
+     * 
+     * @type {object}
+     * @memberof InlineResponse2002Price
+     */
+    competitorShipping?: object;
+    /**
+     * 
+     * @type {object}
+     * @memberof InlineResponse2002Price
+     */
+    score?: object;
+    /**
+     * 
+     * @type {object}
+     * @memberof InlineResponse2002Price
+     */
+    additionalDes?: object;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2002Price
+     */
+    asin?: string;
 }
 /**
- * Score
+ * Gross Merchandise Value of the total result set
  * @export
- * @interface InlineResponse2002PayloadScore
+ * @interface InlineResponse2002TotalGmvAmount
  */
-export interface InlineResponse2002PayloadScore {
+export interface InlineResponse2002TotalGmvAmount {
     /**
-     * Offer Score
-     * @type {number}
-     * @memberof InlineResponse2002PayloadScore
+     * The numerical value of the price
+     * @type {string}
+     * @memberof InlineResponse2002TotalGmvAmount
      */
-    offerScore?: number;
+    amount?: string;
     /**
-     * Content Score
-     * @type {number}
-     * @memberof InlineResponse2002PayloadScore
+     * The currency type
+     * @type {string}
+     * @memberof InlineResponse2002TotalGmvAmount
      */
-    contentScore?: number;
-    /**
-     * Rating Review Score
-     * @type {number}
-     * @memberof InlineResponse2002PayloadScore
-     */
-    ratingReviewScore?: number;
+    currency?: string;
 }
 /**
  * 
@@ -888,28 +855,10 @@ export interface InlineResponse2002PayloadScore {
 export interface InlineResponse2003 {
     /**
      * 
-     * @type {string}
+     * @type {InlineResponse2003Payload}
      * @memberof InlineResponse2003
      */
-    nextCursor?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2003
-     */
-    totalItems?: string;
-    /**
-     * 
-     * @type {Array<InlineResponse2003Payload>}
-     * @memberof InlineResponse2003
-     */
-    payload?: Array<InlineResponse2003Payload>;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2003
-     */
-    status?: string;
+    payload?: InlineResponse2003Payload;
 }
 /**
  * 
@@ -918,518 +867,67 @@ export interface InlineResponse2003 {
  */
 export interface InlineResponse2003Payload {
     /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2003Payload
-     */
-    productId?: string;
-    /**
-     * 
-     * @type {InlineResponse2003ScoreDetails}
-     * @memberof InlineResponse2003Payload
-     */
-    scoreDetails?: InlineResponse2003ScoreDetails;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2003Payload
-     */
-    wfsEnabled?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2003Payload
-     */
-    priority?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2003Payload
-     */
-    productName?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2003Payload
-     */
-    itemId?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2003Payload
-     */
-    sellerId?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2003Payload
-     */
-    pageViews?: string;
-    /**
-     * 
-     * @type {InlineResponse2003Stats}
-     * @memberof InlineResponse2003Payload
-     */
-    stats?: InlineResponse2003Stats;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2003Payload
-     */
-    imageUrL?: string;
-    /**
-     * 
-     * @type {InlineResponse2003QualityScore}
-     * @memberof InlineResponse2003Payload
-     */
-    qualityScore?: InlineResponse2003QualityScore;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2003Payload
-     */
-    offerId?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2003Payload
-     */
-    sku?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2003Payload
-     */
-    category?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2003Payload
-     */
-    postPurchaseIssues?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2003Payload
-     */
-    productType?: string;
-}
-/**
- * 
- * @export
- * @interface InlineResponse2003QualityScore
- */
-export interface InlineResponse2003QualityScore {
-    /**
-     * 
+     * Over All Quality 
      * @type {number}
-     * @memberof InlineResponse2003QualityScore
+     * @memberof InlineResponse2003Payload
      */
-    score?: number;
+    overAllQuality?: number;
     /**
      * 
-     * @type {Array<InlineResponse2003QualityScoreValues>}
-     * @memberof InlineResponse2003QualityScore
+     * @type {InlineResponse2003PayloadScore}
+     * @memberof InlineResponse2003Payload
      */
-    values?: Array<InlineResponse2003QualityScoreValues>;
+    score?: InlineResponse2003PayloadScore;
+    /**
+     * 
+     * @type {InlineResponse2003PayloadPostPurchaseQuality}
+     * @memberof InlineResponse2003Payload
+     */
+    postPurchaseQuality?: InlineResponse2003PayloadPostPurchaseQuality;
 }
 /**
- * 
+ * Post Purchase Quality
  * @export
- * @interface InlineResponse2003QualityScoreValues
+ * @interface InlineResponse2003PayloadPostPurchaseQuality
  */
-export interface InlineResponse2003QualityScoreValues {
+export interface InlineResponse2003PayloadPostPurchaseQuality {
     /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2003QualityScoreValues
-     */
-    scoreType?: string;
-    /**
-     * 
+     * Defect Ratio
      * @type {number}
-     * @memberof InlineResponse2003QualityScoreValues
+     * @memberof InlineResponse2003PayloadPostPurchaseQuality
      */
-    scoreValue?: number;
+    defectRatio?: number;
     /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2003QualityScoreValues
-     */
-    impact?: string;
-}
-/**
- * 
- * @export
- * @interface InlineResponse2003ScoreDetails
- */
-export interface InlineResponse2003ScoreDetails {
-    /**
-     * 
-     * @type {InlineResponse2003ScoreDetailsOffer}
-     * @memberof InlineResponse2003ScoreDetails
-     */
-    offer?: InlineResponse2003ScoreDetailsOffer;
-    /**
-     * 
-     * @type {InlineResponse2003ScoreDetailsRatingReviews}
-     * @memberof InlineResponse2003ScoreDetails
-     */
-    ratingReviews?: InlineResponse2003ScoreDetailsRatingReviews;
-    /**
-     * 
-     * @type {InlineResponse2003ScoreDetailsPostPurchase}
-     * @memberof InlineResponse2003ScoreDetails
-     */
-    postPurchase?: InlineResponse2003ScoreDetailsPostPurchase;
-    /**
-     * 
-     * @type {InlineResponse2003ScoreDetailsContentAndDiscoverability}
-     * @memberof InlineResponse2003ScoreDetails
-     */
-    contentAndDiscoverability?: InlineResponse2003ScoreDetailsContentAndDiscoverability;
-}
-/**
- * 
- * @export
- * @interface InlineResponse2003ScoreDetailsContentAndDiscoverability
- */
-export interface InlineResponse2003ScoreDetailsContentAndDiscoverability {
-    /**
-     * 
+     * Item Defect Count
      * @type {number}
-     * @memberof InlineResponse2003ScoreDetailsContentAndDiscoverability
+     * @memberof InlineResponse2003PayloadPostPurchaseQuality
      */
-    issueCount?: number;
-    /**
-     * 
-     * @type {Array<InlineResponse2003ScoreDetailsContentAndDiscoverabilityIssues1>}
-     * @memberof InlineResponse2003ScoreDetailsContentAndDiscoverability
-     */
-    issues?: Array<InlineResponse2003ScoreDetailsContentAndDiscoverabilityIssues1>;
+    itemDefectCnt?: number;
 }
 /**
- * 
+ * Score
  * @export
- * @interface InlineResponse2003ScoreDetailsContentAndDiscoverabilityIssues
+ * @interface InlineResponse2003PayloadScore
  */
-export interface InlineResponse2003ScoreDetailsContentAndDiscoverabilityIssues {
+export interface InlineResponse2003PayloadScore {
     /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2003ScoreDetailsContentAndDiscoverabilityIssues
-     */
-    title?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2003ScoreDetailsContentAndDiscoverabilityIssues
-     */
-    value?: string;
-}
-/**
- * 
- * @export
- * @interface InlineResponse2003ScoreDetailsContentAndDiscoverabilityIssues1
- */
-export interface InlineResponse2003ScoreDetailsContentAndDiscoverabilityIssues1 {
-    /**
-     * 
+     * Offer Score
      * @type {number}
-     * @memberof InlineResponse2003ScoreDetailsContentAndDiscoverabilityIssues1
+     * @memberof InlineResponse2003PayloadScore
      */
-    score?: number;
+    offerScore?: number;
     /**
-     * 
-     * @type {boolean}
-     * @memberof InlineResponse2003ScoreDetailsContentAndDiscoverabilityIssues1
-     */
-    isEditable?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2003ScoreDetailsContentAndDiscoverabilityIssues1
-     */
-    attributeValue?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof InlineResponse2003ScoreDetailsContentAndDiscoverabilityIssues1
-     */
-    isSpecAttribute?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2003ScoreDetailsContentAndDiscoverabilityIssues1
-     */
-    attributeName?: string;
-    /**
-     * 
+     * Content Score
      * @type {number}
-     * @memberof InlineResponse2003ScoreDetailsContentAndDiscoverabilityIssues1
+     * @memberof InlineResponse2003PayloadScore
      */
-    issueCount?: number;
+    contentScore?: number;
     /**
-     * 
-     * @type {Array<InlineResponse2003ScoreDetailsContentAndDiscoverabilityIssues>}
-     * @memberof InlineResponse2003ScoreDetailsContentAndDiscoverabilityIssues1
-     */
-    issues?: Array<InlineResponse2003ScoreDetailsContentAndDiscoverabilityIssues>;
-}
-/**
- * 
- * @export
- * @interface InlineResponse2003ScoreDetailsOffer
- */
-export interface InlineResponse2003ScoreDetailsOffer {
-    /**
-     * 
+     * Rating Review Score
      * @type {number}
-     * @memberof InlineResponse2003ScoreDetailsOffer
+     * @memberof InlineResponse2003PayloadScore
      */
-    issueCount?: number;
-    /**
-     * 
-     * @type {InlineResponse2001Price}
-     * @memberof InlineResponse2003ScoreDetailsOffer
-     */
-    price?: InlineResponse2001Price;
-    /**
-     * 
-     * @type {InlineResponse2003ScoreDetailsOfferShippingSpeed}
-     * @memberof InlineResponse2003ScoreDetailsOffer
-     */
-    shippingSpeed?: InlineResponse2003ScoreDetailsOfferShippingSpeed;
-    /**
-     * 
-     * @type {InlineResponse2003ScoreDetailsOfferPublishAndTransactable}
-     * @memberof InlineResponse2003ScoreDetailsOffer
-     */
-    publishAndTransactable?: InlineResponse2003ScoreDetailsOfferPublishAndTransactable;
-}
-/**
- * 
- * @export
- * @interface InlineResponse2003ScoreDetailsOfferPublishAndTransactable
- */
-export interface InlineResponse2003ScoreDetailsOfferPublishAndTransactable {
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2003ScoreDetailsOfferPublishAndTransactable
-     */
-    issueTitle?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof InlineResponse2003ScoreDetailsOfferPublishAndTransactable
-     */
-    totalIssue?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof InlineResponse2003ScoreDetailsOfferPublishAndTransactable
-     */
-    maxIssue?: number;
-    /**
-     * 
-     * @type {Array<InlineResponse2003ScoreDetailsOfferPublishAndTransactableIssues>}
-     * @memberof InlineResponse2003ScoreDetailsOfferPublishAndTransactable
-     */
-    issues?: Array<InlineResponse2003ScoreDetailsOfferPublishAndTransactableIssues>;
-    /**
-     * 
-     * @type {number}
-     * @memberof InlineResponse2003ScoreDetailsOfferPublishAndTransactable
-     */
-    score?: number;
-}
-/**
- * 
- * @export
- * @interface InlineResponse2003ScoreDetailsOfferPublishAndTransactableIssues
- */
-export interface InlineResponse2003ScoreDetailsOfferPublishAndTransactableIssues {
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2003ScoreDetailsOfferPublishAndTransactableIssues
-     */
-    date?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof InlineResponse2003ScoreDetailsOfferPublishAndTransactableIssues
-     */
-    publishFlag?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof InlineResponse2003ScoreDetailsOfferPublishAndTransactableIssues
-     */
-    transactableFlag?: boolean;
-}
-/**
- * 
- * @export
- * @interface InlineResponse2003ScoreDetailsOfferShippingSpeed
- */
-export interface InlineResponse2003ScoreDetailsOfferShippingSpeed {
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2003ScoreDetailsOfferShippingSpeed
-     */
-    shippingType?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2003ScoreDetailsOfferShippingSpeed
-     */
-    issueTitle?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2003ScoreDetailsOfferShippingSpeed
-     */
-    issueDesc?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof InlineResponse2003ScoreDetailsOfferShippingSpeed
-     */
-    score?: number;
-}
-/**
- * 
- * @export
- * @interface InlineResponse2003ScoreDetailsPostPurchase
- */
-export interface InlineResponse2003ScoreDetailsPostPurchase {
-    /**
-     * 
-     * @type {InlineResponse2003ScoreDetailsPostPurchaseCancellations}
-     * @memberof InlineResponse2003ScoreDetailsPostPurchase
-     */
-    cancellations?: InlineResponse2003ScoreDetailsPostPurchaseCancellations;
-    /**
-     * 
-     * @type {object}
-     * @memberof InlineResponse2003ScoreDetailsPostPurchase
-     */
-    returns?: object;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2003ScoreDetailsPostPurchase
-     */
-    issueCount?: string;
-    /**
-     * 
-     * @type {InlineResponse2003ScoreDetailsPostPurchaseCancellations}
-     * @memberof InlineResponse2003ScoreDetailsPostPurchase
-     */
-    otd?: InlineResponse2003ScoreDetailsPostPurchaseCancellations;
-}
-/**
- * 
- * @export
- * @interface InlineResponse2003ScoreDetailsPostPurchaseCancellations
- */
-export interface InlineResponse2003ScoreDetailsPostPurchaseCancellations {
-    /**
-     * 
-     * @type {number}
-     * @memberof InlineResponse2003ScoreDetailsPostPurchaseCancellations
-     */
-    defectedOrder?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof InlineResponse2003ScoreDetailsPostPurchaseCancellations
-     */
-    totalOrder?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof InlineResponse2003ScoreDetailsPostPurchaseCancellations
-     */
-    rate?: number;
-}
-/**
- * 
- * @export
- * @interface InlineResponse2003ScoreDetailsRatingReviews
- */
-export interface InlineResponse2003ScoreDetailsRatingReviews {
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2003ScoreDetailsRatingReviews
-     */
-    maxRating?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2003ScoreDetailsRatingReviews
-     */
-    ratingCount?: string;
-}
-/**
- * 
- * @export
- * @interface InlineResponse2003Stats
- */
-export interface InlineResponse2003Stats {
-    /**
-     * 
-     * @type {InlineResponse2003StatsGmv}
-     * @memberof InlineResponse2003Stats
-     */
-    gmv?: InlineResponse2003StatsGmv;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2003Stats
-     */
-    pageViews?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2003Stats
-     */
-    orders?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2003Stats
-     */
-    conversionRate?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2003Stats
-     */
-    totalUnits?: string;
-}
-/**
- * 
- * @export
- * @interface InlineResponse2003StatsGmv
- */
-export interface InlineResponse2003StatsGmv {
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2003StatsGmv
-     */
-    amount?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2003StatsGmv
-     */
-    currency?: string;
+    ratingReviewScore?: number;
 }
 /**
  * 
@@ -1439,10 +937,28 @@ export interface InlineResponse2003StatsGmv {
 export interface InlineResponse2004 {
     /**
      * 
+     * @type {string}
+     * @memberof InlineResponse2004
+     */
+    nextCursor?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2004
+     */
+    totalItems?: string;
+    /**
+     * 
      * @type {Array<InlineResponse2004Payload>}
      * @memberof InlineResponse2004
      */
     payload?: Array<InlineResponse2004Payload>;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2004
+     */
+    status?: string;
 }
 /**
  * 
@@ -1455,38 +971,514 @@ export interface InlineResponse2004Payload {
      * @type {string}
      * @memberof InlineResponse2004Payload
      */
+    productId?: string;
+    /**
+     * 
+     * @type {InlineResponse2004ScoreDetails}
+     * @memberof InlineResponse2004Payload
+     */
+    scoreDetails?: InlineResponse2004ScoreDetails;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2004Payload
+     */
+    wfsEnabled?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2004Payload
+     */
+    priority?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2004Payload
+     */
+    productName?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2004Payload
+     */
+    itemId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2004Payload
+     */
+    sellerId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2004Payload
+     */
+    pageViews?: string;
+    /**
+     * 
+     * @type {InlineResponse2004Stats}
+     * @memberof InlineResponse2004Payload
+     */
+    stats?: InlineResponse2004Stats;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2004Payload
+     */
+    imageUrL?: string;
+    /**
+     * 
+     * @type {InlineResponse2004QualityScore}
+     * @memberof InlineResponse2004Payload
+     */
+    qualityScore?: InlineResponse2004QualityScore;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2004Payload
+     */
+    offerId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2004Payload
+     */
+    sku?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2004Payload
+     */
     category?: string;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof InlineResponse2004Payload
      */
-    offerCount?: number;
+    postPurchaseIssues?: string;
     /**
      * 
-     * @type {Array<InlineResponse2004ProductType>}
+     * @type {string}
      * @memberof InlineResponse2004Payload
      */
-    productType?: Array<InlineResponse2004ProductType>;
+    productType?: string;
 }
 /**
  * 
  * @export
- * @interface InlineResponse2004ProductType
+ * @interface InlineResponse2004QualityScore
  */
-export interface InlineResponse2004ProductType {
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2004ProductType
-     */
-    productTypeName?: string;
+export interface InlineResponse2004QualityScore {
     /**
      * 
      * @type {number}
-     * @memberof InlineResponse2004ProductType
+     * @memberof InlineResponse2004QualityScore
      */
-    offerCount?: number;
+    score?: number;
+    /**
+     * 
+     * @type {Array<InlineResponse2004QualityScoreValues>}
+     * @memberof InlineResponse2004QualityScore
+     */
+    values?: Array<InlineResponse2004QualityScoreValues>;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse2004QualityScoreValues
+ */
+export interface InlineResponse2004QualityScoreValues {
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2004QualityScoreValues
+     */
+    scoreType?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2004QualityScoreValues
+     */
+    scoreValue?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2004QualityScoreValues
+     */
+    impact?: string;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse2004ScoreDetails
+ */
+export interface InlineResponse2004ScoreDetails {
+    /**
+     * 
+     * @type {InlineResponse2004ScoreDetailsOffer}
+     * @memberof InlineResponse2004ScoreDetails
+     */
+    offer?: InlineResponse2004ScoreDetailsOffer;
+    /**
+     * 
+     * @type {InlineResponse2004ScoreDetailsRatingReviews}
+     * @memberof InlineResponse2004ScoreDetails
+     */
+    ratingReviews?: InlineResponse2004ScoreDetailsRatingReviews;
+    /**
+     * 
+     * @type {InlineResponse2004ScoreDetailsPostPurchase}
+     * @memberof InlineResponse2004ScoreDetails
+     */
+    postPurchase?: InlineResponse2004ScoreDetailsPostPurchase;
+    /**
+     * 
+     * @type {InlineResponse2004ScoreDetailsContentAndDiscoverability}
+     * @memberof InlineResponse2004ScoreDetails
+     */
+    contentAndDiscoverability?: InlineResponse2004ScoreDetailsContentAndDiscoverability;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse2004ScoreDetailsContentAndDiscoverability
+ */
+export interface InlineResponse2004ScoreDetailsContentAndDiscoverability {
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2004ScoreDetailsContentAndDiscoverability
+     */
+    issueCount?: number;
+    /**
+     * 
+     * @type {Array<InlineResponse2004ScoreDetailsContentAndDiscoverabilityIssues1>}
+     * @memberof InlineResponse2004ScoreDetailsContentAndDiscoverability
+     */
+    issues?: Array<InlineResponse2004ScoreDetailsContentAndDiscoverabilityIssues1>;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse2004ScoreDetailsContentAndDiscoverabilityIssues
+ */
+export interface InlineResponse2004ScoreDetailsContentAndDiscoverabilityIssues {
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2004ScoreDetailsContentAndDiscoverabilityIssues
+     */
+    title?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2004ScoreDetailsContentAndDiscoverabilityIssues
+     */
+    value?: string;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse2004ScoreDetailsContentAndDiscoverabilityIssues1
+ */
+export interface InlineResponse2004ScoreDetailsContentAndDiscoverabilityIssues1 {
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2004ScoreDetailsContentAndDiscoverabilityIssues1
+     */
+    score?: number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof InlineResponse2004ScoreDetailsContentAndDiscoverabilityIssues1
+     */
+    isEditable?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2004ScoreDetailsContentAndDiscoverabilityIssues1
+     */
+    attributeValue?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof InlineResponse2004ScoreDetailsContentAndDiscoverabilityIssues1
+     */
+    isSpecAttribute?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2004ScoreDetailsContentAndDiscoverabilityIssues1
+     */
+    attributeName?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2004ScoreDetailsContentAndDiscoverabilityIssues1
+     */
+    issueCount?: number;
+    /**
+     * 
+     * @type {Array<InlineResponse2004ScoreDetailsContentAndDiscoverabilityIssues>}
+     * @memberof InlineResponse2004ScoreDetailsContentAndDiscoverabilityIssues1
+     */
+    issues?: Array<InlineResponse2004ScoreDetailsContentAndDiscoverabilityIssues>;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse2004ScoreDetailsOffer
+ */
+export interface InlineResponse2004ScoreDetailsOffer {
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2004ScoreDetailsOffer
+     */
+    issueCount?: number;
+    /**
+     * 
+     * @type {InlineResponse2002Price}
+     * @memberof InlineResponse2004ScoreDetailsOffer
+     */
+    price?: InlineResponse2002Price;
+    /**
+     * 
+     * @type {InlineResponse2004ScoreDetailsOfferShippingSpeed}
+     * @memberof InlineResponse2004ScoreDetailsOffer
+     */
+    shippingSpeed?: InlineResponse2004ScoreDetailsOfferShippingSpeed;
+    /**
+     * 
+     * @type {InlineResponse2004ScoreDetailsOfferPublishAndTransactable}
+     * @memberof InlineResponse2004ScoreDetailsOffer
+     */
+    publishAndTransactable?: InlineResponse2004ScoreDetailsOfferPublishAndTransactable;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse2004ScoreDetailsOfferPublishAndTransactable
+ */
+export interface InlineResponse2004ScoreDetailsOfferPublishAndTransactable {
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2004ScoreDetailsOfferPublishAndTransactable
+     */
+    issueTitle?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2004ScoreDetailsOfferPublishAndTransactable
+     */
+    totalIssue?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2004ScoreDetailsOfferPublishAndTransactable
+     */
+    maxIssue?: number;
+    /**
+     * 
+     * @type {Array<InlineResponse2004ScoreDetailsOfferPublishAndTransactableIssues>}
+     * @memberof InlineResponse2004ScoreDetailsOfferPublishAndTransactable
+     */
+    issues?: Array<InlineResponse2004ScoreDetailsOfferPublishAndTransactableIssues>;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2004ScoreDetailsOfferPublishAndTransactable
+     */
+    score?: number;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse2004ScoreDetailsOfferPublishAndTransactableIssues
+ */
+export interface InlineResponse2004ScoreDetailsOfferPublishAndTransactableIssues {
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2004ScoreDetailsOfferPublishAndTransactableIssues
+     */
+    date?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof InlineResponse2004ScoreDetailsOfferPublishAndTransactableIssues
+     */
+    publishFlag?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof InlineResponse2004ScoreDetailsOfferPublishAndTransactableIssues
+     */
+    transactableFlag?: boolean;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse2004ScoreDetailsOfferShippingSpeed
+ */
+export interface InlineResponse2004ScoreDetailsOfferShippingSpeed {
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2004ScoreDetailsOfferShippingSpeed
+     */
+    shippingType?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2004ScoreDetailsOfferShippingSpeed
+     */
+    issueTitle?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2004ScoreDetailsOfferShippingSpeed
+     */
+    issueDesc?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2004ScoreDetailsOfferShippingSpeed
+     */
+    score?: number;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse2004ScoreDetailsPostPurchase
+ */
+export interface InlineResponse2004ScoreDetailsPostPurchase {
+    /**
+     * 
+     * @type {InlineResponse2004ScoreDetailsPostPurchaseCancellations}
+     * @memberof InlineResponse2004ScoreDetailsPostPurchase
+     */
+    cancellations?: InlineResponse2004ScoreDetailsPostPurchaseCancellations;
+    /**
+     * 
+     * @type {object}
+     * @memberof InlineResponse2004ScoreDetailsPostPurchase
+     */
+    returns?: object;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2004ScoreDetailsPostPurchase
+     */
+    issueCount?: string;
+    /**
+     * 
+     * @type {InlineResponse2004ScoreDetailsPostPurchaseCancellations}
+     * @memberof InlineResponse2004ScoreDetailsPostPurchase
+     */
+    otd?: InlineResponse2004ScoreDetailsPostPurchaseCancellations;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse2004ScoreDetailsPostPurchaseCancellations
+ */
+export interface InlineResponse2004ScoreDetailsPostPurchaseCancellations {
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2004ScoreDetailsPostPurchaseCancellations
+     */
+    defectedOrder?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2004ScoreDetailsPostPurchaseCancellations
+     */
+    totalOrder?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2004ScoreDetailsPostPurchaseCancellations
+     */
+    rate?: number;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse2004ScoreDetailsRatingReviews
+ */
+export interface InlineResponse2004ScoreDetailsRatingReviews {
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2004ScoreDetailsRatingReviews
+     */
+    maxRating?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2004ScoreDetailsRatingReviews
+     */
+    ratingCount?: string;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse2004Stats
+ */
+export interface InlineResponse2004Stats {
+    /**
+     * 
+     * @type {InlineResponse2004StatsGmv}
+     * @memberof InlineResponse2004Stats
+     */
+    gmv?: InlineResponse2004StatsGmv;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2004Stats
+     */
+    pageViews?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2004Stats
+     */
+    orders?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2004Stats
+     */
+    conversionRate?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2004Stats
+     */
+    totalUnits?: string;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse2004StatsGmv
+ */
+export interface InlineResponse2004StatsGmv {
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2004StatsGmv
+     */
+    amount?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2004StatsGmv
+     */
+    currency?: string;
 }
 /**
  * 
@@ -1495,152 +1487,55 @@ export interface InlineResponse2004ProductType {
  */
 export interface InlineResponse2005 {
     /**
-     * Specifies if the seller has the badge
-     * @type {boolean}
-     * @memberof InlineResponse2005
-     */
-    hasBadge?: boolean;
-    /**
-     * Specifies if the seller is eligible for the badge in the next refresh
-     * @type {boolean}
-     * @memberof InlineResponse2005
-     */
-    isEligible?: boolean;
-    /**
-     * Specifies when the seller received their badge
-     * @type {string}
-     * @memberof InlineResponse2005
-     */
-    badgedSince?: string;
-    /**
-     * Specifies whether the seller is prohibited from participating in the Pro Seller badge program.
-     * @type {boolean}
-     * @memberof InlineResponse2005
-     */
-    isProhibited?: boolean;
-    /**
-     * Specifies the seller\'s badge status in detail. The possible values are \"Become a Pro Seller\", \"You are a Pro Seller\", \"Pro Seller Badge at risk\", \"Eligible starting from YYYY-MM-DD\", and \"Not eligible for the Pro Seller Badge\"
-     * @type {string}
-     * @memberof InlineResponse2005
-     */
-    badgeStatus?: string;
-    /**
      * 
-     * @type {InlineResponse2005MeetsCriteria}
+     * @type {Array<InlineResponse2005Payload>}
      * @memberof InlineResponse2005
      */
-    meetsCriteria?: InlineResponse2005MeetsCriteria;
-    /**
-     * 
-     * @type {InlineResponse2005CriteriaData}
-     * @memberof InlineResponse2005
-     */
-    criteriaData?: InlineResponse2005CriteriaData;
-    /**
-     * 
-     * @type {InlineResponse2005Recommendations}
-     * @memberof InlineResponse2005
-     */
-    recommendations?: InlineResponse2005Recommendations;
+    payload?: Array<InlineResponse2005Payload>;
 }
 /**
- * Shows the criteria for the Pro Seller badge.
+ * 
  * @export
- * @interface InlineResponse2005CriteriaData
+ * @interface InlineResponse2005Payload
  */
-export interface InlineResponse2005CriteriaData {
+export interface InlineResponse2005Payload {
     /**
-     * Number of orders received during the last 90 days.
-     * @type {number}
-     * @memberof InlineResponse2005CriteriaData
-     */
-    orders?: number;
-    /**
-     * Delivery Defect rate in the given timeframe.
+     * 
      * @type {string}
-     * @memberof InlineResponse2005CriteriaData
+     * @memberof InlineResponse2005Payload
      */
-    deliveryDefectRate?: string;
+    name?: string;
     /**
-     * Cancellation rate in the given timeframe.
-     * @type {string}
-     * @memberof InlineResponse2005CriteriaData
-     */
-    cancellationRate?: string;
-    /**
-     * Trending Catalog Quality Score coverage.
+     * 
      * @type {number}
-     * @memberof InlineResponse2005CriteriaData
+     * @memberof InlineResponse2005Payload
      */
-    listingQualityCatalog?: number;
+    count?: number;
     /**
-     * Days active on the platform.
-     * @type {number}
-     * @memberof InlineResponse2005CriteriaData
+     * productType is only applicable for categories
+     * @type {Array<InlineResponse2005ProductType>}
+     * @memberof InlineResponse2005Payload
      */
-    activeDays?: number;
+    productType?: Array<InlineResponse2005ProductType>;
 }
 /**
- * Shows whether the seller has met the requirements for the badge.
+ * productType is only applicable for categories
  * @export
- * @interface InlineResponse2005MeetsCriteria
+ * @interface InlineResponse2005ProductType
  */
-export interface InlineResponse2005MeetsCriteria {
+export interface InlineResponse2005ProductType {
     /**
-     * Indicates whether the seller has met the minimum number of orders required.
-     * @type {boolean}
-     * @memberof InlineResponse2005MeetsCriteria
-     */
-    isOrdersCriteriaMet?: boolean;
-    /**
-     * Indicates whether the seller has a low delivery defect, meeting the threshold for the badge.
-     * @type {boolean}
-     * @memberof InlineResponse2005MeetsCriteria
-     */
-    isDeliveryDefectCriteriaMet?: boolean;
-    /**
-     * Indicates whether the seller has a low cancellation rate, meeting the threshold for the badge.
-     * @type {boolean}
-     * @memberof InlineResponse2005MeetsCriteria
-     */
-    isCancellationCriteriaMet?: boolean;
-    /**
-     * Indicates whether the seller is meeting the trending catalog requirement.
-     * @type {boolean}
-     * @memberof InlineResponse2005MeetsCriteria
-     */
-    isListingQualityCatalogCriteriaMet?: boolean;
-    /**
-     * Indicates whether the seller has met the minimum number of active days required.
-     * @type {boolean}
-     * @memberof InlineResponse2005MeetsCriteria
-     */
-    isActiveDaysCriteriaMet?: boolean;
-}
-/**
- * Recommendations on how to increase chances of Pro Seller Badge eligibility
- * @export
- * @interface InlineResponse2005Recommendations
- */
-export interface InlineResponse2005Recommendations {
-    /**
-     * Recommendations on reducing the delivery defect rate
+     * 
      * @type {string}
-     * @memberof InlineResponse2005Recommendations
+     * @memberof InlineResponse2005ProductType
      */
-    deliveryDefectRate?: string;
+    name?: string;
     /**
-     * Recommendations on reducing the Cancellation rate
-     * @type {string}
-     * @memberof InlineResponse2005Recommendations
+     * 
+     * @type {number}
+     * @memberof InlineResponse2005ProductType
      */
-    cancellationRate?: string;
-    /**
-     * Recommendations on increasing the trending item catalog coverage
-     * @type {string}
-     * @memberof InlineResponse2005Recommendations
-     */
-    listingQualityCatalog?: string;
+    count?: number;
 }
 /**
  * 
@@ -1649,121 +1544,152 @@ export interface InlineResponse2005Recommendations {
  */
 export interface InlineResponse2006 {
     /**
-     * 
-     * @type {InlineResponse2006Payload}
+     * Specifies if the seller has the badge
+     * @type {boolean}
      * @memberof InlineResponse2006
      */
-    payload?: InlineResponse2006Payload;
+    hasBadge?: boolean;
     /**
-     * 
+     * Specifies if the seller is eligible for the badge in the next refresh
+     * @type {boolean}
+     * @memberof InlineResponse2006
+     */
+    isEligible?: boolean;
+    /**
+     * Specifies when the seller received their badge
      * @type {string}
      * @memberof InlineResponse2006
      */
-    status?: string;
+    badgedSince?: string;
+    /**
+     * Specifies whether the seller is prohibited from participating in the Pro Seller badge program.
+     * @type {boolean}
+     * @memberof InlineResponse2006
+     */
+    isProhibited?: boolean;
+    /**
+     * Specifies the seller\'s badge status in detail. The possible values are \"Become a Pro Seller\", \"You are a Pro Seller\", \"Pro Seller Badge at risk\", \"Eligible starting from YYYY-MM-DD\", and \"Not eligible for the Pro Seller Badge\"
+     * @type {string}
+     * @memberof InlineResponse2006
+     */
+    badgeStatus?: string;
+    /**
+     * 
+     * @type {InlineResponse2006MeetsCriteria}
+     * @memberof InlineResponse2006
+     */
+    meetsCriteria?: InlineResponse2006MeetsCriteria;
+    /**
+     * 
+     * @type {InlineResponse2006CriteriaData}
+     * @memberof InlineResponse2006
+     */
+    criteriaData?: InlineResponse2006CriteriaData;
+    /**
+     * 
+     * @type {InlineResponse2006Recommendations}
+     * @memberof InlineResponse2006
+     */
+    recommendations?: InlineResponse2006Recommendations;
 }
 /**
- * 
+ * Shows the criteria for the Pro Seller badge.
  * @export
- * @interface InlineResponse2006Payload
+ * @interface InlineResponse2006CriteriaData
  */
-export interface InlineResponse2006Payload {
+export interface InlineResponse2006CriteriaData {
     /**
-     * Total count of qualified items
+     * Number of orders received during the last 90 days.
      * @type {number}
-     * @memberof InlineResponse2006Payload
+     * @memberof InlineResponse2006CriteriaData
      */
-    totalCount?: number;
+    orders?: number;
     /**
-     * List of Qualified Items
-     * @type {Array<InlineResponse2006PayloadItems>}
-     * @memberof InlineResponse2006Payload
+     * Delivery Defect rate in the given timeframe.
+     * @type {string}
+     * @memberof InlineResponse2006CriteriaData
      */
-    items?: Array<InlineResponse2006PayloadItems>;
+    deliveryDefectRate?: string;
+    /**
+     * Cancellation rate in the given timeframe.
+     * @type {string}
+     * @memberof InlineResponse2006CriteriaData
+     */
+    cancellationRate?: string;
+    /**
+     * Trending Catalog Quality Score coverage.
+     * @type {number}
+     * @memberof InlineResponse2006CriteriaData
+     */
+    listingQualityCatalog?: number;
+    /**
+     * Days active on the platform.
+     * @type {number}
+     * @memberof InlineResponse2006CriteriaData
+     */
+    activeDays?: number;
 }
 /**
- * List of Qualified Items
+ * Shows whether the seller has met the requirements for the badge.
  * @export
- * @interface InlineResponse2006PayloadItems
+ * @interface InlineResponse2006MeetsCriteria
  */
-export interface InlineResponse2006PayloadItems {
+export interface InlineResponse2006MeetsCriteria {
     /**
-     * The categories this item belongs to
+     * Indicates whether the seller has met the minimum number of orders required.
+     * @type {boolean}
+     * @memberof InlineResponse2006MeetsCriteria
+     */
+    isOrdersCriteriaMet?: boolean;
+    /**
+     * Indicates whether the seller has a low delivery defect, meeting the threshold for the badge.
+     * @type {boolean}
+     * @memberof InlineResponse2006MeetsCriteria
+     */
+    isDeliveryDefectCriteriaMet?: boolean;
+    /**
+     * Indicates whether the seller has a low cancellation rate, meeting the threshold for the badge.
+     * @type {boolean}
+     * @memberof InlineResponse2006MeetsCriteria
+     */
+    isCancellationCriteriaMet?: boolean;
+    /**
+     * Indicates whether the seller is meeting the trending catalog requirement.
+     * @type {boolean}
+     * @memberof InlineResponse2006MeetsCriteria
+     */
+    isListingQualityCatalogCriteriaMet?: boolean;
+    /**
+     * Indicates whether the seller has met the minimum number of active days required.
+     * @type {boolean}
+     * @memberof InlineResponse2006MeetsCriteria
+     */
+    isActiveDaysCriteriaMet?: boolean;
+}
+/**
+ * Recommendations on how to increase chances of Pro Seller Badge eligibility
+ * @export
+ * @interface InlineResponse2006Recommendations
+ */
+export interface InlineResponse2006Recommendations {
+    /**
+     * Recommendations on reducing the delivery defect rate
      * @type {string}
-     * @memberof InlineResponse2006PayloadItems
+     * @memberof InlineResponse2006Recommendations
      */
-    categoryName?: string;
+    deliveryDefectRate?: string;
     /**
-     * The department this product belongs to
+     * Recommendations on reducing the Cancellation rate
      * @type {string}
-     * @memberof InlineResponse2006PayloadItems
+     * @memberof InlineResponse2006Recommendations
      */
-    departmentName?: string;
+    cancellationRate?: string;
     /**
-     * International Standard Book Number
+     * Recommendations on increasing the trending item catalog coverage
      * @type {string}
-     * @memberof InlineResponse2006PayloadItems
+     * @memberof InlineResponse2006Recommendations
      */
-    isbn?: string;
-    /**
-     * A seller-specified, alphanumeric string uniquely identifying the product name
-     * @type {string}
-     * @memberof InlineResponse2006PayloadItems
-     */
-    productName?: string;
-    /**
-     * if the item can be shipped in two days
-     * @type {number}
-     * @memberof InlineResponse2006PayloadItems
-     */
-    isTwoDayEligible?: number;
-    /**
-     * Specifies the item identifier generated by Walmart
-     * @type {string}
-     * @memberof InlineResponse2006PayloadItems
-     */
-    itemId?: string;
-    /**
-     * Total number of item stored by seller
-     * @type {number}
-     * @memberof InlineResponse2006PayloadItems
-     */
-    totalOffers?: number;
-    /**
-     * International Standard Serial Number
-     * @type {string}
-     * @memberof InlineResponse2006PayloadItems
-     */
-    issn?: string;
-    /**
-     * if seller is selling this item
-     * @type {number}
-     * @memberof InlineResponse2006PayloadItems
-     */
-    existsForSeller?: number;
-    /**
-     * Level of trending for this item
-     * @type {number}
-     * @memberof InlineResponse2006PayloadItems
-     */
-    rank?: number;
-    /**
-     * Specifies the item brand
-     * @type {string}
-     * @memberof InlineResponse2006PayloadItems
-     */
-    brand?: string;
-    /**
-     * The superDepartmentName this item belongs to
-     * @type {string}
-     * @memberof InlineResponse2006PayloadItems
-     */
-    superDepartmentName?: string;
-    /**
-     * The subCategoryName this item belongs to
-     * @type {string}
-     * @memberof InlineResponse2006PayloadItems
-     */
-    subCategoryName?: string;
+    listingQualityCatalog?: string;
 }
 /**
  * 
@@ -1772,23 +1698,102 @@ export interface InlineResponse2006PayloadItems {
  */
 export interface InlineResponse200Payload {
     /**
-     * total count for unpublished Item
-     * @type {string}
+     * Total count of qualified items
+     * @type {number}
      * @memberof InlineResponse200Payload
      */
-    unpublishedCount?: string;
+    totalCount?: number;
     /**
-     * total value for unpublished Item
-     * @type {string}
+     * List of Qualified Items
+     * @type {Array<InlineResponse200PayloadItems>}
      * @memberof InlineResponse200Payload
      */
-    unpublishedValue?: string;
+    items?: Array<InlineResponse200PayloadItems>;
+}
+/**
+ * List of Qualified Items
+ * @export
+ * @interface InlineResponse200PayloadItems
+ */
+export interface InlineResponse200PayloadItems {
     /**
-     * the reason why item is unpublished
+     * The categories this item belongs to
      * @type {string}
-     * @memberof InlineResponse200Payload
+     * @memberof InlineResponse200PayloadItems
      */
-    unpublishedReasonCode?: string;
+    categoryName?: string;
+    /**
+     * The department this product belongs to
+     * @type {string}
+     * @memberof InlineResponse200PayloadItems
+     */
+    departmentName?: string;
+    /**
+     * International Standard Book Number
+     * @type {string}
+     * @memberof InlineResponse200PayloadItems
+     */
+    isbn?: string;
+    /**
+     * A seller-specified, alphanumeric string uniquely identifying the product name
+     * @type {string}
+     * @memberof InlineResponse200PayloadItems
+     */
+    productName?: string;
+    /**
+     * if the item can be shipped in two days
+     * @type {number}
+     * @memberof InlineResponse200PayloadItems
+     */
+    isTwoDayEligible?: number;
+    /**
+     * Specifies the item identifier generated by Walmart
+     * @type {string}
+     * @memberof InlineResponse200PayloadItems
+     */
+    itemId?: string;
+    /**
+     * Total number of item stored by seller
+     * @type {number}
+     * @memberof InlineResponse200PayloadItems
+     */
+    totalOffers?: number;
+    /**
+     * International Standard Serial Number
+     * @type {string}
+     * @memberof InlineResponse200PayloadItems
+     */
+    issn?: string;
+    /**
+     * if seller is selling this item
+     * @type {number}
+     * @memberof InlineResponse200PayloadItems
+     */
+    existsForSeller?: number;
+    /**
+     * Level of trending for this item
+     * @type {number}
+     * @memberof InlineResponse200PayloadItems
+     */
+    rank?: number;
+    /**
+     * Specifies the item brand
+     * @type {string}
+     * @memberof InlineResponse200PayloadItems
+     */
+    brand?: string;
+    /**
+     * The superDepartmentName this item belongs to
+     * @type {string}
+     * @memberof InlineResponse200PayloadItems
+     */
+    superDepartmentName?: string;
+    /**
+     * The subCategoryName this item belongs to
+     * @type {string}
+     * @memberof InlineResponse200PayloadItems
+     */
+    subCategoryName?: string;
 }
 /**
  * 
@@ -1829,10 +1834,10 @@ export interface ItemDetailsForListingQualityPayload {
     productId?: string;
     /**
      * 
-     * @type {InlineResponse2003ScoreDetails}
+     * @type {InlineResponse2004ScoreDetails}
      * @memberof ItemDetailsForListingQualityPayload
      */
-    scoreDetails?: InlineResponse2003ScoreDetails;
+    scoreDetails?: InlineResponse2004ScoreDetails;
     /**
      * 
      * @type {string}
@@ -1871,10 +1876,10 @@ export interface ItemDetailsForListingQualityPayload {
     pageViews?: string;
     /**
      * 
-     * @type {InlineResponse2003Stats}
+     * @type {InlineResponse2004Stats}
      * @memberof ItemDetailsForListingQualityPayload
      */
-    stats?: InlineResponse2003Stats;
+    stats?: InlineResponse2004Stats;
     /**
      * 
      * @type {string}
@@ -1883,10 +1888,10 @@ export interface ItemDetailsForListingQualityPayload {
     imageUrL?: string;
     /**
      * 
-     * @type {InlineResponse2003QualityScore}
+     * @type {InlineResponse2004QualityScore}
      * @memberof ItemDetailsForListingQualityPayload
      */
-    qualityScore?: InlineResponse2003QualityScore;
+    qualityScore?: InlineResponse2004QualityScore;
     /**
      * 
      * @type {string}
@@ -1957,10 +1962,10 @@ export interface ItemDetailsLQResponsePayload {
     totalItems?: string;
     /**
      * 
-     * @type {Array<InlineResponse2003Payload>}
+     * @type {Array<InlineResponse2004Payload>}
      * @memberof ItemDetailsLQResponsePayload
      */
-    payload?: Array<InlineResponse2003Payload>;
+    payload?: Array<InlineResponse2004Payload>;
     /**
      * 
      * @type {string}
@@ -1982,16 +1987,16 @@ export interface ListingQualityScorePayload {
     overAllQuality?: number;
     /**
      * 
-     * @type {InlineResponse2002PayloadScore}
+     * @type {InlineResponse2003PayloadScore}
      * @memberof ListingQualityScorePayload
      */
-    score?: InlineResponse2002PayloadScore;
+    score?: InlineResponse2003PayloadScore;
     /**
      * 
-     * @type {InlineResponse2002PayloadPostPurchaseQuality}
+     * @type {InlineResponse2003PayloadPostPurchaseQuality}
      * @memberof ListingQualityScorePayload
      */
-    postPurchaseQuality?: InlineResponse2002PayloadPostPurchaseQuality;
+    postPurchaseQuality?: InlineResponse2003PayloadPostPurchaseQuality;
 }
 /**
  * 
@@ -2063,22 +2068,22 @@ export interface Offer {
     issueCount?: number;
     /**
      * 
-     * @type {InlineResponse2001Price}
+     * @type {InlineResponse2002Price}
      * @memberof Offer
      */
-    price?: InlineResponse2001Price;
+    price?: InlineResponse2002Price;
     /**
      * 
-     * @type {InlineResponse2003ScoreDetailsOfferShippingSpeed}
+     * @type {InlineResponse2004ScoreDetailsOfferShippingSpeed}
      * @memberof Offer
      */
-    shippingSpeed?: InlineResponse2003ScoreDetailsOfferShippingSpeed;
+    shippingSpeed?: InlineResponse2004ScoreDetailsOfferShippingSpeed;
     /**
      * 
-     * @type {InlineResponse2003ScoreDetailsOfferPublishAndTransactable}
+     * @type {InlineResponse2004ScoreDetailsOfferPublishAndTransactable}
      * @memberof Offer
      */
-    publishAndTransactable?: InlineResponse2003ScoreDetailsOfferPublishAndTransactable;
+    publishAndTransactable?: InlineResponse2004ScoreDetailsOfferPublishAndTransactable;
 }
 /**
  * 
@@ -2138,10 +2143,10 @@ export interface Payload {
 export interface PostPurchase {
     /**
      * 
-     * @type {InlineResponse2003ScoreDetailsPostPurchaseCancellations}
+     * @type {InlineResponse2004ScoreDetailsPostPurchaseCancellations}
      * @memberof PostPurchase
      */
-    cancellations?: InlineResponse2003ScoreDetailsPostPurchaseCancellations;
+    cancellations?: InlineResponse2004ScoreDetailsPostPurchaseCancellations;
     /**
      * 
      * @type {object}
@@ -2156,10 +2161,10 @@ export interface PostPurchase {
     issueCount?: string;
     /**
      * 
-     * @type {InlineResponse2003ScoreDetailsPostPurchaseCancellations}
+     * @type {InlineResponse2004ScoreDetailsPostPurchaseCancellations}
      * @memberof PostPurchase
      */
-    otd?: InlineResponse2003ScoreDetailsPostPurchaseCancellations;
+    otd?: InlineResponse2004ScoreDetailsPostPurchaseCancellations;
 }
 /**
  * Post Purchase Quality
@@ -2273,25 +2278,25 @@ export interface ProSellerResponse {
     badgeStatus?: string;
     /**
      * 
-     * @type {InlineResponse2005MeetsCriteria}
+     * @type {InlineResponse2006MeetsCriteria}
      * @memberof ProSellerResponse
      */
-    meetsCriteria?: InlineResponse2005MeetsCriteria;
+    meetsCriteria?: InlineResponse2006MeetsCriteria;
     /**
      * 
-     * @type {InlineResponse2005CriteriaData}
+     * @type {InlineResponse2006CriteriaData}
      * @memberof ProSellerResponse
      */
-    criteriaData?: InlineResponse2005CriteriaData;
+    criteriaData?: InlineResponse2006CriteriaData;
     /**
      * 
-     * @type {InlineResponse2005Recommendations}
+     * @type {InlineResponse2006Recommendations}
      * @memberof ProSellerResponse
      */
-    recommendations?: InlineResponse2005Recommendations;
+    recommendations?: InlineResponse2006Recommendations;
 }
 /**
- * 
+ * productType is only applicable for categories
  * @export
  * @interface ProductType
  */
@@ -2301,13 +2306,13 @@ export interface ProductType {
      * @type {string}
      * @memberof ProductType
      */
-    productTypeName?: string;
+    name?: string;
     /**
      * 
      * @type {number}
      * @memberof ProductType
      */
-    offerCount?: number;
+    count?: number;
 }
 /**
  * 
@@ -2335,10 +2340,10 @@ export interface PublishAndTransactable {
     maxIssue?: number;
     /**
      * 
-     * @type {Array<InlineResponse2003ScoreDetailsOfferPublishAndTransactableIssues>}
+     * @type {Array<InlineResponse2004ScoreDetailsOfferPublishAndTransactableIssues>}
      * @memberof PublishAndTransactable
      */
-    issues?: Array<InlineResponse2003ScoreDetailsOfferPublishAndTransactableIssues>;
+    issues?: Array<InlineResponse2004ScoreDetailsOfferPublishAndTransactableIssues>;
     /**
      * 
      * @type {number}
@@ -2360,10 +2365,10 @@ export interface QualityScore {
     score?: number;
     /**
      * 
-     * @type {Array<InlineResponse2003QualityScoreValues>}
+     * @type {Array<InlineResponse2004QualityScoreValues>}
      * @memberof QualityScore
      */
-    values?: Array<InlineResponse2003QualityScoreValues>;
+    values?: Array<InlineResponse2004QualityScoreValues>;
 }
 /**
  * 
@@ -2472,28 +2477,28 @@ export interface Score {
 export interface ScoreDetails {
     /**
      * 
-     * @type {InlineResponse2003ScoreDetailsOffer}
+     * @type {InlineResponse2004ScoreDetailsOffer}
      * @memberof ScoreDetails
      */
-    offer?: InlineResponse2003ScoreDetailsOffer;
+    offer?: InlineResponse2004ScoreDetailsOffer;
     /**
      * 
-     * @type {InlineResponse2003ScoreDetailsRatingReviews}
+     * @type {InlineResponse2004ScoreDetailsRatingReviews}
      * @memberof ScoreDetails
      */
-    ratingReviews?: InlineResponse2003ScoreDetailsRatingReviews;
+    ratingReviews?: InlineResponse2004ScoreDetailsRatingReviews;
     /**
      * 
-     * @type {InlineResponse2003ScoreDetailsPostPurchase}
+     * @type {InlineResponse2004ScoreDetailsPostPurchase}
      * @memberof ScoreDetails
      */
-    postPurchase?: InlineResponse2003ScoreDetailsPostPurchase;
+    postPurchase?: InlineResponse2004ScoreDetailsPostPurchase;
     /**
      * 
-     * @type {InlineResponse2003ScoreDetailsContentAndDiscoverability}
+     * @type {InlineResponse2004ScoreDetailsContentAndDiscoverability}
      * @memberof ScoreDetails
      */
-    contentAndDiscoverability?: InlineResponse2003ScoreDetailsContentAndDiscoverability;
+    contentAndDiscoverability?: InlineResponse2004ScoreDetailsContentAndDiscoverability;
 }
 /**
  * 
@@ -2534,10 +2539,10 @@ export interface ShippingSpeed {
 export interface Stats {
     /**
      * 
-     * @type {InlineResponse2003StatsGmv}
+     * @type {InlineResponse2004StatsGmv}
      * @memberof Stats
      */
-    gmv?: InlineResponse2003StatsGmv;
+    gmv?: InlineResponse2004StatsGmv;
     /**
      * 
      * @type {string}
@@ -2674,7 +2679,7 @@ export interface TrendingItem {
  */
 export interface V3InsightsItemsListingQualityItemsFilters {
     /**
-     * | Attribute | Description | Data Type | --- | ----------- | ------- | contentDiscoverabilityPercentage | Item\'s content and discoverability score expressed as a percentage. | string | | qualityScorePercentage | Item\'s overall Listing Quality score, rated as a percentage. | string | | offerPercentage | Item\'s offer score, based on: item price, shipping price and speed, and in-stock rate.| string | | ratingReviewsPercentage | Rating and reviews score, as a percentage. | string | | viewTrendingItems | Indicates to return details for trending items that have non-zero page views. Acceptable values are \"true\" if pageView > 0, or \"false\" if pageView >= 0. | string | | viewPostPurchaseItems | Show items with post-purchase quality issues. If item has post-purchase value >= 1, it filters all items greater or equal based on post purchase value. | string | | wfsFlag | Show WFS-eligible items. Value of this parameter can be true or false. | string | | categoryName | Item\'s category name. | string | | hasIssues | Provides a count of item with issues. | integer | | productType | Product type to classify the item (e.g. Pants). | string| | attributeList | List of all available filter attributes. | string |
+     * | Attribute | Description | Data Type | --- | ----------- | ------- | contentDiscoverabilityPercentage | Item\'s content and discoverability score expressed as a percentage. | string | | qualityScorePercentage | Item\'s overall Listing Quality score, rated as a percentage. | string | | offerPercentage | Item\'s offer score, based on: item price, shipping price and speed, and in-stock rate.| string | | ratingReviewsPercentage | Rating and reviews score, as a percentage. | string | | viewTrendingItems | Indicates to return details for trending items that have non-zero page views. Acceptable values are \"true\" if pageView > 0, or \"false\" if pageView >= 0. | string | | viewPostPurchaseItems | Show items with post-purchase quality issues. If item has post-purchase value >= 1, it filters all items greater or equal based on post purchase value. | string | | wfsFlag | Show WFS-eligible items. Value of this parameter can be true or false. | string | | categoryName | Item\'s category name. | string | | hasIssues | Provides a count of item with issues. | integer | | productType | Product type to classify the item (e.g. Pants). | string| | attributeList | List of all available filter attributes. | string | | productTypes | List of all available product. | List<String> | | brandList | List of all available brand. | List<String> | | oos | Filter using out of stock offer based on days. Min value = 0, Max Value = 7. | integer | | fastAndFreeShipping | Possible values are 1 for offers eligible for free shipping and 0 for offers not eligible for free shipping. No value shows all the offers. | integer | | priceMeetBeatFlag | Possible values are -1 for no match, 0 for lose, 1 for meets and 2 for beats. No value shows all the offers. | integer |
      * @type {string}
      * @memberof V3InsightsItemsListingQualityItemsFilters
      */
@@ -2708,7 +2713,12 @@ export enum V3InsightsItemsListingQualityItemsFiltersFieldEnum {
     CategoryName = 'categoryName',
     HasIssues = 'hasIssues',
     ProductType = 'productType',
-    AttributeList = 'attributeList'
+    AttributeList = 'attributeList',
+    ProductTypes = 'productTypes',
+    BrandList = 'brandList',
+    Oos = 'oos',
+    FastAndFreeShipping = 'fastAndFreeShipping',
+    PriceMeetBeatFlag = 'priceMeetBeatFlag'
 }
 /**
     * @export
@@ -2782,20 +2792,23 @@ export interface Value {
 export const InsightApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * Get a list of all item categories that have items with listing quality issues.
-         * @summary Categories with Listing Quality Issues
+         * Get a list of all item categories that have items with listing quality issues or brands for a seller.
+         * @summary Item count with listing quality issues
          * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
          * @param {boolean} [viewTrendingItems] Specify whether or not to include seller\&#39;s items that are trending in the Listing Quality Score.
-         * @param {string} [wfsFlag] Specify whether or not to include WFS-eligible items in the overall Listing Quality Score.
+         * @param {boolean} [wfsFlag] Specify whether or not to include WFS-eligible items in the overall Listing Quality Score.
          * @param {number} [hasIssue] Specify whether or not to include items that have issues in the Listing Quality Score.
+         * @param {'brand' | 'category'} [type] Specify whether to get item count by brand or category. Category is the default value when no type is specified.
+         * @param {number} [limit] Specify number of items to return. The value is defaulted to 100 and the maximum value is 1000.
+         * @param {number} [offset] Specify the offset of item list to be returned.
          * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCategoriesList: async (authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, viewTrendingItems?: boolean, wfsFlag?: string, hasIssue?: number, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
+        getCategoriesList: async (authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, viewTrendingItems?: boolean, wfsFlag?: boolean, hasIssue?: number, type?: 'brand' | 'category', limit?: number, offset?: number, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'authorization' is not null or undefined
             assertParamExists('getCategoriesList', 'authorization', authorization)
             // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
@@ -2804,7 +2817,7 @@ export const InsightApiAxiosParamCreator = function (configuration?: Configurati
             assertParamExists('getCategoriesList', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID)
             // verify required parameter 'wMSVCNAME' is not null or undefined
             assertParamExists('getCategoriesList', 'wMSVCNAME', wMSVCNAME)
-            const localVarPath = `/v3/insights/items/listingQuality/categories`;
+            const localVarPath = `/v3/insights/items/listingQuality/count`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -2830,6 +2843,18 @@ export const InsightApiAxiosParamCreator = function (configuration?: Configurati
 
             if (hasIssue !== undefined) {
                 localVarQueryParameter['hasIssue'] = hasIssue;
+            }
+
+            if (type !== undefined) {
+                localVarQueryParameter['type'] = type;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (offset !== undefined) {
+                localVarQueryParameter['offset'] = offset;
             }
 
             if (authorization !== undefined && authorization !== null) {
@@ -3368,21 +3393,24 @@ export const InsightApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = InsightApiAxiosParamCreator(configuration)
     return {
         /**
-         * Get a list of all item categories that have items with listing quality issues.
-         * @summary Categories with Listing Quality Issues
+         * Get a list of all item categories that have items with listing quality issues or brands for a seller.
+         * @summary Item count with listing quality issues
          * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
          * @param {boolean} [viewTrendingItems] Specify whether or not to include seller\&#39;s items that are trending in the Listing Quality Score.
-         * @param {string} [wfsFlag] Specify whether or not to include WFS-eligible items in the overall Listing Quality Score.
+         * @param {boolean} [wfsFlag] Specify whether or not to include WFS-eligible items in the overall Listing Quality Score.
          * @param {number} [hasIssue] Specify whether or not to include items that have issues in the Listing Quality Score.
+         * @param {'brand' | 'category'} [type] Specify whether to get item count by brand or category. Category is the default value when no type is specified.
+         * @param {number} [limit] Specify number of items to return. The value is defaulted to 100 and the maximum value is 1000.
+         * @param {number} [offset] Specify the offset of item list to be returned.
          * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getCategoriesList(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, viewTrendingItems?: boolean, wfsFlag?: string, hasIssue?: number, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2004>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getCategoriesList(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, viewTrendingItems, wfsFlag, hasIssue, wMCONSUMERCHANNELTYPE, options);
+        async getCategoriesList(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, viewTrendingItems?: boolean, wfsFlag?: boolean, hasIssue?: number, type?: 'brand' | 'category', limit?: number, offset?: number, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2005>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getCategoriesList(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, viewTrendingItems, wfsFlag, hasIssue, type, limit, offset, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -3398,7 +3426,7 @@ export const InsightApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getListingQualityScore(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, viewTrendingItems?: boolean, wfsFlag?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2002>> {
+        async getListingQualityScore(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, viewTrendingItems?: boolean, wfsFlag?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2003>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getListingQualityScore(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, viewTrendingItems, wfsFlag, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -3413,7 +3441,7 @@ export const InsightApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getProSellerBadgeInfo(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2005>> {
+        async getProSellerBadgeInfo(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2006>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getProSellerBadgeInfo(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -3433,7 +3461,7 @@ export const InsightApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getTrendingResult(departmentId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, categoryId?: string, limit?: string, offset?: string, timeFrame?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2006>> {
+        async getTrendingResult(departmentId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, categoryId?: string, limit?: string, offset?: string, timeFrame?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getTrendingResult(departmentId, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, categoryId, limit, offset, timeFrame, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -3449,7 +3477,7 @@ export const InsightApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getUnpublishedItemCount(fromDate: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
+        async getUnpublishedItemCount(fromDate: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getUnpublishedItemCount(fromDate, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -3470,7 +3498,7 @@ export const InsightApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getUnpublishedItems(fromDate: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, unpublishedReasonCode?: string, limit?: string, offerLifecycleStatus?: string, marketTrending?: string, itemsWithInventory?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
+        async getUnpublishedItems(fromDate: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, unpublishedReasonCode?: string, limit?: string, offerLifecycleStatus?: string, marketTrending?: string, itemsWithInventory?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2002>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getUnpublishedItems(fromDate, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, unpublishedReasonCode, limit, offerLifecycleStatus, marketTrending, itemsWithInventory, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -3488,7 +3516,7 @@ export const InsightApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async itemsDetailsForListing(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, limit?: string, nextCursor?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2003>> {
+        async itemsDetailsForListing(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, limit?: string, nextCursor?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2004>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.itemsDetailsForListing(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject, limit, nextCursor, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -3503,21 +3531,24 @@ export const InsightApiFactory = function (configuration?: Configuration, basePa
     const localVarFp = InsightApiFp(configuration)
     return {
         /**
-         * Get a list of all item categories that have items with listing quality issues.
-         * @summary Categories with Listing Quality Issues
+         * Get a list of all item categories that have items with listing quality issues or brands for a seller.
+         * @summary Item count with listing quality issues
          * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
          * @param {boolean} [viewTrendingItems] Specify whether or not to include seller\&#39;s items that are trending in the Listing Quality Score.
-         * @param {string} [wfsFlag] Specify whether or not to include WFS-eligible items in the overall Listing Quality Score.
+         * @param {boolean} [wfsFlag] Specify whether or not to include WFS-eligible items in the overall Listing Quality Score.
          * @param {number} [hasIssue] Specify whether or not to include items that have issues in the Listing Quality Score.
+         * @param {'brand' | 'category'} [type] Specify whether to get item count by brand or category. Category is the default value when no type is specified.
+         * @param {number} [limit] Specify number of items to return. The value is defaulted to 100 and the maximum value is 1000.
+         * @param {number} [offset] Specify the offset of item list to be returned.
          * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCategoriesList(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, viewTrendingItems?: boolean, wfsFlag?: string, hasIssue?: number, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2004> {
-            return localVarFp.getCategoriesList(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, viewTrendingItems, wfsFlag, hasIssue, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        getCategoriesList(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, viewTrendingItems?: boolean, wfsFlag?: boolean, hasIssue?: number, type?: 'brand' | 'category', limit?: number, offset?: number, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2005> {
+            return localVarFp.getCategoriesList(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, viewTrendingItems, wfsFlag, hasIssue, type, limit, offset, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
          * Get the total Listing Quality Score for a seller\'s entire item catalog.
@@ -3532,7 +3563,7 @@ export const InsightApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getListingQualityScore(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, viewTrendingItems?: boolean, wfsFlag?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2002> {
+        getListingQualityScore(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, viewTrendingItems?: boolean, wfsFlag?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2003> {
             return localVarFp.getListingQualityScore(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, viewTrendingItems, wfsFlag, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
@@ -3546,7 +3577,7 @@ export const InsightApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getProSellerBadgeInfo(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2005> {
+        getProSellerBadgeInfo(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2006> {
             return localVarFp.getProSellerBadgeInfo(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
@@ -3565,7 +3596,7 @@ export const InsightApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getTrendingResult(departmentId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, categoryId?: string, limit?: string, offset?: string, timeFrame?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2006> {
+        getTrendingResult(departmentId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, categoryId?: string, limit?: string, offset?: string, timeFrame?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse200> {
             return localVarFp.getTrendingResult(departmentId, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, categoryId, limit, offset, timeFrame, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
@@ -3580,7 +3611,7 @@ export const InsightApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getUnpublishedItemCount(fromDate: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse200> {
+        getUnpublishedItemCount(fromDate: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2001> {
             return localVarFp.getUnpublishedItemCount(fromDate, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
@@ -3600,7 +3631,7 @@ export const InsightApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getUnpublishedItems(fromDate: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, unpublishedReasonCode?: string, limit?: string, offerLifecycleStatus?: string, marketTrending?: string, itemsWithInventory?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2001> {
+        getUnpublishedItems(fromDate: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, unpublishedReasonCode?: string, limit?: string, offerLifecycleStatus?: string, marketTrending?: string, itemsWithInventory?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2002> {
             return localVarFp.getUnpublishedItems(fromDate, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, unpublishedReasonCode, limit, offerLifecycleStatus, marketTrending, itemsWithInventory, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
@@ -3617,7 +3648,7 @@ export const InsightApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        itemsDetailsForListing(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, limit?: string, nextCursor?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2003> {
+        itemsDetailsForListing(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, limit?: string, nextCursor?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2004> {
             return localVarFp.itemsDetailsForListing(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject, limit, nextCursor, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
     };
@@ -3666,10 +3697,10 @@ export interface InsightApiGetCategoriesListRequest {
 
     /**
      * Specify whether or not to include WFS-eligible items in the overall Listing Quality Score.
-     * @type {string}
+     * @type {boolean}
      * @memberof InsightApiGetCategoriesList
      */
-    readonly wfsFlag?: string
+    readonly wfsFlag?: boolean
 
     /**
      * Specify whether or not to include items that have issues in the Listing Quality Score.
@@ -3677,6 +3708,27 @@ export interface InsightApiGetCategoriesListRequest {
      * @memberof InsightApiGetCategoriesList
      */
     readonly hasIssue?: number
+
+    /**
+     * Specify whether to get item count by brand or category. Category is the default value when no type is specified.
+     * @type {'brand' | 'category'}
+     * @memberof InsightApiGetCategoriesList
+     */
+    readonly type?: 'brand' | 'category'
+
+    /**
+     * Specify number of items to return. The value is defaulted to 100 and the maximum value is 1000.
+     * @type {number}
+     * @memberof InsightApiGetCategoriesList
+     */
+    readonly limit?: number
+
+    /**
+     * Specify the offset of item list to be returned.
+     * @type {number}
+     * @memberof InsightApiGetCategoriesList
+     */
+    readonly offset?: number
 
     /**
      * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
@@ -4065,15 +4117,15 @@ export interface InsightApiItemsDetailsForListingRequest {
  */
 export class InsightApi extends BaseAPI {
     /**
-     * Get a list of all item categories that have items with listing quality issues.
-     * @summary Categories with Listing Quality Issues
+     * Get a list of all item categories that have items with listing quality issues or brands for a seller.
+     * @summary Item count with listing quality issues
      * @param {InsightApiGetCategoriesListRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InsightApi
      */
     public getCategoriesList(requestParameters: InsightApiGetCategoriesListRequest, options?: any) {
-        return InsightApiFp(this.configuration).getCategoriesList(requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.viewTrendingItems, requestParameters.wfsFlag, requestParameters.hasIssue, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+        return InsightApiFp(this.configuration).getCategoriesList(requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.viewTrendingItems, requestParameters.wfsFlag, requestParameters.hasIssue, requestParameters.type, requestParameters.limit, requestParameters.offset, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

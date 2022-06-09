@@ -48,16 +48,16 @@ export interface ActivateDeactivateRuleInfo {
 export interface ActivateRuleRequest {
     /**
      * 
-     * @type {V3RulesActionsRuleHeader}
+     * @type {V3RulesInactivateRuleHeader}
      * @memberof ActivateRuleRequest
      */
-    ruleHeader?: V3RulesActionsRuleHeader;
+    ruleHeader?: V3RulesInactivateRuleHeader;
     /**
      * 
-     * @type {Array<V3RulesActivateRules>}
+     * @type {Array<V3RulesInactivateRules>}
      * @memberof ActivateRuleRequest
      */
-    rules?: Array<V3RulesActivateRules>;
+    rules?: Array<V3RulesInactivateRules>;
 }
 /**
  * 
@@ -86,10 +86,10 @@ export interface ActivateRuleResponse {
 export interface AreaEntity {
     /**
      * states.
-     * @type {Array<InlineResponse20010PayloadStates>}
+     * @type {Array<InlineResponse2003PayloadStates>}
      * @memberof AreaEntity
      */
-    states?: Array<InlineResponse20010PayloadStates>;
+    states?: Array<InlineResponse2003PayloadStates>;
     /**
      * regionCode
      * @type {string}
@@ -117,10 +117,10 @@ export interface CategoryInfo {
     category?: string;
     /**
      * subCategory
-     * @type {Array<InlineResponse2002Subcategory>}
+     * @type {Array<InlineResponse2009Subcategory>}
      * @memberof CategoryInfo
      */
-    subcategory?: Array<InlineResponse2002Subcategory>;
+    subcategory?: Array<InlineResponse2009Subcategory>;
 }
 /**
  * 
@@ -149,10 +149,10 @@ export interface ChangeAssortmentResponse {
     status?: string;
     /**
      * 
-     * @type {InlineResponse2003Payload}
+     * @type {InlineResponse20010Payload}
      * @memberof ChangeAssortmentResponse
      */
-    payload?: InlineResponse2003Payload;
+    payload?: InlineResponse20010Payload;
 }
 /**
  * Seller creates conditions while defining the custom rule assortment.There are three condition which a seller can use : subCategories, price, weight.
@@ -187,10 +187,10 @@ export interface Condition {
 export interface CreateOverrideExceptionRequest {
     /**
      * 
-     * @type {V3RulesActionsRuleHeader}
+     * @type {V3RulesInactivateRuleHeader}
      * @memberof CreateOverrideExceptionRequest
      */
-    ruleHeader?: V3RulesActionsRuleHeader;
+    ruleHeader?: V3RulesInactivateRuleHeader;
     /**
      * 
      * @type {V3RulesExceptionsRules}
@@ -225,10 +225,10 @@ export interface CreateOverrideExceptionResponse {
 export interface CreateRuleRequest {
     /**
      * 
-     * @type {V3RulesActionsRuleHeader}
+     * @type {V3RulesInactivateRuleHeader}
      * @memberof CreateRuleRequest
      */
-    ruleHeader?: V3RulesActionsRuleHeader;
+    ruleHeader?: V3RulesInactivateRuleHeader;
     /**
      * 
      * @type {V3RulesCreateRules}
@@ -263,10 +263,10 @@ export interface CreateRuleResponse {
 export interface DeleteExceptionRequest {
     /**
      * 
-     * @type {V3RulesActionsRuleHeader}
+     * @type {V3RulesInactivateRuleHeader}
      * @memberof DeleteExceptionRequest
      */
-    ruleHeader?: V3RulesActionsRuleHeader;
+    ruleHeader?: V3RulesInactivateRuleHeader;
     /**
      * 
      * @type {V3RulesExceptionsRules}
@@ -333,10 +333,10 @@ export interface ExceptionInfo {
 export interface GetAllAreasPayload {
     /**
      * 
-     * @type {Array<InlineResponse20010PayloadEntities>}
+     * @type {Array<InlineResponse2003PayloadEntities>}
      * @memberof GetAllAreasPayload
      */
-    entities?: Array<InlineResponse20010PayloadEntities>;
+    entities?: Array<InlineResponse2003PayloadEntities>;
 }
 /**
  * 
@@ -352,10 +352,10 @@ export interface GetAllAreasResponse {
     status?: string;
     /**
      * 
-     * @type {InlineResponse20010Payload}
+     * @type {InlineResponse2003Payload}
      * @memberof GetAllAreasResponse
      */
-    payload?: InlineResponse20010Payload;
+    payload?: InlineResponse2003Payload;
 }
 /**
  * 
@@ -384,10 +384,10 @@ export interface GetAllExceptionsResponse {
 export interface GetAllRulesResponse {
     /**
      * 
-     * @type {Array<InlineResponse2001Rules>}
+     * @type {Array<InlineResponse2005Rules>}
      * @memberof GetAllRulesResponse
      */
-    rules?: Array<InlineResponse2001Rules>;
+    rules?: Array<InlineResponse2005Rules>;
     /**
      * status
      * @type {string}
@@ -409,10 +409,10 @@ export interface GetAllSubCategoriesResponse {
     status?: string;
     /**
      * 
-     * @type {Array<InlineResponse2002Payload>}
+     * @type {Array<InlineResponse2009Payload>}
      * @memberof GetAllSubCategoriesResponse
      */
-    payload?: Array<InlineResponse2002Payload>;
+    payload?: Array<InlineResponse2009Payload>;
 }
 /**
  * 
@@ -447,16 +447,16 @@ export interface GetSimulationCountResponse {
 export interface InactivateRuleRequest {
     /**
      * 
-     * @type {V3RulesActionsRuleHeader}
+     * @type {V3RulesInactivateRuleHeader}
      * @memberof InactivateRuleRequest
      */
-    ruleHeader?: V3RulesActionsRuleHeader;
+    ruleHeader?: V3RulesInactivateRuleHeader;
     /**
      * 
-     * @type {Array<V3RulesActivateRules>}
+     * @type {Array<V3RulesInactivateRules>}
      * @memberof InactivateRuleRequest
      */
-    rules?: Array<V3RulesActivateRules>;
+    rules?: Array<V3RulesInactivateRules>;
 }
 /**
  * 
@@ -485,16 +485,16 @@ export interface InactivateRuleResponse {
 export interface InlineObject {
     /**
      * 
-     * @type {V3RulesActionsRuleHeader}
+     * @type {V3RulesInactivateRuleHeader}
      * @memberof InlineObject
      */
-    ruleHeader?: V3RulesActionsRuleHeader;
+    ruleHeader?: V3RulesInactivateRuleHeader;
     /**
      * 
-     * @type {V3RulesActionsRules}
+     * @type {Array<V3RulesInactivateRules>}
      * @memberof InlineObject
      */
-    rules?: V3RulesActionsRules;
+    rules?: Array<V3RulesInactivateRules>;
 }
 /**
  * 
@@ -504,16 +504,16 @@ export interface InlineObject {
 export interface InlineObject1 {
     /**
      * 
-     * @type {V3RulesActionsRuleHeader}
+     * @type {V3RulesInactivateRuleHeader}
      * @memberof InlineObject1
      */
-    ruleHeader?: V3RulesActionsRuleHeader;
+    ruleHeader?: V3RulesInactivateRuleHeader;
     /**
      * 
-     * @type {V3RulesCreateRules}
+     * @type {V3RulesExceptionsRules}
      * @memberof InlineObject1
      */
-    rules?: V3RulesCreateRules;
+    rules?: V3RulesExceptionsRules;
 }
 /**
  * 
@@ -523,16 +523,16 @@ export interface InlineObject1 {
 export interface InlineObject2 {
     /**
      * 
-     * @type {V3RulesActionsRuleHeader}
+     * @type {V3RulesInactivateRuleHeader}
      * @memberof InlineObject2
      */
-    ruleHeader?: V3RulesActionsRuleHeader;
+    ruleHeader?: V3RulesInactivateRuleHeader;
     /**
      * 
-     * @type {Array<V3RulesRules>}
+     * @type {V3RulesExceptionsRules}
      * @memberof InlineObject2
      */
-    rules?: Array<V3RulesRules>;
+    rules?: V3RulesExceptionsRules;
 }
 /**
  * 
@@ -542,16 +542,16 @@ export interface InlineObject2 {
 export interface InlineObject3 {
     /**
      * 
-     * @type {V3RulesActionsRuleHeader}
+     * @type {V3RulesInactivateRuleHeader}
      * @memberof InlineObject3
      */
-    ruleHeader?: V3RulesActionsRuleHeader;
+    ruleHeader?: V3RulesInactivateRuleHeader;
     /**
      * 
-     * @type {Array<V3RulesActivateRules>}
+     * @type {V3RulesCreateRules}
      * @memberof InlineObject3
      */
-    rules?: Array<V3RulesActivateRules>;
+    rules?: V3RulesCreateRules;
 }
 /**
  * 
@@ -561,16 +561,16 @@ export interface InlineObject3 {
 export interface InlineObject4 {
     /**
      * 
-     * @type {V3RulesActionsRuleHeader}
+     * @type {V3RulesInactivateRuleHeader}
      * @memberof InlineObject4
      */
-    ruleHeader?: V3RulesActionsRuleHeader;
+    ruleHeader?: V3RulesInactivateRuleHeader;
     /**
      * 
-     * @type {Array<V3RulesActivateRules>}
+     * @type {Array<V3RulesRules>}
      * @memberof InlineObject4
      */
-    rules?: Array<V3RulesActivateRules>;
+    rules?: Array<V3RulesRules>;
 }
 /**
  * 
@@ -580,16 +580,16 @@ export interface InlineObject4 {
 export interface InlineObject5 {
     /**
      * 
-     * @type {V3RulesActionsRuleHeader}
+     * @type {V3RulesInactivateRuleHeader}
      * @memberof InlineObject5
      */
-    ruleHeader?: V3RulesActionsRuleHeader;
+    ruleHeader?: V3RulesInactivateRuleHeader;
     /**
      * 
-     * @type {V3RulesExceptionsRules}
+     * @type {Array<V3RulesInactivateRules>}
      * @memberof InlineObject5
      */
-    rules?: V3RulesExceptionsRules;
+    rules?: Array<V3RulesInactivateRules>;
 }
 /**
  * 
@@ -599,16 +599,16 @@ export interface InlineObject5 {
 export interface InlineObject6 {
     /**
      * 
-     * @type {V3RulesActionsRuleHeader}
+     * @type {V3RulesInactivateRuleHeader}
      * @memberof InlineObject6
      */
-    ruleHeader?: V3RulesActionsRuleHeader;
+    ruleHeader?: V3RulesInactivateRuleHeader;
     /**
      * 
-     * @type {V3RulesExceptionsRules}
+     * @type {V3RulesActionsRules}
      * @memberof InlineObject6
      */
-    rules?: V3RulesExceptionsRules;
+    rules?: V3RulesActionsRules;
 }
 /**
  * 
@@ -617,23 +617,17 @@ export interface InlineObject6 {
  */
 export interface InlineResponse200 {
     /**
-     * Unique identifier of the rule created for custom rule assortment.
+     * Message and status of inactivation of rule
      * @type {string}
      * @memberof InlineResponse200
      */
-    ruleId?: string;
+    message?: string;
     /**
-     * Status of the rule post the rule creation. Allowed values are Active, Inactive, Submitted.
+     * status
      * @type {string}
      * @memberof InlineResponse200
      */
-    ruleStatus?: string;
-    /**
-     * Number of items that would be set for two-day if the rule gets activated.
-     * @type {string}
-     * @memberof InlineResponse200
-     */
-    simulationCount?: string;
+    status?: string;
 }
 /**
  * 
@@ -642,13 +636,13 @@ export interface InlineResponse200 {
  */
 export interface InlineResponse2001 {
     /**
-     * 
-     * @type {Array<InlineResponse2001Rules>}
+     * A seller-provided Product ID.
+     * @type {Array<string>}
      * @memberof InlineResponse2001
      */
-    rules?: Array<InlineResponse2001Rules>;
+    skuIds?: Array<string>;
     /**
-     * status
+     * 
      * @type {string}
      * @memberof InlineResponse2001
      */
@@ -661,7 +655,7 @@ export interface InlineResponse2001 {
  */
 export interface InlineResponse20010 {
     /**
-     * Status of the rule post the rule creation.
+     * 
      * @type {string}
      * @memberof InlineResponse20010
      */
@@ -680,148 +674,11 @@ export interface InlineResponse20010 {
  */
 export interface InlineResponse20010Payload {
     /**
-     * 
-     * @type {Array<InlineResponse20010PayloadEntities>}
-     * @memberof InlineResponse20010Payload
-     */
-    entities?: Array<InlineResponse20010PayloadEntities>;
-}
-/**
- * 
- * @export
- * @interface InlineResponse20010PayloadEntities
- */
-export interface InlineResponse20010PayloadEntities {
-    /**
-     * states.
-     * @type {Array<InlineResponse20010PayloadStates>}
-     * @memberof InlineResponse20010PayloadEntities
-     */
-    states?: Array<InlineResponse20010PayloadStates>;
-    /**
-     * regionCode
-     * @type {string}
-     * @memberof InlineResponse20010PayloadEntities
-     */
-    regionCode?: string;
-    /**
-     * regionName
-     * @type {string}
-     * @memberof InlineResponse20010PayloadEntities
-     */
-    regionName?: string;
-}
-/**
- * statesubregions
- * @export
- * @interface InlineResponse20010PayloadStateSubregions
- */
-export interface InlineResponse20010PayloadStateSubregions {
-    /**
-     * stateSubregionCode
-     * @type {string}
-     * @memberof InlineResponse20010PayloadStateSubregions
-     */
-    stateSubregionCode?: string;
-    /**
-     * stateSubregionName
-     * @type {string}
-     * @memberof InlineResponse20010PayloadStateSubregions
-     */
-    stateSubregionName?: string;
-}
-/**
- * states.
- * @export
- * @interface InlineResponse20010PayloadStates
- */
-export interface InlineResponse20010PayloadStates {
-    /**
-     * statesubregions
-     * @type {Array<InlineResponse20010PayloadStateSubregions>}
-     * @memberof InlineResponse20010PayloadStates
-     */
-    stateSubregions?: Array<InlineResponse20010PayloadStateSubregions>;
-}
-/**
- * Seller creates conditions while defining the custom rule assortment.There are three condition which a seller can use : subCategories, price, weight.
- * @export
- * @interface InlineResponse2001Conditions
- */
-export interface InlineResponse2001Conditions {
-    /**
-     * Name of the rule created for custom rule assortment.
-     * @type {string}
-     * @memberof InlineResponse2001Conditions
-     */
-    name?: string;
-    /**
-     * Seller uses operator while defining conditions in the rule. Operators allowed for condition price and weight: EQUALS, GREATER_THAN, LESS_THAN,GREATER_THAN_OR_EQUALS,LESS_THAN_OR_EQUALS. and for condition subcategories : IN .
-     * @type {string}
-     * @memberof InlineResponse2001Conditions
-     */
-    operator?: string;
-    /**
-     * Values for each condition. Value can be a comma separated strings for subcategories and numerical value for price and weight.
-     * @type {string}
-     * @memberof InlineResponse2001Conditions
-     */
-    value?: string;
-}
-/**
- * 
- * @export
- * @interface InlineResponse2001Rules
- */
-export interface InlineResponse2001Rules {
-    /**
-     * Seller creates conditions while defining the custom rule assortment.There are three condition which a seller can use : subCategories, price, weight.
-     * @type {Array<InlineResponse2001Conditions>}
-     * @memberof InlineResponse2001Rules
-     */
-    conditions?: Array<InlineResponse2001Conditions>;
-    /**
-     * Description of the rule created for custom rule assortment.
-     * @type {string}
-     * @memberof InlineResponse2001Rules
-     */
-    description?: string;
-    /**
-     * Name of the rule created for custom rule assortment.
-     * @type {string}
-     * @memberof InlineResponse2001Rules
-     */
-    name?: string;
-    /**
-     * Priority of the rule created for custom rule assortment.
-     * @type {string}
-     * @memberof InlineResponse2001Rules
-     */
-    priority?: string;
-    /**
      * Unique identifier of the rule created for custom rule assortment.
      * @type {string}
-     * @memberof InlineResponse2001Rules
+     * @memberof InlineResponse20010Payload
      */
-    ruleId?: string;
-    /**
-     * Status of the rule post the rule creation. Allowed values are Active, Inactive, Submitted.
-     * @type {string}
-     * @memberof InlineResponse2001Rules
-     */
-    ruleStatus?: string;
-    /**
-     * When the rule gets activated, skuProcessingStatus represents the state of all items being processed for two-day. The two values for skuProcessingStatus are Processing and Completed.
-     * @type {string}
-     * @memberof InlineResponse2001Rules
-     */
-    skuProcessingStatus?: string;
-    /**
-     * 
-     * @type {V3RulesActionsRulesActions}
-     * @memberof InlineResponse2001Rules
-     */
-    ruleAction?: V3RulesActionsRulesActions;
+    id?: string;
 }
 /**
  * 
@@ -830,55 +687,17 @@ export interface InlineResponse2001Rules {
  */
 export interface InlineResponse2002 {
     /**
-     * 
+     * A unique ID, returned from the Create Override Exception API, used for tracking a feed file
+     * @type {string}
+     * @memberof InlineResponse2002
+     */
+    feedId?: string;
+    /**
+     * status
      * @type {string}
      * @memberof InlineResponse2002
      */
     status?: string;
-    /**
-     * 
-     * @type {Array<InlineResponse2002Payload>}
-     * @memberof InlineResponse2002
-     */
-    payload?: Array<InlineResponse2002Payload>;
-}
-/**
- * 
- * @export
- * @interface InlineResponse2002Payload
- */
-export interface InlineResponse2002Payload {
-    /**
-     * category
-     * @type {string}
-     * @memberof InlineResponse2002Payload
-     */
-    category?: string;
-    /**
-     * subCategory
-     * @type {Array<InlineResponse2002Subcategory>}
-     * @memberof InlineResponse2002Payload
-     */
-    subcategory?: Array<InlineResponse2002Subcategory>;
-}
-/**
- * subCategory
- * @export
- * @interface InlineResponse2002Subcategory
- */
-export interface InlineResponse2002Subcategory {
-    /**
-     * Name of specific kind of category
-     * @type {string}
-     * @memberof InlineResponse2002Subcategory
-     */
-    subCategoryName?: string;
-    /**
-     * ID of specific kind of category
-     * @type {string}
-     * @memberof InlineResponse2002Subcategory
-     */
-    subCategoryId?: string;
 }
 /**
  * 
@@ -887,7 +706,7 @@ export interface InlineResponse2002Subcategory {
  */
 export interface InlineResponse2003 {
     /**
-     * 
+     * Status of the rule post the rule creation.
      * @type {string}
      * @memberof InlineResponse2003
      */
@@ -906,11 +725,68 @@ export interface InlineResponse2003 {
  */
 export interface InlineResponse2003Payload {
     /**
-     * Unique identifier of the rule created for custom rule assortment.
-     * @type {string}
+     * 
+     * @type {Array<InlineResponse2003PayloadEntities>}
      * @memberof InlineResponse2003Payload
      */
-    id?: string;
+    entities?: Array<InlineResponse2003PayloadEntities>;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse2003PayloadEntities
+ */
+export interface InlineResponse2003PayloadEntities {
+    /**
+     * states.
+     * @type {Array<InlineResponse2003PayloadStates>}
+     * @memberof InlineResponse2003PayloadEntities
+     */
+    states?: Array<InlineResponse2003PayloadStates>;
+    /**
+     * regionCode
+     * @type {string}
+     * @memberof InlineResponse2003PayloadEntities
+     */
+    regionCode?: string;
+    /**
+     * regionName
+     * @type {string}
+     * @memberof InlineResponse2003PayloadEntities
+     */
+    regionName?: string;
+}
+/**
+ * statesubregions
+ * @export
+ * @interface InlineResponse2003PayloadStateSubregions
+ */
+export interface InlineResponse2003PayloadStateSubregions {
+    /**
+     * stateSubregionCode
+     * @type {string}
+     * @memberof InlineResponse2003PayloadStateSubregions
+     */
+    stateSubregionCode?: string;
+    /**
+     * stateSubregionName
+     * @type {string}
+     * @memberof InlineResponse2003PayloadStateSubregions
+     */
+    stateSubregionName?: string;
+}
+/**
+ * states.
+ * @export
+ * @interface InlineResponse2003PayloadStates
+ */
+export interface InlineResponse2003PayloadStates {
+    /**
+     * statesubregions
+     * @type {Array<InlineResponse2003PayloadStateSubregions>}
+     * @memberof InlineResponse2003PayloadStates
+     */
+    stateSubregions?: Array<InlineResponse2003PayloadStateSubregions>;
 }
 /**
  * 
@@ -939,10 +815,10 @@ export interface InlineResponse2004 {
 export interface InlineResponse2004Rules {
     /**
      * Seller creates conditions while defining the custom rule assortment.There are three condition which a seller can use : subCategories, price, weight.
-     * @type {Array<InlineResponse2001Conditions>}
+     * @type {Array<V3RulesCreateRulesConditions>}
      * @memberof InlineResponse2004Rules
      */
-    conditions?: Array<InlineResponse2001Conditions>;
+    conditions?: Array<V3RulesCreateRulesConditions>;
     /**
      * Description of the rule created for custom rule assortment.
      * @type {string}
@@ -993,11 +869,11 @@ export interface InlineResponse2004Rules {
  */
 export interface InlineResponse2005 {
     /**
-     * Message and ruleId
-     * @type {string}
+     * 
+     * @type {Array<InlineResponse2005Rules>}
      * @memberof InlineResponse2005
      */
-    message?: string;
+    rules?: Array<InlineResponse2005Rules>;
     /**
      * status
      * @type {string}
@@ -1006,13 +882,113 @@ export interface InlineResponse2005 {
     status?: string;
 }
 /**
+ * Defines the two day state coverage areas.
+ * @export
+ * @interface InlineResponse2005RuleAction
+ */
+export interface InlineResponse2005RuleAction {
+    /**
+     * List of two-day regions.
+     * @type {Array<InlineResponse2005RuleActionTwoDayShippingRegions>}
+     * @memberof InlineResponse2005RuleAction
+     */
+    twoDayShippingRegions?: Array<InlineResponse2005RuleActionTwoDayShippingRegions>;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse2005RuleActionSubRegions
+ */
+export interface InlineResponse2005RuleActionSubRegions {
+    /**
+     * subRegionCode
+     * @type {string}
+     * @memberof InlineResponse2005RuleActionSubRegions
+     */
+    subRegionCode?: string;
+}
+/**
+ * List of two-day regions.
+ * @export
+ * @interface InlineResponse2005RuleActionTwoDayShippingRegions
+ */
+export interface InlineResponse2005RuleActionTwoDayShippingRegions {
+    /**
+     * regionCode
+     * @type {string}
+     * @memberof InlineResponse2005RuleActionTwoDayShippingRegions
+     */
+    regionCode?: string;
+    /**
+     * 
+     * @type {Array<InlineResponse2005RuleActionSubRegions>}
+     * @memberof InlineResponse2005RuleActionTwoDayShippingRegions
+     */
+    subRegions?: Array<InlineResponse2005RuleActionSubRegions>;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse2005Rules
+ */
+export interface InlineResponse2005Rules {
+    /**
+     * Seller creates conditions while defining the custom rule assortment.There are three condition which a seller can use : subCategories, price, weight.
+     * @type {Array<V3RulesCreateRulesConditions>}
+     * @memberof InlineResponse2005Rules
+     */
+    conditions?: Array<V3RulesCreateRulesConditions>;
+    /**
+     * Description of the rule created for custom rule assortment.
+     * @type {string}
+     * @memberof InlineResponse2005Rules
+     */
+    description?: string;
+    /**
+     * Name of the rule created for custom rule assortment.
+     * @type {string}
+     * @memberof InlineResponse2005Rules
+     */
+    name?: string;
+    /**
+     * Priority of the rule created for custom rule assortment.
+     * @type {string}
+     * @memberof InlineResponse2005Rules
+     */
+    priority?: string;
+    /**
+     * Unique identifier of the rule created for custom rule assortment.
+     * @type {string}
+     * @memberof InlineResponse2005Rules
+     */
+    ruleId?: string;
+    /**
+     * Status of the rule post the rule creation. Allowed values are Active, Inactive, Submitted.
+     * @type {string}
+     * @memberof InlineResponse2005Rules
+     */
+    ruleStatus?: string;
+    /**
+     * When the rule gets activated, skuProcessingStatus represents the state of all items being processed for two-day. The two values for skuProcessingStatus are Processing and Completed.
+     * @type {string}
+     * @memberof InlineResponse2005Rules
+     */
+    skuProcessingStatus?: string;
+    /**
+     * 
+     * @type {InlineResponse2005RuleAction}
+     * @memberof InlineResponse2005Rules
+     */
+    ruleAction?: InlineResponse2005RuleAction;
+}
+/**
  * 
  * @export
  * @interface InlineResponse2006
  */
 export interface InlineResponse2006 {
     /**
-     * Message and status of deletion
+     * Message and ruleId
      * @type {string}
      * @memberof InlineResponse2006
      */
@@ -1031,7 +1007,7 @@ export interface InlineResponse2006 {
  */
 export interface InlineResponse2007 {
     /**
-     * Message and status of inactivation of rule
+     * Message and status of deletion
      * @type {string}
      * @memberof InlineResponse2007
      */
@@ -1050,17 +1026,23 @@ export interface InlineResponse2007 {
  */
 export interface InlineResponse2008 {
     /**
-     * A seller-provided Product ID.
-     * @type {Array<string>}
-     * @memberof InlineResponse2008
-     */
-    skuIds?: Array<string>;
-    /**
-     * 
+     * Unique identifier of the rule created for custom rule assortment.
      * @type {string}
      * @memberof InlineResponse2008
      */
-    status?: string;
+    ruleId?: string;
+    /**
+     * Status of the rule post the rule creation. Allowed values are Active, Inactive, Submitted.
+     * @type {string}
+     * @memberof InlineResponse2008
+     */
+    ruleStatus?: string;
+    /**
+     * Number of items that would be set for two-day if the rule gets activated.
+     * @type {string}
+     * @memberof InlineResponse2008
+     */
+    simulationCount?: string;
 }
 /**
  * 
@@ -1069,17 +1051,55 @@ export interface InlineResponse2008 {
  */
 export interface InlineResponse2009 {
     /**
-     * A unique ID, returned from the Create Override Exception API, used for tracking a feed file
-     * @type {string}
-     * @memberof InlineResponse2009
-     */
-    feedId?: string;
-    /**
-     * status
+     * 
      * @type {string}
      * @memberof InlineResponse2009
      */
     status?: string;
+    /**
+     * 
+     * @type {Array<InlineResponse2009Payload>}
+     * @memberof InlineResponse2009
+     */
+    payload?: Array<InlineResponse2009Payload>;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse2009Payload
+ */
+export interface InlineResponse2009Payload {
+    /**
+     * category
+     * @type {string}
+     * @memberof InlineResponse2009Payload
+     */
+    category?: string;
+    /**
+     * subCategory
+     * @type {Array<InlineResponse2009Subcategory>}
+     * @memberof InlineResponse2009Payload
+     */
+    subcategory?: Array<InlineResponse2009Subcategory>;
+}
+/**
+ * subCategory
+ * @export
+ * @interface InlineResponse2009Subcategory
+ */
+export interface InlineResponse2009Subcategory {
+    /**
+     * Name of specific kind of category
+     * @type {string}
+     * @memberof InlineResponse2009Subcategory
+     */
+    subCategoryName?: string;
+    /**
+     * ID of specific kind of category
+     * @type {string}
+     * @memberof InlineResponse2009Subcategory
+     */
+    subCategoryId?: string;
 }
 /**
  * 
@@ -1102,10 +1122,10 @@ export interface OverrideItem {
 export interface RuleAction {
     /**
      * List of two-day regions.
-     * @type {Array<V3RulesActionsRulesTwoDayShippingRegions>}
+     * @type {Array<InlineResponse2005RuleActionTwoDayShippingRegions>}
      * @memberof RuleAction
      */
-    twoDayShippingRegions?: Array<V3RulesActionsRulesTwoDayShippingRegions>;
+    twoDayShippingRegions?: Array<InlineResponse2005RuleActionTwoDayShippingRegions>;
 }
 /**
  * 
@@ -1128,10 +1148,10 @@ export interface RuleHeader {
 export interface RuleInfo {
     /**
      * Seller creates conditions while defining the custom rule assortment.There are three condition which a seller can use : subCategories, price, weight.
-     * @type {Array<InlineResponse2001Conditions>}
+     * @type {Array<V3RulesCreateRulesConditions>}
      * @memberof RuleInfo
      */
-    conditions?: Array<InlineResponse2001Conditions>;
+    conditions?: Array<V3RulesCreateRulesConditions>;
     /**
      * Description of the rule created for custom rule assortment.
      * @type {string}
@@ -1170,10 +1190,10 @@ export interface RuleInfo {
     skuProcessingStatus?: string;
     /**
      * 
-     * @type {V3RulesActionsRulesActions}
+     * @type {InlineResponse2005RuleAction}
      * @memberof RuleInfo
      */
-    ruleAction?: V3RulesActionsRulesActions;
+    ruleAction?: InlineResponse2005RuleAction;
 }
 /**
  * 
@@ -1183,10 +1203,10 @@ export interface RuleInfo {
 export interface RuleRequest {
     /**
      * 
-     * @type {Array<InlineResponse2001Conditions>}
+     * @type {Array<V3RulesCreateRulesConditions>}
      * @memberof RuleRequest
      */
-    conditions?: Array<InlineResponse2001Conditions>;
+    conditions?: Array<V3RulesCreateRulesConditions>;
     /**
      * Description of the rule created for custom rule assortment.
      * @type {string}
@@ -1214,10 +1234,10 @@ export interface RuleRequest {
 export interface RuleResponse {
     /**
      * Seller creates conditions while defining the custom rule assortment.There are three condition which a seller can use : subCategories, price, weight.
-     * @type {Array<InlineResponse2001Conditions>}
+     * @type {Array<V3RulesCreateRulesConditions>}
      * @memberof RuleResponse
      */
-    conditions?: Array<InlineResponse2001Conditions>;
+    conditions?: Array<V3RulesCreateRulesConditions>;
     /**
      * Description of the rule created for custom rule assortment.
      * @type {string}
@@ -1281,10 +1301,10 @@ export interface RuleToUpdate {
     ruleStatus?: string;
     /**
      * Defines the two day state coverage areas.
-     * @type {Array<V3RulesActionsRulesActions>}
+     * @type {Array<InlineResponse2005RuleAction>}
      * @memberof RuleToUpdate
      */
-    actions?: Array<V3RulesActionsRulesActions>;
+    actions?: Array<InlineResponse2005RuleAction>;
 }
 /**
  * states.
@@ -1294,10 +1314,10 @@ export interface RuleToUpdate {
 export interface State {
     /**
      * statesubregions
-     * @type {Array<InlineResponse20010PayloadStateSubregions>}
+     * @type {Array<InlineResponse2003PayloadStateSubregions>}
      * @memberof State
      */
-    stateSubregions?: Array<InlineResponse20010PayloadStateSubregions>;
+    stateSubregions?: Array<InlineResponse2003PayloadStateSubregions>;
 }
 /**
  * statesubregions
@@ -1364,10 +1384,10 @@ export interface SubRegions {
     regionCode?: string;
     /**
      * 
-     * @type {Array<V3RulesActionsRulesSubRegions>}
+     * @type {Array<InlineResponse2005RuleActionSubRegions>}
      * @memberof SubRegions
      */
-    subRegions?: Array<V3RulesActionsRulesSubRegions>;
+    subRegions?: Array<InlineResponse2005RuleActionSubRegions>;
 }
 /**
  * 
@@ -1407,10 +1427,10 @@ export interface UpdateRuleInfo {
     priority?: string;
     /**
      * Seller creates conditions while defining the custom rule assortment.There are three condition which a seller can use : subCategories, price, weight.
-     * @type {Array<InlineResponse2001Conditions>}
+     * @type {Array<V3RulesCreateRulesConditions>}
      * @memberof UpdateRuleInfo
      */
-    conditions?: Array<InlineResponse2001Conditions>;
+    conditions?: Array<V3RulesCreateRulesConditions>;
 }
 /**
  * 
@@ -1420,10 +1440,10 @@ export interface UpdateRuleInfo {
 export interface UpdateRuleRequest {
     /**
      * 
-     * @type {V3RulesActionsRuleHeader}
+     * @type {V3RulesInactivateRuleHeader}
      * @memberof UpdateRuleRequest
      */
-    ruleHeader?: V3RulesActionsRuleHeader;
+    ruleHeader?: V3RulesInactivateRuleHeader;
     /**
      * 
      * @type {Array<V3RulesRules>}
@@ -1439,29 +1459,16 @@ export interface UpdateRuleRequest {
 export interface UpdateShippingAreaToRulesRequest {
     /**
      * 
-     * @type {V3RulesActionsRuleHeader}
+     * @type {V3RulesInactivateRuleHeader}
      * @memberof UpdateShippingAreaToRulesRequest
      */
-    ruleHeader?: V3RulesActionsRuleHeader;
+    ruleHeader?: V3RulesInactivateRuleHeader;
     /**
      * 
      * @type {V3RulesActionsRules}
      * @memberof UpdateShippingAreaToRulesRequest
      */
     rules?: V3RulesActionsRules;
-}
-/**
- * 
- * @export
- * @interface V3RulesActionsRuleHeader
- */
-export interface V3RulesActionsRuleHeader {
-    /**
-     * 
-     * @type {string}
-     * @memberof V3RulesActionsRuleHeader
-     */
-    version?: string;
 }
 /**
  * 
@@ -1483,74 +1490,10 @@ export interface V3RulesActionsRules {
     ruleStatus?: string;
     /**
      * Defines the two day state coverage areas.
-     * @type {Array<V3RulesActionsRulesActions>}
+     * @type {Array<InlineResponse2005RuleAction>}
      * @memberof V3RulesActionsRules
      */
-    actions?: Array<V3RulesActionsRulesActions>;
-}
-/**
- * Defines the two day state coverage areas.
- * @export
- * @interface V3RulesActionsRulesActions
- */
-export interface V3RulesActionsRulesActions {
-    /**
-     * List of two-day regions.
-     * @type {Array<V3RulesActionsRulesTwoDayShippingRegions>}
-     * @memberof V3RulesActionsRulesActions
-     */
-    twoDayShippingRegions?: Array<V3RulesActionsRulesTwoDayShippingRegions>;
-}
-/**
- * 
- * @export
- * @interface V3RulesActionsRulesSubRegions
- */
-export interface V3RulesActionsRulesSubRegions {
-    /**
-     * subRegionCode
-     * @type {string}
-     * @memberof V3RulesActionsRulesSubRegions
-     */
-    subRegionCode?: string;
-}
-/**
- * List of two-day regions.
- * @export
- * @interface V3RulesActionsRulesTwoDayShippingRegions
- */
-export interface V3RulesActionsRulesTwoDayShippingRegions {
-    /**
-     * regionCode
-     * @type {string}
-     * @memberof V3RulesActionsRulesTwoDayShippingRegions
-     */
-    regionCode?: string;
-    /**
-     * 
-     * @type {Array<V3RulesActionsRulesSubRegions>}
-     * @memberof V3RulesActionsRulesTwoDayShippingRegions
-     */
-    subRegions?: Array<V3RulesActionsRulesSubRegions>;
-}
-/**
- * 
- * @export
- * @interface V3RulesActivateRules
- */
-export interface V3RulesActivateRules {
-    /**
-     * Unique identifier of the rule created for custom rule assortment.
-     * @type {string}
-     * @memberof V3RulesActivateRules
-     */
-    ruleId?: string;
-    /**
-     * Status of the rule post the rule creation. Allowed values are Active, Inactive, Submitted.
-     * @type {string}
-     * @memberof V3RulesActivateRules
-     */
-    ruleStatus?: string;
+    actions?: Array<InlineResponse2005RuleAction>;
 }
 /**
  * 
@@ -1560,10 +1503,10 @@ export interface V3RulesActivateRules {
 export interface V3RulesCreateRules {
     /**
      * 
-     * @type {Array<InlineResponse2001Conditions>}
+     * @type {Array<V3RulesCreateRulesConditions>}
      * @memberof V3RulesCreateRules
      */
-    conditions?: Array<InlineResponse2001Conditions>;
+    conditions?: Array<V3RulesCreateRulesConditions>;
     /**
      * Description of the rule created for custom rule assortment.
      * @type {string}
@@ -1582,6 +1525,31 @@ export interface V3RulesCreateRules {
      * @memberof V3RulesCreateRules
      */
     priority?: string;
+}
+/**
+ * Seller creates conditions while defining the custom rule assortment.There are three condition which a seller can use : subCategories, price, weight.
+ * @export
+ * @interface V3RulesCreateRulesConditions
+ */
+export interface V3RulesCreateRulesConditions {
+    /**
+     * Name of the rule created for custom rule assortment.
+     * @type {string}
+     * @memberof V3RulesCreateRulesConditions
+     */
+    name?: string;
+    /**
+     * Seller uses operator while defining conditions in the rule. Operators allowed for condition price and weight: EQUALS, GREATER_THAN, LESS_THAN,GREATER_THAN_OR_EQUALS,LESS_THAN_OR_EQUALS. and for condition subcategories : IN .
+     * @type {string}
+     * @memberof V3RulesCreateRulesConditions
+     */
+    operator?: string;
+    /**
+     * Values for each condition. Value can be a comma separated strings for subcategories and numerical value for price and weight.
+     * @type {string}
+     * @memberof V3RulesCreateRulesConditions
+     */
+    value?: string;
 }
 /**
  * 
@@ -1608,6 +1576,38 @@ export interface V3RulesExceptionsRulesSkus {
      * @memberof V3RulesExceptionsRulesSkus
      */
     sku?: string;
+}
+/**
+ * 
+ * @export
+ * @interface V3RulesInactivateRuleHeader
+ */
+export interface V3RulesInactivateRuleHeader {
+    /**
+     * 
+     * @type {string}
+     * @memberof V3RulesInactivateRuleHeader
+     */
+    version?: string;
+}
+/**
+ * 
+ * @export
+ * @interface V3RulesInactivateRules
+ */
+export interface V3RulesInactivateRules {
+    /**
+     * Unique identifier of the rule created for custom rule assortment.
+     * @type {string}
+     * @memberof V3RulesInactivateRules
+     */
+    ruleId?: string;
+    /**
+     * Status of the rule post the rule creation. Allowed values are Active, Inactive, Submitted.
+     * @type {string}
+     * @memberof V3RulesInactivateRules
+     */
+    ruleStatus?: string;
 }
 /**
  * 
@@ -1647,10 +1647,10 @@ export interface V3RulesRules {
     priority?: string;
     /**
      * Seller creates conditions while defining the custom rule assortment.There are three condition which a seller can use : subCategories, price, weight.
-     * @type {Array<InlineResponse2001Conditions>}
+     * @type {Array<V3RulesCreateRulesConditions>}
      * @memberof V3RulesRules
      */
-    conditions?: Array<InlineResponse2001Conditions>;
+    conditions?: Array<V3RulesCreateRulesConditions>;
 }
 
 /**
@@ -1666,12 +1666,12 @@ export const RulesApiAxiosParamCreator = function (configuration?: Configuration
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
-         * @param {InlineObject3} inlineObject3 
+         * @param {InlineObject5} inlineObject5 
          * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        activateRule: async (authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject3: InlineObject3, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
+        activateRule: async (authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject5: InlineObject5, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'authorization' is not null or undefined
             assertParamExists('activateRule', 'authorization', authorization)
             // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
@@ -1680,8 +1680,8 @@ export const RulesApiAxiosParamCreator = function (configuration?: Configuration
             assertParamExists('activateRule', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID)
             // verify required parameter 'wMSVCNAME' is not null or undefined
             assertParamExists('activateRule', 'wMSVCNAME', wMSVCNAME)
-            // verify required parameter 'inlineObject3' is not null or undefined
-            assertParamExists('activateRule', 'inlineObject3', inlineObject3)
+            // verify required parameter 'inlineObject5' is not null or undefined
+            assertParamExists('activateRule', 'inlineObject5', inlineObject5)
             const localVarPath = `/v3/rules/activate`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -1725,7 +1725,7 @@ export const RulesApiAxiosParamCreator = function (configuration?: Configuration
             setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(inlineObject3, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(inlineObject5, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -1819,12 +1819,12 @@ export const RulesApiAxiosParamCreator = function (configuration?: Configuration
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
-         * @param {InlineObject1} inlineObject1 
+         * @param {InlineObject3} inlineObject3 
          * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createItemRule: async (authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject1: InlineObject1, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
+        createItemRule: async (authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject3: InlineObject3, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'authorization' is not null or undefined
             assertParamExists('createItemRule', 'authorization', authorization)
             // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
@@ -1833,8 +1833,8 @@ export const RulesApiAxiosParamCreator = function (configuration?: Configuration
             assertParamExists('createItemRule', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID)
             // verify required parameter 'wMSVCNAME' is not null or undefined
             assertParamExists('createItemRule', 'wMSVCNAME', wMSVCNAME)
-            // verify required parameter 'inlineObject1' is not null or undefined
-            assertParamExists('createItemRule', 'inlineObject1', inlineObject1)
+            // verify required parameter 'inlineObject3' is not null or undefined
+            assertParamExists('createItemRule', 'inlineObject3', inlineObject3)
             const localVarPath = `/v3/rules/create`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -1878,7 +1878,7 @@ export const RulesApiAxiosParamCreator = function (configuration?: Configuration
             setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(inlineObject1, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(inlineObject3, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -1892,12 +1892,12 @@ export const RulesApiAxiosParamCreator = function (configuration?: Configuration
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
-         * @param {InlineObject6} inlineObject6 
+         * @param {InlineObject2} inlineObject2 
          * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createOverrideExceptions: async (authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject6: InlineObject6, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
+        createOverrideExceptions: async (authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject2: InlineObject2, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'authorization' is not null or undefined
             assertParamExists('createOverrideExceptions', 'authorization', authorization)
             // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
@@ -1906,8 +1906,8 @@ export const RulesApiAxiosParamCreator = function (configuration?: Configuration
             assertParamExists('createOverrideExceptions', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID)
             // verify required parameter 'wMSVCNAME' is not null or undefined
             assertParamExists('createOverrideExceptions', 'wMSVCNAME', wMSVCNAME)
-            // verify required parameter 'inlineObject6' is not null or undefined
-            assertParamExists('createOverrideExceptions', 'inlineObject6', inlineObject6)
+            // verify required parameter 'inlineObject2' is not null or undefined
+            assertParamExists('createOverrideExceptions', 'inlineObject2', inlineObject2)
             const localVarPath = `/v3/rules/exceptions`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -1951,7 +1951,7 @@ export const RulesApiAxiosParamCreator = function (configuration?: Configuration
             setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(inlineObject6, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(inlineObject2, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -1965,12 +1965,12 @@ export const RulesApiAxiosParamCreator = function (configuration?: Configuration
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
-         * @param {InlineObject5} inlineObject5 
+         * @param {InlineObject1} inlineObject1 
          * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteExceptions: async (authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject5: InlineObject5, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
+        deleteExceptions: async (authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject1: InlineObject1, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'authorization' is not null or undefined
             assertParamExists('deleteExceptions', 'authorization', authorization)
             // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
@@ -1979,8 +1979,8 @@ export const RulesApiAxiosParamCreator = function (configuration?: Configuration
             assertParamExists('deleteExceptions', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID)
             // verify required parameter 'wMSVCNAME' is not null or undefined
             assertParamExists('deleteExceptions', 'wMSVCNAME', wMSVCNAME)
-            // verify required parameter 'inlineObject5' is not null or undefined
-            assertParamExists('deleteExceptions', 'inlineObject5', inlineObject5)
+            // verify required parameter 'inlineObject1' is not null or undefined
+            assertParamExists('deleteExceptions', 'inlineObject1', inlineObject1)
             const localVarPath = `/v3/rules/exceptions`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -2024,7 +2024,7 @@ export const RulesApiAxiosParamCreator = function (configuration?: Configuration
             setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(inlineObject5, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(inlineObject1, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -2673,12 +2673,12 @@ export const RulesApiAxiosParamCreator = function (configuration?: Configuration
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
-         * @param {InlineObject4} inlineObject4 
+         * @param {InlineObject} inlineObject 
          * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        inactivateRule: async (authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject4: InlineObject4, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
+        inactivateRule: async (authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'authorization' is not null or undefined
             assertParamExists('inactivateRule', 'authorization', authorization)
             // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
@@ -2687,9 +2687,82 @@ export const RulesApiAxiosParamCreator = function (configuration?: Configuration
             assertParamExists('inactivateRule', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID)
             // verify required parameter 'wMSVCNAME' is not null or undefined
             assertParamExists('inactivateRule', 'wMSVCNAME', wMSVCNAME)
-            // verify required parameter 'inlineObject4' is not null or undefined
-            assertParamExists('inactivateRule', 'inlineObject4', inlineObject4)
+            // verify required parameter 'inlineObject' is not null or undefined
+            assertParamExists('inactivateRule', 'inlineObject', inlineObject)
             const localVarPath = `/v3/rules/inactivate`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication basicScheme required
+            // http basic authentication required
+            setBasicAuthToObject(localVarRequestOptions, configuration)
+
+            if (authorization !== undefined && authorization !== null) {
+                localVarHeaderParameter['Authorization'] = String(authorization);
+            }
+
+            if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
+                localVarHeaderParameter['WM_SEC.ACCESS_TOKEN'] = String(wMSECACCESSTOKEN);
+            }
+
+            if (wMCONSUMERCHANNELTYPE !== undefined && wMCONSUMERCHANNELTYPE !== null) {
+                localVarHeaderParameter['WM_CONSUMER.CHANNEL.TYPE'] = String(wMCONSUMERCHANNELTYPE);
+            }
+
+            if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
+                localVarHeaderParameter['WM_QOS.CORRELATION_ID'] = String(wMQOSCORRELATIONID);
+            }
+
+            if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
+                localVarHeaderParameter['WM_SVC.NAME'] = String(wMSVCNAME);
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(inlineObject, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * This API updates a rule defined using \"create an Item rule\". You can update priority, Description, conditions and name of a rule.
+         * @summary Update rule
+         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+         * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+         * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+         * @param {string} wMSVCNAME Walmart Service Name
+         * @param {InlineObject4} inlineObject4 
+         * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateRule: async (authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject4: InlineObject4, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'authorization' is not null or undefined
+            assertParamExists('updateRule', 'authorization', authorization)
+            // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
+            assertParamExists('updateRule', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN)
+            // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
+            assertParamExists('updateRule', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID)
+            // verify required parameter 'wMSVCNAME' is not null or undefined
+            assertParamExists('updateRule', 'wMSVCNAME', wMSVCNAME)
+            // verify required parameter 'inlineObject4' is not null or undefined
+            assertParamExists('updateRule', 'inlineObject4', inlineObject4)
+            const localVarPath = `/v3/rules/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -2740,91 +2813,18 @@ export const RulesApiAxiosParamCreator = function (configuration?: Configuration
             };
         },
         /**
-         * This API updates a rule defined using \"create an Item rule\". You can update priority, Description, conditions and name of a rule.
-         * @summary Update rule
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-         * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-         * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
-         * @param {string} wMSVCNAME Walmart Service Name
-         * @param {InlineObject2} inlineObject2 
-         * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        updateRule: async (authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject2: InlineObject2, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'authorization' is not null or undefined
-            assertParamExists('updateRule', 'authorization', authorization)
-            // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
-            assertParamExists('updateRule', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN)
-            // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
-            assertParamExists('updateRule', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID)
-            // verify required parameter 'wMSVCNAME' is not null or undefined
-            assertParamExists('updateRule', 'wMSVCNAME', wMSVCNAME)
-            // verify required parameter 'inlineObject2' is not null or undefined
-            assertParamExists('updateRule', 'inlineObject2', inlineObject2)
-            const localVarPath = `/v3/rules/`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication basicScheme required
-            // http basic authentication required
-            setBasicAuthToObject(localVarRequestOptions, configuration)
-
-            if (authorization !== undefined && authorization !== null) {
-                localVarHeaderParameter['Authorization'] = String(authorization);
-            }
-
-            if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
-                localVarHeaderParameter['WM_SEC.ACCESS_TOKEN'] = String(wMSECACCESSTOKEN);
-            }
-
-            if (wMCONSUMERCHANNELTYPE !== undefined && wMCONSUMERCHANNELTYPE !== null) {
-                localVarHeaderParameter['WM_CONSUMER.CHANNEL.TYPE'] = String(wMCONSUMERCHANNELTYPE);
-            }
-
-            if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
-                localVarHeaderParameter['WM_QOS.CORRELATION_ID'] = String(wMQOSCORRELATIONID);
-            }
-
-            if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
-                localVarHeaderParameter['WM_SVC.NAME'] = String(wMSVCNAME);
-            }
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(inlineObject2, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
          * This API helps you define coverage areas for your items that are held outside of the fulfillment centers defined by your shipNode management API\'s.
          * @summary Update shipping area to rules
          * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
-         * @param {InlineObject} inlineObject 
+         * @param {InlineObject6} inlineObject6 
          * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateShippingAreaToRule: async (authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
+        updateShippingAreaToRule: async (authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject6: InlineObject6, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'authorization' is not null or undefined
             assertParamExists('updateShippingAreaToRule', 'authorization', authorization)
             // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
@@ -2833,8 +2833,8 @@ export const RulesApiAxiosParamCreator = function (configuration?: Configuration
             assertParamExists('updateShippingAreaToRule', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID)
             // verify required parameter 'wMSVCNAME' is not null or undefined
             assertParamExists('updateShippingAreaToRule', 'wMSVCNAME', wMSVCNAME)
-            // verify required parameter 'inlineObject' is not null or undefined
-            assertParamExists('updateShippingAreaToRule', 'inlineObject', inlineObject)
+            // verify required parameter 'inlineObject6' is not null or undefined
+            assertParamExists('updateShippingAreaToRule', 'inlineObject6', inlineObject6)
             const localVarPath = `/v3/rules/actions`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -2878,7 +2878,7 @@ export const RulesApiAxiosParamCreator = function (configuration?: Configuration
             setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(inlineObject, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(inlineObject6, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -2902,13 +2902,13 @@ export const RulesApiFp = function(configuration?: Configuration) {
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
-         * @param {InlineObject3} inlineObject3 
+         * @param {InlineObject5} inlineObject5 
          * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async activateRule(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject3: InlineObject3, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2005>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.activateRule(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject3, wMCONSUMERCHANNELTYPE, options);
+        async activateRule(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject5: InlineObject5, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2006>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.activateRule(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject5, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -2924,7 +2924,7 @@ export const RulesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async changeAssortmentType(enable: boolean, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, body: object, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2003>> {
+        async changeAssortmentType(enable: boolean, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, body: object, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse20010>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.changeAssortmentType(enable, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, body, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -2935,13 +2935,13 @@ export const RulesApiFp = function(configuration?: Configuration) {
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
-         * @param {InlineObject1} inlineObject1 
+         * @param {InlineObject3} inlineObject3 
          * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createItemRule(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject1: InlineObject1, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2004>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.createItemRule(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject1, wMCONSUMERCHANNELTYPE, options);
+        async createItemRule(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject3: InlineObject3, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2004>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createItemRule(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject3, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -2951,13 +2951,13 @@ export const RulesApiFp = function(configuration?: Configuration) {
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
-         * @param {InlineObject6} inlineObject6 
+         * @param {InlineObject2} inlineObject2 
          * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createOverrideExceptions(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject6: InlineObject6, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2009>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.createOverrideExceptions(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject6, wMCONSUMERCHANNELTYPE, options);
+        async createOverrideExceptions(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject2: InlineObject2, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2002>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createOverrideExceptions(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject2, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -2967,13 +2967,13 @@ export const RulesApiFp = function(configuration?: Configuration) {
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
-         * @param {InlineObject5} inlineObject5 
+         * @param {InlineObject1} inlineObject1 
          * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deleteExceptions(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject5: InlineObject5, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2009>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteExceptions(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject5, wMCONSUMERCHANNELTYPE, options);
+        async deleteExceptions(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject1: InlineObject1, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2002>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteExceptions(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject1, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -2989,7 +2989,7 @@ export const RulesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deleteRule(ruleId: string, ruleStatus: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2006>> {
+        async deleteRule(ruleId: string, ruleStatus: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2007>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.deleteRule(ruleId, ruleStatus, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -3038,7 +3038,7 @@ export const RulesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getARule(ruleId: string, ruleStatus: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
+        async getARule(ruleId: string, ruleStatus: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2005>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getARule(ruleId, ruleStatus, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -3053,7 +3053,7 @@ export const RulesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getAllAreas(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse20010>> {
+        async getAllAreas(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2003>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getAllAreas(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -3068,7 +3068,7 @@ export const RulesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getAllExceptions(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2008>> {
+        async getAllExceptions(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getAllExceptions(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -3083,7 +3083,7 @@ export const RulesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getAllRules(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
+        async getAllRules(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2005>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getAllRules(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -3098,7 +3098,7 @@ export const RulesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getAllSubCategories(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2002>> {
+        async getAllSubCategories(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2009>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getAllSubCategories(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -3115,7 +3115,7 @@ export const RulesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getSimulationResult(ruleId: string, ruleStatus: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
+        async getSimulationResult(ruleId: string, ruleStatus: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2008>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getSimulationResult(ruleId, ruleStatus, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -3126,13 +3126,13 @@ export const RulesApiFp = function(configuration?: Configuration) {
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
-         * @param {InlineObject4} inlineObject4 
+         * @param {InlineObject} inlineObject 
          * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async inactivateRule(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject4: InlineObject4, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2007>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.inactivateRule(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject4, wMCONSUMERCHANNELTYPE, options);
+        async inactivateRule(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.inactivateRule(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -3142,13 +3142,13 @@ export const RulesApiFp = function(configuration?: Configuration) {
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
-         * @param {InlineObject2} inlineObject2 
+         * @param {InlineObject4} inlineObject4 
          * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateRule(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject2: InlineObject2, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.updateRule(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject2, wMCONSUMERCHANNELTYPE, options);
+        async updateRule(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject4: InlineObject4, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2005>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateRule(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject4, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -3158,13 +3158,13 @@ export const RulesApiFp = function(configuration?: Configuration) {
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
-         * @param {InlineObject} inlineObject 
+         * @param {InlineObject6} inlineObject6 
          * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateShippingAreaToRule(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.updateShippingAreaToRule(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject, wMCONSUMERCHANNELTYPE, options);
+        async updateShippingAreaToRule(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject6: InlineObject6, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2005>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateShippingAreaToRule(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject6, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -3184,13 +3184,13 @@ export const RulesApiFactory = function (configuration?: Configuration, basePath
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
-         * @param {InlineObject3} inlineObject3 
+         * @param {InlineObject5} inlineObject5 
          * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        activateRule(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject3: InlineObject3, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2005> {
-            return localVarFp.activateRule(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject3, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        activateRule(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject5: InlineObject5, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2006> {
+            return localVarFp.activateRule(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject5, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
          * This API helps you enable or disable the two-day assortment type.
@@ -3205,7 +3205,7 @@ export const RulesApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        changeAssortmentType(enable: boolean, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, body: object, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2003> {
+        changeAssortmentType(enable: boolean, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, body: object, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse20010> {
             return localVarFp.changeAssortmentType(enable, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, body, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
@@ -3215,13 +3215,13 @@ export const RulesApiFactory = function (configuration?: Configuration, basePath
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
-         * @param {InlineObject1} inlineObject1 
+         * @param {InlineObject3} inlineObject3 
          * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createItemRule(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject1: InlineObject1, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2004> {
-            return localVarFp.createItemRule(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject1, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        createItemRule(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject3: InlineObject3, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2004> {
+            return localVarFp.createItemRule(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject3, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
          * This API is used if any SKU is required to be removed from Two-day delivery settings
@@ -3230,13 +3230,13 @@ export const RulesApiFactory = function (configuration?: Configuration, basePath
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
-         * @param {InlineObject6} inlineObject6 
+         * @param {InlineObject2} inlineObject2 
          * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createOverrideExceptions(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject6: InlineObject6, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2009> {
-            return localVarFp.createOverrideExceptions(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject6, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        createOverrideExceptions(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject2: InlineObject2, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2002> {
+            return localVarFp.createOverrideExceptions(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject2, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
          * This API is used to bring back any SKU to Two-day Delivery settings.
@@ -3245,13 +3245,13 @@ export const RulesApiFactory = function (configuration?: Configuration, basePath
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
-         * @param {InlineObject5} inlineObject5 
+         * @param {InlineObject1} inlineObject1 
          * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteExceptions(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject5: InlineObject5, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2009> {
-            return localVarFp.deleteExceptions(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject5, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        deleteExceptions(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject1: InlineObject1, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2002> {
+            return localVarFp.deleteExceptions(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject1, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
          * This API is used to delete a rule for a specific ruleId and ruleStatus
@@ -3266,7 +3266,7 @@ export const RulesApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteRule(ruleId: string, ruleStatus: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2006> {
+        deleteRule(ruleId: string, ruleStatus: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2007> {
             return localVarFp.deleteRule(ruleId, ruleStatus, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
@@ -3312,7 +3312,7 @@ export const RulesApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getARule(ruleId: string, ruleStatus: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2001> {
+        getARule(ruleId: string, ruleStatus: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2005> {
             return localVarFp.getARule(ruleId, ruleStatus, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
@@ -3326,7 +3326,7 @@ export const RulesApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAllAreas(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse20010> {
+        getAllAreas(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2003> {
             return localVarFp.getAllAreas(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
@@ -3340,7 +3340,7 @@ export const RulesApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAllExceptions(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2008> {
+        getAllExceptions(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2001> {
             return localVarFp.getAllExceptions(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
@@ -3354,7 +3354,7 @@ export const RulesApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAllRules(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2001> {
+        getAllRules(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2005> {
             return localVarFp.getAllRules(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
@@ -3368,7 +3368,7 @@ export const RulesApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAllSubCategories(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2002> {
+        getAllSubCategories(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2009> {
             return localVarFp.getAllSubCategories(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
@@ -3384,7 +3384,7 @@ export const RulesApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getSimulationResult(ruleId: string, ruleStatus: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse200> {
+        getSimulationResult(ruleId: string, ruleStatus: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2008> {
             return localVarFp.getSimulationResult(ruleId, ruleStatus, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
@@ -3394,13 +3394,13 @@ export const RulesApiFactory = function (configuration?: Configuration, basePath
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
-         * @param {InlineObject4} inlineObject4 
+         * @param {InlineObject} inlineObject 
          * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        inactivateRule(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject4: InlineObject4, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2007> {
-            return localVarFp.inactivateRule(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject4, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        inactivateRule(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse200> {
+            return localVarFp.inactivateRule(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
          * This API updates a rule defined using \"create an Item rule\". You can update priority, Description, conditions and name of a rule.
@@ -3409,13 +3409,13 @@ export const RulesApiFactory = function (configuration?: Configuration, basePath
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
-         * @param {InlineObject2} inlineObject2 
+         * @param {InlineObject4} inlineObject4 
          * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateRule(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject2: InlineObject2, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2001> {
-            return localVarFp.updateRule(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject2, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        updateRule(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject4: InlineObject4, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2005> {
+            return localVarFp.updateRule(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject4, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
          * This API helps you define coverage areas for your items that are held outside of the fulfillment centers defined by your shipNode management API\'s.
@@ -3424,13 +3424,13 @@ export const RulesApiFactory = function (configuration?: Configuration, basePath
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
-         * @param {InlineObject} inlineObject 
+         * @param {InlineObject6} inlineObject6 
          * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateShippingAreaToRule(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2001> {
-            return localVarFp.updateShippingAreaToRule(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        updateShippingAreaToRule(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject6: InlineObject6, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2005> {
+            return localVarFp.updateShippingAreaToRule(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject6, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -3471,10 +3471,10 @@ export interface RulesApiActivateRuleRequest {
 
     /**
      * 
-     * @type {InlineObject3}
+     * @type {InlineObject5}
      * @memberof RulesApiActivateRule
      */
-    readonly inlineObject3: InlineObject3
+    readonly inlineObject5: InlineObject5
 
     /**
      * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
@@ -3576,10 +3576,10 @@ export interface RulesApiCreateItemRuleRequest {
 
     /**
      * 
-     * @type {InlineObject1}
+     * @type {InlineObject3}
      * @memberof RulesApiCreateItemRule
      */
-    readonly inlineObject1: InlineObject1
+    readonly inlineObject3: InlineObject3
 
     /**
      * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
@@ -3625,10 +3625,10 @@ export interface RulesApiCreateOverrideExceptionsRequest {
 
     /**
      * 
-     * @type {InlineObject6}
+     * @type {InlineObject2}
      * @memberof RulesApiCreateOverrideExceptions
      */
-    readonly inlineObject6: InlineObject6
+    readonly inlineObject2: InlineObject2
 
     /**
      * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
@@ -3674,10 +3674,10 @@ export interface RulesApiDeleteExceptionsRequest {
 
     /**
      * 
-     * @type {InlineObject5}
+     * @type {InlineObject1}
      * @memberof RulesApiDeleteExceptions
      */
-    readonly inlineObject5: InlineObject5
+    readonly inlineObject1: InlineObject1
 
     /**
      * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
@@ -4157,10 +4157,10 @@ export interface RulesApiInactivateRuleRequest {
 
     /**
      * 
-     * @type {InlineObject4}
+     * @type {InlineObject}
      * @memberof RulesApiInactivateRule
      */
-    readonly inlineObject4: InlineObject4
+    readonly inlineObject: InlineObject
 
     /**
      * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
@@ -4206,10 +4206,10 @@ export interface RulesApiUpdateRuleRequest {
 
     /**
      * 
-     * @type {InlineObject2}
+     * @type {InlineObject4}
      * @memberof RulesApiUpdateRule
      */
-    readonly inlineObject2: InlineObject2
+    readonly inlineObject4: InlineObject4
 
     /**
      * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
@@ -4255,10 +4255,10 @@ export interface RulesApiUpdateShippingAreaToRuleRequest {
 
     /**
      * 
-     * @type {InlineObject}
+     * @type {InlineObject6}
      * @memberof RulesApiUpdateShippingAreaToRule
      */
-    readonly inlineObject: InlineObject
+    readonly inlineObject6: InlineObject6
 
     /**
      * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
@@ -4284,7 +4284,7 @@ export class RulesApi extends BaseAPI {
      * @memberof RulesApi
      */
     public activateRule(requestParameters: RulesApiActivateRuleRequest, options?: any) {
-        return RulesApiFp(this.configuration).activateRule(requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.inlineObject3, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+        return RulesApiFp(this.configuration).activateRule(requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.inlineObject5, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -4308,7 +4308,7 @@ export class RulesApi extends BaseAPI {
      * @memberof RulesApi
      */
     public createItemRule(requestParameters: RulesApiCreateItemRuleRequest, options?: any) {
-        return RulesApiFp(this.configuration).createItemRule(requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.inlineObject1, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+        return RulesApiFp(this.configuration).createItemRule(requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.inlineObject3, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -4320,7 +4320,7 @@ export class RulesApi extends BaseAPI {
      * @memberof RulesApi
      */
     public createOverrideExceptions(requestParameters: RulesApiCreateOverrideExceptionsRequest, options?: any) {
-        return RulesApiFp(this.configuration).createOverrideExceptions(requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.inlineObject6, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+        return RulesApiFp(this.configuration).createOverrideExceptions(requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.inlineObject2, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -4332,7 +4332,7 @@ export class RulesApi extends BaseAPI {
      * @memberof RulesApi
      */
     public deleteExceptions(requestParameters: RulesApiDeleteExceptionsRequest, options?: any) {
-        return RulesApiFp(this.configuration).deleteExceptions(requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.inlineObject5, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+        return RulesApiFp(this.configuration).deleteExceptions(requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.inlineObject1, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -4452,7 +4452,7 @@ export class RulesApi extends BaseAPI {
      * @memberof RulesApi
      */
     public inactivateRule(requestParameters: RulesApiInactivateRuleRequest, options?: any) {
-        return RulesApiFp(this.configuration).inactivateRule(requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.inlineObject4, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+        return RulesApiFp(this.configuration).inactivateRule(requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.inlineObject, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -4464,7 +4464,7 @@ export class RulesApi extends BaseAPI {
      * @memberof RulesApi
      */
     public updateRule(requestParameters: RulesApiUpdateRuleRequest, options?: any) {
-        return RulesApiFp(this.configuration).updateRule(requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.inlineObject2, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+        return RulesApiFp(this.configuration).updateRule(requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.inlineObject4, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -4476,7 +4476,7 @@ export class RulesApi extends BaseAPI {
      * @memberof RulesApi
      */
     public updateShippingAreaToRule(requestParameters: RulesApiUpdateShippingAreaToRuleRequest, options?: any) {
-        return RulesApiFp(this.configuration).updateShippingAreaToRule(requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.inlineObject, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+        return RulesApiFp(this.configuration).updateShippingAreaToRule(requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.inlineObject6, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

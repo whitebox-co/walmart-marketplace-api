@@ -48,10 +48,10 @@ export interface AdditionalAttribute {
 export interface AdditionalAttributes {
     /**
      * 
-     * @type {Array<InlineResponse2001PayloadAdditionalAttributesAdditionalAttribute>}
+     * @type {Array<InlineResponse200PayloadAdditionalAttributesAdditionalAttribute>}
      * @memberof AdditionalAttributes
      */
-    additionalAttribute: Array<InlineResponse2001PayloadAdditionalAttributesAdditionalAttribute>;
+    additionalAttribute: Array<InlineResponse200PayloadAdditionalAttributesAdditionalAttribute>;
 }
 /**
  * 
@@ -199,10 +199,10 @@ export interface GatewayError {
     category?: GatewayErrorCategoryEnum;
     /**
      * 
-     * @type {Array<InlineResponse200Causes>}
+     * @type {Array<InlineResponse2001Causes>}
      * @memberof GatewayError
      */
-    causes?: Array<InlineResponse200Causes>;
+    causes?: Array<InlineResponse2001Causes>;
     /**
      * 
      * @type {{ [key: string]: object; }}
@@ -332,34 +332,22 @@ export enum InlineObjectReplaceAllEnum {
 export interface InlineResponse200 {
     /**
      * 
-     * @type {Array<InlineResponse200Errors>}
+     * @type {InlineResponse200Payload}
      * @memberof InlineResponse200
      */
-    errors?: Array<InlineResponse200Errors>;
+    payload?: InlineResponse200Payload;
     /**
      * 
-     * @type {number}
+     * @type {InlineResponse200Header}
      * @memberof InlineResponse200
      */
-    statusCode?: number;
+    header?: InlineResponse200Header;
     /**
-     * Marketplace name. Example: Walmart-US
+     * 
      * @type {string}
      * @memberof InlineResponse200
      */
-    mart?: string;
-    /**
-     * An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item.
-     * @type {string}
-     * @memberof InlineResponse200
-     */
-    sku?: string;
-    /**
-     * A message of acknowledgement for a price update
-     * @type {string}
-     * @memberof InlineResponse200
-     */
-    message?: string;
+    status?: string;
 }
 /**
  * 
@@ -369,469 +357,173 @@ export interface InlineResponse200 {
 export interface InlineResponse2001 {
     /**
      * 
-     * @type {InlineResponse2001Payload}
+     * @type {Array<InlineResponse2001Errors>}
      * @memberof InlineResponse2001
      */
-    payload?: InlineResponse2001Payload;
+    errors?: Array<InlineResponse2001Errors>;
     /**
      * 
-     * @type {InlineResponse2001Header}
+     * @type {number}
      * @memberof InlineResponse2001
      */
-    header?: InlineResponse2001Header;
+    statusCode?: number;
     /**
-     * 
+     * Marketplace name. Example: Walmart-US
      * @type {string}
      * @memberof InlineResponse2001
      */
-    status?: string;
-}
-/**
- * 
- * @export
- * @interface InlineResponse2001Header
- */
-export interface InlineResponse2001Header {
+    mart?: string;
     /**
-     * 
-     * @type {object}
-     * @memberof InlineResponse2001Header
-     */
-    headerAttributes?: object;
-}
-/**
- * 
- * @export
- * @interface InlineResponse2001Payload
- */
-export interface InlineResponse2001Payload {
-    /**
-     * 
-     * @type {InlineResponse2001PayloadItemIdentifier}
-     * @memberof InlineResponse2001Payload
-     */
-    itemIdentifier: InlineResponse2001PayloadItemIdentifier;
-    /**
-     * 
-     * @type {InlineResponse2001PayloadPricingList}
-     * @memberof InlineResponse2001Payload
-     */
-    pricingList: InlineResponse2001PayloadPricingList;
-    /**
-     * 
-     * @type {InlineResponse2001PayloadPricingListCurrentPriceValue}
-     * @memberof InlineResponse2001Payload
-     */
-    maxSalesRetailPrice?: InlineResponse2001PayloadPricingListCurrentPriceValue;
-    /**
-     * 
-     * @type {InlineResponse2001PayloadPricingListCurrentPriceValue}
-     * @memberof InlineResponse2001Payload
-     */
-    minAdvtPrice?: InlineResponse2001PayloadPricingListCurrentPriceValue;
-    /**
-     * 
-     * @type {InlineResponse2001PayloadRebate}
-     * @memberof InlineResponse2001Payload
-     */
-    rebate?: InlineResponse2001PayloadRebate;
-    /**
-     * 
-     * @type {InlineResponse2001PayloadAdditionalAttributes}
-     * @memberof InlineResponse2001Payload
-     */
-    additionalAttributes?: InlineResponse2001PayloadAdditionalAttributes;
-}
-/**
- * 
- * @export
- * @interface InlineResponse2001PayloadAdditionalAttributes
- */
-export interface InlineResponse2001PayloadAdditionalAttributes {
-    /**
-     * 
-     * @type {Array<InlineResponse2001PayloadAdditionalAttributesAdditionalAttribute>}
-     * @memberof InlineResponse2001PayloadAdditionalAttributes
-     */
-    additionalAttribute: Array<InlineResponse2001PayloadAdditionalAttributesAdditionalAttribute>;
-}
-/**
- * 
- * @export
- * @interface InlineResponse2001PayloadAdditionalAttributesAdditionalAttribute
- */
-export interface InlineResponse2001PayloadAdditionalAttributesAdditionalAttribute {
-    /**
-     * 
+     * An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item.
      * @type {string}
-     * @memberof InlineResponse2001PayloadAdditionalAttributesAdditionalAttribute
-     */
-    name: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2001PayloadAdditionalAttributesAdditionalAttribute
-     */
-    value: string;
-}
-/**
- * 
- * @export
- * @interface InlineResponse2001PayloadItemIdentifier
- */
-export interface InlineResponse2001PayloadItemIdentifier {
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2001PayloadItemIdentifier
+     * @memberof InlineResponse2001
      */
     sku?: string;
     /**
-     * 
+     * A message of acknowledgement for a price update
      * @type {string}
-     * @memberof InlineResponse2001PayloadItemIdentifier
+     * @memberof InlineResponse2001
      */
-    offerId?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2001PayloadItemIdentifier
-     */
-    itemId?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2001PayloadItemIdentifier
-     */
-    wpid?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2001PayloadItemIdentifier
-     */
-    productType?: string;
+    message?: string;
 }
 /**
  * 
  * @export
- * @interface InlineResponse2001PayloadPricingList
+ * @interface InlineResponse2001Causes
  */
-export interface InlineResponse2001PayloadPricingList {
+export interface InlineResponse2001Causes {
     /**
      * 
-     * @type {boolean}
-     * @memberof InlineResponse2001PayloadPricingList
+     * @type {string}
+     * @memberof InlineResponse2001Causes
      */
-    replaceAll?: boolean;
+    code?: string;
     /**
      * 
-     * @type {Array<InlineResponse2001PayloadPricingListPricing>}
-     * @memberof InlineResponse2001PayloadPricingList
+     * @type {string}
+     * @memberof InlineResponse2001Causes
      */
-    pricing: Array<InlineResponse2001PayloadPricingListPricing>;
+    field?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2001Causes
+     */
+    type?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2001Causes
+     */
+    description?: string;
 }
 /**
  * 
  * @export
- * @interface InlineResponse2001PayloadPricingListCurrentPrice
+ * @interface InlineResponse2001Errors
  */
-export interface InlineResponse2001PayloadPricingListCurrentPrice {
-    /**
-     * 
-     * @type {InlineResponse2001PayloadPricingListCurrentPriceValue}
-     * @memberof InlineResponse2001PayloadPricingListCurrentPrice
-     */
-    value?: InlineResponse2001PayloadPricingListCurrentPriceValue;
+export interface InlineResponse2001Errors {
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse2001PayloadPricingListCurrentPrice
+     * @memberof InlineResponse2001Errors
      */
-    uomType?: string;
-    /**
-     * 
-     * @type {InlineResponse2001PayloadPricingListCurrentPriceValue}
-     * @memberof InlineResponse2001PayloadPricingListCurrentPrice
-     */
-    minValue?: InlineResponse2001PayloadPricingListCurrentPriceValue;
-    /**
-     * 
-     * @type {InlineResponse2001PayloadPricingListCurrentPriceValue}
-     * @memberof InlineResponse2001PayloadPricingListCurrentPrice
-     */
-    maxValue?: InlineResponse2001PayloadPricingListCurrentPriceValue;
-    /**
-     * 
-     * @type {InlineResponse2001PayloadPricingListCurrentPriceValue}
-     * @memberof InlineResponse2001PayloadPricingListCurrentPrice
-     */
-    perUnitValue?: InlineResponse2001PayloadPricingListCurrentPriceValue;
-    /**
-     * 
-     * @type {InlineResponse2001PayloadPricingListCurrentPriceValue}
-     * @memberof InlineResponse2001PayloadPricingListCurrentPrice
-     */
-    minUnitValue?: InlineResponse2001PayloadPricingListCurrentPriceValue;
-    /**
-     * 
-     * @type {InlineResponse2001PayloadPricingListCurrentPriceValue}
-     * @memberof InlineResponse2001PayloadPricingListCurrentPrice
-     */
-    maxUnitValue?: InlineResponse2001PayloadPricingListCurrentPriceValue;
-}
-/**
- * 
- * @export
- * @interface InlineResponse2001PayloadPricingListCurrentPriceValue
- */
-export interface InlineResponse2001PayloadPricingListCurrentPriceValue {
+    code: string;
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse2001PayloadPricingListCurrentPriceValue
+     * @memberof InlineResponse2001Errors
      */
-    value?: string;
+    field?: string;
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse2001PayloadPricingListCurrentPriceValue
+     * @memberof InlineResponse2001Errors
      */
-    currency?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof InlineResponse2001PayloadPricingListCurrentPriceValue
-     */
-    amount?: number;
-}
-/**
- * 
- * @export
- * @interface InlineResponse2001PayloadPricingListPickupDiscount
- */
-export interface InlineResponse2001PayloadPricingListPickupDiscount {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof InlineResponse2001PayloadPricingListPickupDiscount
-     */
-    isPickUpDiscountEligible?: boolean;
-    /**
-     * 
-     * @type {InlineResponse2001PayloadPricingListCurrentPriceValue}
-     * @memberof InlineResponse2001PayloadPricingListPickupDiscount
-     */
-    pickupDiscountAmt?: InlineResponse2001PayloadPricingListCurrentPriceValue;
-}
-/**
- * 
- * @export
- * @interface InlineResponse2001PayloadPricingListPriceDisplayCodes
- */
-export interface InlineResponse2001PayloadPricingListPriceDisplayCodes {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof InlineResponse2001PayloadPricingListPriceDisplayCodes
-     */
-    isClearance?: boolean;
-    /**
-     * 
-     * @type {object}
-     * @memberof InlineResponse2001PayloadPricingListPriceDisplayCodes
-     */
-    hidePriceForSOI?: object;
-    /**
-     * 
-     * @type {object}
-     * @memberof InlineResponse2001PayloadPricingListPriceDisplayCodes
-     */
-    submapType?: object;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof InlineResponse2001PayloadPricingListPriceDisplayCodes
-     */
-    isRollback?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof InlineResponse2001PayloadPricingListPriceDisplayCodes
-     */
-    isReducedPrice?: boolean;
-    /**
-     * 
-     * @type {object}
-     * @memberof InlineResponse2001PayloadPricingListPriceDisplayCodes
-     */
-    isEligibleForAssociateDiscount?: object;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof InlineResponse2001PayloadPricingListPriceDisplayCodes
-     */
-    isStrikethrough?: boolean;
-}
-/**
- * 
- * @export
- * @interface InlineResponse2001PayloadPricingListPricing
- */
-export interface InlineResponse2001PayloadPricingListPricing {
-    /**
-     * 
-     * @type {InlineResponse2001PayloadPricingListCurrentPrice}
-     * @memberof InlineResponse2001PayloadPricingListPricing
-     */
-    currentPrice: InlineResponse2001PayloadPricingListCurrentPrice;
+    description?: string;
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse2001PayloadPricingListPricing
+     * @memberof InlineResponse2001Errors
      */
-    currentPriceType: InlineResponse2001PayloadPricingListPricingCurrentPriceTypeEnum;
-    /**
-     * 
-     * @type {InlineResponse2001PayloadPricingListCurrentPrice}
-     * @memberof InlineResponse2001PayloadPricingListPricing
-     */
-    comparisonPrice?: InlineResponse2001PayloadPricingListCurrentPrice;
+    info?: string;
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse2001PayloadPricingListPricing
+     * @memberof InlineResponse2001Errors
      */
-    comparisonPriceType?: InlineResponse2001PayloadPricingListPricingComparisonPriceTypeEnum;
-    /**
-     * 
-     * @type {number}
-     * @memberof InlineResponse2001PayloadPricingListPricing
-     */
-    savingsAmount?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof InlineResponse2001PayloadPricingListPricing
-     */
-    savingsPercent?: number;
-    /**
-     * 
-     * @type {InlineResponse2001PayloadPricingListPriceDisplayCodes}
-     * @memberof InlineResponse2001PayloadPricingListPricing
-     */
-    priceDisplayCodes?: InlineResponse2001PayloadPricingListPriceDisplayCodes;
-    /**
-     * 
-     * @type {InlineResponse2001PayloadPricingListPickupDiscount}
-     * @memberof InlineResponse2001PayloadPricingListPricing
-     */
-    pickupDiscount?: InlineResponse2001PayloadPricingListPickupDiscount;
-    /**
-     * 
-     * @type {number}
-     * @memberof InlineResponse2001PayloadPricingListPricing
-     */
-    effectiveDate?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof InlineResponse2001PayloadPricingListPricing
-     */
-    expirationDate?: number;
+    severity?: InlineResponse2001ErrorsSeverityEnum;
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse2001PayloadPricingListPricing
+     * @memberof InlineResponse2001Errors
      */
-    processMode?: InlineResponse2001PayloadPricingListPricingProcessModeEnum;
+    category?: InlineResponse2001ErrorsCategoryEnum;
+    /**
+     * 
+     * @type {Array<InlineResponse2001Causes>}
+     * @memberof InlineResponse2001Errors
+     */
+    causes?: Array<InlineResponse2001Causes>;
+    /**
+     * 
+     * @type {{ [key: string]: object; }}
+     * @memberof InlineResponse2001Errors
+     */
+    errorIdentifiers?: { [key: string]: object; };
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse2001PayloadPricingListPricing
+     * @memberof InlineResponse2001Errors
      */
-    pid?: string;
+    component?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2001Errors
+     */
+    type?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2001Errors
+     */
+    serviceName?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2001Errors
+     */
+    gatewayErrorCategory?: InlineResponse2001ErrorsGatewayErrorCategoryEnum;
 }
 
 /**
     * @export
     * @enum {string}
     */
-export enum InlineResponse2001PayloadPricingListPricingCurrentPriceTypeEnum {
-    Base = 'BASE',
-    Reduced = 'REDUCED',
-    SavingsAmt = 'SAVINGS_AMT',
-    SavingsPct = 'SAVINGS_PCT',
-    Rollback = 'ROLLBACK',
-    Clearance = 'CLEARANCE',
-    ListPrice = 'LIST_PRICE'
+export enum InlineResponse2001ErrorsSeverityEnum {
+    Info = 'INFO',
+    Warn = 'WARN',
+    Error = 'ERROR'
 }
 /**
     * @export
     * @enum {string}
     */
-export enum InlineResponse2001PayloadPricingListPricingComparisonPriceTypeEnum {
-    Base = 'BASE',
-    Reduced = 'REDUCED',
-    SavingsAmt = 'SAVINGS_AMT',
-    SavingsPct = 'SAVINGS_PCT',
-    Rollback = 'ROLLBACK',
-    Clearance = 'CLEARANCE',
-    ListPrice = 'LIST_PRICE'
+export enum InlineResponse2001ErrorsCategoryEnum {
+    Application = 'APPLICATION',
+    System = 'SYSTEM',
+    Request = 'REQUEST',
+    Data = 'DATA'
 }
 /**
     * @export
     * @enum {string}
     */
-export enum InlineResponse2001PayloadPricingListPricingProcessModeEnum {
-    Upsert = 'UPSERT',
-    Delete = 'DELETE'
-}
-
-/**
- * 
- * @export
- * @interface InlineResponse2001PayloadRebate
- */
-export interface InlineResponse2001PayloadRebate {
-    /**
-     * 
-     * @type {InlineResponse2001PayloadPricingListCurrentPriceValue}
-     * @memberof InlineResponse2001PayloadRebate
-     */
-    rebateAmt: InlineResponse2001PayloadPricingListCurrentPriceValue;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2001PayloadRebate
-     */
-    infoUrl?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2001PayloadRebate
-     */
-    rebateType?: InlineResponse2001PayloadRebateRebateTypeEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2001PayloadRebate
-     */
-    startDate?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2001PayloadRebate
-     */
-    endDate?: string;
-}
-
-/**
-    * @export
-    * @enum {string}
-    */
-export enum InlineResponse2001PayloadRebateRebateTypeEnum {
-    Amount = 'AMOUNT',
-    Product = 'PRODUCT'
+export enum InlineResponse2001ErrorsGatewayErrorCategoryEnum {
+    InternalDataError = 'INTERNAL_DATA_ERROR',
+    ExternalDataError = 'EXTERNAL_DATA_ERROR',
+    SystemError = 'SYSTEM_ERROR'
 }
 
 /**
@@ -850,141 +542,449 @@ export interface InlineResponse2002 {
 /**
  * 
  * @export
- * @interface InlineResponse200Causes
+ * @interface InlineResponse200Header
  */
-export interface InlineResponse200Causes {
+export interface InlineResponse200Header {
     /**
      * 
-     * @type {string}
-     * @memberof InlineResponse200Causes
+     * @type {object}
+     * @memberof InlineResponse200Header
      */
-    code?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse200Causes
-     */
-    field?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse200Causes
-     */
-    type?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse200Causes
-     */
-    description?: string;
+    headerAttributes?: object;
 }
 /**
  * 
  * @export
- * @interface InlineResponse200Errors
+ * @interface InlineResponse200Payload
  */
-export interface InlineResponse200Errors {
+export interface InlineResponse200Payload {
+    /**
+     * 
+     * @type {InlineResponse200PayloadItemIdentifier}
+     * @memberof InlineResponse200Payload
+     */
+    itemIdentifier: InlineResponse200PayloadItemIdentifier;
+    /**
+     * 
+     * @type {InlineResponse200PayloadPricingList}
+     * @memberof InlineResponse200Payload
+     */
+    pricingList: InlineResponse200PayloadPricingList;
+    /**
+     * 
+     * @type {InlineResponse200PayloadPricingListCurrentPriceValue}
+     * @memberof InlineResponse200Payload
+     */
+    maxSalesRetailPrice?: InlineResponse200PayloadPricingListCurrentPriceValue;
+    /**
+     * 
+     * @type {InlineResponse200PayloadPricingListCurrentPriceValue}
+     * @memberof InlineResponse200Payload
+     */
+    minAdvtPrice?: InlineResponse200PayloadPricingListCurrentPriceValue;
+    /**
+     * 
+     * @type {InlineResponse200PayloadRebate}
+     * @memberof InlineResponse200Payload
+     */
+    rebate?: InlineResponse200PayloadRebate;
+    /**
+     * 
+     * @type {InlineResponse200PayloadAdditionalAttributes}
+     * @memberof InlineResponse200Payload
+     */
+    additionalAttributes?: InlineResponse200PayloadAdditionalAttributes;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse200PayloadAdditionalAttributes
+ */
+export interface InlineResponse200PayloadAdditionalAttributes {
+    /**
+     * 
+     * @type {Array<InlineResponse200PayloadAdditionalAttributesAdditionalAttribute>}
+     * @memberof InlineResponse200PayloadAdditionalAttributes
+     */
+    additionalAttribute: Array<InlineResponse200PayloadAdditionalAttributesAdditionalAttribute>;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse200PayloadAdditionalAttributesAdditionalAttribute
+ */
+export interface InlineResponse200PayloadAdditionalAttributesAdditionalAttribute {
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse200Errors
+     * @memberof InlineResponse200PayloadAdditionalAttributesAdditionalAttribute
      */
-    code: string;
+    name: string;
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse200Errors
+     * @memberof InlineResponse200PayloadAdditionalAttributesAdditionalAttribute
      */
-    field?: string;
+    value: string;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse200PayloadItemIdentifier
+ */
+export interface InlineResponse200PayloadItemIdentifier {
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse200Errors
+     * @memberof InlineResponse200PayloadItemIdentifier
      */
-    description?: string;
+    sku?: string;
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse200Errors
+     * @memberof InlineResponse200PayloadItemIdentifier
      */
-    info?: string;
+    offerId?: string;
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse200Errors
+     * @memberof InlineResponse200PayloadItemIdentifier
      */
-    severity?: InlineResponse200ErrorsSeverityEnum;
+    itemId?: string;
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse200Errors
+     * @memberof InlineResponse200PayloadItemIdentifier
      */
-    category?: InlineResponse200ErrorsCategoryEnum;
-    /**
-     * 
-     * @type {Array<InlineResponse200Causes>}
-     * @memberof InlineResponse200Errors
-     */
-    causes?: Array<InlineResponse200Causes>;
-    /**
-     * 
-     * @type {{ [key: string]: object; }}
-     * @memberof InlineResponse200Errors
-     */
-    errorIdentifiers?: { [key: string]: object; };
+    wpid?: string;
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse200Errors
+     * @memberof InlineResponse200PayloadItemIdentifier
      */
-    component?: string;
+    productType?: string;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse200PayloadPricingList
+ */
+export interface InlineResponse200PayloadPricingList {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof InlineResponse200PayloadPricingList
+     */
+    replaceAll?: boolean;
+    /**
+     * 
+     * @type {Array<InlineResponse200PayloadPricingListPricing>}
+     * @memberof InlineResponse200PayloadPricingList
+     */
+    pricing: Array<InlineResponse200PayloadPricingListPricing>;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse200PayloadPricingListCurrentPrice
+ */
+export interface InlineResponse200PayloadPricingListCurrentPrice {
+    /**
+     * 
+     * @type {InlineResponse200PayloadPricingListCurrentPriceValue}
+     * @memberof InlineResponse200PayloadPricingListCurrentPrice
+     */
+    value?: InlineResponse200PayloadPricingListCurrentPriceValue;
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse200Errors
+     * @memberof InlineResponse200PayloadPricingListCurrentPrice
      */
-    type?: string;
+    uomType?: string;
+    /**
+     * 
+     * @type {InlineResponse200PayloadPricingListCurrentPriceValue}
+     * @memberof InlineResponse200PayloadPricingListCurrentPrice
+     */
+    minValue?: InlineResponse200PayloadPricingListCurrentPriceValue;
+    /**
+     * 
+     * @type {InlineResponse200PayloadPricingListCurrentPriceValue}
+     * @memberof InlineResponse200PayloadPricingListCurrentPrice
+     */
+    maxValue?: InlineResponse200PayloadPricingListCurrentPriceValue;
+    /**
+     * 
+     * @type {InlineResponse200PayloadPricingListCurrentPriceValue}
+     * @memberof InlineResponse200PayloadPricingListCurrentPrice
+     */
+    perUnitValue?: InlineResponse200PayloadPricingListCurrentPriceValue;
+    /**
+     * 
+     * @type {InlineResponse200PayloadPricingListCurrentPriceValue}
+     * @memberof InlineResponse200PayloadPricingListCurrentPrice
+     */
+    minUnitValue?: InlineResponse200PayloadPricingListCurrentPriceValue;
+    /**
+     * 
+     * @type {InlineResponse200PayloadPricingListCurrentPriceValue}
+     * @memberof InlineResponse200PayloadPricingListCurrentPrice
+     */
+    maxUnitValue?: InlineResponse200PayloadPricingListCurrentPriceValue;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse200PayloadPricingListCurrentPriceValue
+ */
+export interface InlineResponse200PayloadPricingListCurrentPriceValue {
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse200Errors
+     * @memberof InlineResponse200PayloadPricingListCurrentPriceValue
      */
-    serviceName?: string;
+    value?: string;
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse200Errors
+     * @memberof InlineResponse200PayloadPricingListCurrentPriceValue
      */
-    gatewayErrorCategory?: InlineResponse200ErrorsGatewayErrorCategoryEnum;
+    currency?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse200PayloadPricingListCurrentPriceValue
+     */
+    amount?: number;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse200PayloadPricingListPickupDiscount
+ */
+export interface InlineResponse200PayloadPricingListPickupDiscount {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof InlineResponse200PayloadPricingListPickupDiscount
+     */
+    isPickUpDiscountEligible?: boolean;
+    /**
+     * 
+     * @type {InlineResponse200PayloadPricingListCurrentPriceValue}
+     * @memberof InlineResponse200PayloadPricingListPickupDiscount
+     */
+    pickupDiscountAmt?: InlineResponse200PayloadPricingListCurrentPriceValue;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse200PayloadPricingListPriceDisplayCodes
+ */
+export interface InlineResponse200PayloadPricingListPriceDisplayCodes {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof InlineResponse200PayloadPricingListPriceDisplayCodes
+     */
+    isClearance?: boolean;
+    /**
+     * 
+     * @type {object}
+     * @memberof InlineResponse200PayloadPricingListPriceDisplayCodes
+     */
+    hidePriceForSOI?: object;
+    /**
+     * 
+     * @type {object}
+     * @memberof InlineResponse200PayloadPricingListPriceDisplayCodes
+     */
+    submapType?: object;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof InlineResponse200PayloadPricingListPriceDisplayCodes
+     */
+    isRollback?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof InlineResponse200PayloadPricingListPriceDisplayCodes
+     */
+    isReducedPrice?: boolean;
+    /**
+     * 
+     * @type {object}
+     * @memberof InlineResponse200PayloadPricingListPriceDisplayCodes
+     */
+    isEligibleForAssociateDiscount?: object;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof InlineResponse200PayloadPricingListPriceDisplayCodes
+     */
+    isStrikethrough?: boolean;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse200PayloadPricingListPricing
+ */
+export interface InlineResponse200PayloadPricingListPricing {
+    /**
+     * 
+     * @type {InlineResponse200PayloadPricingListCurrentPrice}
+     * @memberof InlineResponse200PayloadPricingListPricing
+     */
+    currentPrice: InlineResponse200PayloadPricingListCurrentPrice;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse200PayloadPricingListPricing
+     */
+    currentPriceType: InlineResponse200PayloadPricingListPricingCurrentPriceTypeEnum;
+    /**
+     * 
+     * @type {InlineResponse200PayloadPricingListCurrentPrice}
+     * @memberof InlineResponse200PayloadPricingListPricing
+     */
+    comparisonPrice?: InlineResponse200PayloadPricingListCurrentPrice;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse200PayloadPricingListPricing
+     */
+    comparisonPriceType?: InlineResponse200PayloadPricingListPricingComparisonPriceTypeEnum;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse200PayloadPricingListPricing
+     */
+    savingsAmount?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse200PayloadPricingListPricing
+     */
+    savingsPercent?: number;
+    /**
+     * 
+     * @type {InlineResponse200PayloadPricingListPriceDisplayCodes}
+     * @memberof InlineResponse200PayloadPricingListPricing
+     */
+    priceDisplayCodes?: InlineResponse200PayloadPricingListPriceDisplayCodes;
+    /**
+     * 
+     * @type {InlineResponse200PayloadPricingListPickupDiscount}
+     * @memberof InlineResponse200PayloadPricingListPricing
+     */
+    pickupDiscount?: InlineResponse200PayloadPricingListPickupDiscount;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse200PayloadPricingListPricing
+     */
+    effectiveDate?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse200PayloadPricingListPricing
+     */
+    expirationDate?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse200PayloadPricingListPricing
+     */
+    processMode?: InlineResponse200PayloadPricingListPricingProcessModeEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse200PayloadPricingListPricing
+     */
+    pid?: string;
 }
 
 /**
     * @export
     * @enum {string}
     */
-export enum InlineResponse200ErrorsSeverityEnum {
-    Info = 'INFO',
-    Warn = 'WARN',
-    Error = 'ERROR'
+export enum InlineResponse200PayloadPricingListPricingCurrentPriceTypeEnum {
+    Base = 'BASE',
+    Reduced = 'REDUCED',
+    SavingsAmt = 'SAVINGS_AMT',
+    SavingsPct = 'SAVINGS_PCT',
+    Rollback = 'ROLLBACK',
+    Clearance = 'CLEARANCE',
+    ListPrice = 'LIST_PRICE'
 }
 /**
     * @export
     * @enum {string}
     */
-export enum InlineResponse200ErrorsCategoryEnum {
-    Application = 'APPLICATION',
-    System = 'SYSTEM',
-    Request = 'REQUEST',
-    Data = 'DATA'
+export enum InlineResponse200PayloadPricingListPricingComparisonPriceTypeEnum {
+    Base = 'BASE',
+    Reduced = 'REDUCED',
+    SavingsAmt = 'SAVINGS_AMT',
+    SavingsPct = 'SAVINGS_PCT',
+    Rollback = 'ROLLBACK',
+    Clearance = 'CLEARANCE',
+    ListPrice = 'LIST_PRICE'
 }
 /**
     * @export
     * @enum {string}
     */
-export enum InlineResponse200ErrorsGatewayErrorCategoryEnum {
-    InternalDataError = 'INTERNAL_DATA_ERROR',
-    ExternalDataError = 'EXTERNAL_DATA_ERROR',
-    SystemError = 'SYSTEM_ERROR'
+export enum InlineResponse200PayloadPricingListPricingProcessModeEnum {
+    Upsert = 'UPSERT',
+    Delete = 'DELETE'
+}
+
+/**
+ * 
+ * @export
+ * @interface InlineResponse200PayloadRebate
+ */
+export interface InlineResponse200PayloadRebate {
+    /**
+     * 
+     * @type {InlineResponse200PayloadPricingListCurrentPriceValue}
+     * @memberof InlineResponse200PayloadRebate
+     */
+    rebateAmt: InlineResponse200PayloadPricingListCurrentPriceValue;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse200PayloadRebate
+     */
+    infoUrl?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse200PayloadRebate
+     */
+    rebateType?: InlineResponse200PayloadRebateRebateTypeEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse200PayloadRebate
+     */
+    startDate?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse200PayloadRebate
+     */
+    endDate?: string;
+}
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum InlineResponse200PayloadRebateRebateTypeEnum {
+    Amount = 'AMOUNT',
+    Product = 'PRODUCT'
 }
 
 /**
@@ -1032,10 +1032,10 @@ export interface ItemIdentifierType {
 export interface ItemPriceResponse {
     /**
      * 
-     * @type {Array<InlineResponse200Errors>}
+     * @type {Array<InlineResponse2001Errors>}
      * @memberof ItemPriceResponse
      */
-    errors?: Array<InlineResponse200Errors>;
+    errors?: Array<InlineResponse2001Errors>;
     /**
      * 
      * @type {number}
@@ -1069,40 +1069,40 @@ export interface ItemPriceResponse {
 export interface ItemPriceType {
     /**
      * 
-     * @type {InlineResponse2001PayloadItemIdentifier}
+     * @type {InlineResponse200PayloadItemIdentifier}
      * @memberof ItemPriceType
      */
-    itemIdentifier: InlineResponse2001PayloadItemIdentifier;
+    itemIdentifier: InlineResponse200PayloadItemIdentifier;
     /**
      * 
-     * @type {InlineResponse2001PayloadPricingList}
+     * @type {InlineResponse200PayloadPricingList}
      * @memberof ItemPriceType
      */
-    pricingList: InlineResponse2001PayloadPricingList;
+    pricingList: InlineResponse200PayloadPricingList;
     /**
      * 
-     * @type {InlineResponse2001PayloadPricingListCurrentPriceValue}
+     * @type {InlineResponse200PayloadPricingListCurrentPriceValue}
      * @memberof ItemPriceType
      */
-    maxSalesRetailPrice?: InlineResponse2001PayloadPricingListCurrentPriceValue;
+    maxSalesRetailPrice?: InlineResponse200PayloadPricingListCurrentPriceValue;
     /**
      * 
-     * @type {InlineResponse2001PayloadPricingListCurrentPriceValue}
+     * @type {InlineResponse200PayloadPricingListCurrentPriceValue}
      * @memberof ItemPriceType
      */
-    minAdvtPrice?: InlineResponse2001PayloadPricingListCurrentPriceValue;
+    minAdvtPrice?: InlineResponse200PayloadPricingListCurrentPriceValue;
     /**
      * 
-     * @type {InlineResponse2001PayloadRebate}
+     * @type {InlineResponse200PayloadRebate}
      * @memberof ItemPriceType
      */
-    rebate?: InlineResponse2001PayloadRebate;
+    rebate?: InlineResponse200PayloadRebate;
     /**
      * 
-     * @type {InlineResponse2001PayloadAdditionalAttributes}
+     * @type {InlineResponse200PayloadAdditionalAttributes}
      * @memberof ItemPriceType
      */
-    additionalAttributes?: InlineResponse2001PayloadAdditionalAttributes;
+    additionalAttributes?: InlineResponse200PayloadAdditionalAttributes;
 }
 /**
  * 
@@ -1143,10 +1143,10 @@ export interface PickupDiscount {
     isPickUpDiscountEligible?: boolean;
     /**
      * 
-     * @type {InlineResponse2001PayloadPricingListCurrentPriceValue}
+     * @type {InlineResponse200PayloadPricingListCurrentPriceValue}
      * @memberof PickupDiscount
      */
-    pickupDiscountAmt?: InlineResponse2001PayloadPricingListCurrentPriceValue;
+    pickupDiscountAmt?: InlineResponse200PayloadPricingListCurrentPriceValue;
 }
 /**
  * 
@@ -1353,10 +1353,10 @@ export interface PricingListType {
     replaceAll?: boolean;
     /**
      * 
-     * @type {Array<InlineResponse2001PayloadPricingListPricing>}
+     * @type {Array<InlineResponse200PayloadPricingListPricing>}
      * @memberof PricingListType
      */
-    pricing: Array<InlineResponse2001PayloadPricingListPricing>;
+    pricing: Array<InlineResponse200PayloadPricingListPricing>;
 }
 /**
  * 
@@ -1366,10 +1366,10 @@ export interface PricingListType {
 export interface PricingType {
     /**
      * 
-     * @type {InlineResponse2001PayloadPricingListCurrentPrice}
+     * @type {InlineResponse200PayloadPricingListCurrentPrice}
      * @memberof PricingType
      */
-    currentPrice: InlineResponse2001PayloadPricingListCurrentPrice;
+    currentPrice: InlineResponse200PayloadPricingListCurrentPrice;
     /**
      * 
      * @type {string}
@@ -1378,10 +1378,10 @@ export interface PricingType {
     currentPriceType: PricingTypeCurrentPriceTypeEnum;
     /**
      * 
-     * @type {InlineResponse2001PayloadPricingListCurrentPrice}
+     * @type {InlineResponse200PayloadPricingListCurrentPrice}
      * @memberof PricingType
      */
-    comparisonPrice?: InlineResponse2001PayloadPricingListCurrentPrice;
+    comparisonPrice?: InlineResponse200PayloadPricingListCurrentPrice;
     /**
      * 
      * @type {string}
@@ -1402,16 +1402,16 @@ export interface PricingType {
     savingsPercent?: number;
     /**
      * 
-     * @type {InlineResponse2001PayloadPricingListPriceDisplayCodes}
+     * @type {InlineResponse200PayloadPricingListPriceDisplayCodes}
      * @memberof PricingType
      */
-    priceDisplayCodes?: InlineResponse2001PayloadPricingListPriceDisplayCodes;
+    priceDisplayCodes?: InlineResponse200PayloadPricingListPriceDisplayCodes;
     /**
      * 
-     * @type {InlineResponse2001PayloadPricingListPickupDiscount}
+     * @type {InlineResponse200PayloadPricingListPickupDiscount}
      * @memberof PricingType
      */
-    pickupDiscount?: InlineResponse2001PayloadPricingListPickupDiscount;
+    pickupDiscount?: InlineResponse200PayloadPricingListPickupDiscount;
     /**
      * 
      * @type {number}
@@ -1481,16 +1481,16 @@ export enum PricingTypeProcessModeEnum {
 export interface PromotionalPriceResponse {
     /**
      * 
-     * @type {InlineResponse2001Payload}
+     * @type {InlineResponse200Payload}
      * @memberof PromotionalPriceResponse
      */
-    payload?: InlineResponse2001Payload;
+    payload?: InlineResponse200Payload;
     /**
      * 
-     * @type {InlineResponse2001Header}
+     * @type {InlineResponse200Header}
      * @memberof PromotionalPriceResponse
      */
-    header?: InlineResponse2001Header;
+    header?: InlineResponse200Header;
     /**
      * 
      * @type {string}
@@ -1506,10 +1506,10 @@ export interface PromotionalPriceResponse {
 export interface PromotionsPrice {
     /**
      * 
-     * @type {InlineResponse2001PayloadPricingListCurrentPriceValue}
+     * @type {InlineResponse200PayloadPricingListCurrentPriceValue}
      * @memberof PromotionsPrice
      */
-    value?: InlineResponse2001PayloadPricingListCurrentPriceValue;
+    value?: InlineResponse200PayloadPricingListCurrentPriceValue;
     /**
      * 
      * @type {string}
@@ -1518,34 +1518,34 @@ export interface PromotionsPrice {
     uomType?: string;
     /**
      * 
-     * @type {InlineResponse2001PayloadPricingListCurrentPriceValue}
+     * @type {InlineResponse200PayloadPricingListCurrentPriceValue}
      * @memberof PromotionsPrice
      */
-    minValue?: InlineResponse2001PayloadPricingListCurrentPriceValue;
+    minValue?: InlineResponse200PayloadPricingListCurrentPriceValue;
     /**
      * 
-     * @type {InlineResponse2001PayloadPricingListCurrentPriceValue}
+     * @type {InlineResponse200PayloadPricingListCurrentPriceValue}
      * @memberof PromotionsPrice
      */
-    maxValue?: InlineResponse2001PayloadPricingListCurrentPriceValue;
+    maxValue?: InlineResponse200PayloadPricingListCurrentPriceValue;
     /**
      * 
-     * @type {InlineResponse2001PayloadPricingListCurrentPriceValue}
+     * @type {InlineResponse200PayloadPricingListCurrentPriceValue}
      * @memberof PromotionsPrice
      */
-    perUnitValue?: InlineResponse2001PayloadPricingListCurrentPriceValue;
+    perUnitValue?: InlineResponse200PayloadPricingListCurrentPriceValue;
     /**
      * 
-     * @type {InlineResponse2001PayloadPricingListCurrentPriceValue}
+     * @type {InlineResponse200PayloadPricingListCurrentPriceValue}
      * @memberof PromotionsPrice
      */
-    minUnitValue?: InlineResponse2001PayloadPricingListCurrentPriceValue;
+    minUnitValue?: InlineResponse200PayloadPricingListCurrentPriceValue;
     /**
      * 
-     * @type {InlineResponse2001PayloadPricingListCurrentPriceValue}
+     * @type {InlineResponse200PayloadPricingListCurrentPriceValue}
      * @memberof PromotionsPrice
      */
-    maxUnitValue?: InlineResponse2001PayloadPricingListCurrentPriceValue;
+    maxUnitValue?: InlineResponse200PayloadPricingListCurrentPriceValue;
 }
 /**
  * 
@@ -1555,10 +1555,10 @@ export interface PromotionsPrice {
 export interface Rebate {
     /**
      * 
-     * @type {InlineResponse2001PayloadPricingListCurrentPriceValue}
+     * @type {InlineResponse200PayloadPricingListCurrentPriceValue}
      * @memberof Rebate
      */
-    rebateAmt: InlineResponse2001PayloadPricingListCurrentPriceValue;
+    rebateAmt: InlineResponse200PayloadPricingListCurrentPriceValue;
     /**
      * 
      * @type {string}
@@ -2010,7 +2010,7 @@ export const PromotionsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getPromotionalPrices(sku: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
+        async getPromotionalPrices(sku: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getPromotionalPrices(sku, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -2044,7 +2044,7 @@ export const PromotionsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updatePromotionalPrices(promo: boolean, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
+        async updatePromotionalPrices(promo: boolean, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.updatePromotionalPrices(promo, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -2070,7 +2070,7 @@ export const PromotionsApiFactory = function (configuration?: Configuration, bas
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getPromotionalPrices(sku: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2001> {
+        getPromotionalPrices(sku: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse200> {
             return localVarFp.getPromotionalPrices(sku, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
@@ -2102,7 +2102,7 @@ export const PromotionsApiFactory = function (configuration?: Configuration, bas
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updatePromotionalPrices(promo: boolean, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse200> {
+        updatePromotionalPrices(promo: boolean, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2001> {
             return localVarFp.updatePromotionalPrices(promo, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
     };
