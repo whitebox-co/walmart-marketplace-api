@@ -1,3 +1,4 @@
+/* eslint-disable jest/no-conditional-expect */
 import * as env from '../../environment';
 import walmartApi, { ItemsApi, defaultParams } from '../../../src/index';
 import { addInterceptor, removeInterceptor } from '../../../utils/payload-interceptors';
@@ -45,7 +46,18 @@ describe(`${ItemsApi.name}`, () => {
 	});
 
 	describe('#getAnItem', () => {
-		// TODO: Implement ME!!
+		it('should throw a 404 error an item can not be found', async () => {
+			try {
+				await itemsApi.getAnItem({
+					...defaultParams,
+					id: '4390580943850',
+					productIdType: 'SKU',
+				});
+			} catch (err) {
+				expect(err.response.status).toEqual(404);
+				expect(err.response.data?.error).toBeDefined();
+			}
+		});
 	});
 
 	describe('#getCatalogSearch', () => {
