@@ -26,7 +26,11 @@
 	"editor.formatOnPaste": true,
 	"editor.formatOnSave": true,
 	"editor.copyWithSyntaxHighlighting": false,
-	"editor.quickSuggestions": true,
+	"editor.quickSuggestions": {
+		"comments": "on",
+		"strings": "on",
+		"other": "on"
+	},
 	"editor.quickSuggestionsDelay": 100,
 	"editor.wordBasedSuggestions": true,
 	"editor.parameterHints.enabled": false,

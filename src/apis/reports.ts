@@ -1,8 +1,8 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * Pregenerated Reports
- * The Pregenerated Reports API allows you to obtain any pregenerated report that you need, including: item, item performance, buy box, CAP, promotions, reconciliation, return item override, shipping program and shipping configuration.
+ * Pregenerated Reports retiring on June 30, 2022 :
+ * Please transition ASAP to using onRequest Reports (https://developer.walmart.com/doc/us/us-mp/us-mp-onrequestreports/). On July 29th, all PreGenerated reports other than recon report will be retired and only available onRequest.  The Pregenerated Reports API allows you to obtain any pregenerated report that you need, including: item, item performance, buy box, CAP, promotions, reconciliation, return item override, shipping program and shipping configuration.
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -56,7 +56,7 @@ export const ReportsApiAxiosParamCreator = function (configuration?: Configurati
     return {
         /**
          * This API will list all the available Marketplace reconciliation report dates for the Seller.
-         * @summary Available recon report dates
+         * @summary Available recon report dates(Legacy)
          * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
@@ -75,6 +75,73 @@ export const ReportsApiAxiosParamCreator = function (configuration?: Configurati
             // verify required parameter 'wMSVCNAME' is not null or undefined
             assertParamExists('getAvailableReconReportDates', 'wMSVCNAME', wMSVCNAME)
             const localVarPath = `/v3/report/reconreport/availableReconFiles`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication basicScheme required
+            // http basic authentication required
+            setBasicAuthToObject(localVarRequestOptions, configuration)
+
+            if (authorization !== undefined && authorization !== null) {
+                localVarHeaderParameter['Authorization'] = String(authorization);
+            }
+
+            if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
+                localVarHeaderParameter['WM_SEC.ACCESS_TOKEN'] = String(wMSECACCESSTOKEN);
+            }
+
+            if (wMCONSUMERCHANNELTYPE !== undefined && wMCONSUMERCHANNELTYPE !== null) {
+                localVarHeaderParameter['WM_CONSUMER.CHANNEL.TYPE'] = String(wMCONSUMERCHANNELTYPE);
+            }
+
+            if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
+                localVarHeaderParameter['WM_QOS.CORRELATION_ID'] = String(wMQOSCORRELATIONID);
+            }
+
+            if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
+                localVarHeaderParameter['WM_SVC.NAME'] = String(wMSVCNAME);
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * This API will list all the available Marketplace reconciliation report dates for the Seller.
+         * @summary Available recon report dates
+         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+         * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+         * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+         * @param {string} wMSVCNAME Walmart Service Name
+         * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getAvailableV1ReconReportDates: async (authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'authorization' is not null or undefined
+            assertParamExists('getAvailableV1ReconReportDates', 'authorization', authorization)
+            // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
+            assertParamExists('getAvailableV1ReconReportDates', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN)
+            // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
+            assertParamExists('getAvailableV1ReconReportDates', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID)
+            // verify required parameter 'wMSVCNAME' is not null or undefined
+            assertParamExists('getAvailableV1ReconReportDates', 'wMSVCNAME', wMSVCNAME)
+            const localVarPath = `/v3/report/reconreport/availableReconFiles?reportVersion=v1`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -197,7 +264,7 @@ export const ReportsApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * Seller can download the reconciliation report for a specific date using this API. Dates available to be downloaded can be found by using the Get available reconciliation report dates API.
-         * @summary Recon report
+         * @summary Recon report(Legacy)
          * @param {string} reportDate The date for which the reconcilation file is available
          * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
@@ -269,6 +336,87 @@ export const ReportsApiAxiosParamCreator = function (configuration?: Configurati
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * Seller can download the reconciliation report for a specific date using this API. Dates available to be downloaded can be found by using the Get available reconciliation report dates API.
+         * @summary Recon report
+         * @param {string} reportDate The date for which the reconcilation file is available
+         * @param {string} reportVersion Report Version
+         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+         * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+         * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+         * @param {string} wMSVCNAME Walmart Service Name
+         * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getReconReportV1: async (reportDate: string, reportVersion: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'reportDate' is not null or undefined
+            assertParamExists('getReconReportV1', 'reportDate', reportDate)
+            // verify required parameter 'reportVersion' is not null or undefined
+            assertParamExists('getReconReportV1', 'reportVersion', reportVersion)
+            // verify required parameter 'authorization' is not null or undefined
+            assertParamExists('getReconReportV1', 'authorization', authorization)
+            // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
+            assertParamExists('getReconReportV1', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN)
+            // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
+            assertParamExists('getReconReportV1', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID)
+            // verify required parameter 'wMSVCNAME' is not null or undefined
+            assertParamExists('getReconReportV1', 'wMSVCNAME', wMSVCNAME)
+            const localVarPath = `/v3/report/reconreport/reconFile?reportVersion=v1`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication basicScheme required
+            // http basic authentication required
+            setBasicAuthToObject(localVarRequestOptions, configuration)
+
+            if (reportDate !== undefined) {
+                localVarQueryParameter['reportDate'] = reportDate;
+            }
+
+            if (reportVersion !== undefined) {
+                localVarQueryParameter['reportVersion'] = reportVersion;
+            }
+
+            if (authorization !== undefined && authorization !== null) {
+                localVarHeaderParameter['Authorization'] = String(authorization);
+            }
+
+            if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
+                localVarHeaderParameter['WM_SEC.ACCESS_TOKEN'] = String(wMSECACCESSTOKEN);
+            }
+
+            if (wMCONSUMERCHANNELTYPE !== undefined && wMCONSUMERCHANNELTYPE !== null) {
+                localVarHeaderParameter['WM_CONSUMER.CHANNEL.TYPE'] = String(wMCONSUMERCHANNELTYPE);
+            }
+
+            if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
+                localVarHeaderParameter['WM_QOS.CORRELATION_ID'] = String(wMQOSCORRELATIONID);
+            }
+
+            if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
+                localVarHeaderParameter['WM_SVC.NAME'] = String(wMSVCNAME);
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -281,7 +429,7 @@ export const ReportsApiFp = function(configuration?: Configuration) {
     return {
         /**
          * This API will list all the available Marketplace reconciliation report dates for the Seller.
-         * @summary Available recon report dates
+         * @summary Available recon report dates(Legacy)
          * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
@@ -292,6 +440,21 @@ export const ReportsApiFp = function(configuration?: Configuration) {
          */
         async getAvailableReconReportDates(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getAvailableReconReportDates(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * This API will list all the available Marketplace reconciliation report dates for the Seller.
+         * @summary Available recon report dates
+         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+         * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+         * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+         * @param {string} wMSVCNAME Walmart Service Name
+         * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getAvailableV1ReconReportDates(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getAvailableV1ReconReportDates(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -312,7 +475,7 @@ export const ReportsApiFp = function(configuration?: Configuration) {
         },
         /**
          * Seller can download the reconciliation report for a specific date using this API. Dates available to be downloaded can be found by using the Get available reconciliation report dates API.
-         * @summary Recon report
+         * @summary Recon report(Legacy)
          * @param {string} reportDate The date for which the reconcilation file is available
          * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
@@ -324,6 +487,23 @@ export const ReportsApiFp = function(configuration?: Configuration) {
          */
         async getReconReport(reportDate: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getReconReport(reportDate, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Seller can download the reconciliation report for a specific date using this API. Dates available to be downloaded can be found by using the Get available reconciliation report dates API.
+         * @summary Recon report
+         * @param {string} reportDate The date for which the reconcilation file is available
+         * @param {string} reportVersion Report Version
+         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+         * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+         * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+         * @param {string} wMSVCNAME Walmart Service Name
+         * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getReconReportV1(reportDate: string, reportVersion: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getReconReportV1(reportDate, reportVersion, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -338,7 +518,7 @@ export const ReportsApiFactory = function (configuration?: Configuration, basePa
     return {
         /**
          * This API will list all the available Marketplace reconciliation report dates for the Seller.
-         * @summary Available recon report dates
+         * @summary Available recon report dates(Legacy)
          * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
@@ -349,6 +529,20 @@ export const ReportsApiFactory = function (configuration?: Configuration, basePa
          */
         getAvailableReconReportDates(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse200> {
             return localVarFp.getAvailableReconReportDates(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * This API will list all the available Marketplace reconciliation report dates for the Seller.
+         * @summary Available recon report dates
+         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+         * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+         * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+         * @param {string} wMSVCNAME Walmart Service Name
+         * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getAvailableV1ReconReportDates(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse200> {
+            return localVarFp.getAvailableV1ReconReportDates(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns all the information associated with Seller\'s items that are set up on Walmart’s platform.
@@ -367,7 +561,7 @@ export const ReportsApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * Seller can download the reconciliation report for a specific date using this API. Dates available to be downloaded can be found by using the Get available reconciliation report dates API.
-         * @summary Recon report
+         * @summary Recon report(Legacy)
          * @param {string} reportDate The date for which the reconcilation file is available
          * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
@@ -379,6 +573,22 @@ export const ReportsApiFactory = function (configuration?: Configuration, basePa
          */
         getReconReport(reportDate: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<string> {
             return localVarFp.getReconReport(reportDate, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Seller can download the reconciliation report for a specific date using this API. Dates available to be downloaded can be found by using the Get available reconciliation report dates API.
+         * @summary Recon report
+         * @param {string} reportDate The date for which the reconcilation file is available
+         * @param {string} reportVersion Report Version
+         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+         * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+         * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+         * @param {string} wMSVCNAME Walmart Service Name
+         * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getReconReportV1(reportDate: string, reportVersion: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<string> {
+            return localVarFp.getReconReportV1(reportDate, reportVersion, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -421,6 +631,48 @@ export interface ReportsApiGetAvailableReconReportDatesRequest {
      * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
      * @type {string}
      * @memberof ReportsApiGetAvailableReconReportDates
+     */
+    readonly wMCONSUMERCHANNELTYPE?: string
+}
+
+/**
+ * Request parameters for getAvailableV1ReconReportDates operation in ReportsApi.
+ * @export
+ * @interface ReportsApiGetAvailableV1ReconReportDatesRequest
+ */
+export interface ReportsApiGetAvailableV1ReconReportDatesRequest {
+    /**
+     * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+     * @type {string}
+     * @memberof ReportsApiGetAvailableV1ReconReportDates
+     */
+    readonly authorization: string
+
+    /**
+     * The access token retrieved in the Token API call
+     * @type {string}
+     * @memberof ReportsApiGetAvailableV1ReconReportDates
+     */
+    readonly wMSECACCESSTOKEN: string
+
+    /**
+     * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+     * @type {string}
+     * @memberof ReportsApiGetAvailableV1ReconReportDates
+     */
+    readonly wMQOSCORRELATIONID: string
+
+    /**
+     * Walmart Service Name
+     * @type {string}
+     * @memberof ReportsApiGetAvailableV1ReconReportDates
+     */
+    readonly wMSVCNAME: string
+
+    /**
+     * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+     * @type {string}
+     * @memberof ReportsApiGetAvailableV1ReconReportDates
      */
     readonly wMCONSUMERCHANNELTYPE?: string
 }
@@ -524,6 +776,62 @@ export interface ReportsApiGetReconReportRequest {
 }
 
 /**
+ * Request parameters for getReconReportV1 operation in ReportsApi.
+ * @export
+ * @interface ReportsApiGetReconReportV1Request
+ */
+export interface ReportsApiGetReconReportV1Request {
+    /**
+     * The date for which the reconcilation file is available
+     * @type {string}
+     * @memberof ReportsApiGetReconReportV1
+     */
+    readonly reportDate: string
+
+    /**
+     * Report Version
+     * @type {string}
+     * @memberof ReportsApiGetReconReportV1
+     */
+    readonly reportVersion: string
+
+    /**
+     * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+     * @type {string}
+     * @memberof ReportsApiGetReconReportV1
+     */
+    readonly authorization: string
+
+    /**
+     * The access token retrieved in the Token API call
+     * @type {string}
+     * @memberof ReportsApiGetReconReportV1
+     */
+    readonly wMSECACCESSTOKEN: string
+
+    /**
+     * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+     * @type {string}
+     * @memberof ReportsApiGetReconReportV1
+     */
+    readonly wMQOSCORRELATIONID: string
+
+    /**
+     * Walmart Service Name
+     * @type {string}
+     * @memberof ReportsApiGetReconReportV1
+     */
+    readonly wMSVCNAME: string
+
+    /**
+     * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+     * @type {string}
+     * @memberof ReportsApiGetReconReportV1
+     */
+    readonly wMCONSUMERCHANNELTYPE?: string
+}
+
+/**
  * ReportsApi - object-oriented interface
  * @export
  * @class ReportsApi
@@ -532,7 +840,7 @@ export interface ReportsApiGetReconReportRequest {
 export class ReportsApi extends BaseAPI {
     /**
      * This API will list all the available Marketplace reconciliation report dates for the Seller.
-     * @summary Available recon report dates
+     * @summary Available recon report dates(Legacy)
      * @param {ReportsApiGetAvailableReconReportDatesRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -540,6 +848,18 @@ export class ReportsApi extends BaseAPI {
      */
     public getAvailableReconReportDates(requestParameters: ReportsApiGetAvailableReconReportDatesRequest, options?: any) {
         return ReportsApiFp(this.configuration).getAvailableReconReportDates(requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * This API will list all the available Marketplace reconciliation report dates for the Seller.
+     * @summary Available recon report dates
+     * @param {ReportsApiGetAvailableV1ReconReportDatesRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ReportsApi
+     */
+    public getAvailableV1ReconReportDates(requestParameters: ReportsApiGetAvailableV1ReconReportDatesRequest, options?: any) {
+        return ReportsApiFp(this.configuration).getAvailableV1ReconReportDates(requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -556,7 +876,7 @@ export class ReportsApi extends BaseAPI {
 
     /**
      * Seller can download the reconciliation report for a specific date using this API. Dates available to be downloaded can be found by using the Get available reconciliation report dates API.
-     * @summary Recon report
+     * @summary Recon report(Legacy)
      * @param {ReportsApiGetReconReportRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -564,6 +884,18 @@ export class ReportsApi extends BaseAPI {
      */
     public getReconReport(requestParameters: ReportsApiGetReconReportRequest, options?: any) {
         return ReportsApiFp(this.configuration).getReconReport(requestParameters.reportDate, requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Seller can download the reconciliation report for a specific date using this API. Dates available to be downloaded can be found by using the Get available reconciliation report dates API.
+     * @summary Recon report
+     * @param {ReportsApiGetReconReportV1Request} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ReportsApi
+     */
+    public getReconReportV1(requestParameters: ReportsApiGetReconReportV1Request, options?: any) {
+        return ReportsApiFp(this.configuration).getReconReportV1(requestParameters.reportDate, requestParameters.reportVersion, requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

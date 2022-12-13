@@ -77,10 +77,10 @@ describe(`${InventoryApi.name}`, () => {
 			});
 
 			// get individual inventory items
-			const inventoryPromises = inventoriesResponse.data?.elements?.inventories.map((element) => {
+			const inventoryPromises = inventoriesResponse.data?.elements?.inventories?.map((element) => {
 				return inventoryApi.getInventory({
 					...defaultParams,
-					sku: element.sku,
+					sku: element.sku || '',
 				});
 			});
 
@@ -90,7 +90,7 @@ describe(`${InventoryApi.name}`, () => {
 			const inventoryElements = [];
 			promises.forEach((result: any) => {
 				if (result.status === 'fulfilled') {
-					inventoryElements.push(result.value.data);
+					inventoryElements.push(result?.value?.data);
 				}
 			});
 

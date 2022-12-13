@@ -121,7 +121,7 @@ describe(`${ItemsApi.name}`, () => {
 
 			expect(hoodieUploadResponse).toBeDefined();
 			expect(hoodieUploadResponse.data).toBeDefined();
-			expect(hoodieUploadResponse.data.errors).toBeNull();
+			expect(hoodieUploadResponse.data.errors).toBeUndefined();
 			expect(hoodieUploadResponse.data.feedId).not.toBeUndefined();
 
 			// Create and Submit some baby food
@@ -165,7 +165,7 @@ describe(`${ItemsApi.name}`, () => {
 
 			expect(babySpinachUploadResponse).toBeDefined();
 			expect(babySpinachUploadResponse.data).toBeDefined();
-			expect(babySpinachUploadResponse.data.errors).toBeNull();
+			expect(babySpinachUploadResponse.data.errors).toBeUndefined();
 			expect(babySpinachUploadResponse.data.feedId).not.toBeUndefined();
 		});
 
@@ -219,7 +219,7 @@ describe(`${ItemsApi.name}`, () => {
 
 			expect(hoodieUploadResponse).toBeDefined();
 			expect(hoodieUploadResponse.data).toBeDefined();
-			expect(hoodieUploadResponse.data.errors).toBeNull();
+			expect(hoodieUploadResponse.data.errors).toBeUndefined();
 			expect(hoodieUploadResponse.data.feedId).not.toBeUndefined();
 		});
 
@@ -268,7 +268,7 @@ describe(`${ItemsApi.name}`, () => {
 
 			expect(hoodieUploadResponse).toBeDefined();
 			expect(hoodieUploadResponse.data).toBeDefined();
-			expect(hoodieUploadResponse.data.errors).toBeNull();
+			expect(hoodieUploadResponse.data.errors).toBeUndefined();
 			expect(hoodieUploadResponse.data.feedId).not.toBeUndefined();
 		});
 	});

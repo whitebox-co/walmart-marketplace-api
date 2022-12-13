@@ -40,7 +40,15 @@
                 "ITEM",
                 "INVENTORY",
                 "CANCELLATION",
-                "DELIVERY_DEFECT"
+                "DELIVERY_DEFECT",
+                "ITEM_PERFORMANCE",
+                "PROMO",
+                "RETURN_OVERRIDES",
+                "CPA",
+                "SHIPPING_CONFIGURATION",
+                "SHIPPING_PROGRAM",
+                "FITMENT_MISSING_ATTR",
+                "FITMENT_ACES_COVERAGE"
               ]
             }
           },
@@ -202,7 +210,16 @@
                             "type": "string",
                             "description": "Type of report for which the request is created. Example, ITEM for Item Report.",
                             "enum": [
-                              "ITEM"
+                              "ITEM",
+                              "INVENTORY",
+                              "CANCELLATION",
+                              "DELIVERY_DEFECT",
+                              "ITEM_PERFORMANCE",
+                              "PROMO",
+                              "RETURN_OVERRIDES",
+                              "CPA",
+                              "SHIPPING_CONFIGURATION",
+                              "SHIPPING_PROGRAM"
                             ]
                           },
                           "reportVersion": {
@@ -290,7 +307,8 @@
                                   "description": "Columns to exclude from report"
                                 }
                               }
-                            }
+                            },
+                            "description": "Request Payload"
                           },
                           "reportGenerationDate": {
                             "type": "string",
@@ -383,14 +401,22 @@
                 "ITEM",
                 "INVENTORY",
                 "CANCELLATION",
-                "DELIVERY_DEFECT"
+                "DELIVERY_DEFECT",
+                "ITEM_PERFORMANCE",
+                "PROMO",
+                "RETURN_OVERRIDES",
+                "CPA",
+                "SHIPPING_CONFIGURATION",
+                "SHIPPING_PROGRAM",
+                "FITMENT_MISSING_ATTR",
+                "FITMENT_ACES_COVERAGE"
               ]
             }
           },
           {
             "name": "reportVersion",
             "in": "query",
-            "description": "Version of report for which the request is created. Supported versions for each report type are currently 'reportVersion=v1' for the following reportType(s): INVENTORY, CANCELLATION, DELIVERY_DEFECT and 'reportVersion=v1', 'reportVersion=v2' for the following reportType(s): ITEM.",
+            "description": "Version of report for which the request is created. Supported versions for each report type are currently 'reportVersion=v1' for the following reportType(s): INVENTORY, CANCELLATION, DELIVERY_DEFECT, ITEM_PERFORMANCE, PROMO, RETURN_OVERRIDES, CPA, SHIPPING_CONFIGURATION, SHIPPING_PROGRAM, FITMENT_MISSING_ATTR, FITMENT_ACES_COVERAGE and 'reportVersion=v1', 'reportVersion=v2', 'reportVersion=v3', 'reportVersion=v4' for the following reportType(s): ITEM.",
             "required": true,
             "schema": {
               "type": "string"
@@ -551,7 +577,8 @@
                       "description": "Columns to exclude from report"
                     }
                   }
-                }
+                },
+                "description": "Request Payload"
               },
               "example": {
                 "rowFilters": [
@@ -575,8 +602,7 @@
                     "type": "enumFilter",
                     "columnName": "Publish Status",
                     "values": [
-                      "PUBLISHED",
-                      "RETIRED"
+                      "PUBLISHED"
                     ]
                   }
                 ],
@@ -619,7 +645,16 @@
                       "type": "string",
                       "description": "Type of report for which the request is created. Example, ITEM for Item Report.",
                       "enum": [
-                        "ITEM"
+                        "ITEM",
+                        "INVENTORY",
+                        "CANCELLATION",
+                        "DELIVERY_DEFECT",
+                        "ITEM_PERFORMANCE",
+                        "PROMO",
+                        "RETURN_OVERRIDES",
+                        "CPA",
+                        "SHIPPING_CONFIGURATION",
+                        "SHIPPING_PROGRAM"
                       ]
                     },
                     "reportVersion": {
@@ -707,7 +742,8 @@
                             "description": "Columns to exclude from report"
                           }
                         }
-                      }
+                      },
+                      "description": "Request Payload"
                     }
                   }
                 },
@@ -869,7 +905,16 @@
                       "type": "string",
                       "description": "Type of report for which the request is created. Example, ITEM for Item Report.",
                       "enum": [
-                        "ITEM"
+                        "ITEM",
+                        "INVENTORY",
+                        "CANCELLATION",
+                        "DELIVERY_DEFECT",
+                        "ITEM_PERFORMANCE",
+                        "PROMO",
+                        "RETURN_OVERRIDES",
+                        "CPA",
+                        "SHIPPING_CONFIGURATION",
+                        "SHIPPING_PROGRAM"
                       ]
                     },
                     "reportVersion": {
@@ -957,51 +1002,13 @@
                             "description": "Columns to exclude from report"
                           }
                         }
-                      }
+                      },
+                      "description": "Request Payload"
                     },
                     "reportGenerationDate": {
                       "type": "string",
                       "description": "Date and time on which the report is generated. Attribute is available only if report is generated."
                     }
-                  }
-                },
-                "example": {
-                  "requestId": "98884f2c-46c7-48c6-8e19-0946ff371442",
-                  "requestStatus": "RECEIVED",
-                  "requestSubmissionDate": "2020-09-28T09:14:19",
-                  "reportType": "ITEM",
-                  "reportVersion": "v1",
-                  "payload": {
-                    "rowFilters": [
-                      {
-                        "type": "rangeFilter",
-                        "columnName": "Offer Start Date",
-                        "from": "2020-03-16"
-                      },
-                      {
-                        "type": "rangeFilter",
-                        "columnName": "Offer End Date",
-                        "to": "2021-06-16"
-                      },
-                      {
-                        "type": "rangeFilter",
-                        "columnName": "Price",
-                        "from": "10",
-                        "to": "100"
-                      },
-                      {
-                        "type": "enumFilter",
-                        "columnName": "Publish Status",
-                        "values": [
-                          "PUBLISHED",
-                          "RETIRED"
-                        ]
-                      }
-                    ],
-                    "excludeColumns": [
-                      "Average Rating",
-                      "Shelf Name"
-                    ]
                   }
                 }
               }
@@ -1131,7 +1138,16 @@
                       "type": "string",
                       "description": "Type of report for which the request is created. Example, ITEM for Item Report.",
                       "enum": [
-                        "ITEM"
+                        "ITEM",
+                        "INVENTORY",
+                        "CANCELLATION",
+                        "DELIVERY_DEFECT",
+                        "ITEM_PERFORMANCE",
+                        "PROMO",
+                        "RETURN_OVERRIDES",
+                        "CPA",
+                        "SHIPPING_CONFIGURATION",
+                        "SHIPPING_PROGRAM"
                       ]
                     },
                     "reportVersion": {
@@ -1274,39 +1290,10 @@
               "description": "Columns to exclude from report"
             }
           }
-        }
+        },
+        "description": "Request Payload"
       },
-      "RangeFilter": {
-        "title": "RangeFilter",
-        "required": [
-          "columnName",
-          "rowFilterType"
-        ],
-        "type": "object",
-        "properties": {
-          "from": {
-            "type": "string",
-            "description": "Filter range start"
-          },
-          "to": {
-            "type": "string",
-            "description": "Filter range end"
-          },
-          "rowFilterType": {
-            "type": "string",
-            "description": "Type of the filter",
-            "enum": [
-              "rangeFilter",
-              "enumFilter"
-            ]
-          },
-          "columnName": {
-            "type": "string",
-            "description": "Column on which filter has to be applied"
-          }
-        }
-      },
-      "RequestStatusResponse": {
+      "GenerateReportResponse": {
         "type": "object",
         "properties": {
           "requestId": {
@@ -1332,7 +1319,16 @@
             "type": "string",
             "description": "Type of report for which the request is created. Example, ITEM for Item Report.",
             "enum": [
-              "ITEM"
+              "ITEM",
+              "INVENTORY",
+              "CANCELLATION",
+              "DELIVERY_DEFECT",
+              "ITEM_PERFORMANCE",
+              "PROMO",
+              "RETURN_OVERRIDES",
+              "CPA",
+              "SHIPPING_CONFIGURATION",
+              "SHIPPING_PROGRAM"
             ]
           },
           "reportVersion": {
@@ -1420,7 +1416,232 @@
                   "description": "Columns to exclude from report"
                 }
               }
+            },
+            "description": "Request Payload"
+          }
+        }
+      },
+      "RangeFilter": {
+        "title": "RangeFilter",
+        "required": [
+          "columnName",
+          "rowFilterType"
+        ],
+        "type": "object",
+        "properties": {
+          "from": {
+            "type": "string",
+            "description": "Filter range start"
+          },
+          "to": {
+            "type": "string",
+            "description": "Filter range end"
+          },
+          "rowFilterType": {
+            "type": "string",
+            "description": "Type of the filter",
+            "enum": [
+              "rangeFilter",
+              "enumFilter"
+            ]
+          },
+          "columnName": {
+            "type": "string",
+            "description": "Column on which filter has to be applied"
+          }
+        }
+      },
+      "RowFilter": {
+        "type": "object",
+        "description": "Supertype of all row filters.",
+        "anyOf": [
+          {
+            "title": "EnumFilter",
+            "required": [
+              "columnName",
+              "type"
+            ],
+            "type": "object",
+            "properties": {
+              "values": {
+                "type": "array",
+                "description": "Enum filter values which has to be included in report",
+                "items": {
+                  "type": "string",
+                  "description": "Enum filter values which has to be included in report"
+                }
+              },
+              "columnName": {
+                "type": "string",
+                "description": "Column on which filter has to be applied"
+              },
+              "type": {
+                "type": "string",
+                "description": "Type of the filter",
+                "enum": [
+                  "rangeFilter",
+                  "enumFilter"
+                ]
+              }
             }
+          },
+          {
+            "title": "RangeFilter",
+            "required": [
+              "columnName",
+              "rowFilterType"
+            ],
+            "type": "object",
+            "properties": {
+              "from": {
+                "type": "string",
+                "description": "Filter range start"
+              },
+              "to": {
+                "type": "string",
+                "description": "Filter range end"
+              },
+              "rowFilterType": {
+                "type": "string",
+                "description": "Type of the filter",
+                "enum": [
+                  "rangeFilter",
+                  "enumFilter"
+                ]
+              },
+              "columnName": {
+                "type": "string",
+                "description": "Column on which filter has to be applied"
+              }
+            }
+          }
+        ]
+      },
+      "RequestStatusResponse": {
+        "type": "object",
+        "properties": {
+          "requestId": {
+            "type": "string",
+            "description": "Automated ID generated by system that uniquely identifies the report request.",
+            "format": "uuid"
+          },
+          "requestStatus": {
+            "type": "string",
+            "description": "Status of report request. Possible values are RECEIVED, INPROGRESS, READY, ERROR.",
+            "enum": [
+              "RECEIVED",
+              "INPROGRESS",
+              "READY",
+              "ERROR"
+            ]
+          },
+          "requestSubmissionDate": {
+            "type": "string",
+            "description": "Date and time on which the report request is submitted."
+          },
+          "reportType": {
+            "type": "string",
+            "description": "Type of report for which the request is created. Example, ITEM for Item Report.",
+            "enum": [
+              "ITEM",
+              "INVENTORY",
+              "CANCELLATION",
+              "DELIVERY_DEFECT",
+              "ITEM_PERFORMANCE",
+              "PROMO",
+              "RETURN_OVERRIDES",
+              "CPA",
+              "SHIPPING_CONFIGURATION",
+              "SHIPPING_PROGRAM"
+            ]
+          },
+          "reportVersion": {
+            "type": "string",
+            "description": "Version of report for which the request is created. Example, v1."
+          },
+          "payload": {
+            "type": "object",
+            "properties": {
+              "rowFilters": {
+                "type": "array",
+                "description": "Row Level filters",
+                "items": {
+                  "type": "object",
+                  "description": "Supertype of all row filters.",
+                  "anyOf": [
+                    {
+                      "title": "EnumFilter",
+                      "required": [
+                        "columnName",
+                        "type"
+                      ],
+                      "type": "object",
+                      "properties": {
+                        "values": {
+                          "type": "array",
+                          "description": "Enum filter values which has to be included in report",
+                          "items": {
+                            "type": "string",
+                            "description": "Enum filter values which has to be included in report"
+                          }
+                        },
+                        "columnName": {
+                          "type": "string",
+                          "description": "Column on which filter has to be applied"
+                        },
+                        "type": {
+                          "type": "string",
+                          "description": "Type of the filter",
+                          "enum": [
+                            "rangeFilter",
+                            "enumFilter"
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "title": "RangeFilter",
+                      "required": [
+                        "columnName",
+                        "rowFilterType"
+                      ],
+                      "type": "object",
+                      "properties": {
+                        "from": {
+                          "type": "string",
+                          "description": "Filter range start"
+                        },
+                        "to": {
+                          "type": "string",
+                          "description": "Filter range end"
+                        },
+                        "rowFilterType": {
+                          "type": "string",
+                          "description": "Type of the filter",
+                          "enum": [
+                            "rangeFilter",
+                            "enumFilter"
+                          ]
+                        },
+                        "columnName": {
+                          "type": "string",
+                          "description": "Column on which filter has to be applied"
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "excludeColumns": {
+                "type": "array",
+                "description": "Columns to exclude from report",
+                "items": {
+                  "type": "string",
+                  "description": "Columns to exclude from report"
+                }
+              }
+            },
+            "description": "Request Payload"
           },
           "reportGenerationDate": {
             "type": "string",
@@ -1479,7 +1700,16 @@
                   "type": "string",
                   "description": "Type of report for which the request is created. Example, ITEM for Item Report.",
                   "enum": [
-                    "ITEM"
+                    "ITEM",
+                    "INVENTORY",
+                    "CANCELLATION",
+                    "DELIVERY_DEFECT",
+                    "ITEM_PERFORMANCE",
+                    "PROMO",
+                    "RETURN_OVERRIDES",
+                    "CPA",
+                    "SHIPPING_CONFIGURATION",
+                    "SHIPPING_PROGRAM"
                   ]
                 },
                 "reportVersion": {
@@ -1567,195 +1797,12 @@
                         "description": "Columns to exclude from report"
                       }
                     }
-                  }
+                  },
+                  "description": "Request Payload"
                 },
                 "reportGenerationDate": {
                   "type": "string",
                   "description": "Date and time on which the report is generated. Attribute is available only if report is generated."
-                }
-              }
-            }
-          }
-        }
-      },
-      "RowFilter": {
-        "type": "object",
-        "description": "Supertype of all row filters.",
-        "anyOf": [
-          {
-            "title": "EnumFilter",
-            "required": [
-              "columnName",
-              "type"
-            ],
-            "type": "object",
-            "properties": {
-              "values": {
-                "type": "array",
-                "description": "Enum filter values which has to be included in report",
-                "items": {
-                  "type": "string",
-                  "description": "Enum filter values which has to be included in report"
-                }
-              },
-              "columnName": {
-                "type": "string",
-                "description": "Column on which filter has to be applied"
-              },
-              "type": {
-                "type": "string",
-                "description": "Type of the filter",
-                "enum": [
-                  "rangeFilter",
-                  "enumFilter"
-                ]
-              }
-            }
-          },
-          {
-            "title": "RangeFilter",
-            "required": [
-              "columnName",
-              "rowFilterType"
-            ],
-            "type": "object",
-            "properties": {
-              "from": {
-                "type": "string",
-                "description": "Filter range start"
-              },
-              "to": {
-                "type": "string",
-                "description": "Filter range end"
-              },
-              "rowFilterType": {
-                "type": "string",
-                "description": "Type of the filter",
-                "enum": [
-                  "rangeFilter",
-                  "enumFilter"
-                ]
-              },
-              "columnName": {
-                "type": "string",
-                "description": "Column on which filter has to be applied"
-              }
-            }
-          }
-        ]
-      },
-      "GenerateReportResponse": {
-        "type": "object",
-        "properties": {
-          "requestId": {
-            "type": "string",
-            "description": "Automated ID generated by system that uniquely identifies the report request.",
-            "format": "uuid"
-          },
-          "requestStatus": {
-            "type": "string",
-            "description": "Status of report request. Possible values are RECEIVED, INPROGRESS, READY, ERROR.",
-            "enum": [
-              "RECEIVED",
-              "INPROGRESS",
-              "READY",
-              "ERROR"
-            ]
-          },
-          "requestSubmissionDate": {
-            "type": "string",
-            "description": "Date and time on which the report request is submitted."
-          },
-          "reportType": {
-            "type": "string",
-            "description": "Type of report for which the request is created. Example, ITEM for Item Report.",
-            "enum": [
-              "ITEM"
-            ]
-          },
-          "reportVersion": {
-            "type": "string",
-            "description": "Version of report for which the request is created. Example, v1."
-          },
-          "payload": {
-            "type": "object",
-            "properties": {
-              "rowFilters": {
-                "type": "array",
-                "description": "Row Level filters",
-                "items": {
-                  "type": "object",
-                  "description": "Supertype of all row filters.",
-                  "anyOf": [
-                    {
-                      "title": "EnumFilter",
-                      "required": [
-                        "columnName",
-                        "type"
-                      ],
-                      "type": "object",
-                      "properties": {
-                        "values": {
-                          "type": "array",
-                          "description": "Enum filter values which has to be included in report",
-                          "items": {
-                            "type": "string",
-                            "description": "Enum filter values which has to be included in report"
-                          }
-                        },
-                        "columnName": {
-                          "type": "string",
-                          "description": "Column on which filter has to be applied"
-                        },
-                        "type": {
-                          "type": "string",
-                          "description": "Type of the filter",
-                          "enum": [
-                            "rangeFilter",
-                            "enumFilter"
-                          ]
-                        }
-                      }
-                    },
-                    {
-                      "title": "RangeFilter",
-                      "required": [
-                        "columnName",
-                        "rowFilterType"
-                      ],
-                      "type": "object",
-                      "properties": {
-                        "from": {
-                          "type": "string",
-                          "description": "Filter range start"
-                        },
-                        "to": {
-                          "type": "string",
-                          "description": "Filter range end"
-                        },
-                        "rowFilterType": {
-                          "type": "string",
-                          "description": "Type of the filter",
-                          "enum": [
-                            "rangeFilter",
-                            "enumFilter"
-                          ]
-                        },
-                        "columnName": {
-                          "type": "string",
-                          "description": "Column on which filter has to be applied"
-                        }
-                      }
-                    }
-                  ]
-                }
-              },
-              "excludeColumns": {
-                "type": "array",
-                "description": "Columns to exclude from report",
-                "items": {
-                  "type": "string",
-                  "description": "Columns to exclude from report"
                 }
               }
             }
@@ -1796,7 +1843,16 @@
             "type": "string",
             "description": "Type of report for which the request is created. Example, ITEM for Item Report.",
             "enum": [
-              "ITEM"
+              "ITEM",
+              "INVENTORY",
+              "CANCELLATION",
+              "DELIVERY_DEFECT",
+              "ITEM_PERFORMANCE",
+              "PROMO",
+              "RETURN_OVERRIDES",
+              "CPA",
+              "SHIPPING_CONFIGURATION",
+              "SHIPPING_PROGRAM"
             ]
           },
           "reportVersion": {

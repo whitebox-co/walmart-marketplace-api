@@ -35,10 +35,10 @@ export interface CapProgramResponse {
     martId?: string;
     /**
      * 
-     * @type {InlineObject1}
+     * @type {InlineObject2}
      * @memberof CapProgramResponse
      */
-    statusInfo?: InlineObject1;
+    statusInfo?: InlineObject2;
 }
 /**
  * 
@@ -313,19 +313,19 @@ export enum InlineObjectReplaceAllEnum {
 /**
  * 
  * @export
- * @interface InlineObject1
+ * @interface InlineObject2
  */
-export interface InlineObject1 {
+export interface InlineObject2 {
     /**
      * A Boolean parameter that allows all sellers to completely enroll in or out of the Competitive Price Adjustment program
      * @type {boolean}
-     * @memberof InlineObject1
+     * @memberof InlineObject2
      */
     subsidyEnrolled?: boolean;
     /**
      * A Boolean parameter that determines whether offer level subsidy setting override seller level subsidy setting
      * @type {boolean}
-     * @memberof InlineObject1
+     * @memberof InlineObject2
      */
     subsidyPreference?: boolean;
 }
@@ -373,17 +373,23 @@ export interface InlineResponse200 {
  */
 export interface InlineResponse2001 {
     /**
-     * A unique ID that a user or seller uses for a marketplace.
+     * A unique ID, returned from the Bulk Upload API, used for tracking the feed file
      * @type {string}
      * @memberof InlineResponse2001
      */
-    martId?: string;
+    feedId?: string;
     /**
      * 
-     * @type {InlineObject1}
+     * @type {object}
      * @memberof InlineResponse2001
      */
-    statusInfo?: InlineObject1;
+    additionalAttributes?: object | null;
+    /**
+     * 
+     * @type {object}
+     * @memberof InlineResponse2001
+     */
+    errors?: object | null;
 }
 /**
  * 
@@ -392,23 +398,17 @@ export interface InlineResponse2001 {
  */
 export interface InlineResponse2002 {
     /**
-     * A unique ID, returned from the Bulk Upload API, used for tracking the feed file
+     * A unique ID that a user or seller uses for a marketplace.
      * @type {string}
      * @memberof InlineResponse2002
      */
-    feedId?: string;
+    martId?: string;
     /**
      * 
-     * @type {object}
+     * @type {InlineObject2}
      * @memberof InlineResponse2002
      */
-    additionalAttributes?: object | null;
-    /**
-     * 
-     * @type {object}
-     * @memberof InlineResponse2002
-     */
-    errors?: object | null;
+    statusInfo?: InlineObject2;
 }
 /**
  * 
@@ -915,12 +915,12 @@ export const PricesApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
-         * @param {InlineObject1} inlineObject1 
+         * @param {InlineObject2} inlineObject2 
          * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        optCapProgramInPrice: async (authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject1: InlineObject1, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
+        optCapProgramInPrice: async (authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject2: InlineObject2, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'authorization' is not null or undefined
             assertParamExists('optCapProgramInPrice', 'authorization', authorization)
             // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
@@ -929,8 +929,8 @@ export const PricesApiAxiosParamCreator = function (configuration?: Configuratio
             assertParamExists('optCapProgramInPrice', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID)
             // verify required parameter 'wMSVCNAME' is not null or undefined
             assertParamExists('optCapProgramInPrice', 'wMSVCNAME', wMSVCNAME)
-            // verify required parameter 'inlineObject1' is not null or undefined
-            assertParamExists('optCapProgramInPrice', 'inlineObject1', inlineObject1)
+            // verify required parameter 'inlineObject2' is not null or undefined
+            assertParamExists('optCapProgramInPrice', 'inlineObject2', inlineObject2)
             const localVarPath = `/v3/cppreference`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -974,7 +974,7 @@ export const PricesApiAxiosParamCreator = function (configuration?: Configuratio
             setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(inlineObject1, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(inlineObject2, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -989,12 +989,12 @@ export const PricesApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
+         * @param {any} file Feed file to upload
          * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-         * @param {any} [file] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        priceBulkUploads: async (feedType: 'price' | 'CPT_SELLER_ELIGIBILITY', authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, file?: any, options: any = {}): Promise<RequestArgs> => {
+        priceBulkUploads: async (feedType: 'price' | 'CPT_SELLER_ELIGIBILITY', authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, file: any, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'feedType' is not null or undefined
             assertParamExists('priceBulkUploads', 'feedType', feedType)
             // verify required parameter 'authorization' is not null or undefined
@@ -1005,6 +1005,8 @@ export const PricesApiAxiosParamCreator = function (configuration?: Configuratio
             assertParamExists('priceBulkUploads', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID)
             // verify required parameter 'wMSVCNAME' is not null or undefined
             assertParamExists('priceBulkUploads', 'wMSVCNAME', wMSVCNAME)
+            // verify required parameter 'file' is not null or undefined
+            assertParamExists('priceBulkUploads', 'file', file)
             const localVarPath = `/v3/feeds`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -1154,13 +1156,13 @@ export const PricesApiFp = function(configuration?: Configuration) {
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
-         * @param {InlineObject1} inlineObject1 
+         * @param {InlineObject2} inlineObject2 
          * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async optCapProgramInPrice(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject1: InlineObject1, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.optCapProgramInPrice(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject1, wMCONSUMERCHANNELTYPE, options);
+        async optCapProgramInPrice(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject2: InlineObject2, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2002>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.optCapProgramInPrice(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject2, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -1171,13 +1173,13 @@ export const PricesApiFp = function(configuration?: Configuration) {
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
+         * @param {any} file Feed file to upload
          * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-         * @param {any} [file] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async priceBulkUploads(feedType: 'price' | 'CPT_SELLER_ELIGIBILITY', authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, file?: any, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2002>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.priceBulkUploads(feedType, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, file, options);
+        async priceBulkUploads(feedType: 'price' | 'CPT_SELLER_ELIGIBILITY', authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, file: any, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.priceBulkUploads(feedType, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, file, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -1213,13 +1215,13 @@ export const PricesApiFactory = function (configuration?: Configuration, basePat
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
-         * @param {InlineObject1} inlineObject1 
+         * @param {InlineObject2} inlineObject2 
          * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        optCapProgramInPrice(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject1: InlineObject1, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2001> {
-            return localVarFp.optCapProgramInPrice(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject1, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        optCapProgramInPrice(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject2: InlineObject2, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2002> {
+            return localVarFp.optCapProgramInPrice(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject2, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
          * Updates prices in bulk.  In one Feed you can update up to 10,000 items in bulk. To ensure optimal Feed processing time, we recommend sending no more than 1000 items in one Feed and keeping the Feed sizes below 10 MB.  The price sequence guarantee is observed by the bulk price update functionality, subject to the following rules:  The timestamp used to determine precedence is passed in the request headers. All price updates in the feed are considered to have the same timestamp. The timestamp in the XML file is used only for auditing. You can send a single SKU multiple times in one Feed. If a SKU is repeated in a Feed, the price will be set for that SKU on Walmart.com, but there is no guarantee as to which SKU\'s price within that feed will be used. This API should be used in preference to the update a price. It should be called no sooner than 24 hours after a new item is set up and a wpid (Walmart Part ID) is available. Thereafter, the bulk price update has an service level agreement (SLA) of 15 minutes.  After the update is submitted, wait for at least five minutes before verifying whether the bulk price update was successful. Individual SKU price update success or failure is only available after the entire feed is processed.  If a SKU\'s price update fails (for example, multiple price updates were sent for the same SKU in a single feed), an error will be returned.
@@ -1229,13 +1231,13 @@ export const PricesApiFactory = function (configuration?: Configuration, basePat
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
+         * @param {any} file Feed file to upload
          * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-         * @param {any} [file] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        priceBulkUploads(feedType: 'price' | 'CPT_SELLER_ELIGIBILITY', authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, file?: any, options?: any): AxiosPromise<InlineResponse2002> {
-            return localVarFp.priceBulkUploads(feedType, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, file, options).then((request) => request(axios, basePath));
+        priceBulkUploads(feedType: 'price' | 'CPT_SELLER_ELIGIBILITY', authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, file: any, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2001> {
+            return localVarFp.priceBulkUploads(feedType, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, file, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
          * Updates the regular price for a given item.
@@ -1291,10 +1293,10 @@ export interface PricesApiOptCapProgramInPriceRequest {
 
     /**
      * 
-     * @type {InlineObject1}
+     * @type {InlineObject2}
      * @memberof PricesApiOptCapProgramInPrice
      */
-    readonly inlineObject1: InlineObject1
+    readonly inlineObject2: InlineObject2
 
     /**
      * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
@@ -1346,18 +1348,18 @@ export interface PricesApiPriceBulkUploadsRequest {
     readonly wMSVCNAME: string
 
     /**
+     * Feed file to upload
+     * @type {any}
+     * @memberof PricesApiPriceBulkUploads
+     */
+    readonly file: any
+
+    /**
      * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
      * @type {string}
      * @memberof PricesApiPriceBulkUploads
      */
     readonly wMCONSUMERCHANNELTYPE?: string
-
-    /**
-     * 
-     * @type {any}
-     * @memberof PricesApiPriceBulkUploads
-     */
-    readonly file?: any
 }
 
 /**
@@ -1425,7 +1427,7 @@ export class PricesApi extends BaseAPI {
      * @memberof PricesApi
      */
     public optCapProgramInPrice(requestParameters: PricesApiOptCapProgramInPriceRequest, options?: any) {
-        return PricesApiFp(this.configuration).optCapProgramInPrice(requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.inlineObject1, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+        return PricesApiFp(this.configuration).optCapProgramInPrice(requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.inlineObject2, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -1437,7 +1439,7 @@ export class PricesApi extends BaseAPI {
      * @memberof PricesApi
      */
     public priceBulkUploads(requestParameters: PricesApiPriceBulkUploadsRequest, options?: any) {
-        return PricesApiFp(this.configuration).priceBulkUploads(requestParameters.feedType, requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.wMCONSUMERCHANNELTYPE, requestParameters.file, options).then((request) => request(this.axios, this.basePath));
+        return PricesApiFp(this.configuration).priceBulkUploads(requestParameters.feedType, requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.file, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

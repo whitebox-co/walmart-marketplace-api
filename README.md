@@ -252,27 +252,23 @@ Each schema is generated into types using `quicktype` and saved in their respect
 **Please Note:**
 
 In certain instances (bulk file uploads) we had to modify request headers to contain Header Parameters that are not
-included in the auto generation. This is clearly a problem with the Schemas provided by Walmart.
+included in the auto-generation. This is a problem with the Schemas provided by Walmart. The schemas should define
+an `Accept` Header that is properly set.
 
-In order to submit a proper request when using binary file data the following was added to the following classes:
+If this Header is not properly set 520 or 521 errors are possible to occur with multipart uploads.
 
--   Inventory
--   Items
--   Orders
--   Price
+This has been added in `getConfiguredApi` to configure this for all api's.
 
-```typescript
-localVarHeaderParameter['Accept'] = 'application/json';
-localVarRequestOptions.headers = {
-	...localVarHeaderParameter,
-	...headersFromBaseOptions,
-	...options.headers,
-	...localVarFormParams.getHeaders(),
+```js
+authorizedConfiguration.baseOptions = {
+	headers: {
+		Accept: 'application/json',
+	},
 };
 ```
 
-When generation is complete you will most likely need to revert the changes that the generation overrides until Walmart
-fixes their API Schema. Failure to do so will result in 520 errors.
+In the future, we hope Walmart properly sets the `Accept` header so that we don't have to make this
+assumption for all endpoints.
 
 ### Item Model Generation
 

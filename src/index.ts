@@ -1,5 +1,5 @@
 import { Configuration } from './apis/configuration';
-import { AuthenticationApi, InlineResponse200 } from './apis/auth';
+import { AuthenticationApi, InlineResponse2001 } from './apis/auth';
 import { v4 as uuidv4 } from 'uuid';
 import { AxiosResponse } from 'axios';
 import { apiInterceptor } from './util/interceptors';
@@ -70,7 +70,7 @@ const authorize = async (credentials: WalmartApiCredentials): Promise<WalmartApi
 
 	// Even though the cached credentials are valid lets double check with walmart
 	// to make sure the token is still active.
-	let tokenDetailResponse: AxiosResponse<InlineResponse200>;
+	let tokenDetailResponse: AxiosResponse<InlineResponse2001>;
 	if (isValid) {
 		const defaultParams = getDefaultParams(cachedCredentials);
 		tokenDetailResponse = await authApi.getTokenDetail(defaultParams);
@@ -158,6 +158,11 @@ const getConfiguredApi = async <T extends WalmartMarketplaceApi>(
 ): Promise<T> => {
 	const authorizedConfiguration = await getAuthorizedConfiguration(credentials);
 	authorizedConfiguration.formDataCtor = FormData;
+	authorizedConfiguration.baseOptions = {
+		headers: {
+			Accept: 'application/json',
+		},
+	};
 
 	const api = new Api(authorizedConfiguration);
 

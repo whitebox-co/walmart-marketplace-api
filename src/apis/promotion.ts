@@ -48,10 +48,10 @@ export interface AdditionalAttribute {
 export interface AdditionalAttributes {
     /**
      * 
-     * @type {Array<InlineResponse2001PayloadAdditionalAttributesAdditionalAttribute>}
+     * @type {Array<InlineResponse2002PayloadAdditionalAttributesAdditionalAttribute>}
      * @memberof AdditionalAttributes
      */
-    additionalAttribute: Array<InlineResponse2001PayloadAdditionalAttributesAdditionalAttribute>;
+    additionalAttribute: Array<InlineResponse2002PayloadAdditionalAttributesAdditionalAttribute>;
 }
 /**
  * 
@@ -368,386 +368,399 @@ export interface InlineResponse200 {
  */
 export interface InlineResponse2001 {
     /**
-     * 
-     * @type {InlineResponse2001Payload}
+     * A unique ID, returned from the Bulk Upload API, used for tracking the Feed File.
+     * @type {string}
      * @memberof InlineResponse2001
      */
-    payload?: InlineResponse2001Payload;
+    feedId?: string;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse2002
+ */
+export interface InlineResponse2002 {
     /**
      * 
-     * @type {InlineResponse2001Header}
-     * @memberof InlineResponse2001
+     * @type {InlineResponse2002Payload}
+     * @memberof InlineResponse2002
      */
-    header?: InlineResponse2001Header;
+    payload?: InlineResponse2002Payload;
+    /**
+     * 
+     * @type {InlineResponse2002Header}
+     * @memberof InlineResponse2002
+     */
+    header?: InlineResponse2002Header;
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse2001
+     * @memberof InlineResponse2002
      */
     status?: string;
 }
 /**
  * 
  * @export
- * @interface InlineResponse2001Header
+ * @interface InlineResponse2002Header
  */
-export interface InlineResponse2001Header {
+export interface InlineResponse2002Header {
     /**
      * 
      * @type {object}
-     * @memberof InlineResponse2001Header
+     * @memberof InlineResponse2002Header
      */
     headerAttributes?: object;
 }
 /**
  * 
  * @export
- * @interface InlineResponse2001Payload
+ * @interface InlineResponse2002Payload
  */
-export interface InlineResponse2001Payload {
+export interface InlineResponse2002Payload {
     /**
      * 
-     * @type {InlineResponse2001PayloadItemIdentifier}
-     * @memberof InlineResponse2001Payload
+     * @type {InlineResponse2002PayloadItemIdentifier}
+     * @memberof InlineResponse2002Payload
      */
-    itemIdentifier: InlineResponse2001PayloadItemIdentifier;
+    itemIdentifier: InlineResponse2002PayloadItemIdentifier;
     /**
      * 
-     * @type {InlineResponse2001PayloadPricingList}
-     * @memberof InlineResponse2001Payload
+     * @type {InlineResponse2002PayloadPricingList}
+     * @memberof InlineResponse2002Payload
      */
-    pricingList: InlineResponse2001PayloadPricingList;
+    pricingList: InlineResponse2002PayloadPricingList;
     /**
      * 
-     * @type {InlineResponse2001PayloadPricingListCurrentPriceValue}
-     * @memberof InlineResponse2001Payload
+     * @type {InlineResponse2002PayloadPricingListCurrentPriceValue}
+     * @memberof InlineResponse2002Payload
      */
-    maxSalesRetailPrice?: InlineResponse2001PayloadPricingListCurrentPriceValue;
+    maxSalesRetailPrice?: InlineResponse2002PayloadPricingListCurrentPriceValue;
     /**
      * 
-     * @type {InlineResponse2001PayloadPricingListCurrentPriceValue}
-     * @memberof InlineResponse2001Payload
+     * @type {InlineResponse2002PayloadPricingListCurrentPriceValue}
+     * @memberof InlineResponse2002Payload
      */
-    minAdvtPrice?: InlineResponse2001PayloadPricingListCurrentPriceValue;
+    minAdvtPrice?: InlineResponse2002PayloadPricingListCurrentPriceValue;
     /**
      * 
-     * @type {InlineResponse2001PayloadRebate}
-     * @memberof InlineResponse2001Payload
+     * @type {InlineResponse2002PayloadRebate}
+     * @memberof InlineResponse2002Payload
      */
-    rebate?: InlineResponse2001PayloadRebate;
+    rebate?: InlineResponse2002PayloadRebate;
     /**
      * 
-     * @type {InlineResponse2001PayloadAdditionalAttributes}
-     * @memberof InlineResponse2001Payload
+     * @type {InlineResponse2002PayloadAdditionalAttributes}
+     * @memberof InlineResponse2002Payload
      */
-    additionalAttributes?: InlineResponse2001PayloadAdditionalAttributes;
+    additionalAttributes?: InlineResponse2002PayloadAdditionalAttributes;
 }
 /**
  * 
  * @export
- * @interface InlineResponse2001PayloadAdditionalAttributes
+ * @interface InlineResponse2002PayloadAdditionalAttributes
  */
-export interface InlineResponse2001PayloadAdditionalAttributes {
+export interface InlineResponse2002PayloadAdditionalAttributes {
     /**
      * 
-     * @type {Array<InlineResponse2001PayloadAdditionalAttributesAdditionalAttribute>}
-     * @memberof InlineResponse2001PayloadAdditionalAttributes
+     * @type {Array<InlineResponse2002PayloadAdditionalAttributesAdditionalAttribute>}
+     * @memberof InlineResponse2002PayloadAdditionalAttributes
      */
-    additionalAttribute: Array<InlineResponse2001PayloadAdditionalAttributesAdditionalAttribute>;
+    additionalAttribute: Array<InlineResponse2002PayloadAdditionalAttributesAdditionalAttribute>;
 }
 /**
  * 
  * @export
- * @interface InlineResponse2001PayloadAdditionalAttributesAdditionalAttribute
+ * @interface InlineResponse2002PayloadAdditionalAttributesAdditionalAttribute
  */
-export interface InlineResponse2001PayloadAdditionalAttributesAdditionalAttribute {
+export interface InlineResponse2002PayloadAdditionalAttributesAdditionalAttribute {
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse2001PayloadAdditionalAttributesAdditionalAttribute
+     * @memberof InlineResponse2002PayloadAdditionalAttributesAdditionalAttribute
      */
     name: string;
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse2001PayloadAdditionalAttributesAdditionalAttribute
+     * @memberof InlineResponse2002PayloadAdditionalAttributesAdditionalAttribute
      */
     value: string;
 }
 /**
  * 
  * @export
- * @interface InlineResponse2001PayloadItemIdentifier
+ * @interface InlineResponse2002PayloadItemIdentifier
  */
-export interface InlineResponse2001PayloadItemIdentifier {
+export interface InlineResponse2002PayloadItemIdentifier {
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse2001PayloadItemIdentifier
+     * @memberof InlineResponse2002PayloadItemIdentifier
      */
     sku?: string;
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse2001PayloadItemIdentifier
+     * @memberof InlineResponse2002PayloadItemIdentifier
      */
     offerId?: string;
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse2001PayloadItemIdentifier
+     * @memberof InlineResponse2002PayloadItemIdentifier
      */
     itemId?: string;
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse2001PayloadItemIdentifier
+     * @memberof InlineResponse2002PayloadItemIdentifier
      */
     wpid?: string;
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse2001PayloadItemIdentifier
+     * @memberof InlineResponse2002PayloadItemIdentifier
      */
     productType?: string;
 }
 /**
  * 
  * @export
- * @interface InlineResponse2001PayloadPricingList
+ * @interface InlineResponse2002PayloadPricingList
  */
-export interface InlineResponse2001PayloadPricingList {
+export interface InlineResponse2002PayloadPricingList {
     /**
      * 
      * @type {boolean}
-     * @memberof InlineResponse2001PayloadPricingList
+     * @memberof InlineResponse2002PayloadPricingList
      */
     replaceAll?: boolean;
     /**
      * 
-     * @type {Array<InlineResponse2001PayloadPricingListPricing>}
-     * @memberof InlineResponse2001PayloadPricingList
+     * @type {Array<InlineResponse2002PayloadPricingListPricing>}
+     * @memberof InlineResponse2002PayloadPricingList
      */
-    pricing: Array<InlineResponse2001PayloadPricingListPricing>;
+    pricing: Array<InlineResponse2002PayloadPricingListPricing>;
 }
 /**
  * 
  * @export
- * @interface InlineResponse2001PayloadPricingListCurrentPrice
+ * @interface InlineResponse2002PayloadPricingListCurrentPrice
  */
-export interface InlineResponse2001PayloadPricingListCurrentPrice {
+export interface InlineResponse2002PayloadPricingListCurrentPrice {
     /**
      * 
-     * @type {InlineResponse2001PayloadPricingListCurrentPriceValue}
-     * @memberof InlineResponse2001PayloadPricingListCurrentPrice
+     * @type {InlineResponse2002PayloadPricingListCurrentPriceValue}
+     * @memberof InlineResponse2002PayloadPricingListCurrentPrice
      */
-    value?: InlineResponse2001PayloadPricingListCurrentPriceValue;
+    value?: InlineResponse2002PayloadPricingListCurrentPriceValue;
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse2001PayloadPricingListCurrentPrice
+     * @memberof InlineResponse2002PayloadPricingListCurrentPrice
      */
     uomType?: string;
     /**
      * 
-     * @type {InlineResponse2001PayloadPricingListCurrentPriceValue}
-     * @memberof InlineResponse2001PayloadPricingListCurrentPrice
+     * @type {InlineResponse2002PayloadPricingListCurrentPriceValue}
+     * @memberof InlineResponse2002PayloadPricingListCurrentPrice
      */
-    minValue?: InlineResponse2001PayloadPricingListCurrentPriceValue;
+    minValue?: InlineResponse2002PayloadPricingListCurrentPriceValue;
     /**
      * 
-     * @type {InlineResponse2001PayloadPricingListCurrentPriceValue}
-     * @memberof InlineResponse2001PayloadPricingListCurrentPrice
+     * @type {InlineResponse2002PayloadPricingListCurrentPriceValue}
+     * @memberof InlineResponse2002PayloadPricingListCurrentPrice
      */
-    maxValue?: InlineResponse2001PayloadPricingListCurrentPriceValue;
+    maxValue?: InlineResponse2002PayloadPricingListCurrentPriceValue;
     /**
      * 
-     * @type {InlineResponse2001PayloadPricingListCurrentPriceValue}
-     * @memberof InlineResponse2001PayloadPricingListCurrentPrice
+     * @type {InlineResponse2002PayloadPricingListCurrentPriceValue}
+     * @memberof InlineResponse2002PayloadPricingListCurrentPrice
      */
-    perUnitValue?: InlineResponse2001PayloadPricingListCurrentPriceValue;
+    perUnitValue?: InlineResponse2002PayloadPricingListCurrentPriceValue;
     /**
      * 
-     * @type {InlineResponse2001PayloadPricingListCurrentPriceValue}
-     * @memberof InlineResponse2001PayloadPricingListCurrentPrice
+     * @type {InlineResponse2002PayloadPricingListCurrentPriceValue}
+     * @memberof InlineResponse2002PayloadPricingListCurrentPrice
      */
-    minUnitValue?: InlineResponse2001PayloadPricingListCurrentPriceValue;
+    minUnitValue?: InlineResponse2002PayloadPricingListCurrentPriceValue;
     /**
      * 
-     * @type {InlineResponse2001PayloadPricingListCurrentPriceValue}
-     * @memberof InlineResponse2001PayloadPricingListCurrentPrice
+     * @type {InlineResponse2002PayloadPricingListCurrentPriceValue}
+     * @memberof InlineResponse2002PayloadPricingListCurrentPrice
      */
-    maxUnitValue?: InlineResponse2001PayloadPricingListCurrentPriceValue;
+    maxUnitValue?: InlineResponse2002PayloadPricingListCurrentPriceValue;
 }
 /**
  * 
  * @export
- * @interface InlineResponse2001PayloadPricingListCurrentPriceValue
+ * @interface InlineResponse2002PayloadPricingListCurrentPriceValue
  */
-export interface InlineResponse2001PayloadPricingListCurrentPriceValue {
+export interface InlineResponse2002PayloadPricingListCurrentPriceValue {
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse2001PayloadPricingListCurrentPriceValue
+     * @memberof InlineResponse2002PayloadPricingListCurrentPriceValue
      */
     value?: string;
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse2001PayloadPricingListCurrentPriceValue
+     * @memberof InlineResponse2002PayloadPricingListCurrentPriceValue
      */
     currency?: string;
     /**
      * 
      * @type {number}
-     * @memberof InlineResponse2001PayloadPricingListCurrentPriceValue
+     * @memberof InlineResponse2002PayloadPricingListCurrentPriceValue
      */
     amount?: number;
 }
 /**
  * 
  * @export
- * @interface InlineResponse2001PayloadPricingListPickupDiscount
+ * @interface InlineResponse2002PayloadPricingListPickupDiscount
  */
-export interface InlineResponse2001PayloadPricingListPickupDiscount {
+export interface InlineResponse2002PayloadPricingListPickupDiscount {
     /**
      * 
      * @type {boolean}
-     * @memberof InlineResponse2001PayloadPricingListPickupDiscount
+     * @memberof InlineResponse2002PayloadPricingListPickupDiscount
      */
     isPickUpDiscountEligible?: boolean;
     /**
      * 
-     * @type {InlineResponse2001PayloadPricingListCurrentPriceValue}
-     * @memberof InlineResponse2001PayloadPricingListPickupDiscount
+     * @type {InlineResponse2002PayloadPricingListCurrentPriceValue}
+     * @memberof InlineResponse2002PayloadPricingListPickupDiscount
      */
-    pickupDiscountAmt?: InlineResponse2001PayloadPricingListCurrentPriceValue;
+    pickupDiscountAmt?: InlineResponse2002PayloadPricingListCurrentPriceValue;
 }
 /**
  * 
  * @export
- * @interface InlineResponse2001PayloadPricingListPriceDisplayCodes
+ * @interface InlineResponse2002PayloadPricingListPriceDisplayCodes
  */
-export interface InlineResponse2001PayloadPricingListPriceDisplayCodes {
+export interface InlineResponse2002PayloadPricingListPriceDisplayCodes {
     /**
      * 
      * @type {boolean}
-     * @memberof InlineResponse2001PayloadPricingListPriceDisplayCodes
+     * @memberof InlineResponse2002PayloadPricingListPriceDisplayCodes
      */
     isClearance?: boolean;
     /**
      * 
      * @type {object}
-     * @memberof InlineResponse2001PayloadPricingListPriceDisplayCodes
+     * @memberof InlineResponse2002PayloadPricingListPriceDisplayCodes
      */
     hidePriceForSOI?: object;
     /**
      * 
      * @type {object}
-     * @memberof InlineResponse2001PayloadPricingListPriceDisplayCodes
+     * @memberof InlineResponse2002PayloadPricingListPriceDisplayCodes
      */
     submapType?: object;
     /**
      * 
      * @type {boolean}
-     * @memberof InlineResponse2001PayloadPricingListPriceDisplayCodes
+     * @memberof InlineResponse2002PayloadPricingListPriceDisplayCodes
      */
     isRollback?: boolean;
     /**
      * 
      * @type {boolean}
-     * @memberof InlineResponse2001PayloadPricingListPriceDisplayCodes
+     * @memberof InlineResponse2002PayloadPricingListPriceDisplayCodes
      */
     isReducedPrice?: boolean;
     /**
      * 
      * @type {object}
-     * @memberof InlineResponse2001PayloadPricingListPriceDisplayCodes
+     * @memberof InlineResponse2002PayloadPricingListPriceDisplayCodes
      */
     isEligibleForAssociateDiscount?: object;
     /**
      * 
      * @type {boolean}
-     * @memberof InlineResponse2001PayloadPricingListPriceDisplayCodes
+     * @memberof InlineResponse2002PayloadPricingListPriceDisplayCodes
      */
     isStrikethrough?: boolean;
 }
 /**
  * 
  * @export
- * @interface InlineResponse2001PayloadPricingListPricing
+ * @interface InlineResponse2002PayloadPricingListPricing
  */
-export interface InlineResponse2001PayloadPricingListPricing {
+export interface InlineResponse2002PayloadPricingListPricing {
     /**
      * 
-     * @type {InlineResponse2001PayloadPricingListCurrentPrice}
-     * @memberof InlineResponse2001PayloadPricingListPricing
+     * @type {InlineResponse2002PayloadPricingListCurrentPrice}
+     * @memberof InlineResponse2002PayloadPricingListPricing
      */
-    currentPrice: InlineResponse2001PayloadPricingListCurrentPrice;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2001PayloadPricingListPricing
-     */
-    currentPriceType: InlineResponse2001PayloadPricingListPricingCurrentPriceTypeEnum;
-    /**
-     * 
-     * @type {InlineResponse2001PayloadPricingListCurrentPrice}
-     * @memberof InlineResponse2001PayloadPricingListPricing
-     */
-    comparisonPrice?: InlineResponse2001PayloadPricingListCurrentPrice;
+    currentPrice: InlineResponse2002PayloadPricingListCurrentPrice;
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse2001PayloadPricingListPricing
+     * @memberof InlineResponse2002PayloadPricingListPricing
      */
-    comparisonPriceType?: InlineResponse2001PayloadPricingListPricingComparisonPriceTypeEnum;
+    currentPriceType: InlineResponse2002PayloadPricingListPricingCurrentPriceTypeEnum;
+    /**
+     * 
+     * @type {InlineResponse2002PayloadPricingListCurrentPrice}
+     * @memberof InlineResponse2002PayloadPricingListPricing
+     */
+    comparisonPrice?: InlineResponse2002PayloadPricingListCurrentPrice;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2002PayloadPricingListPricing
+     */
+    comparisonPriceType?: InlineResponse2002PayloadPricingListPricingComparisonPriceTypeEnum;
     /**
      * 
      * @type {number}
-     * @memberof InlineResponse2001PayloadPricingListPricing
+     * @memberof InlineResponse2002PayloadPricingListPricing
      */
     savingsAmount?: number;
     /**
      * 
      * @type {number}
-     * @memberof InlineResponse2001PayloadPricingListPricing
+     * @memberof InlineResponse2002PayloadPricingListPricing
      */
     savingsPercent?: number;
     /**
      * 
-     * @type {InlineResponse2001PayloadPricingListPriceDisplayCodes}
-     * @memberof InlineResponse2001PayloadPricingListPricing
+     * @type {InlineResponse2002PayloadPricingListPriceDisplayCodes}
+     * @memberof InlineResponse2002PayloadPricingListPricing
      */
-    priceDisplayCodes?: InlineResponse2001PayloadPricingListPriceDisplayCodes;
+    priceDisplayCodes?: InlineResponse2002PayloadPricingListPriceDisplayCodes;
     /**
      * 
-     * @type {InlineResponse2001PayloadPricingListPickupDiscount}
-     * @memberof InlineResponse2001PayloadPricingListPricing
+     * @type {InlineResponse2002PayloadPricingListPickupDiscount}
+     * @memberof InlineResponse2002PayloadPricingListPricing
      */
-    pickupDiscount?: InlineResponse2001PayloadPricingListPickupDiscount;
+    pickupDiscount?: InlineResponse2002PayloadPricingListPickupDiscount;
     /**
      * 
      * @type {number}
-     * @memberof InlineResponse2001PayloadPricingListPricing
+     * @memberof InlineResponse2002PayloadPricingListPricing
      */
     effectiveDate?: number;
     /**
      * 
      * @type {number}
-     * @memberof InlineResponse2001PayloadPricingListPricing
+     * @memberof InlineResponse2002PayloadPricingListPricing
      */
     expirationDate?: number;
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse2001PayloadPricingListPricing
+     * @memberof InlineResponse2002PayloadPricingListPricing
      */
-    processMode?: InlineResponse2001PayloadPricingListPricingProcessModeEnum;
+    processMode?: InlineResponse2002PayloadPricingListPricingProcessModeEnum;
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse2001PayloadPricingListPricing
+     * @memberof InlineResponse2002PayloadPricingListPricing
      */
     pid?: string;
 }
@@ -756,7 +769,7 @@ export interface InlineResponse2001PayloadPricingListPricing {
     * @export
     * @enum {string}
     */
-export enum InlineResponse2001PayloadPricingListPricingCurrentPriceTypeEnum {
+export enum InlineResponse2002PayloadPricingListPricingCurrentPriceTypeEnum {
     Base = 'BASE',
     Reduced = 'REDUCED',
     SavingsAmt = 'SAVINGS_AMT',
@@ -769,7 +782,7 @@ export enum InlineResponse2001PayloadPricingListPricingCurrentPriceTypeEnum {
     * @export
     * @enum {string}
     */
-export enum InlineResponse2001PayloadPricingListPricingComparisonPriceTypeEnum {
+export enum InlineResponse2002PayloadPricingListPricingComparisonPriceTypeEnum {
     Base = 'BASE',
     Reduced = 'REDUCED',
     SavingsAmt = 'SAVINGS_AMT',
@@ -782,7 +795,7 @@ export enum InlineResponse2001PayloadPricingListPricingComparisonPriceTypeEnum {
     * @export
     * @enum {string}
     */
-export enum InlineResponse2001PayloadPricingListPricingProcessModeEnum {
+export enum InlineResponse2002PayloadPricingListPricingProcessModeEnum {
     Upsert = 'UPSERT',
     Delete = 'DELETE'
 }
@@ -790,37 +803,37 @@ export enum InlineResponse2001PayloadPricingListPricingProcessModeEnum {
 /**
  * 
  * @export
- * @interface InlineResponse2001PayloadRebate
+ * @interface InlineResponse2002PayloadRebate
  */
-export interface InlineResponse2001PayloadRebate {
+export interface InlineResponse2002PayloadRebate {
     /**
      * 
-     * @type {InlineResponse2001PayloadPricingListCurrentPriceValue}
-     * @memberof InlineResponse2001PayloadRebate
+     * @type {InlineResponse2002PayloadPricingListCurrentPriceValue}
+     * @memberof InlineResponse2002PayloadRebate
      */
-    rebateAmt: InlineResponse2001PayloadPricingListCurrentPriceValue;
+    rebateAmt: InlineResponse2002PayloadPricingListCurrentPriceValue;
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse2001PayloadRebate
+     * @memberof InlineResponse2002PayloadRebate
      */
     infoUrl?: string;
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse2001PayloadRebate
+     * @memberof InlineResponse2002PayloadRebate
      */
-    rebateType?: InlineResponse2001PayloadRebateRebateTypeEnum;
+    rebateType?: InlineResponse2002PayloadRebateRebateTypeEnum;
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse2001PayloadRebate
+     * @memberof InlineResponse2002PayloadRebate
      */
     startDate?: string;
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse2001PayloadRebate
+     * @memberof InlineResponse2002PayloadRebate
      */
     endDate?: string;
 }
@@ -829,24 +842,11 @@ export interface InlineResponse2001PayloadRebate {
     * @export
     * @enum {string}
     */
-export enum InlineResponse2001PayloadRebateRebateTypeEnum {
+export enum InlineResponse2002PayloadRebateRebateTypeEnum {
     Amount = 'AMOUNT',
     Product = 'PRODUCT'
 }
 
-/**
- * 
- * @export
- * @interface InlineResponse2002
- */
-export interface InlineResponse2002 {
-    /**
-     * A unique ID, returned from the Bulk Upload API, used for tracking the Feed File.
-     * @type {string}
-     * @memberof InlineResponse2002
-     */
-    feedId?: string;
-}
 /**
  * 
  * @export
@@ -1069,40 +1069,40 @@ export interface ItemPriceResponse {
 export interface ItemPriceType {
     /**
      * 
-     * @type {InlineResponse2001PayloadItemIdentifier}
+     * @type {InlineResponse2002PayloadItemIdentifier}
      * @memberof ItemPriceType
      */
-    itemIdentifier: InlineResponse2001PayloadItemIdentifier;
+    itemIdentifier: InlineResponse2002PayloadItemIdentifier;
     /**
      * 
-     * @type {InlineResponse2001PayloadPricingList}
+     * @type {InlineResponse2002PayloadPricingList}
      * @memberof ItemPriceType
      */
-    pricingList: InlineResponse2001PayloadPricingList;
+    pricingList: InlineResponse2002PayloadPricingList;
     /**
      * 
-     * @type {InlineResponse2001PayloadPricingListCurrentPriceValue}
+     * @type {InlineResponse2002PayloadPricingListCurrentPriceValue}
      * @memberof ItemPriceType
      */
-    maxSalesRetailPrice?: InlineResponse2001PayloadPricingListCurrentPriceValue;
+    maxSalesRetailPrice?: InlineResponse2002PayloadPricingListCurrentPriceValue;
     /**
      * 
-     * @type {InlineResponse2001PayloadPricingListCurrentPriceValue}
+     * @type {InlineResponse2002PayloadPricingListCurrentPriceValue}
      * @memberof ItemPriceType
      */
-    minAdvtPrice?: InlineResponse2001PayloadPricingListCurrentPriceValue;
+    minAdvtPrice?: InlineResponse2002PayloadPricingListCurrentPriceValue;
     /**
      * 
-     * @type {InlineResponse2001PayloadRebate}
+     * @type {InlineResponse2002PayloadRebate}
      * @memberof ItemPriceType
      */
-    rebate?: InlineResponse2001PayloadRebate;
+    rebate?: InlineResponse2002PayloadRebate;
     /**
      * 
-     * @type {InlineResponse2001PayloadAdditionalAttributes}
+     * @type {InlineResponse2002PayloadAdditionalAttributes}
      * @memberof ItemPriceType
      */
-    additionalAttributes?: InlineResponse2001PayloadAdditionalAttributes;
+    additionalAttributes?: InlineResponse2002PayloadAdditionalAttributes;
 }
 /**
  * 
@@ -1143,10 +1143,10 @@ export interface PickupDiscount {
     isPickUpDiscountEligible?: boolean;
     /**
      * 
-     * @type {InlineResponse2001PayloadPricingListCurrentPriceValue}
+     * @type {InlineResponse2002PayloadPricingListCurrentPriceValue}
      * @memberof PickupDiscount
      */
-    pickupDiscountAmt?: InlineResponse2001PayloadPricingListCurrentPriceValue;
+    pickupDiscountAmt?: InlineResponse2002PayloadPricingListCurrentPriceValue;
 }
 /**
  * 
@@ -1353,10 +1353,10 @@ export interface PricingListType {
     replaceAll?: boolean;
     /**
      * 
-     * @type {Array<InlineResponse2001PayloadPricingListPricing>}
+     * @type {Array<InlineResponse2002PayloadPricingListPricing>}
      * @memberof PricingListType
      */
-    pricing: Array<InlineResponse2001PayloadPricingListPricing>;
+    pricing: Array<InlineResponse2002PayloadPricingListPricing>;
 }
 /**
  * 
@@ -1366,10 +1366,10 @@ export interface PricingListType {
 export interface PricingType {
     /**
      * 
-     * @type {InlineResponse2001PayloadPricingListCurrentPrice}
+     * @type {InlineResponse2002PayloadPricingListCurrentPrice}
      * @memberof PricingType
      */
-    currentPrice: InlineResponse2001PayloadPricingListCurrentPrice;
+    currentPrice: InlineResponse2002PayloadPricingListCurrentPrice;
     /**
      * 
      * @type {string}
@@ -1378,10 +1378,10 @@ export interface PricingType {
     currentPriceType: PricingTypeCurrentPriceTypeEnum;
     /**
      * 
-     * @type {InlineResponse2001PayloadPricingListCurrentPrice}
+     * @type {InlineResponse2002PayloadPricingListCurrentPrice}
      * @memberof PricingType
      */
-    comparisonPrice?: InlineResponse2001PayloadPricingListCurrentPrice;
+    comparisonPrice?: InlineResponse2002PayloadPricingListCurrentPrice;
     /**
      * 
      * @type {string}
@@ -1402,16 +1402,16 @@ export interface PricingType {
     savingsPercent?: number;
     /**
      * 
-     * @type {InlineResponse2001PayloadPricingListPriceDisplayCodes}
+     * @type {InlineResponse2002PayloadPricingListPriceDisplayCodes}
      * @memberof PricingType
      */
-    priceDisplayCodes?: InlineResponse2001PayloadPricingListPriceDisplayCodes;
+    priceDisplayCodes?: InlineResponse2002PayloadPricingListPriceDisplayCodes;
     /**
      * 
-     * @type {InlineResponse2001PayloadPricingListPickupDiscount}
+     * @type {InlineResponse2002PayloadPricingListPickupDiscount}
      * @memberof PricingType
      */
-    pickupDiscount?: InlineResponse2001PayloadPricingListPickupDiscount;
+    pickupDiscount?: InlineResponse2002PayloadPricingListPickupDiscount;
     /**
      * 
      * @type {number}
@@ -1481,16 +1481,16 @@ export enum PricingTypeProcessModeEnum {
 export interface PromotionalPriceResponse {
     /**
      * 
-     * @type {InlineResponse2001Payload}
+     * @type {InlineResponse2002Payload}
      * @memberof PromotionalPriceResponse
      */
-    payload?: InlineResponse2001Payload;
+    payload?: InlineResponse2002Payload;
     /**
      * 
-     * @type {InlineResponse2001Header}
+     * @type {InlineResponse2002Header}
      * @memberof PromotionalPriceResponse
      */
-    header?: InlineResponse2001Header;
+    header?: InlineResponse2002Header;
     /**
      * 
      * @type {string}
@@ -1506,10 +1506,10 @@ export interface PromotionalPriceResponse {
 export interface PromotionsPrice {
     /**
      * 
-     * @type {InlineResponse2001PayloadPricingListCurrentPriceValue}
+     * @type {InlineResponse2002PayloadPricingListCurrentPriceValue}
      * @memberof PromotionsPrice
      */
-    value?: InlineResponse2001PayloadPricingListCurrentPriceValue;
+    value?: InlineResponse2002PayloadPricingListCurrentPriceValue;
     /**
      * 
      * @type {string}
@@ -1518,34 +1518,34 @@ export interface PromotionsPrice {
     uomType?: string;
     /**
      * 
-     * @type {InlineResponse2001PayloadPricingListCurrentPriceValue}
+     * @type {InlineResponse2002PayloadPricingListCurrentPriceValue}
      * @memberof PromotionsPrice
      */
-    minValue?: InlineResponse2001PayloadPricingListCurrentPriceValue;
+    minValue?: InlineResponse2002PayloadPricingListCurrentPriceValue;
     /**
      * 
-     * @type {InlineResponse2001PayloadPricingListCurrentPriceValue}
+     * @type {InlineResponse2002PayloadPricingListCurrentPriceValue}
      * @memberof PromotionsPrice
      */
-    maxValue?: InlineResponse2001PayloadPricingListCurrentPriceValue;
+    maxValue?: InlineResponse2002PayloadPricingListCurrentPriceValue;
     /**
      * 
-     * @type {InlineResponse2001PayloadPricingListCurrentPriceValue}
+     * @type {InlineResponse2002PayloadPricingListCurrentPriceValue}
      * @memberof PromotionsPrice
      */
-    perUnitValue?: InlineResponse2001PayloadPricingListCurrentPriceValue;
+    perUnitValue?: InlineResponse2002PayloadPricingListCurrentPriceValue;
     /**
      * 
-     * @type {InlineResponse2001PayloadPricingListCurrentPriceValue}
+     * @type {InlineResponse2002PayloadPricingListCurrentPriceValue}
      * @memberof PromotionsPrice
      */
-    minUnitValue?: InlineResponse2001PayloadPricingListCurrentPriceValue;
+    minUnitValue?: InlineResponse2002PayloadPricingListCurrentPriceValue;
     /**
      * 
-     * @type {InlineResponse2001PayloadPricingListCurrentPriceValue}
+     * @type {InlineResponse2002PayloadPricingListCurrentPriceValue}
      * @memberof PromotionsPrice
      */
-    maxUnitValue?: InlineResponse2001PayloadPricingListCurrentPriceValue;
+    maxUnitValue?: InlineResponse2002PayloadPricingListCurrentPriceValue;
 }
 /**
  * 
@@ -1555,10 +1555,10 @@ export interface PromotionsPrice {
 export interface Rebate {
     /**
      * 
-     * @type {InlineResponse2001PayloadPricingListCurrentPriceValue}
+     * @type {InlineResponse2002PayloadPricingListCurrentPriceValue}
      * @memberof Rebate
      */
-    rebateAmt: InlineResponse2001PayloadPricingListCurrentPriceValue;
+    rebateAmt: InlineResponse2002PayloadPricingListCurrentPriceValue;
     /**
      * 
      * @type {string}
@@ -1833,12 +1833,12 @@ export const PromotionsApiAxiosParamCreator = function (configuration?: Configur
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
+         * @param {any} file Feed file to upload
          * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-         * @param {any} [file] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateBulkPromotionalPrice: async (feedType: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, file?: any, options: any = {}): Promise<RequestArgs> => {
+        updateBulkPromotionalPrice: async (feedType: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, file: any, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'feedType' is not null or undefined
             assertParamExists('updateBulkPromotionalPrice', 'feedType', feedType)
             // verify required parameter 'authorization' is not null or undefined
@@ -1849,6 +1849,8 @@ export const PromotionsApiAxiosParamCreator = function (configuration?: Configur
             assertParamExists('updateBulkPromotionalPrice', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID)
             // verify required parameter 'wMSVCNAME' is not null or undefined
             assertParamExists('updateBulkPromotionalPrice', 'wMSVCNAME', wMSVCNAME)
+            // verify required parameter 'file' is not null or undefined
+            assertParamExists('updateBulkPromotionalPrice', 'file', file)
             const localVarPath = `/v3/feeds`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -2010,7 +2012,7 @@ export const PromotionsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getPromotionalPrices(sku: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
+        async getPromotionalPrices(sku: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2002>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getPromotionalPrices(sku, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -2022,13 +2024,13 @@ export const PromotionsApiFp = function(configuration?: Configuration) {
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
+         * @param {any} file Feed file to upload
          * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-         * @param {any} [file] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateBulkPromotionalPrice(feedType: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, file?: any, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2002>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.updateBulkPromotionalPrice(feedType, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, file, options);
+        async updateBulkPromotionalPrice(feedType: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, file: any, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateBulkPromotionalPrice(feedType, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, file, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -2070,7 +2072,7 @@ export const PromotionsApiFactory = function (configuration?: Configuration, bas
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getPromotionalPrices(sku: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2001> {
+        getPromotionalPrices(sku: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2002> {
             return localVarFp.getPromotionalPrices(sku, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
@@ -2081,13 +2083,13 @@ export const PromotionsApiFactory = function (configuration?: Configuration, bas
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
+         * @param {any} file Feed file to upload
          * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
-         * @param {any} [file] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateBulkPromotionalPrice(feedType: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, file?: any, options?: any): AxiosPromise<InlineResponse2002> {
-            return localVarFp.updateBulkPromotionalPrice(feedType, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, file, options).then((request) => request(axios, basePath));
+        updateBulkPromotionalPrice(feedType: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, file: any, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2001> {
+            return localVarFp.updateBulkPromotionalPrice(feedType, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, file, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
          * Updates the promotional price.  Sellers can update or delete an existing promotional price as well as set up a new promotional price.  To set a new promotional price or update an existing one, set the XML pricing attribute processMode to UPSERT. To delete a promotional price, set the XML pricing attribute processMode to DELETE. To delete all promotions for a SKU, set replaceAll to an empty payload.
@@ -2199,18 +2201,18 @@ export interface PromotionsApiUpdateBulkPromotionalPriceRequest {
     readonly wMSVCNAME: string
 
     /**
+     * Feed file to upload
+     * @type {any}
+     * @memberof PromotionsApiUpdateBulkPromotionalPrice
+     */
+    readonly file: any
+
+    /**
      * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
      * @type {string}
      * @memberof PromotionsApiUpdateBulkPromotionalPrice
      */
     readonly wMCONSUMERCHANNELTYPE?: string
-
-    /**
-     * 
-     * @type {any}
-     * @memberof PromotionsApiUpdateBulkPromotionalPrice
-     */
-    readonly file?: any
 }
 
 /**
@@ -2297,7 +2299,7 @@ export class PromotionsApi extends BaseAPI {
      * @memberof PromotionsApi
      */
     public updateBulkPromotionalPrice(requestParameters: PromotionsApiUpdateBulkPromotionalPriceRequest, options?: any) {
-        return PromotionsApiFp(this.configuration).updateBulkPromotionalPrice(requestParameters.feedType, requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.wMCONSUMERCHANNELTYPE, requestParameters.file, options).then((request) => request(this.axios, this.basePath));
+        return PromotionsApiFp(this.configuration).updateBulkPromotionalPrice(requestParameters.feedType, requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.file, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

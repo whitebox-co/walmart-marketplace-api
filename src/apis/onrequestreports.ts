@@ -92,7 +92,16 @@ export enum DownloadReportResponseRequestStatusEnum {
     * @enum {string}
     */
 export enum DownloadReportResponseReportTypeEnum {
-    Item = 'ITEM'
+    Item = 'ITEM',
+    Inventory = 'INVENTORY',
+    Cancellation = 'CANCELLATION',
+    DeliveryDefect = 'DELIVERY_DEFECT',
+    ItemPerformance = 'ITEM_PERFORMANCE',
+    Promo = 'PROMO',
+    ReturnOverrides = 'RETURN_OVERRIDES',
+    Cpa = 'CPA',
+    ShippingConfiguration = 'SHIPPING_CONFIGURATION',
+    ShippingProgram = 'SHIPPING_PROGRAM'
 }
 
 /**
@@ -166,7 +175,7 @@ export enum EnumFilter1TypeEnum {
 }
 
 /**
- * 
+ * Request Payload
  * @export
  * @interface GenerateReportPayload
  */
@@ -243,11 +252,20 @@ export enum GenerateReportResponseRequestStatusEnum {
     * @enum {string}
     */
 export enum GenerateReportResponseReportTypeEnum {
-    Item = 'ITEM'
+    Item = 'ITEM',
+    Inventory = 'INVENTORY',
+    Cancellation = 'CANCELLATION',
+    DeliveryDefect = 'DELIVERY_DEFECT',
+    ItemPerformance = 'ITEM_PERFORMANCE',
+    Promo = 'PROMO',
+    ReturnOverrides = 'RETURN_OVERRIDES',
+    Cpa = 'CPA',
+    ShippingConfiguration = 'SHIPPING_CONFIGURATION',
+    ShippingProgram = 'SHIPPING_PROGRAM'
 }
 
 /**
- * 
+ * Request Payload
  * @export
  * @interface InlineObject
  */
@@ -361,7 +379,16 @@ export enum InlineResponse2001RequestStatusEnum {
     * @enum {string}
     */
 export enum InlineResponse2001ReportTypeEnum {
-    Item = 'ITEM'
+    Item = 'ITEM',
+    Inventory = 'INVENTORY',
+    Cancellation = 'CANCELLATION',
+    DeliveryDefect = 'DELIVERY_DEFECT',
+    ItemPerformance = 'ITEM_PERFORMANCE',
+    Promo = 'PROMO',
+    ReturnOverrides = 'RETURN_OVERRIDES',
+    Cpa = 'CPA',
+    ShippingConfiguration = 'SHIPPING_CONFIGURATION',
+    ShippingProgram = 'SHIPPING_PROGRAM'
 }
 
 /**
@@ -429,7 +456,16 @@ export enum InlineResponse2002RequestStatusEnum {
     * @enum {string}
     */
 export enum InlineResponse2002ReportTypeEnum {
-    Item = 'ITEM'
+    Item = 'ITEM',
+    Inventory = 'INVENTORY',
+    Cancellation = 'CANCELLATION',
+    DeliveryDefect = 'DELIVERY_DEFECT',
+    ItemPerformance = 'ITEM_PERFORMANCE',
+    Promo = 'PROMO',
+    ReturnOverrides = 'RETURN_OVERRIDES',
+    Cpa = 'CPA',
+    ShippingConfiguration = 'SHIPPING_CONFIGURATION',
+    ShippingProgram = 'SHIPPING_PROGRAM'
 }
 
 /**
@@ -503,11 +539,20 @@ export enum InlineResponse2003RequestStatusEnum {
     * @enum {string}
     */
 export enum InlineResponse2003ReportTypeEnum {
-    Item = 'ITEM'
+    Item = 'ITEM',
+    Inventory = 'INVENTORY',
+    Cancellation = 'CANCELLATION',
+    DeliveryDefect = 'DELIVERY_DEFECT',
+    ItemPerformance = 'ITEM_PERFORMANCE',
+    Promo = 'PROMO',
+    ReturnOverrides = 'RETURN_OVERRIDES',
+    Cpa = 'CPA',
+    ShippingConfiguration = 'SHIPPING_CONFIGURATION',
+    ShippingProgram = 'SHIPPING_PROGRAM'
 }
 
 /**
- * 
+ * Request Payload
  * @export
  * @interface InlineResponse200Payload
  */
@@ -590,7 +635,16 @@ export enum InlineResponse200RequestsRequestStatusEnum {
     * @enum {string}
     */
 export enum InlineResponse200RequestsReportTypeEnum {
-    Item = 'ITEM'
+    Item = 'ITEM',
+    Inventory = 'INVENTORY',
+    Cancellation = 'CANCELLATION',
+    DeliveryDefect = 'DELIVERY_DEFECT',
+    ItemPerformance = 'ITEM_PERFORMANCE',
+    Promo = 'PROMO',
+    ReturnOverrides = 'RETURN_OVERRIDES',
+    Cpa = 'CPA',
+    ShippingConfiguration = 'SHIPPING_CONFIGURATION',
+    ShippingProgram = 'SHIPPING_PROGRAM'
 }
 
 /**
@@ -740,7 +794,16 @@ export enum RequestStatusResponseRequestStatusEnum {
     * @enum {string}
     */
 export enum RequestStatusResponseReportTypeEnum {
-    Item = 'ITEM'
+    Item = 'ITEM',
+    Inventory = 'INVENTORY',
+    Cancellation = 'CANCELLATION',
+    DeliveryDefect = 'DELIVERY_DEFECT',
+    ItemPerformance = 'ITEM_PERFORMANCE',
+    Promo = 'PROMO',
+    ReturnOverrides = 'RETURN_OVERRIDES',
+    Cpa = 'CPA',
+    ShippingConfiguration = 'SHIPPING_CONFIGURATION',
+    ShippingProgram = 'SHIPPING_PROGRAM'
 }
 
 /**
@@ -932,8 +995,8 @@ export const OnRequestReportApiAxiosParamCreator = function (configuration?: Con
         /**
          * Creates a new request for report by specifying the reportType and reportVersion.
          * @summary Create Report Request
-         * @param {'ITEM' | 'INVENTORY' | 'CANCELLATION' | 'DELIVERY_DEFECT'} reportType Specifies the report type for the request. For example, reportType&#x3D;ITEM creates an Item Report.
-         * @param {string} reportVersion Version of report for which the request is created. Supported versions for each report type are currently \&#39;reportVersion&#x3D;v1\&#39; for the following reportType(s): INVENTORY, CANCELLATION, DELIVERY_DEFECT and \&#39;reportVersion&#x3D;v1\&#39;, \&#39;reportVersion&#x3D;v2\&#39; for the following reportType(s): ITEM.
+         * @param {'ITEM' | 'INVENTORY' | 'CANCELLATION' | 'DELIVERY_DEFECT' | 'ITEM_PERFORMANCE' | 'PROMO' | 'RETURN_OVERRIDES' | 'CPA' | 'SHIPPING_CONFIGURATION' | 'SHIPPING_PROGRAM' | 'FITMENT_MISSING_ATTR' | 'FITMENT_ACES_COVERAGE'} reportType Specifies the report type for the request. For example, reportType&#x3D;ITEM creates an Item Report.
+         * @param {string} reportVersion Version of report for which the request is created. Supported versions for each report type are currently \&#39;reportVersion&#x3D;v1\&#39; for the following reportType(s): INVENTORY, CANCELLATION, DELIVERY_DEFECT, ITEM_PERFORMANCE, PROMO, RETURN_OVERRIDES, CPA, SHIPPING_CONFIGURATION, SHIPPING_PROGRAM, FITMENT_MISSING_ATTR, FITMENT_ACES_COVERAGE and \&#39;reportVersion&#x3D;v1\&#39;, \&#39;reportVersion&#x3D;v2\&#39;, \&#39;reportVersion&#x3D;v3\&#39;, \&#39;reportVersion&#x3D;v4\&#39; for the following reportType(s): ITEM.
          * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
@@ -945,7 +1008,7 @@ export const OnRequestReportApiAxiosParamCreator = function (configuration?: Con
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        generateReport: async (reportType: 'ITEM' | 'INVENTORY' | 'CANCELLATION' | 'DELIVERY_DEFECT', reportVersion: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, accept: string, contentType: string, wMCONSUMERCHANNELTYPE?: string, inlineObject?: InlineObject, options: any = {}): Promise<RequestArgs> => {
+        generateReport: async (reportType: 'ITEM' | 'INVENTORY' | 'CANCELLATION' | 'DELIVERY_DEFECT' | 'ITEM_PERFORMANCE' | 'PROMO' | 'RETURN_OVERRIDES' | 'CPA' | 'SHIPPING_CONFIGURATION' | 'SHIPPING_PROGRAM' | 'FITMENT_MISSING_ATTR' | 'FITMENT_ACES_COVERAGE', reportVersion: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, accept: string, contentType: string, wMCONSUMERCHANNELTYPE?: string, inlineObject?: InlineObject, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'reportType' is not null or undefined
             assertParamExists('generateReport', 'reportType', reportType)
             // verify required parameter 'reportVersion' is not null or undefined
@@ -1031,7 +1094,7 @@ export const OnRequestReportApiAxiosParamCreator = function (configuration?: Con
         /**
          * Fetches a list of all report requests for specified search criteria by using query parameters.  You can fetch details of report requests created in the last 30 days only.
          * @summary Get All Report Requests
-         * @param {'ITEM' | 'INVENTORY' | 'CANCELLATION' | 'DELIVERY_DEFECT'} reportType Type of report for which the request is created. Example, ITEM for Item Report.
+         * @param {'ITEM' | 'INVENTORY' | 'CANCELLATION' | 'DELIVERY_DEFECT' | 'ITEM_PERFORMANCE' | 'PROMO' | 'RETURN_OVERRIDES' | 'CPA' | 'SHIPPING_CONFIGURATION' | 'SHIPPING_PROGRAM' | 'FITMENT_MISSING_ATTR' | 'FITMENT_ACES_COVERAGE'} reportType Type of report for which the request is created. Example, ITEM for Item Report.
          * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
@@ -1045,7 +1108,7 @@ export const OnRequestReportApiAxiosParamCreator = function (configuration?: Con
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getRequestsStatus: async (reportType: 'ITEM' | 'INVENTORY' | 'CANCELLATION' | 'DELIVERY_DEFECT', authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, accept: string, reportVersion?: string, requestStatus?: 'RECEIVED' | 'INPROGRESS' | 'READY' | 'ERROR', requestSubmissionStartDate?: string, requestSubmissionEndDate?: string, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
+        getRequestsStatus: async (reportType: 'ITEM' | 'INVENTORY' | 'CANCELLATION' | 'DELIVERY_DEFECT' | 'ITEM_PERFORMANCE' | 'PROMO' | 'RETURN_OVERRIDES' | 'CPA' | 'SHIPPING_CONFIGURATION' | 'SHIPPING_PROGRAM' | 'FITMENT_MISSING_ATTR' | 'FITMENT_ACES_COVERAGE', authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, accept: string, reportVersion?: string, requestStatus?: 'RECEIVED' | 'INPROGRESS' | 'READY' | 'ERROR', requestSubmissionStartDate?: string, requestSubmissionEndDate?: string, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'reportType' is not null or undefined
             assertParamExists('getRequestsStatus', 'reportType', reportType)
             // verify required parameter 'authorization' is not null or undefined
@@ -1237,8 +1300,8 @@ export const OnRequestReportApiFp = function(configuration?: Configuration) {
         /**
          * Creates a new request for report by specifying the reportType and reportVersion.
          * @summary Create Report Request
-         * @param {'ITEM' | 'INVENTORY' | 'CANCELLATION' | 'DELIVERY_DEFECT'} reportType Specifies the report type for the request. For example, reportType&#x3D;ITEM creates an Item Report.
-         * @param {string} reportVersion Version of report for which the request is created. Supported versions for each report type are currently \&#39;reportVersion&#x3D;v1\&#39; for the following reportType(s): INVENTORY, CANCELLATION, DELIVERY_DEFECT and \&#39;reportVersion&#x3D;v1\&#39;, \&#39;reportVersion&#x3D;v2\&#39; for the following reportType(s): ITEM.
+         * @param {'ITEM' | 'INVENTORY' | 'CANCELLATION' | 'DELIVERY_DEFECT' | 'ITEM_PERFORMANCE' | 'PROMO' | 'RETURN_OVERRIDES' | 'CPA' | 'SHIPPING_CONFIGURATION' | 'SHIPPING_PROGRAM' | 'FITMENT_MISSING_ATTR' | 'FITMENT_ACES_COVERAGE'} reportType Specifies the report type for the request. For example, reportType&#x3D;ITEM creates an Item Report.
+         * @param {string} reportVersion Version of report for which the request is created. Supported versions for each report type are currently \&#39;reportVersion&#x3D;v1\&#39; for the following reportType(s): INVENTORY, CANCELLATION, DELIVERY_DEFECT, ITEM_PERFORMANCE, PROMO, RETURN_OVERRIDES, CPA, SHIPPING_CONFIGURATION, SHIPPING_PROGRAM, FITMENT_MISSING_ATTR, FITMENT_ACES_COVERAGE and \&#39;reportVersion&#x3D;v1\&#39;, \&#39;reportVersion&#x3D;v2\&#39;, \&#39;reportVersion&#x3D;v3\&#39;, \&#39;reportVersion&#x3D;v4\&#39; for the following reportType(s): ITEM.
          * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
@@ -1250,14 +1313,14 @@ export const OnRequestReportApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async generateReport(reportType: 'ITEM' | 'INVENTORY' | 'CANCELLATION' | 'DELIVERY_DEFECT', reportVersion: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, accept: string, contentType: string, wMCONSUMERCHANNELTYPE?: string, inlineObject?: InlineObject, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
+        async generateReport(reportType: 'ITEM' | 'INVENTORY' | 'CANCELLATION' | 'DELIVERY_DEFECT' | 'ITEM_PERFORMANCE' | 'PROMO' | 'RETURN_OVERRIDES' | 'CPA' | 'SHIPPING_CONFIGURATION' | 'SHIPPING_PROGRAM' | 'FITMENT_MISSING_ATTR' | 'FITMENT_ACES_COVERAGE', reportVersion: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, accept: string, contentType: string, wMCONSUMERCHANNELTYPE?: string, inlineObject?: InlineObject, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.generateReport(reportType, reportVersion, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, accept, contentType, wMCONSUMERCHANNELTYPE, inlineObject, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Fetches a list of all report requests for specified search criteria by using query parameters.  You can fetch details of report requests created in the last 30 days only.
          * @summary Get All Report Requests
-         * @param {'ITEM' | 'INVENTORY' | 'CANCELLATION' | 'DELIVERY_DEFECT'} reportType Type of report for which the request is created. Example, ITEM for Item Report.
+         * @param {'ITEM' | 'INVENTORY' | 'CANCELLATION' | 'DELIVERY_DEFECT' | 'ITEM_PERFORMANCE' | 'PROMO' | 'RETURN_OVERRIDES' | 'CPA' | 'SHIPPING_CONFIGURATION' | 'SHIPPING_PROGRAM' | 'FITMENT_MISSING_ATTR' | 'FITMENT_ACES_COVERAGE'} reportType Type of report for which the request is created. Example, ITEM for Item Report.
          * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
@@ -1271,7 +1334,7 @@ export const OnRequestReportApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getRequestsStatus(reportType: 'ITEM' | 'INVENTORY' | 'CANCELLATION' | 'DELIVERY_DEFECT', authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, accept: string, reportVersion?: string, requestStatus?: 'RECEIVED' | 'INPROGRESS' | 'READY' | 'ERROR', requestSubmissionStartDate?: string, requestSubmissionEndDate?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
+        async getRequestsStatus(reportType: 'ITEM' | 'INVENTORY' | 'CANCELLATION' | 'DELIVERY_DEFECT' | 'ITEM_PERFORMANCE' | 'PROMO' | 'RETURN_OVERRIDES' | 'CPA' | 'SHIPPING_CONFIGURATION' | 'SHIPPING_PROGRAM' | 'FITMENT_MISSING_ATTR' | 'FITMENT_ACES_COVERAGE', authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, accept: string, reportVersion?: string, requestStatus?: 'RECEIVED' | 'INPROGRESS' | 'READY' | 'ERROR', requestSubmissionStartDate?: string, requestSubmissionEndDate?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getRequestsStatus(reportType, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, accept, reportVersion, requestStatus, requestSubmissionStartDate, requestSubmissionEndDate, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -1321,8 +1384,8 @@ export const OnRequestReportApiFactory = function (configuration?: Configuration
         /**
          * Creates a new request for report by specifying the reportType and reportVersion.
          * @summary Create Report Request
-         * @param {'ITEM' | 'INVENTORY' | 'CANCELLATION' | 'DELIVERY_DEFECT'} reportType Specifies the report type for the request. For example, reportType&#x3D;ITEM creates an Item Report.
-         * @param {string} reportVersion Version of report for which the request is created. Supported versions for each report type are currently \&#39;reportVersion&#x3D;v1\&#39; for the following reportType(s): INVENTORY, CANCELLATION, DELIVERY_DEFECT and \&#39;reportVersion&#x3D;v1\&#39;, \&#39;reportVersion&#x3D;v2\&#39; for the following reportType(s): ITEM.
+         * @param {'ITEM' | 'INVENTORY' | 'CANCELLATION' | 'DELIVERY_DEFECT' | 'ITEM_PERFORMANCE' | 'PROMO' | 'RETURN_OVERRIDES' | 'CPA' | 'SHIPPING_CONFIGURATION' | 'SHIPPING_PROGRAM' | 'FITMENT_MISSING_ATTR' | 'FITMENT_ACES_COVERAGE'} reportType Specifies the report type for the request. For example, reportType&#x3D;ITEM creates an Item Report.
+         * @param {string} reportVersion Version of report for which the request is created. Supported versions for each report type are currently \&#39;reportVersion&#x3D;v1\&#39; for the following reportType(s): INVENTORY, CANCELLATION, DELIVERY_DEFECT, ITEM_PERFORMANCE, PROMO, RETURN_OVERRIDES, CPA, SHIPPING_CONFIGURATION, SHIPPING_PROGRAM, FITMENT_MISSING_ATTR, FITMENT_ACES_COVERAGE and \&#39;reportVersion&#x3D;v1\&#39;, \&#39;reportVersion&#x3D;v2\&#39;, \&#39;reportVersion&#x3D;v3\&#39;, \&#39;reportVersion&#x3D;v4\&#39; for the following reportType(s): ITEM.
          * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
@@ -1334,13 +1397,13 @@ export const OnRequestReportApiFactory = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        generateReport(reportType: 'ITEM' | 'INVENTORY' | 'CANCELLATION' | 'DELIVERY_DEFECT', reportVersion: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, accept: string, contentType: string, wMCONSUMERCHANNELTYPE?: string, inlineObject?: InlineObject, options?: any): AxiosPromise<InlineResponse2001> {
+        generateReport(reportType: 'ITEM' | 'INVENTORY' | 'CANCELLATION' | 'DELIVERY_DEFECT' | 'ITEM_PERFORMANCE' | 'PROMO' | 'RETURN_OVERRIDES' | 'CPA' | 'SHIPPING_CONFIGURATION' | 'SHIPPING_PROGRAM' | 'FITMENT_MISSING_ATTR' | 'FITMENT_ACES_COVERAGE', reportVersion: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, accept: string, contentType: string, wMCONSUMERCHANNELTYPE?: string, inlineObject?: InlineObject, options?: any): AxiosPromise<InlineResponse2001> {
             return localVarFp.generateReport(reportType, reportVersion, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, accept, contentType, wMCONSUMERCHANNELTYPE, inlineObject, options).then((request) => request(axios, basePath));
         },
         /**
          * Fetches a list of all report requests for specified search criteria by using query parameters.  You can fetch details of report requests created in the last 30 days only.
          * @summary Get All Report Requests
-         * @param {'ITEM' | 'INVENTORY' | 'CANCELLATION' | 'DELIVERY_DEFECT'} reportType Type of report for which the request is created. Example, ITEM for Item Report.
+         * @param {'ITEM' | 'INVENTORY' | 'CANCELLATION' | 'DELIVERY_DEFECT' | 'ITEM_PERFORMANCE' | 'PROMO' | 'RETURN_OVERRIDES' | 'CPA' | 'SHIPPING_CONFIGURATION' | 'SHIPPING_PROGRAM' | 'FITMENT_MISSING_ATTR' | 'FITMENT_ACES_COVERAGE'} reportType Type of report for which the request is created. Example, ITEM for Item Report.
          * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
@@ -1354,7 +1417,7 @@ export const OnRequestReportApiFactory = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getRequestsStatus(reportType: 'ITEM' | 'INVENTORY' | 'CANCELLATION' | 'DELIVERY_DEFECT', authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, accept: string, reportVersion?: string, requestStatus?: 'RECEIVED' | 'INPROGRESS' | 'READY' | 'ERROR', requestSubmissionStartDate?: string, requestSubmissionEndDate?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse200> {
+        getRequestsStatus(reportType: 'ITEM' | 'INVENTORY' | 'CANCELLATION' | 'DELIVERY_DEFECT' | 'ITEM_PERFORMANCE' | 'PROMO' | 'RETURN_OVERRIDES' | 'CPA' | 'SHIPPING_CONFIGURATION' | 'SHIPPING_PROGRAM' | 'FITMENT_MISSING_ATTR' | 'FITMENT_ACES_COVERAGE', authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, accept: string, reportVersion?: string, requestStatus?: 'RECEIVED' | 'INPROGRESS' | 'READY' | 'ERROR', requestSubmissionStartDate?: string, requestSubmissionEndDate?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse200> {
             return localVarFp.getRequestsStatus(reportType, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, accept, reportVersion, requestStatus, requestSubmissionStartDate, requestSubmissionEndDate, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1440,13 +1503,13 @@ export interface OnRequestReportApiDownloadReportRequest {
 export interface OnRequestReportApiGenerateReportRequest {
     /**
      * Specifies the report type for the request. For example, reportType&#x3D;ITEM creates an Item Report.
-     * @type {'ITEM' | 'INVENTORY' | 'CANCELLATION' | 'DELIVERY_DEFECT'}
+     * @type {'ITEM' | 'INVENTORY' | 'CANCELLATION' | 'DELIVERY_DEFECT' | 'ITEM_PERFORMANCE' | 'PROMO' | 'RETURN_OVERRIDES' | 'CPA' | 'SHIPPING_CONFIGURATION' | 'SHIPPING_PROGRAM' | 'FITMENT_MISSING_ATTR' | 'FITMENT_ACES_COVERAGE'}
      * @memberof OnRequestReportApiGenerateReport
      */
-    readonly reportType: 'ITEM' | 'INVENTORY' | 'CANCELLATION' | 'DELIVERY_DEFECT'
+    readonly reportType: 'ITEM' | 'INVENTORY' | 'CANCELLATION' | 'DELIVERY_DEFECT' | 'ITEM_PERFORMANCE' | 'PROMO' | 'RETURN_OVERRIDES' | 'CPA' | 'SHIPPING_CONFIGURATION' | 'SHIPPING_PROGRAM' | 'FITMENT_MISSING_ATTR' | 'FITMENT_ACES_COVERAGE'
 
     /**
-     * Version of report for which the request is created. Supported versions for each report type are currently \&#39;reportVersion&#x3D;v1\&#39; for the following reportType(s): INVENTORY, CANCELLATION, DELIVERY_DEFECT and \&#39;reportVersion&#x3D;v1\&#39;, \&#39;reportVersion&#x3D;v2\&#39; for the following reportType(s): ITEM.
+     * Version of report for which the request is created. Supported versions for each report type are currently \&#39;reportVersion&#x3D;v1\&#39; for the following reportType(s): INVENTORY, CANCELLATION, DELIVERY_DEFECT, ITEM_PERFORMANCE, PROMO, RETURN_OVERRIDES, CPA, SHIPPING_CONFIGURATION, SHIPPING_PROGRAM, FITMENT_MISSING_ATTR, FITMENT_ACES_COVERAGE and \&#39;reportVersion&#x3D;v1\&#39;, \&#39;reportVersion&#x3D;v2\&#39;, \&#39;reportVersion&#x3D;v3\&#39;, \&#39;reportVersion&#x3D;v4\&#39; for the following reportType(s): ITEM.
      * @type {string}
      * @memberof OnRequestReportApiGenerateReport
      */
@@ -1517,10 +1580,10 @@ export interface OnRequestReportApiGenerateReportRequest {
 export interface OnRequestReportApiGetRequestsStatusRequest {
     /**
      * Type of report for which the request is created. Example, ITEM for Item Report.
-     * @type {'ITEM' | 'INVENTORY' | 'CANCELLATION' | 'DELIVERY_DEFECT'}
+     * @type {'ITEM' | 'INVENTORY' | 'CANCELLATION' | 'DELIVERY_DEFECT' | 'ITEM_PERFORMANCE' | 'PROMO' | 'RETURN_OVERRIDES' | 'CPA' | 'SHIPPING_CONFIGURATION' | 'SHIPPING_PROGRAM' | 'FITMENT_MISSING_ATTR' | 'FITMENT_ACES_COVERAGE'}
      * @memberof OnRequestReportApiGetRequestsStatus
      */
-    readonly reportType: 'ITEM' | 'INVENTORY' | 'CANCELLATION' | 'DELIVERY_DEFECT'
+    readonly reportType: 'ITEM' | 'INVENTORY' | 'CANCELLATION' | 'DELIVERY_DEFECT' | 'ITEM_PERFORMANCE' | 'PROMO' | 'RETURN_OVERRIDES' | 'CPA' | 'SHIPPING_CONFIGURATION' | 'SHIPPING_PROGRAM' | 'FITMENT_MISSING_ATTR' | 'FITMENT_ACES_COVERAGE'
 
     /**
      * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
