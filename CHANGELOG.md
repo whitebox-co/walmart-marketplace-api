@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/whitebox-co/walmart-marketplace-api/compare/v2.2.0...v3.0.0) (2022-12-13)
+
+### Bug Fixes
+
+-   node version and peer dependencies update ([6eb6ebc](https://github.com/whitebox-co/walmart-marketplace-api/commit/6eb6ebce6122fcc8228a79649984fda454e16252))
+
+-   feat(api)!: generating new code based on latest schema changes from walmart ([03ab828](https://github.com/whitebox-co/walmart-marketplace-api/commit/03ab828cce69ee464d093e072ec31e7b4d04cdbc))
+
+### Features
+
+-   adding `buffer` dependency so that project can be isomorphic ([c4499ad](https://github.com/whitebox-co/walmart-marketplace-api/commit/c4499ad45b257fe1fcf1f781f57c74b73dedace3))
+
+### BREAKING CHANGES
+
+-   InlineResponse generation and schema changes
+
 # [2.2.0](https://github.com/whitebox-co/walmart-marketplace-api/compare/v2.1.1...v2.2.0) (2022-02-14)
 
 ### Features
