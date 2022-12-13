@@ -1,7 +1,7 @@
 {
   "name": "@whitebox-co/walmart-marketplace-api",
   "version": "2.2.0",
-  "description": "A fully typed TypeScript and Node.js API library for the Walmart Marketplace API",
+  "description": "A fully typed TypeScript, Javascript, and Node.js API library for the Walmart Marketplace API",
   "license": "MIT",
   "author": {
     "name": "Whitebox",
