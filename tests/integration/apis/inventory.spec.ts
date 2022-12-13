@@ -1,7 +1,6 @@
 import * as env from '../../environment';
 import walmartApi, { InventoryApi, defaultParams } from '../../../src/index';
 import { addInterceptor, removeInterceptor } from '../../../utils/payload-interceptors';
-
 import { InventoryFeed } from '../../../src/models/inventory/v1/inventoryFeed';
 
 describe(`${InventoryApi.name}`, () => {
@@ -105,7 +104,7 @@ describe(`${InventoryApi.name}`, () => {
 			const inventoryUpdateResponse = await inventoryApi.updateBulkInventory({
 				...defaultParams,
 				feedType: 'inventory',
-				file: Buffer.from(JSON.stringify(inventoryFeed)),
+				file: JSON.stringify(inventoryFeed),
 			});
 
 			// assert inventory feed response

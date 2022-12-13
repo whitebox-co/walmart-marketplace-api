@@ -5,6 +5,7 @@ import { AxiosResponse } from 'axios';
 import { apiInterceptor } from './util/interceptors';
 import { defaultParams, WalmartMarketplaceApi } from './constants';
 import FormData from 'form-data';
+import { Buffer } from 'buffer/';
 
 export interface WalmartApiCredentials {
 	clientId: string;

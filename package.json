@@ -53,6 +53,7 @@
   "types": "lib/src/index.d.ts",
   "dependencies": {
     "axios": "^0.21.2",
+    "buffer": "^6.0.3",
     "bunyan": "^1.8.15",
     "form-data": "^4.0.0",
     "lodash": "^4.17.21",

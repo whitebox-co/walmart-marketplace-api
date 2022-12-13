@@ -120,6 +120,7 @@ const exampleOrder = await ordersApi.getAnOrder({
 
 ```typescript
 import { Configuration, AuthenticationApi, OrdersApi } from '@whitebox-co/walmart-marketplace-api';
+import { Buffer } from 'buffer/'; // trailing slash is important and not a mistake
 
 // configure authorization api
 const configuration = new Configuration();

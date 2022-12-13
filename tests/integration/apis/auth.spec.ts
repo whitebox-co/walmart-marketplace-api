@@ -3,6 +3,7 @@ import * as env from '../../environment';
 import { Configuration } from '../../../src/index';
 import { AuthenticationApi } from '../../../src/apis/auth';
 import { addInterceptor, removeInterceptor } from '../../../utils/payload-interceptors';
+import { Buffer } from 'buffer/';
 
 describe(`${AuthenticationApi.name}`, () => {
 	let interceptor: any;
