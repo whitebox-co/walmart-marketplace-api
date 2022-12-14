@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.1](https://github.com/whitebox-co/walmart-marketplace-api/compare/v3.0.0...v3.0.1) (2022-12-14)
+
+### Bug Fixes
+
+-   **deps:** bump axios from 0.21.4 to 1.2.1 ([b5cfc74](https://github.com/whitebox-co/walmart-marketplace-api/commit/b5cfc7420c0a0056c5ac22693a11fb0f83a24ca6))
+-   **deps:** bump uuid and @types/uuid ([f4d5b9d](https://github.com/whitebox-co/walmart-marketplace-api/commit/f4d5b9d1d7e024890f782c9279ac87ef78d3c942))
+
 # [3.0.0](https://github.com/whitebox-co/walmart-marketplace-api/compare/v2.2.0...v3.0.0) (2022-12-13)
 
 ### Bug Fixes
