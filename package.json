@@ -91,7 +91,7 @@
     "markdownlint": "^0.25.0",
     "markdownlint-cli": "^0.32.2",
     "npm": "^8.5.0",
-    "openapi-types": "^10.0.0",
+    "openapi-types": "^12.1.0",
     "prettier": "^2.4.0",
     "prettier-cli": "^0.1.0",
     "prettier-package-json": "^2.6.0",
