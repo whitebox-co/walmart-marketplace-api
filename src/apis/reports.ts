@@ -24,6 +24,43 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
 /**
  * 
  * @export
+ * @interface AdjustmentAggregate
+ */
+export interface AdjustmentAggregate {
+    /**
+     * 
+     * @type {number}
+     * @memberof AdjustmentAggregate
+     */
+    netPayable?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof AdjustmentAggregate
+     */
+    disputeSettlement?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof AdjustmentAggregate
+     */
+    returnShipServCharge?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof AdjustmentAggregate
+     */
+    returnHandlingServCharge?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof AdjustmentAggregate
+     */
+    fwdShippingServiceFee?: number;
+}
+/**
+ * 
+ * @export
  * @interface InlineResponse200
  */
 export interface InlineResponse200 {
@@ -33,6 +70,888 @@ export interface InlineResponse200 {
      * @memberof InlineResponse200
      */
     availableApReportDates?: Array<string>;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse2001
+ */
+export interface InlineResponse2001 {
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2001
+     */
+    statusCode?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2001
+     */
+    status?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2001
+     */
+    error?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2001
+     */
+    partnerId?: string;
+    /**
+     * 
+     * @type {InlineResponse2001Payload}
+     * @memberof InlineResponse2001
+     */
+    payload?: InlineResponse2001Payload;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse2001Payload
+ */
+export interface InlineResponse2001Payload {
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2001Payload
+     */
+    outstandingMCABalance?: number;
+    /**
+     * 
+     * @type {InlineResponse2001PayloadSellerInfo}
+     * @memberof InlineResponse2001Payload
+     */
+    sellerInfo?: InlineResponse2001PayloadSellerInfo;
+    /**
+     * 
+     * @type {InlineResponse2001PayloadAccountSummary}
+     * @memberof InlineResponse2001Payload
+     */
+    accountSummary?: InlineResponse2001PayloadAccountSummary;
+    /**
+     * 
+     * @type {InlineResponse2001PayloadTransactionDetails}
+     * @memberof InlineResponse2001Payload
+     */
+    transactionDetails?: InlineResponse2001PayloadTransactionDetails;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse2001PayloadAccountSummary
+ */
+export interface InlineResponse2001PayloadAccountSummary {
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2001PayloadAccountSummary
+     */
+    openingBalance?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2001PayloadAccountSummary
+     */
+    orderActivity?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2001PayloadAccountSummary
+     */
+    walmartFulfillmentServices?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2001PayloadAccountSummary
+     */
+    otherActivities?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2001PayloadAccountSummary
+     */
+    reserve?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2001PayloadAccountSummary
+     */
+    paidToYou?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2001PayloadAccountSummary
+     */
+    closingBalance?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2001PayloadAccountSummary
+     */
+    scheduledSettlementDate?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2001PayloadAccountSummary
+     */
+    paymentProcessor?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2001PayloadAccountSummary
+     */
+    settleCycle?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2001PayloadAccountSummary
+     */
+    reserveToDate?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2001PayloadAccountSummary
+     */
+    lastUpdatedDate?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2001PayloadAccountSummary
+     */
+    holdAmt?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2001PayloadAccountSummary
+     */
+    holdDates?: string;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse2001PayloadSellerInfo
+ */
+export interface InlineResponse2001PayloadSellerInfo {
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2001PayloadSellerInfo
+     */
+    storeFrontUrl?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2001PayloadSellerInfo
+     */
+    sellerStatus?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2001PayloadSellerInfo
+     */
+    paymentStatus?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2001PayloadSellerInfo
+     */
+    tenure?: number;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse2001PayloadTransactionDetails
+ */
+export interface InlineResponse2001PayloadTransactionDetails {
+    /**
+     * 
+     * @type {InlineResponse2001PayloadTransactionDetailsSaleAggregate}
+     * @memberof InlineResponse2001PayloadTransactionDetails
+     */
+    saleAggregate?: InlineResponse2001PayloadTransactionDetailsSaleAggregate;
+    /**
+     * 
+     * @type {InlineResponse2001PayloadTransactionDetailsSaleAggregate}
+     * @memberof InlineResponse2001PayloadTransactionDetails
+     */
+    refundDetails?: InlineResponse2001PayloadTransactionDetailsSaleAggregate;
+    /**
+     * 
+     * @type {InlineResponse2001PayloadTransactionDetailsAdjustmentAggregate}
+     * @memberof InlineResponse2001PayloadTransactionDetails
+     */
+    adjustmentAggregate?: InlineResponse2001PayloadTransactionDetailsAdjustmentAggregate;
+    /**
+     * 
+     * @type {InlineResponse2001PayloadTransactionDetailsWfs}
+     * @memberof InlineResponse2001PayloadTransactionDetails
+     */
+    wfs?: InlineResponse2001PayloadTransactionDetailsWfs;
+    /**
+     * 
+     * @type {InlineResponse2001PayloadTransactionDetailsPartnerTxns}
+     * @memberof InlineResponse2001PayloadTransactionDetails
+     */
+    partnerTxns?: InlineResponse2001PayloadTransactionDetailsPartnerTxns;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse2001PayloadTransactionDetailsAdjustmentAggregate
+ */
+export interface InlineResponse2001PayloadTransactionDetailsAdjustmentAggregate {
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2001PayloadTransactionDetailsAdjustmentAggregate
+     */
+    netPayable?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2001PayloadTransactionDetailsAdjustmentAggregate
+     */
+    disputeSettlement?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2001PayloadTransactionDetailsAdjustmentAggregate
+     */
+    returnShipServCharge?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2001PayloadTransactionDetailsAdjustmentAggregate
+     */
+    returnHandlingServCharge?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2001PayloadTransactionDetailsAdjustmentAggregate
+     */
+    fwdShippingServiceFee?: number;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse2001PayloadTransactionDetailsPartnerTxns
+ */
+export interface InlineResponse2001PayloadTransactionDetailsPartnerTxns {
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2001PayloadTransactionDetailsPartnerTxns
+     */
+    netPayable?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2001PayloadTransactionDetailsPartnerTxns
+     */
+    advancePayment?: number;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse2001PayloadTransactionDetailsSaleAggregate
+ */
+export interface InlineResponse2001PayloadTransactionDetailsSaleAggregate {
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2001PayloadTransactionDetailsSaleAggregate
+     */
+    productPrice?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2001PayloadTransactionDetailsSaleAggregate
+     */
+    shipping?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2001PayloadTransactionDetailsSaleAggregate
+     */
+    netTaxCollected?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2001PayloadTransactionDetailsSaleAggregate
+     */
+    productTaxCollected?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2001PayloadTransactionDetailsSaleAggregate
+     */
+    shippingTaxCollected?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2001PayloadTransactionDetailsSaleAggregate
+     */
+    netTaxWithheld?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2001PayloadTransactionDetailsSaleAggregate
+     */
+    productTaxWithheld?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2001PayloadTransactionDetailsSaleAggregate
+     */
+    shippingTaxWithheld?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2001PayloadTransactionDetailsSaleAggregate
+     */
+    netFeeCollected?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2001PayloadTransactionDetailsSaleAggregate
+     */
+    netFeeWithheld?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2001PayloadTransactionDetailsSaleAggregate
+     */
+    netComm?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2001PayloadTransactionDetailsSaleAggregate
+     */
+    netPayable?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2001PayloadTransactionDetailsSaleAggregate
+     */
+    aboveCap?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2001PayloadTransactionDetailsSaleAggregate
+     */
+    wfsShipping?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2001PayloadTransactionDetailsSaleAggregate
+     */
+    wfsShipppingTax?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2001PayloadTransactionDetailsSaleAggregate
+     */
+    totalBaseCommission?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2001PayloadTransactionDetailsSaleAggregate
+     */
+    commissionSavings?: number;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse2001PayloadTransactionDetailsWfs
+ */
+export interface InlineResponse2001PayloadTransactionDetailsWfs {
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2001PayloadTransactionDetailsWfs
+     */
+    netPayable?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2001PayloadTransactionDetailsWfs
+     */
+    wfsFullfillmentFee?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2001PayloadTransactionDetailsWfs
+     */
+    wfsStorageFee?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2001PayloadTransactionDetailsWfs
+     */
+    wfsAdjustment?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2001PayloadTransactionDetailsWfs
+     */
+    wfsFee?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2001PayloadTransactionDetailsWfs
+     */
+    inventoryRemovalOrder?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2001PayloadTransactionDetailsWfs
+     */
+    inventoryDisposalOrder?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2001PayloadTransactionDetailsWfs
+     */
+    wfsPrepServiceFee?: number;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse2002
+ */
+export interface InlineResponse2002 {
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2002
+     */
+    statusCode?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2002
+     */
+    status?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2002
+     */
+    error?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2002
+     */
+    partnerId?: string;
+    /**
+     * 
+     * @type {InlineResponse20027DAY}
+     * @memberof InlineResponse2002
+     */
+    _7DAY?: InlineResponse20027DAY;
+    /**
+     * 
+     * @type {InlineResponse20027DAY}
+     * @memberof InlineResponse2002
+     */
+    _14DAY?: InlineResponse20027DAY;
+    /**
+     * 
+     * @type {InlineResponse20027DAY}
+     * @memberof InlineResponse2002
+     */
+    _30DAY?: InlineResponse20027DAY;
+    /**
+     * 
+     * @type {InlineResponse20027DAY}
+     * @memberof InlineResponse2002
+     */
+    _60DAY?: InlineResponse20027DAY;
+    /**
+     * 
+     * @type {InlineResponse20027DAY}
+     * @memberof InlineResponse2002
+     */
+    _90DAY?: InlineResponse20027DAY;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse20027DAY
+ */
+export interface InlineResponse20027DAY {
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse20027DAY
+     */
+    refundRateSellerFault?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse20027DAY
+     */
+    refundRateCustomerFault?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse20027DAY
+     */
+    ots?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse20027DAY
+     */
+    otd?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse20027DAY
+     */
+    vtr?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse20027DAY
+     */
+    cancellationSellerFault?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse20027DAY
+     */
+    cancellationCustomerFault?: number;
+}
+/**
+ * 
+ * @export
+ * @interface PartnerProgramAccSummary
+ */
+export interface PartnerProgramAccSummary {
+    /**
+     * 
+     * @type {number}
+     * @memberof PartnerProgramAccSummary
+     */
+    openingBalance?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PartnerProgramAccSummary
+     */
+    orderActivity?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PartnerProgramAccSummary
+     */
+    walmartFulfillmentServices?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PartnerProgramAccSummary
+     */
+    otherActivities?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PartnerProgramAccSummary
+     */
+    reserve?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PartnerProgramAccSummary
+     */
+    paidToYou?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PartnerProgramAccSummary
+     */
+    closingBalance?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PartnerProgramAccSummary
+     */
+    scheduledSettlementDate?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PartnerProgramAccSummary
+     */
+    paymentProcessor?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PartnerProgramAccSummary
+     */
+    settleCycle?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof PartnerProgramAccSummary
+     */
+    reserveToDate?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PartnerProgramAccSummary
+     */
+    lastUpdatedDate?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof PartnerProgramAccSummary
+     */
+    holdAmt?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PartnerProgramAccSummary
+     */
+    holdDates?: string;
+}
+/**
+ * 
+ * @export
+ * @interface PartnerProgramPerformance
+ */
+export interface PartnerProgramPerformance {
+    /**
+     * 
+     * @type {number}
+     * @memberof PartnerProgramPerformance
+     */
+    refundRateSellerFault?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PartnerProgramPerformance
+     */
+    refundRateCustomerFault?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PartnerProgramPerformance
+     */
+    ots?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PartnerProgramPerformance
+     */
+    otd?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PartnerProgramPerformance
+     */
+    vtr?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PartnerProgramPerformance
+     */
+    cancellationSellerFault?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PartnerProgramPerformance
+     */
+    cancellationCustomerFault?: number;
+}
+/**
+ * 
+ * @export
+ * @interface PartnerProgramPerformanceRes
+ */
+export interface PartnerProgramPerformanceRes {
+    /**
+     * 
+     * @type {number}
+     * @memberof PartnerProgramPerformanceRes
+     */
+    statusCode?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PartnerProgramPerformanceRes
+     */
+    status?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PartnerProgramPerformanceRes
+     */
+    error?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PartnerProgramPerformanceRes
+     */
+    partnerId?: string;
+    /**
+     * 
+     * @type {InlineResponse20027DAY}
+     * @memberof PartnerProgramPerformanceRes
+     */
+    _7DAY?: InlineResponse20027DAY;
+    /**
+     * 
+     * @type {InlineResponse20027DAY}
+     * @memberof PartnerProgramPerformanceRes
+     */
+    _14DAY?: InlineResponse20027DAY;
+    /**
+     * 
+     * @type {InlineResponse20027DAY}
+     * @memberof PartnerProgramPerformanceRes
+     */
+    _30DAY?: InlineResponse20027DAY;
+    /**
+     * 
+     * @type {InlineResponse20027DAY}
+     * @memberof PartnerProgramPerformanceRes
+     */
+    _60DAY?: InlineResponse20027DAY;
+    /**
+     * 
+     * @type {InlineResponse20027DAY}
+     * @memberof PartnerProgramPerformanceRes
+     */
+    _90DAY?: InlineResponse20027DAY;
+}
+/**
+ * 
+ * @export
+ * @interface PartnerProgramStatementDO
+ */
+export interface PartnerProgramStatementDO {
+    /**
+     * 
+     * @type {number}
+     * @memberof PartnerProgramStatementDO
+     */
+    outstandingMCABalance?: number;
+    /**
+     * 
+     * @type {InlineResponse2001PayloadSellerInfo}
+     * @memberof PartnerProgramStatementDO
+     */
+    sellerInfo?: InlineResponse2001PayloadSellerInfo;
+    /**
+     * 
+     * @type {InlineResponse2001PayloadAccountSummary}
+     * @memberof PartnerProgramStatementDO
+     */
+    accountSummary?: InlineResponse2001PayloadAccountSummary;
+    /**
+     * 
+     * @type {InlineResponse2001PayloadTransactionDetails}
+     * @memberof PartnerProgramStatementDO
+     */
+    transactionDetails?: InlineResponse2001PayloadTransactionDetails;
+}
+/**
+ * 
+ * @export
+ * @interface PartnerProgramStatementRes
+ */
+export interface PartnerProgramStatementRes {
+    /**
+     * 
+     * @type {number}
+     * @memberof PartnerProgramStatementRes
+     */
+    statusCode?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PartnerProgramStatementRes
+     */
+    status?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PartnerProgramStatementRes
+     */
+    error?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PartnerProgramStatementRes
+     */
+    partnerId?: string;
+    /**
+     * 
+     * @type {InlineResponse2001Payload}
+     * @memberof PartnerProgramStatementRes
+     */
+    payload?: InlineResponse2001Payload;
+}
+/**
+ * 
+ * @export
+ * @interface PartnerProgramTransactionDetails
+ */
+export interface PartnerProgramTransactionDetails {
+    /**
+     * 
+     * @type {InlineResponse2001PayloadTransactionDetailsSaleAggregate}
+     * @memberof PartnerProgramTransactionDetails
+     */
+    saleAggregate?: InlineResponse2001PayloadTransactionDetailsSaleAggregate;
+    /**
+     * 
+     * @type {InlineResponse2001PayloadTransactionDetailsSaleAggregate}
+     * @memberof PartnerProgramTransactionDetails
+     */
+    refundDetails?: InlineResponse2001PayloadTransactionDetailsSaleAggregate;
+    /**
+     * 
+     * @type {InlineResponse2001PayloadTransactionDetailsAdjustmentAggregate}
+     * @memberof PartnerProgramTransactionDetails
+     */
+    adjustmentAggregate?: InlineResponse2001PayloadTransactionDetailsAdjustmentAggregate;
+    /**
+     * 
+     * @type {InlineResponse2001PayloadTransactionDetailsWfs}
+     * @memberof PartnerProgramTransactionDetails
+     */
+    wfs?: InlineResponse2001PayloadTransactionDetailsWfs;
+    /**
+     * 
+     * @type {InlineResponse2001PayloadTransactionDetailsPartnerTxns}
+     * @memberof PartnerProgramTransactionDetails
+     */
+    partnerTxns?: InlineResponse2001PayloadTransactionDetailsPartnerTxns;
+}
+/**
+ * 
+ * @export
+ * @interface PartnerTxns
+ */
+export interface PartnerTxns {
+    /**
+     * 
+     * @type {number}
+     * @memberof PartnerTxns
+     */
+    netPayable?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PartnerTxns
+     */
+    advancePayment?: number;
 }
 /**
  * 
@@ -47,6 +966,201 @@ export interface ReconReportDateResponse {
      */
     availableApReportDates?: Array<string>;
 }
+/**
+ * 
+ * @export
+ * @interface SaleRefundAggr
+ */
+export interface SaleRefundAggr {
+    /**
+     * 
+     * @type {number}
+     * @memberof SaleRefundAggr
+     */
+    productPrice?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SaleRefundAggr
+     */
+    shipping?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SaleRefundAggr
+     */
+    netTaxCollected?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SaleRefundAggr
+     */
+    productTaxCollected?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SaleRefundAggr
+     */
+    shippingTaxCollected?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SaleRefundAggr
+     */
+    netTaxWithheld?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SaleRefundAggr
+     */
+    productTaxWithheld?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SaleRefundAggr
+     */
+    shippingTaxWithheld?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SaleRefundAggr
+     */
+    netFeeCollected?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SaleRefundAggr
+     */
+    netFeeWithheld?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SaleRefundAggr
+     */
+    netComm?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SaleRefundAggr
+     */
+    netPayable?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SaleRefundAggr
+     */
+    aboveCap?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SaleRefundAggr
+     */
+    wfsShipping?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SaleRefundAggr
+     */
+    wfsShipppingTax?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SaleRefundAggr
+     */
+    totalBaseCommission?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SaleRefundAggr
+     */
+    commissionSavings?: number;
+}
+/**
+ * 
+ * @export
+ * @interface SellerInfo
+ */
+export interface SellerInfo {
+    /**
+     * 
+     * @type {string}
+     * @memberof SellerInfo
+     */
+    storeFrontUrl?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SellerInfo
+     */
+    sellerStatus?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SellerInfo
+     */
+    paymentStatus?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof SellerInfo
+     */
+    tenure?: number;
+}
+/**
+ * 
+ * @export
+ * @interface WfsAggr
+ */
+export interface WfsAggr {
+    /**
+     * 
+     * @type {number}
+     * @memberof WfsAggr
+     */
+    netPayable?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof WfsAggr
+     */
+    wfsFullfillmentFee?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof WfsAggr
+     */
+    wfsStorageFee?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof WfsAggr
+     */
+    wfsAdjustment?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof WfsAggr
+     */
+    wfsFee?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof WfsAggr
+     */
+    inventoryRemovalOrder?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof WfsAggr
+     */
+    inventoryDisposalOrder?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof WfsAggr
+     */
+    wfsPrepServiceFee?: number;
+}
 
 /**
  * ReportsApi - axios parameter creator
@@ -57,7 +1171,6 @@ export const ReportsApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * This API will list all the available Marketplace reconciliation report dates for the Seller.
          * @summary Available recon report dates(Legacy)
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -65,9 +1178,7 @@ export const ReportsApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAvailableReconReportDates: async (authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'authorization' is not null or undefined
-            assertParamExists('getAvailableReconReportDates', 'authorization', authorization)
+        getAvailableReconReportDates: async (wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
             assertParamExists('getAvailableReconReportDates', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN)
             // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
@@ -85,14 +1196,6 @@ export const ReportsApiAxiosParamCreator = function (configuration?: Configurati
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-
-            // authentication basicScheme required
-            // http basic authentication required
-            setBasicAuthToObject(localVarRequestOptions, configuration)
-
-            if (authorization !== undefined && authorization !== null) {
-                localVarHeaderParameter['Authorization'] = String(authorization);
-            }
 
             if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
                 localVarHeaderParameter['WM_SEC.ACCESS_TOKEN'] = String(wMSECACCESSTOKEN);
@@ -124,7 +1227,6 @@ export const ReportsApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * This API will list all the available Marketplace reconciliation report dates for the Seller.
          * @summary Available recon report dates
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -132,9 +1234,7 @@ export const ReportsApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAvailableV1ReconReportDates: async (authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'authorization' is not null or undefined
-            assertParamExists('getAvailableV1ReconReportDates', 'authorization', authorization)
+        getAvailableV1ReconReportDates: async (wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
             assertParamExists('getAvailableV1ReconReportDates', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN)
             // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
@@ -152,14 +1252,6 @@ export const ReportsApiAxiosParamCreator = function (configuration?: Configurati
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-
-            // authentication basicScheme required
-            // http basic authentication required
-            setBasicAuthToObject(localVarRequestOptions, configuration)
-
-            if (authorization !== undefined && authorization !== null) {
-                localVarHeaderParameter['Authorization'] = String(authorization);
-            }
 
             if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
                 localVarHeaderParameter['WM_SEC.ACCESS_TOKEN'] = String(wMSECACCESSTOKEN);
@@ -189,10 +1281,8 @@ export const ReportsApiAxiosParamCreator = function (configuration?: Configurati
             };
         },
         /**
-         * Returns all the information associated with Seller\'s items that are set up on Walmart’s platform.
-         * @summary Multiple Reports
-         * @param {'item' | 'buybox' | 'cpa' | 'shippingProgram' | 'shippingConfiguration' | 'itemPerformance' | 'returnOverrides' | 'promo'} type Type of report to be requested
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+         * This API will get a partner\'s current cycle performance
+         * @summary Performance Report
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -200,18 +1290,14 @@ export const ReportsApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getItemReport: async (type: 'item' | 'buybox' | 'cpa' | 'shippingProgram' | 'shippingConfiguration' | 'itemPerformance' | 'returnOverrides' | 'promo', authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'type' is not null or undefined
-            assertParamExists('getItemReport', 'type', type)
-            // verify required parameter 'authorization' is not null or undefined
-            assertParamExists('getItemReport', 'authorization', authorization)
+        getPartnerPerformance: async (wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
-            assertParamExists('getItemReport', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN)
+            assertParamExists('getPartnerPerformance', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN)
             // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
-            assertParamExists('getItemReport', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID)
+            assertParamExists('getPartnerPerformance', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID)
             // verify required parameter 'wMSVCNAME' is not null or undefined
-            assertParamExists('getItemReport', 'wMSVCNAME', wMSVCNAME)
-            const localVarPath = `/v3/getReport`;
+            assertParamExists('getPartnerPerformance', 'wMSVCNAME', wMSVCNAME)
+            const localVarPath = `/v3/report/payment/performance`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -223,17 +1309,61 @@ export const ReportsApiAxiosParamCreator = function (configuration?: Configurati
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication basicScheme required
-            // http basic authentication required
-            setBasicAuthToObject(localVarRequestOptions, configuration)
-
-            if (type !== undefined) {
-                localVarQueryParameter['type'] = type;
+            if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
+                localVarHeaderParameter['WM_SEC.ACCESS_TOKEN'] = String(wMSECACCESSTOKEN);
             }
 
-            if (authorization !== undefined && authorization !== null) {
-                localVarHeaderParameter['Authorization'] = String(authorization);
+            if (wMCONSUMERCHANNELTYPE !== undefined && wMCONSUMERCHANNELTYPE !== null) {
+                localVarHeaderParameter['WM_CONSUMER.CHANNEL.TYPE'] = String(wMCONSUMERCHANNELTYPE);
             }
+
+            if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
+                localVarHeaderParameter['WM_QOS.CORRELATION_ID'] = String(wMQOSCORRELATIONID);
+            }
+
+            if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
+                localVarHeaderParameter['WM_SVC.NAME'] = String(wMSVCNAME);
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * This API will get a partner\'s current cycle statement
+         * @summary Payment Statement Report
+         * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+         * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+         * @param {string} wMSVCNAME Walmart Service Name
+         * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPartnerStatement: async (wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
+            assertParamExists('getPartnerStatement', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN)
+            // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
+            assertParamExists('getPartnerStatement', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID)
+            // verify required parameter 'wMSVCNAME' is not null or undefined
+            assertParamExists('getPartnerStatement', 'wMSVCNAME', wMSVCNAME)
+            const localVarPath = `/v3/report/payment/statement`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
 
             if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
                 localVarHeaderParameter['WM_SEC.ACCESS_TOKEN'] = String(wMSECACCESSTOKEN);
@@ -266,7 +1396,6 @@ export const ReportsApiAxiosParamCreator = function (configuration?: Configurati
          * Seller can download the reconciliation report for a specific date using this API. Dates available to be downloaded can be found by using the Get available reconciliation report dates API.
          * @summary Recon report(Legacy)
          * @param {string} reportDate The date for which the reconcilation file is available
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -274,11 +1403,9 @@ export const ReportsApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getReconReport: async (reportDate: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
+        getReconReport: async (reportDate: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'reportDate' is not null or undefined
             assertParamExists('getReconReport', 'reportDate', reportDate)
-            // verify required parameter 'authorization' is not null or undefined
-            assertParamExists('getReconReport', 'authorization', authorization)
             // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
             assertParamExists('getReconReport', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN)
             // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
@@ -297,16 +1424,8 @@ export const ReportsApiAxiosParamCreator = function (configuration?: Configurati
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication basicScheme required
-            // http basic authentication required
-            setBasicAuthToObject(localVarRequestOptions, configuration)
-
             if (reportDate !== undefined) {
                 localVarQueryParameter['reportDate'] = reportDate;
-            }
-
-            if (authorization !== undefined && authorization !== null) {
-                localVarHeaderParameter['Authorization'] = String(authorization);
             }
 
             if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
@@ -341,7 +1460,6 @@ export const ReportsApiAxiosParamCreator = function (configuration?: Configurati
          * @summary Recon report
          * @param {string} reportDate The date for which the reconcilation file is available
          * @param {string} reportVersion Report Version
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -349,13 +1467,11 @@ export const ReportsApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getReconReportV1: async (reportDate: string, reportVersion: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
+        getReconReportV1: async (reportDate: string, reportVersion: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'reportDate' is not null or undefined
             assertParamExists('getReconReportV1', 'reportDate', reportDate)
             // verify required parameter 'reportVersion' is not null or undefined
             assertParamExists('getReconReportV1', 'reportVersion', reportVersion)
-            // verify required parameter 'authorization' is not null or undefined
-            assertParamExists('getReconReportV1', 'authorization', authorization)
             // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
             assertParamExists('getReconReportV1', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN)
             // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
@@ -374,20 +1490,12 @@ export const ReportsApiAxiosParamCreator = function (configuration?: Configurati
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication basicScheme required
-            // http basic authentication required
-            setBasicAuthToObject(localVarRequestOptions, configuration)
-
             if (reportDate !== undefined) {
                 localVarQueryParameter['reportDate'] = reportDate;
             }
 
             if (reportVersion !== undefined) {
                 localVarQueryParameter['reportVersion'] = reportVersion;
-            }
-
-            if (authorization !== undefined && authorization !== null) {
-                localVarHeaderParameter['Authorization'] = String(authorization);
             }
 
             if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
@@ -430,7 +1538,6 @@ export const ReportsApiFp = function(configuration?: Configuration) {
         /**
          * This API will list all the available Marketplace reconciliation report dates for the Seller.
          * @summary Available recon report dates(Legacy)
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -438,14 +1545,13 @@ export const ReportsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getAvailableReconReportDates(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getAvailableReconReportDates(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options);
+        async getAvailableReconReportDates(wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getAvailableReconReportDates(wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * This API will list all the available Marketplace reconciliation report dates for the Seller.
          * @summary Available recon report dates
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -453,15 +1559,13 @@ export const ReportsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getAvailableV1ReconReportDates(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getAvailableV1ReconReportDates(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options);
+        async getAvailableV1ReconReportDates(wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getAvailableV1ReconReportDates(wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Returns all the information associated with Seller\'s items that are set up on Walmart’s platform.
-         * @summary Multiple Reports
-         * @param {'item' | 'buybox' | 'cpa' | 'shippingProgram' | 'shippingConfiguration' | 'itemPerformance' | 'returnOverrides' | 'promo'} type Type of report to be requested
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+         * This API will get a partner\'s current cycle performance
+         * @summary Performance Report
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -469,15 +1573,28 @@ export const ReportsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getItemReport(type: 'item' | 'buybox' | 'cpa' | 'shippingProgram' | 'shippingConfiguration' | 'itemPerformance' | 'returnOverrides' | 'promo', authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getItemReport(type, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options);
+        async getPartnerPerformance(wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2002>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getPartnerPerformance(wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * This API will get a partner\'s current cycle statement
+         * @summary Payment Statement Report
+         * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+         * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+         * @param {string} wMSVCNAME Walmart Service Name
+         * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getPartnerStatement(wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getPartnerStatement(wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Seller can download the reconciliation report for a specific date using this API. Dates available to be downloaded can be found by using the Get available reconciliation report dates API.
          * @summary Recon report(Legacy)
          * @param {string} reportDate The date for which the reconcilation file is available
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -485,8 +1602,8 @@ export const ReportsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getReconReport(reportDate: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getReconReport(reportDate, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options);
+        async getReconReport(reportDate: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getReconReport(reportDate, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -494,7 +1611,6 @@ export const ReportsApiFp = function(configuration?: Configuration) {
          * @summary Recon report
          * @param {string} reportDate The date for which the reconcilation file is available
          * @param {string} reportVersion Report Version
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -502,8 +1618,8 @@ export const ReportsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getReconReportV1(reportDate: string, reportVersion: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getReconReportV1(reportDate, reportVersion, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options);
+        async getReconReportV1(reportDate: string, reportVersion: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getReconReportV1(reportDate, reportVersion, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -519,7 +1635,6 @@ export const ReportsApiFactory = function (configuration?: Configuration, basePa
         /**
          * This API will list all the available Marketplace reconciliation report dates for the Seller.
          * @summary Available recon report dates(Legacy)
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -527,13 +1642,12 @@ export const ReportsApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAvailableReconReportDates(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse200> {
-            return localVarFp.getAvailableReconReportDates(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        getAvailableReconReportDates(wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse200> {
+            return localVarFp.getAvailableReconReportDates(wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
          * This API will list all the available Marketplace reconciliation report dates for the Seller.
          * @summary Available recon report dates
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -541,14 +1655,12 @@ export const ReportsApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAvailableV1ReconReportDates(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse200> {
-            return localVarFp.getAvailableV1ReconReportDates(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        getAvailableV1ReconReportDates(wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse200> {
+            return localVarFp.getAvailableV1ReconReportDates(wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
-         * Returns all the information associated with Seller\'s items that are set up on Walmart’s platform.
-         * @summary Multiple Reports
-         * @param {'item' | 'buybox' | 'cpa' | 'shippingProgram' | 'shippingConfiguration' | 'itemPerformance' | 'returnOverrides' | 'promo'} type Type of report to be requested
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+         * This API will get a partner\'s current cycle performance
+         * @summary Performance Report
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -556,14 +1668,26 @@ export const ReportsApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getItemReport(type: 'item' | 'buybox' | 'cpa' | 'shippingProgram' | 'shippingConfiguration' | 'itemPerformance' | 'returnOverrides' | 'promo', authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<string> {
-            return localVarFp.getItemReport(type, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        getPartnerPerformance(wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2002> {
+            return localVarFp.getPartnerPerformance(wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * This API will get a partner\'s current cycle statement
+         * @summary Payment Statement Report
+         * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+         * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+         * @param {string} wMSVCNAME Walmart Service Name
+         * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPartnerStatement(wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2001> {
+            return localVarFp.getPartnerStatement(wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
          * Seller can download the reconciliation report for a specific date using this API. Dates available to be downloaded can be found by using the Get available reconciliation report dates API.
          * @summary Recon report(Legacy)
          * @param {string} reportDate The date for which the reconcilation file is available
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -571,15 +1695,14 @@ export const ReportsApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getReconReport(reportDate: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<string> {
-            return localVarFp.getReconReport(reportDate, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        getReconReport(reportDate: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<string> {
+            return localVarFp.getReconReport(reportDate, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
          * Seller can download the reconciliation report for a specific date using this API. Dates available to be downloaded can be found by using the Get available reconciliation report dates API.
          * @summary Recon report
          * @param {string} reportDate The date for which the reconcilation file is available
          * @param {string} reportVersion Report Version
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -587,8 +1710,8 @@ export const ReportsApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getReconReportV1(reportDate: string, reportVersion: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<string> {
-            return localVarFp.getReconReportV1(reportDate, reportVersion, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        getReconReportV1(reportDate: string, reportVersion: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<string> {
+            return localVarFp.getReconReportV1(reportDate, reportVersion, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -599,13 +1722,6 @@ export const ReportsApiFactory = function (configuration?: Configuration, basePa
  * @interface ReportsApiGetAvailableReconReportDatesRequest
  */
 export interface ReportsApiGetAvailableReconReportDatesRequest {
-    /**
-     * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @type {string}
-     * @memberof ReportsApiGetAvailableReconReportDates
-     */
-    readonly authorization: string
-
     /**
      * The access token retrieved in the Token API call
      * @type {string}
@@ -642,13 +1758,6 @@ export interface ReportsApiGetAvailableReconReportDatesRequest {
  */
 export interface ReportsApiGetAvailableV1ReconReportDatesRequest {
     /**
-     * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @type {string}
-     * @memberof ReportsApiGetAvailableV1ReconReportDates
-     */
-    readonly authorization: string
-
-    /**
      * The access token retrieved in the Token API call
      * @type {string}
      * @memberof ReportsApiGetAvailableV1ReconReportDates
@@ -678,50 +1787,71 @@ export interface ReportsApiGetAvailableV1ReconReportDatesRequest {
 }
 
 /**
- * Request parameters for getItemReport operation in ReportsApi.
+ * Request parameters for getPartnerPerformance operation in ReportsApi.
  * @export
- * @interface ReportsApiGetItemReportRequest
+ * @interface ReportsApiGetPartnerPerformanceRequest
  */
-export interface ReportsApiGetItemReportRequest {
-    /**
-     * Type of report to be requested
-     * @type {'item' | 'buybox' | 'cpa' | 'shippingProgram' | 'shippingConfiguration' | 'itemPerformance' | 'returnOverrides' | 'promo'}
-     * @memberof ReportsApiGetItemReport
-     */
-    readonly type: 'item' | 'buybox' | 'cpa' | 'shippingProgram' | 'shippingConfiguration' | 'itemPerformance' | 'returnOverrides' | 'promo'
-
-    /**
-     * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @type {string}
-     * @memberof ReportsApiGetItemReport
-     */
-    readonly authorization: string
-
+export interface ReportsApiGetPartnerPerformanceRequest {
     /**
      * The access token retrieved in the Token API call
      * @type {string}
-     * @memberof ReportsApiGetItemReport
+     * @memberof ReportsApiGetPartnerPerformance
      */
     readonly wMSECACCESSTOKEN: string
 
     /**
      * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
      * @type {string}
-     * @memberof ReportsApiGetItemReport
+     * @memberof ReportsApiGetPartnerPerformance
      */
     readonly wMQOSCORRELATIONID: string
 
     /**
      * Walmart Service Name
      * @type {string}
-     * @memberof ReportsApiGetItemReport
+     * @memberof ReportsApiGetPartnerPerformance
      */
     readonly wMSVCNAME: string
 
     /**
      * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
      * @type {string}
-     * @memberof ReportsApiGetItemReport
+     * @memberof ReportsApiGetPartnerPerformance
+     */
+    readonly wMCONSUMERCHANNELTYPE?: string
+}
+
+/**
+ * Request parameters for getPartnerStatement operation in ReportsApi.
+ * @export
+ * @interface ReportsApiGetPartnerStatementRequest
+ */
+export interface ReportsApiGetPartnerStatementRequest {
+    /**
+     * The access token retrieved in the Token API call
+     * @type {string}
+     * @memberof ReportsApiGetPartnerStatement
+     */
+    readonly wMSECACCESSTOKEN: string
+
+    /**
+     * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+     * @type {string}
+     * @memberof ReportsApiGetPartnerStatement
+     */
+    readonly wMQOSCORRELATIONID: string
+
+    /**
+     * Walmart Service Name
+     * @type {string}
+     * @memberof ReportsApiGetPartnerStatement
+     */
+    readonly wMSVCNAME: string
+
+    /**
+     * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+     * @type {string}
+     * @memberof ReportsApiGetPartnerStatement
      */
     readonly wMCONSUMERCHANNELTYPE?: string
 }
@@ -738,13 +1868,6 @@ export interface ReportsApiGetReconReportRequest {
      * @memberof ReportsApiGetReconReport
      */
     readonly reportDate: string
-
-    /**
-     * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @type {string}
-     * @memberof ReportsApiGetReconReport
-     */
-    readonly authorization: string
 
     /**
      * The access token retrieved in the Token API call
@@ -796,13 +1919,6 @@ export interface ReportsApiGetReconReportV1Request {
     readonly reportVersion: string
 
     /**
-     * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @type {string}
-     * @memberof ReportsApiGetReconReportV1
-     */
-    readonly authorization: string
-
-    /**
      * The access token retrieved in the Token API call
      * @type {string}
      * @memberof ReportsApiGetReconReportV1
@@ -847,7 +1963,7 @@ export class ReportsApi extends BaseAPI {
      * @memberof ReportsApi
      */
     public getAvailableReconReportDates(requestParameters: ReportsApiGetAvailableReconReportDatesRequest, options?: any) {
-        return ReportsApiFp(this.configuration).getAvailableReconReportDates(requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+        return ReportsApiFp(this.configuration).getAvailableReconReportDates(requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -859,19 +1975,31 @@ export class ReportsApi extends BaseAPI {
      * @memberof ReportsApi
      */
     public getAvailableV1ReconReportDates(requestParameters: ReportsApiGetAvailableV1ReconReportDatesRequest, options?: any) {
-        return ReportsApiFp(this.configuration).getAvailableV1ReconReportDates(requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+        return ReportsApiFp(this.configuration).getAvailableV1ReconReportDates(requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * Returns all the information associated with Seller\'s items that are set up on Walmart’s platform.
-     * @summary Multiple Reports
-     * @param {ReportsApiGetItemReportRequest} requestParameters Request parameters.
+     * This API will get a partner\'s current cycle performance
+     * @summary Performance Report
+     * @param {ReportsApiGetPartnerPerformanceRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ReportsApi
      */
-    public getItemReport(requestParameters: ReportsApiGetItemReportRequest, options?: any) {
-        return ReportsApiFp(this.configuration).getItemReport(requestParameters.type, requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+    public getPartnerPerformance(requestParameters: ReportsApiGetPartnerPerformanceRequest, options?: any) {
+        return ReportsApiFp(this.configuration).getPartnerPerformance(requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * This API will get a partner\'s current cycle statement
+     * @summary Payment Statement Report
+     * @param {ReportsApiGetPartnerStatementRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ReportsApi
+     */
+    public getPartnerStatement(requestParameters: ReportsApiGetPartnerStatementRequest, options?: any) {
+        return ReportsApiFp(this.configuration).getPartnerStatement(requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -883,7 +2011,7 @@ export class ReportsApi extends BaseAPI {
      * @memberof ReportsApi
      */
     public getReconReport(requestParameters: ReportsApiGetReconReportRequest, options?: any) {
-        return ReportsApiFp(this.configuration).getReconReport(requestParameters.reportDate, requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+        return ReportsApiFp(this.configuration).getReconReport(requestParameters.reportDate, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -895,7 +2023,7 @@ export class ReportsApi extends BaseAPI {
      * @memberof ReportsApi
      */
     public getReconReportV1(requestParameters: ReportsApiGetReconReportV1Request, options?: any) {
-        return ReportsApiFp(this.configuration).getReconReportV1(requestParameters.reportDate, requestParameters.reportVersion, requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+        return ReportsApiFp(this.configuration).getReconReportV1(requestParameters.reportDate, requestParameters.reportVersion, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

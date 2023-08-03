@@ -35,10 +35,10 @@ export interface CapProgramResponse {
     martId?: string;
     /**
      * 
-     * @type {InlineObject2}
+     * @type {InlineObject6}
      * @memberof CapProgramResponse
      */
-    statusInfo?: InlineObject2;
+    statusInfo?: InlineObject6;
 }
 /**
  * 
@@ -132,6 +132,19 @@ export enum CurrentPriceCurrencyEnum {
 /**
  * 
  * @export
+ * @interface ErrorResponseDto
+ */
+export interface ErrorResponseDto {
+    /**
+     * 
+     * @type {string}
+     * @memberof ErrorResponseDto
+     */
+    errorMessage?: string;
+}
+/**
+ * 
+ * @export
  * @interface FeedId
  */
 export interface FeedId {
@@ -153,6 +166,112 @@ export interface FeedId {
      * @memberof FeedId
      */
     errors?: object | null;
+}
+/**
+ * 
+ * @export
+ * @interface FeedItemsHeaderRequestDTO
+ */
+export interface FeedItemsHeaderRequestDTO {
+    /**
+     * 
+     * @type {string}
+     * @memberof FeedItemsHeaderRequestDTO
+     */
+    processMode?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FeedItemsHeaderRequestDTO
+     */
+    subset?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FeedItemsHeaderRequestDTO
+     */
+    mart?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FeedItemsHeaderRequestDTO
+     */
+    sellingChannel?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FeedItemsHeaderRequestDTO
+     */
+    version?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FeedItemsHeaderRequestDTO
+     */
+    locale?: string;
+}
+/**
+ * 
+ * @export
+ * @interface FeedItemsRequestDTO
+ */
+export interface FeedItemsRequestDTO {
+    /**
+     * 
+     * @type {string}
+     * @memberof FeedItemsRequestDTO
+     */
+    sku?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FeedItemsRequestDTO
+     */
+    repricerStrategy?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof FeedItemsRequestDTO
+     */
+    minimumSellerAllowedPrice?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FeedItemsRequestDTO
+     */
+    maximumSellerAllowedPrice?: number;
+}
+/**
+ * 
+ * @export
+ * @interface FeedUploadRequestDTO
+ */
+export interface FeedUploadRequestDTO {
+    /**
+     * 
+     * @type {V3RepricerFeedsItemFeedHeader}
+     * @memberof FeedUploadRequestDTO
+     */
+    ItemFeedHeader?: V3RepricerFeedsItemFeedHeader;
+    /**
+     * 
+     * @type {Array<V3RepricerFeedsItem>}
+     * @memberof FeedUploadRequestDTO
+     */
+    Item?: Array<V3RepricerFeedsItem>;
+}
+/**
+ * 
+ * @export
+ * @interface FeedUploadResponseDTO
+ */
+export interface FeedUploadResponseDTO {
+    /**
+     * 
+     * @type {string}
+     * @memberof FeedUploadResponseDTO
+     */
+    feedId?: string;
 }
 /**
  * 
@@ -198,10 +317,10 @@ export interface GatewayError {
     category?: GatewayErrorCategoryEnum;
     /**
      * 
-     * @type {Array<InlineResponse200Causes>}
+     * @type {Array<InlineResponse2004Causes>}
      * @memberof GatewayError
      */
-    causes?: Array<InlineResponse200Causes>;
+    causes?: Array<InlineResponse2004Causes>;
     /**
      * 
      * @type {{ [key: string]: object; }}
@@ -270,33 +389,77 @@ export enum GatewayErrorGatewayErrorCategoryEnum {
  */
 export interface InlineObject {
     /**
-     * This is applicable only for promotions
+     * Name of the Strategy Collection
      * @type {string}
      * @memberof InlineObject
+     */
+    repricerStrategy?: string;
+    /**
+     * Status of the Strategy Collection
+     * @type {boolean}
+     * @memberof InlineObject
+     */
+    enabled?: boolean;
+    /**
+     * Status of item on promotions to be enable on repricer
+     * @type {boolean}
+     * @memberof InlineObject
+     */
+    enableRepricerForPromotion?: boolean;
+    /**
+     * Strategies
+     * @type {Array<V3RepricerStrategyStrategyCollectionIdStrategies>}
+     * @memberof InlineObject
+     */
+    strategies?: Array<V3RepricerStrategyStrategyCollectionIdStrategies>;
+}
+/**
+ * 
+ * @export
+ * @interface InlineObject1
+ */
+export interface InlineObject1 {
+    /**
+     * selected skus
+     * @type {Array<string>}
+     * @memberof InlineObject1
+     */
+    skus: Array<string>;
+}
+/**
+ * 
+ * @export
+ * @interface InlineObject2
+ */
+export interface InlineObject2 {
+    /**
+     * This is applicable only for promotions
+     * @type {string}
+     * @memberof InlineObject2
      */
     offerId?: string;
     /**
      * 
      * @type {string}
-     * @memberof InlineObject
+     * @memberof InlineObject2
      */
     sku: string;
     /**
      * This is applicable only for promotions
      * @type {string}
-     * @memberof InlineObject
+     * @memberof InlineObject2
      */
-    replaceAll?: InlineObjectReplaceAllEnum;
+    replaceAll?: InlineObject2ReplaceAllEnum;
     /**
      * 
      * @type {Array<V3PricePricing>}
-     * @memberof InlineObject
+     * @memberof InlineObject2
      */
     pricing: Array<V3PricePricing>;
     /**
      * 
      * @type {object}
-     * @memberof InlineObject
+     * @memberof InlineObject2
      */
     definitions?: object;
 }
@@ -305,7 +468,7 @@ export interface InlineObject {
     * @export
     * @enum {string}
     */
-export enum InlineObjectReplaceAllEnum {
+export enum InlineObject2ReplaceAllEnum {
     True = 'true',
     False = 'false'
 }
@@ -313,19 +476,69 @@ export enum InlineObjectReplaceAllEnum {
 /**
  * 
  * @export
- * @interface InlineObject2
+ * @interface InlineObject3
  */
-export interface InlineObject2 {
+export interface InlineObject3 {
+    /**
+     * 
+     * @type {V3RepricerFeedsItemFeedHeader}
+     * @memberof InlineObject3
+     */
+    ItemFeedHeader?: V3RepricerFeedsItemFeedHeader;
+    /**
+     * 
+     * @type {Array<V3RepricerFeedsItem>}
+     * @memberof InlineObject3
+     */
+    Item?: Array<V3RepricerFeedsItem>;
+}
+/**
+ * 
+ * @export
+ * @interface InlineObject4
+ */
+export interface InlineObject4 {
+    /**
+     * Name of the Strategy Collection
+     * @type {string}
+     * @memberof InlineObject4
+     */
+    repricerStrategy?: string;
+    /**
+     * Status of the Strategy Collection
+     * @type {boolean}
+     * @memberof InlineObject4
+     */
+    enabled?: boolean;
+    /**
+     * Status of item on promotions to be enable on repricer
+     * @type {boolean}
+     * @memberof InlineObject4
+     */
+    enableRepricerForPromotion?: boolean;
+    /**
+     * Strategies
+     * @type {Array<V3RepricerStrategyStrategyCollectionIdStrategies>}
+     * @memberof InlineObject4
+     */
+    strategies?: Array<V3RepricerStrategyStrategyCollectionIdStrategies>;
+}
+/**
+ * 
+ * @export
+ * @interface InlineObject6
+ */
+export interface InlineObject6 {
     /**
      * A Boolean parameter that allows all sellers to completely enroll in or out of the Competitive Price Adjustment program
      * @type {boolean}
-     * @memberof InlineObject2
+     * @memberof InlineObject6
      */
     subsidyEnrolled?: boolean;
     /**
      * A Boolean parameter that determines whether offer level subsidy setting override seller level subsidy setting
      * @type {boolean}
-     * @memberof InlineObject2
+     * @memberof InlineObject6
      */
     subsidyPreference?: boolean;
 }
@@ -337,34 +550,34 @@ export interface InlineObject2 {
 export interface InlineResponse200 {
     /**
      * 
-     * @type {Array<InlineResponse200Errors>}
+     * @type {string}
      * @memberof InlineResponse200
      */
-    errors?: Array<InlineResponse200Errors>;
+    repricerStrategy?: string;
     /**
      * 
-     * @type {number}
-     * @memberof InlineResponse200
-     */
-    statusCode?: number;
-    /**
-     * Marketplace name. Example: Walmart-US
      * @type {string}
      * @memberof InlineResponse200
      */
-    mart?: string;
+    strategyCollectionId?: string;
     /**
-     * An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item.
-     * @type {string}
+     * 
+     * @type {boolean}
      * @memberof InlineResponse200
      */
-    sku?: string;
+    enabled?: boolean;
     /**
-     * A message of acknowledgement for a price update
-     * @type {string}
+     * 
+     * @type {boolean}
      * @memberof InlineResponse200
      */
-    message?: string;
+    enableRepricerForPromotion?: boolean;
+    /**
+     * 
+     * @type {Array<V3RepricerStrategyStrategyCollectionIdStrategies>}
+     * @memberof InlineResponse200
+     */
+    strategies?: Array<V3RepricerStrategyStrategyCollectionIdStrategies>;
 }
 /**
  * 
@@ -373,23 +586,11 @@ export interface InlineResponse200 {
  */
 export interface InlineResponse2001 {
     /**
-     * A unique ID, returned from the Bulk Upload API, used for tracking the feed file
+     * 
      * @type {string}
      * @memberof InlineResponse2001
      */
-    feedId?: string;
-    /**
-     * 
-     * @type {object}
-     * @memberof InlineResponse2001
-     */
-    additionalAttributes?: object | null;
-    /**
-     * 
-     * @type {object}
-     * @memberof InlineResponse2001
-     */
-    errors?: object | null;
+    message?: string;
 }
 /**
  * 
@@ -398,134 +599,276 @@ export interface InlineResponse2001 {
  */
 export interface InlineResponse2002 {
     /**
-     * A unique ID that a user or seller uses for a marketplace.
-     * @type {string}
+     * 
+     * @type {number}
      * @memberof InlineResponse2002
      */
-    martId?: string;
+    totalItems?: number;
     /**
      * 
-     * @type {InlineObject2}
+     * @type {Array<InlineResponse2002Items>}
      * @memberof InlineResponse2002
      */
-    statusInfo?: InlineObject2;
+    items?: Array<InlineResponse2002Items>;
 }
 /**
  * 
  * @export
- * @interface InlineResponse200Causes
+ * @interface InlineResponse2002Items
  */
-export interface InlineResponse200Causes {
+export interface InlineResponse2002Items {
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse200Causes
+     * @memberof InlineResponse2002Items
+     */
+    productName?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2002Items
+     */
+    skuId?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2002Items
+     */
+    sellerPrice?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2002Items
+     */
+    floorPrice?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2002Items
+     */
+    incentiveLimit?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2002Items
+     */
+    incentiveStartDate?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2002Items
+     */
+    incentiveEndDate?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2002Items
+     */
+    shippingPrice?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2002Items
+     */
+    competitivePrice?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2002Items
+     */
+    competitorShippingPrice?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2002Items
+     */
+    competitorUrl?: string;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse2003
+ */
+export interface InlineResponse2003 {
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2003
+     */
+    feedId?: string;
+    /**
+     * 
+     * @type {Array<InlineResponse2003Errors>}
+     * @memberof InlineResponse2003
+     */
+    errors?: Array<InlineResponse2003Errors>;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse2003Errors
+ */
+export interface InlineResponse2003Errors {
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2003Errors
+     */
+    errorMessage?: string;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse2004
+ */
+export interface InlineResponse2004 {
+    /**
+     * 
+     * @type {Array<InlineResponse2004Errors>}
+     * @memberof InlineResponse2004
+     */
+    errors?: Array<InlineResponse2004Errors>;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2004
+     */
+    statusCode?: number;
+    /**
+     * Marketplace name. Example: Walmart-US
+     * @type {string}
+     * @memberof InlineResponse2004
+     */
+    mart?: string;
+    /**
+     * An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item.
+     * @type {string}
+     * @memberof InlineResponse2004
+     */
+    sku?: string;
+    /**
+     * A message of acknowledgement for a price update
+     * @type {string}
+     * @memberof InlineResponse2004
+     */
+    message?: string;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse2004Causes
+ */
+export interface InlineResponse2004Causes {
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2004Causes
      */
     code?: string;
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse200Causes
+     * @memberof InlineResponse2004Causes
      */
     field?: string;
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse200Causes
+     * @memberof InlineResponse2004Causes
      */
     type?: string;
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse200Causes
+     * @memberof InlineResponse2004Causes
      */
     description?: string;
 }
 /**
  * 
  * @export
- * @interface InlineResponse200Errors
+ * @interface InlineResponse2004Errors
  */
-export interface InlineResponse200Errors {
+export interface InlineResponse2004Errors {
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse200Errors
+     * @memberof InlineResponse2004Errors
      */
     code: string;
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse200Errors
+     * @memberof InlineResponse2004Errors
      */
     field?: string;
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse200Errors
+     * @memberof InlineResponse2004Errors
      */
     description?: string;
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse200Errors
+     * @memberof InlineResponse2004Errors
      */
     info?: string;
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse200Errors
+     * @memberof InlineResponse2004Errors
      */
-    severity?: InlineResponse200ErrorsSeverityEnum;
+    severity?: InlineResponse2004ErrorsSeverityEnum;
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse200Errors
+     * @memberof InlineResponse2004Errors
      */
-    category?: InlineResponse200ErrorsCategoryEnum;
+    category?: InlineResponse2004ErrorsCategoryEnum;
     /**
      * 
-     * @type {Array<InlineResponse200Causes>}
-     * @memberof InlineResponse200Errors
+     * @type {Array<InlineResponse2004Causes>}
+     * @memberof InlineResponse2004Errors
      */
-    causes?: Array<InlineResponse200Causes>;
+    causes?: Array<InlineResponse2004Causes>;
     /**
      * 
      * @type {{ [key: string]: object; }}
-     * @memberof InlineResponse200Errors
+     * @memberof InlineResponse2004Errors
      */
     errorIdentifiers?: { [key: string]: object; };
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse200Errors
+     * @memberof InlineResponse2004Errors
      */
     component?: string;
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse200Errors
+     * @memberof InlineResponse2004Errors
      */
     type?: string;
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse200Errors
+     * @memberof InlineResponse2004Errors
      */
     serviceName?: string;
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse200Errors
+     * @memberof InlineResponse2004Errors
      */
-    gatewayErrorCategory?: InlineResponse200ErrorsGatewayErrorCategoryEnum;
+    gatewayErrorCategory?: InlineResponse2004ErrorsGatewayErrorCategoryEnum;
 }
 
 /**
     * @export
     * @enum {string}
     */
-export enum InlineResponse200ErrorsSeverityEnum {
+export enum InlineResponse2004ErrorsSeverityEnum {
     Info = 'INFO',
     Warn = 'WARN',
     Error = 'ERROR'
@@ -534,7 +877,7 @@ export enum InlineResponse200ErrorsSeverityEnum {
     * @export
     * @enum {string}
     */
-export enum InlineResponse200ErrorsCategoryEnum {
+export enum InlineResponse2004ErrorsCategoryEnum {
     Application = 'APPLICATION',
     System = 'SYSTEM',
     Request = 'REQUEST',
@@ -544,7 +887,7 @@ export enum InlineResponse200ErrorsCategoryEnum {
     * @export
     * @enum {string}
     */
-export enum InlineResponse200ErrorsGatewayErrorCategoryEnum {
+export enum InlineResponse2004ErrorsGatewayErrorCategoryEnum {
     InternalDataError = 'INTERNAL_DATA_ERROR',
     ExternalDataError = 'EXTERNAL_DATA_ERROR',
     SystemError = 'SYSTEM_ERROR'
@@ -553,15 +896,134 @@ export enum InlineResponse200ErrorsGatewayErrorCategoryEnum {
 /**
  * 
  * @export
+ * @interface InlineResponse2005
+ */
+export interface InlineResponse2005 {
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2005
+     */
+    feedId?: string;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse2006
+ */
+export interface InlineResponse2006 {
+    /**
+     * A unique ID, returned from the Bulk Upload API, used for tracking the feed file
+     * @type {string}
+     * @memberof InlineResponse2006
+     */
+    feedId?: string;
+    /**
+     * 
+     * @type {object}
+     * @memberof InlineResponse2006
+     */
+    additionalAttributes?: object | null;
+    /**
+     * 
+     * @type {object}
+     * @memberof InlineResponse2006
+     */
+    errors?: object | null;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse2007
+ */
+export interface InlineResponse2007 {
+    /**
+     * A unique ID that a user or seller uses for a marketplace.
+     * @type {string}
+     * @memberof InlineResponse2007
+     */
+    martId?: string;
+    /**
+     * 
+     * @type {InlineObject6}
+     * @memberof InlineResponse2007
+     */
+    statusInfo?: InlineObject6;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse2008
+ */
+export interface InlineResponse2008 {
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2008
+     */
+    totalElements?: number;
+    /**
+     * 
+     * @type {Array<InlineResponse2008StrategyCollections>}
+     * @memberof InlineResponse2008
+     */
+    strategyCollections?: Array<InlineResponse2008StrategyCollections>;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse2008StrategyCollections
+ */
+export interface InlineResponse2008StrategyCollections {
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2008StrategyCollections
+     */
+    repricerStrategy?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2008StrategyCollections
+     */
+    strategyCollectionId?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof InlineResponse2008StrategyCollections
+     */
+    enabled?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2008StrategyCollections
+     */
+    assignedCount?: number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof InlineResponse2008StrategyCollections
+     */
+    enableRepricerForPromotion?: boolean;
+    /**
+     * 
+     * @type {Array<V3RepricerStrategyStrategyCollectionIdStrategies>}
+     * @memberof InlineResponse2008StrategyCollections
+     */
+    strategies?: Array<V3RepricerStrategyStrategyCollectionIdStrategies>;
+}
+/**
+ * 
+ * @export
  * @interface ItemPriceResponse
  */
 export interface ItemPriceResponse {
     /**
      * 
-     * @type {Array<InlineResponse200Errors>}
+     * @type {Array<InlineResponse2004Errors>}
      * @memberof ItemPriceResponse
      */
-    errors?: Array<InlineResponse200Errors>;
+    errors?: Array<InlineResponse2004Errors>;
     /**
      * 
      * @type {number}
@@ -732,6 +1194,285 @@ export enum PricingPriceDisplayCodesEnum {
 /**
  * 
  * @export
+ * @interface RepricerEntityCollectionResponse
+ */
+export interface RepricerEntityCollectionResponse {
+    /**
+     * 
+     * @type {number}
+     * @memberof RepricerEntityCollectionResponse
+     */
+    totalElements?: number;
+    /**
+     * 
+     * @type {Array<InlineResponse2008StrategyCollections>}
+     * @memberof RepricerEntityCollectionResponse
+     */
+    strategyCollections?: Array<InlineResponse2008StrategyCollections>;
+}
+/**
+ * 
+ * @export
+ * @interface RepricerEntityDeleteResponse
+ */
+export interface RepricerEntityDeleteResponse {
+    /**
+     * 
+     * @type {string}
+     * @memberof RepricerEntityDeleteResponse
+     */
+    message?: string;
+}
+/**
+ * 
+ * @export
+ * @interface RepricerEntityGetResponse
+ */
+export interface RepricerEntityGetResponse {
+    /**
+     * 
+     * @type {string}
+     * @memberof RepricerEntityGetResponse
+     */
+    repricerStrategy?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RepricerEntityGetResponse
+     */
+    strategyCollectionId?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof RepricerEntityGetResponse
+     */
+    enabled?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof RepricerEntityGetResponse
+     */
+    assignedCount?: number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof RepricerEntityGetResponse
+     */
+    enableRepricerForPromotion?: boolean;
+    /**
+     * 
+     * @type {Array<V3RepricerStrategyStrategyCollectionIdStrategies>}
+     * @memberof RepricerEntityGetResponse
+     */
+    strategies?: Array<V3RepricerStrategyStrategyCollectionIdStrategies>;
+}
+/**
+ * 
+ * @export
+ * @interface RepricerEntityRequest
+ */
+export interface RepricerEntityRequest {
+    /**
+     * Name of the Strategy Collection
+     * @type {string}
+     * @memberof RepricerEntityRequest
+     */
+    repricerStrategy?: string;
+    /**
+     * Status of the Strategy Collection
+     * @type {boolean}
+     * @memberof RepricerEntityRequest
+     */
+    enabled?: boolean;
+    /**
+     * Status of item on promotions to be enable on repricer
+     * @type {boolean}
+     * @memberof RepricerEntityRequest
+     */
+    enableRepricerForPromotion?: boolean;
+    /**
+     * Strategies
+     * @type {Array<V3RepricerStrategyStrategyCollectionIdStrategies>}
+     * @memberof RepricerEntityRequest
+     */
+    strategies?: Array<V3RepricerStrategyStrategyCollectionIdStrategies>;
+}
+/**
+ * 
+ * @export
+ * @interface RepricerEntityResponse
+ */
+export interface RepricerEntityResponse {
+    /**
+     * 
+     * @type {string}
+     * @memberof RepricerEntityResponse
+     */
+    repricerStrategy?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RepricerEntityResponse
+     */
+    strategyCollectionId?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof RepricerEntityResponse
+     */
+    enabled?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof RepricerEntityResponse
+     */
+    enableRepricerForPromotion?: boolean;
+    /**
+     * 
+     * @type {Array<V3RepricerStrategyStrategyCollectionIdStrategies>}
+     * @memberof RepricerEntityResponse
+     */
+    strategies?: Array<V3RepricerStrategyStrategyCollectionIdStrategies>;
+}
+/**
+ * 
+ * @export
+ * @interface RepricerIncentiveCollectionResponse
+ */
+export interface RepricerIncentiveCollectionResponse {
+    /**
+     * 
+     * @type {number}
+     * @memberof RepricerIncentiveCollectionResponse
+     */
+    totalItems?: number;
+    /**
+     * 
+     * @type {Array<InlineResponse2002Items>}
+     * @memberof RepricerIncentiveCollectionResponse
+     */
+    items?: Array<InlineResponse2002Items>;
+}
+/**
+ * 
+ * @export
+ * @interface RepricerIncentiveItems
+ */
+export interface RepricerIncentiveItems {
+    /**
+     * 
+     * @type {string}
+     * @memberof RepricerIncentiveItems
+     */
+    productName?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RepricerIncentiveItems
+     */
+    skuId?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof RepricerIncentiveItems
+     */
+    sellerPrice?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof RepricerIncentiveItems
+     */
+    floorPrice?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof RepricerIncentiveItems
+     */
+    incentiveLimit?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof RepricerIncentiveItems
+     */
+    incentiveStartDate?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RepricerIncentiveItems
+     */
+    incentiveEndDate?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof RepricerIncentiveItems
+     */
+    shippingPrice?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof RepricerIncentiveItems
+     */
+    competitivePrice?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof RepricerIncentiveItems
+     */
+    competitorShippingPrice?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof RepricerIncentiveItems
+     */
+    competitorUrl?: string;
+}
+/**
+ * 
+ * @export
+ * @interface RepricerStrategyType
+ */
+export interface RepricerStrategyType {
+    /**
+     * 
+     * @type {string}
+     * @memberof RepricerStrategyType
+     */
+    strategyType?: RepricerStrategyTypeStrategyTypeEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof RepricerStrategyType
+     */
+    adjustmentType?: RepricerStrategyTypeAdjustmentTypeEnum;
+    /**
+     * 
+     * @type {number}
+     * @memberof RepricerStrategyType
+     */
+    adjustmentValue?: number;
+}
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum RepricerStrategyTypeStrategyTypeEnum {
+    BuyBoxPrice = 'Buy Box Price',
+    ExternalPrice = 'External Price',
+    CompetitivePrice = 'Competitive Price'
+}
+/**
+    * @export
+    * @enum {string}
+    */
+export enum RepricerStrategyTypeAdjustmentTypeEnum {
+    Unit = 'UNIT',
+    Percentage = 'PERCENTAGE'
+}
+
+/**
+ * 
+ * @export
  * @interface StatusInfo
  */
 export interface StatusInfo {
@@ -747,6 +1488,51 @@ export interface StatusInfo {
      * @memberof StatusInfo
      */
     subsidyPreference?: boolean;
+}
+/**
+ * 
+ * @export
+ * @interface StrategyDetailsRequestDTO
+ */
+export interface StrategyDetailsRequestDTO {
+    /**
+     * 
+     * @type {V3RepricerFeedsStrategy}
+     * @memberof StrategyDetailsRequestDTO
+     */
+    Strategy?: V3RepricerFeedsStrategy;
+}
+/**
+ * 
+ * @export
+ * @interface UpdateRepricerIncentiveRequest
+ */
+export interface UpdateRepricerIncentiveRequest {
+    /**
+     * selected skus
+     * @type {Array<string>}
+     * @memberof UpdateRepricerIncentiveRequest
+     */
+    skus: Array<string>;
+}
+/**
+ * 
+ * @export
+ * @interface UpdateRepricerIncentiveResponse
+ */
+export interface UpdateRepricerIncentiveResponse {
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateRepricerIncentiveResponse
+     */
+    feedId?: string;
+    /**
+     * 
+     * @type {Array<InlineResponse2003Errors>}
+     * @memberof UpdateRepricerIncentiveResponse
+     */
+    errors?: Array<InlineResponse2003Errors>;
 }
 /**
  * This is applicable only for promotions
@@ -901,6 +1687,137 @@ export enum V3PricePricingPriceDisplayCodesEnum {
     Checkout = 'CHECKOUT'
 }
 
+/**
+ * 
+ * @export
+ * @interface V3RepricerFeedsItem
+ */
+export interface V3RepricerFeedsItem {
+    /**
+     * 
+     * @type {V3RepricerFeedsStrategy}
+     * @memberof V3RepricerFeedsItem
+     */
+    Strategy?: V3RepricerFeedsStrategy;
+}
+/**
+ * 
+ * @export
+ * @interface V3RepricerFeedsItemFeedHeader
+ */
+export interface V3RepricerFeedsItemFeedHeader {
+    /**
+     * 
+     * @type {string}
+     * @memberof V3RepricerFeedsItemFeedHeader
+     */
+    processMode?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof V3RepricerFeedsItemFeedHeader
+     */
+    subset?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof V3RepricerFeedsItemFeedHeader
+     */
+    mart?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof V3RepricerFeedsItemFeedHeader
+     */
+    sellingChannel?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof V3RepricerFeedsItemFeedHeader
+     */
+    version?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof V3RepricerFeedsItemFeedHeader
+     */
+    locale?: string;
+}
+/**
+ * 
+ * @export
+ * @interface V3RepricerFeedsStrategy
+ */
+export interface V3RepricerFeedsStrategy {
+    /**
+     * 
+     * @type {string}
+     * @memberof V3RepricerFeedsStrategy
+     */
+    sku?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof V3RepricerFeedsStrategy
+     */
+    repricerStrategy?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof V3RepricerFeedsStrategy
+     */
+    minimumSellerAllowedPrice?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof V3RepricerFeedsStrategy
+     */
+    maximumSellerAllowedPrice?: number;
+}
+/**
+ * 
+ * @export
+ * @interface V3RepricerStrategyStrategyCollectionIdStrategies
+ */
+export interface V3RepricerStrategyStrategyCollectionIdStrategies {
+    /**
+     * 
+     * @type {string}
+     * @memberof V3RepricerStrategyStrategyCollectionIdStrategies
+     */
+    strategyType?: V3RepricerStrategyStrategyCollectionIdStrategiesStrategyTypeEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof V3RepricerStrategyStrategyCollectionIdStrategies
+     */
+    adjustmentType?: V3RepricerStrategyStrategyCollectionIdStrategiesAdjustmentTypeEnum;
+    /**
+     * 
+     * @type {number}
+     * @memberof V3RepricerStrategyStrategyCollectionIdStrategies
+     */
+    adjustmentValue?: number;
+}
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum V3RepricerStrategyStrategyCollectionIdStrategiesStrategyTypeEnum {
+    BuyBoxPrice = 'Buy Box Price',
+    ExternalPrice = 'External Price',
+    CompetitivePrice = 'Competitive Price'
+}
+/**
+    * @export
+    * @enum {string}
+    */
+export enum V3RepricerStrategyStrategyCollectionIdStrategiesAdjustmentTypeEnum {
+    Unit = 'UNIT',
+    Percentage = 'PERCENTAGE'
+}
+
 
 /**
  * PricesApi - axios parameter creator
@@ -909,29 +1826,26 @@ export enum V3PricePricingPriceDisplayCodesEnum {
 export const PricesApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * This API helps Sellers to completely opt-in or opt-out from CAP program.  If the subsidyEnrolled value = \"true\", the Seller enrolls in the CAP program. All eligible SKUs (current and future) are by default opt-in. Seller should use the SKU opt-in/opt-out API to opt-out individual items.  If the subsidyEnrolled value = \"false\", the Seller stops participating in the CAP program and all eligible SKUs (current and future) are opt-out of the CAP program.
-         * @summary Set up CAP SKU All
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+         * Creates a new strategy for the seller
+         * @summary Create Repricer Strategy
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
-         * @param {InlineObject2} inlineObject2 
+         * @param {InlineObject4} inlineObject4 
          * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        optCapProgramInPrice: async (authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject2: InlineObject2, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'authorization' is not null or undefined
-            assertParamExists('optCapProgramInPrice', 'authorization', authorization)
+        createStrategy: async (wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject4: InlineObject4, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
-            assertParamExists('optCapProgramInPrice', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN)
+            assertParamExists('createStrategy', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN)
             // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
-            assertParamExists('optCapProgramInPrice', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID)
+            assertParamExists('createStrategy', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID)
             // verify required parameter 'wMSVCNAME' is not null or undefined
-            assertParamExists('optCapProgramInPrice', 'wMSVCNAME', wMSVCNAME)
-            // verify required parameter 'inlineObject2' is not null or undefined
-            assertParamExists('optCapProgramInPrice', 'inlineObject2', inlineObject2)
-            const localVarPath = `/v3/cppreference`;
+            assertParamExists('createStrategy', 'wMSVCNAME', wMSVCNAME)
+            // verify required parameter 'inlineObject4' is not null or undefined
+            assertParamExists('createStrategy', 'inlineObject4', inlineObject4)
+            const localVarPath = `/v3/repricer/strategy`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -942,14 +1856,6 @@ export const PricesApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-
-            // authentication basicScheme required
-            // http basic authentication required
-            setBasicAuthToObject(localVarRequestOptions, configuration)
-
-            if (authorization !== undefined && authorization !== null) {
-                localVarHeaderParameter['Authorization'] = String(authorization);
-            }
 
             if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
                 localVarHeaderParameter['WM_SEC.ACCESS_TOKEN'] = String(wMSECACCESSTOKEN);
@@ -974,7 +1880,319 @@ export const PricesApiAxiosParamCreator = function (configuration?: Configuratio
             setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(inlineObject2, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(inlineObject4, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Deletes the strategy
+         * @summary Delete Repricer Strategy
+         * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+         * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+         * @param {string} wMSVCNAME Walmart Service Name
+         * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteStrategy: async (wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
+            assertParamExists('deleteStrategy', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN)
+            // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
+            assertParamExists('deleteStrategy', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID)
+            // verify required parameter 'wMSVCNAME' is not null or undefined
+            assertParamExists('deleteStrategy', 'wMSVCNAME', wMSVCNAME)
+            const localVarPath = `/v3/repricer/strategy/{strategyCollectionId}`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
+                localVarHeaderParameter['WM_SEC.ACCESS_TOKEN'] = String(wMSECACCESSTOKEN);
+            }
+
+            if (wMCONSUMERCHANNELTYPE !== undefined && wMCONSUMERCHANNELTYPE !== null) {
+                localVarHeaderParameter['WM_CONSUMER.CHANNEL.TYPE'] = String(wMCONSUMERCHANNELTYPE);
+            }
+
+            if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
+                localVarHeaderParameter['WM_QOS.CORRELATION_ID'] = String(wMQOSCORRELATIONID);
+            }
+
+            if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
+                localVarHeaderParameter['WM_SVC.NAME'] = String(wMSVCNAME);
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Add/Remove one or more items from a strategy
+         * @summary Assign/Unassign items to/from Repricer Strategy
+         * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+         * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+         * @param {string} wMSVCNAME Walmart Service Name
+         * @param {InlineObject3} inlineObject3 
+         * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getRepricerFeed: async (wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject3: InlineObject3, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
+            assertParamExists('getRepricerFeed', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN)
+            // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
+            assertParamExists('getRepricerFeed', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID)
+            // verify required parameter 'wMSVCNAME' is not null or undefined
+            assertParamExists('getRepricerFeed', 'wMSVCNAME', wMSVCNAME)
+            // verify required parameter 'inlineObject3' is not null or undefined
+            assertParamExists('getRepricerFeed', 'inlineObject3', inlineObject3)
+            const localVarPath = `/v3/repricerFeeds`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
+                localVarHeaderParameter['WM_SEC.ACCESS_TOKEN'] = String(wMSECACCESSTOKEN);
+            }
+
+            if (wMCONSUMERCHANNELTYPE !== undefined && wMCONSUMERCHANNELTYPE !== null) {
+                localVarHeaderParameter['WM_CONSUMER.CHANNEL.TYPE'] = String(wMCONSUMERCHANNELTYPE);
+            }
+
+            if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
+                localVarHeaderParameter['WM_QOS.CORRELATION_ID'] = String(wMQOSCORRELATIONID);
+            }
+
+            if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
+                localVarHeaderParameter['WM_SVC.NAME'] = String(wMSVCNAME);
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(inlineObject3, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Get the list of incentive items
+         * @summary List of Incentive Items
+         * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+         * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+         * @param {string} wMSVCNAME Walmart Service Name
+         * @param {number} [limit] Specify number of items to return.
+         * @param {number} [offset] Specify the offset of item list to be returned.
+         * @param {string} [sortBy] Specify the sort criteria for items. Examples of the allowed values are INCENTIVE_END_DATE or INCENTIVE_LIMIT
+         * @param {string} [sortOrder] Specify the sort order for given sort criteria. Examples of the allowed values are ASC or DESC
+         * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getRepricerIncentive: async (wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, limit?: number, offset?: number, sortBy?: string, sortOrder?: string, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
+            assertParamExists('getRepricerIncentive', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN)
+            // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
+            assertParamExists('getRepricerIncentive', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID)
+            // verify required parameter 'wMSVCNAME' is not null or undefined
+            assertParamExists('getRepricerIncentive', 'wMSVCNAME', wMSVCNAME)
+            const localVarPath = `/v3/repricer/incentive`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (offset !== undefined) {
+                localVarQueryParameter['offset'] = offset;
+            }
+
+            if (sortBy !== undefined) {
+                localVarQueryParameter['sortBy'] = sortBy;
+            }
+
+            if (sortOrder !== undefined) {
+                localVarQueryParameter['sortOrder'] = sortOrder;
+            }
+
+            if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
+                localVarHeaderParameter['WM_SEC.ACCESS_TOKEN'] = String(wMSECACCESSTOKEN);
+            }
+
+            if (wMCONSUMERCHANNELTYPE !== undefined && wMCONSUMERCHANNELTYPE !== null) {
+                localVarHeaderParameter['WM_CONSUMER.CHANNEL.TYPE'] = String(wMCONSUMERCHANNELTYPE);
+            }
+
+            if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
+                localVarHeaderParameter['WM_QOS.CORRELATION_ID'] = String(wMQOSCORRELATIONID);
+            }
+
+            if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
+                localVarHeaderParameter['WM_SVC.NAME'] = String(wMSVCNAME);
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Get the list of strategies
+         * @summary List of Repricer Strategies
+         * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+         * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+         * @param {string} wMSVCNAME Walmart Service Name
+         * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getStrategies: async (wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
+            assertParamExists('getStrategies', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN)
+            // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
+            assertParamExists('getStrategies', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID)
+            // verify required parameter 'wMSVCNAME' is not null or undefined
+            assertParamExists('getStrategies', 'wMSVCNAME', wMSVCNAME)
+            const localVarPath = `/v3/repricer/strategies`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
+                localVarHeaderParameter['WM_SEC.ACCESS_TOKEN'] = String(wMSECACCESSTOKEN);
+            }
+
+            if (wMCONSUMERCHANNELTYPE !== undefined && wMCONSUMERCHANNELTYPE !== null) {
+                localVarHeaderParameter['WM_CONSUMER.CHANNEL.TYPE'] = String(wMCONSUMERCHANNELTYPE);
+            }
+
+            if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
+                localVarHeaderParameter['WM_QOS.CORRELATION_ID'] = String(wMQOSCORRELATIONID);
+            }
+
+            if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
+                localVarHeaderParameter['WM_SVC.NAME'] = String(wMSVCNAME);
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * This API helps Sellers to completely opt-in or opt-out from CAP program.  If the subsidyEnrolled value = \"true\", the Seller enrolls in the CAP program. All eligible SKUs (current and future) are by default opt-in. Seller should use the SKU opt-in/opt-out API to opt-out individual items.  If the subsidyEnrolled value = \"false\", the Seller stops participating in the CAP program and all eligible SKUs (current and future) are opt-out of the CAP program.
+         * @summary Set up CAP SKU All
+         * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+         * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+         * @param {string} wMSVCNAME Walmart Service Name
+         * @param {InlineObject6} inlineObject6 
+         * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        optCapProgramInPrice: async (wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject6: InlineObject6, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
+            assertParamExists('optCapProgramInPrice', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN)
+            // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
+            assertParamExists('optCapProgramInPrice', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID)
+            // verify required parameter 'wMSVCNAME' is not null or undefined
+            assertParamExists('optCapProgramInPrice', 'wMSVCNAME', wMSVCNAME)
+            // verify required parameter 'inlineObject6' is not null or undefined
+            assertParamExists('optCapProgramInPrice', 'inlineObject6', inlineObject6)
+            const localVarPath = `/v3/cppreference`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
+                localVarHeaderParameter['WM_SEC.ACCESS_TOKEN'] = String(wMSECACCESSTOKEN);
+            }
+
+            if (wMCONSUMERCHANNELTYPE !== undefined && wMCONSUMERCHANNELTYPE !== null) {
+                localVarHeaderParameter['WM_CONSUMER.CHANNEL.TYPE'] = String(wMCONSUMERCHANNELTYPE);
+            }
+
+            if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
+                localVarHeaderParameter['WM_QOS.CORRELATION_ID'] = String(wMQOSCORRELATIONID);
+            }
+
+            if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
+                localVarHeaderParameter['WM_SVC.NAME'] = String(wMSVCNAME);
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(inlineObject6, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -985,7 +2203,6 @@ export const PricesApiAxiosParamCreator = function (configuration?: Configuratio
          * Updates prices in bulk.  In one Feed you can update up to 10,000 items in bulk. To ensure optimal Feed processing time, we recommend sending no more than 1000 items in one Feed and keeping the Feed sizes below 10 MB.  The price sequence guarantee is observed by the bulk price update functionality, subject to the following rules:  The timestamp used to determine precedence is passed in the request headers. All price updates in the feed are considered to have the same timestamp. The timestamp in the XML file is used only for auditing. You can send a single SKU multiple times in one Feed. If a SKU is repeated in a Feed, the price will be set for that SKU on Walmart.com, but there is no guarantee as to which SKU\'s price within that feed will be used. This API should be used in preference to the update a price. It should be called no sooner than 24 hours after a new item is set up and a wpid (Walmart Part ID) is available. Thereafter, the bulk price update has an service level agreement (SLA) of 15 minutes.  After the update is submitted, wait for at least five minutes before verifying whether the bulk price update was successful. Individual SKU price update success or failure is only available after the entire feed is processed.  If a SKU\'s price update fails (for example, multiple price updates were sent for the same SKU in a single feed), an error will be returned.
          * @summary Update bulk prices (Multiple)
          * @param {'price' | 'CPT_SELLER_ELIGIBILITY'} feedType The feed Type
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -994,11 +2211,9 @@ export const PricesApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        priceBulkUploads: async (feedType: 'price' | 'CPT_SELLER_ELIGIBILITY', authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, file: any, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
+        priceBulkUploads: async (feedType: 'price' | 'CPT_SELLER_ELIGIBILITY', wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, file: any, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'feedType' is not null or undefined
             assertParamExists('priceBulkUploads', 'feedType', feedType)
-            // verify required parameter 'authorization' is not null or undefined
-            assertParamExists('priceBulkUploads', 'authorization', authorization)
             // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
             assertParamExists('priceBulkUploads', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN)
             // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
@@ -1020,16 +2235,8 @@ export const PricesApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarQueryParameter = {} as any;
             const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)();
 
-            // authentication basicScheme required
-            // http basic authentication required
-            setBasicAuthToObject(localVarRequestOptions, configuration)
-
             if (feedType !== undefined) {
                 localVarQueryParameter['feedType'] = feedType;
-            }
-
-            if (authorization !== undefined && authorization !== null) {
-                localVarHeaderParameter['Authorization'] = String(authorization);
             }
 
             if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
@@ -1069,26 +2276,23 @@ export const PricesApiAxiosParamCreator = function (configuration?: Configuratio
         /**
          * Updates the regular price for a given item.
          * @summary Update a price
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
-         * @param {InlineObject} inlineObject 
+         * @param {InlineObject2} inlineObject2 
          * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updatePrice: async (authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'authorization' is not null or undefined
-            assertParamExists('updatePrice', 'authorization', authorization)
+        updatePrice: async (wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject2: InlineObject2, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
             assertParamExists('updatePrice', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN)
             // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
             assertParamExists('updatePrice', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID)
             // verify required parameter 'wMSVCNAME' is not null or undefined
             assertParamExists('updatePrice', 'wMSVCNAME', wMSVCNAME)
-            // verify required parameter 'inlineObject' is not null or undefined
-            assertParamExists('updatePrice', 'inlineObject', inlineObject)
+            // verify required parameter 'inlineObject2' is not null or undefined
+            assertParamExists('updatePrice', 'inlineObject2', inlineObject2)
             const localVarPath = `/v3/price`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -1101,13 +2305,129 @@ export const PricesApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication basicScheme required
-            // http basic authentication required
-            setBasicAuthToObject(localVarRequestOptions, configuration)
-
-            if (authorization !== undefined && authorization !== null) {
-                localVarHeaderParameter['Authorization'] = String(authorization);
+            if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
+                localVarHeaderParameter['WM_SEC.ACCESS_TOKEN'] = String(wMSECACCESSTOKEN);
             }
+
+            if (wMCONSUMERCHANNELTYPE !== undefined && wMCONSUMERCHANNELTYPE !== null) {
+                localVarHeaderParameter['WM_CONSUMER.CHANNEL.TYPE'] = String(wMCONSUMERCHANNELTYPE);
+            }
+
+            if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
+                localVarHeaderParameter['WM_QOS.CORRELATION_ID'] = String(wMQOSCORRELATIONID);
+            }
+
+            if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
+                localVarHeaderParameter['WM_SVC.NAME'] = String(wMSVCNAME);
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(inlineObject2, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Assigns incentive items to the default price incentives strategy, ‘Match Competitive Price’
+         * @summary Assign Incentive items to Repricer
+         * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+         * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+         * @param {string} wMSVCNAME Walmart Service Name
+         * @param {InlineObject1} inlineObject1 
+         * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateRepricerIncentive: async (wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject1: InlineObject1, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
+            assertParamExists('updateRepricerIncentive', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN)
+            // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
+            assertParamExists('updateRepricerIncentive', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID)
+            // verify required parameter 'wMSVCNAME' is not null or undefined
+            assertParamExists('updateRepricerIncentive', 'wMSVCNAME', wMSVCNAME)
+            // verify required parameter 'inlineObject1' is not null or undefined
+            assertParamExists('updateRepricerIncentive', 'inlineObject1', inlineObject1)
+            const localVarPath = `/v3/repricer/incentive`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
+                localVarHeaderParameter['WM_SEC.ACCESS_TOKEN'] = String(wMSECACCESSTOKEN);
+            }
+
+            if (wMCONSUMERCHANNELTYPE !== undefined && wMCONSUMERCHANNELTYPE !== null) {
+                localVarHeaderParameter['WM_CONSUMER.CHANNEL.TYPE'] = String(wMCONSUMERCHANNELTYPE);
+            }
+
+            if (wMQOSCORRELATIONID !== undefined && wMQOSCORRELATIONID !== null) {
+                localVarHeaderParameter['WM_QOS.CORRELATION_ID'] = String(wMQOSCORRELATIONID);
+            }
+
+            if (wMSVCNAME !== undefined && wMSVCNAME !== null) {
+                localVarHeaderParameter['WM_SVC.NAME'] = String(wMSVCNAME);
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(inlineObject1, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Updates the existing strategy
+         * @summary Update Repricer Strategy
+         * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+         * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+         * @param {string} wMSVCNAME Walmart Service Name
+         * @param {InlineObject} inlineObject 
+         * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateStrategy: async (wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
+            assertParamExists('updateStrategy', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN)
+            // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
+            assertParamExists('updateStrategy', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID)
+            // verify required parameter 'wMSVCNAME' is not null or undefined
+            assertParamExists('updateStrategy', 'wMSVCNAME', wMSVCNAME)
+            // verify required parameter 'inlineObject' is not null or undefined
+            assertParamExists('updateStrategy', 'inlineObject', inlineObject)
+            const localVarPath = `/v3/repricer/strategy/{strategyCollectionId}`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
 
             if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
                 localVarHeaderParameter['WM_SEC.ACCESS_TOKEN'] = String(wMSECACCESSTOKEN);
@@ -1150,26 +2470,100 @@ export const PricesApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = PricesApiAxiosParamCreator(configuration)
     return {
         /**
-         * This API helps Sellers to completely opt-in or opt-out from CAP program.  If the subsidyEnrolled value = \"true\", the Seller enrolls in the CAP program. All eligible SKUs (current and future) are by default opt-in. Seller should use the SKU opt-in/opt-out API to opt-out individual items.  If the subsidyEnrolled value = \"false\", the Seller stops participating in the CAP program and all eligible SKUs (current and future) are opt-out of the CAP program.
-         * @summary Set up CAP SKU All
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+         * Creates a new strategy for the seller
+         * @summary Create Repricer Strategy
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
-         * @param {InlineObject2} inlineObject2 
+         * @param {InlineObject4} inlineObject4 
          * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async optCapProgramInPrice(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject2: InlineObject2, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2002>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.optCapProgramInPrice(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject2, wMCONSUMERCHANNELTYPE, options);
+        async createStrategy(wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject4: InlineObject4, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createStrategy(wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject4, wMCONSUMERCHANNELTYPE, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Deletes the strategy
+         * @summary Delete Repricer Strategy
+         * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+         * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+         * @param {string} wMSVCNAME Walmart Service Name
+         * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async deleteStrategy(wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteStrategy(wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Add/Remove one or more items from a strategy
+         * @summary Assign/Unassign items to/from Repricer Strategy
+         * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+         * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+         * @param {string} wMSVCNAME Walmart Service Name
+         * @param {InlineObject3} inlineObject3 
+         * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getRepricerFeed(wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject3: InlineObject3, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2005>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getRepricerFeed(wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject3, wMCONSUMERCHANNELTYPE, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Get the list of incentive items
+         * @summary List of Incentive Items
+         * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+         * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+         * @param {string} wMSVCNAME Walmart Service Name
+         * @param {number} [limit] Specify number of items to return.
+         * @param {number} [offset] Specify the offset of item list to be returned.
+         * @param {string} [sortBy] Specify the sort criteria for items. Examples of the allowed values are INCENTIVE_END_DATE or INCENTIVE_LIMIT
+         * @param {string} [sortOrder] Specify the sort order for given sort criteria. Examples of the allowed values are ASC or DESC
+         * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getRepricerIncentive(wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, limit?: number, offset?: number, sortBy?: string, sortOrder?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2002>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getRepricerIncentive(wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, limit, offset, sortBy, sortOrder, wMCONSUMERCHANNELTYPE, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Get the list of strategies
+         * @summary List of Repricer Strategies
+         * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+         * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+         * @param {string} wMSVCNAME Walmart Service Name
+         * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getStrategies(wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2008>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getStrategies(wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * This API helps Sellers to completely opt-in or opt-out from CAP program.  If the subsidyEnrolled value = \"true\", the Seller enrolls in the CAP program. All eligible SKUs (current and future) are by default opt-in. Seller should use the SKU opt-in/opt-out API to opt-out individual items.  If the subsidyEnrolled value = \"false\", the Seller stops participating in the CAP program and all eligible SKUs (current and future) are opt-out of the CAP program.
+         * @summary Set up CAP SKU All
+         * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+         * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+         * @param {string} wMSVCNAME Walmart Service Name
+         * @param {InlineObject6} inlineObject6 
+         * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async optCapProgramInPrice(wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject6: InlineObject6, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2007>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.optCapProgramInPrice(wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject6, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Updates prices in bulk.  In one Feed you can update up to 10,000 items in bulk. To ensure optimal Feed processing time, we recommend sending no more than 1000 items in one Feed and keeping the Feed sizes below 10 MB.  The price sequence guarantee is observed by the bulk price update functionality, subject to the following rules:  The timestamp used to determine precedence is passed in the request headers. All price updates in the feed are considered to have the same timestamp. The timestamp in the XML file is used only for auditing. You can send a single SKU multiple times in one Feed. If a SKU is repeated in a Feed, the price will be set for that SKU on Walmart.com, but there is no guarantee as to which SKU\'s price within that feed will be used. This API should be used in preference to the update a price. It should be called no sooner than 24 hours after a new item is set up and a wpid (Walmart Part ID) is available. Thereafter, the bulk price update has an service level agreement (SLA) of 15 minutes.  After the update is submitted, wait for at least five minutes before verifying whether the bulk price update was successful. Individual SKU price update success or failure is only available after the entire feed is processed.  If a SKU\'s price update fails (for example, multiple price updates were sent for the same SKU in a single feed), an error will be returned.
          * @summary Update bulk prices (Multiple)
          * @param {'price' | 'CPT_SELLER_ELIGIBILITY'} feedType The feed Type
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -1178,14 +2572,43 @@ export const PricesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async priceBulkUploads(feedType: 'price' | 'CPT_SELLER_ELIGIBILITY', authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, file: any, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.priceBulkUploads(feedType, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, file, wMCONSUMERCHANNELTYPE, options);
+        async priceBulkUploads(feedType: 'price' | 'CPT_SELLER_ELIGIBILITY', wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, file: any, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2006>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.priceBulkUploads(feedType, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, file, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Updates the regular price for a given item.
          * @summary Update a price
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+         * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+         * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+         * @param {string} wMSVCNAME Walmart Service Name
+         * @param {InlineObject2} inlineObject2 
+         * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async updatePrice(wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject2: InlineObject2, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2004>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updatePrice(wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject2, wMCONSUMERCHANNELTYPE, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Assigns incentive items to the default price incentives strategy, ‘Match Competitive Price’
+         * @summary Assign Incentive items to Repricer
+         * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+         * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+         * @param {string} wMSVCNAME Walmart Service Name
+         * @param {InlineObject1} inlineObject1 
+         * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async updateRepricerIncentive(wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject1: InlineObject1, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2003>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateRepricerIncentive(wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject1, wMCONSUMERCHANNELTYPE, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Updates the existing strategy
+         * @summary Update Repricer Strategy
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -1194,8 +2617,8 @@ export const PricesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updatePrice(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.updatePrice(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject, wMCONSUMERCHANNELTYPE, options);
+        async updateStrategy(wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateStrategy(wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -1209,25 +2632,94 @@ export const PricesApiFactory = function (configuration?: Configuration, basePat
     const localVarFp = PricesApiFp(configuration)
     return {
         /**
-         * This API helps Sellers to completely opt-in or opt-out from CAP program.  If the subsidyEnrolled value = \"true\", the Seller enrolls in the CAP program. All eligible SKUs (current and future) are by default opt-in. Seller should use the SKU opt-in/opt-out API to opt-out individual items.  If the subsidyEnrolled value = \"false\", the Seller stops participating in the CAP program and all eligible SKUs (current and future) are opt-out of the CAP program.
-         * @summary Set up CAP SKU All
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+         * Creates a new strategy for the seller
+         * @summary Create Repricer Strategy
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
-         * @param {InlineObject2} inlineObject2 
+         * @param {InlineObject4} inlineObject4 
          * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        optCapProgramInPrice(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject2: InlineObject2, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2002> {
-            return localVarFp.optCapProgramInPrice(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject2, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        createStrategy(wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject4: InlineObject4, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse200> {
+            return localVarFp.createStrategy(wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject4, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Deletes the strategy
+         * @summary Delete Repricer Strategy
+         * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+         * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+         * @param {string} wMSVCNAME Walmart Service Name
+         * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteStrategy(wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2001> {
+            return localVarFp.deleteStrategy(wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Add/Remove one or more items from a strategy
+         * @summary Assign/Unassign items to/from Repricer Strategy
+         * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+         * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+         * @param {string} wMSVCNAME Walmart Service Name
+         * @param {InlineObject3} inlineObject3 
+         * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getRepricerFeed(wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject3: InlineObject3, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2005> {
+            return localVarFp.getRepricerFeed(wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject3, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Get the list of incentive items
+         * @summary List of Incentive Items
+         * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+         * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+         * @param {string} wMSVCNAME Walmart Service Name
+         * @param {number} [limit] Specify number of items to return.
+         * @param {number} [offset] Specify the offset of item list to be returned.
+         * @param {string} [sortBy] Specify the sort criteria for items. Examples of the allowed values are INCENTIVE_END_DATE or INCENTIVE_LIMIT
+         * @param {string} [sortOrder] Specify the sort order for given sort criteria. Examples of the allowed values are ASC or DESC
+         * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getRepricerIncentive(wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, limit?: number, offset?: number, sortBy?: string, sortOrder?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2002> {
+            return localVarFp.getRepricerIncentive(wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, limit, offset, sortBy, sortOrder, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Get the list of strategies
+         * @summary List of Repricer Strategies
+         * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+         * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+         * @param {string} wMSVCNAME Walmart Service Name
+         * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getStrategies(wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2008> {
+            return localVarFp.getStrategies(wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * This API helps Sellers to completely opt-in or opt-out from CAP program.  If the subsidyEnrolled value = \"true\", the Seller enrolls in the CAP program. All eligible SKUs (current and future) are by default opt-in. Seller should use the SKU opt-in/opt-out API to opt-out individual items.  If the subsidyEnrolled value = \"false\", the Seller stops participating in the CAP program and all eligible SKUs (current and future) are opt-out of the CAP program.
+         * @summary Set up CAP SKU All
+         * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+         * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+         * @param {string} wMSVCNAME Walmart Service Name
+         * @param {InlineObject6} inlineObject6 
+         * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        optCapProgramInPrice(wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject6: InlineObject6, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2007> {
+            return localVarFp.optCapProgramInPrice(wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject6, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
          * Updates prices in bulk.  In one Feed you can update up to 10,000 items in bulk. To ensure optimal Feed processing time, we recommend sending no more than 1000 items in one Feed and keeping the Feed sizes below 10 MB.  The price sequence guarantee is observed by the bulk price update functionality, subject to the following rules:  The timestamp used to determine precedence is passed in the request headers. All price updates in the feed are considered to have the same timestamp. The timestamp in the XML file is used only for auditing. You can send a single SKU multiple times in one Feed. If a SKU is repeated in a Feed, the price will be set for that SKU on Walmart.com, but there is no guarantee as to which SKU\'s price within that feed will be used. This API should be used in preference to the update a price. It should be called no sooner than 24 hours after a new item is set up and a wpid (Walmart Part ID) is available. Thereafter, the bulk price update has an service level agreement (SLA) of 15 minutes.  After the update is submitted, wait for at least five minutes before verifying whether the bulk price update was successful. Individual SKU price update success or failure is only available after the entire feed is processed.  If a SKU\'s price update fails (for example, multiple price updates were sent for the same SKU in a single feed), an error will be returned.
          * @summary Update bulk prices (Multiple)
          * @param {'price' | 'CPT_SELLER_ELIGIBILITY'} feedType The feed Type
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -1236,13 +2728,40 @@ export const PricesApiFactory = function (configuration?: Configuration, basePat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        priceBulkUploads(feedType: 'price' | 'CPT_SELLER_ELIGIBILITY', authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, file: any, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2001> {
-            return localVarFp.priceBulkUploads(feedType, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, file, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        priceBulkUploads(feedType: 'price' | 'CPT_SELLER_ELIGIBILITY', wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, file: any, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2006> {
+            return localVarFp.priceBulkUploads(feedType, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, file, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
          * Updates the regular price for a given item.
          * @summary Update a price
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
+         * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+         * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+         * @param {string} wMSVCNAME Walmart Service Name
+         * @param {InlineObject2} inlineObject2 
+         * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updatePrice(wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject2: InlineObject2, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2004> {
+            return localVarFp.updatePrice(wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject2, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Assigns incentive items to the default price incentives strategy, ‘Match Competitive Price’
+         * @summary Assign Incentive items to Repricer
+         * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
+         * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+         * @param {string} wMSVCNAME Walmart Service Name
+         * @param {InlineObject1} inlineObject1 
+         * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateRepricerIncentive(wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject1: InlineObject1, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2003> {
+            return localVarFp.updateRepricerIncentive(wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject1, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Updates the existing strategy
+         * @summary Update Repricer Strategy
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -1251,11 +2770,228 @@ export const PricesApiFactory = function (configuration?: Configuration, basePat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updatePrice(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse200> {
-            return localVarFp.updatePrice(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        updateStrategy(wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse200> {
+            return localVarFp.updateStrategy(wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
     };
 };
+
+/**
+ * Request parameters for createStrategy operation in PricesApi.
+ * @export
+ * @interface PricesApiCreateStrategyRequest
+ */
+export interface PricesApiCreateStrategyRequest {
+    /**
+     * The access token retrieved in the Token API call
+     * @type {string}
+     * @memberof PricesApiCreateStrategy
+     */
+    readonly wMSECACCESSTOKEN: string
+
+    /**
+     * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+     * @type {string}
+     * @memberof PricesApiCreateStrategy
+     */
+    readonly wMQOSCORRELATIONID: string
+
+    /**
+     * Walmart Service Name
+     * @type {string}
+     * @memberof PricesApiCreateStrategy
+     */
+    readonly wMSVCNAME: string
+
+    /**
+     * 
+     * @type {InlineObject4}
+     * @memberof PricesApiCreateStrategy
+     */
+    readonly inlineObject4: InlineObject4
+
+    /**
+     * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+     * @type {string}
+     * @memberof PricesApiCreateStrategy
+     */
+    readonly wMCONSUMERCHANNELTYPE?: string
+}
+
+/**
+ * Request parameters for deleteStrategy operation in PricesApi.
+ * @export
+ * @interface PricesApiDeleteStrategyRequest
+ */
+export interface PricesApiDeleteStrategyRequest {
+    /**
+     * The access token retrieved in the Token API call
+     * @type {string}
+     * @memberof PricesApiDeleteStrategy
+     */
+    readonly wMSECACCESSTOKEN: string
+
+    /**
+     * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+     * @type {string}
+     * @memberof PricesApiDeleteStrategy
+     */
+    readonly wMQOSCORRELATIONID: string
+
+    /**
+     * Walmart Service Name
+     * @type {string}
+     * @memberof PricesApiDeleteStrategy
+     */
+    readonly wMSVCNAME: string
+
+    /**
+     * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+     * @type {string}
+     * @memberof PricesApiDeleteStrategy
+     */
+    readonly wMCONSUMERCHANNELTYPE?: string
+}
+
+/**
+ * Request parameters for getRepricerFeed operation in PricesApi.
+ * @export
+ * @interface PricesApiGetRepricerFeedRequest
+ */
+export interface PricesApiGetRepricerFeedRequest {
+    /**
+     * The access token retrieved in the Token API call
+     * @type {string}
+     * @memberof PricesApiGetRepricerFeed
+     */
+    readonly wMSECACCESSTOKEN: string
+
+    /**
+     * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+     * @type {string}
+     * @memberof PricesApiGetRepricerFeed
+     */
+    readonly wMQOSCORRELATIONID: string
+
+    /**
+     * Walmart Service Name
+     * @type {string}
+     * @memberof PricesApiGetRepricerFeed
+     */
+    readonly wMSVCNAME: string
+
+    /**
+     * 
+     * @type {InlineObject3}
+     * @memberof PricesApiGetRepricerFeed
+     */
+    readonly inlineObject3: InlineObject3
+
+    /**
+     * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+     * @type {string}
+     * @memberof PricesApiGetRepricerFeed
+     */
+    readonly wMCONSUMERCHANNELTYPE?: string
+}
+
+/**
+ * Request parameters for getRepricerIncentive operation in PricesApi.
+ * @export
+ * @interface PricesApiGetRepricerIncentiveRequest
+ */
+export interface PricesApiGetRepricerIncentiveRequest {
+    /**
+     * The access token retrieved in the Token API call
+     * @type {string}
+     * @memberof PricesApiGetRepricerIncentive
+     */
+    readonly wMSECACCESSTOKEN: string
+
+    /**
+     * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+     * @type {string}
+     * @memberof PricesApiGetRepricerIncentive
+     */
+    readonly wMQOSCORRELATIONID: string
+
+    /**
+     * Walmart Service Name
+     * @type {string}
+     * @memberof PricesApiGetRepricerIncentive
+     */
+    readonly wMSVCNAME: string
+
+    /**
+     * Specify number of items to return.
+     * @type {number}
+     * @memberof PricesApiGetRepricerIncentive
+     */
+    readonly limit?: number
+
+    /**
+     * Specify the offset of item list to be returned.
+     * @type {number}
+     * @memberof PricesApiGetRepricerIncentive
+     */
+    readonly offset?: number
+
+    /**
+     * Specify the sort criteria for items. Examples of the allowed values are INCENTIVE_END_DATE or INCENTIVE_LIMIT
+     * @type {string}
+     * @memberof PricesApiGetRepricerIncentive
+     */
+    readonly sortBy?: string
+
+    /**
+     * Specify the sort order for given sort criteria. Examples of the allowed values are ASC or DESC
+     * @type {string}
+     * @memberof PricesApiGetRepricerIncentive
+     */
+    readonly sortOrder?: string
+
+    /**
+     * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+     * @type {string}
+     * @memberof PricesApiGetRepricerIncentive
+     */
+    readonly wMCONSUMERCHANNELTYPE?: string
+}
+
+/**
+ * Request parameters for getStrategies operation in PricesApi.
+ * @export
+ * @interface PricesApiGetStrategiesRequest
+ */
+export interface PricesApiGetStrategiesRequest {
+    /**
+     * The access token retrieved in the Token API call
+     * @type {string}
+     * @memberof PricesApiGetStrategies
+     */
+    readonly wMSECACCESSTOKEN: string
+
+    /**
+     * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+     * @type {string}
+     * @memberof PricesApiGetStrategies
+     */
+    readonly wMQOSCORRELATIONID: string
+
+    /**
+     * Walmart Service Name
+     * @type {string}
+     * @memberof PricesApiGetStrategies
+     */
+    readonly wMSVCNAME: string
+
+    /**
+     * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+     * @type {string}
+     * @memberof PricesApiGetStrategies
+     */
+    readonly wMCONSUMERCHANNELTYPE?: string
+}
 
 /**
  * Request parameters for optCapProgramInPrice operation in PricesApi.
@@ -1263,13 +2999,6 @@ export const PricesApiFactory = function (configuration?: Configuration, basePat
  * @interface PricesApiOptCapProgramInPriceRequest
  */
 export interface PricesApiOptCapProgramInPriceRequest {
-    /**
-     * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @type {string}
-     * @memberof PricesApiOptCapProgramInPrice
-     */
-    readonly authorization: string
-
     /**
      * The access token retrieved in the Token API call
      * @type {string}
@@ -1293,10 +3022,10 @@ export interface PricesApiOptCapProgramInPriceRequest {
 
     /**
      * 
-     * @type {InlineObject2}
+     * @type {InlineObject6}
      * @memberof PricesApiOptCapProgramInPrice
      */
-    readonly inlineObject2: InlineObject2
+    readonly inlineObject6: InlineObject6
 
     /**
      * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
@@ -1318,13 +3047,6 @@ export interface PricesApiPriceBulkUploadsRequest {
      * @memberof PricesApiPriceBulkUploads
      */
     readonly feedType: 'price' | 'CPT_SELLER_ELIGIBILITY'
-
-    /**
-     * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @type {string}
-     * @memberof PricesApiPriceBulkUploads
-     */
-    readonly authorization: string
 
     /**
      * The access token retrieved in the Token API call
@@ -1369,13 +3091,6 @@ export interface PricesApiPriceBulkUploadsRequest {
  */
 export interface PricesApiUpdatePriceRequest {
     /**
-     * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @type {string}
-     * @memberof PricesApiUpdatePrice
-     */
-    readonly authorization: string
-
-    /**
      * The access token retrieved in the Token API call
      * @type {string}
      * @memberof PricesApiUpdatePrice
@@ -1398,15 +3113,99 @@ export interface PricesApiUpdatePriceRequest {
 
     /**
      * 
-     * @type {InlineObject}
+     * @type {InlineObject2}
      * @memberof PricesApiUpdatePrice
+     */
+    readonly inlineObject2: InlineObject2
+
+    /**
+     * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+     * @type {string}
+     * @memberof PricesApiUpdatePrice
+     */
+    readonly wMCONSUMERCHANNELTYPE?: string
+}
+
+/**
+ * Request parameters for updateRepricerIncentive operation in PricesApi.
+ * @export
+ * @interface PricesApiUpdateRepricerIncentiveRequest
+ */
+export interface PricesApiUpdateRepricerIncentiveRequest {
+    /**
+     * The access token retrieved in the Token API call
+     * @type {string}
+     * @memberof PricesApiUpdateRepricerIncentive
+     */
+    readonly wMSECACCESSTOKEN: string
+
+    /**
+     * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+     * @type {string}
+     * @memberof PricesApiUpdateRepricerIncentive
+     */
+    readonly wMQOSCORRELATIONID: string
+
+    /**
+     * Walmart Service Name
+     * @type {string}
+     * @memberof PricesApiUpdateRepricerIncentive
+     */
+    readonly wMSVCNAME: string
+
+    /**
+     * 
+     * @type {InlineObject1}
+     * @memberof PricesApiUpdateRepricerIncentive
+     */
+    readonly inlineObject1: InlineObject1
+
+    /**
+     * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
+     * @type {string}
+     * @memberof PricesApiUpdateRepricerIncentive
+     */
+    readonly wMCONSUMERCHANNELTYPE?: string
+}
+
+/**
+ * Request parameters for updateStrategy operation in PricesApi.
+ * @export
+ * @interface PricesApiUpdateStrategyRequest
+ */
+export interface PricesApiUpdateStrategyRequest {
+    /**
+     * The access token retrieved in the Token API call
+     * @type {string}
+     * @memberof PricesApiUpdateStrategy
+     */
+    readonly wMSECACCESSTOKEN: string
+
+    /**
+     * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
+     * @type {string}
+     * @memberof PricesApiUpdateStrategy
+     */
+    readonly wMQOSCORRELATIONID: string
+
+    /**
+     * Walmart Service Name
+     * @type {string}
+     * @memberof PricesApiUpdateStrategy
+     */
+    readonly wMSVCNAME: string
+
+    /**
+     * 
+     * @type {InlineObject}
+     * @memberof PricesApiUpdateStrategy
      */
     readonly inlineObject: InlineObject
 
     /**
      * A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
      * @type {string}
-     * @memberof PricesApiUpdatePrice
+     * @memberof PricesApiUpdateStrategy
      */
     readonly wMCONSUMERCHANNELTYPE?: string
 }
@@ -1419,6 +3218,66 @@ export interface PricesApiUpdatePriceRequest {
  */
 export class PricesApi extends BaseAPI {
     /**
+     * Creates a new strategy for the seller
+     * @summary Create Repricer Strategy
+     * @param {PricesApiCreateStrategyRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PricesApi
+     */
+    public createStrategy(requestParameters: PricesApiCreateStrategyRequest, options?: any) {
+        return PricesApiFp(this.configuration).createStrategy(requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.inlineObject4, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Deletes the strategy
+     * @summary Delete Repricer Strategy
+     * @param {PricesApiDeleteStrategyRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PricesApi
+     */
+    public deleteStrategy(requestParameters: PricesApiDeleteStrategyRequest, options?: any) {
+        return PricesApiFp(this.configuration).deleteStrategy(requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Add/Remove one or more items from a strategy
+     * @summary Assign/Unassign items to/from Repricer Strategy
+     * @param {PricesApiGetRepricerFeedRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PricesApi
+     */
+    public getRepricerFeed(requestParameters: PricesApiGetRepricerFeedRequest, options?: any) {
+        return PricesApiFp(this.configuration).getRepricerFeed(requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.inlineObject3, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Get the list of incentive items
+     * @summary List of Incentive Items
+     * @param {PricesApiGetRepricerIncentiveRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PricesApi
+     */
+    public getRepricerIncentive(requestParameters: PricesApiGetRepricerIncentiveRequest, options?: any) {
+        return PricesApiFp(this.configuration).getRepricerIncentive(requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.limit, requestParameters.offset, requestParameters.sortBy, requestParameters.sortOrder, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Get the list of strategies
+     * @summary List of Repricer Strategies
+     * @param {PricesApiGetStrategiesRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PricesApi
+     */
+    public getStrategies(requestParameters: PricesApiGetStrategiesRequest, options?: any) {
+        return PricesApiFp(this.configuration).getStrategies(requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
      * This API helps Sellers to completely opt-in or opt-out from CAP program.  If the subsidyEnrolled value = \"true\", the Seller enrolls in the CAP program. All eligible SKUs (current and future) are by default opt-in. Seller should use the SKU opt-in/opt-out API to opt-out individual items.  If the subsidyEnrolled value = \"false\", the Seller stops participating in the CAP program and all eligible SKUs (current and future) are opt-out of the CAP program.
      * @summary Set up CAP SKU All
      * @param {PricesApiOptCapProgramInPriceRequest} requestParameters Request parameters.
@@ -1427,7 +3286,7 @@ export class PricesApi extends BaseAPI {
      * @memberof PricesApi
      */
     public optCapProgramInPrice(requestParameters: PricesApiOptCapProgramInPriceRequest, options?: any) {
-        return PricesApiFp(this.configuration).optCapProgramInPrice(requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.inlineObject2, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+        return PricesApiFp(this.configuration).optCapProgramInPrice(requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.inlineObject6, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -1439,7 +3298,7 @@ export class PricesApi extends BaseAPI {
      * @memberof PricesApi
      */
     public priceBulkUploads(requestParameters: PricesApiPriceBulkUploadsRequest, options?: any) {
-        return PricesApiFp(this.configuration).priceBulkUploads(requestParameters.feedType, requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.file, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+        return PricesApiFp(this.configuration).priceBulkUploads(requestParameters.feedType, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.file, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -1451,7 +3310,31 @@ export class PricesApi extends BaseAPI {
      * @memberof PricesApi
      */
     public updatePrice(requestParameters: PricesApiUpdatePriceRequest, options?: any) {
-        return PricesApiFp(this.configuration).updatePrice(requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.inlineObject, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+        return PricesApiFp(this.configuration).updatePrice(requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.inlineObject2, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Assigns incentive items to the default price incentives strategy, ‘Match Competitive Price’
+     * @summary Assign Incentive items to Repricer
+     * @param {PricesApiUpdateRepricerIncentiveRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PricesApi
+     */
+    public updateRepricerIncentive(requestParameters: PricesApiUpdateRepricerIncentiveRequest, options?: any) {
+        return PricesApiFp(this.configuration).updateRepricerIncentive(requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.inlineObject1, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Updates the existing strategy
+     * @summary Update Repricer Strategy
+     * @param {PricesApiUpdateStrategyRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PricesApi
+     */
+    public updateStrategy(requestParameters: PricesApiUpdateStrategyRequest, options?: any) {
+        return PricesApiFp(this.configuration).updateStrategy(requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.inlineObject, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

@@ -2703,7 +2703,6 @@ export const InsightApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * Get a list of all item categories that have items with listing quality issues or brands for a seller.
          * @summary Item count with listing quality issues
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -2717,9 +2716,7 @@ export const InsightApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCategoriesList: async (authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, viewTrendingItems?: boolean, wfsFlag?: boolean, hasIssue?: number, type?: 'brand' | 'category', limit?: number, offset?: number, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'authorization' is not null or undefined
-            assertParamExists('getCategoriesList', 'authorization', authorization)
+        getCategoriesList: async (wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, viewTrendingItems?: boolean, wfsFlag?: boolean, hasIssue?: number, type?: 'brand' | 'category', limit?: number, offset?: number, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
             assertParamExists('getCategoriesList', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN)
             // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
@@ -2737,10 +2734,6 @@ export const InsightApiAxiosParamCreator = function (configuration?: Configurati
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-
-            // authentication basicScheme required
-            // http basic authentication required
-            setBasicAuthToObject(localVarRequestOptions, configuration)
 
             if (viewTrendingItems !== undefined) {
                 localVarQueryParameter['viewTrendingItems'] = viewTrendingItems;
@@ -2764,10 +2757,6 @@ export const InsightApiAxiosParamCreator = function (configuration?: Configurati
 
             if (offset !== undefined) {
                 localVarQueryParameter['offset'] = offset;
-            }
-
-            if (authorization !== undefined && authorization !== null) {
-                localVarHeaderParameter['Authorization'] = String(authorization);
             }
 
             if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
@@ -2800,7 +2789,6 @@ export const InsightApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * Get the total Listing Quality Score for a seller\'s entire item catalog.
          * @summary Seller Listing Quality Score
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -2810,9 +2798,7 @@ export const InsightApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getListingQualityScore: async (authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, viewTrendingItems?: boolean, wfsFlag?: string, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'authorization' is not null or undefined
-            assertParamExists('getListingQualityScore', 'authorization', authorization)
+        getListingQualityScore: async (wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, viewTrendingItems?: boolean, wfsFlag?: string, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
             assertParamExists('getListingQualityScore', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN)
             // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
@@ -2831,20 +2817,12 @@ export const InsightApiAxiosParamCreator = function (configuration?: Configurati
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication basicScheme required
-            // http basic authentication required
-            setBasicAuthToObject(localVarRequestOptions, configuration)
-
             if (viewTrendingItems !== undefined) {
                 localVarQueryParameter['viewTrendingItems'] = viewTrendingItems;
             }
 
             if (wfsFlag !== undefined) {
                 localVarQueryParameter['wfsFlag'] = wfsFlag;
-            }
-
-            if (authorization !== undefined && authorization !== null) {
-                localVarHeaderParameter['Authorization'] = String(authorization);
             }
 
             if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
@@ -2877,7 +2855,6 @@ export const InsightApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * The Pro Seller badge status will provide you with information regarding your current badge status as well as the progress you\'ve made in meeting the criteria.
          * @summary Pro Seller Badge Status
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -2885,9 +2862,7 @@ export const InsightApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getProSellerBadgeInfo: async (authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'authorization' is not null or undefined
-            assertParamExists('getProSellerBadgeInfo', 'authorization', authorization)
+        getProSellerBadgeInfo: async (wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
             assertParamExists('getProSellerBadgeInfo', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN)
             // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
@@ -2905,14 +2880,6 @@ export const InsightApiAxiosParamCreator = function (configuration?: Configurati
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-
-            // authentication basicScheme required
-            // http basic authentication required
-            setBasicAuthToObject(localVarRequestOptions, configuration)
-
-            if (authorization !== undefined && authorization !== null) {
-                localVarHeaderParameter['Authorization'] = String(authorization);
-            }
 
             if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
                 localVarHeaderParameter['WM_SEC.ACCESS_TOKEN'] = String(wMSECACCESSTOKEN);
@@ -2945,7 +2912,6 @@ export const InsightApiAxiosParamCreator = function (configuration?: Configurati
          * Get Trending Item List
          * @summary Top Trending Items
          * @param {string} departmentId departmentId
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -2957,11 +2923,9 @@ export const InsightApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getTrendingResult: async (departmentId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, categoryId?: string, limit?: string, offset?: string, timeFrame?: string, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
+        getTrendingResult: async (departmentId: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, categoryId?: string, limit?: string, offset?: string, timeFrame?: string, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'departmentId' is not null or undefined
             assertParamExists('getTrendingResult', 'departmentId', departmentId)
-            // verify required parameter 'authorization' is not null or undefined
-            assertParamExists('getTrendingResult', 'authorization', authorization)
             // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
             assertParamExists('getTrendingResult', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN)
             // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
@@ -2979,10 +2943,6 @@ export const InsightApiAxiosParamCreator = function (configuration?: Configurati
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-
-            // authentication basicScheme required
-            // http basic authentication required
-            setBasicAuthToObject(localVarRequestOptions, configuration)
 
             if (departmentId !== undefined) {
                 localVarQueryParameter['departmentId'] = departmentId;
@@ -3002,10 +2962,6 @@ export const InsightApiAxiosParamCreator = function (configuration?: Configurati
 
             if (timeFrame !== undefined) {
                 localVarQueryParameter['timeFrame'] = timeFrame;
-            }
-
-            if (authorization !== undefined && authorization !== null) {
-                localVarHeaderParameter['Authorization'] = String(authorization);
             }
 
             if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
@@ -3039,7 +2995,6 @@ export const InsightApiAxiosParamCreator = function (configuration?: Configurati
          * Get Count for Unpubished Item
          * @summary Unpublished Item Counts
          * @param {string} fromDate Returns all unpublished items count with reason codes since the given date
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -3047,11 +3002,9 @@ export const InsightApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getUnpublishedItemCount: async (fromDate: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
+        getUnpublishedItemCount: async (fromDate: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'fromDate' is not null or undefined
             assertParamExists('getUnpublishedItemCount', 'fromDate', fromDate)
-            // verify required parameter 'authorization' is not null or undefined
-            assertParamExists('getUnpublishedItemCount', 'authorization', authorization)
             // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
             assertParamExists('getUnpublishedItemCount', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN)
             // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
@@ -3070,16 +3023,8 @@ export const InsightApiAxiosParamCreator = function (configuration?: Configurati
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication basicScheme required
-            // http basic authentication required
-            setBasicAuthToObject(localVarRequestOptions, configuration)
-
             if (fromDate !== undefined) {
                 localVarQueryParameter['fromDate'] = fromDate;
-            }
-
-            if (authorization !== undefined && authorization !== null) {
-                localVarHeaderParameter['Authorization'] = String(authorization);
             }
 
             if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
@@ -3113,7 +3058,6 @@ export const InsightApiAxiosParamCreator = function (configuration?: Configurati
          * Get Unpublished Items
          * @summary Unpublished Items
          * @param {string} fromDate Returns all unpublished items since the given date
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -3126,11 +3070,9 @@ export const InsightApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getUnpublishedItems: async (fromDate: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, unpublishedReasonCode?: string, limit?: string, offerLifecycleStatus?: string, marketTrending?: string, itemsWithInventory?: string, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
+        getUnpublishedItems: async (fromDate: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, unpublishedReasonCode?: string, limit?: string, offerLifecycleStatus?: string, marketTrending?: string, itemsWithInventory?: string, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'fromDate' is not null or undefined
             assertParamExists('getUnpublishedItems', 'fromDate', fromDate)
-            // verify required parameter 'authorization' is not null or undefined
-            assertParamExists('getUnpublishedItems', 'authorization', authorization)
             // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
             assertParamExists('getUnpublishedItems', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN)
             // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
@@ -3148,10 +3090,6 @@ export const InsightApiAxiosParamCreator = function (configuration?: Configurati
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-
-            // authentication basicScheme required
-            // http basic authentication required
-            setBasicAuthToObject(localVarRequestOptions, configuration)
 
             if (unpublishedReasonCode !== undefined) {
                 localVarQueryParameter['unpublishedReasonCode'] = unpublishedReasonCode;
@@ -3175,10 +3113,6 @@ export const InsightApiAxiosParamCreator = function (configuration?: Configurati
 
             if (itemsWithInventory !== undefined) {
                 localVarQueryParameter['itemsWithInventory'] = itemsWithInventory;
-            }
-
-            if (authorization !== undefined && authorization !== null) {
-                localVarHeaderParameter['Authorization'] = String(authorization);
             }
 
             if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
@@ -3211,7 +3145,6 @@ export const InsightApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * Get each item\'s listing quality details including: item quality score, offer score, content score and issues, and item performance.
          * @summary Item Listing Quality Details
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -3222,9 +3155,7 @@ export const InsightApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        itemsDetailsForListing: async (authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, limit?: string, nextCursor?: string, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'authorization' is not null or undefined
-            assertParamExists('itemsDetailsForListing', 'authorization', authorization)
+        itemsDetailsForListing: async (wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, limit?: string, nextCursor?: string, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
             assertParamExists('itemsDetailsForListing', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN)
             // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
@@ -3245,20 +3176,12 @@ export const InsightApiAxiosParamCreator = function (configuration?: Configurati
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication basicScheme required
-            // http basic authentication required
-            setBasicAuthToObject(localVarRequestOptions, configuration)
-
             if (limit !== undefined) {
                 localVarQueryParameter['limit'] = limit;
             }
 
             if (nextCursor !== undefined) {
                 localVarQueryParameter['nextCursor'] = nextCursor;
-            }
-
-            if (authorization !== undefined && authorization !== null) {
-                localVarHeaderParameter['Authorization'] = String(authorization);
             }
 
             if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
@@ -3304,7 +3227,6 @@ export const InsightApiFp = function(configuration?: Configuration) {
         /**
          * Get a list of all item categories that have items with listing quality issues or brands for a seller.
          * @summary Item count with listing quality issues
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -3318,14 +3240,13 @@ export const InsightApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getCategoriesList(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, viewTrendingItems?: boolean, wfsFlag?: boolean, hasIssue?: number, type?: 'brand' | 'category', limit?: number, offset?: number, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2006>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getCategoriesList(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, viewTrendingItems, wfsFlag, hasIssue, type, limit, offset, wMCONSUMERCHANNELTYPE, options);
+        async getCategoriesList(wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, viewTrendingItems?: boolean, wfsFlag?: boolean, hasIssue?: number, type?: 'brand' | 'category', limit?: number, offset?: number, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2006>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getCategoriesList(wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, viewTrendingItems, wfsFlag, hasIssue, type, limit, offset, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Get the total Listing Quality Score for a seller\'s entire item catalog.
          * @summary Seller Listing Quality Score
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -3335,14 +3256,13 @@ export const InsightApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getListingQualityScore(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, viewTrendingItems?: boolean, wfsFlag?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2005>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getListingQualityScore(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, viewTrendingItems, wfsFlag, wMCONSUMERCHANNELTYPE, options);
+        async getListingQualityScore(wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, viewTrendingItems?: boolean, wfsFlag?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2005>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getListingQualityScore(wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, viewTrendingItems, wfsFlag, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * The Pro Seller badge status will provide you with information regarding your current badge status as well as the progress you\'ve made in meeting the criteria.
          * @summary Pro Seller Badge Status
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -3350,15 +3270,14 @@ export const InsightApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getProSellerBadgeInfo(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getProSellerBadgeInfo(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options);
+        async getProSellerBadgeInfo(wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getProSellerBadgeInfo(wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Get Trending Item List
          * @summary Top Trending Items
          * @param {string} departmentId departmentId
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -3370,15 +3289,14 @@ export const InsightApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getTrendingResult(departmentId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, categoryId?: string, limit?: string, offset?: string, timeFrame?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2004>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getTrendingResult(departmentId, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, categoryId, limit, offset, timeFrame, wMCONSUMERCHANNELTYPE, options);
+        async getTrendingResult(departmentId: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, categoryId?: string, limit?: string, offset?: string, timeFrame?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2004>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getTrendingResult(departmentId, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, categoryId, limit, offset, timeFrame, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Get Count for Unpubished Item
          * @summary Unpublished Item Counts
          * @param {string} fromDate Returns all unpublished items count with reason codes since the given date
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -3386,15 +3304,14 @@ export const InsightApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getUnpublishedItemCount(fromDate: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2003>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getUnpublishedItemCount(fromDate, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options);
+        async getUnpublishedItemCount(fromDate: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2003>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getUnpublishedItemCount(fromDate, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Get Unpublished Items
          * @summary Unpublished Items
          * @param {string} fromDate Returns all unpublished items since the given date
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -3407,14 +3324,13 @@ export const InsightApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getUnpublishedItems(fromDate: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, unpublishedReasonCode?: string, limit?: string, offerLifecycleStatus?: string, marketTrending?: string, itemsWithInventory?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2002>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getUnpublishedItems(fromDate, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, unpublishedReasonCode, limit, offerLifecycleStatus, marketTrending, itemsWithInventory, wMCONSUMERCHANNELTYPE, options);
+        async getUnpublishedItems(fromDate: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, unpublishedReasonCode?: string, limit?: string, offerLifecycleStatus?: string, marketTrending?: string, itemsWithInventory?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2002>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getUnpublishedItems(fromDate, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, unpublishedReasonCode, limit, offerLifecycleStatus, marketTrending, itemsWithInventory, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Get each item\'s listing quality details including: item quality score, offer score, content score and issues, and item performance.
          * @summary Item Listing Quality Details
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -3425,8 +3341,8 @@ export const InsightApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async itemsDetailsForListing(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, limit?: string, nextCursor?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.itemsDetailsForListing(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject, limit, nextCursor, wMCONSUMERCHANNELTYPE, options);
+        async itemsDetailsForListing(wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, limit?: string, nextCursor?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.itemsDetailsForListing(wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject, limit, nextCursor, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -3442,7 +3358,6 @@ export const InsightApiFactory = function (configuration?: Configuration, basePa
         /**
          * Get a list of all item categories that have items with listing quality issues or brands for a seller.
          * @summary Item count with listing quality issues
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -3456,13 +3371,12 @@ export const InsightApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCategoriesList(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, viewTrendingItems?: boolean, wfsFlag?: boolean, hasIssue?: number, type?: 'brand' | 'category', limit?: number, offset?: number, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2006> {
-            return localVarFp.getCategoriesList(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, viewTrendingItems, wfsFlag, hasIssue, type, limit, offset, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        getCategoriesList(wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, viewTrendingItems?: boolean, wfsFlag?: boolean, hasIssue?: number, type?: 'brand' | 'category', limit?: number, offset?: number, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2006> {
+            return localVarFp.getCategoriesList(wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, viewTrendingItems, wfsFlag, hasIssue, type, limit, offset, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
          * Get the total Listing Quality Score for a seller\'s entire item catalog.
          * @summary Seller Listing Quality Score
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -3472,13 +3386,12 @@ export const InsightApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getListingQualityScore(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, viewTrendingItems?: boolean, wfsFlag?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2005> {
-            return localVarFp.getListingQualityScore(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, viewTrendingItems, wfsFlag, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        getListingQualityScore(wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, viewTrendingItems?: boolean, wfsFlag?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2005> {
+            return localVarFp.getListingQualityScore(wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, viewTrendingItems, wfsFlag, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
          * The Pro Seller badge status will provide you with information regarding your current badge status as well as the progress you\'ve made in meeting the criteria.
          * @summary Pro Seller Badge Status
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -3486,14 +3399,13 @@ export const InsightApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getProSellerBadgeInfo(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2001> {
-            return localVarFp.getProSellerBadgeInfo(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        getProSellerBadgeInfo(wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2001> {
+            return localVarFp.getProSellerBadgeInfo(wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
          * Get Trending Item List
          * @summary Top Trending Items
          * @param {string} departmentId departmentId
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -3505,14 +3417,13 @@ export const InsightApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getTrendingResult(departmentId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, categoryId?: string, limit?: string, offset?: string, timeFrame?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2004> {
-            return localVarFp.getTrendingResult(departmentId, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, categoryId, limit, offset, timeFrame, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        getTrendingResult(departmentId: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, categoryId?: string, limit?: string, offset?: string, timeFrame?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2004> {
+            return localVarFp.getTrendingResult(departmentId, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, categoryId, limit, offset, timeFrame, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
          * Get Count for Unpubished Item
          * @summary Unpublished Item Counts
          * @param {string} fromDate Returns all unpublished items count with reason codes since the given date
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -3520,14 +3431,13 @@ export const InsightApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getUnpublishedItemCount(fromDate: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2003> {
-            return localVarFp.getUnpublishedItemCount(fromDate, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        getUnpublishedItemCount(fromDate: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2003> {
+            return localVarFp.getUnpublishedItemCount(fromDate, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
          * Get Unpublished Items
          * @summary Unpublished Items
          * @param {string} fromDate Returns all unpublished items since the given date
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -3540,13 +3450,12 @@ export const InsightApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getUnpublishedItems(fromDate: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, unpublishedReasonCode?: string, limit?: string, offerLifecycleStatus?: string, marketTrending?: string, itemsWithInventory?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2002> {
-            return localVarFp.getUnpublishedItems(fromDate, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, unpublishedReasonCode, limit, offerLifecycleStatus, marketTrending, itemsWithInventory, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        getUnpublishedItems(fromDate: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, unpublishedReasonCode?: string, limit?: string, offerLifecycleStatus?: string, marketTrending?: string, itemsWithInventory?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2002> {
+            return localVarFp.getUnpublishedItems(fromDate, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, unpublishedReasonCode, limit, offerLifecycleStatus, marketTrending, itemsWithInventory, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
          * Get each item\'s listing quality details including: item quality score, offer score, content score and issues, and item performance.
          * @summary Item Listing Quality Details
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -3557,8 +3466,8 @@ export const InsightApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        itemsDetailsForListing(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, limit?: string, nextCursor?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse200> {
-            return localVarFp.itemsDetailsForListing(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject, limit, nextCursor, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        itemsDetailsForListing(wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, limit?: string, nextCursor?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse200> {
+            return localVarFp.itemsDetailsForListing(wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject, limit, nextCursor, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -3569,13 +3478,6 @@ export const InsightApiFactory = function (configuration?: Configuration, basePa
  * @interface InsightApiGetCategoriesListRequest
  */
 export interface InsightApiGetCategoriesListRequest {
-    /**
-     * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @type {string}
-     * @memberof InsightApiGetCategoriesList
-     */
-    readonly authorization: string
-
     /**
      * The access token retrieved in the Token API call
      * @type {string}
@@ -3654,13 +3556,6 @@ export interface InsightApiGetCategoriesListRequest {
  */
 export interface InsightApiGetListingQualityScoreRequest {
     /**
-     * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @type {string}
-     * @memberof InsightApiGetListingQualityScore
-     */
-    readonly authorization: string
-
-    /**
      * The access token retrieved in the Token API call
      * @type {string}
      * @memberof InsightApiGetListingQualityScore
@@ -3710,13 +3605,6 @@ export interface InsightApiGetListingQualityScoreRequest {
  */
 export interface InsightApiGetProSellerBadgeInfoRequest {
     /**
-     * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @type {string}
-     * @memberof InsightApiGetProSellerBadgeInfo
-     */
-    readonly authorization: string
-
-    /**
      * The access token retrieved in the Token API call
      * @type {string}
      * @memberof InsightApiGetProSellerBadgeInfo
@@ -3757,13 +3645,6 @@ export interface InsightApiGetTrendingResultRequest {
      * @memberof InsightApiGetTrendingResult
      */
     readonly departmentId: string
-
-    /**
-     * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @type {string}
-     * @memberof InsightApiGetTrendingResult
-     */
-    readonly authorization: string
 
     /**
      * The access token retrieved in the Token API call
@@ -3836,13 +3717,6 @@ export interface InsightApiGetUnpublishedItemCountRequest {
     readonly fromDate: string
 
     /**
-     * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @type {string}
-     * @memberof InsightApiGetUnpublishedItemCount
-     */
-    readonly authorization: string
-
-    /**
      * The access token retrieved in the Token API call
      * @type {string}
      * @memberof InsightApiGetUnpublishedItemCount
@@ -3883,13 +3757,6 @@ export interface InsightApiGetUnpublishedItemsRequest {
      * @memberof InsightApiGetUnpublishedItems
      */
     readonly fromDate: string
-
-    /**
-     * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @type {string}
-     * @memberof InsightApiGetUnpublishedItems
-     */
-    readonly authorization: string
 
     /**
      * The access token retrieved in the Token API call
@@ -3962,13 +3829,6 @@ export interface InsightApiGetUnpublishedItemsRequest {
  */
 export interface InsightApiItemsDetailsForListingRequest {
     /**
-     * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @type {string}
-     * @memberof InsightApiItemsDetailsForListing
-     */
-    readonly authorization: string
-
-    /**
      * The access token retrieved in the Token API call
      * @type {string}
      * @memberof InsightApiItemsDetailsForListing
@@ -4034,7 +3894,7 @@ export class InsightApi extends BaseAPI {
      * @memberof InsightApi
      */
     public getCategoriesList(requestParameters: InsightApiGetCategoriesListRequest, options?: any) {
-        return InsightApiFp(this.configuration).getCategoriesList(requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.viewTrendingItems, requestParameters.wfsFlag, requestParameters.hasIssue, requestParameters.type, requestParameters.limit, requestParameters.offset, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+        return InsightApiFp(this.configuration).getCategoriesList(requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.viewTrendingItems, requestParameters.wfsFlag, requestParameters.hasIssue, requestParameters.type, requestParameters.limit, requestParameters.offset, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -4046,7 +3906,7 @@ export class InsightApi extends BaseAPI {
      * @memberof InsightApi
      */
     public getListingQualityScore(requestParameters: InsightApiGetListingQualityScoreRequest, options?: any) {
-        return InsightApiFp(this.configuration).getListingQualityScore(requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.viewTrendingItems, requestParameters.wfsFlag, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+        return InsightApiFp(this.configuration).getListingQualityScore(requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.viewTrendingItems, requestParameters.wfsFlag, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -4058,7 +3918,7 @@ export class InsightApi extends BaseAPI {
      * @memberof InsightApi
      */
     public getProSellerBadgeInfo(requestParameters: InsightApiGetProSellerBadgeInfoRequest, options?: any) {
-        return InsightApiFp(this.configuration).getProSellerBadgeInfo(requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+        return InsightApiFp(this.configuration).getProSellerBadgeInfo(requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -4070,7 +3930,7 @@ export class InsightApi extends BaseAPI {
      * @memberof InsightApi
      */
     public getTrendingResult(requestParameters: InsightApiGetTrendingResultRequest, options?: any) {
-        return InsightApiFp(this.configuration).getTrendingResult(requestParameters.departmentId, requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.categoryId, requestParameters.limit, requestParameters.offset, requestParameters.timeFrame, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+        return InsightApiFp(this.configuration).getTrendingResult(requestParameters.departmentId, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.categoryId, requestParameters.limit, requestParameters.offset, requestParameters.timeFrame, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -4082,7 +3942,7 @@ export class InsightApi extends BaseAPI {
      * @memberof InsightApi
      */
     public getUnpublishedItemCount(requestParameters: InsightApiGetUnpublishedItemCountRequest, options?: any) {
-        return InsightApiFp(this.configuration).getUnpublishedItemCount(requestParameters.fromDate, requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+        return InsightApiFp(this.configuration).getUnpublishedItemCount(requestParameters.fromDate, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -4094,7 +3954,7 @@ export class InsightApi extends BaseAPI {
      * @memberof InsightApi
      */
     public getUnpublishedItems(requestParameters: InsightApiGetUnpublishedItemsRequest, options?: any) {
-        return InsightApiFp(this.configuration).getUnpublishedItems(requestParameters.fromDate, requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.unpublishedReasonCode, requestParameters.limit, requestParameters.offerLifecycleStatus, requestParameters.marketTrending, requestParameters.itemsWithInventory, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+        return InsightApiFp(this.configuration).getUnpublishedItems(requestParameters.fromDate, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.unpublishedReasonCode, requestParameters.limit, requestParameters.offerLifecycleStatus, requestParameters.marketTrending, requestParameters.itemsWithInventory, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -4106,7 +3966,7 @@ export class InsightApi extends BaseAPI {
      * @memberof InsightApi
      */
     public itemsDetailsForListing(requestParameters: InsightApiItemsDetailsForListingRequest, options?: any) {
-        return InsightApiFp(this.configuration).itemsDetailsForListing(requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.inlineObject, requestParameters.limit, requestParameters.nextCursor, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+        return InsightApiFp(this.configuration).itemsDetailsForListing(requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.inlineObject, requestParameters.limit, requestParameters.nextCursor, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -4120,7 +3980,6 @@ export const ListingQualityApiAxiosParamCreator = function (configuration?: Conf
         /**
          * Get a list of all item categories that have items with listing quality issues or brands for a seller.
          * @summary Item count with listing quality issues
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -4134,9 +3993,7 @@ export const ListingQualityApiAxiosParamCreator = function (configuration?: Conf
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCategoriesList: async (authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, viewTrendingItems?: boolean, wfsFlag?: boolean, hasIssue?: number, type?: 'brand' | 'category', limit?: number, offset?: number, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'authorization' is not null or undefined
-            assertParamExists('getCategoriesList', 'authorization', authorization)
+        getCategoriesList: async (wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, viewTrendingItems?: boolean, wfsFlag?: boolean, hasIssue?: number, type?: 'brand' | 'category', limit?: number, offset?: number, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
             assertParamExists('getCategoriesList', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN)
             // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
@@ -4154,10 +4011,6 @@ export const ListingQualityApiAxiosParamCreator = function (configuration?: Conf
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-
-            // authentication basicScheme required
-            // http basic authentication required
-            setBasicAuthToObject(localVarRequestOptions, configuration)
 
             if (viewTrendingItems !== undefined) {
                 localVarQueryParameter['viewTrendingItems'] = viewTrendingItems;
@@ -4181,10 +4034,6 @@ export const ListingQualityApiAxiosParamCreator = function (configuration?: Conf
 
             if (offset !== undefined) {
                 localVarQueryParameter['offset'] = offset;
-            }
-
-            if (authorization !== undefined && authorization !== null) {
-                localVarHeaderParameter['Authorization'] = String(authorization);
             }
 
             if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
@@ -4217,7 +4066,6 @@ export const ListingQualityApiAxiosParamCreator = function (configuration?: Conf
         /**
          * Get the total Listing Quality Score for a seller\'s entire item catalog.
          * @summary Seller Listing Quality Score
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -4227,9 +4075,7 @@ export const ListingQualityApiAxiosParamCreator = function (configuration?: Conf
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getListingQualityScore: async (authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, viewTrendingItems?: boolean, wfsFlag?: string, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'authorization' is not null or undefined
-            assertParamExists('getListingQualityScore', 'authorization', authorization)
+        getListingQualityScore: async (wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, viewTrendingItems?: boolean, wfsFlag?: string, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
             assertParamExists('getListingQualityScore', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN)
             // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
@@ -4248,20 +4094,12 @@ export const ListingQualityApiAxiosParamCreator = function (configuration?: Conf
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication basicScheme required
-            // http basic authentication required
-            setBasicAuthToObject(localVarRequestOptions, configuration)
-
             if (viewTrendingItems !== undefined) {
                 localVarQueryParameter['viewTrendingItems'] = viewTrendingItems;
             }
 
             if (wfsFlag !== undefined) {
                 localVarQueryParameter['wfsFlag'] = wfsFlag;
-            }
-
-            if (authorization !== undefined && authorization !== null) {
-                localVarHeaderParameter['Authorization'] = String(authorization);
             }
 
             if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
@@ -4294,7 +4132,6 @@ export const ListingQualityApiAxiosParamCreator = function (configuration?: Conf
         /**
          * The Pro Seller badge status will provide you with information regarding your current badge status as well as the progress you\'ve made in meeting the criteria.
          * @summary Pro Seller Badge Status
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -4302,9 +4139,7 @@ export const ListingQualityApiAxiosParamCreator = function (configuration?: Conf
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getProSellerBadgeInfo: async (authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'authorization' is not null or undefined
-            assertParamExists('getProSellerBadgeInfo', 'authorization', authorization)
+        getProSellerBadgeInfo: async (wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
             assertParamExists('getProSellerBadgeInfo', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN)
             // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
@@ -4322,14 +4157,6 @@ export const ListingQualityApiAxiosParamCreator = function (configuration?: Conf
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-
-            // authentication basicScheme required
-            // http basic authentication required
-            setBasicAuthToObject(localVarRequestOptions, configuration)
-
-            if (authorization !== undefined && authorization !== null) {
-                localVarHeaderParameter['Authorization'] = String(authorization);
-            }
 
             if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
                 localVarHeaderParameter['WM_SEC.ACCESS_TOKEN'] = String(wMSECACCESSTOKEN);
@@ -4371,7 +4198,6 @@ export const ListingQualityApiFp = function(configuration?: Configuration) {
         /**
          * Get a list of all item categories that have items with listing quality issues or brands for a seller.
          * @summary Item count with listing quality issues
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -4385,14 +4211,13 @@ export const ListingQualityApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getCategoriesList(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, viewTrendingItems?: boolean, wfsFlag?: boolean, hasIssue?: number, type?: 'brand' | 'category', limit?: number, offset?: number, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2006>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getCategoriesList(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, viewTrendingItems, wfsFlag, hasIssue, type, limit, offset, wMCONSUMERCHANNELTYPE, options);
+        async getCategoriesList(wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, viewTrendingItems?: boolean, wfsFlag?: boolean, hasIssue?: number, type?: 'brand' | 'category', limit?: number, offset?: number, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2006>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getCategoriesList(wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, viewTrendingItems, wfsFlag, hasIssue, type, limit, offset, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Get the total Listing Quality Score for a seller\'s entire item catalog.
          * @summary Seller Listing Quality Score
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -4402,14 +4227,13 @@ export const ListingQualityApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getListingQualityScore(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, viewTrendingItems?: boolean, wfsFlag?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2005>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getListingQualityScore(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, viewTrendingItems, wfsFlag, wMCONSUMERCHANNELTYPE, options);
+        async getListingQualityScore(wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, viewTrendingItems?: boolean, wfsFlag?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2005>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getListingQualityScore(wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, viewTrendingItems, wfsFlag, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * The Pro Seller badge status will provide you with information regarding your current badge status as well as the progress you\'ve made in meeting the criteria.
          * @summary Pro Seller Badge Status
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -4417,8 +4241,8 @@ export const ListingQualityApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getProSellerBadgeInfo(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getProSellerBadgeInfo(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options);
+        async getProSellerBadgeInfo(wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getProSellerBadgeInfo(wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -4434,7 +4258,6 @@ export const ListingQualityApiFactory = function (configuration?: Configuration,
         /**
          * Get a list of all item categories that have items with listing quality issues or brands for a seller.
          * @summary Item count with listing quality issues
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -4448,13 +4271,12 @@ export const ListingQualityApiFactory = function (configuration?: Configuration,
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCategoriesList(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, viewTrendingItems?: boolean, wfsFlag?: boolean, hasIssue?: number, type?: 'brand' | 'category', limit?: number, offset?: number, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2006> {
-            return localVarFp.getCategoriesList(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, viewTrendingItems, wfsFlag, hasIssue, type, limit, offset, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        getCategoriesList(wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, viewTrendingItems?: boolean, wfsFlag?: boolean, hasIssue?: number, type?: 'brand' | 'category', limit?: number, offset?: number, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2006> {
+            return localVarFp.getCategoriesList(wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, viewTrendingItems, wfsFlag, hasIssue, type, limit, offset, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
          * Get the total Listing Quality Score for a seller\'s entire item catalog.
          * @summary Seller Listing Quality Score
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -4464,13 +4286,12 @@ export const ListingQualityApiFactory = function (configuration?: Configuration,
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getListingQualityScore(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, viewTrendingItems?: boolean, wfsFlag?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2005> {
-            return localVarFp.getListingQualityScore(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, viewTrendingItems, wfsFlag, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        getListingQualityScore(wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, viewTrendingItems?: boolean, wfsFlag?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2005> {
+            return localVarFp.getListingQualityScore(wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, viewTrendingItems, wfsFlag, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
          * The Pro Seller badge status will provide you with information regarding your current badge status as well as the progress you\'ve made in meeting the criteria.
          * @summary Pro Seller Badge Status
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -4478,8 +4299,8 @@ export const ListingQualityApiFactory = function (configuration?: Configuration,
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getProSellerBadgeInfo(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2001> {
-            return localVarFp.getProSellerBadgeInfo(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        getProSellerBadgeInfo(wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2001> {
+            return localVarFp.getProSellerBadgeInfo(wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -4490,13 +4311,6 @@ export const ListingQualityApiFactory = function (configuration?: Configuration,
  * @interface ListingQualityApiGetCategoriesListRequest
  */
 export interface ListingQualityApiGetCategoriesListRequest {
-    /**
-     * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @type {string}
-     * @memberof ListingQualityApiGetCategoriesList
-     */
-    readonly authorization: string
-
     /**
      * The access token retrieved in the Token API call
      * @type {string}
@@ -4575,13 +4389,6 @@ export interface ListingQualityApiGetCategoriesListRequest {
  */
 export interface ListingQualityApiGetListingQualityScoreRequest {
     /**
-     * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @type {string}
-     * @memberof ListingQualityApiGetListingQualityScore
-     */
-    readonly authorization: string
-
-    /**
      * The access token retrieved in the Token API call
      * @type {string}
      * @memberof ListingQualityApiGetListingQualityScore
@@ -4631,13 +4438,6 @@ export interface ListingQualityApiGetListingQualityScoreRequest {
  */
 export interface ListingQualityApiGetProSellerBadgeInfoRequest {
     /**
-     * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @type {string}
-     * @memberof ListingQualityApiGetProSellerBadgeInfo
-     */
-    readonly authorization: string
-
-    /**
      * The access token retrieved in the Token API call
      * @type {string}
      * @memberof ListingQualityApiGetProSellerBadgeInfo
@@ -4682,7 +4482,7 @@ export class ListingQualityApi extends BaseAPI {
      * @memberof ListingQualityApi
      */
     public getCategoriesList(requestParameters: ListingQualityApiGetCategoriesListRequest, options?: any) {
-        return ListingQualityApiFp(this.configuration).getCategoriesList(requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.viewTrendingItems, requestParameters.wfsFlag, requestParameters.hasIssue, requestParameters.type, requestParameters.limit, requestParameters.offset, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+        return ListingQualityApiFp(this.configuration).getCategoriesList(requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.viewTrendingItems, requestParameters.wfsFlag, requestParameters.hasIssue, requestParameters.type, requestParameters.limit, requestParameters.offset, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -4694,7 +4494,7 @@ export class ListingQualityApi extends BaseAPI {
      * @memberof ListingQualityApi
      */
     public getListingQualityScore(requestParameters: ListingQualityApiGetListingQualityScoreRequest, options?: any) {
-        return ListingQualityApiFp(this.configuration).getListingQualityScore(requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.viewTrendingItems, requestParameters.wfsFlag, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+        return ListingQualityApiFp(this.configuration).getListingQualityScore(requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.viewTrendingItems, requestParameters.wfsFlag, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -4706,7 +4506,7 @@ export class ListingQualityApi extends BaseAPI {
      * @memberof ListingQualityApi
      */
     public getProSellerBadgeInfo(requestParameters: ListingQualityApiGetProSellerBadgeInfoRequest, options?: any) {
-        return ListingQualityApiFp(this.configuration).getProSellerBadgeInfo(requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+        return ListingQualityApiFp(this.configuration).getProSellerBadgeInfo(requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

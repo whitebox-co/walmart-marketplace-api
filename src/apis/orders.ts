@@ -148,7 +148,7 @@ export interface CarrierNameType {
      */
     otherCarrier?: string;
     /**
-     * The package shipment carrier. Valid entries are: UPS, USPS, FedEx, Airborne, OnTrac, DHL Ecommerce - US, LS (LaserShip), UDS (United Delivery Service), UPSMI (UPS Mail Innovations), FDX, PILOT, ESTES, SAIA, FDS Express, Seko Worldwide, HIT Delivery, FEDEXSP (FedEx SmartPost), RL Carriers, Metropolitan Warehouse & Delivery, China Post, YunExpress,Yellow Freight Sys, AIT Worldwide Logistics, Chukou1, Sendle, Landmark Global, Sunyou, Yanwen, 4PX, GLS, OSM Worldwide, FIRST MILE, AM Trucking, CEVA, India Post, SF Express, CNE, TForce Freight, AxleHire, LSO.
+     * The package shipment carrier. Valid entries are: UPS, USPS, FedEx, Airborne, OnTrac, DHL Ecommerce - US, DHL, LS (LaserShip), UDS (United Delivery Service), UPSMI (UPS Mail Innovations), FDX, PILOT, ESTES, SAIA, FDS Express, Seko Worldwide, HIT Delivery, FEDEXSP (FedEx SmartPost), RL Carriers, Metropolitan Warehouse & Delivery, China Post, YunExpress,Yellow Freight Sys, AIT Worldwide Logistics, Chukou1, Sendle, Landmark Global, Sunyou, Yanwen, 4PX, GLS, OSM Worldwide, FIRST MILE, AM Trucking, CEVA, India Post, SF Express, CNE, TForce Freight, AxleHire, LSO, Royal Mail, ABF Freight System, WanB, Roadrunner Freight, Meyer Distribution, AAA Cooper, Canada Post, Southeastern Freight Lines, Japan Post, Correos de Mexico, XPO Logistics, JD Logistics, YDH, JCEX, Flyt, Deutsche Post.
      * @type {string}
      * @memberof CarrierNameType
      */
@@ -166,6 +166,7 @@ export enum CarrierNameTypeCarrierEnum {
     Airborne = 'Airborne',
     OnTrac = 'OnTrac',
     DhlEcommerceUs = 'DHL Ecommerce - US',
+    Dhl = 'DHL',
     Ls = 'LS',
     Uds = 'UDS',
     Upsmi = 'UPSMI',
@@ -199,7 +200,23 @@ export enum CarrierNameTypeCarrierEnum {
     Cne = 'CNE',
     TForceFreight = 'TForce Freight',
     AxleHire = 'AxleHire',
-    Lso = 'LSO'
+    Lso = 'LSO',
+    RoyalMail = 'Royal Mail',
+    AbfFreightSystem = 'ABF Freight System',
+    WanB = 'WanB',
+    RoadrunnerFreight = 'Roadrunner Freight',
+    MeyerDistribution = 'Meyer Distribution',
+    AaaCooper = 'AAA Cooper',
+    CanadaPost = 'Canada Post',
+    SoutheasternFreightLines = 'Southeastern Freight Lines',
+    JapanPost = 'Japan Post',
+    CorreosDeMexico = 'Correos de Mexico',
+    XpoLogistics = 'XPO Logistics',
+    JdLogistics = 'JD Logistics',
+    Ydh = 'YDH',
+    Jcex = 'JCEX',
+    Flyt = 'Flyt',
+    DeutschePost = 'Deutsche Post'
 }
 
 /**
@@ -246,7 +263,7 @@ export interface ChargeType {
      */
     chargeType: string;
     /**
-     * If chargeType is PRODUCT, chargeName is Item Price. If chargeType is SHIPPING, chargeName is Shipping
+     * If chargeType is PRODUCT, chargeName is ItemPrice. If chargeType is PRODUCT and includes a chargeName as SubscriptionDiscount, these are subscription orders with a discount. If chargeType is SHIPPING, chargeName is Shipping
      * @type {string}
      * @memberof ChargeType
      */
@@ -276,6 +293,19 @@ export interface ChargesType {
      * @memberof ChargesType
      */
     charge?: Array<InlineResponse200OrderOrderLinesChargesCharge>;
+}
+/**
+ * Once the shipment is done, to update tracking details in the PO, you must pass the tracking number to be updated under the new currentTrackingInfo field.
+ * @export
+ * @interface CurrentTrackingInfoType
+ */
+export interface CurrentTrackingInfoType {
+    /**
+     * The shipment tracking number
+     * @type {string}
+     * @memberof CurrentTrackingInfoType
+     */
+    trackingNumber?: string;
 }
 /**
  * Information about the purchase order
@@ -573,16 +603,10 @@ export interface InlineObject {
 export interface InlineObject1 {
     /**
      * 
-     * @type {string}
+     * @type {V3OrdersPurchaseOrderIdRefundOrderRefund}
      * @memberof InlineObject1
      */
-    purchaseOrderId: string;
-    /**
-     * 
-     * @type {V3OrdersPurchaseOrderIdRefundOrderLines}
-     * @memberof InlineObject1
-     */
-    orderLines: V3OrdersPurchaseOrderIdRefundOrderLines;
+    orderRefund?: V3OrdersPurchaseOrderIdRefundOrderRefund;
 }
 /**
  * 
@@ -1102,7 +1126,7 @@ export interface InlineResponse200OrderOrderLinesChargesCharge {
      */
     chargeType: string;
     /**
-     * If chargeType is PRODUCT, chargeName is Item Price. If chargeType is SHIPPING, chargeName is Shipping
+     * If chargeType is PRODUCT, chargeName is ItemPrice. If chargeType is PRODUCT and includes a chargeName as SubscriptionDiscount, these are subscription orders with a discount. If chargeType is SHIPPING, chargeName is Shipping
      * @type {string}
      * @memberof InlineResponse200OrderOrderLinesChargesCharge
      */
@@ -1500,6 +1524,12 @@ export interface InlineResponse200OrderOrderLinesOrderLine {
      * @memberof InlineResponse200OrderOrderLinesOrderLine
      */
     fulfillment?: InlineResponse200OrderOrderLinesFulfillment;
+    /**
+     * Unique identifier assigned by a manufacturer to an individual item, to uniquely identify it. This number helps with record-keeping, accuracy and compliance
+     * @type {Array<string>}
+     * @memberof InlineResponse200OrderOrderLinesOrderLine
+     */
+    serialNumbers?: Array<string>;
     /**
      * 
      * @type {string}
@@ -1952,6 +1982,12 @@ export interface InlineResponse200OrderPhone {
      * @memberof InlineResponse200OrderPhone
      */
     countryCode?: string;
+    /**
+     * 
+     * @type {InlineResponse200OrderPhonePhoneValidity}
+     * @memberof InlineResponse200OrderPhone
+     */
+    phoneValidity?: InlineResponse200OrderPhonePhoneValidity;
 }
 
 /**
@@ -1962,6 +1998,59 @@ export enum InlineResponse200OrderPhoneTypeEnum {
     Mobile = 'MOBILE',
     Home = 'HOME',
     Work = 'WORK'
+}
+
+/**
+ * 
+ * @export
+ * @interface InlineResponse200OrderPhonePhoneValidity
+ */
+export interface InlineResponse200OrderPhonePhoneValidity {
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse200OrderPhonePhoneValidity
+     */
+    validationType?: InlineResponse200OrderPhonePhoneValidityValidationTypeEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse200OrderPhonePhoneValidity
+     */
+    validationStatus?: InlineResponse200OrderPhonePhoneValidityValidationStatusEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse200OrderPhonePhoneValidity
+     */
+    validatedDate?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse200OrderPhonePhoneValidity
+     */
+    validatedBy?: string;
+}
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum InlineResponse200OrderPhonePhoneValidityValidationTypeEnum {
+    Sms = 'SMS',
+    Ivr = 'IVR',
+    Call = 'CALL',
+    Unknown = 'UNKNOWN'
+}
+/**
+    * @export
+    * @enum {string}
+    */
+export enum InlineResponse200OrderPhonePhoneValidityValidationStatusEnum {
+    Success = 'SUCCESS',
+    Failure = 'FAILURE',
+    Skipped = 'SKIPPED',
+    Unknown = 'UNKNOWN'
 }
 
 /**
@@ -2810,6 +2899,12 @@ export interface OrderLineType {
      */
     fulfillment?: InlineResponse200OrderOrderLinesFulfillment;
     /**
+     * Unique identifier assigned by a manufacturer to an individual item, to uniquely identify it. This number helps with record-keeping, accuracy and compliance
+     * @type {Array<string>}
+     * @memberof OrderLineType
+     */
+    serialNumbers?: Array<string>;
+    /**
      * 
      * @type {string}
      * @memberof OrderLineType
@@ -2855,10 +2950,10 @@ export interface OrderRefund {
     purchaseOrderId: string;
     /**
      * 
-     * @type {V3OrdersPurchaseOrderIdRefundOrderLines}
+     * @type {V3OrdersPurchaseOrderIdRefundOrderRefundOrderLines}
      * @memberof OrderRefund
      */
-    orderLines: V3OrdersPurchaseOrderIdRefundOrderLines;
+    orderLines: V3OrdersPurchaseOrderIdRefundOrderRefundOrderLines;
 }
 /**
  * 
@@ -2868,10 +2963,10 @@ export interface OrderRefund {
 export interface OrderRefundJson {
     /**
      * 
-     * @type {InlineObject1}
+     * @type {V3OrdersPurchaseOrderIdRefundOrderRefund}
      * @memberof OrderRefundJson
      */
-    orderRefund?: InlineObject1;
+    orderRefund?: V3OrdersPurchaseOrderIdRefundOrderRefund;
 }
 /**
  * 
@@ -3046,6 +3141,12 @@ export interface Phone {
      * @memberof Phone
      */
     countryCode?: string;
+    /**
+     * 
+     * @type {InlineResponse200OrderPhonePhoneValidity}
+     * @memberof Phone
+     */
+    phoneValidity?: InlineResponse200OrderPhonePhoneValidity;
 }
 
 /**
@@ -3056,6 +3157,59 @@ export enum PhoneTypeEnum {
     Mobile = 'MOBILE',
     Home = 'HOME',
     Work = 'WORK'
+}
+
+/**
+ * 
+ * @export
+ * @interface PhoneValidity
+ */
+export interface PhoneValidity {
+    /**
+     * 
+     * @type {string}
+     * @memberof PhoneValidity
+     */
+    validationType?: PhoneValidityValidationTypeEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof PhoneValidity
+     */
+    validationStatus?: PhoneValidityValidationStatusEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof PhoneValidity
+     */
+    validatedDate?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PhoneValidity
+     */
+    validatedBy?: string;
+}
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum PhoneValidityValidationTypeEnum {
+    Sms = 'SMS',
+    Ivr = 'IVR',
+    Call = 'CALL',
+    Unknown = 'UNKNOWN'
+}
+/**
+    * @export
+    * @enum {string}
+    */
+export enum PhoneValidityValidationStatusEnum {
+    Success = 'SUCCESS',
+    Failure = 'FAILURE',
+    Skipped = 'SKIPPED',
+    Unknown = 'UNKNOWN'
 }
 
 /**
@@ -3183,7 +3337,7 @@ export interface QuantityType {
      */
     unitOfMeasurement: QuantityTypeUnitOfMeasurementEnum;
     /**
-     * Always use \'1\'
+     * The quantity of the unit of measurement for the item.
      * @type {string}
      * @memberof QuantityType
      */
@@ -3281,10 +3435,10 @@ export interface RefundLineType {
     isFullRefund?: boolean;
     /**
      * 
-     * @type {V3OrdersPurchaseOrderIdRefundOrderLinesRefunds}
+     * @type {V3OrdersPurchaseOrderIdRefundOrderRefundOrderLinesRefunds}
      * @memberof RefundLineType
      */
-    refunds: V3OrdersPurchaseOrderIdRefundOrderLinesRefunds;
+    refunds: V3OrdersPurchaseOrderIdRefundOrderRefundOrderLinesRefunds;
 }
 /**
  * 
@@ -3294,10 +3448,10 @@ export interface RefundLineType {
 export interface RefundLinesType {
     /**
      * 
-     * @type {Array<V3OrdersPurchaseOrderIdRefundOrderLinesOrderLine>}
+     * @type {Array<V3OrdersPurchaseOrderIdRefundOrderRefundOrderLinesOrderLine>}
      * @memberof RefundLinesType
      */
-    orderLine: Array<V3OrdersPurchaseOrderIdRefundOrderLinesOrderLine>;
+    orderLine: Array<V3OrdersPurchaseOrderIdRefundOrderRefundOrderLinesOrderLine>;
 }
 /**
  * Details about any partial refund on the order
@@ -3434,6 +3588,12 @@ export interface ShipLineStatusType {
      * @memberof ShipLineStatusType
      */
     returnCenterAddress?: V3OrdersPurchaseOrderIdShippingOrderShipmentOrderLinesOrderLineStatusesReturnCenterAddress;
+    /**
+     * 
+     * @type {V3OrdersPurchaseOrderIdShippingOrderShipmentOrderLinesOrderLineStatusesCurrentTrackingInfo}
+     * @memberof ShipLineStatusType
+     */
+    currentTrackingInfo?: V3OrdersPurchaseOrderIdShippingOrderShipmentOrderLinesOrderLineStatusesCurrentTrackingInfo;
 }
 
 /**
@@ -3769,51 +3929,70 @@ export enum V3OrdersPurchaseOrderIdCancelOrderCancellationOrderLinesOrderLineSta
 /**
  * 
  * @export
- * @interface V3OrdersPurchaseOrderIdRefundOrderLines
+ * @interface V3OrdersPurchaseOrderIdRefundOrderRefund
  */
-export interface V3OrdersPurchaseOrderIdRefundOrderLines {
+export interface V3OrdersPurchaseOrderIdRefundOrderRefund {
     /**
      * 
-     * @type {Array<V3OrdersPurchaseOrderIdRefundOrderLinesOrderLine>}
-     * @memberof V3OrdersPurchaseOrderIdRefundOrderLines
+     * @type {string}
+     * @memberof V3OrdersPurchaseOrderIdRefundOrderRefund
      */
-    orderLine: Array<V3OrdersPurchaseOrderIdRefundOrderLinesOrderLine>;
+    purchaseOrderId: string;
+    /**
+     * 
+     * @type {V3OrdersPurchaseOrderIdRefundOrderRefundOrderLines}
+     * @memberof V3OrdersPurchaseOrderIdRefundOrderRefund
+     */
+    orderLines: V3OrdersPurchaseOrderIdRefundOrderRefundOrderLines;
 }
 /**
  * 
  * @export
- * @interface V3OrdersPurchaseOrderIdRefundOrderLinesOrderLine
+ * @interface V3OrdersPurchaseOrderIdRefundOrderRefundOrderLines
  */
-export interface V3OrdersPurchaseOrderIdRefundOrderLinesOrderLine {
+export interface V3OrdersPurchaseOrderIdRefundOrderRefundOrderLines {
+    /**
+     * 
+     * @type {Array<V3OrdersPurchaseOrderIdRefundOrderRefundOrderLinesOrderLine>}
+     * @memberof V3OrdersPurchaseOrderIdRefundOrderRefundOrderLines
+     */
+    orderLine: Array<V3OrdersPurchaseOrderIdRefundOrderRefundOrderLinesOrderLine>;
+}
+/**
+ * 
+ * @export
+ * @interface V3OrdersPurchaseOrderIdRefundOrderRefundOrderLinesOrderLine
+ */
+export interface V3OrdersPurchaseOrderIdRefundOrderRefundOrderLinesOrderLine {
     /**
      * 
      * @type {string}
-     * @memberof V3OrdersPurchaseOrderIdRefundOrderLinesOrderLine
+     * @memberof V3OrdersPurchaseOrderIdRefundOrderRefundOrderLinesOrderLine
      */
     lineNumber: string;
     /**
      * Specifies that a full Refund is required to be set as true to do a full refund including all the applicable charges like tax and shipping. If full refund is set as false and full item price is entered in the charge amount field, applicable charges like tax and shipping will also be refunded to perform a full refund. In case of request containing multiple order lines, all order lines should either be of full refund scenario or partial refund but not both. Allowed values are true and false.
      * @type {boolean}
-     * @memberof V3OrdersPurchaseOrderIdRefundOrderLinesOrderLine
+     * @memberof V3OrdersPurchaseOrderIdRefundOrderRefundOrderLinesOrderLine
      */
     isFullRefund?: boolean;
     /**
      * 
-     * @type {V3OrdersPurchaseOrderIdRefundOrderLinesRefunds}
-     * @memberof V3OrdersPurchaseOrderIdRefundOrderLinesOrderLine
+     * @type {V3OrdersPurchaseOrderIdRefundOrderRefundOrderLinesRefunds}
+     * @memberof V3OrdersPurchaseOrderIdRefundOrderRefundOrderLinesOrderLine
      */
-    refunds: V3OrdersPurchaseOrderIdRefundOrderLinesRefunds;
+    refunds: V3OrdersPurchaseOrderIdRefundOrderRefundOrderLinesRefunds;
 }
 /**
  * 
  * @export
- * @interface V3OrdersPurchaseOrderIdRefundOrderLinesRefunds
+ * @interface V3OrdersPurchaseOrderIdRefundOrderRefundOrderLinesRefunds
  */
-export interface V3OrdersPurchaseOrderIdRefundOrderLinesRefunds {
+export interface V3OrdersPurchaseOrderIdRefundOrderRefundOrderLinesRefunds {
     /**
      * 
      * @type {Array<InlineResponse200OrderOrderLinesRefund>}
-     * @memberof V3OrdersPurchaseOrderIdRefundOrderLinesRefunds
+     * @memberof V3OrdersPurchaseOrderIdRefundOrderRefundOrderLinesRefunds
      */
     refund: Array<InlineResponse200OrderOrderLinesRefund>;
 }
@@ -3919,6 +4098,19 @@ export interface V3OrdersPurchaseOrderIdShippingOrderShipmentOrderLinesOrderLine
     palletASN?: string;
 }
 /**
+ * Once the shipment is done, to update tracking details in the PO, you must pass the tracking number to be updated under the new currentTrackingInfo field.
+ * @export
+ * @interface V3OrdersPurchaseOrderIdShippingOrderShipmentOrderLinesOrderLineStatusesCurrentTrackingInfo
+ */
+export interface V3OrdersPurchaseOrderIdShippingOrderShipmentOrderLinesOrderLineStatusesCurrentTrackingInfo {
+    /**
+     * The shipment tracking number
+     * @type {string}
+     * @memberof V3OrdersPurchaseOrderIdShippingOrderShipmentOrderLinesOrderLineStatusesCurrentTrackingInfo
+     */
+    trackingNumber?: string;
+}
+/**
  * Details about the Order Line status
  * @export
  * @interface V3OrdersPurchaseOrderIdShippingOrderShipmentOrderLinesOrderLineStatusesOrderLineStatus
@@ -3954,6 +4146,12 @@ export interface V3OrdersPurchaseOrderIdShippingOrderShipmentOrderLinesOrderLine
      * @memberof V3OrdersPurchaseOrderIdShippingOrderShipmentOrderLinesOrderLineStatusesOrderLineStatus
      */
     returnCenterAddress?: V3OrdersPurchaseOrderIdShippingOrderShipmentOrderLinesOrderLineStatusesReturnCenterAddress;
+    /**
+     * 
+     * @type {V3OrdersPurchaseOrderIdShippingOrderShipmentOrderLinesOrderLineStatusesCurrentTrackingInfo}
+     * @memberof V3OrdersPurchaseOrderIdShippingOrderShipmentOrderLinesOrderLineStatusesOrderLineStatus
+     */
+    currentTrackingInfo?: V3OrdersPurchaseOrderIdShippingOrderShipmentOrderLinesOrderLineStatusesCurrentTrackingInfo;
 }
 
 /**
@@ -4043,7 +4241,7 @@ export interface V3OrdersPurchaseOrderIdShippingOrderShipmentOrderLinesOrderLine
      */
     unitOfMeasurement: V3OrdersPurchaseOrderIdShippingOrderShipmentOrderLinesOrderLineStatusesStatusQuantityUnitOfMeasurementEnum;
     /**
-     * Always use \'1\'
+     * The quantity of the unit of measurement for the item.
      * @type {string}
      * @memberof V3OrdersPurchaseOrderIdShippingOrderShipmentOrderLinesOrderLineStatusesStatusQuantity
      */
@@ -4123,7 +4321,7 @@ export interface V3OrdersPurchaseOrderIdShippingOrderShipmentOrderLinesOrderLine
      */
     otherCarrier?: string;
     /**
-     * The package shipment carrier. Valid entries are: UPS, USPS, FedEx, Airborne, OnTrac, DHL Ecommerce - US, LS (LaserShip), UDS (United Delivery Service), UPSMI (UPS Mail Innovations), FDX, PILOT, ESTES, SAIA, FDS Express, Seko Worldwide, HIT Delivery, FEDEXSP (FedEx SmartPost), RL Carriers, Metropolitan Warehouse & Delivery, China Post, YunExpress,Yellow Freight Sys, AIT Worldwide Logistics, Chukou1, Sendle, Landmark Global, Sunyou, Yanwen, 4PX, GLS, OSM Worldwide, FIRST MILE, AM Trucking, CEVA, India Post, SF Express, CNE, TForce Freight, AxleHire, LSO.
+     * The package shipment carrier. Valid entries are: UPS, USPS, FedEx, Airborne, OnTrac, DHL Ecommerce - US, DHL, LS (LaserShip), UDS (United Delivery Service), UPSMI (UPS Mail Innovations), FDX, PILOT, ESTES, SAIA, FDS Express, Seko Worldwide, HIT Delivery, FEDEXSP (FedEx SmartPost), RL Carriers, Metropolitan Warehouse & Delivery, China Post, YunExpress,Yellow Freight Sys, AIT Worldwide Logistics, Chukou1, Sendle, Landmark Global, Sunyou, Yanwen, 4PX, GLS, OSM Worldwide, FIRST MILE, AM Trucking, CEVA, India Post, SF Express, CNE, TForce Freight, AxleHire, LSO, Royal Mail, ABF Freight System, WanB, Roadrunner Freight, Meyer Distribution, AAA Cooper, Canada Post, Southeastern Freight Lines, Japan Post, Correos de Mexico, XPO Logistics, JD Logistics, YDH, JCEX, Flyt, Deutsche Post.
      * @type {string}
      * @memberof V3OrdersPurchaseOrderIdShippingOrderShipmentOrderLinesOrderLineStatusesTrackingInfoCarrierName
      */
@@ -4141,6 +4339,7 @@ export enum V3OrdersPurchaseOrderIdShippingOrderShipmentOrderLinesOrderLineStatu
     Airborne = 'Airborne',
     OnTrac = 'OnTrac',
     DhlEcommerceUs = 'DHL Ecommerce - US',
+    Dhl = 'DHL',
     Ls = 'LS',
     Uds = 'UDS',
     Upsmi = 'UPSMI',
@@ -4174,7 +4373,23 @@ export enum V3OrdersPurchaseOrderIdShippingOrderShipmentOrderLinesOrderLineStatu
     Cne = 'CNE',
     TForceFreight = 'TForce Freight',
     AxleHire = 'AxleHire',
-    Lso = 'LSO'
+    Lso = 'LSO',
+    RoyalMail = 'Royal Mail',
+    AbfFreightSystem = 'ABF Freight System',
+    WanB = 'WanB',
+    RoadrunnerFreight = 'Roadrunner Freight',
+    MeyerDistribution = 'Meyer Distribution',
+    AaaCooper = 'AAA Cooper',
+    CanadaPost = 'Canada Post',
+    SoutheasternFreightLines = 'Southeastern Freight Lines',
+    JapanPost = 'Japan Post',
+    CorreosDeMexico = 'Correos de Mexico',
+    XpoLogistics = 'XPO Logistics',
+    JdLogistics = 'JD Logistics',
+    Ydh = 'YDH',
+    Jcex = 'JCEX',
+    Flyt = 'Flyt',
+    DeutschePost = 'Deutsche Post'
 }
 
 /**
@@ -4207,7 +4422,6 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
          * You can use this API to acknowledge an entire order, including all of its order lines. The response to a successful call contains the acknowledged order.
          * @summary Acknowledge Orders
          * @param {string} purchaseOrderId purchaseOrderId
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -4215,11 +4429,9 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        acknowledgeOrders: async (purchaseOrderId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
+        acknowledgeOrders: async (purchaseOrderId: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'purchaseOrderId' is not null or undefined
             assertParamExists('acknowledgeOrders', 'purchaseOrderId', purchaseOrderId)
-            // verify required parameter 'authorization' is not null or undefined
-            assertParamExists('acknowledgeOrders', 'authorization', authorization)
             // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
             assertParamExists('acknowledgeOrders', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN)
             // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
@@ -4238,14 +4450,6 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-
-            // authentication basicScheme required
-            // http basic authentication required
-            setBasicAuthToObject(localVarRequestOptions, configuration)
-
-            if (authorization !== undefined && authorization !== null) {
-                localVarHeaderParameter['Authorization'] = String(authorization);
-            }
 
             if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
                 localVarHeaderParameter['WM_SEC.ACCESS_TOKEN'] = String(wMSECACCESSTOKEN);
@@ -4278,7 +4482,6 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
          * You can cancel one or more order lines. You must include a purchaseOrderId when cancelling an order line. The response to a successful call contains the order with the cancelled line items
          * @summary Cancel Order Lines
          * @param {string} purchaseOrderId purchaseOrderId
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -4287,11 +4490,9 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        cancelOrderLines: async (purchaseOrderId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject2: InlineObject2, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
+        cancelOrderLines: async (purchaseOrderId: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject2: InlineObject2, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'purchaseOrderId' is not null or undefined
             assertParamExists('cancelOrderLines', 'purchaseOrderId', purchaseOrderId)
-            // verify required parameter 'authorization' is not null or undefined
-            assertParamExists('cancelOrderLines', 'authorization', authorization)
             // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
             assertParamExists('cancelOrderLines', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN)
             // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
@@ -4312,14 +4513,6 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-
-            // authentication basicScheme required
-            // http basic authentication required
-            setBasicAuthToObject(localVarRequestOptions, configuration)
-
-            if (authorization !== undefined && authorization !== null) {
-                localVarHeaderParameter['Authorization'] = String(authorization);
-            }
 
             if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
                 localVarHeaderParameter['WM_SEC.ACCESS_TOKEN'] = String(wMSECACCESSTOKEN);
@@ -4354,7 +4547,6 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
         /**
          * Retrieves the details of all the orders for specified search criteria.  Only orders created in last 180 days and a maximum of 20000 orders can be fetched at a time. Attempting to download more than 20000 orders will return an error.
          * @summary All orders
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -4378,9 +4570,7 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAllOrders: async (authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, sku?: string, customerOrderId?: string, purchaseOrderId?: string, status?: string, createdStartDate?: string, createdEndDate?: string, fromExpectedShipDate?: string, toExpectedShipDate?: string, lastModifiedStartDate?: string, lastModifiedEndDate?: string, limit?: string, productInfo?: string, shipNodeType?: string, shippingProgramType?: string, replacementInfo?: string, orderType?: string, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'authorization' is not null or undefined
-            assertParamExists('getAllOrders', 'authorization', authorization)
+        getAllOrders: async (wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, sku?: string, customerOrderId?: string, purchaseOrderId?: string, status?: string, createdStartDate?: string, createdEndDate?: string, fromExpectedShipDate?: string, toExpectedShipDate?: string, lastModifiedStartDate?: string, lastModifiedEndDate?: string, limit?: string, productInfo?: string, shipNodeType?: string, shippingProgramType?: string, replacementInfo?: string, orderType?: string, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
             assertParamExists('getAllOrders', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN)
             // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
@@ -4398,10 +4588,6 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-
-            // authentication basicScheme required
-            // http basic authentication required
-            setBasicAuthToObject(localVarRequestOptions, configuration)
 
             if (sku !== undefined) {
                 localVarQueryParameter['sku'] = sku;
@@ -4467,10 +4653,6 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
                 localVarQueryParameter['orderType'] = orderType;
             }
 
-            if (authorization !== undefined && authorization !== null) {
-                localVarHeaderParameter['Authorization'] = String(authorization);
-            }
-
             if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
                 localVarHeaderParameter['WM_SEC.ACCESS_TOKEN'] = String(wMSECACCESSTOKEN);
             }
@@ -4501,7 +4683,6 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
         /**
          * Retrieves all the orders with line items that are in the \"created\" status, that is, these orders have been released from the Walmart Order Management System to the seller for processing. The released orders are the orders that are ready for a seller to fulfill.  Only orders created in last 180 days and a maximum of 20000 orders can be fetched at a time. Attempting to download more than 20000 orders will return an error.
          * @summary All released orders
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -4522,9 +4703,7 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAllReleasedOrders: async (authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, createdStartDate?: string, createdEndDate?: string, limit?: string, productInfo?: string, shipNodeType?: string, sku?: string, customerOrderId?: string, purchaseOrderId?: string, fromExpectedShipDate?: string, toExpectedShipDate?: string, shippingProgramType?: string, replacementInfo?: string, orderType?: string, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'authorization' is not null or undefined
-            assertParamExists('getAllReleasedOrders', 'authorization', authorization)
+        getAllReleasedOrders: async (wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, createdStartDate?: string, createdEndDate?: string, limit?: string, productInfo?: string, shipNodeType?: string, sku?: string, customerOrderId?: string, purchaseOrderId?: string, fromExpectedShipDate?: string, toExpectedShipDate?: string, shippingProgramType?: string, replacementInfo?: string, orderType?: string, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
             assertParamExists('getAllReleasedOrders', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN)
             // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
@@ -4542,10 +4721,6 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-
-            // authentication basicScheme required
-            // http basic authentication required
-            setBasicAuthToObject(localVarRequestOptions, configuration)
 
             if (createdStartDate !== undefined) {
                 localVarQueryParameter['createdStartDate'] = createdStartDate;
@@ -4599,10 +4774,6 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
                 localVarQueryParameter['orderType'] = orderType;
             }
 
-            if (authorization !== undefined && authorization !== null) {
-                localVarHeaderParameter['Authorization'] = String(authorization);
-            }
-
             if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
                 localVarHeaderParameter['WM_SEC.ACCESS_TOKEN'] = String(wMSECACCESSTOKEN);
             }
@@ -4634,7 +4805,6 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
          * Retrieves an order detail for a specific purchaseOrderId
          * @summary An order
          * @param {string} purchaseOrderId purchaseOrderId
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -4644,11 +4814,9 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAnOrder: async (purchaseOrderId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, productInfo?: string, replacementInfo?: string, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
+        getAnOrder: async (purchaseOrderId: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, productInfo?: string, replacementInfo?: string, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'purchaseOrderId' is not null or undefined
             assertParamExists('getAnOrder', 'purchaseOrderId', purchaseOrderId)
-            // verify required parameter 'authorization' is not null or undefined
-            assertParamExists('getAnOrder', 'authorization', authorization)
             // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
             assertParamExists('getAnOrder', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN)
             // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
@@ -4668,20 +4836,12 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication basicScheme required
-            // http basic authentication required
-            setBasicAuthToObject(localVarRequestOptions, configuration)
-
             if (productInfo !== undefined) {
                 localVarQueryParameter['productInfo'] = productInfo;
             }
 
             if (replacementInfo !== undefined) {
                 localVarQueryParameter['replacementInfo'] = replacementInfo;
-            }
-
-            if (authorization !== undefined && authorization !== null) {
-                localVarHeaderParameter['Authorization'] = String(authorization);
             }
 
             if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
@@ -4715,7 +4875,6 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
          * Refunds one or more order lines that have been shipped. The response to a successful call contains the order with the refunded line items
          * @summary Refund Order Lines
          * @param {string} purchaseOrderId purchaseOrderId
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -4724,11 +4883,9 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        refundOrderLines: async (purchaseOrderId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject1: InlineObject1, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
+        refundOrderLines: async (purchaseOrderId: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject1: InlineObject1, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'purchaseOrderId' is not null or undefined
             assertParamExists('refundOrderLines', 'purchaseOrderId', purchaseOrderId)
-            // verify required parameter 'authorization' is not null or undefined
-            assertParamExists('refundOrderLines', 'authorization', authorization)
             // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
             assertParamExists('refundOrderLines', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN)
             // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
@@ -4750,14 +4907,6 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication basicScheme required
-            // http basic authentication required
-            setBasicAuthToObject(localVarRequestOptions, configuration)
-
-            if (authorization !== undefined && authorization !== null) {
-                localVarHeaderParameter['Authorization'] = String(authorization);
-            }
-
             if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
                 localVarHeaderParameter['WM_SEC.ACCESS_TOKEN'] = String(wMSECACCESSTOKEN);
             }
@@ -4776,7 +4925,7 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
 
 
     
-            localVarHeaderParameter['Content-Type'] = 'application/xml';
+            localVarHeaderParameter['Content-Type'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -4792,7 +4941,6 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
          * Updates the status of order lines to Shipped and trigger the charge to the customer. The response to a successful call contains the order with the shipped line items.
          * @summary Ship Order Lines
          * @param {string} purchaseOrderId purchaseOrderId
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -4801,11 +4949,9 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        shippingUpdates: async (purchaseOrderId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
+        shippingUpdates: async (purchaseOrderId: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'purchaseOrderId' is not null or undefined
             assertParamExists('shippingUpdates', 'purchaseOrderId', purchaseOrderId)
-            // verify required parameter 'authorization' is not null or undefined
-            assertParamExists('shippingUpdates', 'authorization', authorization)
             // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
             assertParamExists('shippingUpdates', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN)
             // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
@@ -4826,14 +4972,6 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-
-            // authentication basicScheme required
-            // http basic authentication required
-            setBasicAuthToObject(localVarRequestOptions, configuration)
-
-            if (authorization !== undefined && authorization !== null) {
-                localVarHeaderParameter['Authorization'] = String(authorization);
-            }
 
             if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
                 localVarHeaderParameter['WM_SEC.ACCESS_TOKEN'] = String(wMSECACCESSTOKEN);
@@ -4879,7 +5017,6 @@ export const OrdersApiFp = function(configuration?: Configuration) {
          * You can use this API to acknowledge an entire order, including all of its order lines. The response to a successful call contains the acknowledged order.
          * @summary Acknowledge Orders
          * @param {string} purchaseOrderId purchaseOrderId
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -4887,15 +5024,14 @@ export const OrdersApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async acknowledgeOrders(purchaseOrderId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.acknowledgeOrders(purchaseOrderId, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options);
+        async acknowledgeOrders(purchaseOrderId: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.acknowledgeOrders(purchaseOrderId, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * You can cancel one or more order lines. You must include a purchaseOrderId when cancelling an order line. The response to a successful call contains the order with the cancelled line items
          * @summary Cancel Order Lines
          * @param {string} purchaseOrderId purchaseOrderId
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -4904,14 +5040,13 @@ export const OrdersApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async cancelOrderLines(purchaseOrderId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject2: InlineObject2, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.cancelOrderLines(purchaseOrderId, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject2, wMCONSUMERCHANNELTYPE, options);
+        async cancelOrderLines(purchaseOrderId: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject2: InlineObject2, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.cancelOrderLines(purchaseOrderId, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject2, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Retrieves the details of all the orders for specified search criteria.  Only orders created in last 180 days and a maximum of 20000 orders can be fetched at a time. Attempting to download more than 20000 orders will return an error.
          * @summary All orders
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -4935,14 +5070,13 @@ export const OrdersApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getAllOrders(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, sku?: string, customerOrderId?: string, purchaseOrderId?: string, status?: string, createdStartDate?: string, createdEndDate?: string, fromExpectedShipDate?: string, toExpectedShipDate?: string, lastModifiedStartDate?: string, lastModifiedEndDate?: string, limit?: string, productInfo?: string, shipNodeType?: string, shippingProgramType?: string, replacementInfo?: string, orderType?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getAllOrders(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, sku, customerOrderId, purchaseOrderId, status, createdStartDate, createdEndDate, fromExpectedShipDate, toExpectedShipDate, lastModifiedStartDate, lastModifiedEndDate, limit, productInfo, shipNodeType, shippingProgramType, replacementInfo, orderType, wMCONSUMERCHANNELTYPE, options);
+        async getAllOrders(wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, sku?: string, customerOrderId?: string, purchaseOrderId?: string, status?: string, createdStartDate?: string, createdEndDate?: string, fromExpectedShipDate?: string, toExpectedShipDate?: string, lastModifiedStartDate?: string, lastModifiedEndDate?: string, limit?: string, productInfo?: string, shipNodeType?: string, shippingProgramType?: string, replacementInfo?: string, orderType?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getAllOrders(wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, sku, customerOrderId, purchaseOrderId, status, createdStartDate, createdEndDate, fromExpectedShipDate, toExpectedShipDate, lastModifiedStartDate, lastModifiedEndDate, limit, productInfo, shipNodeType, shippingProgramType, replacementInfo, orderType, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Retrieves all the orders with line items that are in the \"created\" status, that is, these orders have been released from the Walmart Order Management System to the seller for processing. The released orders are the orders that are ready for a seller to fulfill.  Only orders created in last 180 days and a maximum of 20000 orders can be fetched at a time. Attempting to download more than 20000 orders will return an error.
          * @summary All released orders
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -4963,15 +5097,14 @@ export const OrdersApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getAllReleasedOrders(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, createdStartDate?: string, createdEndDate?: string, limit?: string, productInfo?: string, shipNodeType?: string, sku?: string, customerOrderId?: string, purchaseOrderId?: string, fromExpectedShipDate?: string, toExpectedShipDate?: string, shippingProgramType?: string, replacementInfo?: string, orderType?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getAllReleasedOrders(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, createdStartDate, createdEndDate, limit, productInfo, shipNodeType, sku, customerOrderId, purchaseOrderId, fromExpectedShipDate, toExpectedShipDate, shippingProgramType, replacementInfo, orderType, wMCONSUMERCHANNELTYPE, options);
+        async getAllReleasedOrders(wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, createdStartDate?: string, createdEndDate?: string, limit?: string, productInfo?: string, shipNodeType?: string, sku?: string, customerOrderId?: string, purchaseOrderId?: string, fromExpectedShipDate?: string, toExpectedShipDate?: string, shippingProgramType?: string, replacementInfo?: string, orderType?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getAllReleasedOrders(wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, createdStartDate, createdEndDate, limit, productInfo, shipNodeType, sku, customerOrderId, purchaseOrderId, fromExpectedShipDate, toExpectedShipDate, shippingProgramType, replacementInfo, orderType, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Retrieves an order detail for a specific purchaseOrderId
          * @summary An order
          * @param {string} purchaseOrderId purchaseOrderId
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -4981,15 +5114,14 @@ export const OrdersApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getAnOrder(purchaseOrderId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, productInfo?: string, replacementInfo?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2002>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getAnOrder(purchaseOrderId, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, productInfo, replacementInfo, wMCONSUMERCHANNELTYPE, options);
+        async getAnOrder(purchaseOrderId: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, productInfo?: string, replacementInfo?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2002>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getAnOrder(purchaseOrderId, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, productInfo, replacementInfo, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Refunds one or more order lines that have been shipped. The response to a successful call contains the order with the refunded line items
          * @summary Refund Order Lines
          * @param {string} purchaseOrderId purchaseOrderId
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -4998,15 +5130,14 @@ export const OrdersApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async refundOrderLines(purchaseOrderId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject1: InlineObject1, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.refundOrderLines(purchaseOrderId, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject1, wMCONSUMERCHANNELTYPE, options);
+        async refundOrderLines(purchaseOrderId: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject1: InlineObject1, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.refundOrderLines(purchaseOrderId, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject1, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Updates the status of order lines to Shipped and trigger the charge to the customer. The response to a successful call contains the order with the shipped line items.
          * @summary Ship Order Lines
          * @param {string} purchaseOrderId purchaseOrderId
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -5015,8 +5146,8 @@ export const OrdersApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async shippingUpdates(purchaseOrderId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.shippingUpdates(purchaseOrderId, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject, wMCONSUMERCHANNELTYPE, options);
+        async shippingUpdates(purchaseOrderId: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.shippingUpdates(purchaseOrderId, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -5033,7 +5164,6 @@ export const OrdersApiFactory = function (configuration?: Configuration, basePat
          * You can use this API to acknowledge an entire order, including all of its order lines. The response to a successful call contains the acknowledged order.
          * @summary Acknowledge Orders
          * @param {string} purchaseOrderId purchaseOrderId
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -5041,14 +5171,13 @@ export const OrdersApiFactory = function (configuration?: Configuration, basePat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        acknowledgeOrders(purchaseOrderId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse200> {
-            return localVarFp.acknowledgeOrders(purchaseOrderId, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        acknowledgeOrders(purchaseOrderId: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse200> {
+            return localVarFp.acknowledgeOrders(purchaseOrderId, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
          * You can cancel one or more order lines. You must include a purchaseOrderId when cancelling an order line. The response to a successful call contains the order with the cancelled line items
          * @summary Cancel Order Lines
          * @param {string} purchaseOrderId purchaseOrderId
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -5057,13 +5186,12 @@ export const OrdersApiFactory = function (configuration?: Configuration, basePat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        cancelOrderLines(purchaseOrderId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject2: InlineObject2, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse200> {
-            return localVarFp.cancelOrderLines(purchaseOrderId, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject2, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        cancelOrderLines(purchaseOrderId: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject2: InlineObject2, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse200> {
+            return localVarFp.cancelOrderLines(purchaseOrderId, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject2, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
          * Retrieves the details of all the orders for specified search criteria.  Only orders created in last 180 days and a maximum of 20000 orders can be fetched at a time. Attempting to download more than 20000 orders will return an error.
          * @summary All orders
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -5087,13 +5215,12 @@ export const OrdersApiFactory = function (configuration?: Configuration, basePat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAllOrders(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, sku?: string, customerOrderId?: string, purchaseOrderId?: string, status?: string, createdStartDate?: string, createdEndDate?: string, fromExpectedShipDate?: string, toExpectedShipDate?: string, lastModifiedStartDate?: string, lastModifiedEndDate?: string, limit?: string, productInfo?: string, shipNodeType?: string, shippingProgramType?: string, replacementInfo?: string, orderType?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2001> {
-            return localVarFp.getAllOrders(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, sku, customerOrderId, purchaseOrderId, status, createdStartDate, createdEndDate, fromExpectedShipDate, toExpectedShipDate, lastModifiedStartDate, lastModifiedEndDate, limit, productInfo, shipNodeType, shippingProgramType, replacementInfo, orderType, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        getAllOrders(wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, sku?: string, customerOrderId?: string, purchaseOrderId?: string, status?: string, createdStartDate?: string, createdEndDate?: string, fromExpectedShipDate?: string, toExpectedShipDate?: string, lastModifiedStartDate?: string, lastModifiedEndDate?: string, limit?: string, productInfo?: string, shipNodeType?: string, shippingProgramType?: string, replacementInfo?: string, orderType?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2001> {
+            return localVarFp.getAllOrders(wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, sku, customerOrderId, purchaseOrderId, status, createdStartDate, createdEndDate, fromExpectedShipDate, toExpectedShipDate, lastModifiedStartDate, lastModifiedEndDate, limit, productInfo, shipNodeType, shippingProgramType, replacementInfo, orderType, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
          * Retrieves all the orders with line items that are in the \"created\" status, that is, these orders have been released from the Walmart Order Management System to the seller for processing. The released orders are the orders that are ready for a seller to fulfill.  Only orders created in last 180 days and a maximum of 20000 orders can be fetched at a time. Attempting to download more than 20000 orders will return an error.
          * @summary All released orders
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -5114,14 +5241,13 @@ export const OrdersApiFactory = function (configuration?: Configuration, basePat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAllReleasedOrders(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, createdStartDate?: string, createdEndDate?: string, limit?: string, productInfo?: string, shipNodeType?: string, sku?: string, customerOrderId?: string, purchaseOrderId?: string, fromExpectedShipDate?: string, toExpectedShipDate?: string, shippingProgramType?: string, replacementInfo?: string, orderType?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2001> {
-            return localVarFp.getAllReleasedOrders(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, createdStartDate, createdEndDate, limit, productInfo, shipNodeType, sku, customerOrderId, purchaseOrderId, fromExpectedShipDate, toExpectedShipDate, shippingProgramType, replacementInfo, orderType, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        getAllReleasedOrders(wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, createdStartDate?: string, createdEndDate?: string, limit?: string, productInfo?: string, shipNodeType?: string, sku?: string, customerOrderId?: string, purchaseOrderId?: string, fromExpectedShipDate?: string, toExpectedShipDate?: string, shippingProgramType?: string, replacementInfo?: string, orderType?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2001> {
+            return localVarFp.getAllReleasedOrders(wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, createdStartDate, createdEndDate, limit, productInfo, shipNodeType, sku, customerOrderId, purchaseOrderId, fromExpectedShipDate, toExpectedShipDate, shippingProgramType, replacementInfo, orderType, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
          * Retrieves an order detail for a specific purchaseOrderId
          * @summary An order
          * @param {string} purchaseOrderId purchaseOrderId
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -5131,14 +5257,13 @@ export const OrdersApiFactory = function (configuration?: Configuration, basePat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAnOrder(purchaseOrderId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, productInfo?: string, replacementInfo?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2002> {
-            return localVarFp.getAnOrder(purchaseOrderId, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, productInfo, replacementInfo, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        getAnOrder(purchaseOrderId: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, productInfo?: string, replacementInfo?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2002> {
+            return localVarFp.getAnOrder(purchaseOrderId, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, productInfo, replacementInfo, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
          * Refunds one or more order lines that have been shipped. The response to a successful call contains the order with the refunded line items
          * @summary Refund Order Lines
          * @param {string} purchaseOrderId purchaseOrderId
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -5147,14 +5272,13 @@ export const OrdersApiFactory = function (configuration?: Configuration, basePat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        refundOrderLines(purchaseOrderId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject1: InlineObject1, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse200> {
-            return localVarFp.refundOrderLines(purchaseOrderId, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject1, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        refundOrderLines(purchaseOrderId: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject1: InlineObject1, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse200> {
+            return localVarFp.refundOrderLines(purchaseOrderId, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject1, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
          * Updates the status of order lines to Shipped and trigger the charge to the customer. The response to a successful call contains the order with the shipped line items.
          * @summary Ship Order Lines
          * @param {string} purchaseOrderId purchaseOrderId
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -5163,8 +5287,8 @@ export const OrdersApiFactory = function (configuration?: Configuration, basePat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        shippingUpdates(purchaseOrderId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse200> {
-            return localVarFp.shippingUpdates(purchaseOrderId, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        shippingUpdates(purchaseOrderId: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse200> {
+            return localVarFp.shippingUpdates(purchaseOrderId, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -5181,13 +5305,6 @@ export interface OrdersApiAcknowledgeOrdersRequest {
      * @memberof OrdersApiAcknowledgeOrders
      */
     readonly purchaseOrderId: string
-
-    /**
-     * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @type {string}
-     * @memberof OrdersApiAcknowledgeOrders
-     */
-    readonly authorization: string
 
     /**
      * The access token retrieved in the Token API call
@@ -5232,13 +5349,6 @@ export interface OrdersApiCancelOrderLinesRequest {
     readonly purchaseOrderId: string
 
     /**
-     * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @type {string}
-     * @memberof OrdersApiCancelOrderLines
-     */
-    readonly authorization: string
-
-    /**
      * The access token retrieved in the Token API call
      * @type {string}
      * @memberof OrdersApiCancelOrderLines
@@ -5280,13 +5390,6 @@ export interface OrdersApiCancelOrderLinesRequest {
  * @interface OrdersApiGetAllOrdersRequest
  */
 export interface OrdersApiGetAllOrdersRequest {
-    /**
-     * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @type {string}
-     * @memberof OrdersApiGetAllOrders
-     */
-    readonly authorization: string
-
     /**
      * The access token retrieved in the Token API call
      * @type {string}
@@ -5435,13 +5538,6 @@ export interface OrdersApiGetAllOrdersRequest {
  */
 export interface OrdersApiGetAllReleasedOrdersRequest {
     /**
-     * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @type {string}
-     * @memberof OrdersApiGetAllReleasedOrders
-     */
-    readonly authorization: string
-
-    /**
      * The access token retrieved in the Token API call
      * @type {string}
      * @memberof OrdersApiGetAllReleasedOrders
@@ -5575,13 +5671,6 @@ export interface OrdersApiGetAnOrderRequest {
     readonly purchaseOrderId: string
 
     /**
-     * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @type {string}
-     * @memberof OrdersApiGetAnOrder
-     */
-    readonly authorization: string
-
-    /**
      * The access token retrieved in the Token API call
      * @type {string}
      * @memberof OrdersApiGetAnOrder
@@ -5638,13 +5727,6 @@ export interface OrdersApiRefundOrderLinesRequest {
     readonly purchaseOrderId: string
 
     /**
-     * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @type {string}
-     * @memberof OrdersApiRefundOrderLines
-     */
-    readonly authorization: string
-
-    /**
      * The access token retrieved in the Token API call
      * @type {string}
      * @memberof OrdersApiRefundOrderLines
@@ -5692,13 +5774,6 @@ export interface OrdersApiShippingUpdatesRequest {
      * @memberof OrdersApiShippingUpdates
      */
     readonly purchaseOrderId: string
-
-    /**
-     * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @type {string}
-     * @memberof OrdersApiShippingUpdates
-     */
-    readonly authorization: string
 
     /**
      * The access token retrieved in the Token API call
@@ -5752,7 +5827,7 @@ export class OrdersApi extends BaseAPI {
      * @memberof OrdersApi
      */
     public acknowledgeOrders(requestParameters: OrdersApiAcknowledgeOrdersRequest, options?: any) {
-        return OrdersApiFp(this.configuration).acknowledgeOrders(requestParameters.purchaseOrderId, requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+        return OrdersApiFp(this.configuration).acknowledgeOrders(requestParameters.purchaseOrderId, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -5764,7 +5839,7 @@ export class OrdersApi extends BaseAPI {
      * @memberof OrdersApi
      */
     public cancelOrderLines(requestParameters: OrdersApiCancelOrderLinesRequest, options?: any) {
-        return OrdersApiFp(this.configuration).cancelOrderLines(requestParameters.purchaseOrderId, requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.inlineObject2, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+        return OrdersApiFp(this.configuration).cancelOrderLines(requestParameters.purchaseOrderId, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.inlineObject2, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -5776,7 +5851,7 @@ export class OrdersApi extends BaseAPI {
      * @memberof OrdersApi
      */
     public getAllOrders(requestParameters: OrdersApiGetAllOrdersRequest, options?: any) {
-        return OrdersApiFp(this.configuration).getAllOrders(requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.sku, requestParameters.customerOrderId, requestParameters.purchaseOrderId, requestParameters.status, requestParameters.createdStartDate, requestParameters.createdEndDate, requestParameters.fromExpectedShipDate, requestParameters.toExpectedShipDate, requestParameters.lastModifiedStartDate, requestParameters.lastModifiedEndDate, requestParameters.limit, requestParameters.productInfo, requestParameters.shipNodeType, requestParameters.shippingProgramType, requestParameters.replacementInfo, requestParameters.orderType, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+        return OrdersApiFp(this.configuration).getAllOrders(requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.sku, requestParameters.customerOrderId, requestParameters.purchaseOrderId, requestParameters.status, requestParameters.createdStartDate, requestParameters.createdEndDate, requestParameters.fromExpectedShipDate, requestParameters.toExpectedShipDate, requestParameters.lastModifiedStartDate, requestParameters.lastModifiedEndDate, requestParameters.limit, requestParameters.productInfo, requestParameters.shipNodeType, requestParameters.shippingProgramType, requestParameters.replacementInfo, requestParameters.orderType, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -5788,7 +5863,7 @@ export class OrdersApi extends BaseAPI {
      * @memberof OrdersApi
      */
     public getAllReleasedOrders(requestParameters: OrdersApiGetAllReleasedOrdersRequest, options?: any) {
-        return OrdersApiFp(this.configuration).getAllReleasedOrders(requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.createdStartDate, requestParameters.createdEndDate, requestParameters.limit, requestParameters.productInfo, requestParameters.shipNodeType, requestParameters.sku, requestParameters.customerOrderId, requestParameters.purchaseOrderId, requestParameters.fromExpectedShipDate, requestParameters.toExpectedShipDate, requestParameters.shippingProgramType, requestParameters.replacementInfo, requestParameters.orderType, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+        return OrdersApiFp(this.configuration).getAllReleasedOrders(requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.createdStartDate, requestParameters.createdEndDate, requestParameters.limit, requestParameters.productInfo, requestParameters.shipNodeType, requestParameters.sku, requestParameters.customerOrderId, requestParameters.purchaseOrderId, requestParameters.fromExpectedShipDate, requestParameters.toExpectedShipDate, requestParameters.shippingProgramType, requestParameters.replacementInfo, requestParameters.orderType, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -5800,7 +5875,7 @@ export class OrdersApi extends BaseAPI {
      * @memberof OrdersApi
      */
     public getAnOrder(requestParameters: OrdersApiGetAnOrderRequest, options?: any) {
-        return OrdersApiFp(this.configuration).getAnOrder(requestParameters.purchaseOrderId, requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.productInfo, requestParameters.replacementInfo, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+        return OrdersApiFp(this.configuration).getAnOrder(requestParameters.purchaseOrderId, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.productInfo, requestParameters.replacementInfo, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -5812,7 +5887,7 @@ export class OrdersApi extends BaseAPI {
      * @memberof OrdersApi
      */
     public refundOrderLines(requestParameters: OrdersApiRefundOrderLinesRequest, options?: any) {
-        return OrdersApiFp(this.configuration).refundOrderLines(requestParameters.purchaseOrderId, requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.inlineObject1, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+        return OrdersApiFp(this.configuration).refundOrderLines(requestParameters.purchaseOrderId, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.inlineObject1, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -5824,7 +5899,7 @@ export class OrdersApi extends BaseAPI {
      * @memberof OrdersApi
      */
     public shippingUpdates(requestParameters: OrdersApiShippingUpdatesRequest, options?: any) {
-        return OrdersApiFp(this.configuration).shippingUpdates(requestParameters.purchaseOrderId, requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.inlineObject, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+        return OrdersApiFp(this.configuration).shippingUpdates(requestParameters.purchaseOrderId, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.inlineObject, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

@@ -45,19 +45,19 @@ export interface InlineResponse200 {
      * @type {string}
      * @memberof InlineResponse200
      */
-    accessToken: string;
+    access_token: string;
     /**
      * Type of token according to user. (e.g., \'BEARER\')
      * @type {string}
      * @memberof InlineResponse200
      */
-    tokenType?: string;
+    token_type?: string;
     /**
      * Seconds until expiration of token
      * @type {number}
      * @memberof InlineResponse200
      */
-    expiresIn?: number;
+    expires_in?: number;
 }
 /**
  * 
@@ -542,18 +542,15 @@ export const AuthenticationApiAxiosParamCreator = function (configuration?: Conf
          * Retrieves information on the access levels delegated by Sellers for their Solution Providers. The scope includes a range of API categories and their corresponding access levels, for example Reports: View Only, Item: Full Access, etc.
          * @summary Token Detail
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
          * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getTokenDetail: async (wMSECACCESSTOKEN: string, authorization: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
+        getTokenDetail: async (wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
             assertParamExists('getTokenDetail', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN)
-            // verify required parameter 'authorization' is not null or undefined
-            assertParamExists('getTokenDetail', 'authorization', authorization)
             // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
             assertParamExists('getTokenDetail', 'wMQOSCORRELATIONID', wMQOSCORRELATIONID)
             // verify required parameter 'wMSVCNAME' is not null or undefined
@@ -576,10 +573,6 @@ export const AuthenticationApiAxiosParamCreator = function (configuration?: Conf
 
             if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
                 localVarHeaderParameter['WM_SEC.ACCESS_TOKEN'] = String(wMSECACCESSTOKEN);
-            }
-
-            if (authorization !== undefined && authorization !== null) {
-                localVarHeaderParameter['Authorization'] = String(authorization);
             }
 
             if (wMCONSUMERCHANNELTYPE !== undefined && wMCONSUMERCHANNELTYPE !== null) {
@@ -690,15 +683,14 @@ export const AuthenticationApiFp = function(configuration?: Configuration) {
          * Retrieves information on the access levels delegated by Sellers for their Solution Providers. The scope includes a range of API categories and their corresponding access levels, for example Reports: View Only, Item: Full Access, etc.
          * @summary Token Detail
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
          * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getTokenDetail(wMSECACCESSTOKEN: string, authorization: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getTokenDetail(wMSECACCESSTOKEN, authorization, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options);
+        async getTokenDetail(wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getTokenDetail(wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -730,15 +722,14 @@ export const AuthenticationApiFactory = function (configuration?: Configuration,
          * Retrieves information on the access levels delegated by Sellers for their Solution Providers. The scope includes a range of API categories and their corresponding access levels, for example Reports: View Only, Item: Full Access, etc.
          * @summary Token Detail
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
          * @param {string} [wMCONSUMERCHANNELTYPE] A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getTokenDetail(wMSECACCESSTOKEN: string, authorization: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2001> {
-            return localVarFp.getTokenDetail(wMSECACCESSTOKEN, authorization, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        getTokenDetail(wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2001> {
+            return localVarFp.getTokenDetail(wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
          * Get access token by providing Client ID and Client Secret.
@@ -769,13 +760,6 @@ export interface AuthenticationApiGetTokenDetailRequest {
      * @memberof AuthenticationApiGetTokenDetail
      */
     readonly wMSECACCESSTOKEN: string
-
-    /**
-     * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @type {string}
-     * @memberof AuthenticationApiGetTokenDetail
-     */
-    readonly authorization: string
 
     /**
      * A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
@@ -857,7 +841,7 @@ export class AuthenticationApi extends BaseAPI {
      * @memberof AuthenticationApi
      */
     public getTokenDetail(requestParameters: AuthenticationApiGetTokenDetailRequest, options?: any) {
-        return AuthenticationApiFp(this.configuration).getTokenDetail(requestParameters.wMSECACCESSTOKEN, requestParameters.authorization, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+        return AuthenticationApiFp(this.configuration).getTokenDetail(requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

@@ -1255,7 +1255,6 @@ export const InventoryApiAxiosParamCreator = function (configuration?: Configura
          * You can use this API to get the inventory for a given item.
          * @summary Inventory
          * @param {string} sku An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: \&#39;:\&#39;, \&#39;/\&#39;, \&#39;?\&#39;, \&#39;#\&#39;, \&#39;[\&#39;, \&#39;]\&#39;, \&#39;@\&#39;, \&#39;!\&#39;, \&#39;$\&#39;, \&#39;&amp;\&#39;, \&quot;\&#39;\&quot;, \&#39;(\&#39;, \&#39;)\&#39;, \&#39;*\&#39;, \&#39;+\&#39;, \&#39;,\&#39;, \&#39;;\&#39;, \&#39;&#x3D;\&#39;, ‘ ’, \&#39;{\&#39;, \&#39;}\&#39; as well as \&#39;%\&#39; itself if it\&#39;s a part of sku. Make sure to encode space with %20. Other characters don\&#39;t need to be encoded.
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -1264,11 +1263,9 @@ export const InventoryApiAxiosParamCreator = function (configuration?: Configura
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getInventory: async (sku: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, shipNode?: string, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
+        getInventory: async (sku: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, shipNode?: string, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'sku' is not null or undefined
             assertParamExists('getInventory', 'sku', sku)
-            // verify required parameter 'authorization' is not null or undefined
-            assertParamExists('getInventory', 'authorization', authorization)
             // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
             assertParamExists('getInventory', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN)
             // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
@@ -1287,20 +1284,12 @@ export const InventoryApiAxiosParamCreator = function (configuration?: Configura
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication basicScheme required
-            // http basic authentication required
-            setBasicAuthToObject(localVarRequestOptions, configuration)
-
             if (sku !== undefined) {
                 localVarQueryParameter['sku'] = sku;
             }
 
             if (shipNode !== undefined) {
                 localVarQueryParameter['shipNode'] = shipNode;
-            }
-
-            if (authorization !== undefined && authorization !== null) {
-                localVarHeaderParameter['Authorization'] = String(authorization);
             }
 
             if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
@@ -1333,7 +1322,6 @@ export const InventoryApiAxiosParamCreator = function (configuration?: Configura
         /**
          * This API will retrieve the inventory count for all of a seller\'s items across all ship nodes by item to ship node mapping. Inventory can be zero or non-zero. Please note that NextCursor value changes and it needs to be passed on from the previous call to next call.
          * @summary Multiple Item Inventory for All Ship Nodes
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -1343,9 +1331,7 @@ export const InventoryApiAxiosParamCreator = function (configuration?: Configura
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getMultiNodeInventoryForAllSkuAndAllShipNodes: async (authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, limit?: string, nextCursor?: string, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'authorization' is not null or undefined
-            assertParamExists('getMultiNodeInventoryForAllSkuAndAllShipNodes', 'authorization', authorization)
+        getMultiNodeInventoryForAllSkuAndAllShipNodes: async (wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, limit?: string, nextCursor?: string, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
             assertParamExists('getMultiNodeInventoryForAllSkuAndAllShipNodes', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN)
             // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
@@ -1364,20 +1350,12 @@ export const InventoryApiAxiosParamCreator = function (configuration?: Configura
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication basicScheme required
-            // http basic authentication required
-            setBasicAuthToObject(localVarRequestOptions, configuration)
-
             if (limit !== undefined) {
                 localVarQueryParameter['limit'] = limit;
             }
 
             if (nextCursor !== undefined) {
                 localVarQueryParameter['nextCursor'] = nextCursor;
-            }
-
-            if (authorization !== undefined && authorization !== null) {
-                localVarHeaderParameter['Authorization'] = String(authorization);
             }
 
             if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
@@ -1411,7 +1389,6 @@ export const InventoryApiAxiosParamCreator = function (configuration?: Configura
          * This API will retrieve the inventory count for an item across all ship nodes or one specific ship node. You can specify the ship node for which you want to fetch the inventory
          * @summary Single Item Inventory by Ship Node
          * @param {string} sku An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: \&#39;:\&#39;, \&#39;/\&#39;, \&#39;?\&#39;, \&#39;#\&#39;, \&#39;[\&#39;, \&#39;]\&#39;, \&#39;@\&#39;, \&#39;!\&#39;, \&#39;$\&#39;, \&#39;&amp;\&#39;, \&quot;\&#39;\&quot;, \&#39;(\&#39;, \&#39;)\&#39;, \&#39;*\&#39;, \&#39;+\&#39;, \&#39;,\&#39;, \&#39;;\&#39;, \&#39;&#x3D;\&#39;, ‘ ’ as well as \&#39;%\&#39; itself if it\&#39;s a part of sku. Make sure to encode space with %20. Other characters don\&#39;t need to be encoded.
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -1420,11 +1397,9 @@ export const InventoryApiAxiosParamCreator = function (configuration?: Configura
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getMultiNodeInventoryForSkuAndAllShipnodes: async (sku: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, shipNode?: string, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
+        getMultiNodeInventoryForSkuAndAllShipnodes: async (sku: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, shipNode?: string, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'sku' is not null or undefined
             assertParamExists('getMultiNodeInventoryForSkuAndAllShipnodes', 'sku', sku)
-            // verify required parameter 'authorization' is not null or undefined
-            assertParamExists('getMultiNodeInventoryForSkuAndAllShipnodes', 'authorization', authorization)
             // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
             assertParamExists('getMultiNodeInventoryForSkuAndAllShipnodes', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN)
             // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
@@ -1444,16 +1419,8 @@ export const InventoryApiAxiosParamCreator = function (configuration?: Configura
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication basicScheme required
-            // http basic authentication required
-            setBasicAuthToObject(localVarRequestOptions, configuration)
-
             if (shipNode !== undefined) {
                 localVarQueryParameter['shipNode'] = shipNode;
-            }
-
-            if (authorization !== undefined && authorization !== null) {
-                localVarHeaderParameter['Authorization'] = String(authorization);
             }
 
             if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
@@ -1486,7 +1453,6 @@ export const InventoryApiAxiosParamCreator = function (configuration?: Configura
         /**
          * You can use this API to get the current Available to Sell inventory quantities for all WFS items in your catalog. You can also query specific SKUs or filter to only items updated after a specific date in order to reduce the response size.
          * @summary WFS Inventory
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -1499,9 +1465,7 @@ export const InventoryApiAxiosParamCreator = function (configuration?: Configura
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getWFSInventory: async (authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, sku?: string, fromModifiedDate?: string, toModifiedDate?: string, limit?: string, offset?: string, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'authorization' is not null or undefined
-            assertParamExists('getWFSInventory', 'authorization', authorization)
+        getWFSInventory: async (wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, sku?: string, fromModifiedDate?: string, toModifiedDate?: string, limit?: string, offset?: string, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
             assertParamExists('getWFSInventory', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN)
             // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
@@ -1519,10 +1483,6 @@ export const InventoryApiAxiosParamCreator = function (configuration?: Configura
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-
-            // authentication basicScheme required
-            // http basic authentication required
-            setBasicAuthToObject(localVarRequestOptions, configuration)
 
             if (sku !== undefined) {
                 localVarQueryParameter['sku'] = sku;
@@ -1542,10 +1502,6 @@ export const InventoryApiAxiosParamCreator = function (configuration?: Configura
 
             if (offset !== undefined) {
                 localVarQueryParameter['offset'] = offset;
-            }
-
-            if (authorization !== undefined && authorization !== null) {
-                localVarHeaderParameter['Authorization'] = String(authorization);
             }
 
             if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
@@ -1579,7 +1535,6 @@ export const InventoryApiAxiosParamCreator = function (configuration?: Configura
          * Updates inventory for items in bulk.  Seller Can either use feed type \"inventory\" or \"MP_INVENTORY\"  * Inventory spec 1.4 feed type: inventory  * Inventory spec 1.5 feed type: MP_INVENTORY   Please Note: Multi Node Inventory Update Feed (feedType=MP_INVENTORY) only supports JSON Request and Responses. Refer to \"MultiNode_Bulk_Inventory_Update_Request.json\" for the corresponding request sample    Refer to the <a href=\"https://developer.walmart.com/doc/us/us-mp/us-mp-inventory/\">guide section</a> for more detailed guide around each of the feed types    Refer to the throttling limits before uploading the Feed Files.
          * @summary Bulk Item Inventory Update
          * @param {'inventory' | 'MP_INVENTORY'} feedType The feed Type
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -1589,11 +1544,9 @@ export const InventoryApiAxiosParamCreator = function (configuration?: Configura
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateBulkInventory: async (feedType: 'inventory' | 'MP_INVENTORY', authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, file: any, shipNode?: string, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
+        updateBulkInventory: async (feedType: 'inventory' | 'MP_INVENTORY', wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, file: any, shipNode?: string, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'feedType' is not null or undefined
             assertParamExists('updateBulkInventory', 'feedType', feedType)
-            // verify required parameter 'authorization' is not null or undefined
-            assertParamExists('updateBulkInventory', 'authorization', authorization)
             // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
             assertParamExists('updateBulkInventory', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN)
             // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
@@ -1615,20 +1568,12 @@ export const InventoryApiAxiosParamCreator = function (configuration?: Configura
             const localVarQueryParameter = {} as any;
             const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)();
 
-            // authentication basicScheme required
-            // http basic authentication required
-            setBasicAuthToObject(localVarRequestOptions, configuration)
-
             if (feedType !== undefined) {
                 localVarQueryParameter['feedType'] = feedType;
             }
 
             if (shipNode !== undefined) {
                 localVarQueryParameter['shipNode'] = shipNode;
-            }
-
-            if (authorization !== undefined && authorization !== null) {
-                localVarHeaderParameter['Authorization'] = String(authorization);
             }
 
             if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
@@ -1669,7 +1614,6 @@ export const InventoryApiAxiosParamCreator = function (configuration?: Configura
          * Updates the inventory for a given item.
          * @summary Update inventory
          * @param {string} sku An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: \&#39;:\&#39;, \&#39;/\&#39;, \&#39;?\&#39;, \&#39;#\&#39;, \&#39;[\&#39;, \&#39;]\&#39;, \&#39;@\&#39;, \&#39;!\&#39;, \&#39;$\&#39;, \&#39;&amp;\&#39;, \&quot;\&#39;\&quot;, \&#39;(\&#39;, \&#39;)\&#39;, \&#39;*\&#39;, \&#39;+\&#39;, \&#39;,\&#39;, \&#39;;\&#39;, \&#39;&#x3D;\&#39;, ‘ ’, \&#39;{\&#39;, \&#39;}\&#39; as well as \&#39;%\&#39; itself if it\&#39;s a part of sku. Make sure to encode space with %20. Other characters don\&#39;t need to be encoded.
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -1679,11 +1623,9 @@ export const InventoryApiAxiosParamCreator = function (configuration?: Configura
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateInventoryForAnItem: async (sku: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, shipNode?: string, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
+        updateInventoryForAnItem: async (sku: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, shipNode?: string, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'sku' is not null or undefined
             assertParamExists('updateInventoryForAnItem', 'sku', sku)
-            // verify required parameter 'authorization' is not null or undefined
-            assertParamExists('updateInventoryForAnItem', 'authorization', authorization)
             // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
             assertParamExists('updateInventoryForAnItem', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN)
             // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
@@ -1704,20 +1646,12 @@ export const InventoryApiAxiosParamCreator = function (configuration?: Configura
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication basicScheme required
-            // http basic authentication required
-            setBasicAuthToObject(localVarRequestOptions, configuration)
-
             if (sku !== undefined) {
                 localVarQueryParameter['sku'] = sku;
             }
 
             if (shipNode !== undefined) {
                 localVarQueryParameter['shipNode'] = shipNode;
-            }
-
-            if (authorization !== undefined && authorization !== null) {
-                localVarHeaderParameter['Authorization'] = String(authorization);
             }
 
             if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
@@ -1738,7 +1672,7 @@ export const InventoryApiAxiosParamCreator = function (configuration?: Configura
 
 
     
-            localVarHeaderParameter['Content-Type'] = 'application/xml';
+            localVarHeaderParameter['Content-Type'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -1754,7 +1688,6 @@ export const InventoryApiAxiosParamCreator = function (configuration?: Configura
          * This API will update the inventory for an item across one or more fulfillment centers, known as ship nodes.
          * @summary Update Item Inventory per Ship Node
          * @param {string} sku An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: \&#39;:\&#39;, \&#39;/\&#39;, \&#39;?\&#39;, \&#39;#\&#39;, \&#39;[\&#39;, \&#39;]\&#39;, \&#39;@\&#39;, \&#39;!\&#39;, \&#39;$\&#39;, \&#39;&amp;\&#39;, \&quot;\&#39;\&quot;, \&#39;(\&#39;, \&#39;)\&#39;, \&#39;*\&#39;, \&#39;+\&#39;, \&#39;,\&#39;, \&#39;;\&#39;, \&#39;&#x3D;\&#39;, ‘ ’ as well as \&#39;%\&#39; itself if it\&#39;s a part of sku. Make sure to encode space with %20. Other characters don\&#39;t need to be encoded.
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -1763,11 +1696,9 @@ export const InventoryApiAxiosParamCreator = function (configuration?: Configura
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateMultiNodeInventory: async (sku: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject1: InlineObject1, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
+        updateMultiNodeInventory: async (sku: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject1: InlineObject1, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'sku' is not null or undefined
             assertParamExists('updateMultiNodeInventory', 'sku', sku)
-            // verify required parameter 'authorization' is not null or undefined
-            assertParamExists('updateMultiNodeInventory', 'authorization', authorization)
             // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
             assertParamExists('updateMultiNodeInventory', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN)
             // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
@@ -1788,14 +1719,6 @@ export const InventoryApiAxiosParamCreator = function (configuration?: Configura
             const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-
-            // authentication basicScheme required
-            // http basic authentication required
-            setBasicAuthToObject(localVarRequestOptions, configuration)
-
-            if (authorization !== undefined && authorization !== null) {
-                localVarHeaderParameter['Authorization'] = String(authorization);
-            }
 
             if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
                 localVarHeaderParameter['WM_SEC.ACCESS_TOKEN'] = String(wMSECACCESSTOKEN);
@@ -1841,7 +1764,6 @@ export const InventoryApiFp = function(configuration?: Configuration) {
          * You can use this API to get the inventory for a given item.
          * @summary Inventory
          * @param {string} sku An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: \&#39;:\&#39;, \&#39;/\&#39;, \&#39;?\&#39;, \&#39;#\&#39;, \&#39;[\&#39;, \&#39;]\&#39;, \&#39;@\&#39;, \&#39;!\&#39;, \&#39;$\&#39;, \&#39;&amp;\&#39;, \&quot;\&#39;\&quot;, \&#39;(\&#39;, \&#39;)\&#39;, \&#39;*\&#39;, \&#39;+\&#39;, \&#39;,\&#39;, \&#39;;\&#39;, \&#39;&#x3D;\&#39;, ‘ ’, \&#39;{\&#39;, \&#39;}\&#39; as well as \&#39;%\&#39; itself if it\&#39;s a part of sku. Make sure to encode space with %20. Other characters don\&#39;t need to be encoded.
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -1850,14 +1772,13 @@ export const InventoryApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getInventory(sku: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, shipNode?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getInventory(sku, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, shipNode, wMCONSUMERCHANNELTYPE, options);
+        async getInventory(sku: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, shipNode?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getInventory(sku, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, shipNode, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * This API will retrieve the inventory count for all of a seller\'s items across all ship nodes by item to ship node mapping. Inventory can be zero or non-zero. Please note that NextCursor value changes and it needs to be passed on from the previous call to next call.
          * @summary Multiple Item Inventory for All Ship Nodes
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -1867,15 +1788,14 @@ export const InventoryApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getMultiNodeInventoryForAllSkuAndAllShipNodes(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, limit?: string, nextCursor?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2004>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getMultiNodeInventoryForAllSkuAndAllShipNodes(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, limit, nextCursor, wMCONSUMERCHANNELTYPE, options);
+        async getMultiNodeInventoryForAllSkuAndAllShipNodes(wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, limit?: string, nextCursor?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2004>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getMultiNodeInventoryForAllSkuAndAllShipNodes(wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, limit, nextCursor, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * This API will retrieve the inventory count for an item across all ship nodes or one specific ship node. You can specify the ship node for which you want to fetch the inventory
          * @summary Single Item Inventory by Ship Node
          * @param {string} sku An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: \&#39;:\&#39;, \&#39;/\&#39;, \&#39;?\&#39;, \&#39;#\&#39;, \&#39;[\&#39;, \&#39;]\&#39;, \&#39;@\&#39;, \&#39;!\&#39;, \&#39;$\&#39;, \&#39;&amp;\&#39;, \&quot;\&#39;\&quot;, \&#39;(\&#39;, \&#39;)\&#39;, \&#39;*\&#39;, \&#39;+\&#39;, \&#39;,\&#39;, \&#39;;\&#39;, \&#39;&#x3D;\&#39;, ‘ ’ as well as \&#39;%\&#39; itself if it\&#39;s a part of sku. Make sure to encode space with %20. Other characters don\&#39;t need to be encoded.
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -1884,14 +1804,13 @@ export const InventoryApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getMultiNodeInventoryForSkuAndAllShipnodes(sku: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, shipNode?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getMultiNodeInventoryForSkuAndAllShipnodes(sku, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, shipNode, wMCONSUMERCHANNELTYPE, options);
+        async getMultiNodeInventoryForSkuAndAllShipnodes(sku: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, shipNode?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getMultiNodeInventoryForSkuAndAllShipnodes(sku, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, shipNode, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * You can use this API to get the current Available to Sell inventory quantities for all WFS items in your catalog. You can also query specific SKUs or filter to only items updated after a specific date in order to reduce the response size.
          * @summary WFS Inventory
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -1904,15 +1823,14 @@ export const InventoryApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getWFSInventory(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, sku?: string, fromModifiedDate?: string, toModifiedDate?: string, limit?: string, offset?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2005>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getWFSInventory(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, sku, fromModifiedDate, toModifiedDate, limit, offset, wMCONSUMERCHANNELTYPE, options);
+        async getWFSInventory(wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, sku?: string, fromModifiedDate?: string, toModifiedDate?: string, limit?: string, offset?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2005>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getWFSInventory(wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, sku, fromModifiedDate, toModifiedDate, limit, offset, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Updates inventory for items in bulk.  Seller Can either use feed type \"inventory\" or \"MP_INVENTORY\"  * Inventory spec 1.4 feed type: inventory  * Inventory spec 1.5 feed type: MP_INVENTORY   Please Note: Multi Node Inventory Update Feed (feedType=MP_INVENTORY) only supports JSON Request and Responses. Refer to \"MultiNode_Bulk_Inventory_Update_Request.json\" for the corresponding request sample    Refer to the <a href=\"https://developer.walmart.com/doc/us/us-mp/us-mp-inventory/\">guide section</a> for more detailed guide around each of the feed types    Refer to the throttling limits before uploading the Feed Files.
          * @summary Bulk Item Inventory Update
          * @param {'inventory' | 'MP_INVENTORY'} feedType The feed Type
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -1922,15 +1840,14 @@ export const InventoryApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateBulkInventory(feedType: 'inventory' | 'MP_INVENTORY', authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, file: any, shipNode?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2003>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.updateBulkInventory(feedType, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, file, shipNode, wMCONSUMERCHANNELTYPE, options);
+        async updateBulkInventory(feedType: 'inventory' | 'MP_INVENTORY', wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, file: any, shipNode?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2003>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateBulkInventory(feedType, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, file, shipNode, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Updates the inventory for a given item.
          * @summary Update inventory
          * @param {string} sku An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: \&#39;:\&#39;, \&#39;/\&#39;, \&#39;?\&#39;, \&#39;#\&#39;, \&#39;[\&#39;, \&#39;]\&#39;, \&#39;@\&#39;, \&#39;!\&#39;, \&#39;$\&#39;, \&#39;&amp;\&#39;, \&quot;\&#39;\&quot;, \&#39;(\&#39;, \&#39;)\&#39;, \&#39;*\&#39;, \&#39;+\&#39;, \&#39;,\&#39;, \&#39;;\&#39;, \&#39;&#x3D;\&#39;, ‘ ’, \&#39;{\&#39;, \&#39;}\&#39; as well as \&#39;%\&#39; itself if it\&#39;s a part of sku. Make sure to encode space with %20. Other characters don\&#39;t need to be encoded.
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -1940,15 +1857,14 @@ export const InventoryApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateInventoryForAnItem(sku: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, shipNode?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineObject>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.updateInventoryForAnItem(sku, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject, shipNode, wMCONSUMERCHANNELTYPE, options);
+        async updateInventoryForAnItem(sku: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, shipNode?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineObject>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateInventoryForAnItem(sku, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject, shipNode, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * This API will update the inventory for an item across one or more fulfillment centers, known as ship nodes.
          * @summary Update Item Inventory per Ship Node
          * @param {string} sku An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: \&#39;:\&#39;, \&#39;/\&#39;, \&#39;?\&#39;, \&#39;#\&#39;, \&#39;[\&#39;, \&#39;]\&#39;, \&#39;@\&#39;, \&#39;!\&#39;, \&#39;$\&#39;, \&#39;&amp;\&#39;, \&quot;\&#39;\&quot;, \&#39;(\&#39;, \&#39;)\&#39;, \&#39;*\&#39;, \&#39;+\&#39;, \&#39;,\&#39;, \&#39;;\&#39;, \&#39;&#x3D;\&#39;, ‘ ’ as well as \&#39;%\&#39; itself if it\&#39;s a part of sku. Make sure to encode space with %20. Other characters don\&#39;t need to be encoded.
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -1957,8 +1873,8 @@ export const InventoryApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateMultiNodeInventory(sku: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject1: InlineObject1, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2002>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.updateMultiNodeInventory(sku, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject1, wMCONSUMERCHANNELTYPE, options);
+        async updateMultiNodeInventory(sku: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject1: InlineObject1, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2002>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateMultiNodeInventory(sku, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject1, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -1975,7 +1891,6 @@ export const InventoryApiFactory = function (configuration?: Configuration, base
          * You can use this API to get the inventory for a given item.
          * @summary Inventory
          * @param {string} sku An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: \&#39;:\&#39;, \&#39;/\&#39;, \&#39;?\&#39;, \&#39;#\&#39;, \&#39;[\&#39;, \&#39;]\&#39;, \&#39;@\&#39;, \&#39;!\&#39;, \&#39;$\&#39;, \&#39;&amp;\&#39;, \&quot;\&#39;\&quot;, \&#39;(\&#39;, \&#39;)\&#39;, \&#39;*\&#39;, \&#39;+\&#39;, \&#39;,\&#39;, \&#39;;\&#39;, \&#39;&#x3D;\&#39;, ‘ ’, \&#39;{\&#39;, \&#39;}\&#39; as well as \&#39;%\&#39; itself if it\&#39;s a part of sku. Make sure to encode space with %20. Other characters don\&#39;t need to be encoded.
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -1984,13 +1899,12 @@ export const InventoryApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getInventory(sku: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, shipNode?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse200> {
-            return localVarFp.getInventory(sku, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, shipNode, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        getInventory(sku: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, shipNode?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse200> {
+            return localVarFp.getInventory(sku, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, shipNode, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
          * This API will retrieve the inventory count for all of a seller\'s items across all ship nodes by item to ship node mapping. Inventory can be zero or non-zero. Please note that NextCursor value changes and it needs to be passed on from the previous call to next call.
          * @summary Multiple Item Inventory for All Ship Nodes
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -2000,14 +1914,13 @@ export const InventoryApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getMultiNodeInventoryForAllSkuAndAllShipNodes(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, limit?: string, nextCursor?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2004> {
-            return localVarFp.getMultiNodeInventoryForAllSkuAndAllShipNodes(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, limit, nextCursor, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        getMultiNodeInventoryForAllSkuAndAllShipNodes(wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, limit?: string, nextCursor?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2004> {
+            return localVarFp.getMultiNodeInventoryForAllSkuAndAllShipNodes(wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, limit, nextCursor, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
          * This API will retrieve the inventory count for an item across all ship nodes or one specific ship node. You can specify the ship node for which you want to fetch the inventory
          * @summary Single Item Inventory by Ship Node
          * @param {string} sku An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: \&#39;:\&#39;, \&#39;/\&#39;, \&#39;?\&#39;, \&#39;#\&#39;, \&#39;[\&#39;, \&#39;]\&#39;, \&#39;@\&#39;, \&#39;!\&#39;, \&#39;$\&#39;, \&#39;&amp;\&#39;, \&quot;\&#39;\&quot;, \&#39;(\&#39;, \&#39;)\&#39;, \&#39;*\&#39;, \&#39;+\&#39;, \&#39;,\&#39;, \&#39;;\&#39;, \&#39;&#x3D;\&#39;, ‘ ’ as well as \&#39;%\&#39; itself if it\&#39;s a part of sku. Make sure to encode space with %20. Other characters don\&#39;t need to be encoded.
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -2016,13 +1929,12 @@ export const InventoryApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getMultiNodeInventoryForSkuAndAllShipnodes(sku: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, shipNode?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2001> {
-            return localVarFp.getMultiNodeInventoryForSkuAndAllShipnodes(sku, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, shipNode, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        getMultiNodeInventoryForSkuAndAllShipnodes(sku: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, shipNode?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2001> {
+            return localVarFp.getMultiNodeInventoryForSkuAndAllShipnodes(sku, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, shipNode, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
          * You can use this API to get the current Available to Sell inventory quantities for all WFS items in your catalog. You can also query specific SKUs or filter to only items updated after a specific date in order to reduce the response size.
          * @summary WFS Inventory
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -2035,14 +1947,13 @@ export const InventoryApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getWFSInventory(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, sku?: string, fromModifiedDate?: string, toModifiedDate?: string, limit?: string, offset?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2005> {
-            return localVarFp.getWFSInventory(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, sku, fromModifiedDate, toModifiedDate, limit, offset, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        getWFSInventory(wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, sku?: string, fromModifiedDate?: string, toModifiedDate?: string, limit?: string, offset?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2005> {
+            return localVarFp.getWFSInventory(wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, sku, fromModifiedDate, toModifiedDate, limit, offset, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
          * Updates inventory for items in bulk.  Seller Can either use feed type \"inventory\" or \"MP_INVENTORY\"  * Inventory spec 1.4 feed type: inventory  * Inventory spec 1.5 feed type: MP_INVENTORY   Please Note: Multi Node Inventory Update Feed (feedType=MP_INVENTORY) only supports JSON Request and Responses. Refer to \"MultiNode_Bulk_Inventory_Update_Request.json\" for the corresponding request sample    Refer to the <a href=\"https://developer.walmart.com/doc/us/us-mp/us-mp-inventory/\">guide section</a> for more detailed guide around each of the feed types    Refer to the throttling limits before uploading the Feed Files.
          * @summary Bulk Item Inventory Update
          * @param {'inventory' | 'MP_INVENTORY'} feedType The feed Type
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -2052,14 +1963,13 @@ export const InventoryApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateBulkInventory(feedType: 'inventory' | 'MP_INVENTORY', authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, file: any, shipNode?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2003> {
-            return localVarFp.updateBulkInventory(feedType, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, file, shipNode, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        updateBulkInventory(feedType: 'inventory' | 'MP_INVENTORY', wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, file: any, shipNode?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2003> {
+            return localVarFp.updateBulkInventory(feedType, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, file, shipNode, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
          * Updates the inventory for a given item.
          * @summary Update inventory
          * @param {string} sku An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: \&#39;:\&#39;, \&#39;/\&#39;, \&#39;?\&#39;, \&#39;#\&#39;, \&#39;[\&#39;, \&#39;]\&#39;, \&#39;@\&#39;, \&#39;!\&#39;, \&#39;$\&#39;, \&#39;&amp;\&#39;, \&quot;\&#39;\&quot;, \&#39;(\&#39;, \&#39;)\&#39;, \&#39;*\&#39;, \&#39;+\&#39;, \&#39;,\&#39;, \&#39;;\&#39;, \&#39;&#x3D;\&#39;, ‘ ’, \&#39;{\&#39;, \&#39;}\&#39; as well as \&#39;%\&#39; itself if it\&#39;s a part of sku. Make sure to encode space with %20. Other characters don\&#39;t need to be encoded.
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -2069,14 +1979,13 @@ export const InventoryApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateInventoryForAnItem(sku: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, shipNode?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineObject> {
-            return localVarFp.updateInventoryForAnItem(sku, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject, shipNode, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        updateInventoryForAnItem(sku: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, shipNode?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineObject> {
+            return localVarFp.updateInventoryForAnItem(sku, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject, shipNode, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
          * This API will update the inventory for an item across one or more fulfillment centers, known as ship nodes.
          * @summary Update Item Inventory per Ship Node
          * @param {string} sku An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: \&#39;:\&#39;, \&#39;/\&#39;, \&#39;?\&#39;, \&#39;#\&#39;, \&#39;[\&#39;, \&#39;]\&#39;, \&#39;@\&#39;, \&#39;!\&#39;, \&#39;$\&#39;, \&#39;&amp;\&#39;, \&quot;\&#39;\&quot;, \&#39;(\&#39;, \&#39;)\&#39;, \&#39;*\&#39;, \&#39;+\&#39;, \&#39;,\&#39;, \&#39;;\&#39;, \&#39;&#x3D;\&#39;, ‘ ’ as well as \&#39;%\&#39; itself if it\&#39;s a part of sku. Make sure to encode space with %20. Other characters don\&#39;t need to be encoded.
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -2085,8 +1994,8 @@ export const InventoryApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateMultiNodeInventory(sku: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject1: InlineObject1, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2002> {
-            return localVarFp.updateMultiNodeInventory(sku, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject1, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        updateMultiNodeInventory(sku: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject1: InlineObject1, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2002> {
+            return localVarFp.updateMultiNodeInventory(sku, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject1, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -2103,13 +2012,6 @@ export interface InventoryApiGetInventoryRequest {
      * @memberof InventoryApiGetInventory
      */
     readonly sku: string
-
-    /**
-     * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @type {string}
-     * @memberof InventoryApiGetInventory
-     */
-    readonly authorization: string
 
     /**
      * The access token retrieved in the Token API call
@@ -2153,13 +2055,6 @@ export interface InventoryApiGetInventoryRequest {
  * @interface InventoryApiGetMultiNodeInventoryForAllSkuAndAllShipNodesRequest
  */
 export interface InventoryApiGetMultiNodeInventoryForAllSkuAndAllShipNodesRequest {
-    /**
-     * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @type {string}
-     * @memberof InventoryApiGetMultiNodeInventoryForAllSkuAndAllShipNodes
-     */
-    readonly authorization: string
-
     /**
      * The access token retrieved in the Token API call
      * @type {string}
@@ -2217,13 +2112,6 @@ export interface InventoryApiGetMultiNodeInventoryForSkuAndAllShipnodesRequest {
     readonly sku: string
 
     /**
-     * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @type {string}
-     * @memberof InventoryApiGetMultiNodeInventoryForSkuAndAllShipnodes
-     */
-    readonly authorization: string
-
-    /**
      * The access token retrieved in the Token API call
      * @type {string}
      * @memberof InventoryApiGetMultiNodeInventoryForSkuAndAllShipnodes
@@ -2265,13 +2153,6 @@ export interface InventoryApiGetMultiNodeInventoryForSkuAndAllShipnodesRequest {
  * @interface InventoryApiGetWFSInventoryRequest
  */
 export interface InventoryApiGetWFSInventoryRequest {
-    /**
-     * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @type {string}
-     * @memberof InventoryApiGetWFSInventory
-     */
-    readonly authorization: string
-
     /**
      * The access token retrieved in the Token API call
      * @type {string}
@@ -2350,13 +2231,6 @@ export interface InventoryApiUpdateBulkInventoryRequest {
     readonly feedType: 'inventory' | 'MP_INVENTORY'
 
     /**
-     * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @type {string}
-     * @memberof InventoryApiUpdateBulkInventory
-     */
-    readonly authorization: string
-
-    /**
      * The access token retrieved in the Token API call
      * @type {string}
      * @memberof InventoryApiUpdateBulkInventory
@@ -2411,13 +2285,6 @@ export interface InventoryApiUpdateInventoryForAnItemRequest {
      * @memberof InventoryApiUpdateInventoryForAnItem
      */
     readonly sku: string
-
-    /**
-     * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @type {string}
-     * @memberof InventoryApiUpdateInventoryForAnItem
-     */
-    readonly authorization: string
 
     /**
      * The access token retrieved in the Token API call
@@ -2476,13 +2343,6 @@ export interface InventoryApiUpdateMultiNodeInventoryRequest {
     readonly sku: string
 
     /**
-     * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @type {string}
-     * @memberof InventoryApiUpdateMultiNodeInventory
-     */
-    readonly authorization: string
-
-    /**
      * The access token retrieved in the Token API call
      * @type {string}
      * @memberof InventoryApiUpdateMultiNodeInventory
@@ -2534,7 +2394,7 @@ export class InventoryApi extends BaseAPI {
      * @memberof InventoryApi
      */
     public getInventory(requestParameters: InventoryApiGetInventoryRequest, options?: any) {
-        return InventoryApiFp(this.configuration).getInventory(requestParameters.sku, requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.shipNode, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+        return InventoryApiFp(this.configuration).getInventory(requestParameters.sku, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.shipNode, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -2546,7 +2406,7 @@ export class InventoryApi extends BaseAPI {
      * @memberof InventoryApi
      */
     public getMultiNodeInventoryForAllSkuAndAllShipNodes(requestParameters: InventoryApiGetMultiNodeInventoryForAllSkuAndAllShipNodesRequest, options?: any) {
-        return InventoryApiFp(this.configuration).getMultiNodeInventoryForAllSkuAndAllShipNodes(requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.limit, requestParameters.nextCursor, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+        return InventoryApiFp(this.configuration).getMultiNodeInventoryForAllSkuAndAllShipNodes(requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.limit, requestParameters.nextCursor, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -2558,7 +2418,7 @@ export class InventoryApi extends BaseAPI {
      * @memberof InventoryApi
      */
     public getMultiNodeInventoryForSkuAndAllShipnodes(requestParameters: InventoryApiGetMultiNodeInventoryForSkuAndAllShipnodesRequest, options?: any) {
-        return InventoryApiFp(this.configuration).getMultiNodeInventoryForSkuAndAllShipnodes(requestParameters.sku, requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.shipNode, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+        return InventoryApiFp(this.configuration).getMultiNodeInventoryForSkuAndAllShipnodes(requestParameters.sku, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.shipNode, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -2570,7 +2430,7 @@ export class InventoryApi extends BaseAPI {
      * @memberof InventoryApi
      */
     public getWFSInventory(requestParameters: InventoryApiGetWFSInventoryRequest, options?: any) {
-        return InventoryApiFp(this.configuration).getWFSInventory(requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.sku, requestParameters.fromModifiedDate, requestParameters.toModifiedDate, requestParameters.limit, requestParameters.offset, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+        return InventoryApiFp(this.configuration).getWFSInventory(requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.sku, requestParameters.fromModifiedDate, requestParameters.toModifiedDate, requestParameters.limit, requestParameters.offset, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -2582,7 +2442,7 @@ export class InventoryApi extends BaseAPI {
      * @memberof InventoryApi
      */
     public updateBulkInventory(requestParameters: InventoryApiUpdateBulkInventoryRequest, options?: any) {
-        return InventoryApiFp(this.configuration).updateBulkInventory(requestParameters.feedType, requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.file, requestParameters.shipNode, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+        return InventoryApiFp(this.configuration).updateBulkInventory(requestParameters.feedType, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.file, requestParameters.shipNode, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -2594,7 +2454,7 @@ export class InventoryApi extends BaseAPI {
      * @memberof InventoryApi
      */
     public updateInventoryForAnItem(requestParameters: InventoryApiUpdateInventoryForAnItemRequest, options?: any) {
-        return InventoryApiFp(this.configuration).updateInventoryForAnItem(requestParameters.sku, requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.inlineObject, requestParameters.shipNode, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+        return InventoryApiFp(this.configuration).updateInventoryForAnItem(requestParameters.sku, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.inlineObject, requestParameters.shipNode, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -2606,7 +2466,7 @@ export class InventoryApi extends BaseAPI {
      * @memberof InventoryApi
      */
     public updateMultiNodeInventory(requestParameters: InventoryApiUpdateMultiNodeInventoryRequest, options?: any) {
-        return InventoryApiFp(this.configuration).updateMultiNodeInventory(requestParameters.sku, requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.inlineObject1, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+        return InventoryApiFp(this.configuration).updateMultiNodeInventory(requestParameters.sku, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.inlineObject1, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

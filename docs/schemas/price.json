@@ -20,6 +20,511 @@
     }
   ],
   "paths": {
+    "/v3/repricer/strategy/{strategyCollectionId}": {
+      "put": {
+        "tags": [
+          "Prices"
+        ],
+        "summary": "Update Repricer Strategy",
+        "description": "Updates the existing strategy",
+        "operationId": "updateStrategy",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "WM_SEC.ACCESS_TOKEN",
+            "description": "The access token retrieved in the Token API call",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
+          },
+          {
+            "in": "header",
+            "name": "WM_CONSUMER.CHANNEL.TYPE",
+            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "WM_QOS.CORRELATION_ID",
+            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
+          },
+          {
+            "in": "header",
+            "name": "WM_SVC.NAME",
+            "description": "Walmart Service Name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Walmart Service Name"
+          }
+        ],
+        "requestBody": {
+          "description": "The request body will have the strategy related information",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "repricerStrategy": {
+                    "type": "string",
+                    "description": "Name of the Strategy Collection",
+                    "example": "Buy Box Strategy For testing"
+                  },
+                  "enabled": {
+                    "type": "boolean",
+                    "description": "Status of the Strategy Collection",
+                    "example": true
+                  },
+                  "enableRepricerForPromotion": {
+                    "type": "boolean",
+                    "description": "Status of item on promotions to be enable on repricer",
+                    "example": true
+                  },
+                  "strategies": {
+                    "type": "array",
+                    "description": "Strategies",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "strategyType": {
+                          "type": "string",
+                          "enum": [
+                            "Buy Box Price",
+                            "External Price",
+                            "Competitive Price"
+                          ]
+                        },
+                        "adjustmentType": {
+                          "type": "string",
+                          "enum": [
+                            "UNIT",
+                            "PERCENTAGE"
+                          ]
+                        },
+                        "adjustmentValue": {
+                          "type": "number",
+                          "format": "double",
+                          "example": 1.2
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "repricerStrategy": {
+                      "type": "string",
+                      "example": "Buy Box Strategy For testing"
+                    },
+                    "strategyCollectionId": {
+                      "type": "string",
+                      "example": "41678999-a088-4fd8-9eb4-55f8d8ed4ac8"
+                    },
+                    "enabled": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "enableRepricerForPromotion": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "strategies": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "strategyType": {
+                            "type": "string",
+                            "enum": [
+                              "Buy Box Price",
+                              "External Price",
+                              "Competitive Price"
+                            ]
+                          },
+                          "adjustmentType": {
+                            "type": "string",
+                            "enum": [
+                              "UNIT",
+                              "PERCENTAGE"
+                            ]
+                          },
+                          "adjustmentValue": {
+                            "type": "number",
+                            "format": "double",
+                            "example": 1.2
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Prices"
+        ],
+        "summary": "Delete Repricer Strategy",
+        "description": "Deletes the strategy",
+        "operationId": "deleteStrategy",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "WM_SEC.ACCESS_TOKEN",
+            "description": "The access token retrieved in the Token API call",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
+          },
+          {
+            "in": "header",
+            "name": "WM_CONSUMER.CHANNEL.TYPE",
+            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "WM_QOS.CORRELATION_ID",
+            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
+          },
+          {
+            "in": "header",
+            "name": "WM_SVC.NAME",
+            "description": "Walmart Service Name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Walmart Service Name"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Strategy with Strategy Collection Id : 41678999-a088-4fd8-9eb4-55f8d8ed4ac8 deleted successfully"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/repricer/incentive": {
+      "get": {
+        "tags": [
+          "Prices"
+        ],
+        "summary": "List of Incentive Items",
+        "description": "Get the list of incentive items",
+        "operationId": "getRepricerIncentive",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Specify number of items to return.",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 25
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Specify the offset of item list to be returned.",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "sortBy",
+            "in": "query",
+            "description": "Specify the sort criteria for items. Examples of the allowed values are INCENTIVE_END_DATE or INCENTIVE_LIMIT",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "INCENTIVE_LIMIT"
+            }
+          },
+          {
+            "name": "sortOrder",
+            "in": "query",
+            "description": "Specify the sort order for given sort criteria. Examples of the allowed values are ASC or DESC",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "DESC"
+            }
+          },
+          {
+            "in": "header",
+            "name": "WM_SEC.ACCESS_TOKEN",
+            "description": "The access token retrieved in the Token API call",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
+          },
+          {
+            "in": "header",
+            "name": "WM_CONSUMER.CHANNEL.TYPE",
+            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "WM_QOS.CORRELATION_ID",
+            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
+          },
+          {
+            "in": "header",
+            "name": "WM_SVC.NAME",
+            "description": "Walmart Service Name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Walmart Service Name"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "totalItems": {
+                      "type": "integer",
+                      "format": "int32",
+                      "example": 1
+                    },
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "productName": {
+                            "type": "string",
+                            "example": "Ring Defense"
+                          },
+                          "skuId": {
+                            "type": "string",
+                            "example": "sku123"
+                          },
+                          "sellerPrice": {
+                            "type": "number",
+                            "format": "double",
+                            "example": 22
+                          },
+                          "floorPrice": {
+                            "type": "number",
+                            "format": "double",
+                            "example": 14
+                          },
+                          "incentiveLimit": {
+                            "type": "number",
+                            "format": "double",
+                            "example": 3
+                          },
+                          "incentiveStartDate": {
+                            "type": "string",
+                            "example": "2023-06-22"
+                          },
+                          "incentiveEndDate": {
+                            "type": "string",
+                            "example": "2023-07-22"
+                          },
+                          "shippingPrice": {
+                            "type": "number",
+                            "format": "double",
+                            "example": 0
+                          },
+                          "competitivePrice": {
+                            "type": "number",
+                            "format": "double",
+                            "example": 21
+                          },
+                          "competitorShippingPrice": {
+                            "type": "number",
+                            "format": "double",
+                            "example": 1
+                          },
+                          "competitorUrl": {
+                            "type": "string",
+                            "example": "amazon.com/dp/123"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Prices"
+        ],
+        "summary": "Assign Incentive items to Repricer",
+        "description": "Assigns incentive items to the default price incentives strategy, ‘Match Competitive Price’",
+        "operationId": "updateRepricerIncentive",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "WM_SEC.ACCESS_TOKEN",
+            "description": "The access token retrieved in the Token API call",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
+          },
+          {
+            "in": "header",
+            "name": "WM_CONSUMER.CHANNEL.TYPE",
+            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "WM_QOS.CORRELATION_ID",
+            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
+          },
+          {
+            "in": "header",
+            "name": "WM_SVC.NAME",
+            "description": "Walmart Service Name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Walmart Service Name"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "skus"
+                ],
+                "type": "object",
+                "properties": {
+                  "skus": {
+                    "type": "array",
+                    "description": "selected skus",
+                    "items": {
+                      "type": "string",
+                      "description": "selected skus"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "feedId": {
+                      "type": "string",
+                      "example": "AFEE4EEC9C3541B6A7B58E694416EC82@AUoBAwA"
+                    },
+                    "errors": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "errorMessage": {
+                            "type": "string",
+                            "example": "SKU XX is not eligible for price incentives and will not be price adjusted"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v3/price": {
       "put": {
         "tags": [
@@ -29,16 +534,6 @@
         "description": "Updates the regular price for a given item.",
         "operationId": "updatePrice",
         "parameters": [
-          {
-            "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
-          },
           {
             "in": "header",
             "name": "WM_SEC.ACCESS_TOKEN",
@@ -221,138 +716,6 @@
           "200": {
             "description": "Successful Operation",
             "content": {
-              "application/xml": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "errors": {
-                      "type": "array",
-                      "xml": {
-                        "name": "error"
-                      },
-                      "items": {
-                        "required": [
-                          "code"
-                        ],
-                        "type": "object",
-                        "properties": {
-                          "code": {
-                            "type": "string"
-                          },
-                          "field": {
-                            "type": "string"
-                          },
-                          "description": {
-                            "type": "string"
-                          },
-                          "info": {
-                            "type": "string"
-                          },
-                          "severity": {
-                            "type": "string",
-                            "enum": [
-                              "INFO",
-                              "WARN",
-                              "ERROR"
-                            ]
-                          },
-                          "category": {
-                            "type": "string",
-                            "enum": [
-                              "APPLICATION",
-                              "SYSTEM",
-                              "REQUEST",
-                              "DATA"
-                            ]
-                          },
-                          "causes": {
-                            "type": "array",
-                            "xml": {
-                              "wrapped": true
-                            },
-                            "items": {
-                              "type": "object",
-                              "properties": {
-                                "code": {
-                                  "type": "string"
-                                },
-                                "field": {
-                                  "type": "string"
-                                },
-                                "type": {
-                                  "type": "string"
-                                },
-                                "description": {
-                                  "type": "string"
-                                }
-                              },
-                              "xml": {
-                                "name": "Cause"
-                              }
-                            }
-                          },
-                          "errorIdentifiers": {
-                            "type": "object",
-                            "additionalProperties": {
-                              "type": "object"
-                            }
-                          },
-                          "component": {
-                            "type": "string"
-                          },
-                          "type": {
-                            "type": "string"
-                          },
-                          "serviceName": {
-                            "type": "string"
-                          },
-                          "gatewayErrorCategory": {
-                            "type": "string",
-                            "enum": [
-                              "INTERNAL_DATA_ERROR",
-                              "EXTERNAL_DATA_ERROR",
-                              "SYSTEM_ERROR"
-                            ]
-                          }
-                        },
-                        "xml": {
-                          "name": "GatewayError"
-                        }
-                      }
-                    },
-                    "statusCode": {
-                      "type": "integer",
-                      "format": "int32"
-                    },
-                    "mart": {
-                      "type": "string",
-                      "description": "Marketplace name. Example: Walmart-US",
-                      "xml": {
-                        "namespace": "http://walmart.com/"
-                      }
-                    },
-                    "sku": {
-                      "type": "string",
-                      "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item.",
-                      "xml": {
-                        "namespace": "http://walmart.com/"
-                      }
-                    },
-                    "message": {
-                      "type": "string",
-                      "description": "A message of acknowledgement for a price update",
-                      "xml": {
-                        "namespace": "http://walmart.com/"
-                      }
-                    }
-                  },
-                  "xml": {
-                    "name": "ItemPriceResponse",
-                    "namespace": "http://walmart.com/"
-                  }
-                },
-                "example": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<ns2:ItemPriceResponse xmlns:ns2=\"http://walmart.com/\">\n    <ns2:mart>WALMART_US</ns2:mart>\n    <ns2:sku>97964_KFTest</ns2:sku>\n    <ns2:message>Thank you. Your price has been updated. Please allow up to five minutes for this change to be reflected on the site.</ns2:message>\n</ns2:ItemPriceResponse>\n"
-              },
               "application/json": {
                 "schema": {
                   "type": "object",
@@ -490,6 +853,445 @@
                     "sku": "97964_KFTest"
                   }
                 }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "errors": {
+                      "type": "array",
+                      "xml": {
+                        "name": "error"
+                      },
+                      "items": {
+                        "required": [
+                          "code"
+                        ],
+                        "type": "object",
+                        "properties": {
+                          "code": {
+                            "type": "string"
+                          },
+                          "field": {
+                            "type": "string"
+                          },
+                          "description": {
+                            "type": "string"
+                          },
+                          "info": {
+                            "type": "string"
+                          },
+                          "severity": {
+                            "type": "string",
+                            "enum": [
+                              "INFO",
+                              "WARN",
+                              "ERROR"
+                            ]
+                          },
+                          "category": {
+                            "type": "string",
+                            "enum": [
+                              "APPLICATION",
+                              "SYSTEM",
+                              "REQUEST",
+                              "DATA"
+                            ]
+                          },
+                          "causes": {
+                            "type": "array",
+                            "xml": {
+                              "wrapped": true
+                            },
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "code": {
+                                  "type": "string"
+                                },
+                                "field": {
+                                  "type": "string"
+                                },
+                                "type": {
+                                  "type": "string"
+                                },
+                                "description": {
+                                  "type": "string"
+                                }
+                              },
+                              "xml": {
+                                "name": "Cause"
+                              }
+                            }
+                          },
+                          "errorIdentifiers": {
+                            "type": "object",
+                            "additionalProperties": {
+                              "type": "object"
+                            }
+                          },
+                          "component": {
+                            "type": "string"
+                          },
+                          "type": {
+                            "type": "string"
+                          },
+                          "serviceName": {
+                            "type": "string"
+                          },
+                          "gatewayErrorCategory": {
+                            "type": "string",
+                            "enum": [
+                              "INTERNAL_DATA_ERROR",
+                              "EXTERNAL_DATA_ERROR",
+                              "SYSTEM_ERROR"
+                            ]
+                          }
+                        },
+                        "xml": {
+                          "name": "GatewayError"
+                        }
+                      }
+                    },
+                    "statusCode": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "mart": {
+                      "type": "string",
+                      "description": "Marketplace name. Example: Walmart-US",
+                      "xml": {
+                        "namespace": "http://walmart.com/"
+                      }
+                    },
+                    "sku": {
+                      "type": "string",
+                      "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item.",
+                      "xml": {
+                        "namespace": "http://walmart.com/"
+                      }
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "A message of acknowledgement for a price update",
+                      "xml": {
+                        "namespace": "http://walmart.com/"
+                      }
+                    }
+                  },
+                  "xml": {
+                    "name": "ItemPriceResponse",
+                    "namespace": "http://walmart.com/"
+                  }
+                },
+                "example": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<ns2:ItemPriceResponse xmlns:ns2=\"http://walmart.com/\">\n    <ns2:mart>WALMART_US</ns2:mart>\n    <ns2:sku>97964_KFTest</ns2:sku>\n    <ns2:message>Thank you. Your price has been updated. Please allow up to five minutes for this change to be reflected on the site.</ns2:message>\n</ns2:ItemPriceResponse>\n"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/repricerFeeds": {
+      "post": {
+        "tags": [
+          "Prices"
+        ],
+        "summary": "Assign/Unassign items to/from Repricer Strategy",
+        "description": "Add/Remove one or more items from a strategy",
+        "operationId": "getRepricerFeed",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "WM_SEC.ACCESS_TOKEN",
+            "description": "The access token retrieved in the Token API call",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
+          },
+          {
+            "in": "header",
+            "name": "WM_CONSUMER.CHANNEL.TYPE",
+            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "WM_QOS.CORRELATION_ID",
+            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
+          },
+          {
+            "in": "header",
+            "name": "WM_SVC.NAME",
+            "description": "Walmart Service Name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Walmart Service Name"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "ItemFeedHeader": {
+                    "type": "object",
+                    "properties": {
+                      "processMode": {
+                        "type": "string",
+                        "example": "REPLACE"
+                      },
+                      "subset": {
+                        "type": "string",
+                        "example": "EXTERNAL"
+                      },
+                      "mart": {
+                        "type": "string",
+                        "example": "WALMART_US"
+                      },
+                      "sellingChannel": {
+                        "type": "string",
+                        "example": "repricerstrategy"
+                      },
+                      "version": {
+                        "type": "string",
+                        "example": "1.0"
+                      },
+                      "locale": {
+                        "type": "string",
+                        "example": "en"
+                      }
+                    }
+                  },
+                  "Item": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "Strategy": {
+                          "type": "object",
+                          "properties": {
+                            "sku": {
+                              "type": "string",
+                              "example": "06068064605122shoe"
+                            },
+                            "repricerStrategy": {
+                              "type": "string",
+                              "example": "Match Competitive Price"
+                            },
+                            "minimumSellerAllowedPrice": {
+                              "type": "number",
+                              "format": "double",
+                              "example": 7.2
+                            },
+                            "maximumSellerAllowedPrice": {
+                              "type": "number",
+                              "format": "double",
+                              "example": 8
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "feedId": {
+                      "type": "string",
+                      "example": "AFEE4EEC9C3541B6A7B58E694416EC82@AUoBAwA"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/repricer/strategy": {
+      "post": {
+        "tags": [
+          "Prices"
+        ],
+        "summary": "Create Repricer Strategy",
+        "description": "Creates a new strategy for the seller",
+        "operationId": "createStrategy",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "WM_SEC.ACCESS_TOKEN",
+            "description": "The access token retrieved in the Token API call",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
+          },
+          {
+            "in": "header",
+            "name": "WM_CONSUMER.CHANNEL.TYPE",
+            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "WM_QOS.CORRELATION_ID",
+            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
+          },
+          {
+            "in": "header",
+            "name": "WM_SVC.NAME",
+            "description": "Walmart Service Name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Walmart Service Name"
+          }
+        ],
+        "requestBody": {
+          "description": "The request body will have the strategy related information",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "repricerStrategy": {
+                    "type": "string",
+                    "description": "Name of the Strategy Collection",
+                    "example": "Buy Box Strategy For testing"
+                  },
+                  "enabled": {
+                    "type": "boolean",
+                    "description": "Status of the Strategy Collection",
+                    "example": true
+                  },
+                  "enableRepricerForPromotion": {
+                    "type": "boolean",
+                    "description": "Status of item on promotions to be enable on repricer",
+                    "example": true
+                  },
+                  "strategies": {
+                    "type": "array",
+                    "description": "Strategies",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "strategyType": {
+                          "type": "string",
+                          "enum": [
+                            "Buy Box Price",
+                            "External Price",
+                            "Competitive Price"
+                          ]
+                        },
+                        "adjustmentType": {
+                          "type": "string",
+                          "enum": [
+                            "UNIT",
+                            "PERCENTAGE"
+                          ]
+                        },
+                        "adjustmentValue": {
+                          "type": "number",
+                          "format": "double",
+                          "example": 1.2
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "repricerStrategy": {
+                      "type": "string",
+                      "example": "Buy Box Strategy For testing"
+                    },
+                    "strategyCollectionId": {
+                      "type": "string",
+                      "example": "41678999-a088-4fd8-9eb4-55f8d8ed4ac8"
+                    },
+                    "enabled": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "enableRepricerForPromotion": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "strategies": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "strategyType": {
+                            "type": "string",
+                            "enum": [
+                              "Buy Box Price",
+                              "External Price",
+                              "Competitive Price"
+                            ]
+                          },
+                          "adjustmentType": {
+                            "type": "string",
+                            "enum": [
+                              "UNIT",
+                              "PERCENTAGE"
+                            ]
+                          },
+                          "adjustmentValue": {
+                            "type": "number",
+                            "format": "double",
+                            "example": 1.2
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
               }
             }
           }
@@ -517,16 +1319,6 @@
                 "CPT_SELLER_ELIGIBILITY"
               ]
             }
-          },
-          {
-            "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
           },
           {
             "in": "header",
@@ -641,26 +1433,6 @@
           "200": {
             "description": "Successful Operation",
             "content": {
-              "application/xml": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "feedId": {
-                      "type": "string",
-                      "description": "A unique ID, returned from the Bulk Upload API, used for tracking the feed file"
-                    },
-                    "additionalAttributes": {
-                      "type": "object",
-                      "nullable": true
-                    },
-                    "errors": {
-                      "type": "object",
-                      "nullable": true
-                    }
-                  }
-                },
-                "example": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<ns2:FeedAcknowledgement xmlns:ns2=\"http://walmart.com/\">\n    <ns2:feedId>55DE8A53B09F41BBBF261C1AB5FB2BC8@AVMBAgA</ns2:feedId>\n</ns2:FeedAcknowledgement>"
-              },
               "application/json": {
                 "schema": {
                   "type": "object",
@@ -682,6 +1454,26 @@
                 "example": {
                   "feedId": "14066B6642344B76A8B77AC094F8C63B@AVMBAgA"
                 }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "feedId": {
+                      "type": "string",
+                      "description": "A unique ID, returned from the Bulk Upload API, used for tracking the feed file"
+                    },
+                    "additionalAttributes": {
+                      "type": "object",
+                      "nullable": true
+                    },
+                    "errors": {
+                      "type": "object",
+                      "nullable": true
+                    }
+                  }
+                },
+                "example": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<ns2:FeedAcknowledgement xmlns:ns2=\"http://walmart.com/\">\n    <ns2:feedId>55DE8A53B09F41BBBF261C1AB5FB2BC8@AVMBAgA</ns2:feedId>\n</ns2:FeedAcknowledgement>"
               }
             }
           }
@@ -701,16 +1493,6 @@
         },
         "operationId": "optCapProgramInPrice",
         "parameters": [
-          {
-            "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
-          },
           {
             "in": "header",
             "name": "WM_SEC.ACCESS_TOKEN",
@@ -804,10 +1586,306 @@
           }
         }
       }
+    },
+    "/v3/repricer/strategies": {
+      "get": {
+        "tags": [
+          "Prices"
+        ],
+        "summary": "List of Repricer Strategies",
+        "description": "Get the list of strategies",
+        "operationId": "getStrategies",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "WM_SEC.ACCESS_TOKEN",
+            "description": "The access token retrieved in the Token API call",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
+          },
+          {
+            "in": "header",
+            "name": "WM_CONSUMER.CHANNEL.TYPE",
+            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "WM_QOS.CORRELATION_ID",
+            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
+          },
+          {
+            "in": "header",
+            "name": "WM_SVC.NAME",
+            "description": "Walmart Service Name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Walmart Service Name"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "totalElements": {
+                      "type": "integer",
+                      "format": "int32",
+                      "example": 1
+                    },
+                    "strategyCollections": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "repricerStrategy": {
+                            "type": "string",
+                            "example": "Buy Box Strategy For testing"
+                          },
+                          "strategyCollectionId": {
+                            "type": "string",
+                            "example": "41678999-a088-4fd8-9eb4-55f8d8ed4ac8"
+                          },
+                          "enabled": {
+                            "type": "boolean",
+                            "example": true
+                          },
+                          "assignedCount": {
+                            "type": "integer",
+                            "format": "int32",
+                            "example": 1
+                          },
+                          "enableRepricerForPromotion": {
+                            "type": "boolean",
+                            "example": true
+                          },
+                          "strategies": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "strategyType": {
+                                  "type": "string",
+                                  "enum": [
+                                    "Buy Box Price",
+                                    "External Price",
+                                    "Competitive Price"
+                                  ]
+                                },
+                                "adjustmentType": {
+                                  "type": "string",
+                                  "enum": [
+                                    "UNIT",
+                                    "PERCENTAGE"
+                                  ]
+                                },
+                                "adjustmentValue": {
+                                  "type": "number",
+                                  "format": "double",
+                                  "example": 1.2
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
     "schemas": {
+      "RepricerEntityResponse": {
+        "type": "object",
+        "properties": {
+          "repricerStrategy": {
+            "type": "string",
+            "example": "Buy Box Strategy For testing"
+          },
+          "strategyCollectionId": {
+            "type": "string",
+            "example": "41678999-a088-4fd8-9eb4-55f8d8ed4ac8"
+          },
+          "enabled": {
+            "type": "boolean",
+            "example": true
+          },
+          "enableRepricerForPromotion": {
+            "type": "boolean",
+            "example": true
+          },
+          "strategies": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "strategyType": {
+                  "type": "string",
+                  "enum": [
+                    "Buy Box Price",
+                    "External Price",
+                    "Competitive Price"
+                  ]
+                },
+                "adjustmentType": {
+                  "type": "string",
+                  "enum": [
+                    "UNIT",
+                    "PERCENTAGE"
+                  ]
+                },
+                "adjustmentValue": {
+                  "type": "number",
+                  "format": "double",
+                  "example": 1.2
+                }
+              }
+            }
+          }
+        }
+      },
+      "RepricerStrategyType": {
+        "type": "object",
+        "properties": {
+          "strategyType": {
+            "type": "string",
+            "enum": [
+              "Buy Box Price",
+              "External Price",
+              "Competitive Price"
+            ]
+          },
+          "adjustmentType": {
+            "type": "string",
+            "enum": [
+              "UNIT",
+              "PERCENTAGE"
+            ]
+          },
+          "adjustmentValue": {
+            "type": "number",
+            "format": "double",
+            "example": 1.2
+          }
+        }
+      },
+      "RepricerEntityRequest": {
+        "type": "object",
+        "properties": {
+          "repricerStrategy": {
+            "type": "string",
+            "description": "Name of the Strategy Collection",
+            "example": "Buy Box Strategy For testing"
+          },
+          "enabled": {
+            "type": "boolean",
+            "description": "Status of the Strategy Collection",
+            "example": true
+          },
+          "enableRepricerForPromotion": {
+            "type": "boolean",
+            "description": "Status of item on promotions to be enable on repricer",
+            "example": true
+          },
+          "strategies": {
+            "type": "array",
+            "description": "Strategies",
+            "items": {
+              "type": "object",
+              "properties": {
+                "strategyType": {
+                  "type": "string",
+                  "enum": [
+                    "Buy Box Price",
+                    "External Price",
+                    "Competitive Price"
+                  ]
+                },
+                "adjustmentType": {
+                  "type": "string",
+                  "enum": [
+                    "UNIT",
+                    "PERCENTAGE"
+                  ]
+                },
+                "adjustmentValue": {
+                  "type": "number",
+                  "format": "double",
+                  "example": 1.2
+                }
+              }
+            }
+          }
+        }
+      },
+      "ErrorResponseDto": {
+        "type": "object",
+        "properties": {
+          "errorMessage": {
+            "type": "string",
+            "example": "SKU XX is not eligible for price incentives and will not be price adjusted"
+          }
+        }
+      },
+      "UpdateRepricerIncentiveResponse": {
+        "type": "object",
+        "properties": {
+          "feedId": {
+            "type": "string",
+            "example": "AFEE4EEC9C3541B6A7B58E694416EC82@AUoBAwA"
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "errorMessage": {
+                  "type": "string",
+                  "example": "SKU XX is not eligible for price incentives and will not be price adjusted"
+                }
+              }
+            }
+          }
+        }
+      },
+      "UpdateRepricerIncentiveRequest": {
+        "required": [
+          "skus"
+        ],
+        "type": "object",
+        "properties": {
+          "skus": {
+            "type": "array",
+            "description": "selected skus",
+            "items": {
+              "type": "string",
+              "description": "selected skus"
+            }
+          }
+        }
+      },
       "Cause": {
         "type": "object",
         "properties": {
@@ -1285,6 +2363,160 @@
           }
         }
       },
+      "FeedUploadResponseDTO": {
+        "type": "object",
+        "properties": {
+          "feedId": {
+            "type": "string",
+            "example": "AFEE4EEC9C3541B6A7B58E694416EC82@AUoBAwA"
+          }
+        }
+      },
+      "FeedItemsHeaderRequestDTO": {
+        "type": "object",
+        "properties": {
+          "processMode": {
+            "type": "string",
+            "example": "REPLACE"
+          },
+          "subset": {
+            "type": "string",
+            "example": "EXTERNAL"
+          },
+          "mart": {
+            "type": "string",
+            "example": "WALMART_US"
+          },
+          "sellingChannel": {
+            "type": "string",
+            "example": "repricerstrategy"
+          },
+          "version": {
+            "type": "string",
+            "example": "1.0"
+          },
+          "locale": {
+            "type": "string",
+            "example": "en"
+          }
+        }
+      },
+      "FeedItemsRequestDTO": {
+        "type": "object",
+        "properties": {
+          "sku": {
+            "type": "string",
+            "example": "06068064605122shoe"
+          },
+          "repricerStrategy": {
+            "type": "string",
+            "example": "Match Competitive Price"
+          },
+          "minimumSellerAllowedPrice": {
+            "type": "number",
+            "format": "double",
+            "example": 7.2
+          },
+          "maximumSellerAllowedPrice": {
+            "type": "number",
+            "format": "double",
+            "example": 8
+          }
+        }
+      },
+      "FeedUploadRequestDTO": {
+        "type": "object",
+        "properties": {
+          "ItemFeedHeader": {
+            "type": "object",
+            "properties": {
+              "processMode": {
+                "type": "string",
+                "example": "REPLACE"
+              },
+              "subset": {
+                "type": "string",
+                "example": "EXTERNAL"
+              },
+              "mart": {
+                "type": "string",
+                "example": "WALMART_US"
+              },
+              "sellingChannel": {
+                "type": "string",
+                "example": "repricerstrategy"
+              },
+              "version": {
+                "type": "string",
+                "example": "1.0"
+              },
+              "locale": {
+                "type": "string",
+                "example": "en"
+              }
+            }
+          },
+          "Item": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "Strategy": {
+                  "type": "object",
+                  "properties": {
+                    "sku": {
+                      "type": "string",
+                      "example": "06068064605122shoe"
+                    },
+                    "repricerStrategy": {
+                      "type": "string",
+                      "example": "Match Competitive Price"
+                    },
+                    "minimumSellerAllowedPrice": {
+                      "type": "number",
+                      "format": "double",
+                      "example": 7.2
+                    },
+                    "maximumSellerAllowedPrice": {
+                      "type": "number",
+                      "format": "double",
+                      "example": 8
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "StrategyDetailsRequestDTO": {
+        "type": "object",
+        "properties": {
+          "Strategy": {
+            "type": "object",
+            "properties": {
+              "sku": {
+                "type": "string",
+                "example": "06068064605122shoe"
+              },
+              "repricerStrategy": {
+                "type": "string",
+                "example": "Match Competitive Price"
+              },
+              "minimumSellerAllowedPrice": {
+                "type": "number",
+                "format": "double",
+                "example": 7.2
+              },
+              "maximumSellerAllowedPrice": {
+                "type": "number",
+                "format": "double",
+                "example": 8
+              }
+            }
+          }
+        }
+      },
       "FeedId": {
         "type": "object",
         "properties": {
@@ -1334,6 +2566,259 @@
           "subsidyPreference": {
             "type": "boolean",
             "description": "A Boolean parameter that determines whether offer level subsidy setting override seller level subsidy setting"
+          }
+        }
+      },
+      "RepricerEntityCollectionResponse": {
+        "type": "object",
+        "properties": {
+          "totalElements": {
+            "type": "integer",
+            "format": "int32",
+            "example": 1
+          },
+          "strategyCollections": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "repricerStrategy": {
+                  "type": "string",
+                  "example": "Buy Box Strategy For testing"
+                },
+                "strategyCollectionId": {
+                  "type": "string",
+                  "example": "41678999-a088-4fd8-9eb4-55f8d8ed4ac8"
+                },
+                "enabled": {
+                  "type": "boolean",
+                  "example": true
+                },
+                "assignedCount": {
+                  "type": "integer",
+                  "format": "int32",
+                  "example": 1
+                },
+                "enableRepricerForPromotion": {
+                  "type": "boolean",
+                  "example": true
+                },
+                "strategies": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "strategyType": {
+                        "type": "string",
+                        "enum": [
+                          "Buy Box Price",
+                          "External Price",
+                          "Competitive Price"
+                        ]
+                      },
+                      "adjustmentType": {
+                        "type": "string",
+                        "enum": [
+                          "UNIT",
+                          "PERCENTAGE"
+                        ]
+                      },
+                      "adjustmentValue": {
+                        "type": "number",
+                        "format": "double",
+                        "example": 1.2
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "RepricerEntityGetResponse": {
+        "type": "object",
+        "properties": {
+          "repricerStrategy": {
+            "type": "string",
+            "example": "Buy Box Strategy For testing"
+          },
+          "strategyCollectionId": {
+            "type": "string",
+            "example": "41678999-a088-4fd8-9eb4-55f8d8ed4ac8"
+          },
+          "enabled": {
+            "type": "boolean",
+            "example": true
+          },
+          "assignedCount": {
+            "type": "integer",
+            "format": "int32",
+            "example": 1
+          },
+          "enableRepricerForPromotion": {
+            "type": "boolean",
+            "example": true
+          },
+          "strategies": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "strategyType": {
+                  "type": "string",
+                  "enum": [
+                    "Buy Box Price",
+                    "External Price",
+                    "Competitive Price"
+                  ]
+                },
+                "adjustmentType": {
+                  "type": "string",
+                  "enum": [
+                    "UNIT",
+                    "PERCENTAGE"
+                  ]
+                },
+                "adjustmentValue": {
+                  "type": "number",
+                  "format": "double",
+                  "example": 1.2
+                }
+              }
+            }
+          }
+        }
+      },
+      "RepricerIncentiveCollectionResponse": {
+        "type": "object",
+        "properties": {
+          "totalItems": {
+            "type": "integer",
+            "format": "int32",
+            "example": 1
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "productName": {
+                  "type": "string",
+                  "example": "Ring Defense"
+                },
+                "skuId": {
+                  "type": "string",
+                  "example": "sku123"
+                },
+                "sellerPrice": {
+                  "type": "number",
+                  "format": "double",
+                  "example": 22
+                },
+                "floorPrice": {
+                  "type": "number",
+                  "format": "double",
+                  "example": 14
+                },
+                "incentiveLimit": {
+                  "type": "number",
+                  "format": "double",
+                  "example": 3
+                },
+                "incentiveStartDate": {
+                  "type": "string",
+                  "example": "2023-06-22"
+                },
+                "incentiveEndDate": {
+                  "type": "string",
+                  "example": "2023-07-22"
+                },
+                "shippingPrice": {
+                  "type": "number",
+                  "format": "double",
+                  "example": 0
+                },
+                "competitivePrice": {
+                  "type": "number",
+                  "format": "double",
+                  "example": 21
+                },
+                "competitorShippingPrice": {
+                  "type": "number",
+                  "format": "double",
+                  "example": 1
+                },
+                "competitorUrl": {
+                  "type": "string",
+                  "example": "amazon.com/dp/123"
+                }
+              }
+            }
+          }
+        }
+      },
+      "RepricerIncentiveItems": {
+        "type": "object",
+        "properties": {
+          "productName": {
+            "type": "string",
+            "example": "Ring Defense"
+          },
+          "skuId": {
+            "type": "string",
+            "example": "sku123"
+          },
+          "sellerPrice": {
+            "type": "number",
+            "format": "double",
+            "example": 22
+          },
+          "floorPrice": {
+            "type": "number",
+            "format": "double",
+            "example": 14
+          },
+          "incentiveLimit": {
+            "type": "number",
+            "format": "double",
+            "example": 3
+          },
+          "incentiveStartDate": {
+            "type": "string",
+            "example": "2023-06-22"
+          },
+          "incentiveEndDate": {
+            "type": "string",
+            "example": "2023-07-22"
+          },
+          "shippingPrice": {
+            "type": "number",
+            "format": "double",
+            "example": 0
+          },
+          "competitivePrice": {
+            "type": "number",
+            "format": "double",
+            "example": 21
+          },
+          "competitorShippingPrice": {
+            "type": "number",
+            "format": "double",
+            "example": 1
+          },
+          "competitorUrl": {
+            "type": "string",
+            "example": "amazon.com/dp/123"
+          }
+        }
+      },
+      "RepricerEntityDeleteResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "Strategy with Strategy Collection Id : 41678999-a088-4fd8-9eb4-55f8d8ed4ac8 deleted successfully"
           }
         }
       }
@@ -1407,15 +2892,6 @@
           "type": "string"
         },
         "example": "application/json"
-      }
-    },
-    "securitySchemes": {
-      "basicScheme": {
-        "type": "http",
-        "description": "",
-        "name": "Authorization",
-        "in": "header",
-        "scheme": "basic"
       }
     }
   }

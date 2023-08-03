@@ -66,16 +66,6 @@
           },
           {
             "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
-          },
-          {
-            "in": "header",
             "name": "WM_SEC.ACCESS_TOKEN",
             "description": "The access token retrieved in the Token API call",
             "required": true,
@@ -832,16 +822,6 @@
         "parameters": [
           {
             "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
-          },
-          {
-            "in": "header",
             "name": "WM_SEC.ACCESS_TOKEN",
             "description": "The access token retrieved in the Token API call",
             "required": true,
@@ -1129,7 +1109,7 @@
           "Items"
         ],
         "summary": "Bulk Item Setup (Multiple)",
-        "description": " Use this API for initial item setup and maintenance.\n\nThis API updates items in bulk. You can update 10,000 items at once; updates with more than 10,000 items are not supported. Keep feed sizes below 10 MB to ensure optimal feed processing time.\n\nYou can use the Bulk Item Setup API for any of the following item spec versions, just specify the corresponding feed type as a query parameter.\n\n*   Item spec version 3.2 feed type: item\n*   Item spec version 4.5 feed type: MP_ITEM\n*   WFS Item spec version 4.3 feed type: MP_WFS_ITEM \n*   WFS Maintenance spec version 4.5 feed type: MP_MAINTENANCE\n*   Set up item by match 4.0 feed type: MP_ITEM_MATCH \n*   Convert an existing item to WFS 4.5 feed type : OMNI_WFS \n*   For Fitment feed type FITMENT_ACES and FITMENT_PIES, zip file needs to be added in the request body. While uploading the fitment feeds, it is mandatory to add boundary parameter in Content-Type header. For example, Content-Type: multipart/form-data;boundary=\"----custom boundary\". Without a boundary parameter, fitment feeds will fail to process. For details refer to the guide link below \n",
+        "description": " Use this API for initial item setup and maintenance.\n\nThis API updates items in bulk. You can update 10,000 items at once; updates with more than 10,000 items are not supported. Keep feed sizes below 10 MB, except for FITMENT_ACES and FITMENT_PIES, to ensure optimal feed processing time. For FITMENT_PIES and FITMENT_ACES feeds, files upto 25 MB are supported.\n\nYou can use the Bulk Item Setup API for any of the following item spec versions, just specify the corresponding feed type as a query parameter.\n\n*   Item spec version 4.8 feed type: MP_ITEM\n*   WFS Item spec version 4.3 feed type: MP_WFS_ITEM \n*   WFS Maintenance spec version 4.8 feed type: MP_MAINTENANCE\n*   Set up item by match 4.1 feed type: MP_ITEM_MATCH \n*   Convert an existing item to WFS 4.5 feed type : OMNI_WFS \n*   For Fitment feed type FITMENT_ACES and FITMENT_PIES, zip file needs to be added in the request body. While uploading the fitment feeds, it is mandatory to add boundary parameter in Content-Type header. For example, Content-Type: multipart/form-data;boundary=\"----custom boundary\". Without a boundary parameter, fitment feeds will fail to process. For details refer to the guide link below \n",
         "externalDocs": {
           "description": "View Guide",
           "url": "/doc/us/mp/us-mp-items/#1232"
@@ -1157,16 +1137,6 @@
                 "FITMENT_PIES"
               ]
             }
-          },
-          {
-            "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
           },
           {
             "in": "header",
@@ -1225,108 +1195,119 @@
                 }
               },
               "examples": {
-                "V4.5 MP_ITEM": {
+                "V4.8 MP_ITEM": {
                   "value": {
                     "MPItemFeedHeader": {
                       "sellingChannel": "marketplace",
                       "processMode": "REPLACE",
                       "subset": "EXTERNAL",
                       "locale": "en",
-                      "version": "1.5",
-                      "subCategory": "office_other"
+                      "version": "4.8",
+                      "subCategory": "home_other"
                     },
                     "MPItem": [
                       {
                         "Orderable": {
-                          "sku": "00078742044555",
+                          "sku": "testCardSku",
                           "productIdentifiers": {
                             "productIdType": "GTIN",
-                            "productId": "00649081365761"
+                            "productId": "06146190200012"
                           },
-                          "productName": "SmileMart 5-Tier Adjustable Metal Garage Storage Rack",
-                          "brand": "SmileMart",
-                          "price": 140,
-                          "ShippingWeight": 31,
-                          "electronicsIndicator": "No",
-                          "batteryTechnologyType": "Does Not Contain a Battery",
-                          "chemicalAerosolPesticide": "No",
-                          "shipsInOriginalPackaging": "No",
-                          "startDate": "2019-01-01T08:00:00Z",
-                          "endDate": "2060-01-01T08:00:00Z",
+                          "productName": "Ying Yang Apron, Abstract Graphic Design Yin Yang Circle Black and White Dots Pattern Cosmos and Energy, Unisex Kitchen Bib with Adjustable Neck for Cooking Gardening, Adult Size, Red, by Ambesonne",
+                          "brand": "davidson",
+                          "price": 1,
+                          "ShippingWeight": 1,
                           "MustShipAlone": "No"
                         },
                         "Visible": {
-                          "Office": {
-                            "shortDescription": "Storage",
-                            "mainImageUrl": "https://i5-qa.walmartimages.com/asr/e267b894-bce0-4603-b0b9-b70da3a6c65b.b3d16cea4de59e10dbf8c181d148d8a3.jpeg",
-                            "productSecondaryImageURL": [
-                              "https://i5-qa.walmartimages.com/asr/c053a126-34f2-4a26-bb14-c0b40af56685.ea3111241d98269f7486422e21e8f9fd.jpeg",
-                              "https://i5-qa.walmartimages.com/asr/51abfcc8-1903-4113-bebf-09695dc89532.a2952b0bd51326dc0308186f3e04e70a.jpeg"
-                            ],
-                            "prop65WarningText": "None",
-                            "smallPartsWarnings": [
-                              "0 - No warning applicable"
-                            ],
-                            "compositeWoodCertificationCode": "1 - Does not contain composite wood",
+                          "Home Decor, Kitchen, & Other": {
+                            "shortDescription": "shelf",
+                            "mainImageUrl": "https://i5-qa.walmartimages.com/asr/9e9d04d1-6520-448e-b336-f40b7fb98707.c4c99539377709c2a9e332558177be8b.jpeg",
                             "keyFeatures": [
-                              "<ul><li><h1>17\\\" LCD Optiplex PC 2 Duo 4GB Mem 160GB HD Windows 10</h1></li><li><h3> Optiplex for Sale</h3></li><li>The Optiplex line of computers includes some of the most versatile PCs on the market. A great choice for business applications, video gaming, and other personal computer.</li></ul>"
-                            ],
-                            "manufacturer": "SmileMart",
-                            "manufacturerPartNumber": "optiplexrf"
+                              "@generated"
+                            ]
                           }
                         }
                       }
                     ]
                   }
                 },
-                "V3.2 JSON": {
+                "V4.5 OMNI_WFS": {
                   "value": {
-                    "MPItemFeedHeader": {
-                      "version": "3.2",
-                      "requestId": "requestId",
-                      "requestBatchId": "batchId"
+                    "SupplierItemFeedHeader": {
+                      "locale": "en",
+                      "mart": "WALMART_US",
+                      "processMode": "REPLACE",
+                      "requestBatchId": "1677739858",
+                      "requestId": "1677739858",
+                      "sellingChannel": "fbw",
+                      "subCategory": "clothing_other",
+                      "subset": "EXTERNAL",
+                      "version": "4.5"
                     },
-                    "MPItem": [
+                    "SupplierItem": [
                       {
-                        "processMode": "REPLACE_ALL",
-                        "feedDate": "2019-03-25T12:44:37-04:00",
-                        "sku": "0960B3B82687490FA5E51CB0801478A4@AU8BAgA",
-                        "productIdentifiers": [
-                          {
-                            "productIdType": "UPC",
-                            "productId": "363824587165"
-                          }
-                        ],
-                        "MPProduct": {
-                          "SkuUpdate": "No",
-                          "productName": "Mucinex Fast-Max Severe Cold &amp; Sinus Liquid Gels 16 ea",
-                          "ProductIdUpdate": "Yes",
-                          "category": {
-                            "Animal": {
-                              "AnimalHealthAndGrooming": {
-                                "shortDescription": "<![CDATA[<ul><li>Mucinex Fast-Max Severe Cold & Sinus - 16 Liquid Gels</li><li>Acetaminophen - Pain Reliever / Fever Reducer</li><li>Dextromethorphan HBr - Cough Suppressant</li><li>Phenylephrine - Nasal Decongestant</li><li>Liquid Gels</li></ul>]]>",
-                                "brand": "Mucinex",
-                                "manufacturer": "Mucinex Fast-Max",
-                                "manufacturerPartNumber": "MFMSCS16",
-                                "mainImageUrl": "http://images.geekseller.com/panel/product_images/1072/5860911m_399a26dd48e33fc8715863aabd2cc3d60ad9dcec.jpg",
-                                "isProp65WarningRequired": "No",
-                                "hasPricePerUnit": "No",
-                                "hasWarranty": "No",
-                                "hasExpiration": "Yes",
-                                "isNutritionFactsLabelRequired": "No",
-                                "hasIngredientList": "No",
-                                "isDrugFactsLabelRequired": "No"
-                              }
-                            }
-                          }
-                        },
-                        "MPOffer": {
-                          "price": 7.03,
-                          "ShippingWeight": {
-                            "measure": 0,
-                            "unit": "lb"
+                        "Orderable": {
+                          "batteryTechnologyType": "Does Not Contain a Battery",
+                          "brand": "Jane + Vogue",
+                          "chemicalAerosolPesticide": "No",
+                          "electronicsIndicator": "No",
+                          "endDate": "2033-03-02T00:00:00.694Z",
+                          "price": 51.66,
+                          "productIdentifiers": {
+                            "productId": "testProductId",
+                            "productIdType": "GTIN"
                           },
-                          "ProductTaxCode": 203871
+                          "productName": "PLEATED SKORT",
+                          "sku": "testSku",
+                          "stateRestrictions": [
+                            {
+                              "stateRestrictionsText": "None"
+                            }
+                          ]
+                        },
+                        "TradeItem": {
+                          "countryOfOriginAssembly": [
+                            "US - United States"
+                          ],
+                          "each": {
+                            "eachDepth": 5,
+                            "eachGTIN": "",
+                            "eachHeight": 5,
+                            "eachWeight": 1,
+                            "eachWidth": 5
+                          },
+                          "orderableGTIN": "testGtin",
+                          "sku": "testSku"
+                        },
+                        "Visible": {
+                          "Clothing": {
+                            "ageGroup": [
+                              "Teen",
+                              "Adult"
+                            ],
+                            "clothingSize": "S",
+                            "color": [
+                              "WASHED BLACK"
+                            ],
+                            "colorCategory": [
+                              "Black"
+                            ],
+                            "countryOfOriginTextiles": "USA",
+                            "gender": "Female",
+                            "mainImageUrl": "http://cdn.shopify.com/s/files/1/0625/1770/6943/products/15442152_61f353b2-b8ec-45f8-9129-b6ced177a851.jpg?v=1661089729",
+                            "manufacturer": "Jane Vogue",
+                            "productSecondaryImageURL": [
+                              "http://cdn.shopify.com/s/files/1/0625/1770/6943/products/15442152_7be883c4-fb3c-45a6-8123-f0968ca51bde.jpg?v=1661089724",
+                              "http://cdn.shopify.com/s/files/1/0625/1770/6943/products/15442152_15a9416a-14c1-499d-b299-d85eb9e8b804.jpg?v=1661089725",
+                              "http://cdn.shopify.com/s/files/1/0625/1770/6943/products/15442152_be74fd10-94ab-4597-8d4f-10b5f07d207b.jpg?v=1661089728",
+                              "http://cdn.shopify.com/s/files/1/0625/1770/6943/products/15442152_095a37fa-a2e9-4495-8f67-17c231bdd4e0.jpg?v=1661089733"
+                            ],
+                            "prop65WarningText": "None",
+                            "smallPartsWarnings": [
+                              "0 - No warning applicable"
+                            ]
+                          }
                         }
                       }
                     ]
@@ -1467,78 +1448,65 @@
                     ]
                   }
                 },
-                "V4.5 MP_MAINTENANCE": {
+                "V4.8 MP_MAINTENANCE": {
                   "value": {
                     "MPItemFeedHeader": {
                       "sellingChannel": "mpmaintenance",
                       "processMode": "REPLACE",
                       "subset": "EXTERNAL",
                       "locale": "en",
-                      "version": "1.5",
-                      "subCategory": "office_other"
+                      "version": "4.8",
+                      "subCategory": "computers"
                     },
                     "MPItem": [
                       {
                         "Orderable": {
-                          "sku": "00078742044555",
+                          "sku": "skum1_may23_fail01_test",
                           "productIdentifiers": {
                             "productIdType": "GTIN",
-                            "productId": "00649081365761"
+                            "productId": "06848390988881"
                           },
-                          "productName": "SmileMart 5-Tier Adjustable Metal Garage Storage Rack",
-                          "brand": "SmileMart",
-                          "electronicsIndicator": "No",
-                          "batteryTechnologyType": "Does Not Contain a Battery",
-                          "chemicalAerosolPesticide": "No",
-                          "price": 140,
-                          "startDate": "2019-01-01T08:00:00Z",
-                          "endDate": "2060-01-01T08:00:00Z",
+                          "productName": "iPhone 14 pro max",
+                          "brand": "Apple",
+                          "price": 299.99,
+                          "startDate": "2023-05-23T07:00:00Z",
+                          "endDate": "2049-12-31T08:00:00Z",
                           "shipsInOriginalPackaging": "No",
                           "MustShipAlone": "No",
-                          "ShippingWeight": 33
+                          "ShippingWeight": 4
                         },
                         "Visible": {
-                          "Office": {
-                            "shortDescription": "Storage",
-                            "prop65WarningText": "None",
-                            "smallPartsWarnings": [
-                              "0 - No warning applicable"
-                            ],
-                            "compositeWoodCertificationCode": "1 - Does not contain composite wood",
-                            "mainImageUrl": "https://i5-qa.walmartimages.com/asr/e267b894-bce0-4603-b0b9-b70da3a6c65b.b3d16cea4de59e10dbf8c181d148d8a3.jpeg",
-                            "productSecondaryImageURL": [
-                              "https://i5-qa.walmartimages.com/asr/c053a126-34f2-4a26-bb14-c0b40af56685.ea3111241d98269f7486422e21e8f9fd.jpeg",
-                              "https://i5-qa.walmartimages.com/asr/51abfcc8-1903-4113-bebf-09695dc89532.a2952b0bd51326dc0308186f3e04e70a.jpeg"
-                            ],
+                          "Computers": {
+                            "shortDescription": "test Desc fold",
+                            "mainImageUrl": "https://i5-qa.walmartimages.com/asr/7bec61bc-ec33-4334-8131-ecb8305e1e19.62d73c2f61f929ef580fe375e3597c13.jpeg",
                             "keyFeatures": [
-                              "<ul><li><h1>17\\\" LCD Optiplex PC 2 Duo 4GB Mem 160GB HD Windows 10</h1></li><li><h3> Optiplex for Sale</h3></li><li>The Optiplex line of computers includes some of the most versatile PCs on the market. A great choice for business applications, video gaming, and other personal computer.</li></ul>"
-                            ],
-                            "manufacturer": "SmileMart",
-                            "manufacturerPartNumber": "optiplexrf"
+                              "@generated"
+                            ]
                           }
                         }
                       }
                     ]
                   }
                 },
-                "V4.0 MP_ITEM_MATCH": {
+                "V4.1 MP_ITEM_MATCH": {
                   "value": {
                     "MPItemFeedHeader": {
-                      "version": "1.0",
+                      "processMode": "REPLACE",
+                      "subset": "EXTERNAL",
+                      "locale": "en",
                       "sellingChannel": "mpsetupbymatch",
-                      "locale": "en"
+                      "version": "4.1"
                     },
                     "MPItem": [
                       {
                         "Item": {
+                          "sku": "00649081xxxxxx",
                           "productIdentifiers": {
-                            "productId": "00193238829083",
-                            "productIdType": "GTIN"
+                            "productIdType": "GTIN",
+                            "productId": "00469710xxxxxx"
                           },
-                          "ShippingWeight": 2,
-                          "price": 20,
-                          "productCategory": "Clothing",
-                          "sku": "testsku00193238829083"
+                          "ShippingWeight": 1,
+                          "price": 1
                         }
                       }
                     ]
@@ -1699,9 +1667,6 @@
                       }
                     ]
                   }
-                },
-                "V3.2 XML": {
-                  "value": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<MPItemFeed xmlns=\"http://walmart.com/\">\n    <MPItemFeedHeader>\n        <version>3.2</version>\n        <requestId>HP_REQUEST</requestId>\n        <requestBatchId>HP_REQUEST_BATCH</requestBatchId>\n        <feedDate>2017-10-25T23:36:28</feedDate>\n        <mart>WALMART_US</mart>\n    </MPItemFeedHeader>\n    <MPItem>\n        <processMode>REPLACE_ALL</processMode>\n        <sku>23432543656</sku>\n        <productIdentifiers>\n            <productIdentifier>\n                <productIdType>GTIN</productIdType>\n                <productId>2432235</productId>\n            </productIdentifier>\n        </productIdentifiers>\n        <MPProduct>\n            <SkuUpdate>No</SkuUpdate>\n            <msrp>100.00</msrp>\n            <productName>HP_CLOTHING_CATEGORY_PRODUCT_NAME</productName>\n            <additionalProductAttributes>\n                <additionalProductAttribute>\n                    <productAttributeName>string</productAttributeName>\n                    <productAttributeValue>string</productAttributeValue>\n                </additionalProductAttribute>\n            </additionalProductAttributes>\n            <ProductIdUpdate>Yes</ProductIdUpdate>\n            <category>\n                <ClothingCategory>\n                    <!--You have a CHOICE of the next 1 items at this level-->\n                    <Clothing>\n                        <shortDescription>SHORT DESCRIPTION OF CLOTHING</shortDescription>\n                        <keyFeatures>\n                            <keyFeaturesValue>string</keyFeaturesValue>\n                        </keyFeatures>\n                        <brand>WeiPROD</brand>\n                        <manufacturer>string</manufacturer>\n                        <manufacturerPartNumber>string</manufacturerPartNumber>\n                        <multipackQuantity>100</multipackQuantity>\n                        <countPerPack>10</countPerPack>\n                        <count>string</count>\n                        <pieceCount>10</pieceCount>\n                        <modelNumber>string</modelNumber>\n                        <mainImageUrl>\n                            http://example.com/lf/71192763.jpg\n                        </mainImageUrl>\n                        <productSecondaryImageURL>\n                            <productSecondaryImageURLValue>\n                                http://iexample.com79073763.jpg\n                            </productSecondaryImageURLValue>\n                        </productSecondaryImageURL>\n                        <color>Pink</color>\n                        <colorCategory>\n                            <colorCategoryValue>Blue</colorCategoryValue>\n                        </colorCategory>\n                        <pattern>string</pattern>\n                        <material>string</material>\n                        <gender>Unisex</gender>\n                        <ageGroup>\n                            <ageGroupValue>Tween</ageGroupValue>\n                        </ageGroup>\n                        <clothingSizeGroup>Young Men's</clothingSizeGroup>\n                        <clothingSize>string</clothingSize>\n                        <isSet>Yes</isSet>\n                        <variantGroupId>string</variantGroupId>\n                        <variantAttributeNames>\n                            <variantAttributeName>clothingSize</variantAttributeName>\n                        </variantAttributeNames>\n                        <isPrimaryVariant>No</isPrimaryVariant>\n                        <isProp65WarningRequired>No</isProp65WarningRequired>\n                        <prop65WarningText>string</prop65WarningText>\n                        <smallPartsWarnings>\n                            <smallPartsWarning>5</smallPartsWarning>\n                        </smallPartsWarnings>\n                        <requiresTextileActLabeling>No</requiresTextileActLabeling>\n                        <countryOfOriginTextiles>USA or Imported</countryOfOriginTextiles>\n                        <batteryTechnologyType>Lead Acid (Nonspillable)</batteryTechnologyType>\n                        <hasWarranty>No</hasWarranty>\n                        <warrantyURL>http://www.sample.com/aris/coniunx</warrantyURL>\n                        <warrantyText>string</warrantyText>\n                        <clothingTopStyle>string</clothingTopStyle>\n                        <dressShirtSize>string</dressShirtSize>\n                        <sleeveStyle>string</sleeveStyle>\n                        <sleeveLengthStyle>Short Sleeve</sleeveLengthStyle>\n                        <shirtNeckStyle>string</shirtNeckStyle>\n                        <collarType>string</collarType>\n                        <jacketStyle>string</jacketStyle>\n                        <suitBreastingStyle>double-breasted</suitBreastingStyle>\n                        <sweaterStyle>string</sweaterStyle>\n                        <scarfStyle>string</scarfStyle>\n                        <upperBodyStrapConfiguration>string</upperBodyStrapConfiguration>\n                        <hatSize>8</hatSize>\n                        <hatStyle>string</hatStyle>\n                        <braStyle>string</braStyle>\n                        <braSize>string</braSize>\n                        <chestSize>\n                            <measure>1000.00</measure>\n                            <unit>cm</unit>\n                        </chestSize>\n                        <pantRise>string</pantRise>\n                        <waistStyle>string</waistStyle>\n                        <waistSize>\n                            <measure>1000.00</measure>\n                            <unit>in</unit>\n                        </waistSize>\n                        <pantySize>12</pantySize>\n                        <skirtLength>\n                            <measure>1000.00</measure>\n                            <unit>in</unit>\n                        </skirtLength>\n                        <legOpeningCut>high-cut</legOpeningCut>\n                        <pantLegCut>string</pantLegCut>\n                        <jeanStyle>string</jeanStyle>\n                        <jeanWash>string</jeanWash>\n                        <jeanFinish>string</jeanFinish>\n                        <pantSize>string</pantSize>\n                        <pantFit>string</pantFit>\n                        <pantStyle>string</pantStyle>\n                        <beltStyle>string</beltStyle>\n                        <beltBuckleStyle>string</beltBuckleStyle>\n                        <pantyStyle>string</pantyStyle>\n                        <shortsStyle>string</shortsStyle>\n                        <skirtAndDressCut>string</skirtAndDressCut>\n                        <skirtLengthStyle>string</skirtLengthStyle>\n                        <hosieryStyle>string</hosieryStyle>\n                        <tightsSheerness>sheer</tightsSheerness>\n                        <underwearStyle>string</underwearStyle>\n                        <sockSize>string</sockSize>\n                        <sockStyle>string</sockStyle>\n                        <sockRise>thigh-high</sockRise>\n                        <fabricContent>\n                            <fabricContentValue>\n                                <materialName>string</materialName>\n                                <materialPercentage>1000.00</materialPercentage>\n                            </fabricContentValue>\n                        </fabricContent>\n                        <fabricCareInstructions>\n                            <fabricCareInstruction>string</fabricCareInstruction>\n                        </fabricCareInstructions>\n                        <accentColor>string</accentColor>\n                        <clothingWeight>lightweight</clothingWeight>\n                        <clothingStyle>string</clothingStyle>\n                        <clothingFit>string</clothingFit>\n                        <clothingCut>string</clothingCut>\n                        <clothingLengthStyle>string</clothingLengthStyle>\n                        <fastenerType>string</fastenerType>\n                        <swimsuitStyle>string</swimsuitStyle>\n                        <dressStyle>string</dressStyle>\n                        <gotsCertification>No</gotsCertification>\n                        <theme>string</theme>\n                        <character>string</character>\n                        <globalBrandLicense>\n                            <globalBrandLicenseValue>string</globalBrandLicenseValue>\n                        </globalBrandLicense>\n                        <sportsLeague>string</sportsLeague>\n                        <sportsTeam>string</sportsTeam>\n                        <occasion>string</occasion>\n                        <activity>string</activity>\n                        <sport>string</sport>\n                        <season>string</season>\n                        <weather>string</weather>\n                        <isMaternity>No</isMaternity>\n                        <academicInstitution>string</academicInstitution>\n                        <athlete>string</athlete>\n                        <autographedBy>string</autographedBy>\n                        <braBandSize>\n                            <measure>1000.00</measure>\n                            <unit>in</unit>\n                        </braBandSize>\n                        <braCupSize>string</braCupSize>\n                        <neckSize>\n                            <measure>1000.00</measure>\n                            <unit>in</unit>\n                        </neckSize>\n                        <sleeveLength>\n                            <measure>1000.00</measure>\n                            <unit>in</unit>\n                        </sleeveLength>\n                        <isMadeFromRecycledMaterial>No</isMadeFromRecycledMaterial>\n                        <recycledMaterialContent>\n                            <recycledMaterialContentValue>\n                                <recycledMaterial>string</recycledMaterial>\n                                <percentageOfRecycledMaterial>1000.00</percentageOfRecycledMaterial>\n                            </recycledMaterialContentValue>\n                        </recycledMaterialContent>\n                        <features>\n                            <feature>string</feature>\n                        </features>\n                        <keywords>string</keywords>\n                    </Clothing>\n                </ClothingCategory>\n            </category>\n        </MPProduct>\n        <MPOffer>\n            <price>90.00</price>\n            <MinimumAdvertisedPrice>90.00</MinimumAdvertisedPrice>\n            <StartDate>2017-03-10</StartDate>\n            <EndDate>2017-03-15</EndDate>\n            <MustShipAlone>Yes</MustShipAlone>\n            <ShippingWeight>\n                <measure>10.00</measure>\n                <unit>lb</unit>\n            </ShippingWeight>\n            <ProductTaxCode>100</ProductTaxCode>\n            <shipsInOriginalPackaging>Yes</shipsInOriginalPackaging>\n            <additionalOfferAttributes>\n                <additionalOfferAttribute>\n                    <additionalOfferAttributeName>string</additionalOfferAttributeName>\n                    <additionalOfferAttributeValue>string</additionalOfferAttributeValue>\n                </additionalOfferAttribute>\n            </additionalOfferAttributes>\n            <ShippingOverrides>\n                <ShippingOverrideAction>REPLACE_ALL</ShippingOverrideAction>\n                <shippingOverride>\n                    <ShippingOverrideIsShippingAllowed>Yes</ShippingOverrideIsShippingAllowed>\n                    <ShippingOverrideShipMethod>ONE_DAY</ShippingOverrideShipMethod>\n                    <ShippingOverrideShipRegion>APO_FPO</ShippingOverrideShipRegion>\n                    <ShippingOverrideshipPrice>100.00</ShippingOverrideshipPrice>\n                </shippingOverride>\n            </ShippingOverrides>\n            <ShippingProgramOverrides>\n                <shippingProgramOverride>\n                    <twoDayShippingOverride>Yes</twoDayShippingOverride>\n                    <twoDayShippingRegion>STREET_48_STATES</twoDayShippingRegion>\n                    <twoDayShippingWestRegionStates>AZ,CO,ID,NM,MT,UT,NV,WY,CA,OR,WA</twoDayShippingWestRegionStates>\n                    <twoDayShippingNortheastRegionStates>CT,ME,MA,NH,RI,VT,NY,NJ,PA</twoDayShippingNortheastRegionStates>\n                    <twoDayShippingMidwestRegionStates>IN,IL,MI,OH,WI,IA,KS,MN,MO,NE,ND,SD</twoDayShippingMidwestRegionStates>\n                    <twoDayShippingSouthRegionStates>DE,DC,FL,GA,MD,NC,SC,VA,WV,AL,KY,MS,TN,AR,LA,OK,TX</twoDayShippingSouthRegionStates>\n                </shippingProgramOverride>\n            </ShippingProgramOverrides>\n        </MPOffer>\n    </MPItem>\n</MPItemFeed>"
                 }
               }
             }
@@ -1712,26 +1677,6 @@
           "200": {
             "description": "Successful Operation",
             "content": {
-              "application/xml": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "feedId": {
-                      "type": "string",
-                      "description": "A unique ID, returned from the Bulk Upload API, used for tracking the feed file"
-                    },
-                    "additionalAttributes": {
-                      "type": "object",
-                      "nullable": true
-                    },
-                    "errors": {
-                      "type": "object",
-                      "nullable": true
-                    }
-                  }
-                },
-                "example": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<ns2:FeedAcknowledgement xmlns:ns2=\"http://walmart.com/\">\n    <ns2:feedId>FF39857B290A46AFB28297E63AB64FAD@AU8BAgA</ns2:feedId>\n</ns2:FeedAcknowledgement>"
-              },
               "application/json": {
                 "schema": {
                   "type": "object",
@@ -1753,6 +1698,26 @@
                 "example": {
                   "feedId": "F129C19240844B97A3C6AD8F1A2C4997@AU8BAQA"
                 }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "feedId": {
+                      "type": "string",
+                      "description": "A unique ID, returned from the Bulk Upload API, used for tracking the feed file"
+                    },
+                    "additionalAttributes": {
+                      "type": "object",
+                      "nullable": true
+                    },
+                    "errors": {
+                      "type": "object",
+                      "nullable": true
+                    }
+                  }
+                },
+                "example": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<ns2:FeedAcknowledgement xmlns:ns2=\"http://walmart.com/\">\n    <ns2:feedId>FF39857B290A46AFB28297E63AB64FAD@AU8BAgA</ns2:feedId>\n</ns2:FeedAcknowledgement>"
               }
             }
           }
@@ -1837,16 +1802,6 @@
             "schema": {
               "type": "string"
             }
-          },
-          {
-            "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
           },
           {
             "in": "header",
@@ -3562,16 +3517,6 @@
           },
           {
             "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
-          },
-          {
-            "in": "header",
             "name": "WM_SEC.ACCESS_TOKEN",
             "description": "The access token retrieved in the Token API call",
             "required": true,
@@ -3614,6 +3559,361 @@
           "200": {
             "description": "Successful Operation",
             "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "responseRecord": {
+                      "required": [
+                        "sku"
+                      ],
+                      "type": "object",
+                      "properties": {
+                        "mart": {
+                          "type": "string",
+                          "description": "The marketplace name. Example: Walmart_US",
+                          "enum": [
+                            "WALMART_US",
+                            "WALMART_CA",
+                            "ASDA_GM",
+                            "WALMART_MEXICO"
+                          ]
+                        },
+                        "sku": {
+                          "type": "string",
+                          "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
+                        },
+                        "wpid": {
+                          "type": "string",
+                          "description": "The Walmart Product ID assigned by Walmart to the item when listed on Walmart.com"
+                        },
+                        "upc": {
+                          "type": "string",
+                          "description": "The 12-digit bar code used extensively for retail packaging in the United States"
+                        },
+                        "gtin": {
+                          "type": "string",
+                          "description": "The GTIN-compatible Product ID (i.e. UPC or EAN). UPCs must be 12 or 14 digitis in length. EANs must be 13 digits in length."
+                        },
+                        "productName": {
+                          "type": "string",
+                          "description": "A seller-specified, alphanumeric string uniquely identifying the product name. Example: 'Sterling Silver Blue Diamond Heart Pendant with 18in Chain'"
+                        },
+                        "shelf": {
+                          "type": "string",
+                          "description": "Walmart assigned an item shelf name"
+                        },
+                        "productType": {
+                          "type": "string",
+                          "description": "A seller-specified, alphanumeric string uniquely identifying the Product Type. Example: 'Diamond'"
+                        },
+                        "price": {
+                          "type": "object",
+                          "properties": {
+                            "currency": {
+                              "type": "string",
+                              "description": "The currency type. Example: USD for US Dollars",
+                              "enum": [
+                                "AED",
+                                "AFN",
+                                "ALL",
+                                "AMD",
+                                "ANG",
+                                "AOA",
+                                "ARS",
+                                "AUD",
+                                "AWG",
+                                "AZN",
+                                "BAM",
+                                "BBD",
+                                "BDT",
+                                "BGN",
+                                "BHD",
+                                "BIF",
+                                "BMD",
+                                "BND",
+                                "BOB",
+                                "BRL",
+                                "BSD",
+                                "BTN",
+                                "BWP",
+                                "BYR",
+                                "BZD",
+                                "CAD",
+                                "CDF",
+                                "CHF",
+                                "CLP",
+                                "CNY",
+                                "COP",
+                                "CRC",
+                                "CUP",
+                                "CVE",
+                                "CZK",
+                                "DJF",
+                                "DKK",
+                                "DOP",
+                                "DZD",
+                                "EGP",
+                                "ERN",
+                                "ETB",
+                                "EUR",
+                                "FJD",
+                                "FKP",
+                                "GBP",
+                                "GEL",
+                                "GHS",
+                                "GIP",
+                                "GMD",
+                                "GNF",
+                                "GTQ",
+                                "GYD",
+                                "HKD",
+                                "HNL",
+                                "HRK",
+                                "HTG",
+                                "HUF",
+                                "IDR",
+                                "ILS",
+                                "INR",
+                                "IQD",
+                                "IRR",
+                                "ISK",
+                                "JMD",
+                                "JOD",
+                                "JPY",
+                                "KES",
+                                "KGS",
+                                "KHR",
+                                "KMF",
+                                "KPW",
+                                "KRW",
+                                "KWD",
+                                "KYD",
+                                "KZT",
+                                "LAK",
+                                "LBP",
+                                "LKR",
+                                "LRD",
+                                "LSL",
+                                "LTL",
+                                "LVL",
+                                "LYD",
+                                "MAD",
+                                "MDL",
+                                "MGA",
+                                "MKD",
+                                "MMK",
+                                "MNT",
+                                "MOP",
+                                "MRO",
+                                "MUR",
+                                "MVR",
+                                "MWK",
+                                "MXN",
+                                "MYR",
+                                "MZN",
+                                "NAD",
+                                "NGN",
+                                "NIO",
+                                "NOK",
+                                "NPR",
+                                "NZD",
+                                "OMR",
+                                "PAB",
+                                "PEN",
+                                "PGK",
+                                "PHP",
+                                "PKR",
+                                "PLN",
+                                "PYG",
+                                "QAR",
+                                "RON",
+                                "RSD",
+                                "RUB",
+                                "RUR",
+                                "RWF",
+                                "SAR",
+                                "SBD",
+                                "SCR",
+                                "SDG",
+                                "SEK",
+                                "SGD",
+                                "SHP",
+                                "SLL",
+                                "SOS",
+                                "SRD",
+                                "STD",
+                                "SYP",
+                                "SZL",
+                                "THB",
+                                "TJS",
+                                "TMT",
+                                "TND",
+                                "TOP",
+                                "TRY",
+                                "TTD",
+                                "TWD",
+                                "TZS",
+                                "UAH",
+                                "UGX",
+                                "USD",
+                                "UYU",
+                                "UZS",
+                                "VEF",
+                                "VND",
+                                "VUV",
+                                "WST",
+                                "XAF",
+                                "XAG",
+                                "XAU",
+                                "XBA",
+                                "XBB",
+                                "XBC",
+                                "XBD",
+                                "XCD",
+                                "XDR",
+                                "XFU",
+                                "XOF",
+                                "XPD",
+                                "XPF",
+                                "XPT",
+                                "XTS",
+                                "XXX",
+                                "YER",
+                                "ZAR",
+                                "ZMK",
+                                "ZWL"
+                              ]
+                            },
+                            "amount": {
+                              "type": "number",
+                              "description": "The numerical amount of the price. Example: 9.99"
+                            }
+                          },
+                          "description": "Specifies item purchase price information, including currency and amount."
+                        },
+                        "publishedStatus": {
+                          "type": "string",
+                          "description": "The status of an item when the item is in the submission process. The status can be one of the following: PUBLISHED, READY_TO_PUBLISH, IN_PROGRESS, UNPUBLISHED, STAGE, or SYSTEM_PROBLEM."
+                        },
+                        "additionalAttributes": {
+                          "type": "object",
+                          "properties": {
+                            "nameValueAttribute": {
+                              "type": "array",
+                              "xml": {
+                                "name": "NameValueAttribute"
+                              },
+                              "items": {
+                                "required": [
+                                  "name",
+                                  "type",
+                                  "value"
+                                ],
+                                "type": "object",
+                                "properties": {
+                                  "name": {
+                                    "type": "string"
+                                  },
+                                  "type": {
+                                    "type": "string",
+                                    "enum": [
+                                      "LOCALIZABLE_TEXT",
+                                      "STRING",
+                                      "BOOLEAN",
+                                      "INTEGER",
+                                      "DECIMAL",
+                                      "DATE",
+                                      "TIMESTAMP"
+                                    ]
+                                  },
+                                  "isVariant": {
+                                    "type": "boolean"
+                                  },
+                                  "variantResourceType": {
+                                    "type": "string"
+                                  },
+                                  "value": {
+                                    "type": "array",
+                                    "items": {
+                                      "required": [
+                                        "value"
+                                      ],
+                                      "type": "object",
+                                      "properties": {
+                                        "value": {
+                                          "type": "string"
+                                        },
+                                        "group": {
+                                          "type": "string"
+                                        },
+                                        "source": {
+                                          "type": "string"
+                                        },
+                                        "rank": {
+                                          "type": "integer",
+                                          "format": "int32"
+                                        },
+                                        "isVariant": {
+                                          "type": "boolean"
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "description": "Bag of additional attributes"
+                        },
+                        "unpublishedReasons": {
+                          "type": "object",
+                          "properties": {
+                            "reason": {
+                              "type": "array",
+                              "xml": {
+                                "namespace": "http://walmart.com/"
+                              },
+                              "items": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "description": "It outlines the reason for an item when unpublished ,that is, when 'publishedStatus' is set to 'UNPUBLISHED'."
+                        },
+                        "lifecycleStatus": {
+                          "type": "string",
+                          "description": "The lifecycle status of an item describes where the item listing is in the overall lifecycle. Examples of allowed values are ACTIVE , ARCHIVED, RETIRED."
+                        }
+                      },
+                      "xml": {
+                        "name": "ItemResponse"
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "ItemResponse": [
+                    {
+                      "mart": "WALMART_US",
+                      "sku": "30348_KFTest",
+                      "wpid": "0RCPILAXM0C1",
+                      "upc": "",
+                      "gtin": "06932096330348",
+                      "productName": "Kidsform Adjustable Infant Baby Carrier Sling Wrap Rider Carrier Backpack Front/Back Pack Khaki, Blue, Pink 4 Carrying Position Modes With Storage Bag",
+                      "shelf": "[\"Home Page\",\"Baby\",\"Baby Activities & Gear\",\"Baby Carriers\"]",
+                      "productType": "Baby Carriers",
+                      "price": {
+                        "currency": "USD",
+                        "amount": 3
+                      },
+                      "publishedStatus": "PUBLISHED",
+                      "lifecycleStatus": "ACTIVE"
+                    }
+                  ],
+                  "totalItems": 1
+                }
+              },
               "application/xml": {
                 "schema": {
                   "required": [
@@ -3974,361 +4274,6 @@
                   }
                 },
                 "example": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<ns2:ItemResponses xmlns:ns2=\"http://walmart.com/\">\n<ns2:ItemResponse>\n        <ns2:mart>WALMART_US</ns2:mart>\n        <ns2:sku>setup_by_ref</ns2:sku>\n        <ns2:wpid>2VYRD2YCHYX1</ns2:wpid>\n        <ns2:gtin>05518319011365</ns2:gtin>\n        <ns2:productName>WL_Sim_verizon</ns2:productName>\n        <ns2:productType>Music</ns2:productType>\n        <ns2:price>\n            <ns2:currency>USD</ns2:currency>\n            <ns2:amount>12.00</ns2:amount>\n        </ns2:price>\n        <ns2:publishedStatus>UNPUBLISHED</ns2:publishedStatus>\n        <ns2:unpublishedDescription>\n            Your item is unpublished because the end date has passed. To republish your item, re-ingest the item with a new start and end date.\n        </ns2:unpublishedDescription>\n        <ns2:lifecycleStatus>RETIRED</ns2:lifecycleStatus>\n</ns2:ItemResponse>\n"
-              },
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "responseRecord": {
-                      "required": [
-                        "sku"
-                      ],
-                      "type": "object",
-                      "properties": {
-                        "mart": {
-                          "type": "string",
-                          "description": "The marketplace name. Example: Walmart_US",
-                          "enum": [
-                            "WALMART_US",
-                            "WALMART_CA",
-                            "ASDA_GM",
-                            "WALMART_MEXICO"
-                          ]
-                        },
-                        "sku": {
-                          "type": "string",
-                          "description": "An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item."
-                        },
-                        "wpid": {
-                          "type": "string",
-                          "description": "The Walmart Product ID assigned by Walmart to the item when listed on Walmart.com"
-                        },
-                        "upc": {
-                          "type": "string",
-                          "description": "The 12-digit bar code used extensively for retail packaging in the United States"
-                        },
-                        "gtin": {
-                          "type": "string",
-                          "description": "The GTIN-compatible Product ID (i.e. UPC or EAN). UPCs must be 12 or 14 digitis in length. EANs must be 13 digits in length."
-                        },
-                        "productName": {
-                          "type": "string",
-                          "description": "A seller-specified, alphanumeric string uniquely identifying the product name. Example: 'Sterling Silver Blue Diamond Heart Pendant with 18in Chain'"
-                        },
-                        "shelf": {
-                          "type": "string",
-                          "description": "Walmart assigned an item shelf name"
-                        },
-                        "productType": {
-                          "type": "string",
-                          "description": "A seller-specified, alphanumeric string uniquely identifying the Product Type. Example: 'Diamond'"
-                        },
-                        "price": {
-                          "type": "object",
-                          "properties": {
-                            "currency": {
-                              "type": "string",
-                              "description": "The currency type. Example: USD for US Dollars",
-                              "enum": [
-                                "AED",
-                                "AFN",
-                                "ALL",
-                                "AMD",
-                                "ANG",
-                                "AOA",
-                                "ARS",
-                                "AUD",
-                                "AWG",
-                                "AZN",
-                                "BAM",
-                                "BBD",
-                                "BDT",
-                                "BGN",
-                                "BHD",
-                                "BIF",
-                                "BMD",
-                                "BND",
-                                "BOB",
-                                "BRL",
-                                "BSD",
-                                "BTN",
-                                "BWP",
-                                "BYR",
-                                "BZD",
-                                "CAD",
-                                "CDF",
-                                "CHF",
-                                "CLP",
-                                "CNY",
-                                "COP",
-                                "CRC",
-                                "CUP",
-                                "CVE",
-                                "CZK",
-                                "DJF",
-                                "DKK",
-                                "DOP",
-                                "DZD",
-                                "EGP",
-                                "ERN",
-                                "ETB",
-                                "EUR",
-                                "FJD",
-                                "FKP",
-                                "GBP",
-                                "GEL",
-                                "GHS",
-                                "GIP",
-                                "GMD",
-                                "GNF",
-                                "GTQ",
-                                "GYD",
-                                "HKD",
-                                "HNL",
-                                "HRK",
-                                "HTG",
-                                "HUF",
-                                "IDR",
-                                "ILS",
-                                "INR",
-                                "IQD",
-                                "IRR",
-                                "ISK",
-                                "JMD",
-                                "JOD",
-                                "JPY",
-                                "KES",
-                                "KGS",
-                                "KHR",
-                                "KMF",
-                                "KPW",
-                                "KRW",
-                                "KWD",
-                                "KYD",
-                                "KZT",
-                                "LAK",
-                                "LBP",
-                                "LKR",
-                                "LRD",
-                                "LSL",
-                                "LTL",
-                                "LVL",
-                                "LYD",
-                                "MAD",
-                                "MDL",
-                                "MGA",
-                                "MKD",
-                                "MMK",
-                                "MNT",
-                                "MOP",
-                                "MRO",
-                                "MUR",
-                                "MVR",
-                                "MWK",
-                                "MXN",
-                                "MYR",
-                                "MZN",
-                                "NAD",
-                                "NGN",
-                                "NIO",
-                                "NOK",
-                                "NPR",
-                                "NZD",
-                                "OMR",
-                                "PAB",
-                                "PEN",
-                                "PGK",
-                                "PHP",
-                                "PKR",
-                                "PLN",
-                                "PYG",
-                                "QAR",
-                                "RON",
-                                "RSD",
-                                "RUB",
-                                "RUR",
-                                "RWF",
-                                "SAR",
-                                "SBD",
-                                "SCR",
-                                "SDG",
-                                "SEK",
-                                "SGD",
-                                "SHP",
-                                "SLL",
-                                "SOS",
-                                "SRD",
-                                "STD",
-                                "SYP",
-                                "SZL",
-                                "THB",
-                                "TJS",
-                                "TMT",
-                                "TND",
-                                "TOP",
-                                "TRY",
-                                "TTD",
-                                "TWD",
-                                "TZS",
-                                "UAH",
-                                "UGX",
-                                "USD",
-                                "UYU",
-                                "UZS",
-                                "VEF",
-                                "VND",
-                                "VUV",
-                                "WST",
-                                "XAF",
-                                "XAG",
-                                "XAU",
-                                "XBA",
-                                "XBB",
-                                "XBC",
-                                "XBD",
-                                "XCD",
-                                "XDR",
-                                "XFU",
-                                "XOF",
-                                "XPD",
-                                "XPF",
-                                "XPT",
-                                "XTS",
-                                "XXX",
-                                "YER",
-                                "ZAR",
-                                "ZMK",
-                                "ZWL"
-                              ]
-                            },
-                            "amount": {
-                              "type": "number",
-                              "description": "The numerical amount of the price. Example: 9.99"
-                            }
-                          },
-                          "description": "Specifies item purchase price information, including currency and amount."
-                        },
-                        "publishedStatus": {
-                          "type": "string",
-                          "description": "The status of an item when the item is in the submission process. The status can be one of the following: PUBLISHED, READY_TO_PUBLISH, IN_PROGRESS, UNPUBLISHED, STAGE, or SYSTEM_PROBLEM."
-                        },
-                        "additionalAttributes": {
-                          "type": "object",
-                          "properties": {
-                            "nameValueAttribute": {
-                              "type": "array",
-                              "xml": {
-                                "name": "NameValueAttribute"
-                              },
-                              "items": {
-                                "required": [
-                                  "name",
-                                  "type",
-                                  "value"
-                                ],
-                                "type": "object",
-                                "properties": {
-                                  "name": {
-                                    "type": "string"
-                                  },
-                                  "type": {
-                                    "type": "string",
-                                    "enum": [
-                                      "LOCALIZABLE_TEXT",
-                                      "STRING",
-                                      "BOOLEAN",
-                                      "INTEGER",
-                                      "DECIMAL",
-                                      "DATE",
-                                      "TIMESTAMP"
-                                    ]
-                                  },
-                                  "isVariant": {
-                                    "type": "boolean"
-                                  },
-                                  "variantResourceType": {
-                                    "type": "string"
-                                  },
-                                  "value": {
-                                    "type": "array",
-                                    "items": {
-                                      "required": [
-                                        "value"
-                                      ],
-                                      "type": "object",
-                                      "properties": {
-                                        "value": {
-                                          "type": "string"
-                                        },
-                                        "group": {
-                                          "type": "string"
-                                        },
-                                        "source": {
-                                          "type": "string"
-                                        },
-                                        "rank": {
-                                          "type": "integer",
-                                          "format": "int32"
-                                        },
-                                        "isVariant": {
-                                          "type": "boolean"
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          },
-                          "description": "Bag of additional attributes"
-                        },
-                        "unpublishedReasons": {
-                          "type": "object",
-                          "properties": {
-                            "reason": {
-                              "type": "array",
-                              "xml": {
-                                "namespace": "http://walmart.com/"
-                              },
-                              "items": {
-                                "type": "string"
-                              }
-                            }
-                          },
-                          "description": "It outlines the reason for an item when unpublished ,that is, when 'publishedStatus' is set to 'UNPUBLISHED'."
-                        },
-                        "lifecycleStatus": {
-                          "type": "string",
-                          "description": "The lifecycle status of an item describes where the item listing is in the overall lifecycle. Examples of allowed values are ACTIVE , ARCHIVED, RETIRED."
-                        }
-                      },
-                      "xml": {
-                        "name": "ItemResponse"
-                      }
-                    }
-                  }
-                },
-                "example": {
-                  "ItemResponse": [
-                    {
-                      "mart": "WALMART_US",
-                      "sku": "30348_KFTest",
-                      "wpid": "0RCPILAXM0C1",
-                      "upc": "",
-                      "gtin": "06932096330348",
-                      "productName": "Kidsform Adjustable Infant Baby Carrier Sling Wrap Rider Carrier Backpack Front/Back Pack Khaki, Blue, Pink 4 Carrying Position Modes With Storage Bag",
-                      "shelf": "[\"Home Page\",\"Baby\",\"Baby Activities & Gear\",\"Baby Carriers\"]",
-                      "productType": "Baby Carriers",
-                      "price": {
-                        "currency": "USD",
-                        "amount": 3
-                      },
-                      "publishedStatus": "PUBLISHED",
-                      "lifecycleStatus": "ACTIVE"
-                    }
-                  ],
-                  "totalItems": 1
-                }
               }
             }
           }
@@ -4380,16 +4325,6 @@
           },
           {
             "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
-          },
-          {
-            "in": "header",
             "name": "WM_SEC.ACCESS_TOKEN",
             "description": "The access token retrieved in the Token API call",
             "required": true,
@@ -4436,22 +4371,6 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "relatedQueries": {
-                      "type": "array",
-                      "description": "Suggested queries to narrow down search results.",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "suggested": {
-                            "type": "string"
-                          },
-                          "suggestedUrl": {
-                            "type": "string"
-                          }
-                        },
-                        "description": "Suggested queries to narrow down search results."
-                      }
-                    },
                     "items": {
                       "type": "array",
                       "items": {
@@ -4480,15 +4399,6 @@
                           },
                           "customerRating": {
                             "type": "string"
-                          },
-                          "freeShipping": {
-                            "type": "boolean",
-                            "description": "Specifies whether or not the item is eligible for free shipping."
-                          },
-                          "offerCount": {
-                            "type": "integer",
-                            "description": "Specifies the number of active offers on the item.",
-                            "format": "int32"
                           },
                           "price": {
                             "type": "object",
@@ -4594,40 +4504,6 @@
                   }
                 },
                 "example": {
-                  "relatedQueries": [
-                    {
-                      "suggested": "ipad mini case for kids",
-                      "suggestedUrl": "query=ipad%20mini%20case%20for%20kids&method=related"
-                    },
-                    {
-                      "suggested": "ipad mini 4 case",
-                      "suggestedUrl": "query=ipad%20mini%204%20case&method=related"
-                    },
-                    {
-                      "suggested": "ipad mini case with keyboard",
-                      "suggestedUrl": "query=ipad%20mini%20case%20with%20keyboard&method=related"
-                    },
-                    {
-                      "suggested": "ipad mini 2 case for kids",
-                      "suggestedUrl": "query=ipad%20mini%202%20case%20for%20kids&method=related"
-                    },
-                    {
-                      "suggested": "ipad mini 2 protective cases",
-                      "suggestedUrl": "query=ipad%20mini%202%20protective%20cases&method=related"
-                    },
-                    {
-                      "suggested": "ipad mini cases and covers",
-                      "suggestedUrl": "query=ipad%20mini%20cases%20and%20covers&method=related"
-                    },
-                    {
-                      "suggested": "ipad mini otterbox case",
-                      "suggestedUrl": "query=ipad%20mini%20otterbox%20case&method=related"
-                    },
-                    {
-                      "suggested": "apple ipad mini case",
-                      "suggestedUrl": "query=apple%20ipad%20mini%20case&method=related"
-                    }
-                  ],
                   "items": [
                     {
                       "itemId": "393016031",
@@ -4641,8 +4517,6 @@
                         }
                       ],
                       "customerRating": "3.799999952316284",
-                      "freeShipping": true,
-                      "offerCount": 1,
                       "price": {
                         "amount": "12.989999771118164",
                         "currency": "USD"
@@ -4749,16 +4623,6 @@
         "description": "The Taxonomy API exposes the category taxonomy that Walmart.com uses to categorize items. It describes the Departments, Categories, and Subcategories levels available on Walmart.com. You can specify the exact category as a parameter when using any of the following APIs:\n\n-   Search-   Data feeds-   Special feeds, to includePre-order, Best Sellers, Rollbacks, Clearance, and Special Buys\n\nFor example, you can restrict the Search API to search within a category by supplying the ID through the taxonomy. Similarly, you can use the Feed API to download category-specific feeds by specifying a category ID.",
         "operationId": "getTaxonomyResponse",
         "parameters": [
-          {
-            "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
-          },
           {
             "in": "header",
             "name": "WM_SEC.ACCESS_TOKEN",
@@ -4903,16 +4767,6 @@
           },
           {
             "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
-          },
-          {
-            "in": "header",
             "name": "WM_SEC.ACCESS_TOKEN",
             "description": "The access token retrieved in the Token API call",
             "required": true,
@@ -5042,16 +4896,6 @@
           },
           {
             "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
-          },
-          {
-            "in": "header",
             "name": "WM_SEC.ACCESS_TOKEN",
             "description": "The access token retrieved in the Token API call",
             "required": true,
@@ -5138,16 +4982,6 @@
             "schema": {
               "type": "string"
             }
-          },
-          {
-            "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
           },
           {
             "in": "header",
@@ -8862,15 +8696,6 @@
           "customerRating": {
             "type": "string"
           },
-          "freeShipping": {
-            "type": "boolean",
-            "description": "Specifies whether or not the item is eligible for free shipping."
-          },
-          "offerCount": {
-            "type": "integer",
-            "description": "Specifies the number of active offers on the item.",
-            "format": "int32"
-          },
           "price": {
             "type": "object",
             "properties": {
@@ -8974,22 +8799,6 @@
       "ItemSearch": {
         "type": "object",
         "properties": {
-          "relatedQueries": {
-            "type": "array",
-            "description": "Suggested queries to narrow down search results.",
-            "items": {
-              "type": "object",
-              "properties": {
-                "suggested": {
-                  "type": "string"
-                },
-                "suggestedUrl": {
-                  "type": "string"
-                }
-              },
-              "description": "Suggested queries to narrow down search results."
-            }
-          },
           "items": {
             "type": "array",
             "items": {
@@ -9018,15 +8827,6 @@
                 },
                 "customerRating": {
                   "type": "string"
-                },
-                "freeShipping": {
-                  "type": "boolean",
-                  "description": "Specifies whether or not the item is eligible for free shipping."
-                },
-                "offerCount": {
-                  "type": "integer",
-                  "description": "Specifies the number of active offers on the item.",
-                  "format": "int32"
                 },
                 "price": {
                   "type": "object",
@@ -9212,18 +9012,6 @@
             "type": "boolean"
           }
         }
-      },
-      "RelatedQuery": {
-        "type": "object",
-        "properties": {
-          "suggested": {
-            "type": "string"
-          },
-          "suggestedUrl": {
-            "type": "string"
-          }
-        },
-        "description": "Suggested queries to narrow down search results."
       },
       "VariantDatum": {
         "type": "object",
@@ -9534,15 +9322,6 @@
           "type": "string"
         },
         "example": "application/json"
-      }
-    },
-    "securitySchemes": {
-      "basicScheme": {
-        "type": "http",
-        "description": "",
-        "name": "Authorization",
-        "in": "header",
-        "scheme": "basic"
       }
     }
   }

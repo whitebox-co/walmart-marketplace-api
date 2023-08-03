@@ -1758,7 +1758,6 @@ export const PromotionsApiAxiosParamCreator = function (configuration?: Configur
          *  Retrieves a list of promotional prices for a single SKU.
          * @summary Promotional prices
          * @param {string} sku An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: \&#39;:\&#39;, \&#39;/\&#39;, \&#39;?\&#39;, \&#39;#\&#39;, \&#39;[\&#39;, \&#39;]\&#39;, \&#39;@\&#39;, \&#39;!\&#39;, \&#39;$\&#39;, \&#39;&amp;\&#39;, \&quot;\&#39;\&quot;, \&#39;(\&#39;, \&#39;)\&#39;, \&#39;*\&#39;, \&#39;+\&#39;, \&#39;,\&#39;, \&#39;;\&#39;, \&#39;&#x3D;\&#39;, as well as \&#39;%\&#39; itself. Other characters don\&#39;t need to be encoded.
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -1766,11 +1765,9 @@ export const PromotionsApiAxiosParamCreator = function (configuration?: Configur
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getPromotionalPrices: async (sku: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
+        getPromotionalPrices: async (sku: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'sku' is not null or undefined
             assertParamExists('getPromotionalPrices', 'sku', sku)
-            // verify required parameter 'authorization' is not null or undefined
-            assertParamExists('getPromotionalPrices', 'authorization', authorization)
             // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
             assertParamExists('getPromotionalPrices', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN)
             // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
@@ -1789,14 +1786,6 @@ export const PromotionsApiAxiosParamCreator = function (configuration?: Configur
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-
-            // authentication basicScheme required
-            // http basic authentication required
-            setBasicAuthToObject(localVarRequestOptions, configuration)
-
-            if (authorization !== undefined && authorization !== null) {
-                localVarHeaderParameter['Authorization'] = String(authorization);
-            }
 
             if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
                 localVarHeaderParameter['WM_SEC.ACCESS_TOKEN'] = String(wMSECACCESSTOKEN);
@@ -1829,7 +1818,6 @@ export const PromotionsApiAxiosParamCreator = function (configuration?: Configur
          * Updates or creates promotional prices for multiple specified SKUs
          * @summary Updates bulk promotional prices
          * @param {string} feedType Feed Type
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -1838,11 +1826,9 @@ export const PromotionsApiAxiosParamCreator = function (configuration?: Configur
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateBulkPromotionalPrice: async (feedType: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, file: any, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
+        updateBulkPromotionalPrice: async (feedType: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, file: any, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'feedType' is not null or undefined
             assertParamExists('updateBulkPromotionalPrice', 'feedType', feedType)
-            // verify required parameter 'authorization' is not null or undefined
-            assertParamExists('updateBulkPromotionalPrice', 'authorization', authorization)
             // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
             assertParamExists('updateBulkPromotionalPrice', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN)
             // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
@@ -1864,16 +1850,8 @@ export const PromotionsApiAxiosParamCreator = function (configuration?: Configur
             const localVarQueryParameter = {} as any;
             const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)();
 
-            // authentication basicScheme required
-            // http basic authentication required
-            setBasicAuthToObject(localVarRequestOptions, configuration)
-
             if (feedType !== undefined) {
                 localVarQueryParameter['feedType'] = feedType;
-            }
-
-            if (authorization !== undefined && authorization !== null) {
-                localVarHeaderParameter['Authorization'] = String(authorization);
             }
 
             if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
@@ -1914,7 +1892,6 @@ export const PromotionsApiAxiosParamCreator = function (configuration?: Configur
          * Updates the promotional price.  Sellers can update or delete an existing promotional price as well as set up a new promotional price.  To set a new promotional price or update an existing one, set the XML pricing attribute processMode to UPSERT. To delete a promotional price, set the XML pricing attribute processMode to DELETE. To delete all promotions for a SKU, set replaceAll to an empty payload.
          * @summary Update a promotional price
          * @param {boolean} promo The promotional price. Set to \&#39;true\&#39; in order to retrieve promotional prices
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -1923,11 +1900,9 @@ export const PromotionsApiAxiosParamCreator = function (configuration?: Configur
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updatePromotionalPrices: async (promo: boolean, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
+        updatePromotionalPrices: async (promo: boolean, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'promo' is not null or undefined
             assertParamExists('updatePromotionalPrices', 'promo', promo)
-            // verify required parameter 'authorization' is not null or undefined
-            assertParamExists('updatePromotionalPrices', 'authorization', authorization)
             // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
             assertParamExists('updatePromotionalPrices', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN)
             // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
@@ -1948,16 +1923,8 @@ export const PromotionsApiAxiosParamCreator = function (configuration?: Configur
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication basicScheme required
-            // http basic authentication required
-            setBasicAuthToObject(localVarRequestOptions, configuration)
-
             if (promo !== undefined) {
                 localVarQueryParameter['promo'] = promo;
-            }
-
-            if (authorization !== undefined && authorization !== null) {
-                localVarHeaderParameter['Authorization'] = String(authorization);
             }
 
             if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
@@ -2004,7 +1971,6 @@ export const PromotionsApiFp = function(configuration?: Configuration) {
          *  Retrieves a list of promotional prices for a single SKU.
          * @summary Promotional prices
          * @param {string} sku An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: \&#39;:\&#39;, \&#39;/\&#39;, \&#39;?\&#39;, \&#39;#\&#39;, \&#39;[\&#39;, \&#39;]\&#39;, \&#39;@\&#39;, \&#39;!\&#39;, \&#39;$\&#39;, \&#39;&amp;\&#39;, \&quot;\&#39;\&quot;, \&#39;(\&#39;, \&#39;)\&#39;, \&#39;*\&#39;, \&#39;+\&#39;, \&#39;,\&#39;, \&#39;;\&#39;, \&#39;&#x3D;\&#39;, as well as \&#39;%\&#39; itself. Other characters don\&#39;t need to be encoded.
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -2012,15 +1978,14 @@ export const PromotionsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getPromotionalPrices(sku: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2002>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getPromotionalPrices(sku, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options);
+        async getPromotionalPrices(sku: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2002>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getPromotionalPrices(sku, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Updates or creates promotional prices for multiple specified SKUs
          * @summary Updates bulk promotional prices
          * @param {string} feedType Feed Type
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -2029,15 +1994,14 @@ export const PromotionsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateBulkPromotionalPrice(feedType: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, file: any, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.updateBulkPromotionalPrice(feedType, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, file, wMCONSUMERCHANNELTYPE, options);
+        async updateBulkPromotionalPrice(feedType: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, file: any, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateBulkPromotionalPrice(feedType, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, file, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Updates the promotional price.  Sellers can update or delete an existing promotional price as well as set up a new promotional price.  To set a new promotional price or update an existing one, set the XML pricing attribute processMode to UPSERT. To delete a promotional price, set the XML pricing attribute processMode to DELETE. To delete all promotions for a SKU, set replaceAll to an empty payload.
          * @summary Update a promotional price
          * @param {boolean} promo The promotional price. Set to \&#39;true\&#39; in order to retrieve promotional prices
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -2046,8 +2010,8 @@ export const PromotionsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updatePromotionalPrices(promo: boolean, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.updatePromotionalPrices(promo, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject, wMCONSUMERCHANNELTYPE, options);
+        async updatePromotionalPrices(promo: boolean, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updatePromotionalPrices(promo, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -2064,7 +2028,6 @@ export const PromotionsApiFactory = function (configuration?: Configuration, bas
          *  Retrieves a list of promotional prices for a single SKU.
          * @summary Promotional prices
          * @param {string} sku An arbitrary alphanumeric unique ID, specified by the seller, which identifies each item. This will be used by the seller in the XSD file to refer to each item. Special characters in the sku needing encoding are: \&#39;:\&#39;, \&#39;/\&#39;, \&#39;?\&#39;, \&#39;#\&#39;, \&#39;[\&#39;, \&#39;]\&#39;, \&#39;@\&#39;, \&#39;!\&#39;, \&#39;$\&#39;, \&#39;&amp;\&#39;, \&quot;\&#39;\&quot;, \&#39;(\&#39;, \&#39;)\&#39;, \&#39;*\&#39;, \&#39;+\&#39;, \&#39;,\&#39;, \&#39;;\&#39;, \&#39;&#x3D;\&#39;, as well as \&#39;%\&#39; itself. Other characters don\&#39;t need to be encoded.
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -2072,14 +2035,13 @@ export const PromotionsApiFactory = function (configuration?: Configuration, bas
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getPromotionalPrices(sku: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2002> {
-            return localVarFp.getPromotionalPrices(sku, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        getPromotionalPrices(sku: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2002> {
+            return localVarFp.getPromotionalPrices(sku, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
          * Updates or creates promotional prices for multiple specified SKUs
          * @summary Updates bulk promotional prices
          * @param {string} feedType Feed Type
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -2088,14 +2050,13 @@ export const PromotionsApiFactory = function (configuration?: Configuration, bas
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateBulkPromotionalPrice(feedType: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, file: any, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2001> {
-            return localVarFp.updateBulkPromotionalPrice(feedType, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, file, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        updateBulkPromotionalPrice(feedType: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, file: any, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2001> {
+            return localVarFp.updateBulkPromotionalPrice(feedType, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, file, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
          * Updates the promotional price.  Sellers can update or delete an existing promotional price as well as set up a new promotional price.  To set a new promotional price or update an existing one, set the XML pricing attribute processMode to UPSERT. To delete a promotional price, set the XML pricing attribute processMode to DELETE. To delete all promotions for a SKU, set replaceAll to an empty payload.
          * @summary Update a promotional price
          * @param {boolean} promo The promotional price. Set to \&#39;true\&#39; in order to retrieve promotional prices
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -2104,8 +2065,8 @@ export const PromotionsApiFactory = function (configuration?: Configuration, bas
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updatePromotionalPrices(promo: boolean, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse200> {
-            return localVarFp.updatePromotionalPrices(promo, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        updatePromotionalPrices(promo: boolean, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse200> {
+            return localVarFp.updatePromotionalPrices(promo, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -2122,13 +2083,6 @@ export interface PromotionsApiGetPromotionalPricesRequest {
      * @memberof PromotionsApiGetPromotionalPrices
      */
     readonly sku: string
-
-    /**
-     * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @type {string}
-     * @memberof PromotionsApiGetPromotionalPrices
-     */
-    readonly authorization: string
 
     /**
      * The access token retrieved in the Token API call
@@ -2171,13 +2125,6 @@ export interface PromotionsApiUpdateBulkPromotionalPriceRequest {
      * @memberof PromotionsApiUpdateBulkPromotionalPrice
      */
     readonly feedType: string
-
-    /**
-     * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @type {string}
-     * @memberof PromotionsApiUpdateBulkPromotionalPrice
-     */
-    readonly authorization: string
 
     /**
      * The access token retrieved in the Token API call
@@ -2227,13 +2174,6 @@ export interface PromotionsApiUpdatePromotionalPricesRequest {
      * @memberof PromotionsApiUpdatePromotionalPrices
      */
     readonly promo: boolean
-
-    /**
-     * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @type {string}
-     * @memberof PromotionsApiUpdatePromotionalPrices
-     */
-    readonly authorization: string
 
     /**
      * The access token retrieved in the Token API call
@@ -2287,7 +2227,7 @@ export class PromotionsApi extends BaseAPI {
      * @memberof PromotionsApi
      */
     public getPromotionalPrices(requestParameters: PromotionsApiGetPromotionalPricesRequest, options?: any) {
-        return PromotionsApiFp(this.configuration).getPromotionalPrices(requestParameters.sku, requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+        return PromotionsApiFp(this.configuration).getPromotionalPrices(requestParameters.sku, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -2299,7 +2239,7 @@ export class PromotionsApi extends BaseAPI {
      * @memberof PromotionsApi
      */
     public updateBulkPromotionalPrice(requestParameters: PromotionsApiUpdateBulkPromotionalPriceRequest, options?: any) {
-        return PromotionsApiFp(this.configuration).updateBulkPromotionalPrice(requestParameters.feedType, requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.file, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+        return PromotionsApiFp(this.configuration).updateBulkPromotionalPrice(requestParameters.feedType, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.file, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -2311,7 +2251,7 @@ export class PromotionsApi extends BaseAPI {
      * @memberof PromotionsApi
      */
     public updatePromotionalPrices(requestParameters: PromotionsApiUpdatePromotionalPricesRequest, options?: any) {
-        return PromotionsApiFp(this.configuration).updatePromotionalPrices(requestParameters.promo, requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.inlineObject, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+        return PromotionsApiFp(this.configuration).updatePromotionalPrices(requestParameters.promo, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.inlineObject, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

@@ -44,16 +44,6 @@
           },
           {
             "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
-          },
-          {
-            "in": "header",
             "name": "WM_SEC.ACCESS_TOKEN",
             "description": "The access token retrieved in the Token API call",
             "required": true,
@@ -120,6 +110,25 @@
                           "type": "integer",
                           "description": "A line number associated with each individual line in the return order. If return order has only one return order line and it is not provided in the request, the only available return order line is auto-selected. If return order has multiple return order lines, the required return order line must be provided in the request. If not provided in the request, it will result in data-error.",
                           "format": "int64"
+                        },
+                        "quantity": {
+                          "required": [
+                            "measurementValue",
+                            "unitOfMeasure"
+                          ],
+                          "type": "object",
+                          "properties": {
+                            "unitOfMeasure": {
+                              "type": "string",
+                              "description": "The unit of measure in the item's weight (e.g., 'EACH' or 'EA')"
+                            },
+                            "measurementValue": {
+                              "type": "number",
+                              "description": "The quantity of the unit of measure for the item",
+                              "format": "double"
+                            }
+                          },
+                          "description": "Total quantity returned in this return line"
                         }
                       },
                       "description": "Array of refund lines."
@@ -131,7 +140,11 @@
                 "customerOrderId": "1535274411287",
                 "refundLines": [
                   {
-                    "returnOrderLineNumber": 1
+                    "returnOrderLineNumber": 1,
+                    "quantity": {
+                      "unitOfMeasure": "EA",
+                      "measurementValue": 2
+                    }
                   }
                 ]
               }
@@ -168,6 +181,25 @@
                             "type": "integer",
                             "description": "A line number associated with each individual line in the return order. If return order has only one return order line and it is not provided in the request, the only available return order line is auto-selected. If return order has multiple return order lines, the required return order line must be provided in the request. If not provided in the request, it will result in data-error.",
                             "format": "int64"
+                          },
+                          "quantity": {
+                            "required": [
+                              "measurementValue",
+                              "unitOfMeasure"
+                            ],
+                            "type": "object",
+                            "properties": {
+                              "unitOfMeasure": {
+                                "type": "string",
+                                "description": "The unit of measure in the item's weight (e.g., 'EACH' or 'EA')"
+                              },
+                              "measurementValue": {
+                                "type": "number",
+                                "description": "The quantity of the unit of measure for the item",
+                                "format": "double"
+                              }
+                            },
+                            "description": "Total quantity returned in this return line"
                           }
                         },
                         "description": "Array of refund lines."
@@ -180,7 +212,11 @@
                   "customerOrderId": "1535274411287",
                   "refundLines": [
                     {
-                      "returnOrderLineNumber": 1
+                      "returnOrderLineNumber": 1,
+                      "quantity": {
+                        "unitOfMeasure": "EA",
+                        "measurementValue": 2
+                      }
                     }
                   ]
                 }
@@ -208,16 +244,6 @@
               "type": "string",
               "default": "RETURNS_OVERRIDES"
             }
-          },
-          {
-            "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
           },
           {
             "in": "header",
@@ -470,16 +496,6 @@
               "type": "string",
               "default": "10"
             }
-          },
-          {
-            "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
           },
           {
             "in": "header",
@@ -768,7 +784,7 @@
                                       "properties": {
                                         "unitOfMeasure": {
                                           "type": "string",
-                                          "description": "The unit of measure in the item's weight (e.g., 'POUND' or 'OUNCE')"
+                                          "description": "The unit of measure in the item's weight (e.g., 'EACH' or 'EA')"
                                         },
                                         "measurementValue": {
                                           "type": "number",
@@ -793,7 +809,7 @@
                                       },
                                       "chargeName": {
                                         "type": "string",
-                                        "description": "If chargeType is PRODUCT, chargeName is Item Price. If chargeType is SHIPPING, chargeName is Shipping"
+                                        "description": "If chargeType is PRODUCT, chargeName is ItemPrice. If chargeType is PRODUCT and includes a chargeName as SubscriptionDiscount, these are subscription orders with a discount. If chargeType is SHIPPING, chargeName is Shipping"
                                       },
                                       "chargePerUnit": {
                                         "required": [
@@ -1007,7 +1023,7 @@
                                   "properties": {
                                     "unitOfMeasure": {
                                       "type": "string",
-                                      "description": "The unit of measure in the item's weight (e.g., 'POUND' or 'OUNCE')"
+                                      "description": "The unit of measure in the item's weight (e.g., 'EACH' or 'EA')"
                                     },
                                     "measurementValue": {
                                       "type": "number",
@@ -1111,6 +1127,81 @@
                                 "currentRefundStatus": {
                                   "type": "string",
                                   "description": "Determines the current refund status of the return."
+                                },
+                                "currentTrackingStatuses": {
+                                  "type": "array",
+                                  "description": "Array of current tracking status of each quantity",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "status": {
+                                        "type": "string",
+                                        "description": "Current status of return. (e.g., 'INITIATED')"
+                                      },
+                                      "statusTime": {
+                                        "type": "string",
+                                        "description": "Timestamp of listed status change",
+                                        "format": "date-time"
+                                      },
+                                      "currentRefundStatus": {
+                                        "type": "string",
+                                        "description": "Determines the current refund status of the return."
+                                      },
+                                      "quantity": {
+                                        "required": [
+                                          "measurementValue",
+                                          "unitOfMeasure"
+                                        ],
+                                        "type": "object",
+                                        "properties": {
+                                          "unitOfMeasure": {
+                                            "type": "string",
+                                            "description": "The unit of measure in the item's weight (e.g., 'EACH' or 'EA')"
+                                          },
+                                          "measurementValue": {
+                                            "type": "number",
+                                            "description": "The quantity of the unit of measure for the item",
+                                            "format": "double"
+                                          }
+                                        },
+                                        "description": "Total quantity returned in this return line"
+                                      }
+                                    },
+                                    "description": "Array of current tracking status of each quantity"
+                                  }
+                                },
+                                "refundChannels": {
+                                  "type": "array",
+                                  "description": "Array of refund channel of each quantity",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "refundChannelName": {
+                                        "type": "string",
+                                        "description": "Valid values are: ONLINE, IN_STORE, and CUSTOMER_CARE"
+                                      },
+                                      "quantity": {
+                                        "required": [
+                                          "measurementValue",
+                                          "unitOfMeasure"
+                                        ],
+                                        "type": "object",
+                                        "properties": {
+                                          "unitOfMeasure": {
+                                            "type": "string",
+                                            "description": "The unit of measure in the item's weight (e.g., 'EACH' or 'EA')"
+                                          },
+                                          "measurementValue": {
+                                            "type": "number",
+                                            "description": "The quantity of the unit of measure for the item",
+                                            "format": "double"
+                                          }
+                                        },
+                                        "description": "Total quantity returned in this return line"
+                                      }
+                                    },
+                                    "description": "Array of refund channel of each quantity"
+                                  }
                                 }
                               },
                               "description": "A list of order lines in the return order"
@@ -1277,11 +1368,45 @@
                             }
                           ],
                           "currentDeliveryStatus": "NOT_SHIPPED",
-                          "currentRefundStatus": "NOT_REFUNDED",
+                          "currentRefundStatus": "REFUND_INITIATED",
+                          "currentTrackingStatuses": [
+                            {
+                              "status": "COMPLETED",
+                              "statusTime": "2023-06-22T02:20:51.000Z",
+                              "currentRefundStatus": "REFUND_INITIATED",
+                              "quantity": {
+                                "unitOfMeasure": "EACH",
+                                "measurementValue": 2
+                              }
+                            },
+                            {
+                              "status": "COMPLETED",
+                              "statusTime": "2023-06-22T02:20:51.000Z",
+                              "currentRefundStatus": "REFUND_COMPLETED",
+                              "quantity": {
+                                "unitOfMeasure": "EACH",
+                                "measurementValue": 1
+                              }
+                            }
+                          ],
+                          "refundChannels": [
+                            {
+                              "refundChannelName": "SELLER_MANUAL_REFUND",
+                              "quantity": {
+                                "measurementValue": 2
+                              }
+                            },
+                            {
+                              "refundChannelName": "InstantRefund",
+                              "quantity": {
+                                "measurementValue": 1
+                              }
+                            }
+                          ],
                           "cancellableQty": 0,
                           "quantity": {
                             "unitOfMeasure": "EACH",
-                            "measurementValue": 1
+                            "measurementValue": 3
                           },
                           "returnExpectedFlag": true,
                           "isFastReplacement": false,
@@ -1343,6 +1468,25 @@
   },
   "components": {
     "schemas": {
+      "Quantity": {
+        "required": [
+          "measurementValue",
+          "unitOfMeasure"
+        ],
+        "type": "object",
+        "properties": {
+          "unitOfMeasure": {
+            "type": "string",
+            "description": "The unit of measure in the item's weight (e.g., 'EACH' or 'EA')"
+          },
+          "measurementValue": {
+            "type": "number",
+            "description": "The quantity of the unit of measure for the item",
+            "format": "double"
+          }
+        },
+        "description": "Total quantity returned in this return line"
+      },
       "RefundLine": {
         "required": [
           "returnOrderLineNumber"
@@ -1353,6 +1497,25 @@
             "type": "integer",
             "description": "A line number associated with each individual line in the return order. If return order has only one return order line and it is not provided in the request, the only available return order line is auto-selected. If return order has multiple return order lines, the required return order line must be provided in the request. If not provided in the request, it will result in data-error.",
             "format": "int64"
+          },
+          "quantity": {
+            "required": [
+              "measurementValue",
+              "unitOfMeasure"
+            ],
+            "type": "object",
+            "properties": {
+              "unitOfMeasure": {
+                "type": "string",
+                "description": "The unit of measure in the item's weight (e.g., 'EACH' or 'EA')"
+              },
+              "measurementValue": {
+                "type": "number",
+                "description": "The quantity of the unit of measure for the item",
+                "format": "double"
+              }
+            },
+            "description": "Total quantity returned in this return line"
           }
         },
         "description": "Array of refund lines."
@@ -1381,6 +1544,25 @@
                   "type": "integer",
                   "description": "A line number associated with each individual line in the return order. If return order has only one return order line and it is not provided in the request, the only available return order line is auto-selected. If return order has multiple return order lines, the required return order line must be provided in the request. If not provided in the request, it will result in data-error.",
                   "format": "int64"
+                },
+                "quantity": {
+                  "required": [
+                    "measurementValue",
+                    "unitOfMeasure"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "unitOfMeasure": {
+                      "type": "string",
+                      "description": "The unit of measure in the item's weight (e.g., 'EACH' or 'EA')"
+                    },
+                    "measurementValue": {
+                      "type": "number",
+                      "description": "The quantity of the unit of measure for the item",
+                      "format": "double"
+                    }
+                  },
+                  "description": "Total quantity returned in this return line"
                 }
               },
               "description": "Array of refund lines."
@@ -1412,6 +1594,25 @@
                   "type": "integer",
                   "description": "A line number associated with each individual line in the return order. If return order has only one return order line and it is not provided in the request, the only available return order line is auto-selected. If return order has multiple return order lines, the required return order line must be provided in the request. If not provided in the request, it will result in data-error.",
                   "format": "int64"
+                },
+                "quantity": {
+                  "required": [
+                    "measurementValue",
+                    "unitOfMeasure"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "unitOfMeasure": {
+                      "type": "string",
+                      "description": "The unit of measure in the item's weight (e.g., 'EACH' or 'EA')"
+                    },
+                    "measurementValue": {
+                      "type": "number",
+                      "description": "The quantity of the unit of measure for the item",
+                      "format": "double"
+                    }
+                  },
+                  "description": "Total quantity returned in this return line"
                 }
               },
               "description": "Array of refund lines."
@@ -1459,7 +1660,7 @@
           },
           "chargeName": {
             "type": "string",
-            "description": "If chargeType is PRODUCT, chargeName is Item Price. If chargeType is SHIPPING, chargeName is Shipping"
+            "description": "If chargeType is PRODUCT, chargeName is ItemPrice. If chargeType is PRODUCT and includes a chargeName as SubscriptionDiscount, these are subscription orders with a discount. If chargeType is SHIPPING, chargeName is Shipping"
           },
           "chargePerUnit": {
             "required": [
@@ -1614,6 +1815,44 @@
           }
         },
         "description": "Contains name value pairs of calculated charges for the line. Eg: if order line has 3 Qty, this will have a shipping charge = 3 * shipping charge per unit (This is present in the line level charges)."
+      },
+      "CurrentTrackingStatus": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "Current status of return. (e.g., 'INITIATED')"
+          },
+          "statusTime": {
+            "type": "string",
+            "description": "Timestamp of listed status change",
+            "format": "date-time"
+          },
+          "currentRefundStatus": {
+            "type": "string",
+            "description": "Determines the current refund status of the return."
+          },
+          "quantity": {
+            "required": [
+              "measurementValue",
+              "unitOfMeasure"
+            ],
+            "type": "object",
+            "properties": {
+              "unitOfMeasure": {
+                "type": "string",
+                "description": "The unit of measure in the item's weight (e.g., 'EACH' or 'EA')"
+              },
+              "measurementValue": {
+                "type": "number",
+                "description": "The quantity of the unit of measure for the item",
+                "format": "double"
+              }
+            },
+            "description": "Total quantity returned in this return line"
+          }
+        },
+        "description": "Array of current tracking status of each quantity"
       },
       "CustomerName": {
         "type": "object",
@@ -1871,7 +2110,7 @@
                             "properties": {
                               "unitOfMeasure": {
                                 "type": "string",
-                                "description": "The unit of measure in the item's weight (e.g., 'POUND' or 'OUNCE')"
+                                "description": "The unit of measure in the item's weight (e.g., 'EACH' or 'EA')"
                               },
                               "measurementValue": {
                                 "type": "number",
@@ -1896,7 +2135,7 @@
                             },
                             "chargeName": {
                               "type": "string",
-                              "description": "If chargeType is PRODUCT, chargeName is Item Price. If chargeType is SHIPPING, chargeName is Shipping"
+                              "description": "If chargeType is PRODUCT, chargeName is ItemPrice. If chargeType is PRODUCT and includes a chargeName as SubscriptionDiscount, these are subscription orders with a discount. If chargeType is SHIPPING, chargeName is Shipping"
                             },
                             "chargePerUnit": {
                               "required": [
@@ -2110,7 +2349,7 @@
                         "properties": {
                           "unitOfMeasure": {
                             "type": "string",
-                            "description": "The unit of measure in the item's weight (e.g., 'POUND' or 'OUNCE')"
+                            "description": "The unit of measure in the item's weight (e.g., 'EACH' or 'EA')"
                           },
                           "measurementValue": {
                             "type": "number",
@@ -2214,6 +2453,81 @@
                       "currentRefundStatus": {
                         "type": "string",
                         "description": "Determines the current refund status of the return."
+                      },
+                      "currentTrackingStatuses": {
+                        "type": "array",
+                        "description": "Array of current tracking status of each quantity",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "status": {
+                              "type": "string",
+                              "description": "Current status of return. (e.g., 'INITIATED')"
+                            },
+                            "statusTime": {
+                              "type": "string",
+                              "description": "Timestamp of listed status change",
+                              "format": "date-time"
+                            },
+                            "currentRefundStatus": {
+                              "type": "string",
+                              "description": "Determines the current refund status of the return."
+                            },
+                            "quantity": {
+                              "required": [
+                                "measurementValue",
+                                "unitOfMeasure"
+                              ],
+                              "type": "object",
+                              "properties": {
+                                "unitOfMeasure": {
+                                  "type": "string",
+                                  "description": "The unit of measure in the item's weight (e.g., 'EACH' or 'EA')"
+                                },
+                                "measurementValue": {
+                                  "type": "number",
+                                  "description": "The quantity of the unit of measure for the item",
+                                  "format": "double"
+                                }
+                              },
+                              "description": "Total quantity returned in this return line"
+                            }
+                          },
+                          "description": "Array of current tracking status of each quantity"
+                        }
+                      },
+                      "refundChannels": {
+                        "type": "array",
+                        "description": "Array of refund channel of each quantity",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "refundChannelName": {
+                              "type": "string",
+                              "description": "Valid values are: ONLINE, IN_STORE, and CUSTOMER_CARE"
+                            },
+                            "quantity": {
+                              "required": [
+                                "measurementValue",
+                                "unitOfMeasure"
+                              ],
+                              "type": "object",
+                              "properties": {
+                                "unitOfMeasure": {
+                                  "type": "string",
+                                  "description": "The unit of measure in the item's weight (e.g., 'EACH' or 'EA')"
+                                },
+                                "measurementValue": {
+                                  "type": "number",
+                                  "description": "The quantity of the unit of measure for the item",
+                                  "format": "double"
+                                }
+                              },
+                              "description": "Total quantity returned in this return line"
+                            }
+                          },
+                          "description": "Array of refund channel of each quantity"
+                        }
                       }
                     },
                     "description": "A list of order lines in the return order"
@@ -2255,7 +2569,7 @@
             "properties": {
               "unitOfMeasure": {
                 "type": "string",
-                "description": "The unit of measure in the item's weight (e.g., 'POUND' or 'OUNCE')"
+                "description": "The unit of measure in the item's weight (e.g., 'EACH' or 'EA')"
               },
               "measurementValue": {
                 "type": "number",
@@ -2360,24 +2674,34 @@
         },
         "description": "Used only for 1P"
       },
-      "Quantity": {
-        "required": [
-          "measurementValue",
-          "unitOfMeasure"
-        ],
+      "RefundChannelInfo": {
         "type": "object",
         "properties": {
-          "unitOfMeasure": {
+          "refundChannelName": {
             "type": "string",
-            "description": "The unit of measure in the item's weight (e.g., 'POUND' or 'OUNCE')"
+            "description": "Valid values are: ONLINE, IN_STORE, and CUSTOMER_CARE"
           },
-          "measurementValue": {
-            "type": "number",
-            "description": "The quantity of the unit of measure for the item",
-            "format": "double"
+          "quantity": {
+            "required": [
+              "measurementValue",
+              "unitOfMeasure"
+            ],
+            "type": "object",
+            "properties": {
+              "unitOfMeasure": {
+                "type": "string",
+                "description": "The unit of measure in the item's weight (e.g., 'EACH' or 'EA')"
+              },
+              "measurementValue": {
+                "type": "number",
+                "description": "The quantity of the unit of measure for the item",
+                "format": "double"
+              }
+            },
+            "description": "Total quantity returned in this return line"
           }
         },
-        "description": "Total quantity returned in this return line"
+        "description": "Array of refund channel of each quantity"
       },
       "ReturnChannel": {
         "type": "object",
@@ -2681,7 +3005,7 @@
                       "properties": {
                         "unitOfMeasure": {
                           "type": "string",
-                          "description": "The unit of measure in the item's weight (e.g., 'POUND' or 'OUNCE')"
+                          "description": "The unit of measure in the item's weight (e.g., 'EACH' or 'EA')"
                         },
                         "measurementValue": {
                           "type": "number",
@@ -2706,7 +3030,7 @@
                       },
                       "chargeName": {
                         "type": "string",
-                        "description": "If chargeType is PRODUCT, chargeName is Item Price. If chargeType is SHIPPING, chargeName is Shipping"
+                        "description": "If chargeType is PRODUCT, chargeName is ItemPrice. If chargeType is PRODUCT and includes a chargeName as SubscriptionDiscount, these are subscription orders with a discount. If chargeType is SHIPPING, chargeName is Shipping"
                       },
                       "chargePerUnit": {
                         "required": [
@@ -2920,7 +3244,7 @@
                   "properties": {
                     "unitOfMeasure": {
                       "type": "string",
-                      "description": "The unit of measure in the item's weight (e.g., 'POUND' or 'OUNCE')"
+                      "description": "The unit of measure in the item's weight (e.g., 'EACH' or 'EA')"
                     },
                     "measurementValue": {
                       "type": "number",
@@ -3024,6 +3348,81 @@
                 "currentRefundStatus": {
                   "type": "string",
                   "description": "Determines the current refund status of the return."
+                },
+                "currentTrackingStatuses": {
+                  "type": "array",
+                  "description": "Array of current tracking status of each quantity",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "status": {
+                        "type": "string",
+                        "description": "Current status of return. (e.g., 'INITIATED')"
+                      },
+                      "statusTime": {
+                        "type": "string",
+                        "description": "Timestamp of listed status change",
+                        "format": "date-time"
+                      },
+                      "currentRefundStatus": {
+                        "type": "string",
+                        "description": "Determines the current refund status of the return."
+                      },
+                      "quantity": {
+                        "required": [
+                          "measurementValue",
+                          "unitOfMeasure"
+                        ],
+                        "type": "object",
+                        "properties": {
+                          "unitOfMeasure": {
+                            "type": "string",
+                            "description": "The unit of measure in the item's weight (e.g., 'EACH' or 'EA')"
+                          },
+                          "measurementValue": {
+                            "type": "number",
+                            "description": "The quantity of the unit of measure for the item",
+                            "format": "double"
+                          }
+                        },
+                        "description": "Total quantity returned in this return line"
+                      }
+                    },
+                    "description": "Array of current tracking status of each quantity"
+                  }
+                },
+                "refundChannels": {
+                  "type": "array",
+                  "description": "Array of refund channel of each quantity",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "refundChannelName": {
+                        "type": "string",
+                        "description": "Valid values are: ONLINE, IN_STORE, and CUSTOMER_CARE"
+                      },
+                      "quantity": {
+                        "required": [
+                          "measurementValue",
+                          "unitOfMeasure"
+                        ],
+                        "type": "object",
+                        "properties": {
+                          "unitOfMeasure": {
+                            "type": "string",
+                            "description": "The unit of measure in the item's weight (e.g., 'EACH' or 'EA')"
+                          },
+                          "measurementValue": {
+                            "type": "number",
+                            "description": "The quantity of the unit of measure for the item",
+                            "format": "double"
+                          }
+                        },
+                        "description": "Total quantity returned in this return line"
+                      }
+                    },
+                    "description": "Array of refund channel of each quantity"
+                  }
                 }
               },
               "description": "A list of order lines in the return order"
@@ -3106,7 +3505,7 @@
                 "properties": {
                   "unitOfMeasure": {
                     "type": "string",
-                    "description": "The unit of measure in the item's weight (e.g., 'POUND' or 'OUNCE')"
+                    "description": "The unit of measure in the item's weight (e.g., 'EACH' or 'EA')"
                   },
                   "measurementValue": {
                     "type": "number",
@@ -3131,7 +3530,7 @@
                 },
                 "chargeName": {
                   "type": "string",
-                  "description": "If chargeType is PRODUCT, chargeName is Item Price. If chargeType is SHIPPING, chargeName is Shipping"
+                  "description": "If chargeType is PRODUCT, chargeName is ItemPrice. If chargeType is PRODUCT and includes a chargeName as SubscriptionDiscount, these are subscription orders with a discount. If chargeType is SHIPPING, chargeName is Shipping"
                 },
                 "chargePerUnit": {
                   "required": [
@@ -3345,7 +3744,7 @@
             "properties": {
               "unitOfMeasure": {
                 "type": "string",
-                "description": "The unit of measure in the item's weight (e.g., 'POUND' or 'OUNCE')"
+                "description": "The unit of measure in the item's weight (e.g., 'EACH' or 'EA')"
               },
               "measurementValue": {
                 "type": "number",
@@ -3449,6 +3848,81 @@
           "currentRefundStatus": {
             "type": "string",
             "description": "Determines the current refund status of the return."
+          },
+          "currentTrackingStatuses": {
+            "type": "array",
+            "description": "Array of current tracking status of each quantity",
+            "items": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string",
+                  "description": "Current status of return. (e.g., 'INITIATED')"
+                },
+                "statusTime": {
+                  "type": "string",
+                  "description": "Timestamp of listed status change",
+                  "format": "date-time"
+                },
+                "currentRefundStatus": {
+                  "type": "string",
+                  "description": "Determines the current refund status of the return."
+                },
+                "quantity": {
+                  "required": [
+                    "measurementValue",
+                    "unitOfMeasure"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "unitOfMeasure": {
+                      "type": "string",
+                      "description": "The unit of measure in the item's weight (e.g., 'EACH' or 'EA')"
+                    },
+                    "measurementValue": {
+                      "type": "number",
+                      "description": "The quantity of the unit of measure for the item",
+                      "format": "double"
+                    }
+                  },
+                  "description": "Total quantity returned in this return line"
+                }
+              },
+              "description": "Array of current tracking status of each quantity"
+            }
+          },
+          "refundChannels": {
+            "type": "array",
+            "description": "Array of refund channel of each quantity",
+            "items": {
+              "type": "object",
+              "properties": {
+                "refundChannelName": {
+                  "type": "string",
+                  "description": "Valid values are: ONLINE, IN_STORE, and CUSTOMER_CARE"
+                },
+                "quantity": {
+                  "required": [
+                    "measurementValue",
+                    "unitOfMeasure"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "unitOfMeasure": {
+                      "type": "string",
+                      "description": "The unit of measure in the item's weight (e.g., 'EACH' or 'EA')"
+                    },
+                    "measurementValue": {
+                      "type": "number",
+                      "description": "The quantity of the unit of measure for the item",
+                      "format": "double"
+                    }
+                  },
+                  "description": "Total quantity returned in this return line"
+                }
+              },
+              "description": "Array of refund channel of each quantity"
+            }
           }
         },
         "description": "A list of order lines in the return order"
@@ -3615,15 +4089,6 @@
           "type": "string"
         },
         "example": "application/json"
-      }
-    },
-    "securitySchemes": {
-      "basicScheme": {
-        "type": "http",
-        "description": "",
-        "name": "Authorization",
-        "in": "header",
-        "scheme": "basic"
       }
     }
   }
