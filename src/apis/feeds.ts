@@ -975,7 +975,6 @@ export const FeedsApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * Returns the feed statuses for all the specified Feed IDs.
          * @summary  All feed statuses
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -986,9 +985,7 @@ export const FeedsApiAxiosParamCreator = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAllFeedStatuses: async (authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, feedId?: string, offset?: string, limit?: string, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'authorization' is not null or undefined
-            assertParamExists('getAllFeedStatuses', 'authorization', authorization)
+        getAllFeedStatuses: async (wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, feedId?: string, offset?: string, limit?: string, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
             assertParamExists('getAllFeedStatuses', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN)
             // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
@@ -1007,10 +1004,6 @@ export const FeedsApiAxiosParamCreator = function (configuration?: Configuration
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication basicScheme required
-            // http basic authentication required
-            setBasicAuthToObject(localVarRequestOptions, configuration)
-
             if (feedId !== undefined) {
                 localVarQueryParameter['feedId'] = feedId;
             }
@@ -1021,10 +1014,6 @@ export const FeedsApiAxiosParamCreator = function (configuration?: Configuration
 
             if (limit !== undefined) {
                 localVarQueryParameter['limit'] = limit;
-            }
-
-            if (authorization !== undefined && authorization !== null) {
-                localVarHeaderParameter['Authorization'] = String(authorization);
             }
 
             if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
@@ -1059,7 +1048,6 @@ export const FeedsApiAxiosParamCreator = function (configuration?: Configuration
          * @summary Get Feed Error Report
          * @param {string} feedId Feed Id of the feed
          * @param {'FITMENT_ACES' | 'FITMENT_PIES'} feedType Feed type for which Error Report needs to be downloaded
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -1067,13 +1055,11 @@ export const FeedsApiAxiosParamCreator = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getFeedErrorReport: async (feedId: string, feedType: 'FITMENT_ACES' | 'FITMENT_PIES', authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
+        getFeedErrorReport: async (feedId: string, feedType: 'FITMENT_ACES' | 'FITMENT_PIES', wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'feedId' is not null or undefined
             assertParamExists('getFeedErrorReport', 'feedId', feedId)
             // verify required parameter 'feedType' is not null or undefined
             assertParamExists('getFeedErrorReport', 'feedType', feedType)
-            // verify required parameter 'authorization' is not null or undefined
-            assertParamExists('getFeedErrorReport', 'authorization', authorization)
             // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
             assertParamExists('getFeedErrorReport', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN)
             // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
@@ -1093,16 +1079,8 @@ export const FeedsApiAxiosParamCreator = function (configuration?: Configuration
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication basicScheme required
-            // http basic authentication required
-            setBasicAuthToObject(localVarRequestOptions, configuration)
-
             if (feedType !== undefined) {
                 localVarQueryParameter['feedType'] = feedType;
-            }
-
-            if (authorization !== undefined && authorization !== null) {
-                localVarHeaderParameter['Authorization'] = String(authorization);
             }
 
             if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
@@ -1136,7 +1114,6 @@ export const FeedsApiAxiosParamCreator = function (configuration?: Configuration
          * Returns the feed and item status for a specified Feed ID.
          * @summary Feed item status
          * @param {string} feedId A unique ID returned from the Bulk Upload API, used for tracking the Feed File. Special characters must be escaped. (e.g., feedId: \&#39;...3456@789...\&#39; must be entered in the URL as \&#39;...3456%40789)
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -1147,11 +1124,9 @@ export const FeedsApiAxiosParamCreator = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getFeedItemStatus: async (feedId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, includeDetails?: string, offset?: string, limit?: string, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
+        getFeedItemStatus: async (feedId: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, includeDetails?: string, offset?: string, limit?: string, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'feedId' is not null or undefined
             assertParamExists('getFeedItemStatus', 'feedId', feedId)
-            // verify required parameter 'authorization' is not null or undefined
-            assertParamExists('getFeedItemStatus', 'authorization', authorization)
             // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
             assertParamExists('getFeedItemStatus', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN)
             // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
@@ -1171,10 +1146,6 @@ export const FeedsApiAxiosParamCreator = function (configuration?: Configuration
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication basicScheme required
-            // http basic authentication required
-            setBasicAuthToObject(localVarRequestOptions, configuration)
-
             if (includeDetails !== undefined) {
                 localVarQueryParameter['includeDetails'] = includeDetails;
             }
@@ -1185,10 +1156,6 @@ export const FeedsApiAxiosParamCreator = function (configuration?: Configuration
 
             if (limit !== undefined) {
                 localVarQueryParameter['limit'] = limit;
-            }
-
-            if (authorization !== undefined && authorization !== null) {
-                localVarHeaderParameter['Authorization'] = String(authorization);
             }
 
             if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
@@ -1231,7 +1198,6 @@ export const FeedsApiFp = function(configuration?: Configuration) {
         /**
          * Returns the feed statuses for all the specified Feed IDs.
          * @summary  All feed statuses
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -1242,8 +1208,8 @@ export const FeedsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getAllFeedStatuses(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, feedId?: string, offset?: string, limit?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getAllFeedStatuses(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, feedId, offset, limit, wMCONSUMERCHANNELTYPE, options);
+        async getAllFeedStatuses(wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, feedId?: string, offset?: string, limit?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getAllFeedStatuses(wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, feedId, offset, limit, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -1251,7 +1217,6 @@ export const FeedsApiFp = function(configuration?: Configuration) {
          * @summary Get Feed Error Report
          * @param {string} feedId Feed Id of the feed
          * @param {'FITMENT_ACES' | 'FITMENT_PIES'} feedType Feed type for which Error Report needs to be downloaded
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -1259,15 +1224,14 @@ export const FeedsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getFeedErrorReport(feedId: string, feedType: 'FITMENT_ACES' | 'FITMENT_PIES', authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getFeedErrorReport(feedId, feedType, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options);
+        async getFeedErrorReport(feedId: string, feedType: 'FITMENT_ACES' | 'FITMENT_PIES', wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getFeedErrorReport(feedId, feedType, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Returns the feed and item status for a specified Feed ID.
          * @summary Feed item status
          * @param {string} feedId A unique ID returned from the Bulk Upload API, used for tracking the Feed File. Special characters must be escaped. (e.g., feedId: \&#39;...3456@789...\&#39; must be entered in the URL as \&#39;...3456%40789)
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -1278,8 +1242,8 @@ export const FeedsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getFeedItemStatus(feedId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, includeDetails?: string, offset?: string, limit?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getFeedItemStatus(feedId, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, includeDetails, offset, limit, wMCONSUMERCHANNELTYPE, options);
+        async getFeedItemStatus(feedId: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, includeDetails?: string, offset?: string, limit?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getFeedItemStatus(feedId, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, includeDetails, offset, limit, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -1295,7 +1259,6 @@ export const FeedsApiFactory = function (configuration?: Configuration, basePath
         /**
          * Returns the feed statuses for all the specified Feed IDs.
          * @summary  All feed statuses
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -1306,15 +1269,14 @@ export const FeedsApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAllFeedStatuses(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, feedId?: string, offset?: string, limit?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse200> {
-            return localVarFp.getAllFeedStatuses(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, feedId, offset, limit, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        getAllFeedStatuses(wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, feedId?: string, offset?: string, limit?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse200> {
+            return localVarFp.getAllFeedStatuses(wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, feedId, offset, limit, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
          * Get Feed Error Report API allows you to download a detailed error report for a submitted feed.   Currently the API supports error report download for the following feeds:  *   FITMENT_ACES  *   FITMENT_PIES    This API returns a zipped .csv file, which contains line item level detailed error messages. For details and a sample, please refer to the guide section link below.    
          * @summary Get Feed Error Report
          * @param {string} feedId Feed Id of the feed
          * @param {'FITMENT_ACES' | 'FITMENT_PIES'} feedType Feed type for which Error Report needs to be downloaded
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -1322,14 +1284,13 @@ export const FeedsApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getFeedErrorReport(feedId: string, feedType: 'FITMENT_ACES' | 'FITMENT_PIES', authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<void> {
-            return localVarFp.getFeedErrorReport(feedId, feedType, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        getFeedErrorReport(feedId: string, feedType: 'FITMENT_ACES' | 'FITMENT_PIES', wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<void> {
+            return localVarFp.getFeedErrorReport(feedId, feedType, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns the feed and item status for a specified Feed ID.
          * @summary Feed item status
          * @param {string} feedId A unique ID returned from the Bulk Upload API, used for tracking the Feed File. Special characters must be escaped. (e.g., feedId: \&#39;...3456@789...\&#39; must be entered in the URL as \&#39;...3456%40789)
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -1340,8 +1301,8 @@ export const FeedsApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getFeedItemStatus(feedId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, includeDetails?: string, offset?: string, limit?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2001> {
-            return localVarFp.getFeedItemStatus(feedId, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, includeDetails, offset, limit, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        getFeedItemStatus(feedId: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, includeDetails?: string, offset?: string, limit?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2001> {
+            return localVarFp.getFeedItemStatus(feedId, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, includeDetails, offset, limit, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -1352,13 +1313,6 @@ export const FeedsApiFactory = function (configuration?: Configuration, basePath
  * @interface FeedsApiGetAllFeedStatusesRequest
  */
 export interface FeedsApiGetAllFeedStatusesRequest {
-    /**
-     * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @type {string}
-     * @memberof FeedsApiGetAllFeedStatuses
-     */
-    readonly authorization: string
-
     /**
      * The access token retrieved in the Token API call
      * @type {string}
@@ -1430,13 +1384,6 @@ export interface FeedsApiGetFeedErrorReportRequest {
     readonly feedType: 'FITMENT_ACES' | 'FITMENT_PIES'
 
     /**
-     * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @type {string}
-     * @memberof FeedsApiGetFeedErrorReport
-     */
-    readonly authorization: string
-
-    /**
      * The access token retrieved in the Token API call
      * @type {string}
      * @memberof FeedsApiGetFeedErrorReport
@@ -1477,13 +1424,6 @@ export interface FeedsApiGetFeedItemStatusRequest {
      * @memberof FeedsApiGetFeedItemStatus
      */
     readonly feedId: string
-
-    /**
-     * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @type {string}
-     * @memberof FeedsApiGetFeedItemStatus
-     */
-    readonly authorization: string
 
     /**
      * The access token retrieved in the Token API call
@@ -1551,7 +1491,7 @@ export class FeedsApi extends BaseAPI {
      * @memberof FeedsApi
      */
     public getAllFeedStatuses(requestParameters: FeedsApiGetAllFeedStatusesRequest, options?: any) {
-        return FeedsApiFp(this.configuration).getAllFeedStatuses(requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.feedId, requestParameters.offset, requestParameters.limit, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+        return FeedsApiFp(this.configuration).getAllFeedStatuses(requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.feedId, requestParameters.offset, requestParameters.limit, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -1563,7 +1503,7 @@ export class FeedsApi extends BaseAPI {
      * @memberof FeedsApi
      */
     public getFeedErrorReport(requestParameters: FeedsApiGetFeedErrorReportRequest, options?: any) {
-        return FeedsApiFp(this.configuration).getFeedErrorReport(requestParameters.feedId, requestParameters.feedType, requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+        return FeedsApiFp(this.configuration).getFeedErrorReport(requestParameters.feedId, requestParameters.feedType, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -1575,7 +1515,7 @@ export class FeedsApi extends BaseAPI {
      * @memberof FeedsApi
      */
     public getFeedItemStatus(requestParameters: FeedsApiGetFeedItemStatusRequest, options?: any) {
-        return FeedsApiFp(this.configuration).getFeedItemStatus(requestParameters.feedId, requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.includeDetails, requestParameters.offset, requestParameters.limit, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+        return FeedsApiFp(this.configuration).getFeedItemStatus(requestParameters.feedId, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.includeDetails, requestParameters.offset, requestParameters.limit, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

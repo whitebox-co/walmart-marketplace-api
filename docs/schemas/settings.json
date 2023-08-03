@@ -44,16 +44,6 @@
           },
           {
             "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
-          },
-          {
-            "in": "header",
             "name": "WM_SEC.ACCESS_TOKEN",
             "description": "The access token retrieved in the Token API call",
             "required": true,
@@ -521,16 +511,6 @@
             "schema": {
               "type": "string"
             }
-          },
-          {
-            "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
           },
           {
             "in": "header",
@@ -6301,16 +6281,6 @@
           },
           {
             "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
-          },
-          {
-            "in": "header",
             "name": "WM_SEC.ACCESS_TOKEN",
             "description": "The access token retrieved in the Token API call",
             "required": true,
@@ -6390,16 +6360,6 @@
               "type": "boolean",
               "default": false
             }
-          },
-          {
-            "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
           },
           {
             "in": "header",
@@ -6882,16 +6842,6 @@
         "description": "This API enables or disables a fulfillment center.",
         "operationId": "updateFulfillmentCenter",
         "parameters": [
-          {
-            "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
-          },
           {
             "in": "header",
             "name": "WM_SEC.ACCESS_TOKEN",
@@ -7754,16 +7704,6 @@
         "parameters": [
           {
             "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
-          },
-          {
-            "in": "header",
             "name": "WM_SEC.ACCESS_TOKEN",
             "description": "The access token retrieved in the Token API call",
             "required": true,
@@ -8511,16 +8451,6 @@
         "parameters": [
           {
             "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
-          },
-          {
-            "in": "header",
             "name": "WM_SEC.ACCESS_TOKEN",
             "description": "The access token retrieved in the Token API call",
             "required": true,
@@ -8759,16 +8689,6 @@
         },
         "operationId": "createShippingTemplates",
         "parameters": [
-          {
-            "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
-          },
           {
             "in": "header",
             "name": "WM_SEC.ACCESS_TOKEN",
@@ -15493,1583 +15413,6 @@
         }
       }
     },
-    "/v3/settings/shipping/templates/automatedShippingTemplate": {
-      "post": {
-        "tags": [
-          "Settings"
-        ],
-        "summary": "Create Automated Shipping Templates (Beta)",
-        "description": "Create an automated shipping template with minimal input to optimize transit time.",
-        "operationId": "createAutomatedShippingTemplates",
-        "parameters": [
-          {
-            "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
-          },
-          {
-            "in": "header",
-            "name": "WM_SEC.ACCESS_TOKEN",
-            "description": "The access token retrieved in the Token API call",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
-          },
-          {
-            "in": "header",
-            "name": "WM_CONSUMER.CHANNEL.TYPE",
-            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "header",
-            "name": "WM_QOS.CORRELATION_ID",
-            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
-          },
-          {
-            "in": "header",
-            "name": "WM_SVC.NAME",
-            "description": "Walmart Service Name",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Walmart Service Name"
-          }
-        ],
-        "requestBody": {
-          "description": "Request fields",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "fulfillmentCenterName": {
-                    "pattern": "^[A-Za-z0-9\\s]+$",
-                    "type": "string",
-                    "description": "Fulfillment Center Name "
-                  },
-                  "fulfillmentCenterZipCode": {
-                    "type": "string",
-                    "description": "Fulfillment Center Zipcode "
-                  },
-                  "carrierMethodName": {
-                    "type": "string",
-                    "description": "Carrier Method Name. Supported carrier methods are: FEDEX_GROUND"
-                  }
-                }
-              },
-              "examples": {
-                "sample": {
-                  "value": {
-                    "fulfillmentCenterZipCode": "70778",
-                    "fulfillmentCenterName": "Test Walmart",
-                    "carrierMethodName": "FEDEX_GROUND"
-                  }
-                }
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "required": [
-                    "name",
-                    "rateModelType",
-                    "shippingMethods",
-                    "status",
-                    "type"
-                  ],
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string",
-                      "description": "Shipping Template ID"
-                    },
-                    "name": {
-                      "pattern": "^[A-Za-z0-9\\s]+$",
-                      "type": "string",
-                      "description": "Shipping Template Name"
-                    },
-                    "type": {
-                      "type": "string",
-                      "description": "Shipping Template Type, should be CUSTOM or 3PL Specific",
-                      "enum": [
-                        "DEFAULT",
-                        "CUSTOM",
-                        "DELIVERR"
-                      ]
-                    },
-                    "rateModelType": {
-                      "type": "string",
-                      "description": "This is the shipping model type. TIERED_PRICING: This model means that you charge shipping based on the price of the item PER_SHIPMENT_PRICING: This model means that you charge shipping based on the weight of your items (per pound), or you charge shipping based on the number of items purchased in an order",
-                      "enum": [
-                        "TIERED_PRICING",
-                        "PER_SHIPMENT_PRICING"
-                      ]
-                    },
-                    "status": {
-                      "type": "string",
-                      "description": "Shipping Template Status, Can be ACTIVE or INACTIVE status",
-                      "enum": [
-                        "ACTIVE",
-                        "INACTIVE"
-                      ]
-                    },
-                    "shippingMethods": {
-                      "type": "array",
-                      "description": "Array of different ship methods of a Shipping Template",
-                      "items": {
-                        "required": [
-                          "configurations",
-                          "shipMethod",
-                          "status"
-                        ],
-                        "type": "object",
-                        "properties": {
-                          "shipMethod": {
-                            "type": "string",
-                            "description": "| Attribute | Description | Data Type |\n| ---- | ----------------- | ------- |\n| VALUE | All Marketplace Sellers must offer Value shipping to Walmart.com customers for items that can't ship within expected transit times for standard shipping. | string |\n| STANDARD | You are required to offer standard shipping to Walmart.com customers. | string |\n| TWO_DAY | If approved for this option, you'll provide free 2-day shipping to customers and your items will be enabled with the TwoDay delivery tag. | string |\n| FREIGHT | Heavy items which takes 6,7,8,9,10 days. | string |",
-                            "enum": [
-                              "VALUE",
-                              "STANDARD",
-                              "THREE_DAY",
-                              "TWO_DAY",
-                              "FREIGHT"
-                            ]
-                          },
-                          "status": {
-                            "type": "string",
-                            "description": "Shipping Method Status, Can be ACTIVE or INACTIVE status",
-                            "enum": [
-                              "ACTIVE",
-                              "INACTIVE"
-                            ]
-                          },
-                          "configurations": {
-                            "type": "array",
-                            "description": "Contains an array of Regions, an array of Address Type, Transit Time and Per shipping charge or array of Tired Shipping Charge",
-                            "items": {
-                              "required": [
-                                "addressTypes",
-                                "regions",
-                                "transitTime"
-                              ],
-                              "type": "object",
-                              "properties": {
-                                "regions": {
-                                  "type": "array",
-                                  "description": "Supported Regions includes 48 State Street, 48 State – Street Po Box/Street, AK and HI – Street etc",
-                                  "items": {
-                                    "required": [
-                                      "regionCode"
-                                    ],
-                                    "type": "object",
-                                    "properties": {
-                                      "regionCode": {
-                                        "type": "string"
-                                      },
-                                      "regionName": {
-                                        "type": "string"
-                                      },
-                                      "subRegions": {
-                                        "type": "array",
-                                        "items": {
-                                          "required": [
-                                            "subRegionCode"
-                                          ],
-                                          "type": "object",
-                                          "properties": {
-                                            "subRegionCode": {
-                                              "type": "string"
-                                            },
-                                            "subRegionName": {
-                                              "type": "string"
-                                            },
-                                            "states": {
-                                              "type": "array",
-                                              "items": {
-                                                "required": [
-                                                  "stateCode"
-                                                ],
-                                                "type": "object",
-                                                "properties": {
-                                                  "stateCode": {
-                                                    "type": "string"
-                                                  },
-                                                  "stateName": {
-                                                    "type": "string"
-                                                  },
-                                                  "stateSubregions": {
-                                                    "type": "array",
-                                                    "items": {
-                                                      "required": [
-                                                        "stateSubregionCode"
-                                                      ],
-                                                      "type": "object",
-                                                      "properties": {
-                                                        "stateSubregionCode": {
-                                                          "type": "string"
-                                                        },
-                                                        "stateSubregionName": {
-                                                          "type": "string"
-                                                        }
-                                                      }
-                                                    }
-                                                  }
-                                                }
-                                              }
-                                            }
-                                          }
-                                        }
-                                      }
-                                    },
-                                    "description": "Supported Regions includes 48 State Street, 48 State – Street Po Box/Street, AK and HI – Street etc"
-                                  }
-                                },
-                                "addressTypes": {
-                                  "type": "array",
-                                  "description": "Supported address types like PO_BOX STREET MILITARY",
-                                  "items": {
-                                    "type": "string",
-                                    "description": "Supported address types like PO_BOX STREET MILITARY",
-                                    "enum": [
-                                      "PO_BOX",
-                                      "MILITARY",
-                                      "STREET"
-                                    ]
-                                  }
-                                },
-                                "transitTime": {
-                                  "type": "integer",
-                                  "description": "Time in transit",
-                                  "format": "int32"
-                                },
-                                "perShippingCharge": {
-                                  "required": [
-                                    "unitOfMeasure"
-                                  ],
-                                  "type": "object",
-                                  "properties": {
-                                    "unitOfMeasure": {
-                                      "type": "string",
-                                      "description": "Unit of Measure eg. LB"
-                                    },
-                                    "shippingAndHandling": {
-                                      "required": [
-                                        "amount",
-                                        "currency"
-                                      ],
-                                      "type": "object",
-                                      "properties": {
-                                        "amount": {
-                                          "type": "number",
-                                          "description": "The numerical amount for that charge. Example: 9.99"
-                                        },
-                                        "currency": {
-                                          "type": "string",
-                                          "description": "The type of currency for the charge. Example: USD for US Dollars"
-                                        }
-                                      },
-                                      "description": "Shipping and Handling Charge"
-                                    },
-                                    "chargePerWeight": {
-                                      "required": [
-                                        "amount",
-                                        "currency"
-                                      ],
-                                      "type": "object",
-                                      "properties": {
-                                        "amount": {
-                                          "type": "number",
-                                          "description": "Charge Per weight, value USD"
-                                        },
-                                        "currency": {
-                                          "type": "string",
-                                          "description": "Currency, eg. USD"
-                                        }
-                                      },
-                                      "description": "Per Item Charge"
-                                    },
-                                    "chargePerItem": {
-                                      "required": [
-                                        "amount",
-                                        "currency"
-                                      ],
-                                      "type": "object",
-                                      "properties": {
-                                        "amount": {
-                                          "type": "number",
-                                          "description": "Charge Per Item, value USD"
-                                        },
-                                        "currency": {
-                                          "type": "string",
-                                          "description": "Currency, eg. USD"
-                                        }
-                                      },
-                                      "description": "Per Weight Charge"
-                                    }
-                                  },
-                                  "description": "Charge per shipping"
-                                },
-                                "tieredShippingCharges": {
-                                  "type": "array",
-                                  "description": "Tiered Shipping Charges",
-                                  "items": {
-                                    "required": [
-                                      "maxLimit",
-                                      "minLimit"
-                                    ],
-                                    "type": "object",
-                                    "properties": {
-                                      "minLimit": {
-                                        "type": "number",
-                                        "description": "Minimum Limit"
-                                      },
-                                      "maxLimit": {
-                                        "type": "number",
-                                        "description": "Maximum Limit"
-                                      },
-                                      "shipCharge": {
-                                        "required": [
-                                          "amount",
-                                          "currency"
-                                        ],
-                                        "type": "object",
-                                        "properties": {
-                                          "amount": {
-                                            "type": "number",
-                                            "description": "Charge Per Item, value USD"
-                                          },
-                                          "currency": {
-                                            "type": "string",
-                                            "description": "Currency, eg. USD"
-                                          }
-                                        },
-                                        "description": "Details of Shipping Charge"
-                                      }
-                                    },
-                                    "description": "Tiered Shipping Charges"
-                                  }
-                                }
-                              },
-                              "description": "Contains an array of Regions, an array of Address Type, Transit Time and Per shipping charge or array of Tired Shipping Charge"
-                            }
-                          }
-                        },
-                        "description": "Array of different ship methods of a Shipping Template"
-                      }
-                    },
-                    "createdBy": {
-                      "type": "string"
-                    },
-                    "modifiedBy": {
-                      "type": "string"
-                    },
-                    "createdDate": {
-                      "type": "number"
-                    },
-                    "modifiedDate": {
-                      "type": "number"
-                    }
-                  }
-                },
-                "examples": {
-                  "sample": {
-                    "value": {
-                      "id": "360658092358582273",
-                      "name": "AutoST Test Walmart",
-                      "type": "CUSTOM",
-                      "rateModelType": "PER_SHIPMENT_PRICING",
-                      "status": "ACTIVE",
-                      "shippingMethods": [
-                        {
-                          "shipMethod": "VALUE",
-                          "status": "ACTIVE",
-                          "configurations": [
-                            {
-                              "regions": [
-                                {
-                                  "regionCode": "C",
-                                  "regionName": "48 State"
-                                }
-                              ],
-                              "addressTypes": [
-                                "STREET"
-                              ],
-                              "transitTime": 6,
-                              "perShippingCharge": {
-                                "unitOfMeasure": "LB",
-                                "shippingAndHandling": {
-                                  "amount": 0,
-                                  "currency": "USD"
-                                },
-                                "chargePerWeight": {
-                                  "amount": 0,
-                                  "currency": "USD"
-                                }
-                              }
-                            },
-                            {
-                              "regions": [
-                                {
-                                  "regionCode": "H",
-                                  "regionName": "AK and HI"
-                                }
-                              ],
-                              "addressTypes": [
-                                "STREET"
-                              ],
-                              "transitTime": 6,
-                              "perShippingCharge": {
-                                "unitOfMeasure": "LB",
-                                "shippingAndHandling": {
-                                  "amount": 0,
-                                  "currency": "USD"
-                                },
-                                "chargePerWeight": {
-                                  "amount": 0,
-                                  "currency": "USD"
-                                }
-                              }
-                            }
-                          ]
-                        },
-                        {
-                          "shipMethod": "STANDARD",
-                          "status": "ACTIVE",
-                          "configurations": [
-                            {
-                              "regions": [
-                                {
-                                  "regionCode": "C",
-                                  "regionName": "48 State",
-                                  "subRegions": [
-                                    {
-                                      "subRegionCode": "MW",
-                                      "subRegionName": "Midwest",
-                                      "states": [
-                                        {
-                                          "stateCode": "SD",
-                                          "stateName": "South Dakota",
-                                          "stateSubregions": [
-                                            {
-                                              "stateSubregionCode": "SD2",
-                                              "stateSubregionName": "SD_WEST"
-                                            },
-                                            {
-                                              "stateSubregionCode": "SD1",
-                                              "stateSubregionName": "SD_EAST"
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "stateCode": "MI",
-                                          "stateName": "Michigan",
-                                          "stateSubregions": [
-                                            {
-                                              "stateSubregionCode": "MI2",
-                                              "stateSubregionName": "MI_NORTH"
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "stateCode": "IA",
-                                          "stateName": "Iowa",
-                                          "stateSubregions": [
-                                            {
-                                              "stateSubregionCode": "IA2",
-                                              "stateSubregionName": "IA_REST"
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "stateCode": "WI",
-                                          "stateName": "Wisconsin",
-                                          "stateSubregions": [
-                                            {
-                                              "stateSubregionCode": "WI1",
-                                              "stateSubregionName": "WI_EAST"
-                                            },
-                                            {
-                                              "stateSubregionCode": "WI2",
-                                              "stateSubregionName": "WI_WEST"
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "stateCode": "IN",
-                                          "stateName": "Indiana",
-                                          "stateSubregions": [
-                                            {
-                                              "stateSubregionCode": "IN2",
-                                              "stateSubregionName": "IN_NORTH"
-                                            },
-                                            {
-                                              "stateSubregionCode": "IN1",
-                                              "stateSubregionName": "IN_CENTRAL_AND_EAST"
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "stateCode": "MN",
-                                          "stateName": "Minnesota",
-                                          "stateSubregions": [
-                                            {
-                                              "stateSubregionCode": "MN2",
-                                              "stateSubregionName": "MN_REST_ALL"
-                                            },
-                                            {
-                                              "stateSubregionCode": "MN1",
-                                              "stateSubregionName": "MN_CENTRAL_EAST"
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "stateCode": "NE",
-                                          "stateName": "Nebraska",
-                                          "stateSubregions": [
-                                            {
-                                              "stateSubregionCode": "NE",
-                                              "stateSubregionName": "NE"
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "stateCode": "MO",
-                                          "stateName": "Missouri",
-                                          "stateSubregions": [
-                                            {
-                                              "stateSubregionCode": "MO1",
-                                              "stateSubregionName": "MO_EAST"
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "stateCode": "IL",
-                                          "stateName": "Illinois",
-                                          "stateSubregions": [
-                                            {
-                                              "stateSubregionCode": "IL2",
-                                              "stateSubregionName": "IL_NORTH_EAST"
-                                            },
-                                            {
-                                              "stateSubregionCode": "IL1",
-                                              "stateSubregionName": "IL_CHICAGO"
-                                            },
-                                            {
-                                              "stateSubregionCode": "IL3",
-                                              "stateSubregionName": "IL_NORTH_WEST"
-                                            },
-                                            {
-                                              "stateSubregionCode": "IL5",
-                                              "stateSubregionName": "IL_SOUTHWEST"
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "stateCode": "OH",
-                                          "stateName": "Ohio",
-                                          "stateSubregions": [
-                                            {
-                                              "stateSubregionCode": "OH2",
-                                              "stateSubregionName": "OH_NORTH"
-                                            },
-                                            {
-                                              "stateSubregionCode": "OH1",
-                                              "stateSubregionName": "OH_CENTRAL"
-                                            },
-                                            {
-                                              "stateSubregionCode": "OH3",
-                                              "stateSubregionName": "OH_SOUTH_EAST"
-                                            }
-                                          ]
-                                        }
-                                      ]
-                                    },
-                                    {
-                                      "subRegionCode": "SO",
-                                      "subRegionName": "South",
-                                      "states": [
-                                        {
-                                          "stateCode": "KY",
-                                          "stateName": "Kentucky",
-                                          "stateSubregions": [
-                                            {
-                                              "stateSubregionCode": "KY1",
-                                              "stateSubregionName": "KY_EAST"
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "stateCode": "TX",
-                                          "stateName": "Texas",
-                                          "stateSubregions": [
-                                            {
-                                              "stateSubregionCode": "TX10",
-                                              "stateSubregionName": "TX_SOUTH_WEST"
-                                            },
-                                            {
-                                              "stateSubregionCode": "TX1",
-                                              "stateSubregionName": "TX_CENTRAL"
-                                            },
-                                            {
-                                              "stateSubregionCode": "TX2",
-                                              "stateSubregionName": "TX_CENTRAL_NORTH"
-                                            },
-                                            {
-                                              "stateSubregionCode": "TX4",
-                                              "stateSubregionName": "TX_DALLAS"
-                                            },
-                                            {
-                                              "stateSubregionCode": "TX6",
-                                              "stateSubregionName": "TX_NORTH_EAST"
-                                            },
-                                            {
-                                              "stateSubregionCode": "TX8",
-                                              "stateSubregionName": "TX_SOUTH"
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "stateCode": "GA",
-                                          "stateName": "Georgia",
-                                          "stateSubregions": [
-                                            {
-                                              "stateSubregionCode": "GA1",
-                                              "stateSubregionName": "GA_ATLANTA"
-                                            },
-                                            {
-                                              "stateSubregionCode": "GA3",
-                                              "stateSubregionName": "GA_NORTH_EAST"
-                                            },
-                                            {
-                                              "stateSubregionCode": "GA2",
-                                              "stateSubregionName": "GA_CENTRAL"
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "stateCode": "NC",
-                                          "stateName": "North Carolina",
-                                          "stateSubregions": [
-                                            {
-                                              "stateSubregionCode": "NC1",
-                                              "stateSubregionName": "NC_EAST"
-                                            },
-                                            {
-                                              "stateSubregionCode": "NC3",
-                                              "stateSubregionName": "NC_SOUTH"
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "stateCode": "AR",
-                                          "stateName": "Arkansas",
-                                          "stateSubregions": [
-                                            {
-                                              "stateSubregionCode": "AR2",
-                                              "stateSubregionName": "AR_WEST"
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "stateCode": "FL",
-                                          "stateName": "Florida",
-                                          "stateSubregions": [
-                                            {
-                                              "stateSubregionCode": "FL1",
-                                              "stateSubregionName": "FL_CENTRAL_EAST"
-                                            },
-                                            {
-                                              "stateSubregionCode": "FL3",
-                                              "stateSubregionName": "FL_MIAMI"
-                                            },
-                                            {
-                                              "stateSubregionCode": "FL2",
-                                              "stateSubregionName": "FL_CENTRAL_WEST"
-                                            },
-                                            {
-                                              "stateSubregionCode": "FL5",
-                                              "stateSubregionName": "FL_SOUTH_EAST"
-                                            },
-                                            {
-                                              "stateSubregionCode": "FL4",
-                                              "stateSubregionName": "FL_NORTH"
-                                            },
-                                            {
-                                              "stateSubregionCode": "FL6",
-                                              "stateSubregionName": "FL_SOUTH_WEST"
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "stateCode": "WV",
-                                          "stateName": "West Virginia",
-                                          "stateSubregions": [
-                                            {
-                                              "stateSubregionCode": "WV1",
-                                              "stateSubregionName": "WV_EAST"
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "stateCode": "SC",
-                                          "stateName": "South Carolina",
-                                          "stateSubregions": [
-                                            {
-                                              "stateSubregionCode": "SC1",
-                                              "stateSubregionName": "SC_CENTRAL"
-                                            },
-                                            {
-                                              "stateSubregionCode": "SC2",
-                                              "stateSubregionName": "SC_NORTH"
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "stateCode": "VA",
-                                          "stateName": "Virginia",
-                                          "stateSubregions": [
-                                            {
-                                              "stateSubregionCode": "VA2",
-                                              "stateSubregionName": "VA_NORTH"
-                                            },
-                                            {
-                                              "stateSubregionCode": "VA1",
-                                              "stateSubregionName": "VA_CENTRAL"
-                                            },
-                                            {
-                                              "stateSubregionCode": "VA3",
-                                              "stateSubregionName": "VA_SOUTH_EAST"
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "stateCode": "TN",
-                                          "stateName": "Tennessee",
-                                          "stateSubregions": [
-                                            {
-                                              "stateSubregionCode": "TN3",
-                                              "stateSubregionName": "TN_WEST"
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "stateCode": "MD",
-                                          "stateName": "Maryland",
-                                          "stateSubregions": [
-                                            {
-                                              "stateSubregionCode": "MD1",
-                                              "stateSubregionName": "MD_CENTRAL"
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "stateCode": "DC",
-                                          "stateName": "District of Columbia",
-                                          "stateSubregions": [
-                                            {
-                                              "stateSubregionCode": "DC",
-                                              "stateSubregionName": "DC"
-                                            }
-                                          ]
-                                        }
-                                      ]
-                                    },
-                                    {
-                                      "subRegionCode": "WE",
-                                      "subRegionName": "West",
-                                      "states": [
-                                        {
-                                          "stateCode": "CA",
-                                          "stateName": "California",
-                                          "stateSubregions": [
-                                            {
-                                              "stateSubregionCode": "CA5",
-                                              "stateSubregionName": "CA_LONG_BEACH"
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "stateCode": "AZ",
-                                          "stateName": "Arizona",
-                                          "stateSubregions": [
-                                            {
-                                              "stateSubregionCode": "AZ1",
-                                              "stateSubregionName": "AZ_NORTH"
-                                            },
-                                            {
-                                              "stateSubregionCode": "AZ2",
-                                              "stateSubregionName": "AZ_PHOENIX"
-                                            },
-                                            {
-                                              "stateSubregionCode": "AZ3",
-                                              "stateSubregionName": "AZ_SOUTH"
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "stateCode": "NM",
-                                          "stateName": "New Mexico",
-                                          "stateSubregions": [
-                                            {
-                                              "stateSubregionCode": "NM2",
-                                              "stateSubregionName": "NM_REST_ALL"
-                                            },
-                                            {
-                                              "stateSubregionCode": "NM1",
-                                              "stateSubregionName": "NM_CENTRAL"
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "stateCode": "UT",
-                                          "stateName": "Utah",
-                                          "stateSubregions": [
-                                            {
-                                              "stateSubregionCode": "UT2",
-                                              "stateSubregionName": "UT_SOUTH"
-                                            }
-                                          ]
-                                        }
-                                      ]
-                                    },
-                                    {
-                                      "subRegionCode": "NE",
-                                      "subRegionName": "Northeast",
-                                      "states": [
-                                        {
-                                          "stateCode": "NY",
-                                          "stateName": "New York",
-                                          "stateSubregions": [
-                                            {
-                                              "stateSubregionCode": "NY2",
-                                              "stateSubregionName": "NY_CENTRAL"
-                                            },
-                                            {
-                                              "stateSubregionCode": "NY4",
-                                              "stateSubregionName": "NY_NORTH_WEST"
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "stateCode": "PA",
-                                          "stateName": "Pennsylvania",
-                                          "stateSubregions": [
-                                            {
-                                              "stateSubregionCode": "PA2",
-                                              "stateSubregionName": "PA_CENTRAL_NORTH"
-                                            },
-                                            {
-                                              "stateSubregionCode": "PA1",
-                                              "stateSubregionName": "PA_CENTRAL"
-                                            },
-                                            {
-                                              "stateSubregionCode": "PA4",
-                                              "stateSubregionName": "PA_SOUTH"
-                                            }
-                                          ]
-                                        }
-                                      ]
-                                    }
-                                  ]
-                                }
-                              ],
-                              "addressTypes": [
-                                "STREET"
-                              ],
-                              "transitTime": 3,
-                              "perShippingCharge": {
-                                "unitOfMeasure": "LB",
-                                "shippingAndHandling": {
-                                  "amount": 0,
-                                  "currency": "USD"
-                                },
-                                "chargePerWeight": {
-                                  "amount": 0,
-                                  "currency": "USD"
-                                }
-                              }
-                            },
-                            {
-                              "regions": [
-                                {
-                                  "regionCode": "C",
-                                  "regionName": "48 State",
-                                  "subRegions": [
-                                    {
-                                      "subRegionCode": "SO",
-                                      "subRegionName": "South",
-                                      "states": [
-                                        {
-                                          "stateCode": "DE",
-                                          "stateName": "Delaware",
-                                          "stateSubregions": [
-                                            {
-                                              "stateSubregionCode": "DE",
-                                              "stateSubregionName": "DE"
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "stateCode": "MD",
-                                          "stateName": "Maryland",
-                                          "stateSubregions": [
-                                            {
-                                              "stateSubregionCode": "MD2",
-                                              "stateSubregionName": "MD_REST_ALL"
-                                            }
-                                          ]
-                                        }
-                                      ]
-                                    },
-                                    {
-                                      "subRegionCode": "WE",
-                                      "subRegionName": "West",
-                                      "states": [
-                                        {
-                                          "stateCode": "CO",
-                                          "stateName": "Colorado",
-                                          "stateSubregions": [
-                                            {
-                                              "stateSubregionCode": "CO1",
-                                              "stateSubregionName": "CO_CENTRAL"
-                                            },
-                                            {
-                                              "stateSubregionCode": "CO2",
-                                              "stateSubregionName": "CO_REST_ALL"
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "stateCode": "CA",
-                                          "stateName": "California",
-                                          "stateSubregions": [
-                                            {
-                                              "stateSubregionCode": "CA3",
-                                              "stateSubregionName": "CA_CENTRAL_SOUTH"
-                                            },
-                                            {
-                                              "stateSubregionCode": "CA7",
-                                              "stateSubregionName": "CA_LOS_ANGELES_VENTURA_COUNTY"
-                                            },
-                                            {
-                                              "stateSubregionCode": "CA6",
-                                              "stateSubregionName": "CA_LOS_ANGELES"
-                                            },
-                                            {
-                                              "stateSubregionCode": "CA9",
-                                              "stateSubregionName": "CA_ONTARIO"
-                                            },
-                                            {
-                                              "stateSubregionCode": "CA8",
-                                              "stateSubregionName": "CA_NORTH"
-                                            },
-                                            {
-                                              "stateSubregionCode": "CA15",
-                                              "stateSubregionName": "CA_SANTA_ANA"
-                                            },
-                                            {
-                                              "stateSubregionCode": "CA13",
-                                              "stateSubregionName": "CA_SAN_DIEGO_COUNTY"
-                                            },
-                                            {
-                                              "stateSubregionCode": "CA12",
-                                              "stateSubregionName": "CA_SAN_DIEGO"
-                                            },
-                                            {
-                                              "stateSubregionCode": "CA11",
-                                              "stateSubregionName": "CA_SAN_BERNARDINO"
-                                            },
-                                            {
-                                              "stateSubregionCode": "CA10",
-                                              "stateSubregionName": "CA_RIVERSIDE_IMPERIAL\t"
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "stateCode": "WY",
-                                          "stateName": "Wyoming",
-                                          "stateSubregions": [
-                                            {
-                                              "stateSubregionCode": "WY",
-                                              "stateSubregionName": "WY"
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "stateCode": "MT",
-                                          "stateName": "Montana",
-                                          "stateSubregions": [
-                                            {
-                                              "stateSubregionCode": "MT",
-                                              "stateSubregionName": "MT"
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "stateCode": "NV",
-                                          "stateName": "Nevada",
-                                          "stateSubregions": [
-                                            {
-                                              "stateSubregionCode": "NV1",
-                                              "stateSubregionName": "NV_LAS_VEGAS"
-                                            },
-                                            {
-                                              "stateSubregionCode": "NV3",
-                                              "stateSubregionName": "NV_SOUTH"
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "stateCode": "OR",
-                                          "stateName": "Oregon",
-                                          "stateSubregions": [
-                                            {
-                                              "stateSubregionCode": "OR1",
-                                              "stateSubregionName": "OR_CENTRAL"
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "stateCode": "UT",
-                                          "stateName": "Utah",
-                                          "stateSubregions": [
-                                            {
-                                              "stateSubregionCode": "UT1",
-                                              "stateSubregionName": "UT_NORTH"
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "stateCode": "ID",
-                                          "stateName": "Idaho",
-                                          "stateSubregions": [
-                                            {
-                                              "stateSubregionCode": "ID2",
-                                              "stateSubregionName": "ID_NORTH_AND_EAST"
-                                            },
-                                            {
-                                              "stateSubregionCode": "ID1",
-                                              "stateSubregionName": "ID_BOISE_AND_NAMPA"
-                                            }
-                                          ]
-                                        }
-                                      ]
-                                    },
-                                    {
-                                      "subRegionCode": "NE",
-                                      "subRegionName": "Northeast",
-                                      "states": [
-                                        {
-                                          "stateCode": "NY",
-                                          "stateName": "New York",
-                                          "stateSubregions": [
-                                            {
-                                              "stateSubregionCode": "NY1",
-                                              "stateSubregionName": "NY_BROOKLYN"
-                                            },
-                                            {
-                                              "stateSubregionCode": "NY3",
-                                              "stateSubregionName": "NY_NORTH_CENTRAL"
-                                            },
-                                            {
-                                              "stateSubregionCode": "NY5",
-                                              "stateSubregionName": "NY_SOUTH"
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "stateCode": "PA",
-                                          "stateName": "Pennsylvania",
-                                          "stateSubregions": [
-                                            {
-                                              "stateSubregionCode": "PA3",
-                                              "stateSubregionName": "PA_NORTH_EAST"
-                                            }
-                                          ]
-                                        }
-                                      ]
-                                    },
-                                    {
-                                      "subRegionCode": "MW",
-                                      "subRegionName": "Midwest",
-                                      "states": [
-                                        {
-                                          "stateCode": "MI",
-                                          "stateName": "Michigan",
-                                          "stateSubregions": [
-                                            {
-                                              "stateSubregionCode": "MI1",
-                                              "stateSubregionName": "MI_CENTRAL"
-                                            },
-                                            {
-                                              "stateSubregionCode": "MI3",
-                                              "stateSubregionName": "MI_SOUTH_EAST"
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "stateCode": "ND",
-                                          "stateName": "North Dakota",
-                                          "stateSubregions": [
-                                            {
-                                              "stateSubregionCode": "ND",
-                                              "stateSubregionName": "ND"
-                                            }
-                                          ]
-                                        }
-                                      ]
-                                    }
-                                  ]
-                                }
-                              ],
-                              "addressTypes": [
-                                "STREET"
-                              ],
-                              "transitTime": 4,
-                              "perShippingCharge": {
-                                "unitOfMeasure": "LB",
-                                "shippingAndHandling": {
-                                  "amount": 0,
-                                  "currency": "USD"
-                                },
-                                "chargePerWeight": {
-                                  "amount": 0,
-                                  "currency": "USD"
-                                }
-                              }
-                            },
-                            {
-                              "regions": [
-                                {
-                                  "regionCode": "H",
-                                  "regionName": "AK and HI"
-                                }
-                              ],
-                              "addressTypes": [
-                                "STREET"
-                              ],
-                              "transitTime": 5,
-                              "perShippingCharge": {
-                                "unitOfMeasure": "LB",
-                                "shippingAndHandling": {
-                                  "amount": 0,
-                                  "currency": "USD"
-                                },
-                                "chargePerWeight": {
-                                  "amount": 0,
-                                  "currency": "USD"
-                                }
-                              }
-                            },
-                            {
-                              "regions": [
-                                {
-                                  "regionCode": "C",
-                                  "regionName": "48 State",
-                                  "subRegions": [
-                                    {
-                                      "subRegionCode": "WE",
-                                      "subRegionName": "West",
-                                      "states": [
-                                        {
-                                          "stateCode": "CA",
-                                          "stateName": "California",
-                                          "stateSubregions": [
-                                            {
-                                              "stateSubregionCode": "CA1",
-                                              "stateSubregionName": "CA_CENTRAL"
-                                            },
-                                            {
-                                              "stateSubregionCode": "CA2",
-                                              "stateSubregionName": "CA_CENTRAL_NORTH"
-                                            },
-                                            {
-                                              "stateSubregionCode": "CA4",
-                                              "stateSubregionName": "CA_CENTRAL_WEST"
-                                            },
-                                            {
-                                              "stateSubregionCode": "CA14",
-                                              "stateSubregionName": "CA_SAN_FRANCISCO"
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "stateCode": "NV",
-                                          "stateName": "Nevada",
-                                          "stateSubregions": [
-                                            {
-                                              "stateSubregionCode": "NV2",
-                                              "stateSubregionName": "NV_NORTH"
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "stateCode": "OR",
-                                          "stateName": "Oregon",
-                                          "stateSubregions": [
-                                            {
-                                              "stateSubregionCode": "OR2",
-                                              "stateSubregionName": "OR_NORTH_WEST"
-                                            }
-                                          ]
-                                        }
-                                      ]
-                                    }
-                                  ]
-                                }
-                              ],
-                              "addressTypes": [
-                                "STREET"
-                              ],
-                              "transitTime": 5,
-                              "perShippingCharge": {
-                                "unitOfMeasure": "LB",
-                                "shippingAndHandling": {
-                                  "amount": 0,
-                                  "currency": "USD"
-                                },
-                                "chargePerWeight": {
-                                  "amount": 0,
-                                  "currency": "USD"
-                                }
-                              }
-                            }
-                          ]
-                        },
-                        {
-                          "shipMethod": "TWO_DAY",
-                          "status": "ACTIVE",
-                          "configurations": [
-                            {
-                              "regions": [
-                                {
-                                  "regionCode": "C",
-                                  "regionName": "48 State",
-                                  "subRegions": [
-                                    {
-                                      "subRegionCode": "SO",
-                                      "subRegionName": "South",
-                                      "states": [
-                                        {
-                                          "stateCode": "KY",
-                                          "stateName": "Kentucky",
-                                          "stateSubregions": [
-                                            {
-                                              "stateSubregionCode": "KY2",
-                                              "stateSubregionName": "KY_WEST"
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "stateCode": "MS",
-                                          "stateName": "Mississippi",
-                                          "stateSubregions": [
-                                            {
-                                              "stateSubregionCode": "MS1",
-                                              "stateSubregionName": "MS_NORTH"
-                                            },
-                                            {
-                                              "stateSubregionCode": "MS2",
-                                              "stateSubregionName": "MS_SOUTH"
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "stateCode": "OK",
-                                          "stateName": "Oklahoma",
-                                          "stateSubregions": [
-                                            {
-                                              "stateSubregionCode": "OK1",
-                                              "stateSubregionName": "OK_NORTH_EAST"
-                                            },
-                                            {
-                                              "stateSubregionCode": "OK2",
-                                              "stateSubregionName": "OK_REST_ALL"
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "stateCode": "GA",
-                                          "stateName": "Georgia",
-                                          "stateSubregions": [
-                                            {
-                                              "stateSubregionCode": "GA5",
-                                              "stateSubregionName": "GA_SOUTH"
-                                            },
-                                            {
-                                              "stateSubregionCode": "GA4",
-                                              "stateSubregionName": "GA_NORTH_WEST"
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "stateCode": "NC",
-                                          "stateName": "North Carolina",
-                                          "stateSubregions": [
-                                            {
-                                              "stateSubregionCode": "NC2",
-                                              "stateSubregionName": "NC_NORTH"
-                                            },
-                                            {
-                                              "stateSubregionCode": "NC4",
-                                              "stateSubregionName": "NC_WEST"
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "stateCode": "LA",
-                                          "stateName": "Louisiana",
-                                          "stateSubregions": [
-                                            {
-                                              "stateSubregionCode": "LA2",
-                                              "stateSubregionName": "LA_SOUTH"
-                                            },
-                                            {
-                                              "stateSubregionCode": "LA1",
-                                              "stateSubregionName": "LA_NORTH"
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "stateCode": "AR",
-                                          "stateName": "Arkansas",
-                                          "stateSubregions": [
-                                            {
-                                              "stateSubregionCode": "AR1",
-                                              "stateSubregionName": "AR_EAST"
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "stateCode": "SC",
-                                          "stateName": "South Carolina",
-                                          "stateSubregions": [
-                                            {
-                                              "stateSubregionCode": "SC3",
-                                              "stateSubregionName": "SC_SOUTH"
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "stateCode": "AL",
-                                          "stateName": "Alabama",
-                                          "stateSubregions": [
-                                            {
-                                              "stateSubregionCode": "AL1",
-                                              "stateSubregionName": "AL_NORTH"
-                                            },
-                                            {
-                                              "stateSubregionCode": "AL2",
-                                              "stateSubregionName": "AL_SOUTH"
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "stateCode": "VA",
-                                          "stateName": "Virginia",
-                                          "stateSubregions": [
-                                            {
-                                              "stateSubregionCode": "VA4",
-                                              "stateSubregionName": "VA_SOUTH_WEST"
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "stateCode": "TX",
-                                          "stateName": "Texas",
-                                          "stateSubregions": [
-                                            {
-                                              "stateSubregionCode": "TX3",
-                                              "stateSubregionName": "TX_CENTRAL_WEST"
-                                            },
-                                            {
-                                              "stateSubregionCode": "TX5",
-                                              "stateSubregionName": "TX_HOUSTON"
-                                            },
-                                            {
-                                              "stateSubregionCode": "TX7",
-                                              "stateSubregionName": "TX_NORTH_WEST"
-                                            },
-                                            {
-                                              "stateSubregionCode": "TX9",
-                                              "stateSubregionName": "TX_SOUTH_EAST"
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "stateCode": "WV",
-                                          "stateName": "West Virginia",
-                                          "stateSubregions": [
-                                            {
-                                              "stateSubregionCode": "WV2",
-                                              "stateSubregionName": "WV_WEST"
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "stateCode": "TN",
-                                          "stateName": "Tennessee",
-                                          "stateSubregions": [
-                                            {
-                                              "stateSubregionCode": "TN1",
-                                              "stateSubregionName": "TN_CENTRAL"
-                                            },
-                                            {
-                                              "stateSubregionCode": "TN2",
-                                              "stateSubregionName": "TN_EAST"
-                                            }
-                                          ]
-                                        }
-                                      ]
-                                    },
-                                    {
-                                      "subRegionCode": "MW",
-                                      "subRegionName": "Midwest",
-                                      "states": [
-                                        {
-                                          "stateCode": "KS",
-                                          "stateName": "Kansas",
-                                          "stateSubregions": [
-                                            {
-                                              "stateSubregionCode": "KS1",
-                                              "stateSubregionName": "KS_EAST"
-                                            },
-                                            {
-                                              "stateSubregionCode": "KS2",
-                                              "stateSubregionName": "KS_WEST"
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "stateCode": "MO",
-                                          "stateName": "Missouri",
-                                          "stateSubregions": [
-                                            {
-                                              "stateSubregionCode": "MO3",
-                                              "stateSubregionName": "MO_WEST"
-                                            },
-                                            {
-                                              "stateSubregionCode": "MO2",
-                                              "stateSubregionName": "MO_SOUTH"
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "stateCode": "IA",
-                                          "stateName": "Iowa",
-                                          "stateSubregions": [
-                                            {
-                                              "stateSubregionCode": "IA1",
-                                              "stateSubregionName": "IA_CENTRAL"
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "stateCode": "IN",
-                                          "stateName": "Indiana",
-                                          "stateSubregions": [
-                                            {
-                                              "stateSubregionCode": "IN4",
-                                              "stateSubregionName": "IN_WEST"
-                                            },
-                                            {
-                                              "stateSubregionCode": "IN3",
-                                              "stateSubregionName": "IN_SOUTH"
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "stateCode": "IL",
-                                          "stateName": "Illinois",
-                                          "stateSubregions": [
-                                            {
-                                              "stateSubregionCode": "IL4",
-                                              "stateSubregionName": "IL_SOUTHEAST"
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "stateCode": "OH",
-                                          "stateName": "Ohio",
-                                          "stateSubregions": [
-                                            {
-                                              "stateSubregionCode": "OH4",
-                                              "stateSubregionName": "OH_WEST"
-                                            }
-                                          ]
-                                        }
-                                      ]
-                                    },
-                                    {
-                                      "subRegionCode": "NE",
-                                      "subRegionName": "Northeast",
-                                      "states": [
-                                        {
-                                          "stateCode": "PA",
-                                          "stateName": "Pennsylvania",
-                                          "stateSubregions": [
-                                            {
-                                              "stateSubregionCode": "PA5",
-                                              "stateSubregionName": "PA_WEST"
-                                            }
-                                          ]
-                                        }
-                                      ]
-                                    }
-                                  ]
-                                }
-                              ],
-                              "addressTypes": [
-                                "STREET"
-                              ],
-                              "transitTime": 2,
-                              "perShippingCharge": {
-                                "unitOfMeasure": "LB",
-                                "shippingAndHandling": {
-                                  "amount": 0,
-                                  "currency": "USD"
-                                },
-                                "chargePerWeight": {
-                                  "amount": 0,
-                                  "currency": "USD"
-                                }
-                              }
-                            }
-                          ]
-                        }
-                      ]
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/v3/settings/shipping/3plshipnodes": {
       "post": {
         "tags": [
@@ -17079,16 +15422,6 @@
         "description": "This API associate a third party fulfillment center with Seller.",
         "operationId": "associate3PFulfillmentCenter",
         "parameters": [
-          {
-            "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
-          },
           {
             "in": "header",
             "name": "WM_SEC.ACCESS_TOKEN",
@@ -17215,16 +15548,6 @@
         "parameters": [
           {
             "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
-          },
-          {
-            "in": "header",
             "name": "WM_SEC.ACCESS_TOKEN",
             "description": "The access token retrieved in the Token API call",
             "required": true,
@@ -17289,6 +15612,14 @@
                         "partnerStoreId": {
                           "type": "string",
                           "description": "Partner/Seller ID for Walmart store URL"
+                        },
+                        "businessRegNumber": {
+                          "type": "string",
+                          "description": " A registered distinct identifier such as US Tax ID / Foreign Tax ID"
+                        },
+                        "countryOfIncorporation": {
+                          "type": "string",
+                          "description": "The country from where seller conducts their business | ISO 3166 Country code"
                         }
                       },
                       "description": "Details of partner"
@@ -17383,16 +15714,6 @@
         "parameters": [
           {
             "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
-          },
-          {
-            "in": "header",
             "name": "WM_SEC.ACCESS_TOKEN",
             "description": "The access token retrieved in the Token API call",
             "required": true,
@@ -17473,16 +15794,6 @@
         "description": "This API provides the list of all fullfillment centers for the seller and their coverage areas defined by Walmart based on the address",
         "operationId": "getCoverageForFulfillmentCenters",
         "parameters": [
-          {
-            "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
-          },
           {
             "in": "header",
             "name": "WM_SEC.ACCESS_TOKEN",
@@ -17603,16 +15914,6 @@
         "parameters": [
           {
             "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
-          },
-          {
-            "in": "header",
             "name": "WM_SEC.ACCESS_TOKEN",
             "description": "The access token retrieved in the Token API call",
             "required": true,
@@ -17717,16 +16018,6 @@
         "parameters": [
           {
             "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
-          },
-          {
-            "in": "header",
             "name": "WM_SEC.ACCESS_TOKEN",
             "description": "The access token retrieved in the Token API call",
             "required": true,
@@ -17813,16 +16104,6 @@
         "parameters": [
           {
             "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
-          },
-          {
-            "in": "header",
             "name": "WM_SEC.ACCESS_TOKEN",
             "description": "The access token retrieved in the Token API call",
             "required": true,
@@ -17887,6 +16168,14 @@
                         "partnerStoreId": {
                           "type": "string",
                           "description": "Partner/Seller ID for Walmart store URL"
+                        },
+                        "businessRegNumber": {
+                          "type": "string",
+                          "description": " A registered distinct identifier such as US Tax ID / Foreign Tax ID"
+                        },
+                        "countryOfIncorporation": {
+                          "type": "string",
+                          "description": "The country from where seller conducts their business | ISO 3166 Country code"
                         }
                       },
                       "description": "Details of partner"
@@ -18041,7 +16330,9 @@
                     "partnerId": "100009",
                     "partnerName": "The seller's legal name",
                     "partnerDisplayName": "The seller name shown on walmart.com",
-                    "partnerStoreId": "Partner/Seller ID for Walmart store URL"
+                    "partnerStoreId": "Partner/Seller ID for Walmart store URL ",
+                    "businessRegNumber": "A registered distinct identifier such as US Tax ID / Foreign Tax ID",
+                    "countryOfIncorporation": "The country from where seller conducts their business | ISO 3166 Country code"
                   },
                   "configurations": [
                     {
@@ -21036,24 +19327,6 @@
           }
         }
       },
-      "CreateAutomatedShippingTemplateRequest": {
-        "type": "object",
-        "properties": {
-          "fulfillmentCenterName": {
-            "pattern": "^[A-Za-z0-9\\s]+$",
-            "type": "string",
-            "description": "Fulfillment Center Name "
-          },
-          "fulfillmentCenterZipCode": {
-            "type": "string",
-            "description": "Fulfillment Center Zipcode "
-          },
-          "carrierMethodName": {
-            "type": "string",
-            "description": "Carrier Method Name. Supported carrier methods are: FEDEX_GROUND"
-          }
-        }
-      },
       "CalendarDayConfigurationResponseCreate": {
         "type": "object",
         "properties": {
@@ -22185,6 +20458,14 @@
           "partnerStoreId": {
             "type": "string",
             "description": "Partner/Seller ID for Walmart store URL"
+          },
+          "businessRegNumber": {
+            "type": "string",
+            "description": " A registered distinct identifier such as US Tax ID / Foreign Tax ID"
+          },
+          "countryOfIncorporation": {
+            "type": "string",
+            "description": "The country from where seller conducts their business | ISO 3166 Country code"
           }
         },
         "description": "Details of partner"
@@ -22252,6 +20533,14 @@
               "partnerStoreId": {
                 "type": "string",
                 "description": "Partner/Seller ID for Walmart store URL"
+              },
+              "businessRegNumber": {
+                "type": "string",
+                "description": " A registered distinct identifier such as US Tax ID / Foreign Tax ID"
+              },
+              "countryOfIncorporation": {
+                "type": "string",
+                "description": "The country from where seller conducts their business | ISO 3166 Country code"
               }
             },
             "description": "Details of partner"
@@ -23008,6 +21297,14 @@
               "partnerStoreId": {
                 "type": "string",
                 "description": "Partner/Seller ID for Walmart store URL"
+              },
+              "businessRegNumber": {
+                "type": "string",
+                "description": " A registered distinct identifier such as US Tax ID / Foreign Tax ID"
+              },
+              "countryOfIncorporation": {
+                "type": "string",
+                "description": "The country from where seller conducts their business | ISO 3166 Country code"
               }
             },
             "description": "Details of partner"
@@ -23343,15 +21640,6 @@
           "type": "string"
         },
         "example": "application/json"
-      }
-    },
-    "securitySchemes": {
-      "basicScheme": {
-        "type": "http",
-        "description": "",
-        "name": "Authorization",
-        "in": "header",
-        "scheme": "basic"
       }
     }
   }

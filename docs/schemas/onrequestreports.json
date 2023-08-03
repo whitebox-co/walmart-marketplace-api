@@ -48,7 +48,8 @@
                 "SHIPPING_CONFIGURATION",
                 "SHIPPING_PROGRAM",
                 "FITMENT_MISSING_ATTR",
-                "FITMENT_ACES_COVERAGE"
+                "FITMENT_ACES_COVERAGE",
+                "BUYBOX"
               ]
             }
           },
@@ -93,16 +94,6 @@
             "schema": {
               "type": "string"
             }
-          },
-          {
-            "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
           },
           {
             "in": "header",
@@ -219,7 +210,8 @@
                               "RETURN_OVERRIDES",
                               "CPA",
                               "SHIPPING_CONFIGURATION",
-                              "SHIPPING_PROGRAM"
+                              "SHIPPING_PROGRAM",
+                              "BUYBOX"
                             ]
                           },
                           "reportVersion": {
@@ -409,28 +401,19 @@
                 "SHIPPING_CONFIGURATION",
                 "SHIPPING_PROGRAM",
                 "FITMENT_MISSING_ATTR",
-                "FITMENT_ACES_COVERAGE"
+                "FITMENT_ACES_COVERAGE",
+                "BUYBOX"
               ]
             }
           },
           {
             "name": "reportVersion",
             "in": "query",
-            "description": "Version of report for which the request is created. Supported versions for each report type are currently 'reportVersion=v1' for the following reportType(s): INVENTORY, CANCELLATION, DELIVERY_DEFECT, ITEM_PERFORMANCE, PROMO, RETURN_OVERRIDES, CPA, SHIPPING_CONFIGURATION, SHIPPING_PROGRAM, FITMENT_MISSING_ATTR, FITMENT_ACES_COVERAGE and 'reportVersion=v1', 'reportVersion=v2', 'reportVersion=v3', 'reportVersion=v4' for the following reportType(s): ITEM.",
+            "description": "Version of report for which the request is created. Supported versions for each report type are currently 'reportVersion=v1' for the following reportType(s): INVENTORY, CANCELLATION, DELIVERY_DEFECT, ITEM_PERFORMANCE, PROMO, RETURN_OVERRIDES, CPA, SHIPPING_CONFIGURATION, SHIPPING_PROGRAM, FITMENT_MISSING_ATTR, FITMENT_ACES_COVERAGE, BUYBOX and 'reportVersion=v1', 'reportVersion=v2', 'reportVersion=v3', 'reportVersion=v4' for the following reportType(s): ITEM.",
             "required": true,
             "schema": {
               "type": "string"
             }
-          },
-          {
-            "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
           },
           {
             "in": "header",
@@ -654,7 +637,8 @@
                         "RETURN_OVERRIDES",
                         "CPA",
                         "SHIPPING_CONFIGURATION",
-                        "SHIPPING_PROGRAM"
+                        "SHIPPING_PROGRAM",
+                        "BUYBOX"
                       ]
                     },
                     "reportVersion": {
@@ -816,16 +800,6 @@
           },
           {
             "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
-          },
-          {
-            "in": "header",
             "name": "WM_SEC.ACCESS_TOKEN",
             "description": "The access token retrieved in the Token API call",
             "required": true,
@@ -914,7 +888,8 @@
                         "RETURN_OVERRIDES",
                         "CPA",
                         "SHIPPING_CONFIGURATION",
-                        "SHIPPING_PROGRAM"
+                        "SHIPPING_PROGRAM",
+                        "BUYBOX"
                       ]
                     },
                     "reportVersion": {
@@ -1041,16 +1016,6 @@
           },
           {
             "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
-          },
-          {
-            "in": "header",
             "name": "WM_SEC.ACCESS_TOKEN",
             "description": "The access token retrieved in the Token API call",
             "required": true,
@@ -1147,7 +1112,8 @@
                         "RETURN_OVERRIDES",
                         "CPA",
                         "SHIPPING_CONFIGURATION",
-                        "SHIPPING_PROGRAM"
+                        "SHIPPING_PROGRAM",
+                        "BUYBOX"
                       ]
                     },
                     "reportVersion": {
@@ -1328,7 +1294,8 @@
               "RETURN_OVERRIDES",
               "CPA",
               "SHIPPING_CONFIGURATION",
-              "SHIPPING_PROGRAM"
+              "SHIPPING_PROGRAM",
+              "BUYBOX"
             ]
           },
           "reportVersion": {
@@ -1552,7 +1519,8 @@
               "RETURN_OVERRIDES",
               "CPA",
               "SHIPPING_CONFIGURATION",
-              "SHIPPING_PROGRAM"
+              "SHIPPING_PROGRAM",
+              "BUYBOX"
             ]
           },
           "reportVersion": {
@@ -1709,7 +1677,8 @@
                     "RETURN_OVERRIDES",
                     "CPA",
                     "SHIPPING_CONFIGURATION",
-                    "SHIPPING_PROGRAM"
+                    "SHIPPING_PROGRAM",
+                    "BUYBOX"
                   ]
                 },
                 "reportVersion": {
@@ -1852,7 +1821,8 @@
               "RETURN_OVERRIDES",
               "CPA",
               "SHIPPING_CONFIGURATION",
-              "SHIPPING_PROGRAM"
+              "SHIPPING_PROGRAM",
+              "BUYBOX"
             ]
           },
           "reportVersion": {
@@ -1935,15 +1905,6 @@
           "type": "string"
         },
         "example": "application/json"
-      }
-    },
-    "securitySchemes": {
-      "basicScheme": {
-        "type": "http",
-        "description": "",
-        "name": "Authorization",
-        "in": "header",
-        "scheme": "basic"
       }
     }
   }

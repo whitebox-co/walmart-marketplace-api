@@ -44,16 +44,6 @@
           },
           {
             "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
-          },
-          {
-            "in": "header",
             "name": "WM_SEC.ACCESS_TOKEN",
             "description": "The access token retrieved in the Token API call",
             "required": true,
@@ -146,16 +136,6 @@
           },
           {
             "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
-          },
-          {
-            "in": "header",
             "name": "WM_SEC.ACCESS_TOKEN",
             "description": "The access token retrieved in the Token API call",
             "required": true,
@@ -228,16 +208,6 @@
         },
         "operationId": "getAvailableReconReportDates",
         "parameters": [
-          {
-            "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
-          },
           {
             "in": "header",
             "name": "WM_SEC.ACCESS_TOKEN",
@@ -331,16 +301,6 @@
         "parameters": [
           {
             "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
-          },
-          {
-            "in": "header",
             "name": "WM_SEC.ACCESS_TOKEN",
             "description": "The access token retrieved in the Token API call",
             "required": true,
@@ -403,48 +363,19 @@
         }
       }
     },
-    "/v3/getReport": {
+    "/v3/report/payment/statement": {
       "get": {
         "tags": [
           "Reports"
         ],
-        "summary": "Multiple Reports",
-        "description": "Returns all the information associated with Seller's items that are set up on Walmart’s platform.",
+        "summary": "Payment Statement Report",
+        "description": "This API will get a partner's current cycle statement",
         "externalDocs": {
           "description": "View Guide",
-          "url": "/doc/us/mp/us-mp-reports/#2278"
+          "url": "/doc/us/mp/payments"
         },
-        "operationId": "getItemReport",
+        "operationId": "getPartnerStatement",
         "parameters": [
-          {
-            "name": "type",
-            "in": "query",
-            "description": "Type of report to be requested",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "enum": [
-                "item",
-                "buybox",
-                "cpa",
-                "shippingProgram",
-                "shippingConfiguration",
-                "itemPerformance",
-                "returnOverrides",
-                "promo"
-              ]
-            }
-          },
-          {
-            "in": "header",
-            "name": "Authorization",
-            "description": "Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic YzcyOTFjNmItNzI5MC00...."
-          },
           {
             "in": "header",
             "name": "WM_SEC.ACCESS_TOKEN",
@@ -489,22 +420,614 @@
           "200": {
             "description": "Successful Operation",
             "content": {
-              "application/xml": {
-                "schema": {
-                  "type": "string",
-                  "description": "The data will be streamed in a .CSV file in your folder.\nThe response to a successful call includes a header as an attachment called Content-Disposition.\nThe Content-Disposition header contains the name of the report. As an example, attachment: filename=10000000354_2016-01-15T23:09:54.438+0000.zip. The title includes your partner ID (in this case, 10000000354) and the timestamp when the file was generated.\nThe attachment contains the report in a compressed zip format.\nThe java code example demonstrates the use of the header and the body when processing the response\nThe report is regenerated periodically. We recommend that you not retrieve the report more frequently than once every two hours."
-                }
-              },
               "application/json": {
                 "schema": {
-                  "type": "string",
-                  "description": "The data will be streamed in a .CSV file in your folder.\nThe response to a successful call includes a header as an attachment called Content-Disposition.\nThe Content-Disposition header contains the name of the report. As an example, attachment: filename=10000000354_2016-01-15T23:09:54.438+0000.zip. The title includes your partner ID (in this case, 10000000354) and the timestamp when the file was generated.\nThe attachment contains the report in a compressed zip format.\nThe java code example demonstrates the use of the header and the body when processing the response\nThe report is regenerated periodically. We recommend that you not retrieve the report more frequently than once every two hours."
+                  "type": "object",
+                  "properties": {
+                    "statusCode": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "error": {
+                      "type": "string"
+                    },
+                    "partnerId": {
+                      "type": "string"
+                    },
+                    "payload": {
+                      "type": "object",
+                      "properties": {
+                        "outstandingMCABalance": {
+                          "type": "number"
+                        },
+                        "sellerInfo": {
+                          "type": "object",
+                          "properties": {
+                            "storeFrontUrl": {
+                              "type": "string"
+                            },
+                            "sellerStatus": {
+                              "type": "string"
+                            },
+                            "paymentStatus": {
+                              "type": "string"
+                            },
+                            "tenure": {
+                              "type": "integer",
+                              "format": "int64"
+                            }
+                          }
+                        },
+                        "accountSummary": {
+                          "type": "object",
+                          "properties": {
+                            "openingBalance": {
+                              "type": "number"
+                            },
+                            "orderActivity": {
+                              "type": "number"
+                            },
+                            "walmartFulfillmentServices": {
+                              "type": "number"
+                            },
+                            "otherActivities": {
+                              "type": "number"
+                            },
+                            "reserve": {
+                              "type": "number"
+                            },
+                            "paidToYou": {
+                              "type": "number"
+                            },
+                            "closingBalance": {
+                              "type": "number"
+                            },
+                            "scheduledSettlementDate": {
+                              "type": "string"
+                            },
+                            "paymentProcessor": {
+                              "type": "string"
+                            },
+                            "settleCycle": {
+                              "type": "string"
+                            },
+                            "reserveToDate": {
+                              "type": "number"
+                            },
+                            "lastUpdatedDate": {
+                              "type": "string"
+                            },
+                            "holdAmt": {
+                              "type": "number"
+                            },
+                            "holdDates": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "transactionDetails": {
+                          "type": "object",
+                          "properties": {
+                            "saleAggregate": {
+                              "type": "object",
+                              "properties": {
+                                "productPrice": {
+                                  "type": "number"
+                                },
+                                "shipping": {
+                                  "type": "number"
+                                },
+                                "netTaxCollected": {
+                                  "type": "number"
+                                },
+                                "productTaxCollected": {
+                                  "type": "number"
+                                },
+                                "shippingTaxCollected": {
+                                  "type": "number"
+                                },
+                                "netTaxWithheld": {
+                                  "type": "number"
+                                },
+                                "productTaxWithheld": {
+                                  "type": "number"
+                                },
+                                "shippingTaxWithheld": {
+                                  "type": "number"
+                                },
+                                "netFeeCollected": {
+                                  "type": "number"
+                                },
+                                "netFeeWithheld": {
+                                  "type": "number"
+                                },
+                                "netComm": {
+                                  "type": "number"
+                                },
+                                "netPayable": {
+                                  "type": "number"
+                                },
+                                "aboveCap": {
+                                  "type": "number"
+                                },
+                                "wfsShipping": {
+                                  "type": "number"
+                                },
+                                "wfsShipppingTax": {
+                                  "type": "number"
+                                },
+                                "totalBaseCommission": {
+                                  "type": "number"
+                                },
+                                "commissionSavings": {
+                                  "type": "number"
+                                }
+                              }
+                            },
+                            "refundDetails": {
+                              "type": "object",
+                              "properties": {
+                                "productPrice": {
+                                  "type": "number"
+                                },
+                                "shipping": {
+                                  "type": "number"
+                                },
+                                "netTaxCollected": {
+                                  "type": "number"
+                                },
+                                "productTaxCollected": {
+                                  "type": "number"
+                                },
+                                "shippingTaxCollected": {
+                                  "type": "number"
+                                },
+                                "netTaxWithheld": {
+                                  "type": "number"
+                                },
+                                "productTaxWithheld": {
+                                  "type": "number"
+                                },
+                                "shippingTaxWithheld": {
+                                  "type": "number"
+                                },
+                                "netFeeCollected": {
+                                  "type": "number"
+                                },
+                                "netFeeWithheld": {
+                                  "type": "number"
+                                },
+                                "netComm": {
+                                  "type": "number"
+                                },
+                                "netPayable": {
+                                  "type": "number"
+                                },
+                                "aboveCap": {
+                                  "type": "number"
+                                },
+                                "wfsShipping": {
+                                  "type": "number"
+                                },
+                                "wfsShipppingTax": {
+                                  "type": "number"
+                                },
+                                "totalBaseCommission": {
+                                  "type": "number"
+                                },
+                                "commissionSavings": {
+                                  "type": "number"
+                                }
+                              }
+                            },
+                            "adjustmentAggregate": {
+                              "type": "object",
+                              "properties": {
+                                "netPayable": {
+                                  "type": "number"
+                                },
+                                "disputeSettlement": {
+                                  "type": "number"
+                                },
+                                "returnShipServCharge": {
+                                  "type": "number"
+                                },
+                                "returnHandlingServCharge": {
+                                  "type": "number"
+                                },
+                                "fwdShippingServiceFee": {
+                                  "type": "number"
+                                }
+                              }
+                            },
+                            "wfs": {
+                              "type": "object",
+                              "properties": {
+                                "netPayable": {
+                                  "type": "number"
+                                },
+                                "wfsFullfillmentFee": {
+                                  "type": "number"
+                                },
+                                "wfsStorageFee": {
+                                  "type": "number"
+                                },
+                                "wfsAdjustment": {
+                                  "type": "number"
+                                },
+                                "wfsFee": {
+                                  "type": "number"
+                                },
+                                "inventoryRemovalOrder": {
+                                  "type": "number"
+                                },
+                                "inventoryDisposalOrder": {
+                                  "type": "number"
+                                },
+                                "wfsPrepServiceFee": {
+                                  "type": "number"
+                                }
+                              }
+                            },
+                            "partnerTxns": {
+                              "type": "object",
+                              "properties": {
+                                "netPayable": {
+                                  "type": "number"
+                                },
+                                "advancePayment": {
+                                  "type": "number"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "statusCode": 200,
+                  "status": "OK",
+                  "error": "",
+                  "partnerId": "10000003437",
+                  "payload": {
+                    "outstandingMCABalance": 0,
+                    "sellerInfo": {
+                      "storeFrontUrl": "https%3A%2F%2Fwww.walmart.com%2Fseller%2F3346",
+                      "sellerStatus": "ACTIVE",
+                      "paymentStatus": "ACTIVE",
+                      "tenure": 1673
+                    },
+                    "accountSummary": {
+                      "openingBalance": 0,
+                      "orderActivity": 3220.67,
+                      "walmartFulfillmentServices": -849.8,
+                      "otherActivities": 0,
+                      "reserve": 0,
+                      "paidToYou": 0,
+                      "closingBalance": 2370.87,
+                      "scheduledSettlementDate": "2022-10-11",
+                      "paymentProcessor": "Payoneer",
+                      "settleCycle": "Bi-weekly",
+                      "reserveToDate": 0,
+                      "lastUpdatedDate": "2022-10-04",
+                      "holdAmt": 0,
+                      "holdDates": " "
+                    },
+                    "transactionDetails": {
+                      "saleAggregate": {
+                        "productPrice": 3866.61,
+                        "shipping": 36.78,
+                        "netTaxCollected": 262.51,
+                        "productTaxCollected": 260.48,
+                        "shippingTaxCollected": 2.03,
+                        "netTaxWithheld": -260.48,
+                        "productTaxWithheld": -260.48,
+                        "shippingTaxWithheld": 0,
+                        "netComm": -542.19,
+                        "netPayable": 3324.42,
+                        "wfsShipping": -36.78,
+                        "wfsShipppingTax": -2.03,
+                        "totalBaseCommission": -572.99,
+                        "commissionSavings": 30.8
+                      },
+                      "refundDetails": {
+                        "productPrice": -111.75,
+                        "shipping": 0,
+                        "netTaxCollected": -7.06,
+                        "productTaxCollected": -7.06,
+                        "shippingTaxCollected": 0,
+                        "netTaxWithheld": 7.06,
+                        "productTaxWithheld": 7.06,
+                        "shippingTaxWithheld": 0,
+                        "netComm": 11.65,
+                        "netPayable": -100.1,
+                        "totalBaseCommission": 0,
+                        "commissionSavings": 0
+                      },
+                      "adjustmentAggregate": {
+                        "netPayable": -3.65,
+                        "returnShipServCharge": -3.65
+                      },
+                      "wfs": {
+                        "netPayable": -849.8,
+                        "wfsInventoryRemovalFee": -1.95,
+                        "wfsStorageFee": -71.25,
+                        "wfsFullfillmentFee": -750.05,
+                        "wfsReturnShippingFee": -26.55
+                      },
+                      "partnerTxns": {}
+                    }
+                  }
                 }
-              },
-              "application/octet-stream": {
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/report/payment/performance": {
+      "get": {
+        "tags": [
+          "Reports"
+        ],
+        "summary": "Performance Report",
+        "description": "This API will get a partner's current cycle performance",
+        "externalDocs": {
+          "description": "View Guide",
+          "url": "/doc/us/mp/payments"
+        },
+        "operationId": "getPartnerPerformance",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "WM_SEC.ACCESS_TOKEN",
+            "description": "The access token retrieved in the Token API call",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "eyJraWQiOiIzZjVhYTFmNS1hYWE5LTQzM....."
+          },
+          {
+            "in": "header",
+            "name": "WM_CONSUMER.CHANNEL.TYPE",
+            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "WM_QOS.CORRELATION_ID",
+            "description": "A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "b3261d2d-028a-4ef7-8602-633c23200af6"
+          },
+          {
+            "in": "header",
+            "name": "WM_SVC.NAME",
+            "description": "Walmart Service Name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Walmart Service Name"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
                 "schema": {
-                  "type": "string",
-                  "description": "The data will be streamed in a .CSV file in your folder.\nThe response to a successful call includes a header as an attachment called Content-Disposition.\nThe Content-Disposition header contains the name of the report. As an example, attachment: filename=10000000354_2016-01-15T23:09:54.438+0000.zip. The title includes your partner ID (in this case, 10000000354) and the timestamp when the file was generated.\nThe attachment contains the report in a compressed zip format.\nThe java code example demonstrates the use of the header and the body when processing the response\nThe report is regenerated periodically. We recommend that you not retrieve the report more frequently than once every two hours."
+                  "type": "object",
+                  "properties": {
+                    "statusCode": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "error": {
+                      "type": "string"
+                    },
+                    "partnerId": {
+                      "type": "string"
+                    },
+                    "7DAY": {
+                      "type": "object",
+                      "properties": {
+                        "refundRateSellerFault": {
+                          "type": "number"
+                        },
+                        "refundRateCustomerFault": {
+                          "type": "number"
+                        },
+                        "ots": {
+                          "type": "number"
+                        },
+                        "otd": {
+                          "type": "number"
+                        },
+                        "vtr": {
+                          "type": "number"
+                        },
+                        "cancellationSellerFault": {
+                          "type": "number"
+                        },
+                        "cancellationCustomerFault": {
+                          "type": "number"
+                        }
+                      }
+                    },
+                    "14DAY": {
+                      "type": "object",
+                      "properties": {
+                        "refundRateSellerFault": {
+                          "type": "number"
+                        },
+                        "refundRateCustomerFault": {
+                          "type": "number"
+                        },
+                        "ots": {
+                          "type": "number"
+                        },
+                        "otd": {
+                          "type": "number"
+                        },
+                        "vtr": {
+                          "type": "number"
+                        },
+                        "cancellationSellerFault": {
+                          "type": "number"
+                        },
+                        "cancellationCustomerFault": {
+                          "type": "number"
+                        }
+                      }
+                    },
+                    "30DAY": {
+                      "type": "object",
+                      "properties": {
+                        "refundRateSellerFault": {
+                          "type": "number"
+                        },
+                        "refundRateCustomerFault": {
+                          "type": "number"
+                        },
+                        "ots": {
+                          "type": "number"
+                        },
+                        "otd": {
+                          "type": "number"
+                        },
+                        "vtr": {
+                          "type": "number"
+                        },
+                        "cancellationSellerFault": {
+                          "type": "number"
+                        },
+                        "cancellationCustomerFault": {
+                          "type": "number"
+                        }
+                      }
+                    },
+                    "60DAY": {
+                      "type": "object",
+                      "properties": {
+                        "refundRateSellerFault": {
+                          "type": "number"
+                        },
+                        "refundRateCustomerFault": {
+                          "type": "number"
+                        },
+                        "ots": {
+                          "type": "number"
+                        },
+                        "otd": {
+                          "type": "number"
+                        },
+                        "vtr": {
+                          "type": "number"
+                        },
+                        "cancellationSellerFault": {
+                          "type": "number"
+                        },
+                        "cancellationCustomerFault": {
+                          "type": "number"
+                        }
+                      }
+                    },
+                    "90DAY": {
+                      "type": "object",
+                      "properties": {
+                        "refundRateSellerFault": {
+                          "type": "number"
+                        },
+                        "refundRateCustomerFault": {
+                          "type": "number"
+                        },
+                        "ots": {
+                          "type": "number"
+                        },
+                        "otd": {
+                          "type": "number"
+                        },
+                        "vtr": {
+                          "type": "number"
+                        },
+                        "cancellationSellerFault": {
+                          "type": "number"
+                        },
+                        "cancellationCustomerFault": {
+                          "type": "number"
+                        }
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "statusCode": 200,
+                  "status": "OK",
+                  "error": "",
+                  "partnerId": "10000003437",
+                  "payload": {
+                    "7DAY": {
+                      "refundRateSellerFault": 2.66,
+                      "refundRateCustomerFault": 4.85,
+                      "ots": 100,
+                      "otd": 100,
+                      "vtr": 93.3333333,
+                      "cancellationSellerFault": 0,
+                      "cancellationCustomerFault": 0.98
+                    },
+                    "14DAY": {
+                      "refundRateSellerFault": 1.2,
+                      "refundRateCustomerFault": 2.19,
+                      "ots": 100,
+                      "otd": 100,
+                      "vtr": 96.0784314,
+                      "cancellationSellerFault": 0,
+                      "cancellationCustomerFault": 0.52
+                    },
+                    "30DAY": {
+                      "refundRateSellerFault": 2.13,
+                      "refundRateCustomerFault": 3.11,
+                      "ots": 100,
+                      "otd": 100,
+                      "vtr": 98.2683983,
+                      "cancellationSellerFault": 0.22,
+                      "cancellationCustomerFault": 0.22
+                    },
+                    "60DAY": {
+                      "refundRateSellerFault": 1.98,
+                      "refundRateCustomerFault": 3.4,
+                      "ots": 100,
+                      "otd": 99.8231653,
+                      "vtr": 99.2007105,
+                      "cancellationSellerFault": 0.09,
+                      "cancellationCustomerFault": 0.45
+                    },
+                    "90DAY": {
+                      "refundRateSellerFault": 2.42,
+                      "refundRateCustomerFault": 3.2,
+                      "ots": 100,
+                      "otd": 99.7278171,
+                      "vtr": 99.4983278,
+                      "cancellationSellerFault": 0.11,
+                      "cancellationCustomerFault": 0.62
+                    }
+                  }
                 }
               }
             }
@@ -524,6 +1047,1056 @@
             "items": {
               "type": "string",
               "description": "All available report dates are returned\t"
+            }
+          }
+        }
+      },
+      "AdjustmentAggregate": {
+        "type": "object",
+        "properties": {
+          "netPayable": {
+            "type": "number"
+          },
+          "disputeSettlement": {
+            "type": "number"
+          },
+          "returnShipServCharge": {
+            "type": "number"
+          },
+          "returnHandlingServCharge": {
+            "type": "number"
+          },
+          "fwdShippingServiceFee": {
+            "type": "number"
+          }
+        }
+      },
+      "PartnerProgramAccSummary": {
+        "type": "object",
+        "properties": {
+          "openingBalance": {
+            "type": "number"
+          },
+          "orderActivity": {
+            "type": "number"
+          },
+          "walmartFulfillmentServices": {
+            "type": "number"
+          },
+          "otherActivities": {
+            "type": "number"
+          },
+          "reserve": {
+            "type": "number"
+          },
+          "paidToYou": {
+            "type": "number"
+          },
+          "closingBalance": {
+            "type": "number"
+          },
+          "scheduledSettlementDate": {
+            "type": "string"
+          },
+          "paymentProcessor": {
+            "type": "string"
+          },
+          "settleCycle": {
+            "type": "string"
+          },
+          "reserveToDate": {
+            "type": "number"
+          },
+          "lastUpdatedDate": {
+            "type": "string"
+          },
+          "holdAmt": {
+            "type": "number"
+          },
+          "holdDates": {
+            "type": "string"
+          }
+        }
+      },
+      "PartnerProgramStatementDO": {
+        "type": "object",
+        "properties": {
+          "outstandingMCABalance": {
+            "type": "number"
+          },
+          "sellerInfo": {
+            "type": "object",
+            "properties": {
+              "storeFrontUrl": {
+                "type": "string"
+              },
+              "sellerStatus": {
+                "type": "string"
+              },
+              "paymentStatus": {
+                "type": "string"
+              },
+              "tenure": {
+                "type": "integer",
+                "format": "int64"
+              }
+            }
+          },
+          "accountSummary": {
+            "type": "object",
+            "properties": {
+              "openingBalance": {
+                "type": "number"
+              },
+              "orderActivity": {
+                "type": "number"
+              },
+              "walmartFulfillmentServices": {
+                "type": "number"
+              },
+              "otherActivities": {
+                "type": "number"
+              },
+              "reserve": {
+                "type": "number"
+              },
+              "paidToYou": {
+                "type": "number"
+              },
+              "closingBalance": {
+                "type": "number"
+              },
+              "scheduledSettlementDate": {
+                "type": "string"
+              },
+              "paymentProcessor": {
+                "type": "string"
+              },
+              "settleCycle": {
+                "type": "string"
+              },
+              "reserveToDate": {
+                "type": "number"
+              },
+              "lastUpdatedDate": {
+                "type": "string"
+              },
+              "holdAmt": {
+                "type": "number"
+              },
+              "holdDates": {
+                "type": "string"
+              }
+            }
+          },
+          "transactionDetails": {
+            "type": "object",
+            "properties": {
+              "saleAggregate": {
+                "type": "object",
+                "properties": {
+                  "productPrice": {
+                    "type": "number"
+                  },
+                  "shipping": {
+                    "type": "number"
+                  },
+                  "netTaxCollected": {
+                    "type": "number"
+                  },
+                  "productTaxCollected": {
+                    "type": "number"
+                  },
+                  "shippingTaxCollected": {
+                    "type": "number"
+                  },
+                  "netTaxWithheld": {
+                    "type": "number"
+                  },
+                  "productTaxWithheld": {
+                    "type": "number"
+                  },
+                  "shippingTaxWithheld": {
+                    "type": "number"
+                  },
+                  "netFeeCollected": {
+                    "type": "number"
+                  },
+                  "netFeeWithheld": {
+                    "type": "number"
+                  },
+                  "netComm": {
+                    "type": "number"
+                  },
+                  "netPayable": {
+                    "type": "number"
+                  },
+                  "aboveCap": {
+                    "type": "number"
+                  },
+                  "wfsShipping": {
+                    "type": "number"
+                  },
+                  "wfsShipppingTax": {
+                    "type": "number"
+                  },
+                  "totalBaseCommission": {
+                    "type": "number"
+                  },
+                  "commissionSavings": {
+                    "type": "number"
+                  }
+                }
+              },
+              "refundDetails": {
+                "type": "object",
+                "properties": {
+                  "productPrice": {
+                    "type": "number"
+                  },
+                  "shipping": {
+                    "type": "number"
+                  },
+                  "netTaxCollected": {
+                    "type": "number"
+                  },
+                  "productTaxCollected": {
+                    "type": "number"
+                  },
+                  "shippingTaxCollected": {
+                    "type": "number"
+                  },
+                  "netTaxWithheld": {
+                    "type": "number"
+                  },
+                  "productTaxWithheld": {
+                    "type": "number"
+                  },
+                  "shippingTaxWithheld": {
+                    "type": "number"
+                  },
+                  "netFeeCollected": {
+                    "type": "number"
+                  },
+                  "netFeeWithheld": {
+                    "type": "number"
+                  },
+                  "netComm": {
+                    "type": "number"
+                  },
+                  "netPayable": {
+                    "type": "number"
+                  },
+                  "aboveCap": {
+                    "type": "number"
+                  },
+                  "wfsShipping": {
+                    "type": "number"
+                  },
+                  "wfsShipppingTax": {
+                    "type": "number"
+                  },
+                  "totalBaseCommission": {
+                    "type": "number"
+                  },
+                  "commissionSavings": {
+                    "type": "number"
+                  }
+                }
+              },
+              "adjustmentAggregate": {
+                "type": "object",
+                "properties": {
+                  "netPayable": {
+                    "type": "number"
+                  },
+                  "disputeSettlement": {
+                    "type": "number"
+                  },
+                  "returnShipServCharge": {
+                    "type": "number"
+                  },
+                  "returnHandlingServCharge": {
+                    "type": "number"
+                  },
+                  "fwdShippingServiceFee": {
+                    "type": "number"
+                  }
+                }
+              },
+              "wfs": {
+                "type": "object",
+                "properties": {
+                  "netPayable": {
+                    "type": "number"
+                  },
+                  "wfsFullfillmentFee": {
+                    "type": "number"
+                  },
+                  "wfsStorageFee": {
+                    "type": "number"
+                  },
+                  "wfsAdjustment": {
+                    "type": "number"
+                  },
+                  "wfsFee": {
+                    "type": "number"
+                  },
+                  "inventoryRemovalOrder": {
+                    "type": "number"
+                  },
+                  "inventoryDisposalOrder": {
+                    "type": "number"
+                  },
+                  "wfsPrepServiceFee": {
+                    "type": "number"
+                  }
+                }
+              },
+              "partnerTxns": {
+                "type": "object",
+                "properties": {
+                  "netPayable": {
+                    "type": "number"
+                  },
+                  "advancePayment": {
+                    "type": "number"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "PartnerProgramStatementRes": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "string"
+          },
+          "error": {
+            "type": "string"
+          },
+          "partnerId": {
+            "type": "string"
+          },
+          "payload": {
+            "type": "object",
+            "properties": {
+              "outstandingMCABalance": {
+                "type": "number"
+              },
+              "sellerInfo": {
+                "type": "object",
+                "properties": {
+                  "storeFrontUrl": {
+                    "type": "string"
+                  },
+                  "sellerStatus": {
+                    "type": "string"
+                  },
+                  "paymentStatus": {
+                    "type": "string"
+                  },
+                  "tenure": {
+                    "type": "integer",
+                    "format": "int64"
+                  }
+                }
+              },
+              "accountSummary": {
+                "type": "object",
+                "properties": {
+                  "openingBalance": {
+                    "type": "number"
+                  },
+                  "orderActivity": {
+                    "type": "number"
+                  },
+                  "walmartFulfillmentServices": {
+                    "type": "number"
+                  },
+                  "otherActivities": {
+                    "type": "number"
+                  },
+                  "reserve": {
+                    "type": "number"
+                  },
+                  "paidToYou": {
+                    "type": "number"
+                  },
+                  "closingBalance": {
+                    "type": "number"
+                  },
+                  "scheduledSettlementDate": {
+                    "type": "string"
+                  },
+                  "paymentProcessor": {
+                    "type": "string"
+                  },
+                  "settleCycle": {
+                    "type": "string"
+                  },
+                  "reserveToDate": {
+                    "type": "number"
+                  },
+                  "lastUpdatedDate": {
+                    "type": "string"
+                  },
+                  "holdAmt": {
+                    "type": "number"
+                  },
+                  "holdDates": {
+                    "type": "string"
+                  }
+                }
+              },
+              "transactionDetails": {
+                "type": "object",
+                "properties": {
+                  "saleAggregate": {
+                    "type": "object",
+                    "properties": {
+                      "productPrice": {
+                        "type": "number"
+                      },
+                      "shipping": {
+                        "type": "number"
+                      },
+                      "netTaxCollected": {
+                        "type": "number"
+                      },
+                      "productTaxCollected": {
+                        "type": "number"
+                      },
+                      "shippingTaxCollected": {
+                        "type": "number"
+                      },
+                      "netTaxWithheld": {
+                        "type": "number"
+                      },
+                      "productTaxWithheld": {
+                        "type": "number"
+                      },
+                      "shippingTaxWithheld": {
+                        "type": "number"
+                      },
+                      "netFeeCollected": {
+                        "type": "number"
+                      },
+                      "netFeeWithheld": {
+                        "type": "number"
+                      },
+                      "netComm": {
+                        "type": "number"
+                      },
+                      "netPayable": {
+                        "type": "number"
+                      },
+                      "aboveCap": {
+                        "type": "number"
+                      },
+                      "wfsShipping": {
+                        "type": "number"
+                      },
+                      "wfsShipppingTax": {
+                        "type": "number"
+                      },
+                      "totalBaseCommission": {
+                        "type": "number"
+                      },
+                      "commissionSavings": {
+                        "type": "number"
+                      }
+                    }
+                  },
+                  "refundDetails": {
+                    "type": "object",
+                    "properties": {
+                      "productPrice": {
+                        "type": "number"
+                      },
+                      "shipping": {
+                        "type": "number"
+                      },
+                      "netTaxCollected": {
+                        "type": "number"
+                      },
+                      "productTaxCollected": {
+                        "type": "number"
+                      },
+                      "shippingTaxCollected": {
+                        "type": "number"
+                      },
+                      "netTaxWithheld": {
+                        "type": "number"
+                      },
+                      "productTaxWithheld": {
+                        "type": "number"
+                      },
+                      "shippingTaxWithheld": {
+                        "type": "number"
+                      },
+                      "netFeeCollected": {
+                        "type": "number"
+                      },
+                      "netFeeWithheld": {
+                        "type": "number"
+                      },
+                      "netComm": {
+                        "type": "number"
+                      },
+                      "netPayable": {
+                        "type": "number"
+                      },
+                      "aboveCap": {
+                        "type": "number"
+                      },
+                      "wfsShipping": {
+                        "type": "number"
+                      },
+                      "wfsShipppingTax": {
+                        "type": "number"
+                      },
+                      "totalBaseCommission": {
+                        "type": "number"
+                      },
+                      "commissionSavings": {
+                        "type": "number"
+                      }
+                    }
+                  },
+                  "adjustmentAggregate": {
+                    "type": "object",
+                    "properties": {
+                      "netPayable": {
+                        "type": "number"
+                      },
+                      "disputeSettlement": {
+                        "type": "number"
+                      },
+                      "returnShipServCharge": {
+                        "type": "number"
+                      },
+                      "returnHandlingServCharge": {
+                        "type": "number"
+                      },
+                      "fwdShippingServiceFee": {
+                        "type": "number"
+                      }
+                    }
+                  },
+                  "wfs": {
+                    "type": "object",
+                    "properties": {
+                      "netPayable": {
+                        "type": "number"
+                      },
+                      "wfsFullfillmentFee": {
+                        "type": "number"
+                      },
+                      "wfsStorageFee": {
+                        "type": "number"
+                      },
+                      "wfsAdjustment": {
+                        "type": "number"
+                      },
+                      "wfsFee": {
+                        "type": "number"
+                      },
+                      "inventoryRemovalOrder": {
+                        "type": "number"
+                      },
+                      "inventoryDisposalOrder": {
+                        "type": "number"
+                      },
+                      "wfsPrepServiceFee": {
+                        "type": "number"
+                      }
+                    }
+                  },
+                  "partnerTxns": {
+                    "type": "object",
+                    "properties": {
+                      "netPayable": {
+                        "type": "number"
+                      },
+                      "advancePayment": {
+                        "type": "number"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "PartnerProgramTransactionDetails": {
+        "type": "object",
+        "properties": {
+          "saleAggregate": {
+            "type": "object",
+            "properties": {
+              "productPrice": {
+                "type": "number"
+              },
+              "shipping": {
+                "type": "number"
+              },
+              "netTaxCollected": {
+                "type": "number"
+              },
+              "productTaxCollected": {
+                "type": "number"
+              },
+              "shippingTaxCollected": {
+                "type": "number"
+              },
+              "netTaxWithheld": {
+                "type": "number"
+              },
+              "productTaxWithheld": {
+                "type": "number"
+              },
+              "shippingTaxWithheld": {
+                "type": "number"
+              },
+              "netFeeCollected": {
+                "type": "number"
+              },
+              "netFeeWithheld": {
+                "type": "number"
+              },
+              "netComm": {
+                "type": "number"
+              },
+              "netPayable": {
+                "type": "number"
+              },
+              "aboveCap": {
+                "type": "number"
+              },
+              "wfsShipping": {
+                "type": "number"
+              },
+              "wfsShipppingTax": {
+                "type": "number"
+              },
+              "totalBaseCommission": {
+                "type": "number"
+              },
+              "commissionSavings": {
+                "type": "number"
+              }
+            }
+          },
+          "refundDetails": {
+            "type": "object",
+            "properties": {
+              "productPrice": {
+                "type": "number"
+              },
+              "shipping": {
+                "type": "number"
+              },
+              "netTaxCollected": {
+                "type": "number"
+              },
+              "productTaxCollected": {
+                "type": "number"
+              },
+              "shippingTaxCollected": {
+                "type": "number"
+              },
+              "netTaxWithheld": {
+                "type": "number"
+              },
+              "productTaxWithheld": {
+                "type": "number"
+              },
+              "shippingTaxWithheld": {
+                "type": "number"
+              },
+              "netFeeCollected": {
+                "type": "number"
+              },
+              "netFeeWithheld": {
+                "type": "number"
+              },
+              "netComm": {
+                "type": "number"
+              },
+              "netPayable": {
+                "type": "number"
+              },
+              "aboveCap": {
+                "type": "number"
+              },
+              "wfsShipping": {
+                "type": "number"
+              },
+              "wfsShipppingTax": {
+                "type": "number"
+              },
+              "totalBaseCommission": {
+                "type": "number"
+              },
+              "commissionSavings": {
+                "type": "number"
+              }
+            }
+          },
+          "adjustmentAggregate": {
+            "type": "object",
+            "properties": {
+              "netPayable": {
+                "type": "number"
+              },
+              "disputeSettlement": {
+                "type": "number"
+              },
+              "returnShipServCharge": {
+                "type": "number"
+              },
+              "returnHandlingServCharge": {
+                "type": "number"
+              },
+              "fwdShippingServiceFee": {
+                "type": "number"
+              }
+            }
+          },
+          "wfs": {
+            "type": "object",
+            "properties": {
+              "netPayable": {
+                "type": "number"
+              },
+              "wfsFullfillmentFee": {
+                "type": "number"
+              },
+              "wfsStorageFee": {
+                "type": "number"
+              },
+              "wfsAdjustment": {
+                "type": "number"
+              },
+              "wfsFee": {
+                "type": "number"
+              },
+              "inventoryRemovalOrder": {
+                "type": "number"
+              },
+              "inventoryDisposalOrder": {
+                "type": "number"
+              },
+              "wfsPrepServiceFee": {
+                "type": "number"
+              }
+            }
+          },
+          "partnerTxns": {
+            "type": "object",
+            "properties": {
+              "netPayable": {
+                "type": "number"
+              },
+              "advancePayment": {
+                "type": "number"
+              }
+            }
+          }
+        }
+      },
+      "PartnerTxns": {
+        "type": "object",
+        "properties": {
+          "netPayable": {
+            "type": "number"
+          },
+          "advancePayment": {
+            "type": "number"
+          }
+        }
+      },
+      "SaleRefundAggr": {
+        "type": "object",
+        "properties": {
+          "productPrice": {
+            "type": "number"
+          },
+          "shipping": {
+            "type": "number"
+          },
+          "netTaxCollected": {
+            "type": "number"
+          },
+          "productTaxCollected": {
+            "type": "number"
+          },
+          "shippingTaxCollected": {
+            "type": "number"
+          },
+          "netTaxWithheld": {
+            "type": "number"
+          },
+          "productTaxWithheld": {
+            "type": "number"
+          },
+          "shippingTaxWithheld": {
+            "type": "number"
+          },
+          "netFeeCollected": {
+            "type": "number"
+          },
+          "netFeeWithheld": {
+            "type": "number"
+          },
+          "netComm": {
+            "type": "number"
+          },
+          "netPayable": {
+            "type": "number"
+          },
+          "aboveCap": {
+            "type": "number"
+          },
+          "wfsShipping": {
+            "type": "number"
+          },
+          "wfsShipppingTax": {
+            "type": "number"
+          },
+          "totalBaseCommission": {
+            "type": "number"
+          },
+          "commissionSavings": {
+            "type": "number"
+          }
+        }
+      },
+      "SellerInfo": {
+        "type": "object",
+        "properties": {
+          "storeFrontUrl": {
+            "type": "string"
+          },
+          "sellerStatus": {
+            "type": "string"
+          },
+          "paymentStatus": {
+            "type": "string"
+          },
+          "tenure": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "WfsAggr": {
+        "type": "object",
+        "properties": {
+          "netPayable": {
+            "type": "number"
+          },
+          "wfsFullfillmentFee": {
+            "type": "number"
+          },
+          "wfsStorageFee": {
+            "type": "number"
+          },
+          "wfsAdjustment": {
+            "type": "number"
+          },
+          "wfsFee": {
+            "type": "number"
+          },
+          "inventoryRemovalOrder": {
+            "type": "number"
+          },
+          "inventoryDisposalOrder": {
+            "type": "number"
+          },
+          "wfsPrepServiceFee": {
+            "type": "number"
+          }
+        }
+      },
+      "PartnerProgramPerformance": {
+        "type": "object",
+        "properties": {
+          "refundRateSellerFault": {
+            "type": "number"
+          },
+          "refundRateCustomerFault": {
+            "type": "number"
+          },
+          "ots": {
+            "type": "number"
+          },
+          "otd": {
+            "type": "number"
+          },
+          "vtr": {
+            "type": "number"
+          },
+          "cancellationSellerFault": {
+            "type": "number"
+          },
+          "cancellationCustomerFault": {
+            "type": "number"
+          }
+        }
+      },
+      "PartnerProgramPerformanceRes": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "string"
+          },
+          "error": {
+            "type": "string"
+          },
+          "partnerId": {
+            "type": "string"
+          },
+          "7DAY": {
+            "type": "object",
+            "properties": {
+              "refundRateSellerFault": {
+                "type": "number"
+              },
+              "refundRateCustomerFault": {
+                "type": "number"
+              },
+              "ots": {
+                "type": "number"
+              },
+              "otd": {
+                "type": "number"
+              },
+              "vtr": {
+                "type": "number"
+              },
+              "cancellationSellerFault": {
+                "type": "number"
+              },
+              "cancellationCustomerFault": {
+                "type": "number"
+              }
+            }
+          },
+          "14DAY": {
+            "type": "object",
+            "properties": {
+              "refundRateSellerFault": {
+                "type": "number"
+              },
+              "refundRateCustomerFault": {
+                "type": "number"
+              },
+              "ots": {
+                "type": "number"
+              },
+              "otd": {
+                "type": "number"
+              },
+              "vtr": {
+                "type": "number"
+              },
+              "cancellationSellerFault": {
+                "type": "number"
+              },
+              "cancellationCustomerFault": {
+                "type": "number"
+              }
+            }
+          },
+          "30DAY": {
+            "type": "object",
+            "properties": {
+              "refundRateSellerFault": {
+                "type": "number"
+              },
+              "refundRateCustomerFault": {
+                "type": "number"
+              },
+              "ots": {
+                "type": "number"
+              },
+              "otd": {
+                "type": "number"
+              },
+              "vtr": {
+                "type": "number"
+              },
+              "cancellationSellerFault": {
+                "type": "number"
+              },
+              "cancellationCustomerFault": {
+                "type": "number"
+              }
+            }
+          },
+          "60DAY": {
+            "type": "object",
+            "properties": {
+              "refundRateSellerFault": {
+                "type": "number"
+              },
+              "refundRateCustomerFault": {
+                "type": "number"
+              },
+              "ots": {
+                "type": "number"
+              },
+              "otd": {
+                "type": "number"
+              },
+              "vtr": {
+                "type": "number"
+              },
+              "cancellationSellerFault": {
+                "type": "number"
+              },
+              "cancellationCustomerFault": {
+                "type": "number"
+              }
+            }
+          },
+          "90DAY": {
+            "type": "object",
+            "properties": {
+              "refundRateSellerFault": {
+                "type": "number"
+              },
+              "refundRateCustomerFault": {
+                "type": "number"
+              },
+              "ots": {
+                "type": "number"
+              },
+              "otd": {
+                "type": "number"
+              },
+              "vtr": {
+                "type": "number"
+              },
+              "cancellationSellerFault": {
+                "type": "number"
+              },
+              "cancellationCustomerFault": {
+                "type": "number"
+              }
             }
           }
         }
@@ -598,15 +2171,6 @@
           "type": "string"
         },
         "example": "application/json"
-      }
-    },
-    "securitySchemes": {
-      "basicScheme": {
-        "type": "http",
-        "description": "",
-        "name": "Authorization",
-        "in": "header",
-        "scheme": "basic"
       }
     }
   }

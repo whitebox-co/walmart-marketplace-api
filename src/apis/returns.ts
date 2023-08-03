@@ -65,7 +65,7 @@ export interface Charge {
      */
     chargeCategory?: string;
     /**
-     * If chargeType is PRODUCT, chargeName is Item Price. If chargeType is SHIPPING, chargeName is Shipping
+     * If chargeType is PRODUCT, chargeName is ItemPrice. If chargeType is PRODUCT and includes a chargeName as SubscriptionDiscount, these are subscription orders with a discount. If chargeType is SHIPPING, chargeName is Shipping
      * @type {string}
      * @memberof Charge
      */
@@ -125,6 +125,37 @@ export interface ChargeTotal {
      * @memberof ChargeTotal
      */
     value: InlineResponse2002TotalRefundAmount;
+}
+/**
+ * Array of current tracking status of each quantity
+ * @export
+ * @interface CurrentTrackingStatus
+ */
+export interface CurrentTrackingStatus {
+    /**
+     * Current status of return. (e.g., \'INITIATED\')
+     * @type {string}
+     * @memberof CurrentTrackingStatus
+     */
+    status?: string;
+    /**
+     * Timestamp of listed status change
+     * @type {string}
+     * @memberof CurrentTrackingStatus
+     */
+    statusTime?: string;
+    /**
+     * Determines the current refund status of the return.
+     * @type {string}
+     * @memberof CurrentTrackingStatus
+     */
+    currentRefundStatus?: string;
+    /**
+     * 
+     * @type {V3ReturnsReturnOrderIdRefundQuantity}
+     * @memberof CurrentTrackingStatus
+     */
+    quantity?: V3ReturnsReturnOrderIdRefundQuantity;
 }
 /**
  * Customer information
@@ -316,7 +347,7 @@ export interface InlineResponse2002Charges {
      */
     chargeCategory?: string;
     /**
-     * If chargeType is PRODUCT, chargeName is Item Price. If chargeType is SHIPPING, chargeName is Shipping
+     * If chargeType is PRODUCT, chargeName is ItemPrice. If chargeType is PRODUCT and includes a chargeName as SubscriptionDiscount, these are subscription orders with a discount. If chargeType is SHIPPING, chargeName is Shipping
      * @type {string}
      * @memberof InlineResponse2002Charges
      */
@@ -359,6 +390,37 @@ export interface InlineResponse2002Charges {
     references?: Array<InlineResponse2002References>;
 }
 /**
+ * Array of current tracking status of each quantity
+ * @export
+ * @interface InlineResponse2002CurrentTrackingStatuses
+ */
+export interface InlineResponse2002CurrentTrackingStatuses {
+    /**
+     * Current status of return. (e.g., \'INITIATED\')
+     * @type {string}
+     * @memberof InlineResponse2002CurrentTrackingStatuses
+     */
+    status?: string;
+    /**
+     * Timestamp of listed status change
+     * @type {string}
+     * @memberof InlineResponse2002CurrentTrackingStatuses
+     */
+    statusTime?: string;
+    /**
+     * Determines the current refund status of the return.
+     * @type {string}
+     * @memberof InlineResponse2002CurrentTrackingStatuses
+     */
+    currentRefundStatus?: string;
+    /**
+     * 
+     * @type {V3ReturnsReturnOrderIdRefundQuantity}
+     * @memberof InlineResponse2002CurrentTrackingStatuses
+     */
+    quantity?: V3ReturnsReturnOrderIdRefundQuantity;
+}
+/**
  * Customer information
  * @export
  * @interface InlineResponse2002CustomerName
@@ -397,29 +459,10 @@ export interface InlineResponse2002Item {
     productName?: string;
     /**
      * 
-     * @type {InlineResponse2002ItemItemWeight}
+     * @type {V3ReturnsReturnOrderIdRefundQuantity}
      * @memberof InlineResponse2002Item
      */
-    itemWeight?: InlineResponse2002ItemItemWeight;
-}
-/**
- * Total quantity returned in this return line
- * @export
- * @interface InlineResponse2002ItemItemWeight
- */
-export interface InlineResponse2002ItemItemWeight {
-    /**
-     * The unit of measure in the item\'s weight (e.g., \'POUND\' or \'OUNCE\')
-     * @type {string}
-     * @memberof InlineResponse2002ItemItemWeight
-     */
-    unitOfMeasure: string;
-    /**
-     * The quantity of the unit of measure for the item
-     * @type {number}
-     * @memberof InlineResponse2002ItemItemWeight
-     */
-    measurementValue: number;
+    itemWeight?: V3ReturnsReturnOrderIdRefundQuantity;
 }
 /**
  * Array of labels
@@ -483,6 +526,25 @@ export interface InlineResponse2002References {
      * @memberof InlineResponse2002References
      */
     value: string;
+}
+/**
+ * Array of refund channel of each quantity
+ * @export
+ * @interface InlineResponse2002RefundChannels
+ */
+export interface InlineResponse2002RefundChannels {
+    /**
+     * Valid values are: ONLINE, IN_STORE, and CUSTOMER_CARE
+     * @type {string}
+     * @memberof InlineResponse2002RefundChannels
+     */
+    refundChannelName?: string;
+    /**
+     * 
+     * @type {V3ReturnsReturnOrderIdRefundQuantity}
+     * @memberof InlineResponse2002RefundChannels
+     */
+    quantity?: V3ReturnsReturnOrderIdRefundQuantity;
 }
 /**
  * The channel via order return got initiated
@@ -645,10 +707,10 @@ export interface InlineResponse2002ReturnOrderLines {
     cancellableQty?: number;
     /**
      * 
-     * @type {InlineResponse2002ItemItemWeight}
+     * @type {V3ReturnsReturnOrderIdRefundQuantity}
      * @memberof InlineResponse2002ReturnOrderLines
      */
-    quantity?: InlineResponse2002ItemItemWeight;
+    quantity?: V3ReturnsReturnOrderIdRefundQuantity;
     /**
      * Is customer required to send this item back to return center.
      * @type {boolean}
@@ -721,6 +783,18 @@ export interface InlineResponse2002ReturnOrderLines {
      * @memberof InlineResponse2002ReturnOrderLines
      */
     currentRefundStatus?: string;
+    /**
+     * Array of current tracking status of each quantity
+     * @type {Array<InlineResponse2002CurrentTrackingStatuses>}
+     * @memberof InlineResponse2002ReturnOrderLines
+     */
+    currentTrackingStatuses?: Array<InlineResponse2002CurrentTrackingStatuses>;
+    /**
+     * Array of refund channel of each quantity
+     * @type {Array<InlineResponse2002RefundChannels>}
+     * @memberof InlineResponse2002ReturnOrderLines
+     */
+    refundChannels?: Array<InlineResponse2002RefundChannels>;
 }
 /**
  * List of returns for the seller.
@@ -908,10 +982,10 @@ export interface Item {
     productName?: string;
     /**
      * 
-     * @type {InlineResponse2002ItemItemWeight}
+     * @type {V3ReturnsReturnOrderIdRefundQuantity}
      * @memberof Item
      */
-    itemWeight?: InlineResponse2002ItemItemWeight;
+    itemWeight?: V3ReturnsReturnOrderIdRefundQuantity;
 }
 /**
  * Array of labels
@@ -1002,7 +1076,7 @@ export interface NameValue {
  */
 export interface Quantity {
     /**
-     * The unit of measure in the item\'s weight (e.g., \'POUND\' or \'OUNCE\')
+     * The unit of measure in the item\'s weight (e.g., \'EACH\' or \'EA\')
      * @type {string}
      * @memberof Quantity
      */
@@ -1013,6 +1087,25 @@ export interface Quantity {
      * @memberof Quantity
      */
     measurementValue: number;
+}
+/**
+ * Array of refund channel of each quantity
+ * @export
+ * @interface RefundChannelInfo
+ */
+export interface RefundChannelInfo {
+    /**
+     * Valid values are: ONLINE, IN_STORE, and CUSTOMER_CARE
+     * @type {string}
+     * @memberof RefundChannelInfo
+     */
+    refundChannelName?: string;
+    /**
+     * 
+     * @type {V3ReturnsReturnOrderIdRefundQuantity}
+     * @memberof RefundChannelInfo
+     */
+    quantity?: V3ReturnsReturnOrderIdRefundQuantity;
 }
 /**
  * Array of refund lines.
@@ -1026,6 +1119,12 @@ export interface RefundLine {
      * @memberof RefundLine
      */
     returnOrderLineNumber: number;
+    /**
+     * 
+     * @type {V3ReturnsReturnOrderIdRefundQuantity}
+     * @memberof RefundLine
+     */
+    quantity?: V3ReturnsReturnOrderIdRefundQuantity;
 }
 /**
  * 
@@ -1317,10 +1416,10 @@ export interface ReturnOrderLine {
     cancellableQty?: number;
     /**
      * 
-     * @type {InlineResponse2002ItemItemWeight}
+     * @type {V3ReturnsReturnOrderIdRefundQuantity}
      * @memberof ReturnOrderLine
      */
-    quantity?: InlineResponse2002ItemItemWeight;
+    quantity?: V3ReturnsReturnOrderIdRefundQuantity;
     /**
      * Is customer required to send this item back to return center.
      * @type {boolean}
@@ -1393,6 +1492,18 @@ export interface ReturnOrderLine {
      * @memberof ReturnOrderLine
      */
     currentRefundStatus?: string;
+    /**
+     * Array of current tracking status of each quantity
+     * @type {Array<InlineResponse2002CurrentTrackingStatuses>}
+     * @memberof ReturnOrderLine
+     */
+    currentTrackingStatuses?: Array<InlineResponse2002CurrentTrackingStatuses>;
+    /**
+     * Array of refund channel of each quantity
+     * @type {Array<InlineResponse2002RefundChannels>}
+     * @memberof ReturnOrderLine
+     */
+    refundChannels?: Array<InlineResponse2002RefundChannels>;
 }
 /**
  * Informational blocks added as the return order completes its journey from return creation to received and refunded.
@@ -1457,6 +1568,25 @@ export interface Tax {
     taxPerUnit?: InlineResponse2002TotalRefundAmount;
 }
 /**
+ * Total quantity returned in this return line
+ * @export
+ * @interface V3ReturnsReturnOrderIdRefundQuantity
+ */
+export interface V3ReturnsReturnOrderIdRefundQuantity {
+    /**
+     * The unit of measure in the item\'s weight (e.g., \'EACH\' or \'EA\')
+     * @type {string}
+     * @memberof V3ReturnsReturnOrderIdRefundQuantity
+     */
+    unitOfMeasure: string;
+    /**
+     * The quantity of the unit of measure for the item
+     * @type {number}
+     * @memberof V3ReturnsReturnOrderIdRefundQuantity
+     */
+    measurementValue: number;
+}
+/**
  * Array of refund lines.
  * @export
  * @interface V3ReturnsReturnOrderIdRefundRefundLines
@@ -1468,6 +1598,12 @@ export interface V3ReturnsReturnOrderIdRefundRefundLines {
      * @memberof V3ReturnsReturnOrderIdRefundRefundLines
      */
     returnOrderLineNumber: number;
+    /**
+     * 
+     * @type {V3ReturnsReturnOrderIdRefundQuantity}
+     * @memberof V3ReturnsReturnOrderIdRefundRefundLines
+     */
+    quantity?: V3ReturnsReturnOrderIdRefundQuantity;
 }
 
 /**
@@ -1480,7 +1616,6 @@ export const ReturnsRefundsApiAxiosParamCreator = function (configuration?: Conf
          * Sellers can specify global settings for returns in Seller Center, and they can override individual item level settings using this API.  Empty values for the settings will remove the existing overriden values and revert them to global settings.  For more details, see the announcement for [Bulk Return Rules](https://sellerhelp.walmart.com/s/guide?article=000008197).
          * @summary Return Item Overrides
          * @param {string} feedType Feed Type
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -1489,11 +1624,9 @@ export const ReturnsRefundsApiAxiosParamCreator = function (configuration?: Conf
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        bulkItemOverrideFeed: async (feedType: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, file: any, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
+        bulkItemOverrideFeed: async (feedType: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, file: any, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'feedType' is not null or undefined
             assertParamExists('bulkItemOverrideFeed', 'feedType', feedType)
-            // verify required parameter 'authorization' is not null or undefined
-            assertParamExists('bulkItemOverrideFeed', 'authorization', authorization)
             // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
             assertParamExists('bulkItemOverrideFeed', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN)
             // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
@@ -1515,16 +1648,8 @@ export const ReturnsRefundsApiAxiosParamCreator = function (configuration?: Conf
             const localVarQueryParameter = {} as any;
             const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)();
 
-            // authentication basicScheme required
-            // http basic authentication required
-            setBasicAuthToObject(localVarRequestOptions, configuration)
-
             if (feedType !== undefined) {
                 localVarQueryParameter['feedType'] = feedType;
-            }
-
-            if (authorization !== undefined && authorization !== null) {
-                localVarHeaderParameter['Authorization'] = String(authorization);
             }
 
             if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
@@ -1564,7 +1689,6 @@ export const ReturnsRefundsApiAxiosParamCreator = function (configuration?: Conf
         /**
          * Retrieves the details of return orders for the specified filter criteria.
          * @summary Returns
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -1582,9 +1706,7 @@ export const ReturnsRefundsApiAxiosParamCreator = function (configuration?: Conf
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getReturns: async (authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, returnOrderId?: string, customerOrderId?: string, status?: string, replacementInfo?: string, returnType?: string, returnCreationStartDate?: string, returnCreationEndDate?: string, returnLastModifiedStartDate?: string, returnLastModifiedEndDate?: string, limit?: string, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'authorization' is not null or undefined
-            assertParamExists('getReturns', 'authorization', authorization)
+        getReturns: async (wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, returnOrderId?: string, customerOrderId?: string, status?: string, replacementInfo?: string, returnType?: string, returnCreationStartDate?: string, returnCreationEndDate?: string, returnLastModifiedStartDate?: string, returnLastModifiedEndDate?: string, limit?: string, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
             assertParamExists('getReturns', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN)
             // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
@@ -1602,10 +1724,6 @@ export const ReturnsRefundsApiAxiosParamCreator = function (configuration?: Conf
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-
-            // authentication basicScheme required
-            // http basic authentication required
-            setBasicAuthToObject(localVarRequestOptions, configuration)
 
             if (returnOrderId !== undefined) {
                 localVarQueryParameter['returnOrderId'] = returnOrderId;
@@ -1655,10 +1773,6 @@ export const ReturnsRefundsApiAxiosParamCreator = function (configuration?: Conf
                 localVarQueryParameter['limit'] = limit;
             }
 
-            if (authorization !== undefined && authorization !== null) {
-                localVarHeaderParameter['Authorization'] = String(authorization);
-            }
-
             if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
                 localVarHeaderParameter['WM_SEC.ACCESS_TOKEN'] = String(wMSECACCESSTOKEN);
             }
@@ -1690,7 +1804,6 @@ export const ReturnsRefundsApiAxiosParamCreator = function (configuration?: Conf
          * This API allows sellers to issue refund against a return order. Multiple return order lines can be refunded in one request.  Note: Sellers can use the Refund Order Lines API for all non-exception category items, including adjustments that seller needs to determine a partial refund amount. Especially for exception category items: HAZMAT, OTHER and FREIGHT that are not eligible for the Marketplace Returns Program. 
          * @summary Issue refund
          * @param {string} returnOrderId The return order ID
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -1699,11 +1812,9 @@ export const ReturnsRefundsApiAxiosParamCreator = function (configuration?: Conf
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        issueRefund: async (returnOrderId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
+        issueRefund: async (returnOrderId: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, wMCONSUMERCHANNELTYPE?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'returnOrderId' is not null or undefined
             assertParamExists('issueRefund', 'returnOrderId', returnOrderId)
-            // verify required parameter 'authorization' is not null or undefined
-            assertParamExists('issueRefund', 'authorization', authorization)
             // verify required parameter 'wMSECACCESSTOKEN' is not null or undefined
             assertParamExists('issueRefund', 'wMSECACCESSTOKEN', wMSECACCESSTOKEN)
             // verify required parameter 'wMQOSCORRELATIONID' is not null or undefined
@@ -1724,14 +1835,6 @@ export const ReturnsRefundsApiAxiosParamCreator = function (configuration?: Conf
             const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-
-            // authentication basicScheme required
-            // http basic authentication required
-            setBasicAuthToObject(localVarRequestOptions, configuration)
-
-            if (authorization !== undefined && authorization !== null) {
-                localVarHeaderParameter['Authorization'] = String(authorization);
-            }
 
             if (wMSECACCESSTOKEN !== undefined && wMSECACCESSTOKEN !== null) {
                 localVarHeaderParameter['WM_SEC.ACCESS_TOKEN'] = String(wMSECACCESSTOKEN);
@@ -1777,7 +1880,6 @@ export const ReturnsRefundsApiFp = function(configuration?: Configuration) {
          * Sellers can specify global settings for returns in Seller Center, and they can override individual item level settings using this API.  Empty values for the settings will remove the existing overriden values and revert them to global settings.  For more details, see the announcement for [Bulk Return Rules](https://sellerhelp.walmart.com/s/guide?article=000008197).
          * @summary Return Item Overrides
          * @param {string} feedType Feed Type
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -1786,14 +1888,13 @@ export const ReturnsRefundsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async bulkItemOverrideFeed(feedType: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, file: any, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.bulkItemOverrideFeed(feedType, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, file, wMCONSUMERCHANNELTYPE, options);
+        async bulkItemOverrideFeed(feedType: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, file: any, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.bulkItemOverrideFeed(feedType, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, file, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Retrieves the details of return orders for the specified filter criteria.
          * @summary Returns
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -1811,15 +1912,14 @@ export const ReturnsRefundsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getReturns(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, returnOrderId?: string, customerOrderId?: string, status?: string, replacementInfo?: string, returnType?: string, returnCreationStartDate?: string, returnCreationEndDate?: string, returnLastModifiedStartDate?: string, returnLastModifiedEndDate?: string, limit?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2002>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getReturns(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, returnOrderId, customerOrderId, status, replacementInfo, returnType, returnCreationStartDate, returnCreationEndDate, returnLastModifiedStartDate, returnLastModifiedEndDate, limit, wMCONSUMERCHANNELTYPE, options);
+        async getReturns(wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, returnOrderId?: string, customerOrderId?: string, status?: string, replacementInfo?: string, returnType?: string, returnCreationStartDate?: string, returnCreationEndDate?: string, returnLastModifiedStartDate?: string, returnLastModifiedEndDate?: string, limit?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2002>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getReturns(wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, returnOrderId, customerOrderId, status, replacementInfo, returnType, returnCreationStartDate, returnCreationEndDate, returnLastModifiedStartDate, returnLastModifiedEndDate, limit, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * This API allows sellers to issue refund against a return order. Multiple return order lines can be refunded in one request.  Note: Sellers can use the Refund Order Lines API for all non-exception category items, including adjustments that seller needs to determine a partial refund amount. Especially for exception category items: HAZMAT, OTHER and FREIGHT that are not eligible for the Marketplace Returns Program. 
          * @summary Issue refund
          * @param {string} returnOrderId The return order ID
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -1828,8 +1928,8 @@ export const ReturnsRefundsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async issueRefund(returnOrderId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.issueRefund(returnOrderId, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject, wMCONSUMERCHANNELTYPE, options);
+        async issueRefund(returnOrderId: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, wMCONSUMERCHANNELTYPE?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.issueRefund(returnOrderId, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject, wMCONSUMERCHANNELTYPE, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -1846,7 +1946,6 @@ export const ReturnsRefundsApiFactory = function (configuration?: Configuration,
          * Sellers can specify global settings for returns in Seller Center, and they can override individual item level settings using this API.  Empty values for the settings will remove the existing overriden values and revert them to global settings.  For more details, see the announcement for [Bulk Return Rules](https://sellerhelp.walmart.com/s/guide?article=000008197).
          * @summary Return Item Overrides
          * @param {string} feedType Feed Type
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -1855,13 +1954,12 @@ export const ReturnsRefundsApiFactory = function (configuration?: Configuration,
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        bulkItemOverrideFeed(feedType: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, file: any, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2001> {
-            return localVarFp.bulkItemOverrideFeed(feedType, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, file, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        bulkItemOverrideFeed(feedType: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, file: any, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2001> {
+            return localVarFp.bulkItemOverrideFeed(feedType, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, file, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
          * Retrieves the details of return orders for the specified filter criteria.
          * @summary Returns
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -1879,14 +1977,13 @@ export const ReturnsRefundsApiFactory = function (configuration?: Configuration,
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getReturns(authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, returnOrderId?: string, customerOrderId?: string, status?: string, replacementInfo?: string, returnType?: string, returnCreationStartDate?: string, returnCreationEndDate?: string, returnLastModifiedStartDate?: string, returnLastModifiedEndDate?: string, limit?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2002> {
-            return localVarFp.getReturns(authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, returnOrderId, customerOrderId, status, replacementInfo, returnType, returnCreationStartDate, returnCreationEndDate, returnLastModifiedStartDate, returnLastModifiedEndDate, limit, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        getReturns(wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, returnOrderId?: string, customerOrderId?: string, status?: string, replacementInfo?: string, returnType?: string, returnCreationStartDate?: string, returnCreationEndDate?: string, returnLastModifiedStartDate?: string, returnLastModifiedEndDate?: string, limit?: string, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse2002> {
+            return localVarFp.getReturns(wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, returnOrderId, customerOrderId, status, replacementInfo, returnType, returnCreationStartDate, returnCreationEndDate, returnLastModifiedStartDate, returnLastModifiedEndDate, limit, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
         /**
          * This API allows sellers to issue refund against a return order. Multiple return order lines can be refunded in one request.  Note: Sellers can use the Refund Order Lines API for all non-exception category items, including adjustments that seller needs to determine a partial refund amount. Especially for exception category items: HAZMAT, OTHER and FREIGHT that are not eligible for the Marketplace Returns Program. 
          * @summary Issue refund
          * @param {string} returnOrderId The return order ID
-         * @param {string} authorization Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
          * @param {string} wMSECACCESSTOKEN The access token retrieved in the Token API call
          * @param {string} wMQOSCORRELATIONID A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID
          * @param {string} wMSVCNAME Walmart Service Name
@@ -1895,8 +1992,8 @@ export const ReturnsRefundsApiFactory = function (configuration?: Configuration,
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        issueRefund(returnOrderId: string, authorization: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse200> {
-            return localVarFp.issueRefund(returnOrderId, authorization, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
+        issueRefund(returnOrderId: string, wMSECACCESSTOKEN: string, wMQOSCORRELATIONID: string, wMSVCNAME: string, inlineObject: InlineObject, wMCONSUMERCHANNELTYPE?: string, options?: any): AxiosPromise<InlineResponse200> {
+            return localVarFp.issueRefund(returnOrderId, wMSECACCESSTOKEN, wMQOSCORRELATIONID, wMSVCNAME, inlineObject, wMCONSUMERCHANNELTYPE, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -1913,13 +2010,6 @@ export interface ReturnsRefundsApiBulkItemOverrideFeedRequest {
      * @memberof ReturnsRefundsApiBulkItemOverrideFeed
      */
     readonly feedType: string
-
-    /**
-     * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @type {string}
-     * @memberof ReturnsRefundsApiBulkItemOverrideFeed
-     */
-    readonly authorization: string
 
     /**
      * The access token retrieved in the Token API call
@@ -1963,13 +2053,6 @@ export interface ReturnsRefundsApiBulkItemOverrideFeedRequest {
  * @interface ReturnsRefundsApiGetReturnsRequest
  */
 export interface ReturnsRefundsApiGetReturnsRequest {
-    /**
-     * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @type {string}
-     * @memberof ReturnsRefundsApiGetReturns
-     */
-    readonly authorization: string
-
     /**
      * The access token retrieved in the Token API call
      * @type {string}
@@ -2083,13 +2166,6 @@ export interface ReturnsRefundsApiIssueRefundRequest {
     readonly returnOrderId: string
 
     /**
-     * Basic authorization header. Base 64 encodes the Client ID and Client Secret retrieved in step two of the integration steps.
-     * @type {string}
-     * @memberof ReturnsRefundsApiIssueRefund
-     */
-    readonly authorization: string
-
-    /**
      * The access token retrieved in the Token API call
      * @type {string}
      * @memberof ReturnsRefundsApiIssueRefund
@@ -2141,7 +2217,7 @@ export class ReturnsRefundsApi extends BaseAPI {
      * @memberof ReturnsRefundsApi
      */
     public bulkItemOverrideFeed(requestParameters: ReturnsRefundsApiBulkItemOverrideFeedRequest, options?: any) {
-        return ReturnsRefundsApiFp(this.configuration).bulkItemOverrideFeed(requestParameters.feedType, requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.file, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+        return ReturnsRefundsApiFp(this.configuration).bulkItemOverrideFeed(requestParameters.feedType, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.file, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -2153,7 +2229,7 @@ export class ReturnsRefundsApi extends BaseAPI {
      * @memberof ReturnsRefundsApi
      */
     public getReturns(requestParameters: ReturnsRefundsApiGetReturnsRequest, options?: any) {
-        return ReturnsRefundsApiFp(this.configuration).getReturns(requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.returnOrderId, requestParameters.customerOrderId, requestParameters.status, requestParameters.replacementInfo, requestParameters.returnType, requestParameters.returnCreationStartDate, requestParameters.returnCreationEndDate, requestParameters.returnLastModifiedStartDate, requestParameters.returnLastModifiedEndDate, requestParameters.limit, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+        return ReturnsRefundsApiFp(this.configuration).getReturns(requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.returnOrderId, requestParameters.customerOrderId, requestParameters.status, requestParameters.replacementInfo, requestParameters.returnType, requestParameters.returnCreationStartDate, requestParameters.returnCreationEndDate, requestParameters.returnLastModifiedStartDate, requestParameters.returnLastModifiedEndDate, requestParameters.limit, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -2165,7 +2241,7 @@ export class ReturnsRefundsApi extends BaseAPI {
      * @memberof ReturnsRefundsApi
      */
     public issueRefund(requestParameters: ReturnsRefundsApiIssueRefundRequest, options?: any) {
-        return ReturnsRefundsApiFp(this.configuration).issueRefund(requestParameters.returnOrderId, requestParameters.authorization, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.inlineObject, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
+        return ReturnsRefundsApiFp(this.configuration).issueRefund(requestParameters.returnOrderId, requestParameters.wMSECACCESSTOKEN, requestParameters.wMQOSCORRELATIONID, requestParameters.wMSVCNAME, requestParameters.inlineObject, requestParameters.wMCONSUMERCHANNELTYPE, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
